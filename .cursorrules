@@ -1,0 +1,30 @@
+# Cursor Rules for SpiritHub.ro
+
+## Always Include Agent Guidelines
+
+Before starting any task, read and follow the guidelines in `agents.md`. These guidelines define how AI agents should behave when working on this codebase.
+
+## Key Reminders
+
+- **Plan before implementing** - Always create a clear plan before writing code
+- **Romanian UI only** - All user-facing text must be in Romanian
+- **Respect project structure** - Follow conventions in `Structure.md`
+- **Code is documentation** - Prefer clear naming over excessive comments
+- **No unnecessary markdown** - Don't create extra documentation files
+
+## Documentation Files
+
+- `agents.md` - Agent behavior guidelines (ALWAYS READ THIS FIRST)
+- `product.md` - Product specifications and requirements
+- `Structure.md` - Project architecture and folder structure
+- `Tech.md` - Technology stack and development guidelines
+
+## Workflow
+
+1. **Context Gathering**: Read relevant files and understand the current state
+2. **Planning**: Create a clear plan and present it before implementing
+3. **Implementation**: Follow the plan, respect conventions, use Romanian for UI
+4. **Cleanup**: Remove debug code, ensure self-documenting code, no extra markdown files
+
+Refer to `agents.md` for complete guidelines and workflows.
+
