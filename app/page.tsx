@@ -1,150 +1,454 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Sparkles, Moon, Activity } from "lucide-react";
+import Image from "next/image";
+import { Menu } from "lucide-react";
+
+const slides = [
+  {
+    id: 1,
+    title: "Numerele tale îți luminează drumul",
+    description: "Fiecare cifră din data ta de naștere poartă o vibrație unică. SpiritHub îți arată ce spun numerele despre personalitatea și direcția ta în viață.",
+    href: "/numerologie",
+    type: "numerology" as const,
+  },
+  {
+    id: 2,
+    title: "Visele tale sunt mesaje de la suflet",
+    description: "Dincolo de logică se află o lume de simboluri și mesaje. Notează-ți visele, iar SpiritHub te ajută să le înțelegi ca să-ți clarifici emoțiile și dorințele ascunse.",
+    href: "/vise",
+    type: "dreams" as const,
+  },
+  {
+    id: 3,
+    title: "Prinde ritmul energiei tale",
+    description: "Corpul, mintea și emoțiile tale se mișcă în cicluri naturale. SpiritHub îți arată bioritmul, ca să știi când să acționezi, când să creezi și când să-ți oferi o pauză.",
+    href: "/bioritm",
+    type: "biorhythm" as const,
+  },
+];
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const goToSlide = (index: number) => {
+    if (index === currentSlide || isAnimating) return;
+    setIsAnimating(true);
+    setCurrentSlide(index);
+    setIsPaused(true); // Pause auto-rotation when user manually navigates
+    setTimeout(() => setIsAnimating(false), 700);
+    // Resume auto-rotation after 8 seconds of inactivity
+    setTimeout(() => setIsPaused(false), 8000);
+  };
+
+
+
+  // Automatic slide rotation every 5 seconds
+  useEffect(() => {
+    if (isPaused || isAnimating) return;
+    
+    const autoRotate = setInterval(() => {
+      setCurrentSlide((prev) => {
+        const next = (prev + 1) % slides.length;
+        setIsAnimating(true);
+        setTimeout(() => setIsAnimating(false), 700);
+        return next;
+      });
+    }, 5000);
+
+    return () => clearInterval(autoRotate);
+  }, [isPaused, isAnimating]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isAnimating) return;
+      
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        setCurrentSlide((prev) => {
+          const next = (prev + 1) % slides.length;
+          setIsAnimating(true);
+          setIsPaused(true);
+          setTimeout(() => setIsAnimating(false), 700);
+          setTimeout(() => setIsPaused(false), 8000);
+          return next;
+        });
+      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        setCurrentSlide((prev) => {
+          const next = (prev - 1 + slides.length) % slides.length;
+          setIsAnimating(true);
+          setIsPaused(true);
+          setTimeout(() => setIsAnimating(false), 700);
+          setTimeout(() => setIsPaused(false), 8000);
+          return next;
+        });
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isAnimating]);
+
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-primary">SpiritHub.ro</h1>
-            <nav className="hidden gap-4 sm:flex">
-              <Link href="/numerologie" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Numerologie
-              </Link>
-              <Link href="/vise" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Interpretare Vise
-              </Link>
-              <Link href="/bioritm" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Bioritm
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <main className="flex-1">
-        <section className="container mx-auto px-4 py-16 sm:py-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              Descoperă-ți destinul spiritual
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground sm:text-xl">
-              Platformă completă pentru numerologie, interpretare vise și calcul bioritm. 
-              Toate instrumentele de care ai nevoie pentru a înțelege semnele universului.
-            </p>
-          </div>
-
-          {/* Tools Grid */}
-          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Numerology Card */}
-            <Link href="/numerologie" className="group">
-              <div className="rounded-lg border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="rounded-full bg-primary/10 p-3">
-                    <Sparkles className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">Numerologie</h3>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  Calculează-ți numărul destinului, numărul căii vieții și compatibilitatea. 
-                  Descoperă semnificația numerelor tale personale.
-                </p>
-                <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  Calculează acum
-                </Button>
-              </div>
+    <div className="relative min-h-screen w-full overflow-hidden">
+      {/* Main Container Card - Enhanced with design.json specifications */}
+      <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8 lg:p-16">
+        <div 
+          className="relative w-full max-w-[1400px] h-full max-h-[900px] overflow-hidden"
+          style={{
+            backgroundImage: 'url(/images/backgorund.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            backdropFilter: 'blur(40px)',
+            borderRadius: '16px',
+            border: '1px solid rgba(255, 255, 255, 0.05)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(159, 43, 255, 0.15)',
+          }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Header - Persistent with design.json typography */}
+          <header className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-8 py-6 md:px-16 md:py-8">
+            {/* Logo - Top Left with exact design.json specs */}
+            <Link 
+              href="/"
+              className="text-white hover:opacity-80 transition-opacity duration-300"
+              style={{ 
+                fontFamily: 'Inter, sans-serif', 
+                fontWeight: 400, 
+                fontSize: '18px', 
+                letterSpacing: '0.5px',
+              }}
+            >
+              SpiritHub.ro
             </Link>
 
-            {/* Dream Interpretation Card */}
-            <Link href="/vise" className="group">
-              <div className="rounded-lg border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="rounded-full bg-primary/10 p-3">
-                    <Moon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">Interpretare Vise</h3>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  Peste 500 de simboluri onirice explicate. Caută în dicționarul nostru 
-                  și descoperă semnificația viselor tale.
-                </p>
-                <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  Explorează dicționarul
-                </Button>
-              </div>
-            </Link>
+            {/* Hamburger Menu - Top Right */}
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-white hover:opacity-80 transition-opacity duration-300"
+              aria-label="Menu"
+            >
+              <Menu className="h-6 w-6" strokeWidth={1.5} />
+            </button>
+          </header>
 
-            {/* Biorhythm Card */}
-            <Link href="/bioritm" className="group sm:col-span-2 lg:col-span-1">
-              <div className="rounded-lg border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="rounded-full bg-primary/10 p-3">
-                    <Activity className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">Bioritm</h3>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  Urmărește ciclurile tale fizice, emoționale și intelectuale. 
-                  Obține ghidare zilnică bazată pe bioritmul tău.
-                </p>
-                <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  Calculează bioritmul
-                </Button>
-              </div>
-            </Link>
-          </div>
+          {/* Mobile Menu Overlay - Enhanced */}
+          {mobileMenuOpen && (
+            <div className="absolute inset-0 z-50 flex items-center justify-center animate-fade-in"
+              style={{
+                background: 'radial-gradient(ellipse at center, rgba(26, 24, 34, 0.98) 0%, rgba(12, 11, 16, 0.98) 100%)',
+                backdropFilter: 'blur(20px)',
+              }}
+            >
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="absolute top-8 right-8 text-white hover:text-[#9F2BFF] transition-colors"
+                aria-label="Închide meniul"
+              >
+                <span className="text-4xl font-light">×</span>
+              </button>
+              <nav className="flex flex-col items-center gap-8">
+                <Link 
+                  href="/numerologie" 
+                  className="text-white hover:text-[#9F2BFF] transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 400,
+                    fontSize: '24px',
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  Numerologie
+                </Link>
+                <Link 
+                  href="/vise" 
+                  className="text-white hover:text-[#9F2BFF] transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 400,
+                    fontSize: '24px',
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  Interpretare Vise
+                </Link>
+                <Link 
+                  href="/bioritm" 
+                  className="text-white hover:text-[#9F2BFF] transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 400,
+                    fontSize: '24px',
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  Bioritm
+                </Link>
+              </nav>
+            </div>
+          )}
 
-          {/* Features Section */}
-          <div className="mx-auto mt-24 max-w-4xl">
-            <h3 className="text-center text-2xl font-bold mb-12">
-              De ce SpiritHub.ro?
-            </h3>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
-              <div className="text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <span className="text-2xl">⚡</span>
+          {/* Footer - Persistent with design.json styling */}
+          <footer className="absolute bottom-0 left-0 z-40 px-8 py-6 md:px-16 md:py-8">
+            <div className="flex gap-8" 
+              style={{ 
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 400,
+                fontSize: '14px',
+                color: '#8A8A8A',
+              }}
+            >
+              <Link 
+                href="/termeni" 
+                className="hover:text-white transition-all duration-300"
+                style={{
+                  textDecoration: 'none',
+                }}
+              >
+                Termeni
+              </Link>
+              <Link 
+                href="/confidentialitate" 
+                className="hover:text-white transition-all duration-300"
+                style={{
+                  textDecoration: 'none',
+                }}
+              >
+                Confidențialitate
+              </Link>
+            </div>
+          </footer>
+
+          {/* Slide Content - Enhanced with design.json spacing */}
+          <div className="absolute inset-0 flex items-center justify-center px-6 md:px-16 lg:px-20 py-24">
+            <div className="w-full h-full flex items-center max-w-[1200px]">
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 w-full h-full items-center">
+                
+                {/* Left Column - Text Content (40%) with design.json typography */}
+                <div className="lg:col-span-2 space-y-8">
+                  <div 
+                    key={`text-${currentSlide}`}
+                    className="space-y-8 transition-opacity duration-500"
+                  >
+                    <h1 
+                      className="mb-4"
+                      style={{ 
+                        color: '#FFFFFF',
+                        fontFamily: 'Inter, sans-serif',
+                        fontWeight: 700,
+                        fontSize: 'clamp(32px, 5vw, 64px)',
+                        letterSpacing: '-0.5px',
+                        lineHeight: '1.2',
+                      }}
+                    >
+                      {slides[currentSlide].title}
+                    </h1>
+                    
+                    <p 
+                      className="mb-8"
+                      style={{ 
+                        color: '#D0D0D0',
+                        fontFamily: 'Inter, sans-serif',
+                        fontWeight: 400,
+                        fontSize: '18px',
+                        lineHeight: '1.6',
+                        letterSpacing: '0.2px',
+                      }}
+                    >
+                      {slides[currentSlide].description}
+                    </p>
+
+                    <Link
+                      href={slides[currentSlide].href}
+                      className="inline-block px-10 py-4 rounded-full font-medium text-white transition-all duration-300 hover:opacity-90"
+                      style={{
+                        background: 'linear-gradient(135deg, #9F2BFF 0%, #4D5FFF 100%)',
+                        boxShadow: '0 8px 32px rgba(159, 43, 255, 0.4)',
+                        fontSize: '16px',
+                        fontFamily: 'Inter, sans-serif',
+                        fontWeight: 500,
+                        letterSpacing: '0.3px',
+                      }}
+                    >
+                      Explorează acum
+                    </Link>
+                  </div>
                 </div>
-                <h4 className="font-semibold mb-2">Rapid și Modern</h4>
-                <p className="text-sm text-muted-foreground">
-                  Încărcare sub 2 secunde, experiență asemănătoare unei aplicații
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <span className="text-2xl">🇷🇴</span>
+
+                {/* Right Column - Graphic (60%) */}
+                <div className="lg:col-span-3 h-[400px] lg:h-full flex items-center justify-center">
+                  <div 
+                    key={`graphic-${currentSlide}`}
+                    className="w-full h-full flex items-center justify-center transition-opacity duration-500"
+                  >
+                    {slides[currentSlide].type === "numerology" && <NumerologyGraphic />}
+                    {slides[currentSlide].type === "dreams" && <DreamsGraphic />}
+                    {slides[currentSlide].type === "biorhythm" && <BiorhythmGraphic />}
+                  </div>
                 </div>
-                <h4 className="font-semibold mb-2">Autenticitate Culturală</h4>
-                <p className="text-sm text-muted-foreground">
-                  Interpretări bazate pe folclorul românesc, nu traduceri generice
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <span className="text-2xl">📱</span>
-                </div>
-                <h4 className="font-semibold mb-2">Optimizat pentru Mobil</h4>
-                <p className="text-sm text-muted-foreground">
-                  Design responsive, perfect pentru dispozitive mobile
-                </p>
               </div>
             </div>
           </div>
-        </section>
-      </main>
 
-      {/* Footer */}
-      <footer className="border-t bg-muted/50">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} SpiritHub.ro - Toate drepturile rezervate</p>
-            <p className="mt-2">Platformă spirituală pentru comunitatea română</p>
+          {/* Slider Navigation - Right Side (GalaxyLine style) */}
+          <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end gap-8">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                onClick={() => goToSlide(index)}
+                disabled={isAnimating}
+                className="flex flex-col items-center gap-3 group disabled:opacity-50 relative"
+                aria-label={`Slide ${slide.id}`}
+              >
+                {/* Horizontal line above (only visible for current slide) */}
+                <div 
+                  className={`w-8 h-[1px] transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'bg-white opacity-100' 
+                      : 'bg-transparent opacity-0'
+                  }`}
+                />
+                
+                {/* Slide number */}
+                <span 
+                  className={`font-mono transition-all duration-300 ${
+                    index === currentSlide ? 'text-white text-base' : 'text-[#8A8A8A] text-sm'
+                  } group-hover:text-white`}
+                  style={{
+                    fontWeight: 400,
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  0{slide.id}
+                </span>
+                
+                {/* Horizontal line below (only visible for current slide) */}
+                <div 
+                  className={`w-8 h-[1px] transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'bg-white opacity-100' 
+                      : 'bg-transparent opacity-0'
+                  }`}
+                />
+              </button>
+            ))}
           </div>
         </div>
-      </footer>
+      </div>
+    </div>
+  );
+}
+
+// Slide 1: Numerology Graphic
+function NumerologyGraphic() {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      <div 
+        className="relative w-full max-w-[600px] aspect-square flex items-center justify-center overflow-hidden"
+        style={{
+          borderRadius: '50%',
+        }}
+      >
+        {/* Image with blend mode */}
+        <Image
+          src="/images/numerology.png"
+          alt="Numerology Wheel - Descoperă-ți numărul destinului"
+          width={600}
+          height={600}
+          className="w-full h-auto object-contain"
+          style={{
+            mixBlendMode: 'screen',
+            opacity: 0.9,
+            filter: 'brightness(1.1) contrast(1.05)',
+          }}
+          priority
+        />
+        {/* Aggressive radial gradient overlay to completely dissolve edges */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            background: 'radial-gradient(circle at center, transparent 0%, transparent 35%, rgba(26, 24, 34, 0.3) 55%, rgba(26, 24, 34, 0.7) 75%, rgba(12, 11, 16, 0.95) 90%, #0C0B10 100%)',
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// Slide 2: Dreams Graphic
+function DreamsGraphic() {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      <div 
+        className="relative w-full max-w-[600px] aspect-square flex items-center justify-center overflow-hidden"
+        style={{
+          borderRadius: '50%',
+        }}
+      >
+        {/* Image with blend mode */}
+        <Image
+          src="/images/dreams.png"
+          alt="Dream Symbols - Interpretează-ți visele"
+          width={600}
+          height={600}
+          className="w-full h-auto object-contain"
+          style={{
+            mixBlendMode: 'screen',
+            opacity: 0.9,
+            filter: 'brightness(1.1) contrast(1.05)',
+          }}
+        />
+        {/* Aggressive radial gradient overlay to completely dissolve edges */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            background: 'radial-gradient(circle at center, transparent 0%, transparent 35%, rgba(26, 24, 34, 0.3) 55%, rgba(26, 24, 34, 0.7) 75%, rgba(12, 11, 16, 0.95) 90%, #0C0B10 100%)',
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// Slide 3: Biorhythm Graphic
+function BiorhythmGraphic() {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      <div 
+        className="relative max-w-[600px] aspect-square flex items-center justify-center overflow-hidden"
+        style={{
+          borderRadius: '50%',
+        }}
+      >
+        {/* Image with blend mode */}
+        <Image
+          src="/images/biorhythm.png"
+          alt="Biorhythm Cycles - Sincronizează-te cu ritmurile vieții"
+          width={600}
+          height={600}
+          className="w-full h-auto object-contain"
+          style={{
+            mixBlendMode: 'screen',
+            opacity: 0.9,
+            filter: 'brightness(1.1) contrast(1.05)',
+          }}
+        />
+        {/* Aggressive radial gradient overlay to completely dissolve edges */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            background: 'radial-gradient(circle at center, transparent 0%, transparent 35%, rgba(26, 24, 34, 0.3) 55%, rgba(26, 24, 34, 0.7) 75%, rgba(12, 11, 16, 0.95) 90%, #0C0B10 100%)',
+          }}
+        />
+      </div>
     </div>
   );
 }

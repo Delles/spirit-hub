@@ -1,0 +1,588 @@
+{
+  "project": "SpiritHub.ro",
+  "version": "2.0",
+  "description": "A comprehensive design system for SpiritHub.ro - a Romanian spiritual platform combining numerology, dream interpretation, and biorhythm calculations. The design merges mystical elegance with modern minimalism, featuring a dark theme with vibrant purple and blue accents inspired by the cosmos.",
+  
+  "designPrinciples": [
+    {
+      "principle": "Mystical Elegance",
+      "description": "Combine mystery and wonder with clean, sophisticated aesthetics. The design should feel premium, trustworthy, and spiritually resonant without being overwhelming or sensational."
+    },
+    {
+      "principle": "Immersive Focus",
+      "description": "Use minimalist layouts with strong central focus to draw users into the content. Generous negative space prevents distractions and creates breathing room for spiritual contemplation."
+    },
+    {
+      "principle": "Vibrant Contrast",
+      "description": "Employ high contrast between dark backgrounds and bright, glowing foreground elements. This ensures readability while creating a visually striking, cosmic experience."
+    },
+    {
+      "principle": "Modern & Clean",
+      "description": "Utilize modern sans-serif typography (Inter) and clean lines for all UI components to maintain a contemporary, uncluttered feel that respects the user's attention."
+    },
+    {
+      "principle": "Autonomous & Deterministic",
+      "description": "Design for 99% autonomy with deterministic calculations and static content. Minimize manual updates while maintaining high-quality user experiences."
+    },
+    {
+      "principle": "Mobile-First Responsive",
+      "description": "Prioritize mobile experience with touch-friendly interactions, readable text sizes, and adaptive layouts that work seamlessly across all devices."
+    }
+  ],
+
+  "style": "Dark, futuristic, mystical, minimalist, elegant, cosmic",
+
+  "colorPalette": {
+    "primary": {
+      "background": "#0C0B10",
+      "backgroundDescription": "Deep cosmic black - primary background color",
+      "backgroundGradientStart": "#1A1822",
+      "backgroundGradientEnd": "#0C0B10",
+      "backgroundGradientDescription": "Radial gradient from center (lighter purple-tinted) to edges (deep black)",
+      "oklch": "oklch(0.12 0.02 280)"
+    },
+    "secondary": {
+      "accent": "#9F2BFF",
+      "accentDescription": "Vibrant purple - primary accent for CTAs, highlights, and interactive elements",
+      "accentOklch": "oklch(0.6 0.28 300)",
+      "accentSecondary": "#4D5FFF",
+      "accentSecondaryDescription": "Vivid blue - secondary accent for variety and depth",
+      "accentSecondaryOklch": "oklch(0.55 0.24 260)"
+    },
+    "text": {
+      "headings": "#FFFFFF",
+      "headingsDescription": "Pure white for maximum contrast and readability",
+      "headingsOklch": "oklch(0.985 0 0)",
+      "body": "#D0D0D0",
+      "bodyDescription": "Light gray for comfortable reading of body text",
+      "bodyOklch": "oklch(0.85 0 0)",
+      "subtle": "#8A8A8A",
+      "subtleDescription": "Medium gray for secondary information, footer text, and subtle UI elements",
+      "subtleOklch": "oklch(0.708 0 0)"
+    },
+    "ui": {
+      "card": "oklch(0.18 0.03 280 / 0.5)",
+      "cardDescription": "Semi-transparent purple-tinted card background with 50% opacity",
+      "border": "oklch(1 0 0 / 0.08)",
+      "borderDescription": "Subtle white border with 8% opacity for elegant separation",
+      "input": "oklch(1 0 0 / 0.12)",
+      "inputDescription": "Input field background with 12% white opacity",
+      "ring": "oklch(0.6 0.28 300 / 0.5)",
+      "ringDescription": "Focus ring using primary purple at 50% opacity"
+    },
+    "effects": {
+      "glow": "A vibrant purple and blue outer glow effect for key graphical elements and CTAs",
+      "glowShadow": "0 8px 32px rgba(159, 43, 255, 0.4)",
+      "cardShadow": "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(159, 43, 255, 0.15)",
+      "blendMode": "screen",
+      "blendModeDescription": "Use 'screen' blend mode for images to create ethereal, glowing effects"
+    },
+    "charts": {
+      "chart1": "oklch(0.6 0.28 300)",
+      "chart1Description": "Primary purple for biorhythm physical cycle",
+      "chart2": "oklch(0.55 0.24 260)",
+      "chart2Description": "Secondary blue for biorhythm emotional cycle",
+      "chart3": "oklch(0.769 0.188 70.08)",
+      "chart3Description": "Warm accent for biorhythm intellectual cycle"
+    }
+  },
+
+  "typography": {
+    "fontFamily": "Inter, sans-serif",
+    "fontFamilyDescription": "Inter is used throughout for its excellent readability and modern aesthetic",
+    
+    "logo": {
+      "fontFamily": "Inter, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "18px",
+      "letterSpacing": "0.5px",
+      "usage": "Top-left logo and brand name"
+    },
+    
+    "headings": {
+      "h1": {
+        "fontFamily": "Inter, sans-serif",
+        "fontWeight": "700",
+        "fontSize": "clamp(32px, 5vw, 64px)",
+        "lineHeight": "1.2",
+        "letterSpacing": "-0.5px",
+        "color": "#FFFFFF",
+        "usage": "Main page titles and hero headings"
+      },
+      "h2": {
+        "fontFamily": "Inter, sans-serif",
+        "fontWeight": "600",
+        "fontSize": "clamp(24px, 4vw, 48px)",
+        "lineHeight": "1.3",
+        "letterSpacing": "-0.3px",
+        "color": "#FFFFFF",
+        "usage": "Section headings"
+      },
+      "h3": {
+        "fontFamily": "Inter, sans-serif",
+        "fontWeight": "600",
+        "fontSize": "clamp(20px, 3vw, 32px)",
+        "lineHeight": "1.4",
+        "letterSpacing": "-0.2px",
+        "color": "#FFFFFF",
+        "usage": "Subsection headings and card titles"
+      }
+    },
+    
+    "body": {
+      "large": {
+        "fontFamily": "Inter, sans-serif",
+        "fontWeight": "400",
+        "fontSize": "18px",
+        "lineHeight": "1.6",
+        "letterSpacing": "0.2px",
+        "color": "#D0D0D0",
+        "usage": "Lead paragraphs and important descriptions"
+      },
+      "regular": {
+        "fontFamily": "Inter, sans-serif",
+        "fontWeight": "400",
+        "fontSize": "16px",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.1px",
+        "color": "#D0D0D0",
+        "usage": "Standard body text"
+      },
+      "small": {
+        "fontFamily": "Inter, sans-serif",
+        "fontWeight": "400",
+        "fontSize": "14px",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.1px",
+        "color": "#8A8A8A",
+        "usage": "Secondary information, captions, and helper text"
+      }
+    },
+    
+    "interactive": {
+      "button": {
+        "fontFamily": "Inter, sans-serif",
+        "fontWeight": "500",
+        "fontSize": "16px",
+        "letterSpacing": "0.3px",
+        "usage": "Primary and secondary buttons"
+      },
+      "link": {
+        "fontFamily": "Inter, sans-serif",
+        "fontWeight": "400",
+        "fontSize": "14px",
+        "textDecoration": "none",
+        "usage": "Navigation links and footer links"
+      },
+      "label": {
+        "fontFamily": "Inter, sans-serif",
+        "fontWeight": "500",
+        "fontSize": "14px",
+        "letterSpacing": "0.1px",
+        "usage": "Form labels and input labels"
+      }
+    }
+  },
+
+  "spacing": {
+    "baseUnit": "8px",
+    "baseUnitDescription": "All spacing should be multiples of 8px for consistency",
+    
+    "scale": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "2xl": "48px",
+      "3xl": "64px",
+      "4xl": "96px"
+    },
+    
+    "container": {
+      "maxWidth": "1400px",
+      "maxWidthDescription": "Maximum width for main content containers",
+      "padding": {
+        "mobile": "16px",
+        "tablet": "32px",
+        "desktop": "64px"
+      }
+    },
+    
+    "section": {
+      "paddingY": {
+        "mobile": "32px",
+        "desktop": "64px"
+      },
+      "gap": {
+        "mobile": "24px",
+        "desktop": "48px"
+      }
+    },
+    
+    "card": {
+      "padding": {
+        "mobile": "24px",
+        "desktop": "48px"
+      },
+      "gap": "24px"
+    }
+  },
+
+  "borderRadius": {
+    "sm": "calc(0.625rem - 4px)",
+    "md": "calc(0.625rem - 2px)",
+    "lg": "0.625rem",
+    "xl": "calc(0.625rem + 4px)",
+    "2xl": "16px",
+    "full": "9999px",
+    "description": "Border radius values based on --radius CSS variable (0.625rem = 10px)"
+  },
+
+  "layout": {
+    "structure": "Centered, single-column layout for main content with generous padding. Use grid systems for multi-column layouts on larger screens.",
+    
+    "homepage": {
+      "type": "Full-screen slider",
+      "columns": {
+        "mobile": "1 column (stacked)",
+        "desktop": "2/5 text + 3/5 graphic"
+      },
+      "navigation": "Vertical pagination on right side with slide numbers",
+      "autoRotation": "5 seconds per slide with pause on interaction"
+    },
+    
+    "featurePages": {
+      "type": "Centered content with max-width container",
+      "structure": "Header → Form/Input → Results → CTA/Share",
+      "maxWidth": "1200px"
+    },
+    
+    "responsive": {
+      "breakpoints": {
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px",
+        "2xl": "1536px"
+      }
+    }
+  },
+
+  "components": {
+    "container": {
+      "description": "Main content container with rounded corners and semi-transparent background",
+      "backgroundColor": "rgba(26, 24, 34, 0.5)",
+      "backdropFilter": "blur(40px)",
+      "borderRadius": "16px",
+      "border": "1px solid rgba(255, 255, 255, 0.05)",
+      "boxShadow": "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(159, 43, 255, 0.15)",
+      "padding": {
+        "mobile": "24px",
+        "desktop": "48px"
+      }
+    },
+    
+    "card": {
+      "description": "Content cards for results, interpretations, and information blocks",
+      "backgroundColor": "oklch(0.18 0.03 280 / 0.5)",
+      "borderRadius": "16px",
+      "border": "1px solid oklch(1 0 0 / 0.08)",
+      "padding": {
+        "mobile": "24px",
+        "desktop": "32px"
+      },
+      "hover": {
+        "transform": "translateY(-2px)",
+        "boxShadow": "0 12px 40px rgba(159, 43, 255, 0.2)"
+      }
+    },
+    
+    "button": {
+      "primary": {
+        "background": "linear-gradient(135deg, #9F2BFF 0%, #4D5FFF 100%)",
+        "color": "#FFFFFF",
+        "padding": "12px 32px",
+        "borderRadius": "9999px",
+        "fontSize": "16px",
+        "fontWeight": "500",
+        "boxShadow": "0 8px 32px rgba(159, 43, 255, 0.4)",
+        "hover": {
+          "opacity": "0.9",
+          "transform": "translateY(-1px)"
+        }
+      },
+      "secondary": {
+        "background": "transparent",
+        "color": "#FFFFFF",
+        "border": "1px solid oklch(1 0 0 / 0.12)",
+        "padding": "12px 32px",
+        "borderRadius": "9999px",
+        "fontSize": "16px",
+        "fontWeight": "500",
+        "hover": {
+          "borderColor": "#9F2BFF",
+          "color": "#9F2BFF"
+        }
+      }
+    },
+    
+    "input": {
+      "description": "Form inputs with subtle styling",
+      "backgroundColor": "oklch(1 0 0 / 0.12)",
+      "border": "1px solid oklch(1 0 0 / 0.08)",
+      "borderRadius": "0.625rem",
+      "padding": "12px 16px",
+      "fontSize": "16px",
+      "color": "#FFFFFF",
+      "placeholder": "#8A8A8A",
+      "focus": {
+        "borderColor": "#9F2BFF",
+        "ring": "0 0 0 3px oklch(0.6 0.28 300 / 0.5)"
+      }
+    },
+    
+    "navigation": {
+      "header": {
+        "position": "absolute top-0",
+        "padding": {
+          "mobile": "24px 32px",
+          "desktop": "32px 64px"
+        },
+        "logo": {
+          "position": "left",
+          "fontSize": "18px",
+          "fontWeight": "400"
+        },
+        "menu": {
+          "position": "right",
+          "icon": "Hamburger (3 lines)",
+          "iconSize": "24px"
+        }
+      },
+      "footer": {
+        "position": "absolute bottom-0 left-0",
+        "padding": {
+          "mobile": "24px 32px",
+          "desktop": "32px 64px"
+        },
+        "color": "#8A8A8A",
+        "fontSize": "14px"
+      },
+      "slider": {
+        "position": "absolute right side, vertically centered",
+        "style": "Vertical pagination with slide numbers",
+        "activeColor": "#FFFFFF",
+        "inactiveColor": "#8A8A8A",
+        "indicator": "Horizontal lines above and below active number"
+      }
+    },
+    
+    "graphics": {
+      "description": "Abstract, 3D, ethereal visuals with prominent glowing effects",
+      "style": "Celestial orbs, zodiac wheels, energetic gestures, flowing light ribbons",
+      "blendMode": "screen",
+      "opacity": "0.9",
+      "filter": "brightness(1.1) contrast(1.05)",
+      "edgeFade": "radial-gradient overlay to dissolve edges into background",
+      "examples": [
+        "Numerology: Glowing zodiac wheel with numbers",
+        "Dreams: Ethereal hand with cosmic energy",
+        "Biorhythm: Flowing sine wave ribbons"
+      ]
+    }
+  },
+
+  "animations": {
+    "duration": {
+      "fast": "150ms",
+      "normal": "300ms",
+      "slow": "500ms",
+      "slower": "700ms"
+    },
+    
+    "easing": {
+      "default": "ease-out",
+      "smooth": "ease-in-out",
+      "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+    },
+    
+    "keyframes": {
+      "fadeIn": {
+        "from": "opacity: 0",
+        "to": "opacity: 1",
+        "duration": "500ms"
+      },
+      "slideInUp": {
+        "from": "opacity: 0, transform: translateY(30px)",
+        "to": "opacity: 1, transform: translateY(0)",
+        "duration": "600ms"
+      },
+      "scaleIn": {
+        "from": "opacity: 0, transform: scale(0.95)",
+        "to": "opacity: 1, transform: scale(1)",
+        "duration": "600ms"
+      },
+      "pulseGlow": {
+        "0%, 100%": "opacity: 0.6, transform: scale(1)",
+        "50%": "opacity: 1, transform: scale(1.05)",
+        "duration": "3s",
+        "iteration": "infinite"
+      },
+      "rotateSlow": {
+        "from": "transform: rotate(0deg)",
+        "to": "transform: rotate(360deg)",
+        "duration": "20s",
+        "iteration": "infinite"
+      },
+      "floatUp": {
+        "0%, 100%": "transform: translateY(0px)",
+        "50%": "transform: translateY(-10px)",
+        "duration": "4s",
+        "iteration": "infinite"
+      }
+    },
+    
+    "interactions": {
+      "hover": {
+        "button": "opacity: 0.9, transform: translateY(-1px)",
+        "card": "transform: translateY(-2px), boxShadow: enhanced",
+        "link": "color: #9F2BFF"
+      },
+      "focus": {
+        "input": "ring: 3px purple glow",
+        "button": "ring: 3px purple glow"
+      },
+      "active": {
+        "button": "transform: scale(0.98)"
+      }
+    }
+  },
+
+  "accessibility": {
+    "contrast": {
+      "minimum": "WCAG AA (4.5:1 for normal text, 3:1 for large text)",
+      "target": "WCAG AAA where possible"
+    },
+    "focusIndicators": {
+      "visible": true,
+      "style": "3px purple ring with 50% opacity",
+      "offset": "2px"
+    },
+    "textSize": {
+      "minimum": "16px for body text",
+      "scalable": "Use clamp() for responsive typography"
+    },
+    "touchTargets": {
+      "minimum": "44x44px for interactive elements",
+      "spacing": "8px minimum between touch targets"
+    },
+    "semanticHTML": {
+      "required": true,
+      "description": "Use proper heading hierarchy, landmarks, and ARIA labels"
+    },
+    "keyboardNavigation": {
+      "required": true,
+      "description": "All interactive elements must be keyboard accessible"
+    }
+  },
+
+  "performance": {
+    "images": {
+      "format": "WebP with PNG/JPG fallback",
+      "optimization": "Use next/image for automatic optimization",
+      "loading": "Lazy load below-the-fold images",
+      "blendMode": "screen for ethereal effects"
+    },
+    "fonts": {
+      "loading": "Use next/font for automatic optimization",
+      "display": "swap",
+      "preload": "Critical fonts only"
+    },
+    "animations": {
+      "preferReducedMotion": "Respect user preferences",
+      "gpuAcceleration": "Use transform and opacity for smooth animations"
+    },
+    "caching": {
+      "static": "Aggressive caching for static assets",
+      "dynamic": "Stale-while-revalidate for dynamic content"
+    }
+  },
+
+  "contentGuidelines": {
+    "language": "Romanian (ro_RO) for all user-facing content",
+    "tone": {
+      "style": "Warm, respectful, non-judgmental",
+      "approach": "Spiritual but not dogmatic",
+      "emphasis": "Guidance and reflection, not deterministic fate",
+      "avoid": "Fearmongering, sensationalism, absolute predictions"
+    },
+    "voice": {
+      "perspective": "Second person (tu/dumneata)",
+      "formality": "Informal but respectful",
+      "personality": "Wise friend, not authoritative guru"
+    }
+  },
+
+  "technicalStack": {
+    "framework": "Next.js 16 (App Router)",
+    "uiLibrary": "React 19.x",
+    "language": "TypeScript 5 (strict mode)",
+    "backend": "Convex",
+    "styling": "Tailwind CSS 4",
+    "components": "shadcn/ui (new-york variant) + Radix UI",
+    "animations": "Framer Motion (optional)",
+    "packageManager": "Bun",
+    "deployment": "Vercel"
+  },
+
+  "fileNaming": {
+    "components": "kebab-case.tsx (e.g., life-path-card.tsx)",
+    "utilities": "kebab-case.ts (e.g., use-debounced-value.ts)",
+    "pages": "page.tsx within Next.js app directory",
+    "folders": "kebab-case"
+  },
+
+  "importConventions": {
+    "pathAlias": "@/ for all internal imports",
+    "order": [
+      "1. External packages (React, Next, Convex, shadcn)",
+      "2. Internal components",
+      "3. Internal utilities and types"
+    ]
+  },
+
+  "usageExamples": {
+    "heroSection": {
+      "layout": "Full-screen with centered content",
+      "background": "Radial gradient with cosmic imagery",
+      "heading": "64px bold white text with -0.5px letter spacing",
+      "description": "18px regular light gray text with 1.6 line height",
+      "cta": "Purple gradient button with glow shadow"
+    },
+    "resultCard": {
+      "container": "Semi-transparent card with 16px border radius",
+      "padding": "32px on desktop, 24px on mobile",
+      "heading": "32px semi-bold white text",
+      "body": "16px regular light gray text",
+      "border": "1px solid white at 8% opacity"
+    },
+    "form": {
+      "layout": "Vertical stack with 24px gap",
+      "label": "14px medium weight white text",
+      "input": "16px text with subtle background and border",
+      "button": "Full-width primary button with gradient"
+    }
+  },
+
+  "notes": [
+    "This design system is optimized for dark mode by default",
+    "All measurements use 8px base unit for consistency",
+    "Colors use OKLCH color space for perceptual uniformity",
+    "Typography scales responsively using clamp() functions",
+    "Animations respect prefers-reduced-motion",
+    "All UI text must be in Romanian; code and docs in English",
+    "Design favors autonomy with deterministic calculations",
+    "Mobile-first approach with progressive enhancement"
+  ]
+}
