@@ -8,13 +8,17 @@
  * @module
  */
 
+import type * as biorhythm from "../biorhythm.js";
+
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
 } from "convex/server";
 
-declare const fullApi: ApiFromModules<{}>;
+declare const fullApi: ApiFromModules<{
+  biorhythm: typeof biorhythm;
+}>;
 
 /**
  * A utility for referencing Convex functions in your app's public API.

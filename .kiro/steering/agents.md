@@ -75,6 +75,7 @@ When given a task, agents MUST follow this workflow.
 3. Check configuration:
    - `@/config/site.ts` (site-level config, SEO, navigation).
    - Any feature-specific config (e.g., numerology mappings, dream symbol config).
+   - `docs/design.json` (design system - colors, typography, spacing, components) - **ALWAYS check this when building or modifying UI**.
 
 4. Continue context gathering until you can explain:
    - How the feature works today.
@@ -132,6 +133,7 @@ Once the plan is approved:
 - Use TypeScript with strict types.
 - Use `cn()` from `@/lib/utils` for conditional classes.
 - Use shadcn/ui and Tailwind v4 for styling.
+- **Before building any UI component, check `docs/design.json`** for colors, typography, spacing, component styles, and design principles to ensure consistency.
 
 ### 3. UI in Romanian Only
 
@@ -216,6 +218,7 @@ After implementation, apply this mindset:
 - **Code is documentation** – Make it readable and obvious.
 - **Respect UX & Tone** – Spiritual, respectful, non-sensational.
 - **Romanian UI only** – All user-facing text must be Romanian.
+- **Check design.json** – Always reference `docs/design.json` when building or modifying UI components.
 - **No surprise scope** – Don't add features not requested.
 - **Favor autonomy** – Prefer static/deterministic flows over manual maintenance.
 

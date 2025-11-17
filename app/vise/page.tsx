@@ -14,8 +14,8 @@ export default function VisePage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
             <Link href="/">
-              <Button variant="ghost" size="icon">
-                <ArrowLeft className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="min-h-[44px] min-w-[44px]" aria-label="Înapoi la pagina principală">
+                <ArrowLeft className="h-5 w-5" aria-hidden="true" />
               </Button>
             </Link>
             <h1 className="text-2xl font-bold text-primary">Interpretare Vise</h1>
@@ -36,12 +36,17 @@ export default function VisePage() {
 
             {/* Search Bar */}
             <div className="relative mb-8">
-              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+              <label htmlFor="dream-search" className="sr-only">
+                Caută simboluri onirice
+              </label>
+              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
               <input
+                id="dream-search"
                 type="text"
                 placeholder="Caută simboluri onirice..."
-                className="w-full rounded-lg border bg-background pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className="w-full rounded-lg border bg-background pl-10 pr-4 py-3 text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primary/50 focus-visible:ring-[3px]"
                 disabled
+                aria-label="Caută simboluri onirice"
               />
             </div>
           </div>

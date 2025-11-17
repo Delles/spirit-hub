@@ -14,8 +14,8 @@ export default function NumerologiePage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
             <Link href="/">
-              <Button variant="ghost" size="icon">
-                <ArrowLeft className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="min-h-[44px] min-w-[44px]" aria-label="Înapoi la pagina principală">
+                <ArrowLeft className="h-5 w-5" aria-hidden="true" />
               </Button>
             </Link>
             <h1 className="text-2xl font-bold text-primary">Numerologie</h1>

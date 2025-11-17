@@ -63,12 +63,19 @@ export default function Home() {
     return () => clearInterval(autoRotate);
   }, [isPaused, isAnimating]);
 
-  // Keyboard navigation
+  // Keyboard navigation - only when focus is on the carousel
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Only handle arrow keys when not typing in an input/textarea
+      const target = e.target as HTMLElement;
+      if (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable) {
+        return;
+      }
+      
       if (isAnimating) return;
       
       if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
         setCurrentSlide((prev) => {
           const next = (prev + 1) % slides.length;
           setIsAnimating(true);
@@ -78,6 +85,7 @@ export default function Home() {
           return next;
         });
       } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
         setCurrentSlide((prev) => {
           const next = (prev - 1 + slides.length) % slides.length;
           setIsAnimating(true);
@@ -94,6 +102,13 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
+      {/* Skip to main content link for screen readers */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#9F2BFF] focus:text-white focus:rounded-md focus:ring-2 focus:ring-[#9F2BFF] focus:ring-offset-2"
+      >
+        Sari la conținutul principal
+      </a>
       {/* Main Container Card - Enhanced with design.json specifications */}
       <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8 lg:p-16">
         <div 
@@ -130,32 +145,40 @@ export default function Home() {
             {/* Hamburger Menu - Top Right */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-white hover:opacity-80 transition-opacity duration-300"
-              aria-label="Menu"
+              className="text-white hover:opacity-80 transition-opacity duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9F2BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-md"
+              aria-label={mobileMenuOpen ? "Închide meniul" : "Deschide meniul"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
             >
-              <Menu className="h-6 w-6" strokeWidth={1.5} />
+              <Menu className="h-6 w-6" strokeWidth={1.5} aria-hidden="true" />
             </button>
           </header>
 
           {/* Mobile Menu Overlay - Enhanced */}
           {mobileMenuOpen && (
-            <div className="absolute inset-0 z-50 flex items-center justify-center animate-fade-in"
+            <div 
+              id="mobile-menu"
+              className="absolute inset-0 z-50 flex items-center justify-center animate-fade-in"
               style={{
                 background: 'radial-gradient(ellipse at center, rgba(26, 24, 34, 0.98) 0%, rgba(12, 11, 16, 0.98) 100%)',
                 backdropFilter: 'blur(20px)',
               }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="mobile-menu-title"
             >
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="absolute top-8 right-8 text-white hover:text-[#9F2BFF] transition-colors"
+                className="absolute top-8 right-8 text-white hover:text-[#9F2BFF] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9F2BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-md"
                 aria-label="Închide meniul"
               >
-                <span className="text-4xl font-light">×</span>
+                <span className="text-4xl font-light" aria-hidden="true">×</span>
               </button>
-              <nav className="flex flex-col items-center gap-8">
+              <nav className="flex flex-col items-center gap-8" aria-label="Navigare principală">
+                <h2 id="mobile-menu-title" className="sr-only">Meniul principal</h2>
                 <Link 
                   href="/numerologie" 
-                  className="text-white hover:text-[#9F2BFF] transition-colors duration-300"
+                  className="text-white hover:text-[#9F2BFF] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9F2BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-md px-4 py-2 min-h-[44px] flex items-center"
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
                     fontFamily: 'Inter, sans-serif',
@@ -168,7 +191,7 @@ export default function Home() {
                 </Link>
                 <Link 
                   href="/vise" 
-                  className="text-white hover:text-[#9F2BFF] transition-colors duration-300"
+                  className="text-white hover:text-[#9F2BFF] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9F2BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-md px-4 py-2 min-h-[44px] flex items-center"
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
                     fontFamily: 'Inter, sans-serif',
@@ -181,7 +204,7 @@ export default function Home() {
                 </Link>
                 <Link 
                   href="/bioritm" 
-                  className="text-white hover:text-[#9F2BFF] transition-colors duration-300"
+                  className="text-white hover:text-[#9F2BFF] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9F2BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-md px-4 py-2 min-h-[44px] flex items-center"
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
                     fontFamily: 'Inter, sans-serif',
@@ -208,7 +231,7 @@ export default function Home() {
             >
               <Link 
                 href="/termeni" 
-                className="hover:text-white transition-all duration-300"
+                className="hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9F2BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-md px-2 py-1 min-h-[44px] flex items-center"
                 style={{
                   textDecoration: 'none',
                 }}
@@ -217,7 +240,7 @@ export default function Home() {
               </Link>
               <Link 
                 href="/confidentialitate" 
-                className="hover:text-white transition-all duration-300"
+                className="hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9F2BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-md px-2 py-1 min-h-[44px] flex items-center"
                 style={{
                   textDecoration: 'none',
                 }}
@@ -228,7 +251,7 @@ export default function Home() {
           </footer>
 
           {/* Slide Content - Enhanced with design.json spacing */}
-          <div className="absolute inset-0 flex items-center justify-center px-6 md:px-16 lg:px-20 py-24">
+          <main id="main-content" className="absolute inset-0 flex items-center justify-center px-6 md:px-16 lg:px-20 py-24">
             <div className="w-full h-full flex items-center max-w-[1200px]">
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 w-full h-full items-center">
                 
@@ -268,7 +291,7 @@ export default function Home() {
 
                     <Link
                       href={slides[currentSlide].href}
-                      className="inline-block px-10 py-4 rounded-full font-medium text-white transition-all duration-300 hover:opacity-90"
+                      className="inline-block px-10 py-4 rounded-full font-medium text-white transition-all duration-300 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9F2BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px] flex items-center justify-center"
                       style={{
                         background: 'linear-gradient(135deg, #9F2BFF 0%, #4D5FFF 100%)',
                         boxShadow: '0 8px 32px rgba(159, 43, 255, 0.4)',
@@ -296,51 +319,56 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Slider Navigation - Right Side (GalaxyLine style) */}
-          <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end gap-8">
-            {slides.map((slide, index) => (
-              <button
-                key={slide.id}
-                onClick={() => goToSlide(index)}
-                disabled={isAnimating}
-                className="flex flex-col items-center gap-3 group disabled:opacity-50 relative"
-                aria-label={`Slide ${slide.id}`}
-              >
-                {/* Horizontal line above (only visible for current slide) */}
-                <div 
-                  className={`w-8 h-[1px] transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'bg-white opacity-100' 
-                      : 'bg-transparent opacity-0'
-                  }`}
-                />
-                
-                {/* Slide number */}
-                <span 
-                  className={`font-mono transition-all duration-300 ${
-                    index === currentSlide ? 'text-white text-base' : 'text-[#8A8A8A] text-sm'
-                  } group-hover:text-white`}
-                  style={{
-                    fontWeight: 400,
-                    letterSpacing: '0.5px',
-                  }}
+            {/* Slider Navigation - Right Side (GalaxyLine style) */}
+            <div 
+              className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end gap-8"
+              role="group"
+              aria-label="Navigare slide-uri"
+            >
+              {slides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  onClick={() => goToSlide(index)}
+                  disabled={isAnimating}
+                  className="flex flex-col items-center gap-3 group disabled:opacity-50 relative min-h-[44px] min-w-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9F2BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-md"
+                  aria-label={`Slide ${index + 1} din ${slides.length}: ${slide.title}`}
+                  aria-current={index === currentSlide ? "true" : "false"}
                 >
-                  0{slide.id}
-                </span>
-                
-                {/* Horizontal line below (only visible for current slide) */}
-                <div 
-                  className={`w-8 h-[1px] transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'bg-white opacity-100' 
-                      : 'bg-transparent opacity-0'
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
+                  {/* Horizontal line above (only visible for current slide) */}
+                  <div 
+                    className={`w-8 h-[1px] transition-all duration-300 ${
+                      index === currentSlide 
+                        ? 'bg-white opacity-100' 
+                        : 'bg-transparent opacity-0'
+                    }`}
+                  />
+                  
+                  {/* Slide number */}
+                  <span 
+                    className={`font-mono transition-all duration-300 ${
+                      index === currentSlide ? 'text-white text-base' : 'text-[#8A8A8A] text-sm'
+                    } group-hover:text-white`}
+                    style={{
+                      fontWeight: 400,
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    0{slide.id}
+                  </span>
+                  
+                  {/* Horizontal line below (only visible for current slide) */}
+                  <div 
+                    className={`w-8 h-[1px] transition-all duration-300 ${
+                      index === currentSlide 
+                        ? 'bg-white opacity-100' 
+                        : 'bg-transparent opacity-0'
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+          </main>
         </div>
       </div>
     </div>

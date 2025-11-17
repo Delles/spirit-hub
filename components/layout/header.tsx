@@ -50,27 +50,34 @@ export function Header() {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="md:hidden min-h-[44px] min-w-[44px]"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? "Închide meniul" : "Deschide meniul"}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-nav"
         >
           {mobileMenuOpen ? (
-            <X className="h-6 w-6" />
+            <X className="h-6 w-6" aria-hidden="true" />
           ) : (
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6" aria-hidden="true" />
           )}
         </Button>
       </nav>
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border/40">
+        <nav 
+          id="mobile-nav"
+          className="md:hidden border-t border-border/40"
+          aria-label="Navigare principală"
+        >
           <div className="space-y-1 px-4 pb-3 pt-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "block rounded-md px-3 py-2 text-base font-medium transition-colors",
+                  "block rounded-md px-3 py-2 text-base font-medium transition-colors min-h-[44px] flex items-center",
                   pathname.startsWith(item.href)
                     ? "bg-primary/10 text-primary"
                     : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
@@ -81,7 +88,7 @@ export function Header() {
               </Link>
             ))}
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

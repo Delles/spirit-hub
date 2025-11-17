@@ -48,7 +48,8 @@ export function ShareButton({ url, title, text }: ShareButtonProps) {
       variant="outline"
       size="sm"
       onClick={handleShare}
-      className="gap-2"
+      className="gap-2 min-h-[44px]"
+      aria-label={copied ? "Link copiat" : "Distribuie rezultatul"}
     >
       {copied ? (
         <>
