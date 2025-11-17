@@ -9,6 +9,7 @@
  */
 
 import type * as biorhythm from "../biorhythm.js";
+import type * as numerology from "../numerology.js";
 
 import type {
   ApiFromModules,
@@ -18,6 +19,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   biorhythm: typeof biorhythm;
+  numerology: typeof numerology;
 }>;
 
 /**

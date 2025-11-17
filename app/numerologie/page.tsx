@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Sparkles, ArrowLeft } from "lucide-react";
+import { Sparkles, ArrowLeft, Calculator, Heart, Calendar } from "lucide-react";
 
 export const metadata = {
   title: "Numerologie - SpiritHub.ro",
@@ -36,45 +36,73 @@ export default function NumerologiePage() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
-            <div className="rounded-lg border bg-card p-6 shadow-sm">
-              <h3 className="text-xl font-semibold mb-2">Numărul Căii Vieții</h3>
+            <Link 
+              href="/numerologie/calea-vietii"
+              className="group rounded-lg border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(159,43,255,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20">
+                <Calculator className="h-6 w-6 text-primary" aria-hidden="true" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Calea Vieții</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Calculează numărul căii vieții bazat pe data nașterii tale
+                Descoperă-ți numărul Căii Vieții din data nașterii și înțelege-ți scopul și direcția în viață
               </p>
-              <Button className="w-full" disabled>
-                În curând
-              </Button>
-            </div>
+              <div className="flex items-center text-sm font-medium text-primary">
+                Calculează acum
+                <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </div>
+            </Link>
 
-            <div className="rounded-lg border bg-card p-6 shadow-sm">
+            <Link 
+              href="/numerologie/nume-destin"
+              className="group rounded-lg border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(159,43,255,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20">
+                <Sparkles className="h-6 w-6 text-primary" aria-hidden="true" />
+              </div>
               <h3 className="text-xl font-semibold mb-2">Numărul Destinului</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Descoperă numărul destinului bazat pe numele tău complet
+                Calculează-ți numărul destinului din numele complet și descoperă-ți misiunea în viață
               </p>
-              <Button className="w-full" disabled>
-                În curând
-              </Button>
-            </div>
+              <div className="flex items-center text-sm font-medium text-primary">
+                Calculează acum
+                <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </div>
+            </Link>
 
-            <div className="rounded-lg border bg-card p-6 shadow-sm">
+            <Link 
+              href="/numerologie/compatibilitate"
+              className="group rounded-lg border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(159,43,255,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20">
+                <Heart className="h-6 w-6 text-primary" aria-hidden="true" />
+              </div>
               <h3 className="text-xl font-semibold mb-2">Compatibilitate</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Verifică compatibilitatea numerologică cu partenerul tău
+                Verifică compatibilitatea numerologică între două persoane folosind numele și datele de naștere
               </p>
-              <Button className="w-full" disabled>
-                În curând
-              </Button>
-            </div>
+              <div className="flex items-center text-sm font-medium text-primary">
+                Calculează acum
+                <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </div>
+            </Link>
 
-            <div className="rounded-lg border bg-card p-6 shadow-sm">
-              <h3 className="text-xl font-semibold mb-2">Numere Zilnice</h3>
+            <Link 
+              href="/numerologie/numar-zilnic"
+              className="group rounded-lg border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(159,43,255,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20">
+                <Calendar className="h-6 w-6 text-primary" aria-hidden="true" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Numărul Zilei</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Obține numerele tale norocoase pentru astăzi
+                Descoperă numărul zilei de astăzi și primește îndrumări numerologice pentru ziua curentă
               </p>
-              <Button className="w-full" disabled>
-                În curând
-              </Button>
-            </div>
+              <div className="flex items-center text-sm font-medium text-primary">
+                Vezi numărul zilei
+                <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </div>
+            </Link>
           </div>
         </div>
       </main>
