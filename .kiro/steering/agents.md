@@ -39,6 +39,15 @@ Code should be self-explanatory and easy to maintain.
 - Always use `@/` path aliases for imports.
 - Keep UI text in Romanian; internal code and docs in English.
 
+**When adding new features, mirror existing patterns:**
+
+- New routes live under `app/` using Romanian segment names (e.g., `app/numerologie/...`, `app/vise/...`, `app/bioritm/...`).
+- New reusable UI goes into `components/`:
+  - Feature-specific components under `components/<feature>/` (e.g., `components/vise/...`).
+  - Generic building blocks under `components/shared` and `components/ui`.
+- New domain logic belongs in `lib/` (pure functions) and is consumed by Convex (`convex/`) and components.
+- New configuration or large static datasets go into `config/` and `data/`, not hard-coded in components.
+
 ### 5. No Unnecessary Markdown Files
 
 - Do not create new markdown documentation files unless explicitly requested.
@@ -133,6 +142,7 @@ Once the plan is approved:
 - Use TypeScript with strict types.
 - Use `cn()` from `@/lib/utils` for conditional classes.
 - Use shadcn/ui and Tailwind v4 for styling.
+- Use Framer Motion for subtle animations only; keep transitions light and performant.
 - **Before building any UI component, check `docs/design.json`** for colors, typography, spacing, component styles, and design principles to ensure consistency.
 
 ### 3. UI in Romanian Only
@@ -221,3 +231,18 @@ After implementation, apply this mindset:
 - **Check design.json** – Always reference `docs/design.json` when building or modifying UI components.
 - **No surprise scope** – Don't add features not requested.
 - **Favor autonomy** – Prefer static/deterministic flows over manual maintenance.
+
+---
+
+## Stack & Tooling Quick Reference
+
+- **Core stack**: Next.js 16 (App Router) + React 19 + TypeScript 5 + Convex + Tailwind CSS v4 + shadcn/ui + Framer Motion + Bun + Vercel.
+- **Path alias**: `@/*` → project root. Prefer `@/components/...`, `@/lib/...`, `@/config/...`, `@/hooks/...`, `@/app/...` over long relative paths.
+- **Bun commands** (via `package.json` scripts):
+  - `bun dev` – Next.js dev server.
+  - `bun run lint` – ESLint (runs `bun eslint .`).
+  - `bun run typecheck` – TypeScript type checking (`bun tsc --noEmit`).
+  - `bun run build` – Production build (`bun next build`).
+  - `bun start` – Production server (`bun next start`).
+
+For more detail on structure and where new files should go, see `docs/Structure.md` (especially “Guidelines for Future Additions”) and `docs/Tech.md`.

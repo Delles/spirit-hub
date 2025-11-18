@@ -7,10 +7,16 @@ import { internal } from "./_generated/api";
  * We ensure the daily dream is persisted near midnight in RO time by running
  * an hourly job that writes the pick for the current RO date iff missing.
  * This approach covers DST changes without needing to adjust cron expressions.
+ *
+ * Daily number is persisted once per day at 00:00 UTC (02:00/03:00 RO time
+ * depending on DST). The hourly dream job provides redundancy.
  */
 const crons = cronJobs();
 
-// Run hourly at minute 0
+// Run hourly at minute 0 to ensure daily dream is persisted
 crons.cron("ensure-daily-dream-persisted", "0 * * * *", internal.dreams.ensureDailyDream, {});
+
+// Run daily at 00:00 UTC to ensure daily number is persisted
+crons.cron("ensure-daily-number-persisted", "0 0 * * *", internal.numerology.ensureDailyNumber, {});
 
 export default crons;

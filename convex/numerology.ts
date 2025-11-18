@@ -23,11 +23,32 @@
  * - 3 Destiny Master Numbers (11, 22, 33)
  * - 4 Compatibility interpretations (score ranges: 25, 50, 75, 100)
  * - 9 Daily interpretations (numbers 1-9)
- * Total: 37 interpretation records
+ * - 3 Daily Master Number interpretations (11, 22, 33)
+ * Total: 40 interpretation records
  */
 
 import { query, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
+import { reduceToSingleDigit } from "@/lib/numerology";
+
+/**
+ * Helper: isoDateInBucharest
+ * Converts a Date to ISO date string (YYYY-MM-DD) in Europe/Bucharest timezone
+ */
+function isoDateInBucharest(date: Date = new Date()): string {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Bucharest",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+
+  const year = parts.find((p) => p.type === "year")?.value ?? "";
+  const month = parts.find((p) => p.type === "month")?.value ?? "";
+  const day = parts.find((p) => p.type === "day")?.value ?? "";
+
+  return `${year}-${month}-${day}`;
+}
 
 /**
  * Query: getLifePathInterpretation
@@ -117,23 +138,82 @@ export const getCompatibilityInterpretation = query({
 });
 
 /**
- * Query: getDailyNumber
- * Calculates and returns daily number with interpretation
+ * Internal Mutation: ensureDailyNumber
+ * Ensures daily number is persisted in dailyPicks table for the target date
+ * Idempotent - safe to run multiple times
  */
-export const getDailyNumber = query({
-  args: { date: v.string() }, // ISO format: "YYYY-MM-DD"
+export const ensureDailyNumber = internalMutation({
+  args: {
+    date: v.optional(v.string()),
+  },
   handler: async (ctx, args) => {
-    // Calculate daily number from date
-    const date = new Date(args.date);
+    // Resolve target ISO date in RO timezone
+    const targetDate = args.date ?? isoDateInBucharest(new Date());
+
+    // If already persisted, nothing to do
+    const existing = await ctx.db
+      .query("dailyPicks")
+      .withIndex("by_date_and_type", (q) =>
+        q.eq("date", targetDate).eq("type", "daily-number")
+      )
+      .first();
+
+    if (existing) {
+      return { date: targetDate, persisted: false, number: existing.contentId };
+    }
+
+    // Calculate daily number deterministically
+    const date = new Date(targetDate);
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
 
-    // Sum and reduce to single digit
+    // Use reduceToSingleDigit from lib/numerology.ts
+    // This preserves Master Numbers (11, 22, 33)
     const sum = day + month + year;
-    let dailyNumber = sum;
-    while (dailyNumber > 9) {
-      dailyNumber = Math.floor(dailyNumber / 10) + (dailyNumber % 10);
+    const dailyNumber = reduceToSingleDigit(sum);
+
+    // Persist the daily pick
+    await ctx.db.insert("dailyPicks", {
+      date: targetDate,
+      type: "daily-number",
+      contentId: String(dailyNumber),
+      createdAt: Date.now(),
+    });
+
+    return { date: targetDate, persisted: true, number: String(dailyNumber) };
+  },
+});
+
+/**
+ * Query: getDailyNumber
+ * Returns daily number with interpretation, checking dailyPicks cache first
+ */
+export const getDailyNumber = query({
+  args: { date: v.string() }, // ISO format: "YYYY-MM-DD"
+  handler: async (ctx, args) => {
+    // First, check persisted daily picks
+    const existingPick = await ctx.db
+      .query("dailyPicks")
+      .withIndex("by_date_and_type", (q) =>
+        q.eq("date", args.date).eq("type", "daily-number")
+      )
+      .first();
+
+    let dailyNumber: number;
+
+    if (existingPick) {
+      // Use persisted number
+      dailyNumber = parseInt(existingPick.contentId, 10);
+    } else {
+      // Calculate on-demand (fallback)
+      const date = new Date(args.date);
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+
+      const sum = day + month + year;
+      dailyNumber = reduceToSingleDigit(sum);
     }
 
     // Fetch interpretation
@@ -782,6 +862,61 @@ Sfat pentru ziua de astăzi: Fă un act de bunătate fără să aștepți nimic 
     ];
 
     // ========================================================================
+    // Daily Number Master Number Interpretations (11, 22, 33)
+    // ========================================================================
+
+    const dailyMasterData = [
+      {
+        type: "daily",
+        number: 11,
+        title: "Zi de Iluminare Spirituală",
+        description: "Astăzi este o zi specială de conexiune spirituală profundă și intuiție intensificată.",
+        fullText: `Astăzi, energia numărului 11, primul Număr Maestru, îți aduce o conexiune spirituală extraordinară și intuiție intensificată. Este o zi de iluminare și claritate interioară, când percepțiile tale sunt amplificate și ai acces la înțelepciune superioară. Universul te susține să fii un canal pentru mesaje spirituale și să inspiri pe alții prin exemplul tău.
+
+Ce este favorabil astăzi: Meditația profundă, conectarea cu lumea spirituală, ascultarea intuiției tale, împărtășirea înțelepciunii cu alții, activități creative inspirate și momente de contemplare. Este momentul perfect să te conectezi cu esența ta spirituală și să primești claritate.
+
+Pe ce să te concentrezi: Ascultă-ți vocea interioară și fii deschis la mesajele spirituale care îți vin astăzi. Concentrează-te pe a fi prezent și conștient, observând sincronicitățile și semnele din jurul tău. Este o zi excelentă pentru a inspira și a fi inspirat.
+
+Ce să eviți: Evită să te copleșești cu informații sau să devii prea sensibil la energiile din jur. Nu ignora nevoile tale practice în căutarea spiritualității. Fii atent să nu te izolezi complet sau să devii prea detașat de realitatea cotidiană.
+
+Sfat pentru ziua de astăzi: Acordă-ți timp pentru meditație sau contemplare. Această zi îți oferă acces la înțelepciune spirituală profundă - folosește-o pentru a găsi claritate și pentru a inspira pe alții. Fii un far de lumină spirituală!`,
+        createdAt: Date.now(),
+      },
+      {
+        type: "daily",
+        number: 22,
+        title: "Zi de Manifestare și Construcție",
+        description: "Astăzi este o zi puternică pentru a transforma viziunile în realitate și a construi ceva durabil.",
+        fullText: `Astăzi, energia numărului 22, cel mai puternic Număr Maestru pentru manifestare materială, îți aduce capacitatea extraordinară de a transforma viziuni mari în realități concrete. Este o zi excelentă pentru proiecte ambițioase, construirea de fundații solide și manifestarea obiectivelor tale pe termen lung. Universul te susține să realizezi lucruri mari și durabile.
+
+Ce este favorabil astăzi: Planificarea pe termen lung, începerea de proiecte mari, construirea de structuri și sisteme, manifestarea obiectivelor materiale, organizarea eficientă și luarea de decizii strategice importante. Este momentul perfect pentru a pune bazele unor realizări semnificative.
+
+Pe ce să te concentrezi: Gândește mare și acționează strategic. Concentrează-te pe construirea de fundații solide pentru viitorul tău și pentru proiectele tale importante. Este o zi excelentă pentru a combina viziunea cu acțiunea practică și pentru a transforma ideile în realitate.
+
+Ce să eviți: Evită să te copleșești cu prea multe responsabilități sau să devii workaholic. Nu neglija echilibrul între muncă și viața personală. Fii atent să nu devii prea rigid sau să pierzi din vedere viziunea spirituală care te-a inspirat inițial.
+
+Sfat pentru ziua de astăzi: Ia o decizie importantă legată de un proiect mare sau începe să construiești ceva semnificativ. Această zi îți oferă energia și capacitatea de a manifesta viziunile tale în realitate. Fii ambițios și strategic!`,
+        createdAt: Date.now(),
+      },
+      {
+        type: "daily",
+        number: 33,
+        title: "Zi de Compasiune și Transformare",
+        description: "Astăzi este o zi profundă de dragoste necondiționată, vindecare și serviciu față de umanitate.",
+        fullText: `Astăzi, energia numărului 33, cel mai evoluat Număr Maestru, îți aduce compasiune universală profundă și capacitatea de a transforma prin dragoste. Este o zi specială de serviciu dezinteresat, vindecare și conectare cu esența umanității. Universul te susține să fii un exemplu de dragoste necondiționată și să ajuți la transformarea lumii prin compasiune.
+
+Ce este favorabil astăzi: Acte de generozitate și compasiune, vindecarea relațiilor, serviciul față de comunitate, iertarea profundă, conectarea cu dragostea universală și oferirea de sprijin celor în nevoie. Este momentul perfect pentru a face o diferență pozitivă în viața altora.
+
+Pe ce să te concentrezi: Fii prezent pentru cei care au nevoie de tine și oferă dragoste necondiționată. Concentrează-te pe vindecare - atât pentru tine, cât și pentru alții. Este o zi excelentă pentru a transforma suferința în înțelepciune și pentru a inspira schimbare pozitivă prin exemplul tău.
+
+Ce să eviți: Evită să te sacrifici complet sau să îți neglijezi propriile nevoi în timp ce ajuți pe alții. Nu deveni martir sau să te aștepți la recunoștință pentru generozitatea ta. Fii atent să nu te epuizezi emoțional sau să devii prea sensibil la suferința din jur.
+
+Sfat pentru ziua de astăzi: Fă un act de bunătate profundă sau oferă sprijin cuiva care are nevoie. Această zi îți oferă oportunitatea de a transforma prin dragoste și compasiune. Fii lumina care aduce vindecare și transformare în lume!`,
+        createdAt: Date.now(),
+      },
+    ];
+
+    // ========================================================================
     // Insert all interpretations into database
     // ========================================================================
 
@@ -792,6 +927,7 @@ Sfat pentru ziua de astăzi: Fă un act de bunătate fără să aștepți nimic 
       ...destinyMasterData,
       ...compatibilityData,
       ...dailyData,
+      ...dailyMasterData,
     ];
 
     let insertedCount = 0;
@@ -811,7 +947,100 @@ Sfat pentru ziua de astăzi: Fă un act de bunătate fără să aștepți nimic 
         destinyMaster: destinyMasterData.length,
         compatibility: compatibilityData.length,
         daily: dailyData.length,
+        dailyMaster: dailyMasterData.length,
         total: insertedCount,
+      },
+    };
+  },
+});
+
+/**
+ * Mutation: seedDailyMasterNumbers
+ * Adds missing Daily Master Number interpretations (11, 22, 33) to the database
+ * Safe to run multiple times - will skip if already exists
+ * Use this if daily interpretations 1-9 were seeded but Master Numbers are missing
+ */
+export const seedDailyMasterNumbers = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const dailyMasterData = [
+      {
+        type: "daily",
+        number: 11,
+        title: "Zi de Iluminare Spirituală",
+        description: "Astăzi este o zi specială de conexiune spirituală profundă și intuiție intensificată.",
+        fullText: `Astăzi, energia numărului 11, primul Număr Maestru, îți aduce o conexiune spirituală extraordinară și intuiție intensificată. Este o zi de iluminare și claritate interioară, când percepțiile tale sunt amplificate și ai acces la înțelepciune superioară. Universul te susține să fii un canal pentru mesaje spirituale și să inspiri pe alții prin exemplul tău.
+
+Ce este favorabil astăzi: Meditația profundă, conectarea cu lumea spirituală, ascultarea intuiției tale, împărtășirea înțelepciunii cu alții, activități creative inspirate și momente de contemplare. Este momentul perfect să te conectezi cu esența ta spirituală și să primești claritate.
+
+Pe ce să te concentrezi: Ascultă-ți vocea interioară și fii deschis la mesajele spirituale care îți vin astăzi. Concentrează-te pe a fi prezent și conștient, observând sincronicitățile și semnele din jurul tău. Este o zi excelentă pentru a inspira și a fi inspirat.
+
+Ce să eviți: Evită să te copleșești cu informații sau să devii prea sensibil la energiile din jur. Nu ignora nevoile tale practice în căutarea spiritualității. Fii atent să nu te izolezi complet sau să devii prea detașat de realitatea cotidiană.
+
+Sfat pentru ziua de astăzi: Acordă-ți timp pentru meditație sau contemplare. Această zi îți oferă acces la înțelepciune spirituală profundă - folosește-o pentru a găsi claritate și pentru a inspira pe alții. Fii un far de lumină spirituală!`,
+        createdAt: Date.now(),
+      },
+      {
+        type: "daily",
+        number: 22,
+        title: "Zi de Manifestare și Construcție",
+        description: "Astăzi este o zi puternică pentru a transforma viziunile în realitate și a construi ceva durabil.",
+        fullText: `Astăzi, energia numărului 22, cel mai puternic Număr Maestru pentru manifestare materială, îți aduce capacitatea extraordinară de a transforma viziuni mari în realități concrete. Este o zi excelentă pentru proiecte ambițioase, construirea de fundații solide și manifestarea obiectivelor tale pe termen lung. Universul te susține să realizezi lucruri mari și durabile.
+
+Ce este favorabil astăzi: Planificarea pe termen lung, începerea de proiecte mari, construirea de structuri și sisteme, manifestarea obiectivelor materiale, organizarea eficientă și luarea de decizii strategice importante. Este momentul perfect pentru a pune bazele unor realizări semnificative.
+
+Pe ce să te concentrezi: Gândește mare și acționează strategic. Concentrează-te pe construirea de fundații solide pentru viitorul tău și pentru proiectele tale importante. Este o zi excelentă pentru a combina viziunea cu acțiunea practică și pentru a transforma ideile în realitate.
+
+Ce să eviți: Evită să te copleșești cu prea multe responsabilități sau să devii workaholic. Nu neglija echilibrul între muncă și viața personală. Fii atent să nu devii prea rigid sau să pierzi din vedere viziunea spirituală care te-a inspirat inițial.
+
+Sfat pentru ziua de astăzi: Ia o decizie importantă legată de un proiect mare sau începe să construiești ceva semnificativ. Această zi îți oferă energia și capacitatea de a manifesta viziunile tale în realitate. Fii ambițios și strategic!`,
+        createdAt: Date.now(),
+      },
+      {
+        type: "daily",
+        number: 33,
+        title: "Zi de Compasiune și Transformare",
+        description: "Astăzi este o zi profundă de dragoste necondiționată, vindecare și serviciu față de umanitate.",
+        fullText: `Astăzi, energia numărului 33, cel mai evoluat Număr Maestru, îți aduce compasiune universală profundă și capacitatea de a transforma prin dragoste. Este o zi specială de serviciu dezinteresat, vindecare și conectare cu esența umanității. Universul te susține să fii un exemplu de dragoste necondiționată și să ajuți la transformarea lumii prin compasiune.
+
+Ce este favorabil astăzi: Acte de generozitate și compasiune, vindecarea relațiilor, serviciul față de comunitate, iertarea profundă, conectarea cu dragostea universală și oferirea de sprijin celor în nevoie. Este momentul perfect pentru a face o diferență pozitivă în viața altora.
+
+Pe ce să te concentrezi: Fii prezent pentru cei care au nevoie de tine și oferă dragoste necondiționată. Concentrează-te pe vindecare - atât pentru tine, cât și pentru alții. Este o zi excelentă pentru a transforma suferința în înțelepciune și pentru a inspira schimbare pozitivă prin exemplul tău.
+
+Ce să eviți: Evită să te sacrifici complet sau să îți neglijezi propriile nevoi în timp ce ajuți pe alții. Nu deveni martir sau să te aștepți la recunoștință pentru generozitatea ta. Fii atent să nu te epuizezi emoțional sau să devii prea sensibil la suferința din jur.
+
+Sfat pentru ziua de astăzi: Fă un act de bunătate profundă sau oferă sprijin cuiva care are nevoie. Această zi îți oferă oportunitatea de a transforma prin dragoste și compasiune. Fii lumina care aduce vindecare și transformare în lume!`,
+        createdAt: Date.now(),
+      },
+    ];
+
+    let insertedCount = 0;
+    let skippedCount = 0;
+
+    for (const interpretation of dailyMasterData) {
+      // Check if already exists
+      const existing = await ctx.db
+        .query("interpretations")
+        .withIndex("by_type_and_number", (q) =>
+          q.eq("type", interpretation.type).eq("number", interpretation.number)
+        )
+        .first();
+
+      if (existing) {
+        skippedCount++;
+        continue;
+      }
+
+      await ctx.db.insert("interpretations", interpretation);
+      insertedCount++;
+    }
+
+    return {
+      success: true,
+      message: `S-au adăugat ${insertedCount} interpretări zilnice pentru Numerele Maestre. ${skippedCount} interpretări existau deja.`,
+      details: {
+        inserted: insertedCount,
+        skipped: skippedCount,
       },
     };
   },

@@ -33,6 +33,15 @@ export interface CriticalDay {
   cycles: ("physical" | "emotional" | "intellectual")[];
 }
 
+/**
+ * Represents a daily biorhythm hint based on day of the week
+ */
+export interface BiorhythmHint {
+  title: string;
+  hint: string;
+  dayOfWeek: string;
+}
+
 // ============================================================================
 // Core Calculation Functions
 // ============================================================================
@@ -161,6 +170,59 @@ export function getCriticalDays(birthDate: Date, startDate: Date, days: number):
   }
 
   return criticalDays;
+}
+
+// ============================================================================
+// Daily Biorhythm Hints
+// ============================================================================
+
+/**
+ * Returns a generic biorhythm hint based on the day of the week
+ * Provides daily guidance without requiring user birth date
+ *
+ * @param date - The date to get the hint for (defaults to current date)
+ * @returns BiorhythmHint object with title, hint text, and day name in Romanian
+ */
+export function getBiorhythmHintForDay(date: Date = new Date()): BiorhythmHint {
+  const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
+
+  const hints: Record<number, { title: string; hint: string }> = {
+    0: {
+      title: "Zi de Odihnă",
+      hint: "Duminica este perfectă pentru regenerare. Acordă-ți timp pentru relaxare și reflecție interioară.",
+    },
+    1: {
+      title: "Energie Fizică",
+      hint: "Începutul săptămânii aduce energie fizică crescută. Profită de acest moment pentru activități intense.",
+    },
+    2: {
+      title: "Claritate Mentală",
+      hint: "Marți este ideal pentru gândire analitică și rezolvare de probleme. Concentrează-te pe sarcini complexe.",
+    },
+    3: {
+      title: "Echilibru Emoțional",
+      hint: "Mijlocul săptămânii favorizează conexiunile emoționale. Dedică timp relațiilor importante.",
+    },
+    4: {
+      title: "Creativitate",
+      hint: "Joi stimulează creativitatea și expresia personală. Explorează idei noi și proiecte artistice.",
+    },
+    5: {
+      title: "Socializare",
+      hint: "Vineri este perfect pentru interacțiuni sociale și activități de grup. Conectează-te cu prietenii.",
+    },
+    6: {
+      title: "Reflecție",
+      hint: "Sâmbăta încurajează introspecția și planificarea. Evaluează-ți progresul și stabilește obiective.",
+    },
+  };
+
+  const dayNames = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+
+  return {
+    ...hints[dayOfWeek],
+    dayOfWeek: dayNames[dayOfWeek],
+  };
 }
 
 // ============================================================================

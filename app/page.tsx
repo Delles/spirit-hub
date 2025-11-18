@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
+import { DailyWidget } from "@/components/layout/daily-widget";
 
 const slides = [
   {
@@ -102,7 +103,7 @@ export default function Home() {
   }, [isAnimating]);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-x-hidden overflow-y-auto">
       {/* Skip to main content link for screen readers */}
       <a
         href="#main-content"
@@ -110,10 +111,16 @@ export default function Home() {
       >
         Sari la conținutul principal
       </a>
-      {/* Main Container Card - Enhanced with design.json specifications */}
-      <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8 lg:p-16">
+      {/* Main Container - Enhanced with design.json specifications */}
+      <div className="flex flex-col items-center justify-start p-4 md:p-8 lg:p-16 min-h-screen">
+        {/* Daily Widget Section - Above the hero slider */}
+        <div className="w-full max-w-[1400px] mb-8">
+          <DailyWidget />
+        </div>
+
+        {/* Hero Slider Card */}
         <div
-          className="relative w-full max-w-[1400px] h-full max-h-[900px] overflow-hidden"
+          className="relative w-full max-w-[1400px] h-[900px] overflow-hidden"
           style={{
             backgroundImage: "url(/images/backgorund.png)",
             backgroundSize: "cover",
@@ -328,10 +335,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </main>
 
-            {/* Slider Navigation - Right Side (GalaxyLine style) */}
+          {/* Slider Navigation - Right Side (GalaxyLine style) */}
+          <div className="absolute inset-0 pointer-events-none">
             <div
-              className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end gap-8"
+              className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end gap-8 pointer-events-auto"
               role="group"
               aria-label="Navigare slide-uri"
             >
@@ -373,7 +382,7 @@ export default function Home() {
                 </button>
               ))}
             </div>
-          </main>
+          </div>
         </div>
       </div>
     </div>
