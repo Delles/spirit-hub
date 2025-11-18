@@ -12,47 +12,50 @@ export interface CompatibilityCardProps {
     description: string;
     fullText: string;
   };
-  person1: { 
-    name: string; 
-    lifePath: number; 
+  person1: {
+    name: string;
+    lifePath: number;
     destiny: number;
   };
-  person2: { 
-    name: string; 
-    lifePath: number; 
+  person2: {
+    name: string;
+    lifePath: number;
     destiny: number;
   };
 }
 
 const masterNumbers = [11, 22, 33];
 
-export function CompatibilityCard({ 
-  score, 
-  interpretation, 
-  person1, 
-  person2 
+export function CompatibilityCard({
+  score,
+  interpretation,
+  person1,
+  person2,
 }: CompatibilityCardProps) {
   // Determine color based on score
   const getScoreColor = (s: number) => {
-    if (s >= 76) return {
-      badge: 'bg-green-500/20 border-green-500/30 text-green-200',
-      gradient: 'from-green-400 to-emerald-400',
-      glow: 'bg-green-500/20'
-    };
-    if (s >= 51) return {
-      badge: 'bg-blue-500/20 border-blue-500/30 text-blue-200',
-      gradient: 'from-blue-400 to-cyan-400',
-      glow: 'bg-blue-500/20'
-    };
-    if (s >= 26) return {
-      badge: 'bg-yellow-500/20 border-yellow-500/30 text-yellow-200',
-      gradient: 'from-yellow-400 to-amber-400',
-      glow: 'bg-yellow-500/20'
-    };
+    if (s >= 76)
+      return {
+        badge: "bg-green-500/20 border-green-500/30 text-green-200",
+        gradient: "from-green-400 to-emerald-400",
+        glow: "bg-green-500/20",
+      };
+    if (s >= 51)
+      return {
+        badge: "bg-blue-500/20 border-blue-500/30 text-blue-200",
+        gradient: "from-blue-400 to-cyan-400",
+        glow: "bg-blue-500/20",
+      };
+    if (s >= 26)
+      return {
+        badge: "bg-yellow-500/20 border-yellow-500/30 text-yellow-200",
+        gradient: "from-yellow-400 to-amber-400",
+        glow: "bg-yellow-500/20",
+      };
     return {
-      badge: 'bg-red-500/20 border-red-500/30 text-red-200',
-      gradient: 'from-red-400 to-rose-400',
-      glow: 'bg-red-500/20'
+      badge: "bg-red-500/20 border-red-500/30 text-red-200",
+      gradient: "from-red-400 to-rose-400",
+      glow: "bg-red-500/20",
     };
   };
 
@@ -69,10 +72,7 @@ export function CompatibilityCard({
             </CardTitle>
             <CardDescription>{interpretation.title}</CardDescription>
           </div>
-          <Badge 
-            variant="secondary" 
-            className={`ml-2 ${colors.badge}`}
-          >
+          <Badge variant="secondary" className={`ml-2 ${colors.badge}`}>
             {score}%
           </Badge>
         </div>
@@ -83,9 +83,11 @@ export function CompatibilityCard({
           <div className="relative animate-in fade-in zoom-in duration-500">
             {/* Glow effect */}
             <div className={`absolute inset-0 ${colors.glow} blur-3xl rounded-full`} />
-            
+
             {/* Score */}
-            <div className={`relative text-7xl font-bold bg-gradient-to-br ${colors.gradient} bg-clip-text text-transparent`}>
+            <div
+              className={`relative text-7xl font-bold bg-gradient-to-br ${colors.gradient} bg-clip-text text-transparent`}
+            >
               {score}
               <span className="text-4xl">%</span>
             </div>
@@ -163,8 +165,8 @@ export function CompatibilityCard({
 
         {/* Share button */}
         <div className="pt-4 border-t">
-          <ShareButton 
-            url={typeof window !== 'undefined' ? window.location.href : ''}
+          <ShareButton
+            url={typeof window !== "undefined" ? window.location.href : ""}
             title={`Compatibilitatea noastră numerologică este ${score}%`}
             text={`${person1.name} și ${person2.name} au o compatibilitate numerologică de ${score}%! ${interpretation.title}. Descoperă și tu pe SpiritHub.ro`}
           />

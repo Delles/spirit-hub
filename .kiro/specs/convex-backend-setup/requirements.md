@@ -70,7 +70,7 @@ This document defines the requirements for initializing and configuring the Conv
 
 1. WHEN the dev server starts, THE Development Environment SHALL connect to the Convex deployment
 2. WHEN the dev server starts, THE Development Environment SHALL watch for schema and function changes
-3. WHEN the dev server runs, THE Development Environment SHALL auto-generate TypeScript types in convex/_generated directory
+3. WHEN the dev server runs, THE Development Environment SHALL auto-generate TypeScript types in convex/\_generated directory
 4. WHEN the dev server runs, THE Development Environment SHALL provide real-time sync with the cloud deployment
 5. THE Development Environment SHALL remain running without errors during active development
 

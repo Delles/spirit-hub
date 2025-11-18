@@ -19,7 +19,7 @@ const masterNumbers = [11, 22, 33];
 
 export function DestinyCard({ number, interpretation, name }: DestinyCardProps) {
   const isMasterNumber = masterNumbers.includes(number);
-  
+
   // Get reduced number for Master Numbers
   const getReducedNumber = (n: number): number => {
     if (n === 11) return 2;
@@ -39,8 +39,8 @@ export function DestinyCard({ number, interpretation, name }: DestinyCardProps) 
             <CardDescription>{interpretation.title}</CardDescription>
           </div>
           {isMasterNumber && (
-            <Badge 
-              variant="secondary" 
+            <Badge
+              variant="secondary"
               className="ml-2 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border-yellow-500/30 text-yellow-200"
             >
               <Sparkles className="h-3 w-3 mr-1" />
@@ -60,20 +60,20 @@ export function DestinyCard({ number, interpretation, name }: DestinyCardProps) 
         <div className="flex items-center justify-center py-8">
           <div className="relative animate-in fade-in zoom-in duration-500">
             {/* Glow effect */}
-            <div 
+            <div
               className={`absolute inset-0 blur-3xl rounded-full ${
-                isMasterNumber 
-                  ? 'bg-gradient-to-br from-yellow-500/30 to-amber-500/30' 
-                  : 'bg-primary/20'
-              }`} 
+                isMasterNumber
+                  ? "bg-gradient-to-br from-yellow-500/30 to-amber-500/30"
+                  : "bg-primary/20"
+              }`}
             />
-            
+
             {/* Number */}
-            <div 
+            <div
               className={`relative text-7xl font-bold bg-clip-text text-transparent ${
                 isMasterNumber
-                  ? 'bg-gradient-to-br from-yellow-400 via-amber-400 to-yellow-500'
-                  : 'bg-gradient-to-br from-primary to-purple-400'
+                  ? "bg-gradient-to-br from-yellow-400 via-amber-400 to-yellow-500"
+                  : "bg-gradient-to-br from-primary to-purple-400"
               }`}
             >
               {number}
@@ -85,8 +85,9 @@ export function DestinyCard({ number, interpretation, name }: DestinyCardProps) 
         {isMasterNumber && reducedNumber && (
           <div className="p-4 rounded-lg bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border border-yellow-500/20">
             <p className="text-sm text-yellow-200/90 leading-relaxed">
-              <strong>Număr Maestru {number}:</strong> Acest număr poartă o vibrație spirituală intensă și o responsabilitate mai mare. 
-              Deși se reduce la {reducedNumber}, energia sa este mult mai amplificată și vine cu provocări și oportunități unice.
+              <strong>Număr Maestru {number}:</strong> Acest număr poartă o vibrație spirituală
+              intensă și o responsabilitate mai mare. Deși se reduce la {reducedNumber}, energia sa
+              este mult mai amplificată și vine cu provocări și oportunități unice.
             </p>
           </div>
         )}
@@ -107,10 +108,10 @@ export function DestinyCard({ number, interpretation, name }: DestinyCardProps) 
 
         {/* Share button */}
         <div className="pt-4 border-t">
-          <ShareButton 
-            url={typeof window !== 'undefined' ? window.location.href : ''}
-            title={`Numărul Destinului meu este ${number}${isMasterNumber ? ' (Număr Maestru)' : ''}`}
-            text={`Am descoperit că Numărul Destinului meu este ${number}${isMasterNumber ? ' - un Număr Maestru' : ''}! ${interpretation.title}. Descoperă și tu pe SpiritHub.ro`}
+          <ShareButton
+            url={typeof window !== "undefined" ? window.location.href : ""}
+            title={`Numărul Destinului meu este ${number}${isMasterNumber ? " (Număr Maestru)" : ""}`}
+            text={`Am descoperit că Numărul Destinului meu este ${number}${isMasterNumber ? " - un Număr Maestru" : ""}! ${interpretation.title}. Descoperă și tu pe SpiritHub.ro`}
           />
         </div>
       </CardContent>

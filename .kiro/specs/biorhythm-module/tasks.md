@@ -3,11 +3,6 @@
 ## Task List
 
 - [x] 1. Implement Convex backend functions
-
-
-
-
-
   - Create `convex/biorhythm.ts` with query functions for biorhythm calculations
   - Implement `getBiorhythm` query accepting birthDate and targetDate parameters
   - Implement `getCriticalDays` query accepting birthDate, startDate, and days parameters
@@ -16,11 +11,6 @@
   - _Requirements: 1.2, 1.4, 7.1, 7.2, 7.3, 7.4, 7.5_
 
 - [x] 2. Create BiorhythmForm component
-
-
-
-
-
   - Create `components/bioritm/biorhythm-form.tsx` with TypeScript interface
   - Implement birth date input field with native date picker
   - Implement optional target date input field (defaults to today)
@@ -32,11 +22,6 @@
   - _Requirements: 1.1, 5.1, 5.2, 5.4, 5.5, 8.1, 8.4, 9.1, 9.2_
 
 - [x] 3. Create BiorhythmChart component
-
-
-
-
-
   - Create `components/bioritm/biorhythm-chart.tsx` with TypeScript interface
   - Generate SVG chart with 800x400px dimensions (desktop)
   - Implement responsive sizing for mobile (100% width, 300px height)
@@ -51,11 +36,6 @@
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 8.2, 9.3_
 
 - [x] 4. Create BiorhythmSummary component
-
-
-
-
-
   - Create `components/bioritm/biorhythm-summary.tsx` with TypeScript interface
   - Display Romanian-language summary text from Convex query
   - Create cycle indicator bars showing percentage values
@@ -67,11 +47,6 @@
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
 
 - [x] 5. Create CriticalDaysList component
-
-
-
-
-
   - Create `components/bioritm/critical-days-list.tsx` with TypeScript interface
   - Render list of critical days with dates in Romanian format (DD.MM.YYYY)
   - Display day of week for each critical day
@@ -82,11 +57,6 @@
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
 - [x] 6. Implement main biorhythm calculator page
-
-
-
-
-
   - Update `app/bioritm/page.tsx` with working calculator
   - Add page metadata (title, description) in Romanian
   - Implement state management for birth date and target date
@@ -102,11 +72,6 @@
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 6.1, 6.2, 6.3, 6.4, 6.5, 8.3, 10.1, 10.2, 10.3, 10.4_
 
 - [x] 7. Implement critical days viewer page
-
-
-
-
-
   - Create `app/bioritm/critice/page.tsx` with critical days viewer
   - Add page metadata (title, description) in Romanian
   - Implement state management for birth date
@@ -120,11 +85,6 @@
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 10.1, 10.2, 10.3_
 
 - [x] 8. Add navigation links and polish
-
-
-
-
-
   - Update header navigation to include Bioritm link (if not already present)
   - Verify ShareButton integration works on mobile (Web Share API) and desktop (clipboard)
   - Test all Romanian text for accuracy and naturalness

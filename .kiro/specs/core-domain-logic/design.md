@@ -28,7 +28,6 @@ The core domain logic layer provides pure, framework-agnostic calculation functi
 4. **Single Responsibility**: Each file handles one domain
 5. **Romanian Language Support**: Proper handling of diacritics (ă, â, î, ș, ț)
 
-
 ## Components and Interfaces
 
 ### 1. Numerology Module (`lib/numerology.ts`)
@@ -36,12 +35,14 @@ The core domain logic layer provides pure, framework-agnostic calculation functi
 #### Core Functions
 
 **reduceToSingleDigit(num: number): number**
+
 - Recursively sums digits until a single digit (1-9) or Master Number (11, 22, 33) remains
 - Preserves Master Numbers during reduction
 - Example: 1985 → 1+9+8+5 = 23 → 2+3 = 5
 - Example with Master: 29 → 2+9 = 11 (preserved as Master Number)
 
 **calculateLifePath(birthDate: Date): number**
+
 - Extracts day, month, year from date
 - Reduces each component separately, then sums and reduces final result
 - Preserves Master Numbers (11, 22, 33) when encountered
@@ -49,12 +50,14 @@ The core domain logic layer provides pure, framework-agnostic calculation functi
 - Example with Master: 29/11/1982 → (2+9=11) + (1+1=2) + (1+9+8+2=20→2) → 11 + 2 + 2 = 15 → 6
 
 **calculateDestinyNumber(name: string): number**
+
 - Normalizes name (lowercase, trim)
 - Maps each letter to numerological value using Romanian alphabet
 - Sums all values and reduces to single digit or Master Number (11, 22, 33)
 - Handles diacritics: ă, â, î, ș, ț
 
 **calculateCompatibility(num1: number, num2: number): number**
+
 - Compares two numerology numbers (1-9, 11, 22, 33)
 - Returns compatibility score 0-100
 - Algorithm: Based on numerological harmony principles
@@ -65,6 +68,7 @@ The core domain logic layer provides pure, framework-agnostic calculation functi
   - Challenging: 20-40%
 
 **getLetterValue(letter: string): number**
+
 - Maps Romanian letters to values 1-9
 - Handles both uppercase and lowercase
 - Supports diacritics
@@ -81,34 +85,39 @@ export interface LetterValueMap {
 export const MASTER_NUMBERS = [11, 22, 33] as const;
 ```
 
-
 ### 2. Biorhythm Module (`lib/biorhythm.ts`)
 
 #### Core Functions
 
 **calculateCycle(birthDate: Date, targetDate: Date, cycleDays: number): number**
+
 - Calculates days lived since birth
 - Applies sine wave formula: sin(2π × daysLived / cycleDays)
 - Returns value between -1 (low) and 1 (high)
 
 **getPhysicalCycle(birthDate: Date, targetDate: Date): number**
+
 - Wrapper for calculateCycle with 23-day period
 - Represents physical energy and strength
 
 **getEmotionalCycle(birthDate: Date, targetDate: Date): number**
+
 - Wrapper for calculateCycle with 28-day period
 - Represents mood and emotional stability
 
 **getIntellectualCycle(birthDate: Date, targetDate: Date): number**
+
 - Wrapper for calculateCycle with 33-day period
 - Represents mental clarity and analytical ability
 
 **getCriticalDays(birthDate: Date, startDate: Date, days: number): Date[]**
+
 - Iterates through date range
 - Identifies days where any cycle crosses zero (value between -0.1 and 0.1)
 - Returns array of critical dates
 
 **getBiorhythmSummary(physical: number, emotional: number, intellectual: number): string**
+
 - Analyzes cycle values
 - Returns Romanian-language guidance
 - Examples:
@@ -127,16 +136,16 @@ export interface BiorhythmCycles {
 
 export interface CriticalDay {
   date: Date;
-  cycles: ('physical' | 'emotional' | 'intellectual')[];
+  cycles: ("physical" | "emotional" | "intellectual")[];
 }
 ```
-
 
 ### 3. Dream Interpretation Module (`lib/dreams.ts`)
 
 #### Core Functions
 
 **generateSlug(symbolName: string): string**
+
 - Converts Romanian text to URL-safe slug
 - Normalizes diacritics: ă→a, â→a, î→i, ș→s, ț→t
 - Converts to lowercase
@@ -145,12 +154,14 @@ export interface CriticalDay {
 - Example: "Șarpe veninos" → "sarpe-veninos"
 
 **searchSymbols(query: string, symbols: DreamSymbol[]): DreamSymbol[]**
+
 - Normalizes query and symbol names
 - Performs fuzzy matching on name and description
 - Returns sorted results (best matches first)
 - Case-insensitive, diacritic-insensitive
 
 **combineInterpretations(symbols: DreamSymbol[]): string**
+
 - Takes 2-3 dream symbols
 - Generates coherent Romanian text combining meanings
 - Uses templates to create natural-sounding interpretation
@@ -169,23 +180,25 @@ export interface DreamSymbol {
 }
 ```
 
-
 ### 4. Utilities Module (`lib/utils.ts`)
 
 #### Core Functions
 
 **formatRomanianDate(date: Date): string**
+
 - Formats date in Romanian style
 - Example: "14 noiembrie 2025"
 - Uses Romanian month names: ianuarie, februarie, martie, etc.
 
 **normalizeRomanianText(text: string): string**
+
 - Converts to lowercase
 - Normalizes diacritics for comparison
 - Trims whitespace
 - Used for search and matching
 
 **cn(...inputs: ClassValue[]): string**
+
 - Already exists from shadcn/ui
 - Merges Tailwind CSS classes conditionally
 - Uses clsx and tailwind-merge
@@ -194,16 +207,33 @@ export interface DreamSymbol {
 
 ```typescript
 export const ROMANIAN_MONTHS = [
-  'ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie',
-  'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'
+  "ianuarie",
+  "februarie",
+  "martie",
+  "aprilie",
+  "mai",
+  "iunie",
+  "iulie",
+  "august",
+  "septembrie",
+  "octombrie",
+  "noiembrie",
+  "decembrie",
 ];
 
 export const DIACRITIC_MAP: Record<string, string> = {
-  'ă': 'a', 'â': 'a', 'î': 'i', 'ș': 's', 'ț': 't',
-  'Ă': 'A', 'Â': 'A', 'Î': 'I', 'Ș': 'S', 'Ț': 'T'
+  ă: "a",
+  â: "a",
+  î: "i",
+  ș: "s",
+  ț: "t",
+  Ă: "A",
+  Â: "A",
+  Î: "I",
+  Ș: "S",
+  Ț: "T",
 };
 ```
-
 
 ### 5. Constants Module (`lib/constants.ts`)
 
@@ -225,35 +255,39 @@ export const MASTER_NUMBERS = [11, 22, 33] as const;
 
 // Romanian alphabet to numerology mapping (Pythagorean system adapted)
 export const ROMANIAN_LETTER_VALUES: Record<string, number> = {
-  'a': 1, 'ă': 1, 'â': 1,
-  'b': 2,
-  'c': 3,
-  'd': 4,
-  'e': 5,
-  'f': 6,
-  'g': 7,
-  'h': 8,
-  'i': 9, 'î': 9,
-  'j': 1,
-  'k': 2,
-  'l': 3,
-  'm': 4,
-  'n': 5,
-  'o': 6,
-  'p': 7,
-  'q': 8,
-  'r': 9,
-  's': 1, 'ș': 1,
-  't': 2, 'ț': 2,
-  'u': 3,
-  'v': 4,
-  'w': 5,
-  'x': 6,
-  'y': 7,
-  'z': 8
+  a: 1,
+  ă: 1,
+  â: 1,
+  b: 2,
+  c: 3,
+  d: 4,
+  e: 5,
+  f: 6,
+  g: 7,
+  h: 8,
+  i: 9,
+  î: 9,
+  j: 1,
+  k: 2,
+  l: 3,
+  m: 4,
+  n: 5,
+  o: 6,
+  p: 7,
+  q: 8,
+  r: 9,
+  s: 1,
+  ș: 1,
+  t: 2,
+  ț: 2,
+  u: 3,
+  v: 4,
+  w: 5,
+  x: 6,
+  y: 7,
+  z: 8,
 };
 ```
-
 
 ## Data Models
 
@@ -339,7 +373,6 @@ export interface DreamCombinationResult {
 }
 ```
 
-
 ## Error Handling
 
 ### Validation Strategy
@@ -351,7 +384,7 @@ All functions should validate inputs and throw descriptive errors:
 export class ValidationError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'ValidationError';
+    this.name = "ValidationError";
   }
 }
 
@@ -366,14 +399,14 @@ function validateDate(date: Date, fieldName: string): void {
 function validateNumerologyNumber(num: number): void {
   const validNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33];
   if (!validNumbers.includes(num)) {
-    throw new ValidationError('Numerology number must be 1-9 or a Master Number (11, 22, 33)');
+    throw new ValidationError("Numerology number must be 1-9 or a Master Number (11, 22, 33)");
   }
 }
 
 // String validation
 function validateName(name: string): void {
   if (!name || name.trim().length === 0) {
-    throw new ValidationError('Name cannot be empty');
+    throw new ValidationError("Name cannot be empty");
   }
 }
 ```
@@ -386,7 +419,6 @@ function validateName(name: string): void {
 4. **No Silent Failures**: Always throw or return error indicators
 5. **Caller Responsibility**: Let calling code (Convex/React) handle user-facing errors
 
-
 ## Testing Strategy
 
 ### Unit Testing Approach
@@ -394,21 +426,22 @@ function validateName(name: string): void {
 While unit tests are optional for MVP, the design supports easy testing:
 
 **Test Structure**
+
 ```typescript
 // Example test cases for numerology.ts
-describe('reduceToSingleDigit', () => {
-  it('reduces multi-digit numbers correctly', () => {
+describe("reduceToSingleDigit", () => {
+  it("reduces multi-digit numbers correctly", () => {
     expect(reduceToSingleDigit(23)).toBe(5); // 2+3=5
     expect(reduceToSingleDigit(1985)).toBe(5); // 1+9+8+5=23, 2+3=5
   });
-  
-  it('returns single digits unchanged', () => {
+
+  it("returns single digits unchanged", () => {
     expect(reduceToSingleDigit(7)).toBe(7);
   });
 });
 
-describe('calculateLifePath', () => {
-  it('calculates correct life path for known dates', () => {
+describe("calculateLifePath", () => {
+  it("calculates correct life path for known dates", () => {
     const date = new Date(1985, 10, 14); // Nov 14, 1985
     expect(calculateLifePath(date)).toBe(3);
   });
@@ -416,6 +449,7 @@ describe('calculateLifePath', () => {
 ```
 
 **Test Coverage Goals** (if implemented)
+
 - Numerology: All calculation functions with edge cases
 - Biorhythm: Cycle calculations, critical day detection
 - Dreams: Slug generation, search matching
@@ -439,4 +473,3 @@ For MVP, manual testing checklist:
    - Test slug generation with special characters
    - Test search with Romanian queries
    - Verify combined interpretations read naturally
-

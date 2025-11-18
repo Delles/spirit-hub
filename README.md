@@ -75,6 +75,7 @@ npx convex dev
 ```
 
 This will:
+
 - Create the `convex/` directory structure
 - Generate `.env.local` with your deployment URL
 - Start the Convex development server
@@ -139,6 +140,7 @@ bun start
 **Problem**: Frontend shows "Cannot connect to Convex" or queries fail
 
 **Solutions**:
+
 1. Verify `npx convex dev` is running in a separate terminal
 2. Check that `.env.local` exists and contains `NEXT_PUBLIC_CONVEX_URL`
 3. Restart both dev servers (Convex and Next.js)
@@ -149,6 +151,7 @@ bun start
 **Problem**: Convex dev server shows schema errors
 
 **Solutions**:
+
 1. Check `convex/schema.ts` for syntax errors
 2. Ensure all imports are correct (`convex/server`, `convex/values`)
 3. Verify table definitions follow Convex schema syntax
@@ -159,6 +162,7 @@ bun start
 **Problem**: `NEXT_PUBLIC_CONVEX_URL is not defined`
 
 **Solutions**:
+
 1. Ensure `.env.local` exists in project root
 2. Verify the variable name is exactly `NEXT_PUBLIC_CONVEX_URL`
 3. Restart Next.js dev server after adding/changing environment variables
@@ -169,6 +173,7 @@ bun start
 **Problem**: "Port already in use" errors
 
 **Solutions**:
+
 - **Next.js (port 3000)**: Use `bun dev -- -p 3001` to use a different port
 - **Convex**: Convex uses its own ports; check for other Convex projects running
 
@@ -177,6 +182,7 @@ bun start
 **Problem**: `npx convex dev` fails or asks for authentication
 
 **Solutions**:
+
 1. Create a free account at [convex.dev](https://convex.dev)
 2. Run `npx convex login` to authenticate
 3. Run `npx convex dev` again to initialize the project
@@ -186,6 +192,7 @@ bun start
 **Problem**: TypeScript errors about missing Convex types
 
 **Solutions**:
+
 1. Ensure `npx convex dev` is running (it generates types automatically)
 2. Check that `convex/_generated/` directory exists
 3. Wait a few seconds after schema changes for type regeneration

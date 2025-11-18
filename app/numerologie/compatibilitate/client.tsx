@@ -4,7 +4,11 @@ import { useState } from "react";
 import { useQuery } from "convex/react";
 import { Heart } from "lucide-react";
 import { api } from "@/convex/_generated/api";
-import { calculateLifePath, calculateDestinyNumber, calculateCompatibility } from "@/lib/numerology";
+import {
+  calculateLifePath,
+  calculateDestinyNumber,
+  calculateCompatibility,
+} from "@/lib/numerology";
 import { NumerologyForm, type NumerologyFormData } from "@/components/numerologie/numerology-form";
 import { CompatibilityCard } from "@/components/numerologie/compatibility-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
@@ -25,7 +29,7 @@ export default function CompatibilitateClient() {
   // Query interpretation from Convex based on compatibility score
   const interpretation = useQuery(
     api.numerology.getCompatibilityInterpretation,
-    compatibilityScore !== null ? { score: compatibilityScore } : "skip"
+    compatibilityScore !== null ? { score: compatibilityScore } : "skip",
   );
 
   const handleSubmit = (data: NumerologyFormData) => {
@@ -77,7 +81,8 @@ export default function CompatibilitateClient() {
               Compatibilitate Numerologică
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Descoperă compatibilitatea numerologică între două persoane folosind numele și datele de naștere
+              Descoperă compatibilitatea numerologică între două persoane folosind numele și datele
+              de naștere
             </p>
           </div>
 
@@ -85,14 +90,16 @@ export default function CompatibilitateClient() {
           <div className="rounded-lg border bg-card p-6 space-y-3">
             <h2 className="text-xl font-semibold">Ce este Compatibilitatea Numerologică?</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Compatibilitatea numerologică analizează armonia dintre două persoane pe baza numerelor lor de viață. 
-              Calculăm atât Calea Vieții (din data nașterii), cât și Numărul Destinului (din nume) pentru fiecare 
-              persoană, apoi determinăm cât de bine se potrivesc aceste energii numerologice.
+              Compatibilitatea numerologică analizează armonia dintre două persoane pe baza
+              numerelor lor de viață. Calculăm atât Calea Vieții (din data nașterii), cât și Numărul
+              Destinului (din nume) pentru fiecare persoană, apoi determinăm cât de bine se
+              potrivesc aceste energii numerologice.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Un scor mare indică o conexiune naturală și armonioasă, în timp ce un scor mai mic sugerează că 
-              relația va necesita mai mult efort și înțelegere reciprocă. Numerele Maestru (11, 22, 33) sunt 
-              evaluate la valoarea lor completă, reflectând intensitatea lor spirituală unică.
+              Un scor mare indică o conexiune naturală și armonioasă, în timp ce un scor mai mic
+              sugerează că relația va necesita mai mult efort și înțelegere reciprocă. Numerele
+              Maestru (11, 22, 33) sunt evaluate la valoarea lor completă, reflectând intensitatea
+              lor spirituală unică.
             </p>
           </div>
 
@@ -119,20 +126,24 @@ export default function CompatibilitateClient() {
           )}
 
           {/* Results Section */}
-          {interpretation && hasSubmitted && compatibilityScore !== null && person1Data && person2Data && (
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <CompatibilityCard
-                score={compatibilityScore}
-                interpretation={{
-                  title: interpretation.title,
-                  description: interpretation.description,
-                  fullText: interpretation.fullText,
-                }}
-                person1={person1Data}
-                person2={person2Data}
-              />
-            </div>
-          )}
+          {interpretation &&
+            hasSubmitted &&
+            compatibilityScore !== null &&
+            person1Data &&
+            person2Data && (
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <CompatibilityCard
+                  score={compatibilityScore}
+                  interpretation={{
+                    title: interpretation.title,
+                    description: interpretation.description,
+                    fullText: interpretation.fullText,
+                  }}
+                  person1={person1Data}
+                  person2={person2Data}
+                />
+              </div>
+            )}
         </div>
       </main>
     </div>

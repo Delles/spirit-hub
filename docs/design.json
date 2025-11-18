@@ -2,7 +2,7 @@
   "project": "SpiritHub.ro",
   "version": "2.0",
   "description": "A comprehensive design system for SpiritHub.ro - a Romanian spiritual platform combining numerology, dream interpretation, and biorhythm calculations. The design merges mystical elegance with modern minimalism, featuring a dark theme with vibrant purple and blue accents inspired by the cosmos.",
-  
+
   "designPrinciples": [
     {
       "principle": "Mystical Elegance",
@@ -90,7 +90,7 @@
   "typography": {
     "fontFamily": "Inter, sans-serif",
     "fontFamilyDescription": "Inter is used throughout for its excellent readability and modern aesthetic",
-    
+
     "logo": {
       "fontFamily": "Inter, sans-serif",
       "fontWeight": "400",
@@ -98,7 +98,7 @@
       "letterSpacing": "0.5px",
       "usage": "Top-left logo and brand name"
     },
-    
+
     "headings": {
       "h1": {
         "fontFamily": "Inter, sans-serif",
@@ -128,7 +128,7 @@
         "usage": "Subsection headings and card titles"
       }
     },
-    
+
     "body": {
       "large": {
         "fontFamily": "Inter, sans-serif",
@@ -158,7 +158,7 @@
         "usage": "Secondary information, captions, and helper text"
       }
     },
-    
+
     "interactive": {
       "button": {
         "fontFamily": "Inter, sans-serif",
@@ -187,7 +187,7 @@
   "spacing": {
     "baseUnit": "8px",
     "baseUnitDescription": "All spacing should be multiples of 8px for consistency",
-    
+
     "scale": {
       "xs": "4px",
       "sm": "8px",
@@ -198,7 +198,7 @@
       "3xl": "64px",
       "4xl": "96px"
     },
-    
+
     "container": {
       "maxWidth": "1400px",
       "maxWidthDescription": "Maximum width for main content containers",
@@ -208,7 +208,7 @@
         "desktop": "64px"
       }
     },
-    
+
     "section": {
       "paddingY": {
         "mobile": "32px",
@@ -219,7 +219,7 @@
         "desktop": "48px"
       }
     },
-    
+
     "card": {
       "padding": {
         "mobile": "24px",
@@ -241,7 +241,7 @@
 
   "layout": {
     "structure": "Centered, single-column layout for main content with generous padding. Use grid systems for multi-column layouts on larger screens.",
-    
+
     "homepage": {
       "type": "Full-screen slider",
       "columns": {
@@ -251,13 +251,13 @@
       "navigation": "Vertical pagination on right side with slide numbers",
       "autoRotation": "5 seconds per slide with pause on interaction"
     },
-    
+
     "featurePages": {
       "type": "Centered content with max-width container",
       "structure": "Header → Form/Input → Results → CTA/Share",
       "maxWidth": "1200px"
     },
-    
+
     "responsive": {
       "breakpoints": {
         "sm": "640px",
@@ -282,7 +282,7 @@
         "desktop": "48px"
       }
     },
-    
+
     "card": {
       "description": "Content cards for results, interpretations, and information blocks",
       "backgroundColor": "oklch(0.18 0.03 280 / 0.5)",
@@ -297,7 +297,7 @@
         "boxShadow": "0 12px 40px rgba(159, 43, 255, 0.2)"
       }
     },
-    
+
     "button": {
       "primary": {
         "background": "linear-gradient(135deg, #9F2BFF 0%, #4D5FFF 100%)",
@@ -326,7 +326,7 @@
         }
       }
     },
-    
+
     "input": {
       "description": "Form inputs with subtle styling",
       "backgroundColor": "oklch(1 0 0 / 0.12)",
@@ -341,7 +341,7 @@
         "ring": "0 0 0 3px oklch(0.6 0.28 300 / 0.5)"
       }
     },
-    
+
     "navigation": {
       "header": {
         "position": "absolute top-0",
@@ -377,7 +377,7 @@
         "indicator": "Horizontal lines above and below active number"
       }
     },
-    
+
     "graphics": {
       "description": "Abstract, 3D, ethereal visuals with prominent glowing effects",
       "style": "Celestial orbs, zodiac wheels, energetic gestures, flowing light ribbons",
@@ -400,13 +400,13 @@
       "slow": "500ms",
       "slower": "700ms"
     },
-    
+
     "easing": {
       "default": "ease-out",
       "smooth": "ease-in-out",
       "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
     },
-    
+
     "keyframes": {
       "fadeIn": {
         "from": "opacity: 0",
@@ -442,7 +442,7 @@
         "iteration": "infinite"
       }
     },
-    
+
     "interactions": {
       "hover": {
         "button": "opacity: 0.9, transform: translateY(-1px)",

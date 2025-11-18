@@ -22,9 +22,11 @@ export default function CriticeDaysClient() {
           startDate: new Date().toISOString().split("T")[0],
           days: 30,
         }
-      : "skip"
+      : "skip",
   );
 
+  // Target date is not used for critical days calculation (always uses current date)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = (birth: string, _target: string) => {
     setBirthDate(birth);
     setHasSubmitted(true);
@@ -39,11 +41,10 @@ export default function CriticeDaysClient() {
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10">
               <AlertTriangle className="h-8 w-8 text-destructive" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-              Zile Critice
-            </h1>
+            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">Zile Critice</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Descoperă zilele când ciclurile tale bioritmice trec prin zero și necesită atenție sporită
+              Descoperă zilele când ciclurile tale bioritmice trec prin zero și necesită atenție
+              sporită
             </p>
           </div>
 
@@ -51,9 +52,9 @@ export default function CriticeDaysClient() {
           <div className="rounded-lg border bg-card p-6 space-y-3">
             <h2 className="text-xl font-semibold">Ce sunt zilele critice?</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Zilele critice apar când unul sau mai multe cicluri bioritmice trec prin punctul zero, 
-              trecând de la o fază pozitivă la una negativă sau invers. În aceste zile, 
-              este recomandat să fii mai atent și să eviți deciziile importante sau activitățile riscante 
+              Zilele critice apar când unul sau mai multe cicluri bioritmice trec prin punctul zero,
+              trecând de la o fază pozitivă la una negativă sau invers. În aceste zile, este
+              recomandat să fii mai atent și să eviți deciziile importante sau activitățile riscante
               în domeniile afectate.
             </p>
           </div>
@@ -91,7 +92,10 @@ export default function CriticeDaysClient() {
                 className="flex items-center justify-center gap-2 rounded-lg border bg-card p-4 hover:bg-accent transition-colors group min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 aria-label="Înapoi la Calculator Bioritm"
               >
-                <ArrowLeft className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
+                <ArrowLeft
+                  className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors"
+                  aria-hidden="true"
+                />
                 <span className="font-medium">Înapoi la Calculator Bioritm</span>
               </Link>
             </div>

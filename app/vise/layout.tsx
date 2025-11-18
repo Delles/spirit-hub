@@ -1,10 +1,5 @@
 import { MainLayout } from "@/components/layout/main-layout";
 
-export default function ViseLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ViseLayout({ children }: { children: React.ReactNode }) {
   return <MainLayout>{children}</MainLayout>;
 }
-

@@ -16,7 +16,7 @@ export function ErrorMessage({
     <div
       className={cn(
         "flex flex-col items-center justify-center gap-3 rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-center",
-        className
+        className,
       )}
     >
       <AlertCircle className="h-8 w-8 text-destructive" />

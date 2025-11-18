@@ -17,6 +17,7 @@ export default defineSchema({
   // Supports search functionality for dream interpretation feature
   dreamSymbols: defineTable({
     name: v.string(), // Romanian symbol name (e.g., "șarpe")
+    normalizedName: v.optional(v.string()), // Diacritic-normalized name for search (e.g., "sarpe")
     slug: v.string(), // URL-friendly slug
     category: v.string(), // "animale" | "natură" | "obiecte" | "emoții"
     shortMeaning: v.string(), // Brief interpretation (1-2 sentences)
@@ -28,6 +29,10 @@ export default defineSchema({
     .index("by_category", ["category"])
     .searchIndex("search_symbols", {
       searchField: "name",
+      filterFields: ["category"],
+    })
+    .searchIndex("search_symbols_normalized", {
+      searchField: "normalizedName",
       filterFields: ["category"],
     }),
 
@@ -45,7 +50,9 @@ export default defineSchema({
   analytics: defineTable({
     eventType: v.string(), // "pageview" | "calculator-use" | "search"
     feature: v.string(), // "numerology" | "dreams" | "biorhythm"
-    metadata: v.optional(v.any()), // Additional event data
+    // Using v.any() here intentionally to allow flexible, JSON-serializable metadata
+    // for analytics events without constraining the shape upfront.
+    metadata: v.optional(v.any()), // Additional event data (documented and safe)
     timestamp: v.number(), // Event timestamp
   })
     .index("by_timestamp", ["timestamp"])

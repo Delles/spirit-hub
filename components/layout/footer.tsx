@@ -18,8 +18,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Platformă de numerologie, interpretare vise și bioritm pentru
-              descoperirea de sine.
+              Platformă de numerologie, interpretare vise și bioritm pentru descoperirea de sine.
             </p>
           </div>
 
@@ -28,26 +27,17 @@ export function Footer() {
             <h3 className="text-sm font-semibold">Instrumente</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link
-                  href="/numerologie"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/numerologie" className="hover:text-primary transition-colors">
                   Numerologie
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/vise"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/vise" className="hover:text-primary transition-colors">
                   Interpretare Vise
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/bioritm"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/bioritm" className="hover:text-primary transition-colors">
                   Bioritm
                 </Link>
               </li>
@@ -59,26 +49,17 @@ export function Footer() {
             <h3 className="text-sm font-semibold">Informații</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link
-                  href="/confidentialitate"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/confidentialitate" className="hover:text-primary transition-colors">
                   Confidențialitate
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/termeni"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/termeni" className="hover:text-primary transition-colors">
                   Termeni și Condiții
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/contact"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/contact" className="hover:text-primary transition-colors">
                   Contact
                 </Link>
               </li>
@@ -92,9 +73,9 @@ export function Footer() {
         <div className="space-y-2 text-center text-xs text-muted-foreground">
           <p>© {currentYear} SpiritHub.ro. Toate drepturile rezervate.</p>
           <p className="max-w-3xl mx-auto">
-            Disclaimer: Informațiile oferite pe acest site sunt destinate
-            exclusiv scopurilor de divertisment și reflecție personală. Nu
-            înlocuiesc sfatul profesional medical, psihologic sau financiar.
+            Disclaimer: Informațiile oferite pe acest site sunt destinate exclusiv scopurilor de
+            divertisment și reflecție personală. Nu înlocuiesc sfatul profesional medical,
+            psihologic sau financiar.
           </p>
         </div>
       </div>

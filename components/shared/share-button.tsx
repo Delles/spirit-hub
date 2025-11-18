@@ -58,11 +58,7 @@ export function ShareButton({ url, title, text }: ShareButtonProps) {
         </>
       ) : (
         <>
-          {canShare ? (
-            <Share2 className="h-4 w-4" />
-          ) : (
-            <Copy className="h-4 w-4" />
-          )}
+          {canShare ? <Share2 className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
           Distribuie
         </>
       )}

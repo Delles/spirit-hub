@@ -52,9 +52,7 @@ export function BiorhythmSummary({
     <Card className="w-full p-6 md:p-8">
       <div className="space-y-6">
         {/* Heading */}
-        <h3 className="text-xl md:text-2xl font-semibold text-white">
-          Interpretare
-        </h3>
+        <h3 className="text-xl md:text-2xl font-semibold text-white">Interpretare</h3>
 
         {/* Summary Text */}
         <p className="text-base leading-relaxed text-[#D0D0D0]">{summary}</p>
@@ -71,13 +69,8 @@ export function BiorhythmSummary({
               <div key={index} className="space-y-2">
                 {/* Cycle Name and Percentage */}
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-white">
-                    {cycle.name}
-                  </span>
-                  <span
-                    className="text-sm font-medium"
-                    style={{ color: cycle.color }}
-                  >
+                  <span className="text-sm font-medium text-white">{cycle.name}</span>
+                  <span className="text-sm font-medium" style={{ color: cycle.color }}>
                     {percentage > 0 ? "+" : ""}
                     {percentage}%
                   </span>

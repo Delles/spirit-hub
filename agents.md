@@ -221,4 +221,3 @@ After implementation, apply this mindset:
 - **Check design.json** – Always reference `docs/design.json` when building or modifying UI components.
 - **No surprise scope** – Don't add features not requested.
 - **Favor autonomy** – Prefer static/deterministic flows over manual maintenance.
-

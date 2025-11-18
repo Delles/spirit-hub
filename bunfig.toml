@@ -1,4 +1,0 @@
-[test]
-# Use happy-dom for DOM environment in tests
-preload = ["./components/__tests__/setup.ts"]
-

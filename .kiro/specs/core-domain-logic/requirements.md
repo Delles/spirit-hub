@@ -15,7 +15,6 @@ This specification defines the core domain logic layer for SpiritHub.ro, a Roman
 - **Romanian Diacritics**: Special characters (ă, â, î, ș, ț) used in the Romanian alphabet
 - **Pure Function**: A function with no side effects that always returns the same output for the same input
 
-
 ## Requirements
 
 ### Requirement 1: Numerology Calculation Functions
@@ -42,7 +41,6 @@ This specification defines the core domain logic layer for SpiritHub.ro, a Roman
 4. WHEN a birth date and target date are provided, THE Calculation System SHALL calculate the intellectual cycle using a 33-day period
 5. WHEN a birth date, start date, and number of days are provided, THE Calculation System SHALL identify all critical days (when any cycle crosses zero) within the specified range
 6. WHEN physical, emotional, and intellectual cycle values are provided, THE Calculation System SHALL generate a Romanian-language summary describing the current state
-
 
 ### Requirement 3: Dream Interpretation Helper Functions
 
@@ -73,7 +71,6 @@ This specification defines the core domain logic layer for SpiritHub.ro, a Roman
 1. THE Calculation System SHALL define biorhythm cycle lengths as constants: PHYSICAL_CYCLE = 23, EMOTIONAL_CYCLE = 28, INTELLECTUAL_CYCLE = 33
 2. THE Calculation System SHALL define the valid numerology number range as 1 through 9
 3. THE Calculation System SHALL define the complete Romanian alphabet mapping with diacritics for numerology calculations
-
 
 ### Requirement 6: Code Quality and Architecture
 

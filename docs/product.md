@@ -214,4 +214,3 @@ All UI and content are in Romanian; development and technical docs are in Englis
    - Uses homepage widget to open `/bioritm`.
    - Sees today's cycles and "critical days" warnings.
    - Comes back next week to compare.
-

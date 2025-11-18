@@ -5,6 +5,7 @@
 The Biorhythm Module is the first feature implementation in Phase 2 of SpiritHub.ro, chosen for its simplicity and ability to validate the platform's foundation layer. It provides users with visual and textual representations of their physical, emotional, and intellectual cycles based on their birth date.
 
 The module consists of two main pages:
+
 1. **Daily Biorhythm Calculator** (`/bioritm`) - Main calculator with form, chart, and summary
 2. **Critical Days Viewer** (`/bioritm/critice`) - Extended view of upcoming critical days
 
@@ -79,19 +80,19 @@ All calculations leverage the existing `lib/biorhythm.ts` utilities and are expo
 **File:** `convex/biorhythm.ts`
 
 ```typescript
-import { query } from './_generated/server';
-import { v } from 'convex/values';
+import { query } from "./_generated/server";
+import { v } from "convex/values";
 import {
   getPhysicalCycle,
   getEmotionalCycle,
   getIntellectualCycle,
   getBiorhythmSummary,
   getCriticalDays as getCriticalDaysUtil,
-} from '@/lib/biorhythm';
+} from "@/lib/biorhythm";
 
 /**
  * Query: getBiorhythm
- * 
+ *
  * Calculates biorhythm cycles for a given birth date and target date.
  * Returns cycle values and Romanian-language summary.
  */
@@ -122,7 +123,7 @@ export const getBiorhythm = query({
 
 /**
  * Query: getCriticalDays
- * 
+ *
  * Identifies upcoming critical days when cycles cross zero.
  * Returns array of dates with affected cycles.
  */
@@ -139,7 +140,7 @@ export const getCriticalDays = query({
     const criticalDays = getCriticalDaysUtil(birth, start, args.days);
 
     return criticalDays.map((day) => ({
-      date: day.date.toISOString().split('T')[0],
+      date: day.date.toISOString().split("T")[0],
       cycles: day.cycles,
     }));
   },
@@ -155,6 +156,7 @@ export const getCriticalDays = query({
 **Purpose:** Collects user input for birth date and optional target date.
 
 **Props Interface:**
+
 ```typescript
 export interface BiorhythmFormProps {
   onSubmit: (birthDate: string, targetDate: string) => void;
@@ -163,6 +165,7 @@ export interface BiorhythmFormProps {
 ```
 
 **Features:**
+
 - Birth date input (required) with native date picker
 - Target date input (optional, defaults to today)
 - Client-side validation:
@@ -174,6 +177,7 @@ export interface BiorhythmFormProps {
 - Touch-friendly inputs (44x44px minimum)
 
 **Visual Design:**
+
 - Card container with semi-transparent background
 - Vertical form layout with 24px gap
 - Labels: 14px medium weight white text
@@ -190,6 +194,7 @@ export interface BiorhythmFormProps {
 **Purpose:** Visual representation of three biorhythm cycles.
 
 **Props Interface:**
+
 ```typescript
 export interface BiorhythmChartProps {
   physical: number;
@@ -205,11 +210,13 @@ export interface BiorhythmChartProps {
 **Type:** SVG-based sine wave visualization
 
 **Dimensions:**
+
 - Desktop: 800px width × 400px height
 - Mobile: 100% width (responsive) × 300px height
 - Maintains aspect ratio
 
 **Visual Elements:**
+
 1. **Background Grid:**
    - Horizontal lines at -100%, -50%, 0%, +50%, +100%
    - Subtle white lines at 8% opacity
@@ -240,11 +247,13 @@ export interface BiorhythmChartProps {
    - Romanian labels: "Fizic", "Emoțional", "Intelectual"
 
 **Responsive Behavior:**
+
 - On mobile (<768px): Reduce to 5 days before/after (11 days total)
 - Scale font sizes proportionally
 - Maintain readability of all text elements
 
 **Accessibility:**
+
 - ARIA label describing chart content
 - Screen reader text for cycle values
 - Keyboard focusable with tab navigation
@@ -258,6 +267,7 @@ export interface BiorhythmChartProps {
 **Purpose:** Text-based interpretation of biorhythm state.
 
 **Props Interface:**
+
 ```typescript
 export interface BiorhythmSummaryProps {
   summary: string;
@@ -268,6 +278,7 @@ export interface BiorhythmSummaryProps {
 ```
 
 **Layout:**
+
 - Card container with 32px padding
 - Heading: "Interpretare" (24px semi-bold white)
 - Summary text: 16px regular light gray, 1.5 line height
@@ -278,6 +289,7 @@ export interface BiorhythmSummaryProps {
   - Visual fill based on value (-100% to +100%)
 
 **Cycle Indicator Design:**
+
 ```
 Fizic        [████████████░░░░░░░░] 65%
 Emoțional    [░░░░░░░░░░██████████] -45%
@@ -300,16 +312,18 @@ Intelectual  [████████████████████] 89%
 **Purpose:** Display upcoming critical days with affected cycles.
 
 **Props Interface:**
+
 ```typescript
 export interface CriticalDaysListProps {
   criticalDays: Array<{
     date: string;
-    cycles: ('physical' | 'emotional' | 'intellectual')[];
+    cycles: ("physical" | "emotional" | "intellectual")[];
   }>;
 }
 ```
 
 **Layout:**
+
 - Vertical list with 16px gap between items
 - Each item is a card with:
   - Date in Romanian format (e.g., "17 noiembrie 2025")
@@ -318,6 +332,7 @@ export interface CriticalDaysListProps {
   - Warning icon (AlertCircle from lucide-react)
 
 **Critical Day Card Design:**
+
 ```
 ┌─────────────────────────────────────────┐
 │ ⚠️  17 noiembrie 2025 (Luni)            │
@@ -331,11 +346,13 @@ export interface CriticalDaysListProps {
 ```
 
 **Badge Colors:**
+
 - Physical: Red background with white text
 - Emotional: Blue background with white text
 - Intellectual: Green background with white text
 
 **Empty State:**
+
 - When no critical days in range:
   - Display: "Nu există zile critice în următoarele 30 de zile."
   - Icon: CheckCircle (green)
@@ -350,17 +367,16 @@ export interface CriticalDaysListProps {
 **File:** `app/bioritm/page.tsx`
 
 **Structure:**
+
 ```typescript
 export default function BioritmPage() {
-  const [birthDate, setBirthDate] = useState<string>('');
-  const [targetDate, setTargetDate] = useState<string>(
-    new Date().toISOString().split('T')[0]
-  );
+  const [birthDate, setBirthDate] = useState<string>("");
+  const [targetDate, setTargetDate] = useState<string>(new Date().toISOString().split("T")[0]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const biorhythm = useQuery(
     api.biorhythm.getBiorhythm,
-    hasSubmitted ? { birthDate, targetDate } : 'skip'
+    hasSubmitted ? { birthDate, targetDate } : "skip",
   );
 
   // Render form, then results when available
@@ -368,6 +384,7 @@ export default function BioritmPage() {
 ```
 
 **Layout Flow:**
+
 1. Page heading with icon (Activity from lucide-react)
 2. Description paragraph
 3. BiorhythmForm
@@ -379,10 +396,12 @@ export default function BioritmPage() {
 6. Link to Critical Days page
 
 **Metadata:**
+
 ```typescript
 export const metadata: Metadata = {
-  title: 'Calculator Bioritm | SpiritHub.ro',
-  description: 'Calculează-ți bioritmul zilnic și descoperă ciclurile tale fizice, emoționale și intelectuale.',
+  title: "Calculator Bioritm | SpiritHub.ro",
+  description:
+    "Calculează-ți bioritmul zilnic și descoperă ciclurile tale fizice, emoționale și intelectuale.",
 };
 ```
 
@@ -391,9 +410,10 @@ export const metadata: Metadata = {
 **File:** `app/bioritm/critice/page.tsx`
 
 **Structure:**
+
 ```typescript
 export default function CriticeDaysPage() {
-  const [birthDate, setBirthDate] = useState<string>('');
+  const [birthDate, setBirthDate] = useState<string>("");
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const criticalDays = useQuery(
@@ -401,10 +421,10 @@ export default function CriticeDaysPage() {
     hasSubmitted
       ? {
           birthDate,
-          startDate: new Date().toISOString().split('T')[0],
+          startDate: new Date().toISOString().split("T")[0],
           days: 30,
         }
-      : 'skip'
+      : "skip",
   );
 
   // Render form, then critical days list
@@ -412,6 +432,7 @@ export default function CriticeDaysPage() {
 ```
 
 **Layout Flow:**
+
 1. Page heading: "Zile Critice"
 2. Explanation paragraph about critical days
 3. BiorhythmForm (birth date only, no target date)
@@ -420,10 +441,11 @@ export default function CriticeDaysPage() {
 6. Back link to main calculator
 
 **Metadata:**
+
 ```typescript
 export const metadata: Metadata = {
-  title: 'Zile Critice Bioritm | SpiritHub.ro',
-  description: 'Descoperă zilele critice din bioritmul tău când ciclurile trec prin zero.',
+  title: "Zile Critice Bioritm | SpiritHub.ro",
+  description: "Descoperă zilele critice din bioritmul tău când ciclurile trec prin zero.",
 };
 ```
 
@@ -435,12 +457,12 @@ export const metadata: Metadata = {
 
 ```typescript
 interface BiorhythmResponse {
-  physical: number;        // -1.0 to 1.0
-  emotional: number;       // -1.0 to 1.0
-  intellectual: number;    // -1.0 to 1.0
-  summary: string;         // Romanian-language guidance
-  birthDate: string;       // ISO 8601 format
-  targetDate: string;      // ISO 8601 format
+  physical: number; // -1.0 to 1.0
+  emotional: number; // -1.0 to 1.0
+  intellectual: number; // -1.0 to 1.0
+  summary: string; // Romanian-language guidance
+  birthDate: string; // ISO 8601 format
+  targetDate: string; // ISO 8601 format
 }
 ```
 
@@ -448,17 +470,18 @@ interface BiorhythmResponse {
 
 ```typescript
 interface CriticalDaysResponse {
-  date: string;                                      // ISO 8601 format
-  cycles: ('physical' | 'emotional' | 'intellectual')[];
-}[]
+  date: string; // ISO 8601 format
+  cycles: ("physical" | "emotional" | "intellectual")[];
+}
+[];
 ```
 
 ### Form State
 
 ```typescript
 interface BiorhythmFormState {
-  birthDate: string;       // ISO 8601 format
-  targetDate: string;      // ISO 8601 format
+  birthDate: string; // ISO 8601 format
+  targetDate: string; // ISO 8601 format
   errors: {
     birthDate?: string;
     targetDate?: string;
@@ -473,15 +496,18 @@ interface BiorhythmFormState {
 ### Client-Side Validation Errors
 
 **Birth Date Errors:**
+
 - Empty: "Data nașterii este obligatorie"
 - Future date: "Data nașterii trebuie să fie în trecut"
 - Invalid format: "Data nașterii este invalidă"
 
 **Target Date Errors:**
+
 - Before birth date: "Data țintă trebuie să fie după data nașterii"
 - Invalid format: "Data țintă este invalidă"
 
 **Display:**
+
 - Show below respective input field
 - Red text color (`hsl(var(--destructive))`)
 - Small font size (14px)
@@ -490,11 +516,13 @@ interface BiorhythmFormState {
 ### Server-Side Errors
 
 **Convex Query Failures:**
+
 - Network error: "Eroare de conexiune. Verifică conexiunea la internet."
 - Calculation error: "Eroare la calcularea bioritmului. Încearcă din nou."
 - Invalid input: "Date invalide. Verifică informațiile introduse."
 
 **Display:**
+
 - ErrorMessage component (shared)
 - Positioned above results area
 - Retry button included
@@ -503,6 +531,7 @@ interface BiorhythmFormState {
 ### Loading States
 
 **During Query Execution:**
+
 - LoadingSpinner component
 - Romanian text: "Se calculează bioritmul..."
 - Centered in results area
@@ -515,12 +544,14 @@ interface BiorhythmFormState {
 ### Unit Tests (Optional)
 
 **Component Tests:**
+
 - BiorhythmForm validation logic
 - BiorhythmChart SVG generation
 - BiorhythmSummary text formatting
 - CriticalDaysList rendering with various inputs
 
 **Integration Tests:**
+
 - Form submission → Convex query → Results display
 - Error handling flows
 - Loading state transitions
@@ -528,6 +559,7 @@ interface BiorhythmFormState {
 ### Manual Testing Checklist
 
 **Functional Testing:**
+
 - [ ] Birth date input accepts valid dates
 - [ ] Target date defaults to today
 - [ ] Form validates dates correctly
@@ -539,6 +571,7 @@ interface BiorhythmFormState {
 - [ ] Share button uses Web Share API on mobile
 
 **Visual Testing:**
+
 - [ ] Chart renders correctly on desktop (1920×1080)
 - [ ] Chart renders correctly on tablet (768×1024)
 - [ ] Chart renders correctly on mobile (375×667)
@@ -549,6 +582,7 @@ interface BiorhythmFormState {
 - [ ] Error messages are clearly visible
 
 **Accessibility Testing:**
+
 - [ ] Form inputs are keyboard navigable
 - [ ] Focus indicators are visible
 - [ ] Chart has ARIA labels
@@ -557,12 +591,14 @@ interface BiorhythmFormState {
 - [ ] Touch targets are at least 44×44px
 
 **Performance Testing:**
+
 - [ ] Page loads in <2 seconds on 3G
 - [ ] Chart renders without lag
 - [ ] No console errors or warnings
 - [ ] Convex query completes in <500ms
 
 **Cross-Browser Testing:**
+
 - [ ] Chrome (latest)
 - [ ] Firefox (latest)
 - [ ] Safari (latest)
@@ -577,6 +613,7 @@ interface BiorhythmFormState {
 **Decision:** Use SVG for biorhythm chart
 
 **Rationale:**
+
 - SVG is resolution-independent (scales perfectly on all devices)
 - Easier to style with CSS and integrate with design system
 - Better accessibility (can add ARIA labels and semantic structure)
@@ -585,6 +622,7 @@ interface BiorhythmFormState {
 - Sufficient for simple sine wave visualization
 
 **Trade-offs:**
+
 - Canvas would be faster for complex animations (not needed here)
 - Charting libraries (Chart.js, Recharts) would provide more features but add ~50KB to bundle
 
@@ -593,6 +631,7 @@ interface BiorhythmFormState {
 **Decision:** Perform all biorhythm calculations in Convex queries
 
 **Rationale:**
+
 - Consistent with platform architecture (all features use Convex)
 - Calculations are deterministic and fast (<10ms)
 - Enables future features (caching, analytics, user accounts)
@@ -600,6 +639,7 @@ interface BiorhythmFormState {
 - Easier to test and debug server-side
 
 **Trade-offs:**
+
 - Requires network round-trip (~100-200ms)
 - Could be done client-side for instant results
 - Acceptable because 500ms total time is still fast
@@ -609,12 +649,14 @@ interface BiorhythmFormState {
 **Decision:** Display 7 days before and 7 days after target date
 
 **Rationale:**
+
 - Provides context for trend visualization
 - Shows where cycles are heading
 - Not too cluttered on desktop screens
 - Balances detail with readability
 
 **Trade-offs:**
+
 - Could show more days (30+) but chart becomes harder to read
 - Could show fewer days (3-5) but loses trend context
 - Mobile reduces to 11 days (5 before/after) for readability
@@ -624,12 +666,14 @@ interface BiorhythmFormState {
 **Decision:** All user-facing text in Romanian, no i18n
 
 **Rationale:**
+
 - Target audience is exclusively Romanian speakers
 - Simplifies implementation (no translation layer)
 - Ensures natural, culturally appropriate language
 - Reduces bundle size (no i18n library)
 
 **Trade-offs:**
+
 - Cannot easily expand to other languages later
 - Acceptable because product is specifically for Romanian market
 
@@ -638,12 +682,14 @@ interface BiorhythmFormState {
 **Decision:** Calculator works without registration or login
 
 **Rationale:**
+
 - Reduces friction for first-time users
 - Aligns with "accessible spiritual tools" product goal
 - Faster time-to-value (instant results)
 - Simpler implementation (no auth flow)
 
 **Trade-offs:**
+
 - Cannot save user's birth date for future visits
 - Could add optional accounts later for power users
 - Acceptable for MVP and casual users
@@ -655,6 +701,7 @@ interface BiorhythmFormState {
 ### Bundle Size Optimization
 
 **Strategies:**
+
 - Use native date inputs (no date picker library)
 - SVG chart (no charting library)
 - Shared components from foundation layer
@@ -665,6 +712,7 @@ interface BiorhythmFormState {
 ### Rendering Performance
 
 **Strategies:**
+
 - Memoize chart SVG generation with `useMemo`
 - Debounce form inputs if needed
 - Lazy load chart component if above fold
@@ -675,6 +723,7 @@ interface BiorhythmFormState {
 ### Network Performance
 
 **Strategies:**
+
 - Convex queries are automatically cached
 - Static page generation where possible
 - Prefetch critical days query on main page hover
@@ -689,24 +738,28 @@ interface BiorhythmFormState {
 ### WCAG 2.1 Level AA Requirements
 
 **Perceivable:**
+
 - ✅ Text contrast ratio ≥4.5:1 (white on dark background)
 - ✅ Chart colors distinguishable (red, blue, green)
 - ✅ Alternative text for all visual elements
 - ✅ Responsive text sizing (16px minimum)
 
 **Operable:**
+
 - ✅ Keyboard navigation for all interactive elements
 - ✅ Visible focus indicators (3px purple ring)
 - ✅ Touch targets ≥44×44px
 - ✅ No time limits on interactions
 
 **Understandable:**
+
 - ✅ Clear Romanian labels and instructions
 - ✅ Consistent navigation and layout
 - ✅ Error messages are specific and helpful
 - ✅ Predictable behavior (no surprises)
 
 **Robust:**
+
 - ✅ Semantic HTML (form, button, label, etc.)
 - ✅ ARIA labels where needed
 - ✅ Works with screen readers (NVDA, JAWS, VoiceOver)
@@ -717,6 +770,7 @@ interface BiorhythmFormState {
 ## Future Enhancements (Post-MVP)
 
 **Potential Features:**
+
 1. **Biorhythm Comparison:** Compare two people's cycles for compatibility
 2. **Extended Forecast:** Show 90-day or 1-year chart
 3. **Cycle History:** View past biorhythm states
@@ -727,6 +781,7 @@ interface BiorhythmFormState {
 8. **Biorhythm Widgets:** Embeddable chart for other websites
 
 **Not Planned:**
+
 - User accounts (unless needed for other features)
 - Social features (comments, sharing results publicly)
 - Paid premium features (platform is free with ads)
@@ -738,11 +793,13 @@ interface BiorhythmFormState {
 ### External Libraries
 
 **Required:**
+
 - `convex` - Backend queries
 - `lucide-react` - Icons (Activity, AlertCircle, CheckCircle, Share2)
 - `date-fns` - Date formatting (already in project)
 
 **Not Required:**
+
 - No charting library (using SVG)
 - No date picker library (using native inputs)
 - No form library (simple controlled inputs)
@@ -750,6 +807,7 @@ interface BiorhythmFormState {
 ### Internal Dependencies
 
 **Foundation Layer:**
+
 - `lib/biorhythm.ts` - Calculation functions
 - `config/biorhythm.ts` - Configuration
 - `components/shared/result-card.tsx` - Card wrapper
@@ -821,6 +879,7 @@ interface BiorhythmFormState {
 ## Success Criteria
 
 **Functional:**
+
 - ✅ User can calculate biorhythm with birth date
 - ✅ Chart displays three cycles correctly
 - ✅ Summary provides Romanian guidance
@@ -828,12 +887,14 @@ interface BiorhythmFormState {
 - ✅ Share button works on mobile and desktop
 
 **Performance:**
+
 - ✅ Page loads in <2 seconds on 3G
 - ✅ Convex query completes in <500ms
 - ✅ Chart renders at 60fps
 - ✅ No console errors or warnings
 
 **Quality:**
+
 - ✅ Zero TypeScript errors
 - ✅ Lighthouse score >90 (all categories)
 - ✅ WCAG AA accessibility compliance
@@ -841,6 +902,7 @@ interface BiorhythmFormState {
 - ✅ Mobile-responsive (320px to 1920px)
 
 **User Experience:**
+
 - ✅ Form is intuitive and easy to use
 - ✅ Results are visually appealing
 - ✅ Romanian text is natural and accurate

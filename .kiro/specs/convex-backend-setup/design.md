@@ -58,20 +58,25 @@ The design prioritizes simplicity and follows Convex best practices while aligni
 ### 1. Convex Configuration Files
 
 #### `convex/schema.ts`
+
 Primary schema definition file containing all table structures.
 
 **Responsibilities:**
+
 - Define database tables with typed fields
 - Specify indexes for query optimization
 - Export schema for type generation
 
 **Key Exports:**
+
 - `default`: Convex schema object
 
 #### `.env.local`
+
 Environment configuration for Convex deployment.
 
 **Contents:**
+
 ```
 CONVEX_DEPLOYMENT=<deployment-url>
 NEXT_PUBLIC_CONVEX_URL=<deployment-url>
@@ -80,15 +85,18 @@ NEXT_PUBLIC_CONVEX_URL=<deployment-url>
 ### 2. Frontend Integration
 
 #### `app/layout.tsx` (Modified)
+
 Root layout will be updated to include ConvexProvider.
 
 **Changes:**
+
 - Import `ConvexProvider` from `convex/react`
 - Import `ConvexReactClient` from `convex/react`
 - Wrap children with ConvexProvider
 - Pass deployment URL from environment variable
 
 **Pattern:**
+
 ```typescript
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
 
@@ -100,9 +108,11 @@ const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
 ### 3. Generated Files
 
 #### `convex/_generated/`
+
 Auto-generated directory created by Convex dev server.
 
 **Contents:**
+
 - TypeScript type definitions for all tables
 - API client types
 - Server-side function types
@@ -116,19 +126,20 @@ Auto-generated directory created by Convex dev server.
 Stores static interpretation text for numerology numbers and other features.
 
 **Schema:**
+
 ```typescript
 interpretations: defineTable({
-  type: v.string(),              // "life-path" | "destiny" | "compatibility"
-  number: v.number(),            // 1-9 for numerology
-  title: v.string(),             // Romanian title
-  description: v.string(),       // Short Romanian description
-  fullText: v.string(),          // Complete interpretation in Romanian
-  createdAt: v.number(),         // Timestamp
-})
-.index("by_type_and_number", ["type", "number"])
+  type: v.string(), // "life-path" | "destiny" | "compatibility"
+  number: v.number(), // 1-9 for numerology
+  title: v.string(), // Romanian title
+  description: v.string(), // Short Romanian description
+  fullText: v.string(), // Complete interpretation in Romanian
+  createdAt: v.number(), // Timestamp
+}).index("by_type_and_number", ["type", "number"]);
 ```
 
 **Indexes:**
+
 - `by_type_and_number`: Efficient lookup by interpretation type and number
 
 ### Table: dreamSymbols
@@ -136,25 +147,27 @@ interpretations: defineTable({
 Stores dream dictionary entries with symbols and their meanings.
 
 **Schema:**
+
 ```typescript
 dreamSymbols: defineTable({
-  name: v.string(),              // Romanian symbol name (e.g., "șarpe")
-  slug: v.string(),              // URL-friendly slug
-  category: v.string(),          // "animale" | "natură" | "obiecte" | "emoții"
-  shortMeaning: v.string(),      // Brief interpretation (1-2 sentences)
+  name: v.string(), // Romanian symbol name (e.g., "șarpe")
+  slug: v.string(), // URL-friendly slug
+  category: v.string(), // "animale" | "natură" | "obiecte" | "emoții"
+  shortMeaning: v.string(), // Brief interpretation (1-2 sentences)
   fullInterpretation: v.string(), // Complete interpretation
   keywords: v.array(v.string()), // Search keywords
-  createdAt: v.number(),         // Timestamp
+  createdAt: v.number(), // Timestamp
 })
-.index("by_slug", ["slug"])
-.index("by_category", ["category"])
-.searchIndex("search_symbols", {
-  searchField: "name",
-  filterFields: ["category"]
-})
+  .index("by_slug", ["slug"])
+  .index("by_category", ["category"])
+  .searchIndex("search_symbols", {
+    searchField: "name",
+    filterFields: ["category"],
+  });
 ```
 
 **Indexes:**
+
 - `by_slug`: Fast lookup by URL slug
 - `by_category`: Filter by category
 - `search_symbols`: Full-text search on symbol names
@@ -164,17 +177,18 @@ dreamSymbols: defineTable({
 Stores daily selected content (numărul zilei, visul zilei).
 
 **Schema:**
+
 ```typescript
 dailyPicks: defineTable({
-  date: v.string(),              // ISO date string (YYYY-MM-DD)
-  type: v.string(),              // "daily-number" | "daily-dream"
-  contentId: v.string(),         // Reference to interpretation or dream symbol
-  createdAt: v.number(),         // Timestamp
-})
-.index("by_date_and_type", ["date", "type"])
+  date: v.string(), // ISO date string (YYYY-MM-DD)
+  type: v.string(), // "daily-number" | "daily-dream"
+  contentId: v.string(), // Reference to interpretation or dream symbol
+  createdAt: v.number(), // Timestamp
+}).index("by_date_and_type", ["date", "type"]);
 ```
 
 **Indexes:**
+
 - `by_date_and_type`: Efficient lookup of daily content
 
 ### Table: analytics
@@ -182,18 +196,20 @@ dailyPicks: defineTable({
 Optional usage tracking for understanding user behavior.
 
 **Schema:**
+
 ```typescript
 analytics: defineTable({
-  eventType: v.string(),         // "pageview" | "calculator-use" | "search"
-  feature: v.string(),           // "numerology" | "dreams" | "biorhythm"
+  eventType: v.string(), // "pageview" | "calculator-use" | "search"
+  feature: v.string(), // "numerology" | "dreams" | "biorhythm"
   metadata: v.optional(v.any()), // Additional event data
-  timestamp: v.number(),         // Event timestamp
+  timestamp: v.number(), // Event timestamp
 })
-.index("by_timestamp", ["timestamp"])
-.index("by_feature", ["feature"])
+  .index("by_timestamp", ["timestamp"])
+  .index("by_feature", ["feature"]);
 ```
 
 **Indexes:**
+
 - `by_timestamp`: Time-based queries
 - `by_feature`: Feature-specific analytics
 
@@ -204,6 +220,7 @@ analytics: defineTable({
 **Scenario:** Convex package installation fails
 
 **Handling:**
+
 - Check network connectivity
 - Verify Bun is functioning correctly
 - Try alternative: `npm install convex` if Bun has issues
@@ -214,6 +231,7 @@ analytics: defineTable({
 **Scenario:** `npx convex dev` fails to initialize
 
 **Handling:**
+
 - Verify Convex account is created (may require signup)
 - Check authentication status
 - Ensure no port conflicts (Convex uses specific ports)
@@ -224,6 +242,7 @@ analytics: defineTable({
 **Scenario:** Schema definition has syntax errors
 
 **Handling:**
+
 - Convex dev server provides detailed error messages with line numbers
 - Common issues:
   - Missing imports (`v` from `convex/values`)
@@ -236,6 +255,7 @@ analytics: defineTable({
 **Scenario:** React components cannot connect to Convex
 
 **Handling:**
+
 - Verify `NEXT_PUBLIC_CONVEX_URL` is set in `.env.local`
 - Ensure ConvexProvider wraps the component tree
 - Check browser console for connection errors
@@ -246,23 +266,27 @@ analytics: defineTable({
 ### Manual Testing Checklist
 
 #### 1. Installation Verification
+
 - [ ] Run `bun install convex`
 - [ ] Verify `convex` appears in `package.json` dependencies
 - [ ] Confirm `npx convex` command is available
 
 #### 2. Initialization Verification
+
 - [ ] Run `npx convex dev`
 - [ ] Verify `convex/` directory is created
 - [ ] Confirm `.env.local` contains `CONVEX_DEPLOYMENT`
 - [ ] Check `convex/_generated/` directory exists
 
 #### 3. Schema Verification
+
 - [ ] Create `convex/schema.ts` with all four tables
 - [ ] Save file and observe dev server output
 - [ ] Verify no compilation errors
 - [ ] Check `convex/_generated/` for type files
 
 #### 4. Frontend Integration Verification
+
 - [ ] Update `app/layout.tsx` with ConvexProvider
 - [ ] Start Next.js dev server (`bun dev`)
 - [ ] Create test component with `useQuery` hook
@@ -272,20 +296,24 @@ analytics: defineTable({
 ### Success Criteria
 
 **Installation Success:**
+
 - `convex` package in dependencies
 - No installation errors
 
 **Initialization Success:**
+
 - Convex dev server runs without errors
 - Environment variables configured
 - Generated files present
 
 **Schema Success:**
+
 - All tables defined correctly
 - Indexes configured
 - Types generated in `_generated/`
 
 **Integration Success:**
+
 - Frontend can import Convex hooks
 - Queries execute successfully
 - Empty tables return empty arrays within 500ms
@@ -311,6 +339,7 @@ No changes needed to `tsconfig.json`. Convex generates types that work with exis
 ### Package Manager Considerations
 
 Using Bun as package manager:
+
 - `bun install convex` for installation
 - `npx convex dev` still uses npx (Convex CLI)
 - No conflicts expected
@@ -348,6 +377,7 @@ Using Bun as package manager:
 ### Phase 2 Preparation
 
 This schema design supports upcoming features:
+
 - Numerology queries (Phase 2.2)
 - Dream search functionality (Phase 2.3)
 - Biorhythm data storage (Phase 2.1)
@@ -356,6 +386,7 @@ This schema design supports upcoming features:
 ### Schema Evolution
 
 Convex supports schema migrations:
+
 - Add new tables without downtime
 - Add fields to existing tables
 - Modify indexes as needed
@@ -377,6 +408,7 @@ Convex supports schema migrations:
 ### No Breaking Changes
 
 This setup does not modify existing code except:
+
 - `app/layout.tsx` (adds ConvexProvider wrapper)
 - `.env.local` (adds environment variables)
 - `.gitignore` (should already ignore .env.local)
@@ -396,12 +428,14 @@ If Convex setup fails or proves unsuitable:
 ### Developer Documentation
 
 Create `.env.local.example`:
+
 ```
 CONVEX_DEPLOYMENT=https://your-deployment.convex.cloud
 NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
 ```
 
 Add to README.md:
+
 ```markdown
 ## Backend Setup
 
@@ -414,6 +448,7 @@ Add to README.md:
 ### Code Comments
 
 Minimal comments in schema file:
+
 - Purpose of each table
 - Explanation of indexes
 - Notes on field constraints

@@ -1,6 +1,6 @@
 /**
  * Site Configuration
- * 
+ *
  * Centralized configuration for SpiritHub.ro including branding,
  * navigation, SEO defaults, and social media links.
  */
@@ -35,13 +35,13 @@ export const siteConfig: SiteConfig = {
   description: "Platformă spirituală românească pentru numerologie, interpretare vise și bioritm",
   url: "https://spirithub.ro",
   ogImage: "https://spirithub.ro/og-image.jpg",
-  
+
   links: {
     facebook: undefined,
     instagram: undefined,
     twitter: undefined,
   },
-  
+
   mainNav: [
     {
       title: "Numerologie",
@@ -59,11 +59,12 @@ export const siteConfig: SiteConfig = {
       description: "Calculează ciclurile tale fizice, emoționale și intelectuale",
     },
   ],
-  
+
   seo: {
     defaultTitle: "SpiritHub.ro - Numerologie, Vise și Bioritm",
     titleTemplate: "%s | SpiritHub.ro",
-    defaultDescription: "Descoperă-ți calea spirituală cu instrumente moderne de numerologie, interpretare vise și calcul bioritm. Ghidaj zilnic gratuit în limba română.",
+    defaultDescription:
+      "Descoperă-ți calea spirituală cu instrumente moderne de numerologie, interpretare vise și calcul bioritm. Ghidaj zilnic gratuit în limba română.",
     keywords: [
       "numerologie",
       "interpretare vise",

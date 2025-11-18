@@ -5,8 +5,18 @@
 
 // Romanian month names
 const romanianMonths = [
-  "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie",
-  "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"
+  "ianuarie",
+  "februarie",
+  "martie",
+  "aprilie",
+  "mai",
+  "iunie",
+  "iulie",
+  "august",
+  "septembrie",
+  "octombrie",
+  "noiembrie",
+  "decembrie",
 ];
 
 // Format date in Romanian (e.g., "17 noiembrie 2025")
@@ -23,14 +33,14 @@ function calculateDailyNumber(dateStr: string): number {
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  
+
   // Sum and reduce to single digit
   const sum = day + month + year;
   let dailyNumber = sum;
   while (dailyNumber > 9) {
     dailyNumber = Math.floor(dailyNumber / 10) + (dailyNumber % 10);
   }
-  
+
   return dailyNumber;
 }
 
@@ -39,7 +49,7 @@ console.log("=== Testing Daily Number Calculation ===\n");
 
 // Test 1: Today's date
 const today = new Date();
-const todayISO = today.toISOString().split('T')[0];
+const todayISO = today.toISOString().split("T")[0];
 const todayRomanian = formatRomanianDate(today);
 const todayNumber = calculateDailyNumber(todayISO);
 
@@ -75,17 +85,13 @@ console.log(`  Date: ${testDate}`);
 console.log(`  Calculation 1: ${calc1}`);
 console.log(`  Calculation 2: ${calc2}`);
 console.log(`  Calculation 3: ${calc3}`);
-console.log(`  All equal: ${calc1 === calc2 && calc2 === calc3 ? '✓ PASS' : '✗ FAIL'}`);
+console.log(`  All equal: ${calc1 === calc2 && calc2 === calc3 ? "✓ PASS" : "✗ FAIL"}`);
 console.log();
 
 // Test 4: Verify date changes produce different numbers
 console.log(`Test 4 - Date Changes:`);
-const consecutiveDates = [
-  "2025-11-16",
-  "2025-11-17",
-  "2025-11-18",
-];
-consecutiveDates.forEach(date => {
+const consecutiveDates = ["2025-11-16", "2025-11-17", "2025-11-18"];
+consecutiveDates.forEach((date) => {
   const number = calculateDailyNumber(date);
   const romanian = formatRomanianDate(new Date(date));
   console.log(`  ${romanian}: ${number}`);

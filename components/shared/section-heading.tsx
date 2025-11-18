@@ -8,12 +8,7 @@ export interface SectionHeadingProps {
   className?: string;
 }
 
-export function SectionHeading({
-  title,
-  description,
-  icon: Icon,
-  className,
-}: SectionHeadingProps) {
+export function SectionHeading({ title, description, icon: Icon, className }: SectionHeadingProps) {
   return (
     <div className={cn("space-y-2", className)}>
       <div className="flex items-center gap-3">
@@ -24,9 +19,7 @@ export function SectionHeading({
         )}
         <h2 className="text-3xl font-bold tracking-tight">{title}</h2>
       </div>
-      {description && (
-        <p className="text-muted-foreground max-w-2xl">{description}</p>
-      )}
+      {description && <p className="text-muted-foreground max-w-2xl">{description}</p>}
     </div>
   );
 }

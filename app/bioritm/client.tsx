@@ -14,14 +14,12 @@ import { ErrorMessage } from "@/components/shared/error-message";
 
 export default function BioritmClient() {
   const [birthDate, setBirthDate] = useState<string>("");
-  const [targetDate, setTargetDate] = useState<string>(
-    new Date().toISOString().split("T")[0]
-  );
+  const [targetDate, setTargetDate] = useState<string>(new Date().toISOString().split("T")[0]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const biorhythm = useQuery(
     api.biorhythm.getBiorhythm,
-    hasSubmitted && birthDate ? { birthDate, targetDate } : "skip"
+    hasSubmitted && birthDate ? { birthDate, targetDate } : "skip",
   );
 
   const handleSubmit = (birth: string, target: string) => {
@@ -30,9 +28,8 @@ export default function BioritmClient() {
     setHasSubmitted(true);
   };
 
-  const shareUrl = typeof window !== "undefined" 
-    ? `${window.location.origin}/bioritm?date=${birthDate}`
-    : "";
+  const shareUrl =
+    typeof window !== "undefined" ? `${window.location.origin}/bioritm?date=${birthDate}` : "";
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -43,11 +40,10 @@ export default function BioritmClient() {
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
               <Activity className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-              Calculator Bioritm
-            </h1>
+            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">Calculator Bioritm</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Urmărește ciclurile tale fizice, emoționale și intelectuale pentru a-ți planifica zilele în mod optim
+              Urmărește ciclurile tale fizice, emoționale și intelectuale pentru a-ți planifica
+              zilele în mod optim
             </p>
           </div>
 
@@ -102,9 +98,7 @@ export default function BioritmClient() {
             <div className="space-y-6">
               {/* Chart */}
               <div className="rounded-lg border bg-card p-6 lg:p-8">
-                <h2 className="text-2xl font-semibold mb-6">
-                  Graficul Bioritmului Tău
-                </h2>
+                <h2 className="text-2xl font-semibold mb-6">Graficul Bioritmului Tău</h2>
                 <BiorhythmChart
                   physical={biorhythm.physical}
                   emotional={biorhythm.emotional}
@@ -127,9 +121,7 @@ export default function BioritmClient() {
               {/* Actions */}
               <div className="flex flex-col sm:flex-row gap-4 items-center justify-between rounded-lg border bg-card p-6">
                 <div className="text-center sm:text-left">
-                  <h3 className="font-semibold mb-1">
-                    Distribuie rezultatul tău
-                  </h3>
+                  <h3 className="font-semibold mb-1">Distribuie rezultatul tău</h3>
                   <p className="text-sm text-muted-foreground">
                     Împărtășește bioritmul tău cu prietenii
                   </p>
@@ -153,7 +145,10 @@ export default function BioritmClient() {
                     Descoperă zilele când ciclurile tale trec prin zero
                   </p>
                 </div>
-                <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
+                <ArrowRight
+                  className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors"
+                  aria-hidden="true"
+                />
               </Link>
             </div>
           )}

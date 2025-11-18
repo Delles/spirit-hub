@@ -1,6 +1,6 @@
 /**
  * Numerology Configuration
- * 
+ *
  * This module provides centralized configuration for numerology calculations,
  * including Romanian letter-to-number mappings, interpretation keys, and
  * compatibility ranges.
@@ -24,7 +24,7 @@ export interface NumberInterpretation {
 export interface CompatibilityRange {
   min: number;
   max: number;
-  level: 'scăzută' | 'medie' | 'bună' | 'excelentă';
+  level: "scăzută" | "medie" | "bună" | "excelentă";
   key: string;
 }
 
@@ -44,12 +44,12 @@ export interface NumerologyConfig {
 
 /**
  * Romanian alphabet letter-to-number mapping using the Pythagorean system.
- * 
+ *
  * Standard mapping cycles through 1-9:
  * A=1, B=2, C=3, D=4, E=5, F=6, G=7, H=8, I=9,
  * J=1, K=2, L=3, M=4, N=5, O=6, P=7, Q=8, R=9,
  * S=1, T=2, U=3, V=4, W=5, X=6, Y=7, Z=8
- * 
+ *
  * Romanian diacritics are mapped based on their base letter equivalents:
  * Ă, Â → A (1)
  * Î → I (9)
@@ -58,20 +58,74 @@ export interface NumerologyConfig {
  */
 const letterToNumber: LetterMapping = {
   // Standard alphabet (uppercase)
-  'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
-  'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
-  'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8,
-  
+  A: 1,
+  B: 2,
+  C: 3,
+  D: 4,
+  E: 5,
+  F: 6,
+  G: 7,
+  H: 8,
+  I: 9,
+  J: 1,
+  K: 2,
+  L: 3,
+  M: 4,
+  N: 5,
+  O: 6,
+  P: 7,
+  Q: 8,
+  R: 9,
+  S: 1,
+  T: 2,
+  U: 3,
+  V: 4,
+  W: 5,
+  X: 6,
+  Y: 7,
+  Z: 8,
+
   // Standard alphabet (lowercase)
-  'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9,
-  'j': 1, 'k': 2, 'l': 3, 'm': 4, 'n': 5, 'o': 6, 'p': 7, 'q': 8, 'r': 9,
-  's': 1, 't': 2, 'u': 3, 'v': 4, 'w': 5, 'x': 6, 'y': 7, 'z': 8,
-  
+  a: 1,
+  b: 2,
+  c: 3,
+  d: 4,
+  e: 5,
+  f: 6,
+  g: 7,
+  h: 8,
+  i: 9,
+  j: 1,
+  k: 2,
+  l: 3,
+  m: 4,
+  n: 5,
+  o: 6,
+  p: 7,
+  q: 8,
+  r: 9,
+  s: 1,
+  t: 2,
+  u: 3,
+  v: 4,
+  w: 5,
+  x: 6,
+  y: 7,
+  z: 8,
+
   // Romanian diacritics (uppercase)
-  'Ă': 1, 'Â': 1, 'Î': 9, 'Ș': 1, 'Ț': 2,
-  
+  Ă: 1,
+  Â: 1,
+  Î: 9,
+  Ș: 1,
+  Ț: 2,
+
   // Romanian diacritics (lowercase)
-  'ă': 1, 'â': 1, 'î': 9, 'ș': 1, 'ț': 2,
+  ă: 1,
+  â: 1,
+  î: 9,
+  ș: 1,
+  ț: 2,
 };
 
 // ============================================================================
@@ -81,49 +135,49 @@ const letterToNumber: LetterMapping = {
 const lifePathNumbers: NumberInterpretation[] = [
   {
     number: 1,
-    key: 'lider',
-    shortDescription: 'Lider natural, independent și inovator'
+    key: "lider",
+    shortDescription: "Lider natural, independent și inovator",
   },
   {
     number: 2,
-    key: 'diplomat',
-    shortDescription: 'Diplomat, cooperant și sensibil'
+    key: "diplomat",
+    shortDescription: "Diplomat, cooperant și sensibil",
   },
   {
     number: 3,
-    key: 'creator',
-    shortDescription: 'Creator, expresiv și optimist'
+    key: "creator",
+    shortDescription: "Creator, expresiv și optimist",
   },
   {
     number: 4,
-    key: 'constructor',
-    shortDescription: 'Constructor, practic și disciplinat'
+    key: "constructor",
+    shortDescription: "Constructor, practic și disciplinat",
   },
   {
     number: 5,
-    key: 'aventurier',
-    shortDescription: 'Aventurier, liber și adaptabil'
+    key: "aventurier",
+    shortDescription: "Aventurier, liber și adaptabil",
   },
   {
     number: 6,
-    key: 'protector',
-    shortDescription: 'Protector, responsabil și armonios'
+    key: "protector",
+    shortDescription: "Protector, responsabil și armonios",
   },
   {
     number: 7,
-    key: 'cautator',
-    shortDescription: 'Căutător spiritual, analitic și înțelept'
+    key: "cautator",
+    shortDescription: "Căutător spiritual, analitic și înțelept",
   },
   {
     number: 8,
-    key: 'realizator',
-    shortDescription: 'Realizator, ambițios și puternic'
+    key: "realizator",
+    shortDescription: "Realizator, ambițios și puternic",
   },
   {
     number: 9,
-    key: 'umanitar',
-    shortDescription: 'Umanitar, generos și vizionar'
-  }
+    key: "umanitar",
+    shortDescription: "Umanitar, generos și vizionar",
+  },
 ];
 
 // ============================================================================
@@ -133,49 +187,49 @@ const lifePathNumbers: NumberInterpretation[] = [
 const destinyNumbers: NumberInterpretation[] = [
   {
     number: 1,
-    key: 'pionier',
-    shortDescription: 'Destinat să conducă și să inoveze'
+    key: "pionier",
+    shortDescription: "Destinat să conducă și să inoveze",
   },
   {
     number: 2,
-    key: 'mediator',
-    shortDescription: 'Destinat să aducă pace și echilibru'
+    key: "mediator",
+    shortDescription: "Destinat să aducă pace și echilibru",
   },
   {
     number: 3,
-    key: 'artist',
-    shortDescription: 'Destinat să creeze și să inspire'
+    key: "artist",
+    shortDescription: "Destinat să creeze și să inspire",
   },
   {
     number: 4,
-    key: 'organizator',
-    shortDescription: 'Destinat să construiască și să stabilizeze'
+    key: "organizator",
+    shortDescription: "Destinat să construiască și să stabilizeze",
   },
   {
     number: 5,
-    key: 'explorator',
-    shortDescription: 'Destinat să exploreze și să schimbe'
+    key: "explorator",
+    shortDescription: "Destinat să exploreze și să schimbe",
   },
   {
     number: 6,
-    key: 'ingrijitor',
-    shortDescription: 'Destinat să îngrijească și să armonizeze'
+    key: "ingrijitor",
+    shortDescription: "Destinat să îngrijească și să armonizeze",
   },
   {
     number: 7,
-    key: 'intelept',
-    shortDescription: 'Destinat să înțeleagă și să învețe'
+    key: "intelept",
+    shortDescription: "Destinat să înțeleagă și să învețe",
   },
   {
     number: 8,
-    key: 'magnat',
-    shortDescription: 'Destinat să realizeze și să prospere'
+    key: "magnat",
+    shortDescription: "Destinat să realizeze și să prospere",
   },
   {
     number: 9,
-    key: 'filantrop',
-    shortDescription: 'Destinat să servească și să transforme'
-  }
+    key: "filantrop",
+    shortDescription: "Destinat să servească și să transforme",
+  },
 ];
 
 // ============================================================================
@@ -185,22 +239,22 @@ const destinyNumbers: NumberInterpretation[] = [
 const masterNumberInterpretations: NumberInterpretation[] = [
   {
     number: 11,
-    key: 'iluminat',
-    shortDescription: 'Iluminat spiritual, intuitiv și inspirațional',
-    isMasterNumber: true
+    key: "iluminat",
+    shortDescription: "Iluminat spiritual, intuitiv și inspirațional",
+    isMasterNumber: true,
   },
   {
     number: 22,
-    key: 'constructor-maestru',
-    shortDescription: 'Constructor maestru, vizionar și realizator de mari proiecte',
-    isMasterNumber: true
+    key: "constructor-maestru",
+    shortDescription: "Constructor maestru, vizionar și realizator de mari proiecte",
+    isMasterNumber: true,
   },
   {
     number: 33,
-    key: 'invatator-maestru',
-    shortDescription: 'Învățător maestru, compasiune universală și vindecare',
-    isMasterNumber: true
-  }
+    key: "invatator-maestru",
+    shortDescription: "Învățător maestru, compasiune universală și vindecare",
+    isMasterNumber: true,
+  },
 ];
 
 // ============================================================================
@@ -215,27 +269,27 @@ const compatibilityRanges: CompatibilityRange[] = [
   {
     min: 0,
     max: 25,
-    level: 'scăzută',
-    key: 'low'
+    level: "scăzută",
+    key: "low",
   },
   {
     min: 26,
     max: 50,
-    level: 'medie',
-    key: 'medium'
+    level: "medie",
+    key: "medium",
   },
   {
     min: 51,
     max: 75,
-    level: 'bună',
-    key: 'good'
+    level: "bună",
+    key: "good",
   },
   {
     min: 76,
     max: 100,
-    level: 'excelentă',
-    key: 'excellent'
-  }
+    level: "excelentă",
+    key: "excellent",
+  },
 ];
 
 // ============================================================================
@@ -272,5 +326,5 @@ export const numerologyConfig: NumerologyConfig = {
   masterNumbers: masterNumberInterpretations,
   compatibilityRanges,
   validNumbers: [...validNumbers],
-  allValidNumbers: [...allValidNumbers]
+  allValidNumbers: [...allValidNumbers],
 } as const;

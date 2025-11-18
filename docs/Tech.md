@@ -196,4 +196,3 @@ npx shadcn@latest add <component-name>
   - Keep costs low and bounded.
   - Ensure generated text is post-processed for Romanian quality and correctness.
   - Avoid hallucinated factual claims; keep it in the realm of "guidance".
-

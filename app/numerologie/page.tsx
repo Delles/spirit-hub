@@ -1,10 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowLeft, Calculator, Heart, Calendar } from "lucide-react";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Numerologie - SpiritHub.ro",
-  description: "Calculează-ți numărul destinului, numărul căii vieții, compatibilitatea și numerele zilnice. Descoperă semnificația numerelor tale personale.",
+  description:
+    "Calculează-ți numărul destinului, numărul căii vieții, compatibilitatea și numerele zilnice. Descoperă semnificația numerelor tale personale.",
 };
 
 export default function NumerologiePage() {
@@ -14,7 +16,12 @@ export default function NumerologiePage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
             <Link href="/">
-              <Button variant="ghost" size="icon" className="min-h-[44px] min-w-[44px]" aria-label="Înapoi la pagina principală">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="min-h-[44px] min-w-[44px]"
+                aria-label="Înapoi la pagina principală"
+              >
                 <ArrowLeft className="h-5 w-5" aria-hidden="true" />
               </Button>
             </Link>
@@ -36,7 +43,7 @@ export default function NumerologiePage() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
-            <Link 
+            <Link
               href="/numerologie/calea-vietii"
               className="group rounded-lg border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(159,43,255,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
@@ -45,15 +52,19 @@ export default function NumerologiePage() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Calea Vieții</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Descoperă-ți numărul Căii Vieții din data nașterii și înțelege-ți scopul și direcția în viață
+                Descoperă-ți numărul Căii Vieții din data nașterii și înțelege-ți scopul și direcția
+                în viață
               </p>
               <div className="flex items-center text-sm font-medium text-primary">
                 Calculează acum
-                <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                <ArrowLeft
+                  className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/numerologie/nume-destin"
               className="group rounded-lg border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(159,43,255,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
@@ -62,15 +73,19 @@ export default function NumerologiePage() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Numărul Destinului</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Calculează-ți numărul destinului din numele complet și descoperă-ți misiunea în viață
+                Calculează-ți numărul destinului din numele complet și descoperă-ți misiunea în
+                viață
               </p>
               <div className="flex items-center text-sm font-medium text-primary">
                 Calculează acum
-                <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                <ArrowLeft
+                  className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/numerologie/compatibilitate"
               className="group rounded-lg border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(159,43,255,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
@@ -79,15 +94,19 @@ export default function NumerologiePage() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Compatibilitate</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Verifică compatibilitatea numerologică între două persoane folosind numele și datele de naștere
+                Verifică compatibilitatea numerologică între două persoane folosind numele și datele
+                de naștere
               </p>
               <div className="flex items-center text-sm font-medium text-primary">
                 Calculează acum
-                <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                <ArrowLeft
+                  className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/numerologie/numar-zilnic"
               className="group rounded-lg border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(159,43,255,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
@@ -96,11 +115,15 @@ export default function NumerologiePage() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Numărul Zilei</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Descoperă numărul zilei de astăzi și primește îndrumări numerologice pentru ziua curentă
+                Descoperă numărul zilei de astăzi și primește îndrumări numerologice pentru ziua
+                curentă
               </p>
               <div className="flex items-center text-sm font-medium text-primary">
                 Vezi numărul zilei
-                <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                <ArrowLeft
+                  className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
               </div>
             </Link>
           </div>
@@ -109,4 +132,3 @@ export default function NumerologiePage() {
     </div>
   );
 }
-

@@ -34,7 +34,7 @@ export function BiorhythmChart({
 
   // Determine window size based on viewport (desktop: 15 days, mobile: 11 days)
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -44,16 +44,19 @@ export function BiorhythmChart({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const daysWindow = useMemo(() => isMobile ? 11 : 15, [isMobile]);
+  const daysWindow = useMemo(() => (isMobile ? 11 : 15), [isMobile]);
   const daysBefore = useMemo(() => Math.floor(daysWindow / 2), [daysWindow]);
   const daysAfter = useMemo(() => Math.floor(daysWindow / 2), [daysWindow]);
 
   // Cycle definitions - memoized to prevent unnecessary recalculations
-  const cycles: CycleData[] = useMemo(() => [
-    { name: "Fizic", color: "#ef4444", value: physical, cycleDays: 23 },
-    { name: "Emoțional", color: "#3b82f6", value: emotional, cycleDays: 28 },
-    { name: "Intelectual", color: "#10b981", value: intellectual, cycleDays: 33 },
-  ], [physical, emotional, intellectual]);
+  const cycles: CycleData[] = useMemo(
+    () => [
+      { name: "Fizic", color: "#ef4444", value: physical, cycleDays: 23 },
+      { name: "Emoțional", color: "#3b82f6", value: emotional, cycleDays: 28 },
+      { name: "Intelectual", color: "#10b981", value: intellectual, cycleDays: 33 },
+    ],
+    [physical, emotional, intellectual],
+  );
 
   // Calculate sine wave paths
   const paths = useMemo(() => {
@@ -67,7 +70,7 @@ export function BiorhythmChart({
       for (let i = -daysBefore; i <= daysAfter; i++) {
         const currentDate = new Date(target.getTime() + i * millisecondsPerDay);
         const daysLived = Math.floor(
-          (currentDate.getTime() - birth.getTime()) / millisecondsPerDay
+          (currentDate.getTime() - birth.getTime()) / millisecondsPerDay,
         );
 
         // Calculate cycle value using sine wave
@@ -75,8 +78,7 @@ export function BiorhythmChart({
 
         // Map to chart coordinates
         const x = padding.left + ((i + daysBefore) / daysWindow) * chartWidth;
-        const y =
-          padding.top + chartHeight / 2 - (cycleValue * chartHeight) / 2;
+        const y = padding.top + chartHeight / 2 - (cycleValue * chartHeight) / 2;
 
         points.push(`${x},${y}`);
       }
@@ -86,24 +88,40 @@ export function BiorhythmChart({
         path: `M ${points.join(" L ")}`,
       };
     });
-  }, [birthDate, targetDate, daysBefore, daysAfter, daysWindow, chartWidth, chartHeight, cycles]);
+  }, [
+    birthDate,
+    targetDate,
+    daysBefore,
+    daysAfter,
+    daysWindow,
+    chartWidth,
+    chartHeight,
+    cycles,
+    padding.left,
+    padding.top,
+  ]);
 
   // Calculate current day position
-  const currentDayX = useMemo(() => padding.left + (daysBefore / daysWindow) * chartWidth, [daysBefore, daysWindow]);
+  const currentDayX = useMemo(
+    () => padding.left + (daysBefore / daysWindow) * chartWidth,
+    [daysBefore, daysWindow, padding.left, chartWidth],
+  );
 
   // Grid lines at -100%, -50%, 0%, +50%, +100% - memoized
-  const gridLines = useMemo(() => [-1, -0.5, 0, 0.5, 1].map((value) => {
-    const y = padding.top + chartHeight / 2 - (value * chartHeight) / 2;
-    return { y, value, isZero: value === 0 };
-  }), [padding.top, chartHeight]);
+  const gridLines = useMemo(
+    () =>
+      [-1, -0.5, 0, 0.5, 1].map((value) => {
+        const y = padding.top + chartHeight / 2 - (value * chartHeight) / 2;
+        return { y, value, isZero: value === 0 };
+      }),
+    [padding.top, chartHeight],
+  );
 
   return (
     <Card className="w-full p-4 md:p-6">
       <div className="space-y-4">
         {/* Chart Title */}
-        <h3 className="text-xl md:text-2xl font-semibold text-white">
-          Grafic Bioritm
-        </h3>
+        <h3 className="text-xl md:text-2xl font-semibold text-white">Grafic Bioritm</h3>
 
         {/* SVG Chart */}
         <div className="w-full overflow-x-auto" role="region" aria-label="Grafic bioritm">
@@ -117,10 +135,10 @@ export function BiorhythmChart({
           >
             <title id="biorhythm-chart-title">Grafic Bioritm</title>
             <desc id="biorhythm-chart-desc">
-              Grafic bioritm arătând ciclul fizic la {Math.round(physical * 100)}%, 
-              ciclul emoțional la {Math.round(emotional * 100)}%, 
-              și ciclul intelectual la {Math.round(intellectual * 100)}% 
-              pentru data de {new Date(targetDate).toLocaleDateString("ro-RO")}
+              Grafic bioritm arătând ciclul fizic la {Math.round(physical * 100)}%, ciclul emoțional
+              la {Math.round(emotional * 100)}%, și ciclul intelectual la{" "}
+              {Math.round(intellectual * 100)}% pentru data de{" "}
+              {new Date(targetDate).toLocaleDateString("ro-RO")}
             </desc>
             {/* Background Grid */}
             <g aria-hidden="true">
@@ -197,12 +215,12 @@ export function BiorhythmChart({
 
             {/* Value Markers at Current Day */}
             {paths.map((cycle, index) => {
-              const y =
-                padding.top +
-                chartHeight / 2 -
-                (cycle.value * chartHeight) / 2;
+              const y = padding.top + chartHeight / 2 - (cycle.value * chartHeight) / 2;
               return (
-                <g key={index} aria-label={`${cycle.name} astăzi: ${Math.round(cycle.value * 100)}%`}>
+                <g
+                  key={index}
+                  aria-label={`${cycle.name} astăzi: ${Math.round(cycle.value * 100)}%`}
+                >
                   <circle
                     cx={currentDayX}
                     cy={y}
@@ -225,11 +243,7 @@ export function BiorhythmChart({
           aria-label="Legendă cicluri bioritm"
         >
           {cycles.map((cycle, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-2"
-              role="listitem"
-            >
+            <div key={index} className="flex items-center gap-2" role="listitem">
               <div
                 className="w-4 h-4 rounded-full"
                 style={{ backgroundColor: cycle.color }}

@@ -38,13 +38,7 @@ function LifePathPage() {
     }
   };
 
-  return (
-    <NumerologyForm
-      type="lifePath"
-      onSubmit={handleSubmit}
-      isLoading={isLoading}
-    />
-  );
+  return <NumerologyForm type="lifePath" onSubmit={handleSubmit} isLoading={isLoading} />;
 }
 ```
 
@@ -62,12 +56,7 @@ function DestinyPage() {
     }
   };
 
-  return (
-    <NumerologyForm
-      type="destiny"
-      onSubmit={handleSubmit}
-    />
-  );
+  return <NumerologyForm type="destiny" onSubmit={handleSubmit} />;
 }
 ```
 
@@ -75,7 +64,11 @@ function DestinyPage() {
 
 ```tsx
 import { NumerologyForm } from "@/components/numerologie/numerology-form";
-import { calculateLifePath, calculateDestinyNumber, calculateCompatibility } from "@/lib/numerology";
+import {
+  calculateLifePath,
+  calculateDestinyNumber,
+  calculateCompatibility,
+} from "@/lib/numerology";
 
 function CompatibilityPage() {
   const handleSubmit = (data) => {
@@ -85,22 +78,17 @@ function CompatibilityPage() {
       const destiny1 = calculateDestinyNumber(data.name1);
       const lifePath2 = calculateLifePath(new Date(data.birthDate2));
       const destiny2 = calculateDestinyNumber(data.name2);
-      
+
       // Calculate compatibility scores
       const lifePathCompat = calculateCompatibility(lifePath1, lifePath2);
       const destinyCompat = calculateCompatibility(destiny1, destiny2);
       const avgScore = Math.round((lifePathCompat + destinyCompat) / 2);
-      
+
       // Fetch interpretation from Convex...
     }
   };
 
-  return (
-    <NumerologyForm
-      type="compatibility"
-      onSubmit={handleSubmit}
-    />
-  );
+  return <NumerologyForm type="compatibility" onSubmit={handleSubmit} />;
 }
 ```
 
@@ -139,12 +127,14 @@ type CompatibilityFormData = {
 ### Validation Rules
 
 #### Birth Date
+
 - Required field
 - Must be a valid date
 - Must be in the past
 - Error messages in Romanian
 
 #### Name
+
 - Required field
 - Minimum 2 characters
 - Romanian letters only (a-z, A-Z, ă, â, î, ș, ț)

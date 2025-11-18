@@ -60,6 +60,7 @@ export interface SiteConfig {
 ```
 
 **Key Data**:
+
 - Site name: "SpiritHub.ro"
 - Main navigation items for Numerologie, Vise, Bioritm
 - SEO defaults in Romanian
@@ -86,7 +87,7 @@ export interface NumberInterpretation {
 export interface CompatibilityRange {
   min: number;
   max: number;
-  level: 'scăzută' | 'medie' | 'bună' | 'excelentă';
+  level: "scăzută" | "medie" | "bună" | "excelentă";
   key: string;
 }
 
@@ -101,6 +102,7 @@ export interface NumerologyConfig {
 ```
 
 **Key Data**:
+
 - Complete Romanian alphabet mapping (A-Z plus ă, â, î, ș, ț)
 - Master Numbers: [11, 22, 33] (preserved during reduction)
 - Interpretation keys for numbers 1-9 and Master Numbers 11, 22, 33
@@ -108,6 +110,7 @@ export interface NumerologyConfig {
 - Valid number range: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33]
 
 **Romanian Letter Mapping**:
+
 ```
 A=1, B=2, C=3, D=4, E=5, F=6, G=7, H=8, I=9,
 J=1, K=2, L=3, M=4, N=5, O=6, P=7, Q=8, R=9,
@@ -143,6 +146,7 @@ export interface DreamsConfig {
 ```
 
 **Key Data**:
+
 - **Categories** (7 main categories for organizing dream symbols):
   - `animale` - Animals (șarpe, pisică, câine, etc.)
   - `natura` - Nature (apă, foc, pădure, munte, etc.)
@@ -172,7 +176,7 @@ export interface CycleConfig {
 export interface InterpretationRange {
   min: number;
   max: number;
-  level: 'critic' | 'scăzut' | 'mediu' | 'ridicat';
+  level: "critic" | "scăzut" | "mediu" | "ridicat";
   key: string;
 }
 
@@ -189,6 +193,7 @@ export interface BiorhythmConfig {
 ```
 
 **Key Data**:
+
 - Physical cycle: 23 days (red)
 - Emotional cycle: 28 days (blue)
 - Intellectual cycle: 33 days (green)
@@ -222,12 +227,12 @@ export const SPECIFIC_CONSTANT = configName.someValue;
 Components and utilities import configuration like this:
 
 ```typescript
-import { siteConfig } from '@/config/site';
-import { numerologyConfig } from '@/config/numerology';
+import { siteConfig } from "@/config/site";
+import { numerologyConfig } from "@/config/numerology";
 
 // Use with full type safety
 const siteName = siteConfig.name;
-const letterValue = numerologyConfig.letterToNumber['A'];
+const letterValue = numerologyConfig.letterToNumber["A"];
 ```
 
 ## Error Handling
@@ -249,20 +254,21 @@ Configuration modules should have minimal testing since they're static data:
 3. **Value Tests**: Verify critical values (e.g., cycle lengths are correct)
 
 **Example Test Cases**:
+
 ```typescript
-describe('numerologyConfig', () => {
-  it('should map all Romanian letters', () => {
-    expect(numerologyConfig.letterToNumber['Ă']).toBe(1);
-    expect(numerologyConfig.letterToNumber['Ș']).toBe(1);
+describe("numerologyConfig", () => {
+  it("should map all Romanian letters", () => {
+    expect(numerologyConfig.letterToNumber["Ă"]).toBe(1);
+    expect(numerologyConfig.letterToNumber["Ș"]).toBe(1);
   });
 
-  it('should have 9 life path numbers', () => {
+  it("should have 9 life path numbers", () => {
     expect(numerologyConfig.lifePathNumbers).toHaveLength(9);
   });
 });
 
-describe('biorhythmConfig', () => {
-  it('should have correct cycle lengths', () => {
+describe("biorhythmConfig", () => {
+  it("should have correct cycle lengths", () => {
     expect(biorhythmConfig.cycles.physical.days).toBe(23);
     expect(biorhythmConfig.cycles.emotional.days).toBe(28);
     expect(biorhythmConfig.cycles.intellectual.days).toBe(33);

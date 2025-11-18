@@ -38,15 +38,7 @@ const CYCLE_INFO: Record<string, CycleInfo> = {
   },
 };
 
-const ROMANIAN_DAYS = [
-  "Duminică",
-  "Luni",
-  "Marți",
-  "Miercuri",
-  "Joi",
-  "Vineri",
-  "Sâmbătă",
-];
+const ROMANIAN_DAYS = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
 
 const ROMANIAN_MONTHS = [
   "ianuarie",
@@ -79,9 +71,7 @@ function formatRomanianDate(dateString: string): {
   };
 }
 
-function getCriticalDayGuidance(
-  cycles: ("physical" | "emotional" | "intellectual")[]
-): string {
+function getCriticalDayGuidance(cycles: ("physical" | "emotional" | "intellectual")[]): string {
   const hasPhysical = cycles.includes("physical");
   const hasEmotional = cycles.includes("emotional");
   const hasIntellectual = cycles.includes("intellectual");
@@ -112,9 +102,7 @@ export function CriticalDaysList({ criticalDays }: CriticalDaysListProps) {
       <Card className="w-full p-6 md:p-8">
         <div className="flex flex-col items-center justify-center text-center space-y-4 py-8">
           <CheckCircle className="h-12 w-12 text-[#10b981]" aria-hidden="true" />
-          <p className="text-base text-white">
-            Nu există zile critice în următoarele 30 de zile.
-          </p>
+          <p className="text-base text-white">Nu există zile critice în următoarele 30 de zile.</p>
           <p className="text-sm text-muted-foreground">
             Ciclurile tale sunt stabile în această perioadă.
           </p>
@@ -128,9 +116,7 @@ export function CriticalDaysList({ criticalDays }: CriticalDaysListProps) {
       <div className="space-y-6">
         {/* Heading */}
         <div className="space-y-2">
-          <h3 className="text-xl md:text-2xl font-semibold text-white">
-            Zile Critice
-          </h3>
+          <h3 className="text-xl md:text-2xl font-semibold text-white">Zile Critice</h3>
           <p className="text-sm text-muted-foreground">
             Zilele când ciclurile tale trec prin zero necesită atenție sporită.
           </p>
@@ -154,20 +140,14 @@ export function CriticalDaysList({ criticalDays }: CriticalDaysListProps) {
                     aria-hidden="true"
                   />
                   <div className="flex-1">
-                    <div className="text-base font-medium text-white">
-                      {formatted}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {dayOfWeek}
-                    </div>
+                    <div className="text-base font-medium text-white">{formatted}</div>
+                    <div className="text-sm text-muted-foreground">{dayOfWeek}</div>
                   </div>
                 </div>
 
                 {/* Affected Cycles */}
                 <div className="space-y-2">
-                  <div className="text-sm font-medium text-white">
-                    Cicluri critice:
-                  </div>
+                  <div className="text-sm font-medium text-white">Cicluri critice:</div>
                   <div className="flex flex-wrap gap-2">
                     {day.cycles.map((cycle) => {
                       const info = CYCLE_INFO[cycle];
@@ -189,11 +169,7 @@ export function CriticalDaysList({ criticalDays }: CriticalDaysListProps) {
                 </div>
 
                 {/* Guidance Text */}
-                {guidance && (
-                  <p className="text-sm text-[#D0D0D0] leading-relaxed">
-                    {guidance}
-                  </p>
-                )}
+                {guidance && <p className="text-sm text-[#D0D0D0] leading-relaxed">{guidance}</p>}
               </div>
             );
           })}

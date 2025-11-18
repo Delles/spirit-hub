@@ -7,19 +7,6 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -85,32 +72,32 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0.02 280);
   --popover-foreground: oklch(0.985 0 0);
-  
+
   /* Vibrant purple accent - #9F2BFF from design.json */
   --primary: oklch(0.6 0.28 300); /* Vivid purple */
   --primary-foreground: oklch(0.985 0 0);
-  
+
   /* Secondary blue accent - #4D5FFF from design.json */
   --secondary: oklch(0.55 0.24 260); /* Vivid blue */
   --secondary-foreground: oklch(0.985 0 0);
-  
+
   --muted: oklch(0.269 0.02 280);
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0.03 280);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  
+
   /* Subtle borders with purple tint */
   --border: oklch(1 0 0 / 0.08);
   --input: oklch(1 0 0 / 0.12);
   --ring: oklch(0.6 0.28 300 / 0.5);
-  
+
   --chart-1: oklch(0.6 0.28 300); /* Purple */
   --chart-2: oklch(0.55 0.24 260); /* Blue */
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  
+
   --sidebar: oklch(0.18 0.02 280);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.6 0.28 300);
@@ -128,78 +115,12 @@
   body {
     @apply bg-background text-foreground;
     /* Radial gradient background from design.json - GalaxyLine style */
-    background: radial-gradient(ellipse at center, 
-      #1A1822 0%, 
-      #0C0B10 100%
-    );
+    background: radial-gradient(ellipse at center, #1a1822 0%, #0c0b10 100%);
     background-attachment: fixed;
   }
 }
 
 /* Custom animations for landing page */
-@keyframes rotate-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-@keyframes float-up {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes wave-flow {
-  0% {
-    transform: translateX(0) translateY(0);
-  }
-  50% {
-    transform: translateX(10px) translateY(-10px);
-  }
-  100% {
-    transform: translateX(0) translateY(0);
-  }
-}
-
-@keyframes slide-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -207,39 +128,6 @@
   to {
     opacity: 1;
   }
-}
-
-@keyframes slide-up-progress {
-  from {
-    height: 0%;
-  }
-  to {
-    height: 100%;
-  }
-}
-
-.animate-rotate-slow {
-  animation: rotate-slow 20s linear infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.animate-float-up {
-  animation: float-up 4s ease-in-out infinite;
-}
-
-.animate-wave-flow {
-  animation: wave-flow 6s ease-in-out infinite;
-}
-
-.animate-slide-in-up {
-  animation: slide-in-up 0.6s ease-out forwards;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.6s ease-out forwards;
 }
 
 .animate-fade-in {
@@ -281,13 +169,7 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
-  .animate-rotate-slow,
-  .animate-pulse-glow,
-  .animate-float-up,
-  .animate-wave-flow,
-  .animate-slide-in-up,
-  .animate-scale-in,
+
   .animate-fade-in {
     animation: none !important;
   }

@@ -32,10 +32,7 @@ export interface CompatibilityFormData {
   birthDate2: string;
 }
 
-export type NumerologyFormData =
-  | LifePathFormData
-  | DestinyFormData
-  | CompatibilityFormData;
+export type NumerologyFormData = LifePathFormData | DestinyFormData | CompatibilityFormData;
 
 export interface NumerologyFormProps {
   type: NumerologyFormType;
@@ -95,7 +92,7 @@ function validateNameField(value: string): string | undefined {
   // Romanian letters pattern: a-z, A-Z, and Romanian diacritics (ă, â, î, ș, ț)
   // Also allow spaces for full names
   const romanianLettersPattern = /^[a-zA-ZăâîșțĂÂÎȘȚ\s]+$/;
-  
+
   if (!romanianLettersPattern.test(value)) {
     return "Numele poate conține doar litere și spații";
   }
@@ -107,11 +104,7 @@ function validateNameField(value: string): string | undefined {
 // NumerologyForm Component
 // ============================================================================
 
-export function NumerologyForm({
-  type,
-  onSubmit,
-  isLoading = false,
-}: NumerologyFormProps) {
+export function NumerologyForm({ type, onSubmit, isLoading = false }: NumerologyFormProps) {
   // Form state
   const [birthDate, setBirthDate] = useState("");
   const [name, setName] = useState("");
@@ -245,11 +238,7 @@ export function NumerologyForm({
     if (!error) return null;
 
     return (
-      <div
-        id={id}
-        className="flex items-center gap-2 text-sm text-destructive"
-        role="alert"
-      >
+      <div id={id} className="flex items-center gap-2 text-sm text-destructive" role="alert">
         <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
         <span>{error}</span>
       </div>
@@ -270,10 +259,7 @@ export function NumerologyForm({
         type="date"
         value={birthDate}
         onChange={(e) => handleBirthDateChange(e.target.value)}
-        className={cn(
-          "h-11 text-base min-h-[44px]",
-          errors.birthDate && "border-destructive"
-        )}
+        className={cn("h-11 text-base min-h-[44px]", errors.birthDate && "border-destructive")}
         aria-invalid={!!errors.birthDate}
         aria-describedby={errors.birthDate ? "birthDate-error" : undefined}
         aria-required="true"
@@ -294,10 +280,7 @@ export function NumerologyForm({
         value={name}
         onChange={(e) => handleNameChange(e.target.value)}
         placeholder="Ex: Ion Popescu"
-        className={cn(
-          "h-11 text-base min-h-[44px]",
-          errors.name && "border-destructive"
-        )}
+        className={cn("h-11 text-base min-h-[44px]", errors.name && "border-destructive")}
         aria-invalid={!!errors.name}
         aria-describedby={errors.name ? "name-error" : undefined}
         aria-required="true"
@@ -312,7 +295,7 @@ export function NumerologyForm({
       {/* Person 1 Section */}
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-white">Prima persoană</h3>
-        
+
         <div className="space-y-2">
           <Label htmlFor="name1" className="text-white">
             Primul nume *
@@ -323,10 +306,7 @@ export function NumerologyForm({
             value={name1}
             onChange={(e) => handleName1Change(e.target.value)}
             placeholder="Ex: Maria Ionescu"
-            className={cn(
-              "h-11 text-base min-h-[44px]",
-              errors.name1 && "border-destructive"
-            )}
+            className={cn("h-11 text-base min-h-[44px]", errors.name1 && "border-destructive")}
             aria-invalid={!!errors.name1}
             aria-describedby={errors.name1 ? "name1-error" : undefined}
             aria-required="true"
@@ -344,10 +324,7 @@ export function NumerologyForm({
             type="date"
             value={birthDate1}
             onChange={(e) => handleBirthDate1Change(e.target.value)}
-            className={cn(
-              "h-11 text-base min-h-[44px]",
-              errors.birthDate1 && "border-destructive"
-            )}
+            className={cn("h-11 text-base min-h-[44px]", errors.birthDate1 && "border-destructive")}
             aria-invalid={!!errors.birthDate1}
             aria-describedby={errors.birthDate1 ? "birthDate1-error" : undefined}
             aria-required="true"
@@ -360,7 +337,7 @@ export function NumerologyForm({
       {/* Person 2 Section */}
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-white">A doua persoană</h3>
-        
+
         <div className="space-y-2">
           <Label htmlFor="name2" className="text-white">
             Al doilea nume *
@@ -371,10 +348,7 @@ export function NumerologyForm({
             value={name2}
             onChange={(e) => handleName2Change(e.target.value)}
             placeholder="Ex: Ion Popescu"
-            className={cn(
-              "h-11 text-base min-h-[44px]",
-              errors.name2 && "border-destructive"
-            )}
+            className={cn("h-11 text-base min-h-[44px]", errors.name2 && "border-destructive")}
             aria-invalid={!!errors.name2}
             aria-describedby={errors.name2 ? "name2-error" : undefined}
             aria-required="true"
@@ -392,10 +366,7 @@ export function NumerologyForm({
             type="date"
             value={birthDate2}
             onChange={(e) => handleBirthDate2Change(e.target.value)}
-            className={cn(
-              "h-11 text-base min-h-[44px]",
-              errors.birthDate2 && "border-destructive"
-            )}
+            className={cn("h-11 text-base min-h-[44px]", errors.birthDate2 && "border-destructive")}
             aria-invalid={!!errors.birthDate2}
             aria-describedby={errors.birthDate2 ? "birthDate2-error" : undefined}
             aria-required="true"
@@ -447,14 +418,12 @@ export function NumerologyForm({
             "w-full h-11 min-h-[44px] text-base font-medium",
             "bg-gradient-to-r from-[#9F2BFF] to-[#4D5FFF]",
             "hover:opacity-90 transition-opacity",
-            "shadow-[0_8px_32px_rgba(159,43,255,0.4)]"
+            "shadow-[0_8px_32px_rgba(159,43,255,0.4)]",
           )}
           disabled={isLoading}
           aria-busy={isLoading}
         >
-          {isLoading && (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
-          )}
+          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
           {getButtonText()}
         </Button>
       </form>

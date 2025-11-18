@@ -3,20 +3,24 @@
  * Run with: bun run scripts/test-compatibility.ts
  */
 
-import { calculateLifePath, calculateDestinyNumber, calculateCompatibility } from '../lib/numerology';
+import {
+  calculateLifePath,
+  calculateDestinyNumber,
+  calculateCompatibility,
+} from "../lib/numerology";
 
-console.log('🧪 Testing Compatibility Calculations\n');
-console.log('=' .repeat(60));
+console.log("🧪 Testing Compatibility Calculations\n");
+console.log("=".repeat(60));
 
 // Test Case 1: Regular numbers (no Master Numbers)
-console.log('\n📋 Test Case 1: Regular Numbers');
-console.log('-'.repeat(60));
+console.log("\n📋 Test Case 1: Regular Numbers");
+console.log("-".repeat(60));
 const person1 = {
-  name: 'Maria Ionescu',
+  name: "Maria Ionescu",
   birthDate: new Date(1990, 4, 15), // May 15, 1990
 };
 const person2 = {
-  name: 'Ion Popescu',
+  name: "Ion Popescu",
   birthDate: new Date(1988, 7, 20), // August 20, 1988
 };
 
@@ -45,14 +49,14 @@ console.log(`  Destiny Compatibility: ${destinyCompat}%`);
 console.log(`  Overall Score: ${avgScore}%`);
 
 // Test Case 2: With Master Numbers
-console.log('\n\n📋 Test Case 2: With Master Numbers');
-console.log('-'.repeat(60));
+console.log("\n\n📋 Test Case 2: With Master Numbers");
+console.log("-".repeat(60));
 const person3 = {
-  name: 'Ana Maria',
+  name: "Ana Maria",
   birthDate: new Date(1982, 10, 29), // November 29, 1982 (should give Master Number)
 };
 const person4 = {
-  name: 'Ștefan Gheorghe',
+  name: "Ștefan Gheorghe",
   birthDate: new Date(1980, 10, 2), // November 2, 1980 (should give Master Number 22)
 };
 
@@ -63,13 +67,17 @@ const destiny4 = calculateDestinyNumber(person4.name);
 
 console.log(`Person 3: ${person3.name}`);
 console.log(`  Birth Date: ${person3.birthDate.toLocaleDateString()}`);
-console.log(`  Life Path: ${lifePath3}${[11, 22, 33].includes(lifePath3) ? ' (Master Number)' : ''}`);
-console.log(`  Destiny: ${destiny3}${[11, 22, 33].includes(destiny3) ? ' (Master Number)' : ''}`);
+console.log(
+  `  Life Path: ${lifePath3}${[11, 22, 33].includes(lifePath3) ? " (Master Number)" : ""}`,
+);
+console.log(`  Destiny: ${destiny3}${[11, 22, 33].includes(destiny3) ? " (Master Number)" : ""}`);
 
 console.log(`\nPerson 4: ${person4.name}`);
 console.log(`  Birth Date: ${person4.birthDate.toLocaleDateString()}`);
-console.log(`  Life Path: ${lifePath4}${[11, 22, 33].includes(lifePath4) ? ' (Master Number)' : ''}`);
-console.log(`  Destiny: ${destiny4}${[11, 22, 33].includes(destiny4) ? ' (Master Number)' : ''}`);
+console.log(
+  `  Life Path: ${lifePath4}${[11, 22, 33].includes(lifePath4) ? " (Master Number)" : ""}`,
+);
+console.log(`  Destiny: ${destiny4}${[11, 22, 33].includes(destiny4) ? " (Master Number)" : ""}`);
 
 const lifePathCompat2 = calculateCompatibility(lifePath3, lifePath4);
 const destinyCompat2 = calculateCompatibility(destiny3, destiny4);
@@ -81,14 +89,14 @@ console.log(`  Destiny Compatibility: ${destinyCompat2}%`);
 console.log(`  Overall Score: ${avgScore2}%`);
 
 // Test Case 3: Romanian diacritics
-console.log('\n\n📋 Test Case 3: Romanian Diacritics');
-console.log('-'.repeat(60));
+console.log("\n\n📋 Test Case 3: Romanian Diacritics");
+console.log("-".repeat(60));
 const person5 = {
-  name: 'Ștefan Țurcanu',
+  name: "Ștefan Țurcanu",
   birthDate: new Date(1995, 2, 10),
 };
 const person6 = {
-  name: 'Andreea Pîrvu',
+  name: "Andreea Pîrvu",
   birthDate: new Date(1993, 8, 25),
 };
 
@@ -117,34 +125,34 @@ console.log(`  Destiny Compatibility: ${destinyCompat3}%`);
 console.log(`  Overall Score: ${avgScore3}%`);
 
 // Test all compatibility levels
-console.log('\n\n📋 Test Case 4: All Compatibility Levels');
-console.log('-'.repeat(60));
+console.log("\n\n📋 Test Case 4: All Compatibility Levels");
+console.log("-".repeat(60));
 
 const testCases = [
-  { score: 100, expected: 'Excellent (76-100)' },
-  { score: 85, expected: 'Excellent (76-100)' },
-  { score: 76, expected: 'Excellent (76-100)' },
-  { score: 75, expected: 'Good (51-75)' },
-  { score: 60, expected: 'Good (51-75)' },
-  { score: 51, expected: 'Good (51-75)' },
-  { score: 50, expected: 'Medium (26-50)' },
-  { score: 35, expected: 'Medium (26-50)' },
-  { score: 26, expected: 'Medium (26-50)' },
-  { score: 25, expected: 'Low (0-25)' },
-  { score: 10, expected: 'Low (0-25)' },
-  { score: 0, expected: 'Low (0-25)' },
+  { score: 100, expected: "Excellent (76-100)" },
+  { score: 85, expected: "Excellent (76-100)" },
+  { score: 76, expected: "Excellent (76-100)" },
+  { score: 75, expected: "Good (51-75)" },
+  { score: 60, expected: "Good (51-75)" },
+  { score: 51, expected: "Good (51-75)" },
+  { score: 50, expected: "Medium (26-50)" },
+  { score: 35, expected: "Medium (26-50)" },
+  { score: 26, expected: "Medium (26-50)" },
+  { score: 25, expected: "Low (0-25)" },
+  { score: 10, expected: "Low (0-25)" },
+  { score: 0, expected: "Low (0-25)" },
 ];
 
 testCases.forEach(({ score, expected }) => {
   let level: string;
-  if (score >= 76) level = 'Excellent (76-100)';
-  else if (score >= 51) level = 'Good (51-75)';
-  else if (score >= 26) level = 'Medium (26-50)';
-  else level = 'Low (0-25)';
-  
-  const status = level === expected ? '✅' : '❌';
+  if (score >= 76) level = "Excellent (76-100)";
+  else if (score >= 51) level = "Good (51-75)";
+  else if (score >= 26) level = "Medium (26-50)";
+  else level = "Low (0-25)";
+
+  const status = level === expected ? "✅" : "❌";
   console.log(`${status} Score ${score}: ${level} (expected: ${expected})`);
 });
 
-console.log('\n' + '='.repeat(60));
-console.log('✅ All compatibility calculation tests completed!\n');
+console.log("\n" + "=".repeat(60));
+console.log("✅ All compatibility calculation tests completed!\n");

@@ -27,9 +27,7 @@ export function ResultCard({
         <div className="flex items-start justify-between">
           <div className="space-y-1">
             <CardTitle className="text-2xl">{title}</CardTitle>
-            {description && (
-              <CardDescription>{description}</CardDescription>
-            )}
+            {description && <CardDescription>{description}</CardDescription>}
           </div>
           {badge && (
             <Badge variant="secondary" className="ml-2">
@@ -49,7 +47,7 @@ export function ResultCard({
             </div>
           </div>
         )}
-        
+
         <div className="prose prose-sm dark:prose-invert max-w-none">
           <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
             {interpretation}

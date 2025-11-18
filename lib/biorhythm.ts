@@ -5,13 +5,12 @@
  */
 
 import {
-  biorhythmConfig,
   PHYSICAL_CYCLE_DAYS,
   EMOTIONAL_CYCLE_DAYS,
   INTELLECTUAL_CYCLE_DAYS,
   CRITICAL_THRESHOLD,
-} from '@/config/biorhythm';
-import { ValidationError, validateDate } from '@/lib/utils';
+} from "@/config/biorhythm";
+import { ValidationError, validateDate } from "@/lib/utils";
 
 // ============================================================================
 // Type Definitions
@@ -31,7 +30,7 @@ export interface BiorhythmCycles {
  */
 export interface CriticalDay {
   date: Date;
-  cycles: ('physical' | 'emotional' | 'intellectual')[];
+  cycles: ("physical" | "emotional" | "intellectual")[];
 }
 
 // ============================================================================
@@ -41,31 +40,25 @@ export interface CriticalDay {
 /**
  * Calculates a biorhythm cycle value for a given date
  * Uses sine wave formula: sin(2π × daysLived / cycleDays)
- * 
+ *
  * @param birthDate - The person's birth date
  * @param targetDate - The date to calculate the cycle for
  * @param cycleDays - The length of the cycle in days (23, 28, or 33)
  * @returns A value between -1 (low) and 1 (high) representing the cycle state
  * @throws ValidationError if dates are invalid or targetDate is before birthDate
  */
-export function calculateCycle(
-  birthDate: Date,
-  targetDate: Date,
-  cycleDays: number
-): number {
+export function calculateCycle(birthDate: Date, targetDate: Date, cycleDays: number): number {
   // Validate inputs
-  validateDate(birthDate, 'birthDate');
-  validateDate(targetDate, 'targetDate');
+  validateDate(birthDate, "birthDate");
+  validateDate(targetDate, "targetDate");
 
   if (targetDate < birthDate) {
-    throw new ValidationError('targetDate cannot be before birthDate');
+    throw new ValidationError("targetDate cannot be before birthDate");
   }
 
   // Calculate days lived since birth
   const millisecondsPerDay = 1000 * 60 * 60 * 24;
-  const daysLived = Math.floor(
-    (targetDate.getTime() - birthDate.getTime()) / millisecondsPerDay
-  );
+  const daysLived = Math.floor((targetDate.getTime() - birthDate.getTime()) / millisecondsPerDay);
 
   // Apply sine wave formula: sin(2π × daysLived / cycleDays)
   const cycleValue = Math.sin((2 * Math.PI * daysLived) / cycleDays);
@@ -80,7 +73,7 @@ export function calculateCycle(
 /**
  * Calculates the physical biorhythm cycle (23-day period)
  * Represents physical energy, strength, and stamina
- * 
+ *
  * @param birthDate - The person's birth date
  * @param targetDate - The date to calculate the cycle for
  * @returns A value between -1 (low physical energy) and 1 (high physical energy)
@@ -92,7 +85,7 @@ export function getPhysicalCycle(birthDate: Date, targetDate: Date): number {
 /**
  * Calculates the emotional biorhythm cycle (28-day period)
  * Represents mood, emotional stability, and sensitivity
- * 
+ *
  * @param birthDate - The person's birth date
  * @param targetDate - The date to calculate the cycle for
  * @returns A value between -1 (low emotional state) and 1 (high emotional state)
@@ -104,7 +97,7 @@ export function getEmotionalCycle(birthDate: Date, targetDate: Date): number {
 /**
  * Calculates the intellectual biorhythm cycle (33-day period)
  * Represents mental clarity, analytical ability, and memory
- * 
+ *
  * @param birthDate - The person's birth date
  * @param targetDate - The date to calculate the cycle for
  * @returns A value between -1 (low mental clarity) and 1 (high mental clarity)
@@ -120,23 +113,19 @@ export function getIntellectualCycle(birthDate: Date, targetDate: Date): number 
 /**
  * Identifies critical days when biorhythm cycles cross zero
  * A critical day occurs when a cycle value is between -CRITICAL_THRESHOLD and +CRITICAL_THRESHOLD
- * 
+ *
  * @param birthDate - The person's birth date
  * @param startDate - The start date of the range to check
  * @param days - Number of days to check ahead from startDate
  * @returns Array of CriticalDay objects with dates and affected cycles
  */
-export function getCriticalDays(
-  birthDate: Date,
-  startDate: Date,
-  days: number
-): CriticalDay[] {
+export function getCriticalDays(birthDate: Date, startDate: Date, days: number): CriticalDay[] {
   // Validate inputs
-  validateDate(birthDate, 'birthDate');
-  validateDate(startDate, 'startDate');
+  validateDate(birthDate, "birthDate");
+  validateDate(startDate, "startDate");
 
   if (days < 0) {
-    throw new ValidationError('days must be a positive number');
+    throw new ValidationError("days must be a positive number");
   }
 
   const criticalDays: CriticalDay[] = [];
@@ -145,7 +134,7 @@ export function getCriticalDays(
   // Iterate through each day in the range
   for (let i = 0; i < days; i++) {
     const currentDate = new Date(startDate.getTime() + i * millisecondsPerDay);
-    const affectedCycles: ('physical' | 'emotional' | 'intellectual')[] = [];
+    const affectedCycles: ("physical" | "emotional" | "intellectual")[] = [];
 
     // Check each cycle for zero-crossing
     const physical = getPhysicalCycle(birthDate, currentDate);
@@ -153,13 +142,13 @@ export function getCriticalDays(
     const intellectual = getIntellectualCycle(birthDate, currentDate);
 
     if (Math.abs(physical) <= CRITICAL_THRESHOLD) {
-      affectedCycles.push('physical');
+      affectedCycles.push("physical");
     }
     if (Math.abs(emotional) <= CRITICAL_THRESHOLD) {
-      affectedCycles.push('emotional');
+      affectedCycles.push("emotional");
     }
     if (Math.abs(intellectual) <= CRITICAL_THRESHOLD) {
-      affectedCycles.push('intellectual');
+      affectedCycles.push("intellectual");
     }
 
     // If any cycles are critical, add this day to the results
@@ -181,7 +170,7 @@ export function getCriticalDays(
 /**
  * Generates a Romanian-language summary of biorhythm cycles
  * Analyzes cycle values and provides guidance based on their states
- * 
+ *
  * @param physical - Physical cycle value (-1 to 1)
  * @param emotional - Emotional cycle value (-1 to 1)
  * @param intellectual - Intellectual cycle value (-1 to 1)
@@ -190,7 +179,7 @@ export function getCriticalDays(
 export function getBiorhythmSummary(
   physical: number,
   emotional: number,
-  intellectual: number
+  intellectual: number,
 ): string {
   // Categorize each cycle as high (>0.3), low (<-0.3), or neutral
   const isPhysicalHigh = physical > 0.3;
@@ -210,47 +199,63 @@ export function getBiorhythmSummary(
 
   // All cycles high - excellent day
   if (isPhysicalHigh && isEmotionalHigh && isIntellectualHigh) {
-    return 'Zi excelentă pentru activități complexe! Toate ciclurile tale sunt în fază pozitivă. Este momentul ideal pentru proiecte importante, decizii majore și activități care necesită energie fizică, claritate mentală și stabilitate emotională.';
+    return "Zi excelentă pentru activități complexe! Toate ciclurile tale sunt în fază pozitivă. Este momentul ideal pentru proiecte importante, decizii majore și activități care necesită energie fizică, claritate mentală și stabilitate emotională.";
   }
 
   // All cycles low - rest day
   if (isPhysicalLow && isEmotionalLow && isIntellectualLow) {
-    return 'Zi de odihnă și recuperare. Toate ciclurile tale sunt în fază negativă. Evită deciziile importante, efortul fizic intens și sarcinile mentale complexe. Concentrează-te pe relaxare, meditație și activități simple.';
+    return "Zi de odihnă și recuperare. Toate ciclurile tale sunt în fază negativă. Evită deciziile importante, efortul fizic intens și sarcinile mentale complexe. Concentrează-te pe relaxare, meditație și activități simple.";
   }
 
   // Physical cycle guidance
   if (isPhysicalHigh) {
-    summaryParts.push('Energia fizică este ridicată - zi bună pentru sport, exerciții și activități fizice');
+    summaryParts.push(
+      "Energia fizică este ridicată - zi bună pentru sport, exerciții și activități fizice",
+    );
   } else if (isPhysicalLow) {
-    summaryParts.push('Energia fizică este scăzută - evită efortul fizic intens și odihnește-te mai mult');
+    summaryParts.push(
+      "Energia fizică este scăzută - evită efortul fizic intens și odihnește-te mai mult",
+    );
   } else if (isPhysicalCritical) {
-    summaryParts.push('Ciclul fizic este în fază critică - fii atent la sănătatea ta și evită riscurile fizice');
+    summaryParts.push(
+      "Ciclul fizic este în fază critică - fii atent la sănătatea ta și evită riscurile fizice",
+    );
   }
 
   // Emotional cycle guidance
   if (isEmotionalHigh) {
-    summaryParts.push('starea emoțională este pozitivă - moment bun pentru relații și comunicare');
+    summaryParts.push("starea emoțională este pozitivă - moment bun pentru relații și comunicare");
   } else if (isEmotionalLow) {
-    summaryParts.push('starea emoțională este fragilă - evită conflictele și deciziile emoționale importante');
+    summaryParts.push(
+      "starea emoțională este fragilă - evită conflictele și deciziile emoționale importante",
+    );
   } else if (isEmotionalCritical) {
-    summaryParts.push('ciclul emoțional este în fază critică - fii prudent în relațiile interpersonale');
+    summaryParts.push(
+      "ciclul emoțional este în fază critică - fii prudent în relațiile interpersonale",
+    );
   }
 
   // Intellectual cycle guidance
   if (isIntellectualHigh) {
-    summaryParts.push('claritatea mentală este excelentă - zi ideală pentru studiu, analiză și rezolvarea problemelor');
+    summaryParts.push(
+      "claritatea mentală este excelentă - zi ideală pentru studiu, analiză și rezolvarea problemelor",
+    );
   } else if (isIntellectualLow) {
-    summaryParts.push('claritatea mentală este redusă - amână deciziile complexe și sarcinile analitice');
+    summaryParts.push(
+      "claritatea mentală este redusă - amână deciziile complexe și sarcinile analitice",
+    );
   } else if (isIntellectualCritical) {
-    summaryParts.push('ciclul intelectual este în fază critică - verifică de două ori informațiile importante');
+    summaryParts.push(
+      "ciclul intelectual este în fază critică - verifică de două ori informațiile importante",
+    );
   }
 
   // If no specific guidance was added, provide neutral summary
   if (summaryParts.length === 0) {
-    return 'Zi echilibrată cu cicluri în fază neutră. Poți desfășura activități normale, dar fără a forța limitele. Ascultă-ți corpul și emoțiile.';
+    return "Zi echilibrată cu cicluri în fază neutră. Poți desfășura activități normale, dar fără a forța limitele. Ascultă-ți corpul și emoțiile.";
   }
 
   // Combine parts with proper capitalization
-  const summary = summaryParts.join(', ');
-  return summary.charAt(0).toUpperCase() + summary.slice(1) + '.';
+  const summary = summaryParts.join(", ");
+  return summary.charAt(0).toUpperCase() + summary.slice(1) + ".";
 }

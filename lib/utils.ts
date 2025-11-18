@@ -1,8 +1,8 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 // ============================================================================
@@ -15,20 +15,38 @@ export function cn(...inputs: ClassValue[]) {
 export class ValidationError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'ValidationError';
+    this.name = "ValidationError";
   }
 }
 
 // Romanian month names for date formatting
 export const ROMANIAN_MONTHS = [
-  'ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie',
-  'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'
+  "ianuarie",
+  "februarie",
+  "martie",
+  "aprilie",
+  "mai",
+  "iunie",
+  "iulie",
+  "august",
+  "septembrie",
+  "octombrie",
+  "noiembrie",
+  "decembrie",
 ];
 
 // Romanian diacritics mapping for text normalization
 export const DIACRITIC_MAP: Record<string, string> = {
-  'ă': 'a', 'â': 'a', 'î': 'i', 'ș': 's', 'ț': 't',
-  'Ă': 'A', 'Â': 'A', 'Î': 'I', 'Ș': 'S', 'Ț': 'T'
+  ă: "a",
+  â: "a",
+  î: "i",
+  ș: "s",
+  ț: "t",
+  Ă: "A",
+  Â: "A",
+  Î: "I",
+  Ș: "S",
+  Ț: "T",
 };
 
 /**
@@ -40,19 +58,8 @@ export function formatRomanianDate(date: Date): string {
   const day = date.getDate();
   const month = ROMANIAN_MONTHS[date.getMonth()];
   const year = date.getFullYear();
-  
-  return `${day} ${month} ${year}`;
-}
 
-/**
- * Normalizes Romanian text by converting to lowercase and handling diacritics
- * @param text - The text to normalize
- * @returns Normalized text (lowercase, trimmed, diacritics preserved)
- */
-export function normalizeRomanianText(text: string): string {
-  return text
-    .toLowerCase()
-    .trim();
+  return `${day} ${month} ${year}`;
 }
 
 // ============================================================================
@@ -79,9 +86,7 @@ export function validateDate(date: Date, fieldName: string): void {
 export function validateNumerologyNumber(num: number): void {
   const validNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33];
   if (!validNumbers.includes(num)) {
-    throw new ValidationError(
-      'Numerology number must be 1-9 or a Master Number (11, 22, 33)'
-    );
+    throw new ValidationError("Numerology number must be 1-9 or a Master Number (11, 22, 33)");
   }
 }
 
@@ -92,6 +97,6 @@ export function validateNumerologyNumber(num: number): void {
  */
 export function validateName(name: string): void {
   if (!name || name.trim().length === 0) {
-    throw new ValidationError('Name cannot be empty');
+    throw new ValidationError("Name cannot be empty");
   }
 }

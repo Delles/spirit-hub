@@ -260,4 +260,3 @@ public/
 - Dark mode default with a "mystical" aesthetic:
   - Deep purples/blues, gold highlights.
 - Use shadcn/ui components as base building blocks, styled via Tailwind.
-

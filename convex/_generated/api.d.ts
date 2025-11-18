@@ -9,6 +9,8 @@
  */
 
 import type * as biorhythm from "../biorhythm.js";
+import type * as crons from "../crons.js";
+import type * as dreams from "../dreams.js";
 import type * as numerology from "../numerology.js";
 
 import type {
@@ -19,6 +21,8 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   biorhythm: typeof biorhythm;
+  crons: typeof crons;
+  dreams: typeof dreams;
   numerology: typeof numerology;
 }>;
 

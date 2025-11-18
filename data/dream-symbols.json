@@ -1,0 +1,593 @@
+{
+  "symbols": [
+    {
+      "name": "Șarpe",
+      "category": "animale",
+      "shortMeaning": "Transformare și reînnoire spirituală",
+      "fullInterpretation": "Șarpele în vis simbolizează transformare profundă și reînnoire spirituală. Poate indica schimbări majore în viața ta sau nevoia de a lăsa în urmă vechile obiceiuri. În tradiția românească, șarpele este adesea asociat cu înțelepciune și vindecare, dar și cu pericole ascunse. Acordă atenție contextului visului pentru a înțelege mesajul complet."
+    },
+    {
+      "name": "Pisică",
+      "category": "animale",
+      "shortMeaning": "Independență și intuiție feminină",
+      "fullInterpretation": "Pisica în vis reprezintă independența, misterul și intuiția feminină. Poate simboliza nevoia de a-ți asculta instinctele sau de a-ți păstra autonomia. În folclorul românesc, pisica neagră poate aduce noroc sau ghinionul, în funcție de comportamentul ei în vis. O pisică prietenoasă indică relații armonioase, în timp ce una agresivă poate semnala conflicte ascunse."
+    },
+    {
+      "name": "Câine",
+      "category": "animale",
+      "shortMeaning": "Loialitate și protecție",
+      "fullInterpretation": "Câinele în vis simbolizează loialitatea, prietenia și protecția. Reprezintă relațiile de încredere din viața ta și devotamentul față de cei dragi. Un câine prietenos indică sprijin și siguranță, în timp ce un câine care latră sau mușcă poate semnala trădare sau conflicte cu persoane apropiate. În tradiția românească, câinele este văzut ca un paznic spiritual."
+    },
+    {
+      "name": "Cal",
+      "category": "animale",
+      "shortMeaning": "Putere și libertate",
+      "fullInterpretation": "Calul în vis reprezintă puterea personală, libertatea și energia vitală. Un cal alb simbolizează puritate și succes spiritual, în timp ce un cal negru poate indica forțe necunoscute sau schimbări dramatice. Călăritul unui cal sugerează controlul asupra propriei vieți, iar un cal sălbatic indică dorința de libertate și aventură."
+    },
+    {
+      "name": "Pasăre",
+      "category": "animale",
+      "shortMeaning": "Libertate și aspirații spirituale",
+      "fullInterpretation": "Pasărea în vis simbolizează libertatea, aspirațiile spirituale și transcendența. Zborul pasărilor reprezintă eliberarea de griji și atingerea unor înălțimi noi în viață. În folclorul românesc, diferite păsări au semnificații specifice: porumbelul aduce pace, corbul poate prevedea schimbări, iar cucul anunță vești importante."
+    },
+
+    {
+      "name": "Lup",
+      "category": "animale",
+      "shortMeaning": "Instincte puternice și chemarea libertății",
+      "fullInterpretation": "Lupul în vis reprezintă instincte puternice, neîmblânzite și dorința de libertate. El poate simboliza atât un protector interior, cât și un aspect sălbatic al personalității tale. În tradițiile populare, lupul este văzut ca un ghid între lumi, capabil să simtă pericolele invizibile. Visele cu lupi te invită să-ți asculți intuiția și să ai curajul de a merge pe calea ta, chiar dacă este diferită de a celorlalți."
+    },
+    {
+      "name": "Urs",
+      "category": "animale",
+      "shortMeaning": "Forță interioară și protecție",
+      "fullInterpretation": "Ursul în vis semnifică forță interioară, rezistență și protecție. Poate reprezenta o energie puternică ce te apără, dar care poate deveni greu de controlat dacă este provocată. În imaginarul românesc, ursul este legat de forțele naturii și de spiritele pădurii. Visul îți poate aminti să-ți respecți limitele și să-ți folosești puterea cu înțelepciune, nu din impuls."
+    },
+    {
+      "name": "Vacă",
+      "category": "animale",
+      "shortMeaning": "Abundență și hrănire sufletească",
+      "fullInterpretation": "Vaca în vis indică abundență, grijă și hrănire atât la nivel fizic, cât și emoțional. Ea poate simboliza energia maternă care susține și hrănește întreaga familie. În cultura rurală românească, vaca este un animal de mare preț, aducător de lapte și siguranță. Visul cu vaci poate sugera recunoștință pentru resursele pe care le ai și nevoia de a le folosi cu blândețe."
+    },
+    {
+      "name": "Oaie",
+      "category": "animale",
+      "shortMeaning": "Supunere, blândețe și căutarea siguranței",
+      "fullInterpretation": "Oaia în vis simbolizează blândețe, conformism și dorința de a aparține unui grup. Poate arăta o perioadă în care cauți siguranță și protecție, urmând pașii altora. În tradițiile românești, turma de oi este legată de liniște și viață pașnică la țară. Visul te poate invita să găsești echilibrul între a urma pe ceilalți și a-ți păstra propria individualitate."
+    },
+    {
+      "name": "Pește",
+      "category": "animale",
+      "shortMeaning": "Intuiție și profunzimi emoționale",
+      "fullInterpretation": "Peștele în vis reprezintă lumea emoțiilor și a subconștientului, fiind legat de apă și de adâncurile sufletului. Poate simboliza mesaje subtile pe care le primești prin vis sau intuiție. În credința creștină, peștele este și un simbol al credinței și al renașterii. Visele cu pești îți sugerează să fii atent la semnele interioare și la trăirile pe care le ignori de obicei."
+    },
+    {
+      "name": "Vulpă",
+      "category": "animale",
+      "shortMeaning": "Inteligență, viclenie și prudență",
+      "fullInterpretation": "Vulpea în vis indică inteligență, adaptabilitate, dar și posibile situații în care cineva nu este pe deplin sincer cu tine. În poveștile românești, vulpea este adesea vicleană, dar și foarte ingenioasă. Visul te poate avertiza să fii atent la promisiuni, la detalii și la oamenii care par prea șarmanți. Totodată îți amintește că poți folosi mintea ageră pentru a ieși din situații complicate."
+    },
+    {
+      "name": "Leu",
+      "category": "animale",
+      "shortMeaning": "Curaj, mândrie și autoritate",
+      "fullInterpretation": "Leul în vis simbolizează curajul, demnitatea și puterea de conducere. Poate indica faptul că ești chemat să îți asumi un rol mai vizibil sau o responsabilitate mai mare. Dacă leul este calm, arată stăpânire de sine și încredere; dacă este agresiv, poate reflecta conflicte de orgoliu. Visul te îndeamnă să îți folosești autoritatea interioară cu noblețe și respect."
+    },
+    {
+      "name": "Șoarece",
+      "category": "animale",
+      "shortMeaning": "Griji mărunte și consum energetic subtil",
+      "fullInterpretation": "Șoarecele în vis sugerează griji mărunte, dar persistente, care îți consumă energia în timp. Poate indica frici ascunse sau situații pe care le amâni, deși știi că ar trebui rezolvate. În gospodăria tradițională, șoarecele strică proviziile dacă nu este observat. Visul te invită să privești atent la detalii și să închizi acele capitole mici care îți rod liniștea."
+    },
+    {
+      "name": "Păianjen",
+      "category": "animale",
+      "shortMeaning": "Țeserea destinului și răbdare",
+      "fullInterpretation": "Păianjenul în vis este legat de răbdare, perseverență și de modul în care îți construiești viața pas cu pas. Pânza lui simbolizează relațiile și situațiile interconectate în care te afli. În unele credințe populare, păianjenul poate aduce vești sau semne subtile. Visul te încurajează să fii atent la ce fel de legături creezi și să nu te lași prins în propriile frici."
+    },
+    {
+      "name": "Porumbel",
+      "category": "animale",
+      "shortMeaning": "Pace, puritate și vești bune",
+      "fullInterpretation": "Porumbelul în vis este un simbol al păcii sufletești, al împăcării și al mesajelor binevoitoare. Poate anunța o perioadă de liniștire după un conflict sau o veste bună care îți aduce speranță. În tradiția creștină, porumbelul este legat de harul divin și de protecția spirituală. Visul te invită să cauți armonia în relațiile tale și să primești cu deschidere binele care vine spre tine."
+    },
+    {
+      "name": "Corb",
+      "category": "animale",
+      "shortMeaning": "Transformare, mister și mesaje din umbră",
+      "fullInterpretation": "Corbul în vis este un simbol al misterului, al transformării profunde și al mesajelor din zonele mai puțin conștiente ale vieții tale. În folclorul românesc, corbul este uneori văzut ca vestitor al schimbării sau al unei vești importante. Deși poate părea un simbol înfricoșător, el te invită la introspecție și la asumarea adevărului. Visul sugerează să nu te temi de propriile umbre, ci să le înțelegi și să le vindeci."
+    },
+    {
+      "name": "Delfin",
+      "category": "animale",
+      "shortMeaning": "Joc, empatie și legătură spirituală",
+      "fullInterpretation": "Delfinul în vis reprezintă bucuria de a trăi, empatia și conexiunea profundă cu ceilalți. Este un simbol al inteligenței emoționale și al comunicării suflet la suflet. Imaginea delfinului înoată adesea între lumi, la granița dintre adânc și suprafață. Visul te încurajează să-ți exprimi emoțiile cu sinceritate și să te lași susținut de relațiile care îți fac bine."
+    },
+    {
+      "name": "Cocoș",
+      "category": "animale",
+      "shortMeaning": "Trezire spirituală și anunțarea unui nou început",
+      "fullInterpretation": "Cocoșul în vis anunță trezirea, un nou început sau încheierea unei perioade întunecate. Cântecul lui marchează răsăritul și alungă simbolic întunericul nopții. În cultura satului românesc, cocoșul este legat de protecția gospodăriei și de alungarea energiilor negative. Visul îți sugerează că este timpul să te ridici, să lași în urmă tristețea și să privești cu încredere spre ziua care vine."
+    },
+    {
+      "name": "Bou",
+      "category": "animale",
+      "shortMeaning": "Răbdare, muncă și stabilitate",
+      "fullInterpretation": "Boul în vis simbolizează răbdare, trudă și stabilitate în fața provocărilor. El reprezintă puterea de a duce la capăt sarcini grele, fără a căuta neapărat recunoaștere. În viața tradițională, boul era un ajutor de nădejde la câmp, legat de rod și belșug. Visul te încurajează să îți prețuiești efortul și să construiești temeinic, pas cu pas."
+    },
+    {
+      "name": "Liliac",
+      "category": "animale",
+      "shortMeaning": "Frică de necunoscut și sensibilitate la energii",
+      "fullInterpretation": "Liliacul în vis poate trezi teamă, dar el simbolizează de fapt sensibilitatea la energii subtile și la lumea nevăzută. Fiind activ mai ales noaptea, liliacul este legat de intuiție și de capacitatea de a percepe dincolo de aparențe. În unele credințe populare, apariția lui anunță schimbări neobișnuite. Visul te invită să privești cu calm ceea ce îți provoacă frică și să transformi teama în înțelegere."
+    },
+    {
+      "name": "Apă",
+      "category": "natură",
+      "shortMeaning": "Emoții, curățare și fluxul vieții",
+      "fullInterpretation": "Apa în vis este simbolul principal al emoțiilor și al vieții interioare. Apă limpede indică claritate și vindecare, în timp ce apa tulbure poate semnala confuzie sau tulburare sufletească. În tradițiile populare, apa este folosită pentru purificare și dezlegare. Visul cu apă te cheamă să-ți recunoști trăirile și să permiți emoțiilor să circule, nu să rămână blocate."
+    },
+    {
+      "name": "Foc",
+      "category": "natură",
+      "shortMeaning": "Purificare, pasiune și transformare",
+      "fullInterpretation": "Focul în vis simbolizează o energie intensă, atât creatoare, cât și distrugătoare. Poate reprezenta pasiune, inspirație sau dorința de schimbare, dar și furie sau conflict interior. În ritualurile vechi, focul arde ceea ce este vechi pentru a face loc noului. Visul îți sugerează să observi ce anume trebuie transformat în viața ta și cum poți folosi această energie pentru a crește, nu pentru a răni."
+    },
+    {
+      "name": "Pământ",
+      "category": "natură",
+      "shortMeaning": "Rădăcini, stabilitate și concretizare",
+      "fullInterpretation": "Pământul în vis indică nevoia de ancorare, de stabilitate și de conectare cu realitatea concretă. Poate simboliza familia, tradițiile și locul din care vii. A lucra pământul în vis sugerează o muncă de durată, cu rezultate sigure în timp. Visul te invită să-ți onorezi rădăcinile și să construiești pe baze solide, nu pe grabă sau iluzie."
+    },
+    {
+      "name": "Vânt",
+      "category": "natură",
+      "shortMeaning": "Schimbare, mesaje invizibile și libertate",
+      "fullInterpretation": "Vântul în vis este legat de gânduri, idei și mesaje invizibile care trec prin viața ta. Un vânt blând poate reprezenta inspirație și ușurință, în timp ce furtuna indică neliniște sau schimbare bruscă. În credințele populare, vântul aduce uneori șoapte ale spiritelor sau semne de la cei plecați. Visul te încurajează să fii atent la direcția în care te împinge viața și să accepți schimbarea cu cât mai multă flexibilitate."
+    },
+    {
+      "name": "Ploaie",
+      "category": "natură",
+      "shortMeaning": "Curățare emoțională și binecuvântare",
+      "fullInterpretation": "Ploaia în vis simbolizează curățare, lacrimi și binecuvântare de sus. O ploaie liniștită poate aduce eliberare și vindecare, în timp ce o furtună puternică arată trăiri intense. În lumea satului, ploaia este așteptată ca un dar pentru ogoare. Visul îți sugerează că, deși unele momente par grele, ele pregătesc terenul pentru o nouă rodire în viața ta."
+    },
+    {
+      "name": "Zăpadă",
+      "category": "natură",
+      "shortMeaning": "Liniște, puritate și perioadă de așteptare",
+      "fullInterpretation": "Zăpada în vis aduce cu ea sentimentul de liniște, încetinire și puritate. Ea poate indica o perioadă în care lucrurile par înghețate sau amânate, dar în adânc se pregătește un nou început. În tradiția românească, iarna este timpul poveștilor, al adunării lângă foc. Visul îți amintește să ai răbdare și să folosești această etapă pentru reflecție și regăsire."
+    },
+    {
+      "name": "Munte",
+      "category": "natură",
+      "shortMeaning": "Provocare, elevație și apropiere de sacru",
+      "fullInterpretation": "Muntele în vis simbolizează o provocare importantă, dar și ascensiunea spre o perspectivă mai înaltă. Urcarea pe munte arată efortul de a depăși limitele și de a te apropia de esența ta spirituală. În multe tradiții, munții sunt locuri sacre, unde cerul pare mai aproape. Visul te încurajează să nu renunți la drumul tău, chiar dacă pare abrupt, pentru că la vârf te așteaptă claritate."
+    },
+    {
+      "name": "Pădure",
+      "category": "natură",
+      "shortMeaning": "Inconștient, mister și inițiere",
+      "fullInterpretation": "Pădurea în vis reprezintă lumea interioară, plină de mistere și de resurse ascunse. Rătăcirea prin pădure poate arăta o perioadă de căutare de sine sau de confuzie. În basmele românești, eroul trece prin pădure pentru a se transforma și a se maturiza. Visul te invită să nu te temi de drumul prin necunoscut, pentru că acolo îți poți descoperi adevărata putere."
+    },
+    {
+      "name": "Câmp",
+      "category": "natură",
+      "shortMeaning": "Deschidere, rodire și libertate",
+      "fullInterpretation": "Câmpul în vis simbolizează deschidere, posibilități și rodirea eforturilor tale. Un câmp verde arată speranță și începuturi promițătoare, iar unul secerat indică recolta muncii depuse. În tradiția agrară, câmpul este locul unde omul colaborează cu natura. Visul îți sugerează să observi cât de pregătit ești să culegi ceea ce ai semănat în viața ta."
+    },
+    {
+      "name": "Mare",
+      "category": "natură",
+      "shortMeaning": "Inconștient colectiv și vastitate emoțională",
+      "fullInterpretation": "Marea în vis reprezintă emoțiile profunde și partea din tine conectată la întreaga umanitate. O mare liniștită arată pace interioară, în timp ce valurile puternice indică trăiri intense și schimbătoare. Privirea spre orizontul mării evocă dorul de ceva mai mare decât tine. Visul te cheamă să accepți că nu poți controla totul și să ai încredere în ritmurile vieții."
+    },
+    {
+      "name": "Râu",
+      "category": "natură",
+      "shortMeaning": "Curgere, destin și adaptare",
+      "fullInterpretation": "Râul în vis simbolizează curgerea vieții, drumul destinului și modul în care te adaptezi la schimbări. Un râu limpede și liniștit indică acceptare și echilibru, în timp ce un râu învolburat arată neliniște. În folclor, trecerea unui râu poate avea sens de inițiere sau de trecere într-o nouă etapă. Visul îți amintește să mergi odată cu apa, fără să te încăpățânezi să controlezi fiecare detaliu."
+    },
+    {
+      "name": "Lac",
+      "category": "natură",
+      "shortMeaning": "Reflecție și emoții păstrate la suprafață",
+      "fullInterpretation": "Lacul în vis indică un spațiu interior de liniște și reflecție. Spre deosebire de râu, lacul nu curge, ceea ce poate însemna emoții păstrate sau situații neexprimate. Un lac limpede îți reflectă starea sufletească reală, în timp ce unul tulbure arată confuzie. Visul te încurajează să privești în oglinda propriei inimi și să vezi ce ai nevoie să clarifici."
+    },
+    {
+      "name": "Soare",
+      "category": "natură",
+      "shortMeaning": "Viață, claritate și binecuvântare",
+      "fullInterpretation": "Soarele în vis este un simbol al vieții, al forței creatoare și al clarității spirituale. Prezența lui aduce lumină peste situațiile confuze și încălzește zonele reci ale sufletului. În cultura tradițională, soarele este adesea venerat ca un dar divin. Visul cu soare strălucitor îți sugerează că ești susținut și că poți privi cu încredere spre viitor."
+    },
+    {
+      "name": "Lună",
+      "category": "natură",
+      "shortMeaning": "Intuiție, feminitate și cicluri interioare",
+      "fullInterpretation": "Luna în vis este legată de intuiție, feminitate și ritmurile interioare care nu se văd la suprafață. Faza lunii din vis poate indica începuturi, culminări sau încheieri de etape. În credințele populare, luna influențează visele, somnul și stările omului. Visul te invită să acorzi atenție mesajelor subtile și să respecți propriile cicluri de retragere și de expansiune."
+    },
+    {
+      "name": "Stea",
+      "category": "natură",
+      "shortMeaning": "Speranță, călăuzire și destin",
+      "fullInterpretation": "Stelele în vis simbolizează speranța, călăuzirea de sus și legătura cu destinul tău mai înalt. O stea care strălucește puternic poate reprezenta un vis sau un ideal către care te îndrepți. Cerul plin de stele poate oferi sentimentul de protecție și apartenență la ceva mult mai mare. Visul îți amintește să nu pierzi din vedere lumina ta interioară, chiar și în perioadele mai întunecate."
+    },
+    {
+      "name": "Curcubeu",
+      "category": "natură",
+      "shortMeaning": "Împăcare, promisiune și armonie",
+      "fullInterpretation": "Curcubeul în vis este un semn de împăcare, speranță și armonizare după o perioadă de tensiune. El apare între ploaie și soare, unind simbolic cerul și pământul. În mentalitatea populară, curcubeul poate fi văzut ca o punte între lumile văzute și nevăzute. Visul te încurajează să crezi că după greutăți poate veni o etapă de liniște și frumusețe."
+    },
+    {
+      "name": "Nor",
+      "category": "natură",
+      "shortMeaning": "Gânduri, nelămuriri și trecere",
+      "fullInterpretation": "Norii în vis reflectă starea mentală și emoțională de moment. Nori albi și pufoși indică ușurință și visare, în timp ce norii grei și întunecați semnalează griji și neliniște. Totuși, norii sunt trecători, la fel ca şi gândurile. Visul îți amintește că și perioadele tulburi vor trece, iar claritatea se va întoarce."
+    },
+    {
+      "name": "Floare",
+      "category": "natură",
+      "shortMeaning": "Frumusețe, fragilitate și deschidere a inimii",
+      "fullInterpretation": "Floarea în vis simbolizează frumusețe, sensibilitate și deschiderea inimii către iubire și recunoștință. O floare care înflorește arată o etapă de creștere și de împlinire interioară. Florile ofilite pot indica tristețe sau dezamăgire, dar și un ciclu care se încheie. Visul te încurajează să cultivi în viața ta lucrurile care te bucură și te înfrumusețează pe dinăuntru."
+    },
+    {
+      "name": "Copac",
+      "category": "natură",
+      "shortMeaning": "Creștere, rădăcini și conexiune între lumi",
+      "fullInterpretation": "Copacul în vis este un simbol puternic al vieții, al creșterii și al legăturii dintre pământ și cer. Rădăcinile se află în adânc, iar coroana se ridică spre lumină, asemenea sufletului omenesc. Un copac sănătos arată echilibru între lumea materială și cea spirituală. Visul te invită să-ți întărești rădăcinile, fără a uita să cauți și lumina de sus."
+    },
+    {
+      "name": "Cheie",
+      "category": "obiecte",
+      "shortMeaning": "Acces, soluții și deschiderea unor noi drumuri",
+      "fullInterpretation": "Cheia în vis simbolizează posibilitatea de a deschide uși interioare sau situații blocate. Ea poate reprezenta o soluție la o problemă sau o informație importantă pe care urmează să o descoperi. Pierderea cheilor indică nesiguranță sau teamă de a pierde controlul. Visul te îndeamnă să observi care este „ușa” pe care te temi să o deschizi și ce oportunități se ascund dincolo de ea."
+    },
+    {
+      "name": "Oglindă",
+      "category": "obiecte",
+      "shortMeaning": "Auto-reflecție și imagine de sine",
+      "fullInterpretation": "Oglinda în vis te invită la auto-reflecție și la confruntarea cu propria imagine interioară. Dacă te vezi clar în oglindă, poate indica faptul că începi să te cunoști și să te accepți. O oglindă spartă sugerează o imagine de sine fragmentată sau o schimbare bruscă în felul în care te vezi. Visul te încurajează să privești cu sinceritate la tine, cu blândețe, nu cu judecată."
+    },
+    {
+      "name": "Casă",
+      "category": "obiecte",
+      "shortMeaning": "Sinele interior și structurile vieții",
+      "fullInterpretation": "Casa în vis reprezintă spațiul tău interior, structura personalității și modul în care te simți în propria viață. Camerele casei pot simboliza diferite aspecte ale sufletului tău: mansarda gândurile, subsolul subconștientul, bucătăria hrana emoțională. O casă bine îngrijită indică echilibru, în timp ce una dărăpănată arată nevoia de vindecare. Visul te îndeamnă să ai grijă de „casa” ta lăuntrică."
+    },
+    {
+      "name": "Ușă",
+      "category": "obiecte",
+      "shortMeaning": "Trecere, oportunități și limite personale",
+      "fullInterpretation": "Ușa în vis este simbolul unei treceri importante, al unei alegeri sau al unei oportunități noi. O ușă deschisă sugerează disponibilitate și deschidere, în timp ce o ușă închisă indică bariere sau restricții. Bătutul la ușă poate reprezenta o chemare, o șansă sau un mesaj care așteaptă să fie primit. Visul te invită să observi la ce porți ale vieții tale ești dispus să bați și pe cine lași să intre."
+    },
+    {
+      "name": "Fereastră",
+      "category": "obiecte",
+      "shortMeaning": "Perspective noi și deschidere către lume",
+      "fullInterpretation": "Fereastra în vis simbolizează modul în care privești lumea și viitorul. O fereastră luminoasă arată speranță și dorință de conectare, iar una murdară sau închisă indică pesimism sau izolare. A deschide fereastra poate însemna a lăsa idei noi și aer proaspăt în viața ta. Visul te îndeamnă să îți lărgești perspectiva și să nu te limitezi la același punct de vedere."
+    },
+    {
+      "name": "Inel",
+      "category": "obiecte",
+      "shortMeaning": "Legământ, ciclu și angajament",
+      "fullInterpretation": "Inelul în vis reprezintă legături, promisiuni și cicluri care se repetă. Un inel primit poate simboliza un angajament important, nu neapărat doar în dragoste, ci și în alte aspecte ale vieții. Pierderea inelului arată teamă de separare sau de rupere a unui acord. Visul te invită să reflectezi la promisiunile făcute și la relațiile în care îți pui inima."
+    },
+    {
+      "name": "Cruce",
+      "category": "obiecte",
+      "shortMeaning": "Credință, protecție și asumarea destinului",
+      "fullInterpretation": "Crucea în vis este un simbol puternic al credinței, al suferinței asumate și al protecției divine. Ea poate indica o perioadă de încercare prin care treci pentru a te apropia mai mult de adevărul tău interior. A purta o cruce poate sugera faptul că duci o responsabilitate sau o sarcină mai grea. Visul te îndeamnă să cauți sprijin spiritual și să înțelegi sensul profund al provocărilor tale."
+    },
+    {
+      "name": "Lumânare",
+      "category": "obiecte",
+      "shortMeaning": "Rugăciune, speranță și lumină interioară",
+      "fullInterpretation": "Lumânarea în vis reprezintă rugăciune, speranță și legătura cu lumea de dincolo. O lumânare aprinsă aduce lumină într-un spațiu întunecat și poate simboliza credința care nu se stinge. În tradiția românească, lumânările se aprind pentru sufletele celor plecați, dar și pentru protecție. Visul te cheamă să îți hrănești flacăra interioară și să nu lași descurajarea să o stingă."
+    },
+    {
+      "name": "Carte",
+      "category": "obiecte",
+      "shortMeaning": "Cunoaștere, mesaj și lecții de viață",
+      "fullInterpretation": "Cartea în vis simbolizează cunoaștere, învățătură și mesaje importante pentru drumul tău. O carte deschisă poate indica faptul că ești pregătit să primești o lecție sau o revelație. O carte închisă sugerează informații ascunse sau experiențe neînțelese încă. Visul te încurajează să fii curios, să citești semnele vieții și să înveți din propriile trăiri."
+    },
+    {
+      "name": "Telefon",
+      "category": "obiecte",
+      "shortMeaning": "Comunicare și legături la distanță",
+      "fullInterpretation": "Telefonul în vis reprezintă nevoia de comunicare și de conectare cu cineva care nu este fizic aproape. Un apel primit poate simboliza un mesaj important sau o veste neașteptată, chiar dacă nu este literală. A nu reuși să suni sau să răspunzi indică blocaje în comunicare. Visul te invită să vezi cu cine ai nevoie să vorbești cu adevărat și ce ți-e teamă să spui."
+    },
+    {
+      "name": "Ceas",
+      "category": "obiecte",
+      "shortMeaning": "Timp, răbdare și conștientizarea limitelor",
+      "fullInterpretation": "Ceasul în vis te face atent la trecerea timpului și la modul în care îți trăiești viața. Un ceas care merge normal sugerează ritm și ordine, în timp ce un ceas oprit indică stagnare sau refuzul de a accepta o schimbare. Dacă timpul pare să se grăbească, poate reflecta anxietatea că nu vei reuși la timp. Visul te îndeamnă să folosești cu înțelepciune fiecare clipă, fără grabă, dar nici fără amânare permanentă."
+    },
+    {
+      "name": "Masă",
+      "category": "obiecte",
+      "shortMeaning": "Împărtășire, familie și hrană sufletească",
+      "fullInterpretation": "Masa în vis simbolizează locul de întâlnire, de împărtășire și de hrănire atât fizică, cât și afectivă. O masă plină arată abundență și sprijin, în timp ce o masă goală poate indica sentimentul de lipsă sau singurătate. A sta la masă cu alții în vis sugerează relații importante sau reîntâlniri sufletești. Visul te cheamă să observi cu cine împarți cu adevărat ceea ce ai și ce fel de hrană primește sufletul tău."
+    },
+    {
+      "name": "Haine",
+      "category": "obiecte",
+      "shortMeaning": "Identitate, roluri și imagine socială",
+      "fullInterpretation": "Hainele în vis reflectă modul în care te prezinți în fața lumii și rolurile pe care le joci. Hainele curate și potrivite pot arăta încredere și armonie, în timp ce hainele rupte sau nepotrivite indică nesiguranță sau sentimentul că nu ești văzut corect. A te schimba de haine în vis poate însemna o transformare interioară sau un nou rol în viața ta. Visul te invită să vezi cât de autentică este imaginea pe care o arăți celorlalți."
+    },
+    {
+      "name": "Bani",
+      "category": "obiecte",
+      "shortMeaning": "Valoare personală și resurse interioare",
+      "fullInterpretation": "Banii în vis nu reprezintă doar partea materială, ci și sentimentul propriei valori și al resurselor interioare. A primi bani poate arăta recunoaștere sau sprijin, în timp ce a-i pierde sugerează teamă de lipsă sau de eșec. A număra bani indică preocupare pentru siguranță, dar și evaluarea propriilor resurse. Visul te încurajează să vezi ce anume consideri cu adevărat prețios în viața ta."
+    },
+    {
+      "name": "Frică",
+      "category": "emoții",
+      "shortMeaning": "Avertizare interioară și nevoia de protecție",
+      "fullInterpretation": "Frica în vis aduce la suprafață îngrijorări și pericole pe care poate nu le recunoști în viața de zi cu zi. Ea poate fi un semnal că anumite limite îți sunt încălcate sau că te expui prea mult. Deși neplăcută, frica are și rolul de a te proteja. Visul te invită să deosebești între frica ce te avertizează și frica ce te blochează și să cauți sprijin acolo unde simți vulnerabilitate."
+    },
+    {
+      "name": "Bucurie",
+      "category": "emoții",
+      "shortMeaning": "Armonie sufletească și recunoștință",
+      "fullInterpretation": "Bucuria în vis reflectă o stare interioară de armonie, de împlinire și de recunoștință. Chiar dacă în realitate treci prin provocări, visul îți arată că sufletul tău păstrează capacitatea de a se bucura. Scenele pline de veselie pot fi un dar din partea subconștientului, care îți amintește că nu totul este greu. Visul te încurajează să cauți conștient momente de bucurie simplă în viața de zi cu zi."
+    },
+    {
+      "name": "Tristețe",
+      "category": "emoții",
+      "shortMeaning": "Eliberarea durerii și proces de vindecare",
+      "fullInterpretation": "Tristețea în vis reprezintă dureri vechi sau recente care ies la suprafață pentru a fi vindecate. Lacrimile visate pot funcționa ca un fel de curățare sufletească, chiar dacă te trezești tulburat. În plan spiritual, acceptarea tristeții este un pas important spre maturizare. Visul te invită să nu-ți judeci emoțiile, ci să le lași să curgă, știind că după plâns poate veni alinarea."
+    },
+    {
+      "name": "Furie",
+      "category": "emoții",
+      "shortMeaning": "Frustrare acumulată și nevoie de afirmare",
+      "fullInterpretation": "Furia în vis indică tensiuni acumulate, nemulțumiri sau situații în care simți că nu ești ascultat. Poate fi un semn că ți-ai suprimat reacțiile prea mult timp. Deși pare o emoție negativă, furia arată și o energie vitală care vrea să apere ceva important pentru tine. Visul te încurajează să găsești moduri constructive de a-ți exprima limitele și nevoile."
+    },
+    {
+      "name": "Rușine",
+      "category": "emoții",
+      "shortMeaning": "Teama de judecată și vulnerabilitate",
+      "fullInterpretation": "Rușinea în vis semnalizează teama de a fi judecat sau respins de ceilalți. Poate reflecta experiențe vechi în care nu te-ai simțit acceptat așa cum ești. Situațiile jenante din vis scot la lumină părți pe care le ascunzi. Visul te invită la blândețe față de tine și la acceptarea faptului că toți oamenii sunt vulnerabili, nu doar tu."
+    },
+    {
+      "name": "Vinovăție",
+      "category": "emoții",
+      "shortMeaning": "Conștiință morală și nevoie de iertare",
+      "fullInterpretation": "Vinovăția în vis arată un conflict între ceea ce simți și ceea ce crezi că ar trebui să faci. Poate proveni din greșeli reale sau doar din standarde prea dure față de tine. În plan spiritual, vinovăția te poate îndemna la asumare, iertare și repararea unor greșeli. Visul te cheamă să vezi ce poți îndrepta concret și ce ai nevoie să lași în grija iertării divine."
+    },
+    {
+      "name": "Iubire",
+      "category": "emoții",
+      "shortMeaning": "Conectare, căldură și sens profund",
+      "fullInterpretation": "Iubirea în vis aduce cu ea sentimentul de îmbrățișare, de sens și de apartenență. Poate fi vorba de iubire romantică, familială sau de un sentiment general de bine față de viață. Chiar dacă visul pare idealizat, el reflectă dorul inimii tale după conexiune autentică. Visul te încurajează să cauți și să cultivi relații bazate pe respect și prezență reală, nu doar pe aparență."
+    },
+    {
+      "name": "Dor",
+      "category": "emoții",
+      "shortMeaning": "Lipsă, legătură și chemare sufletească",
+      "fullInterpretation": "Dorul în vis este o emoție profund românească, legată de lipsa cuiva sau a ceva drag. Poate fi dor de casă, de copilărie, de o persoană sau chiar de o stare interioară. Această emoție arată că există legături care depășesc distanța și timpul. Visul te invită să onorezi ceea ce-ți lipsește, dar și să vezi ce poți construi nou în prezent din această chemare."
+    },
+    {
+      "name": "Uimire",
+      "category": "emoții",
+      "shortMeaning": "Deschidere către mister și mirare copilărească",
+      "fullInterpretation": "Uimirea în vis reflectă capacitatea ta de a te lăsa surprins de viață și de misterele ei. Poate apărea când trăiești ceva neașteptat sau când sufletul tău se întâlnește cu ceva mai mare decât el. Această emoție este apropiată de credință, pentru că acceptă că nu poți controla sau explica totul. Visul te încurajează să păstrezi vie mirarea și să primești cu inimă curată darurile neașteptate."
+    },
+    {
+      "name": "Îngrijorare",
+      "category": "emoții",
+      "shortMeaning": "Minte agitată și nevoie de încredere",
+      "fullInterpretation": "Îngrijorarea în vis arată o minte care se frământă, repetând aceleași scenarii de teamă. Poate fi legată de viitor, de sănătate, de bani sau de cei dragi. De multe ori, visul amplifică aceste griji pentru a te face să le conștientizezi. El te invită să cauți sprijin, să vorbești despre temerile tale și să cultivi treptat încrederea că nu ești singur."
+    },
+    {
+      "name": "Speranță",
+      "category": "emoții",
+      "shortMeaning": "Credință în bine și deschidere către viitor",
+      "fullInterpretation": "Speranța în vis este o lumină interioară care rămâne aprinsă chiar și în momentele grele. Poate apărea sub forma unui ajutor neașteptat, a unei vești bune sau a unui sentiment de pace. Această emoție îți arată că sufletul tău nu a renunțat la posibilitatea de schimbare în bine. Visul te încurajează să hrănești speranța prin gesturi mici, concrete, care te apropie de ceea ce dorești."
+    },
+    {
+      "name": "Confuzie",
+      "category": "emoții",
+      "shortMeaning": "Răscruce interioară și căutarea direcției",
+      "fullInterpretation": "Confuzia în vis indică o perioadă în care nu știi ce decizie să iei sau ce drum să urmezi. Poate fi semnul unui proces de transformare în care vechile repere nu mai funcționează, iar noile încă nu s-au format. Deși inconfortabilă, confuzia poate fi și un spațiu de creștere. Visul te invită să îți acorzi timp, să cauți sfat înțelept și să nu te grăbești spre concluzii forțate."
+    },
+    {
+      "name": "Pace interioară",
+      "category": "emoții",
+      "shortMeaning": "Echilibru, acceptare și împăcare cu sine",
+      "fullInterpretation": "Pacea interioară în vis reflectă o stare profundă de împăcare cu tine și cu viața ta. Poate apărea sub forma unor peisaje liniștite, a unei prezențe calde sau a unei tăceri pline de sens. Chiar dacă în realitate ești agitat, visul îți arată că această stare există în adâncul tău. El te invită să cauți momente de rugăciune, meditație sau simplă liniște, în care să te regăsești."
+    },
+    {
+      "name": "Singurătate",
+      "category": "emoții",
+      "shortMeaning": "Nevoie de conexiune și de întoarcere la sine",
+      "fullInterpretation": "Singurătatea în vis poate fi dureroasă, dar ea arată o nevoie reală de conectare profundă cu ceilalți și cu tine însuți. Poate indica perioade în care te-ai simțit neînțeles sau lăsat deoparte. Totodată, singurătatea poate fi și un spațiu sacru de reflecție. Visul te invită să cauți relații autentice, dar și să vezi ce daruri ascunse îți aduce timpul petrecut doar cu tine."
+    },
+    {
+      "name": "Entuziasm",
+      "category": "emoții",
+      "shortMeaning": "Energie creatoare și pornire spre nou",
+      "fullInterpretation": "Entuziasmul în vis arată o energie creatoare care se trezește în tine. Poate fi legat de un proiect, o relație sau o schimbare pe care o aștepți cu nerăbdare. Această stare îți dă curaj să ieși din zona de confort. Visul te încurajează să folosești această energie pentru a face pași concreți, nu doar pentru a visa la schimbare."
+    },
+    {
+      "name": "Mamă",
+      "category": "persoane",
+      "shortMeaning": "Protecție, grijă și originea vieții",
+      "fullInterpretation": "Mama în vis simbolizează ocrotire, hrană emoțională și legătura cu originea ta. Poate reprezenta atât mama reală, cât și arhetipul matern din interiorul tău, partea care știe să îngrijească și să aline. O mamă caldă arată susținere, în timp ce o mamă distantă poate reflecta răni vechi. Visul te invită să vindeci relația cu feminitatea, cu rădăcinile tale și cu propria capacitate de a te îngriji."
+    },
+    {
+      "name": "Tată",
+      "category": "persoane",
+      "shortMeaning": "Autoritate, sprijin și direcție",
+      "fullInterpretation": "Tatăl în vis reprezintă autoritatea, stabilitatea și orientarea în viață. Poate fi legat de tata concret sau de imaginea interioară a unei figuri care îți oferă siguranță. Un tată prezent și blând indică susținere, în timp ce un tată critic poate arăta judecăți dure față de tine. Visul te invită să privești la modul în care îți construiești propria autoritate și încredere în tine."
+    },
+    {
+      "name": "Copil",
+      "category": "persoane",
+      "shortMeaning": "Inocență, începuturi și potențial",
+      "fullInterpretation": "Copilul în vis simbolizează partea ta inocentă, sinceră și curioasă, dar și proiecte sau etape de viață aflate la început. Un copil vesel reflectă speranță și creativitate, în timp ce un copil trist sugerează vulnerabilități neglijate. În plan spiritual, copilul este aproape de lumea nevăzută prin puritatea lui. Visul te cheamă să ai grijă de „copilul interior” și de lucrurile noi care se nasc în viața ta."
+    },
+    {
+      "name": "Prieten",
+      "category": "persoane",
+      "shortMeaning": "Sprijin, oglindire și loialitate",
+      "fullInterpretation": "Prietenul în vis reprezintă relațiile de încredere și aspecte din tine pe care le recunoști în ceilalți. Un prieten care te ajută arată resurse interioare de care poate ai uitat. Un conflict cu un prieten în vis poate scoate la lumină tensiuni nespuse sau nevoi neexprimate. Visul te îndeamnă să prețuiești prieteniile autentice și să comunici sincer în relații."
+    },
+    {
+      "name": "Străin",
+      "category": "persoane",
+      "shortMeaning": "Aspect necunoscut al sinelui și oportunitate",
+      "fullInterpretation": "Străinul în vis simbolizează părți din tine pe care încă nu le cunoști sau situații noi care se apropie. Poate stârni teamă sau curiozitate, în funcție de cum se poartă. Uneori, străinul aduce un mesaj sau te pune în fața unei alegeri. Visul te invită să nu respingi automat noul, ci să-l explorezi cu prudență și deschidere."
+    },
+    {
+      "name": "Bătrân",
+      "category": "persoane",
+      "shortMeaning": "Înțelepciune, experiență și sfat",
+      "fullInterpretation": "Bătrânul în vis este un simbol al înțelepciunii acumulate și al experiențelor prin care ai trecut. Poate apărea ca un sfătuitor, un bunic sau o figură anonimă, dar plină de sens. Cuvintele pe care le rostește în vis pot avea o semnificație specială pentru tine. Visul te încurajează să-ți asculți intuiția matură și să înveți din lecțiile trecutului."
+    },
+    {
+      "name": "Preot",
+      "category": "persoane",
+      "shortMeaning": "Căutare spirituală și conștiință morală",
+      "fullInterpretation": "Preotul în vis indică nevoia ta de îndrumare spirituală, de iertare sau de împăcare. Poate simboliza și conștiința morală care te întreabă dacă trăiești în acord cu valorile tale. O discuție cu un preot în vis poate reprezenta dorința de a-ți ușura sufletul. Visul te invită să cauți liniștea în credință, rugăciune sau în dialogul sincer cu cineva de încredere."
+    },
+    {
+      "name": "Șef",
+      "category": "persoane",
+      "shortMeaning": "Autoritate exterioară și responsabilități",
+      "fullInterpretation": "Șeful în vis reprezintă autoritatea exterioară, regulile și responsabilitățile pe care le ai în viața profesională sau în alte domenii. Poate arăta modul în care te raportezi la putere și la structură. Un șef care te apreciază indică încredere în propriile abilități, în timp ce un șef critic reflectă temeri de judecată. Visul te îndeamnă să-ți clarifici poziția față de autoritate și să găsești un echilibru între ascultare și inițiativă personală."
+    },
+    {
+      "name": "Vecin",
+      "category": "persoane",
+      "shortMeaning": "Relații de proximitate și oglindă socială",
+      "fullInterpretation": "Vecinul în vis simbolizează persoanele cu care împarți același spațiu de viață sau aceeași comunitate. Poate reflecta felul în care te raportezi la cei din jur și modul în care te simți în mediul tău. Un vecin prietenos arată deschidere, iar unul conflictual poate indica tensiuni nespuse. Visul te invită să observi ce fel de „vecini” lași în spațiul tău interior și ce relații construiești în jur."
+    },
+    {
+      "name": "Partener",
+      "category": "persoane",
+      "shortMeaning": "Intimitate, alegere și oglindire afectivă",
+      "fullInterpretation": "Partenerul în vis, fie că este cel real sau o figură simbolică, reprezintă modul în care trăiești intimitatea și apropierea emoțională. Relația din vis poate scoate în evidență dorințe, temeri sau nevoi neexprimate în cuplu. Chiar dacă persoana nu este aceeași cu cea din realitate, ea oglindește ceva din tine. Visul te încurajează să privești cu sinceritate la modul în care iubești și ești iubit."
+    },
+    {
+      "name": "A cădea",
+      "category": "acțiuni",
+      "shortMeaning": "Pierderea controlului și teama de eșec",
+      "fullInterpretation": "Visul în care cazi reflectă teama de a pierde controlul sau de a nu fi susținut. Căderea poate simboliza o situație în care simți că îți fuge pământul de sub picioare, fie la locul de muncă, fie în relații. De multe ori te trezești brusc, înainte de impact, ceea ce arată că sufletul tău caută o ieșire. Visul te îndeamnă să vezi unde îți este frică să „te lași” în voia vieții și ce sprijin ai la dispoziție."
+    },
+    {
+      "name": "A zbura",
+      "category": "acțiuni",
+      "shortMeaning": "Eliberare, depășirea limitelor și perspectivă",
+      "fullInterpretation": "A zbura în vis este una dintre cele mai întâlnite imagini de eliberare și depășire a limitelor. Poate indica dorința de a scăpa de greutăți sau de a privi o situație de sus, cu mai multă claritate. Ușurința sau dificultatea zborului reflectă încrederea ta în propriile forțe. Visul te încurajează să crezi că poți ieși din tiparele vechi și să explorezi noi posibilități."
+    },
+    {
+      "name": "A fugi",
+      "category": "acțiuni",
+      "shortMeaning": "Evitarea unei confruntări și instinct de supraviețuire",
+      "fullInterpretation": "A fugi în vis sugerează că în viața de zi cu zi eviți o situație, o discuție sau o emoție dificilă. Poate fi vorba de un conflict, de o decizie sau de o responsabilitate. În același timp, fuga arată și instinctul de a te proteja de ceea ce simți că te depășește. Visul te invită să te întrebi dacă a sosit momentul să te oprești și să privești direct ceea ce te urmărește."
+    },
+    {
+      "name": "A plânge",
+      "category": "acțiuni",
+      "shortMeaning": "Eliberare emoțională și vindecare",
+      "fullInterpretation": "A plânge în vis indică o descărcare emoțională de care ai mare nevoie. Chiar dacă în realitate te reții, în vis sufletul își permite să se elibereze. Lacrimile pot fi de durere, de dor sau chiar de bucurie puternică. Visul te îndeamnă să nu îți sufoci emoțiile și să cauți spații sigure în care să le exprimi."
+    },
+    {
+      "name": "A râde",
+      "category": "acțiuni",
+      "shortMeaning": "Ușurare, joc și apropiere",
+      "fullInterpretation": "A râde în vis reflectă nevoia de ușurare, de joc și de apropiere de ceilalți. Poate indica faptul că o situație este mai puțin gravă decât o percepi sau că ai nevoie de mai multă bucurie în viața ta. Râsul în grup arată sentimentul de apartenență, în timp ce râsul batjocoritor poate indica frica de a fi ridiculizat. Visul te îndeamnă să faci loc pentru momente simple de veselie."
+    },
+    {
+      "name": "A fi urmărit",
+      "category": "acțiuni",
+      "shortMeaning": "Fugă de propriile teme sau responsabilități",
+      "fullInterpretation": "Visul în care ești urmărit reflectă presiuni și frici pe care în viața conștientă le eviți. Cel care te urmărește poate simboliza o problemă nerezolvată, o emoție reprimată sau o parte din tine pe care nu o accepți. Cu cât fugi mai mult, cu atât te simți mai obosit. Visul te invită să te oprești și să afli ce mesaj îți aduce „urmăritorul” tău interior."
+    },
+    {
+      "name": "A nu putea vorbi",
+      "category": "acțiuni",
+      "shortMeaning": "Blocaj de exprimare și teamă de judecată",
+      "fullInterpretation": "Visul în care vrei să vorbești, dar nu poți scoate niciun sunet, indică un blocaj de exprimare. Poate fi vorba de cuvinte nerostite, de secrete sau de teama de a spune ceea ce simți cu adevărat. Această imagine apare des la persoanele care poartă mult în sine. Visul te îndeamnă să cauți contexte sigure în care să-ți exprimi vocea și nevoile."
+    },
+    {
+      "name": "A căuta",
+      "category": "acțiuni",
+      "shortMeaning": "Căutare de sens, direcție sau identitate",
+      "fullInterpretation": "A căuta ceva în vis simbolizează un proces interior de căutare a sensului, a drumului sau a unei părți pierdute din tine. Poate fi un obiect, o persoană sau un loc, fiecare având propria semnificație. Faptul că găsești sau nu ceea ce cauți spune mult despre starea ta actuală. Visul te încurajează să nu renunți la întrebările tale profunde, chiar dacă răspunsurile nu vin imediat."
+    },
+    {
+      "name": "A se rătăci",
+      "category": "acțiuni",
+      "shortMeaning": "Pierderea orientării și necesitatea de a încetini",
+      "fullInterpretation": "A te rătăci în vis arată că treci printr-o perioadă în care nu știi exact încotro mergi. Poate indica oboseală, presiune sau prea multe opțiuni simultan. Deși neliniștitoare, rătăcirea poate fi uneori și o pauză forțată de la ritmul obișnuit. Visul te invită să încetinești, să ceri ajutor și să-ți reevaluezi direcția."
+    },
+    {
+      "name": "A naște",
+      "category": "acțiuni",
+      "shortMeaning": "Apariția unui nou început sau proiect",
+      "fullInterpretation": "A naște în vis simbolizează apariția unui nou început, fie că este vorba de un copil real, fie de un proiect, o idee sau o etapă de viață. Poate fi însoțit de teamă, emoție și responsabilitate. În plan spiritual, nașterea reprezintă transformarea profundă și trecerea la o nouă conștiință. Visul te încurajează să primești cu grijă și respect ceea ce se naște acum în viața ta."
+    },
+    {
+      "name": "Casă veche",
+      "category": "locuri",
+      "shortMeaning": "Trecut, amintiri și tipare moștenite",
+      "fullInterpretation": "Casa veche în vis te duce înapoi la amintiri, la copilărie sau la tipare de familie pe care încă le porți. Poate fi un loc real sau imaginar, dar încărcat de emoție. A explora o casă veche arată dorința de a înțelege de unde vii și ce influențe te-au format. Visul te invită să vindeci trecutul, fără a rămâne blocat în el."
+    },
+    {
+      "name": "Biserică",
+      "category": "locuri",
+      "shortMeaning": "Rugăciune, refugiu și legătură cu sacralul",
+      "fullInterpretation": "Biserica în vis este un simbol al căutării spirituale, al rugăciunii și al dorinței de protecție. A intra într-o biserică poate indica faptul că ai nevoie de liniște și sprijin de sus. Atmosfera din biserică în vis spune multe despre relația ta cu divinitatea: dacă este luminoasă și primitoare, sugerează pace; dacă este apăsătoare, poate indica îndoieli sau vinovăție. Visul te încurajează să cauți un spațiu interior sau exterior în care să te poți reculege."
+    },
+    {
+      "name": "Cimitir",
+      "category": "locuri",
+      "shortMeaning": "Încheiere, doliu și legătura cu cei plecați",
+      "fullInterpretation": "Cimitirul în vis poate trezi teamă, dar el este în primul rând un loc al memoriei și al reculegerii. Poate reprezenta nevoia de a încheia un capitol sau de a-ți lua rămas-bun de la ceva sau cineva. În tradiția românească, cimitirul este și un loc al rugăciunii pentru suflete. Visul te invită să privești cu acceptare ciclurile vieții și să îți onorezi strămoșii și persoanele dragi plecate."
+    },
+    {
+      "name": "Școală",
+      "category": "locuri",
+      "shortMeaning": "Învățare, examinare și maturizare",
+      "fullInterpretation": "Școala în vis simbolizează procesul de învățare și de maturizare prin care treci. Poate indica situații în care simți că ești testat sau evaluat. A nu-ți găsi clasa sau a întârzia la examen arată anxietăți legate de performanță sau auto-valoare. Visul te încurajează să privești viața ca pe o școală în care ai voie să greșești și să înveți."
+    },
+    {
+      "name": "Spital",
+      "category": "locuri",
+      "shortMeaning": "Vindecare, vulnerabilitate și îngrijire",
+      "fullInterpretation": "Spitalul în vis indică o perioadă de vindecare, fie fizică, fie emoțională. Poate arăta și teama de boală sau de dependență de ceilalți. A fi pacient în vis sugerează că ai nevoie să fii îngrijit, nu doar să îngrijești. Visul te invită să acorzi atenție sănătății tale pe toate planurile și să nu te temi să ceri ajutor."
+    },
+    {
+      "name": "Piață",
+      "category": "locuri",
+      "shortMeaning": "Întâlnire cu lumea și schimb de energii",
+      "fullInterpretation": "Piața în vis este un loc al schimbului, al întâlnirilor și al diversității. Poate reprezenta modul în care interacționezi cu societatea și cu mulțimea de oameni. O piață aglomerată poate arăta oboseală sau supra-stimulare, în timp ce una liniștită sugerează deschidere și curiozitate. Visul te invită să observi ce „cumperi” din jur: ce idei, emoții sau influențe lași să intre în viața ta."
+    },
+    {
+      "name": "Sat",
+      "category": "locuri",
+      "shortMeaning": "Simplitate, comunitate și rădăcini",
+      "fullInterpretation": "Satul în vis simbolizează viața simplă, comunitatea și legătura cu pământul. Poate reflecta dorul de copilărie sau de un mod de viață mai liniștit. Străzile și oamenii din sat arată cum percepi comunitatea din care vii sau pe cea în care trăiești acum. Visul te încurajează să-ți onorezi rădăcinile și să cauți simplitatea în mijlocul vieții moderne."
+    },
+    {
+      "name": "Oraș necunoscut",
+      "category": "locuri",
+      "shortMeaning": "Etapă nouă și adaptare la schimbare",
+      "fullInterpretation": "Orașul necunoscut în vis arată o etapă nouă a vieții tale, în care încă nu te simți pe deplin orientat. Blocurile, străzile și oamenii străini simbolizează situații noi, reguli noi sau un mediu diferit. Poate exista atât emoție, cât și teamă. Visul te invită să ai răbdare cu tine în procesul de adaptare și să cauți repere stabile în interiorul tău."
+    },
+    {
+      "name": "Gară",
+      "category": "locuri",
+      "shortMeaning": "Tranziție, plecare și întâlniri de drum",
+      "fullInterpretation": "Gara în vis simbolizează momentele de tranziție, în care un drum se încheie și altul începe. Trenurile care pleacă și sosesc pot reprezenta oportunități, relații sau etape de viață. A pierde trenul sugerează teama de a rata o șansă, iar a aștepta prea mult indică nesiguranță. Visul te îndeamnă să fii atent la „trenurile” pe care alegi să le iei și să nu rămâi blocat doar pe peron."
+    },
+    {
+      "name": "Drum",
+      "category": "locuri",
+      "shortMeaning": "Călătoria vieții și alegerile personale",
+      "fullInterpretation": "Drumul în vis este una dintre cele mai clare imagini ale călătoriei tale prin viață. Un drum drept și luminos indică claritate și seninătate, în timp ce un drum întunecat sau plin de obstacole reflectă provocări. Bifurcațiile de drum simbolizează decizii importante. Visul te invită să privești cu atenție la drumul pe care ești acum și să alegi conștient direcția în care vrei să mergi."
+    }
+  ]
+}

@@ -38,7 +38,7 @@ export function BiorhythmForm({
     } else {
       const birth = new Date(birthDate);
       const now = new Date();
-      
+
       if (isNaN(birth.getTime())) {
         newErrors.birthDate = "Data nașterii este invalidă";
       } else if (birth > now) {
@@ -64,7 +64,7 @@ export function BiorhythmForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       onSubmit(birthDate, showTargetDate ? targetDate : today);
     }
@@ -88,19 +88,13 @@ export function BiorhythmForm({
                 setErrors((prev) => ({ ...prev, birthDate: undefined }));
               }
             }}
-            className={cn(
-              "h-11 text-base",
-              errors.birthDate && "border-destructive"
-            )}
+            className={cn("h-11 text-base", errors.birthDate && "border-destructive")}
             aria-invalid={!!errors.birthDate}
             aria-describedby={errors.birthDate ? "birthDate-error" : undefined}
             disabled={isLoading}
           />
           {errors.birthDate && (
-            <div
-              id="birthDate-error"
-              className="flex items-center gap-2 text-sm text-destructive"
-            >
+            <div id="birthDate-error" className="flex items-center gap-2 text-sm text-destructive">
               <AlertCircle className="h-4 w-4" />
               <span>{errors.birthDate}</span>
             </div>
@@ -123,14 +117,9 @@ export function BiorhythmForm({
                   setErrors((prev) => ({ ...prev, targetDate: undefined }));
                 }
               }}
-              className={cn(
-                "h-11 text-base",
-                errors.targetDate && "border-destructive"
-              )}
+              className={cn("h-11 text-base", errors.targetDate && "border-destructive")}
               aria-invalid={!!errors.targetDate}
-              aria-describedby={
-                errors.targetDate ? "targetDate-error" : undefined
-              }
+              aria-describedby={errors.targetDate ? "targetDate-error" : undefined}
               disabled={isLoading}
             />
             {errors.targetDate && (
@@ -142,18 +131,12 @@ export function BiorhythmForm({
                 <span>{errors.targetDate}</span>
               </div>
             )}
-            <p className="text-sm text-muted-foreground">
-              Lasă necompletat pentru data de astăzi
-            </p>
+            <p className="text-sm text-muted-foreground">Lasă necompletat pentru data de astăzi</p>
           </div>
         )}
 
         {/* Submit Button */}
-        <Button
-          type="submit"
-          className="w-full h-11 text-base font-medium"
-          disabled={isLoading}
-        >
+        <Button type="submit" className="w-full h-11 text-base font-medium" disabled={isLoading}>
           {isLoading ? "Se calculează..." : "Calculează Bioritmul"}
         </Button>
       </form>

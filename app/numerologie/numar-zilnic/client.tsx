@@ -9,8 +9,18 @@ import { ErrorMessage } from "@/components/shared/error-message";
 
 // Romanian month names
 const romanianMonths = [
-  "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie",
-  "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"
+  "ianuarie",
+  "februarie",
+  "martie",
+  "aprilie",
+  "mai",
+  "iunie",
+  "iulie",
+  "august",
+  "septembrie",
+  "octombrie",
+  "noiembrie",
+  "decembrie",
 ];
 
 // Format date in Romanian (e.g., "17 noiembrie 2025")
@@ -24,17 +34,17 @@ function formatRomanianDate(date: Date): string {
 export default function NumarZilnicClient() {
   // Get current date in ISO format
   const today = new Date();
-  const todayISO = today.toISOString().split('T')[0];
+  const todayISO = today.toISOString().split("T")[0];
   const romanianDate = formatRomanianDate(today);
 
   // Query daily number and interpretation from Convex
   const dailyData = useQuery(api.numerology.getDailyNumber, { date: todayISO });
 
   // Share URL and title
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareTitle = dailyData 
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareTitle = dailyData
     ? `Numărul zilei: ${dailyData.number} - ${dailyData.title}`
-    : 'Numărul Zilei - SpiritHub.ro';
+    : "Numărul Zilei - SpiritHub.ro";
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -45,40 +55,36 @@ export default function NumarZilnicClient() {
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
               <Calendar className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-              Numărul Zilei
-            </h1>
+            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">Numărul Zilei</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Descoperă numărul zilei de astăzi și primește îndrumări numerologice pentru ziua curentă
+              Descoperă numărul zilei de astăzi și primește îndrumări numerologice pentru ziua
+              curentă
             </p>
           </div>
 
           {/* Date Display */}
           <div className="text-center">
-            <p className="text-2xl font-semibold text-primary">
-              {romanianDate}
-            </p>
+            <p className="text-2xl font-semibold text-primary">{romanianDate}</p>
           </div>
 
           {/* Info Section */}
           <div className="rounded-lg border bg-card p-6 space-y-3">
             <h2 className="text-xl font-semibold">Ce este Numărul Zilei?</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Numărul Zilei este calculat din data curentă și oferă îndrumări specifice pentru ziua de astăzi. 
-              Fiecare zi are propria sa energie numerologică care influențează activitățile, deciziile și 
-              interacțiunile tale. Înțelegând energia zilei, poți să îți aliniezi acțiunile cu ritmul natural 
-              al universului.
+              Numărul Zilei este calculat din data curentă și oferă îndrumări specifice pentru ziua
+              de astăzi. Fiecare zi are propria sa energie numerologică care influențează
+              activitățile, deciziile și interacțiunile tale. Înțelegând energia zilei, poți să îți
+              aliniezi acțiunile cu ritmul natural al universului.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Numărul zilei se schimbă în fiecare zi, oferindu-ți o perspectivă nouă și îndrumări fresh 
-              pentru fiecare zi din viața ta. Revino mâine pentru un nou număr și noi îndrumări!
+              Numărul zilei se schimbă în fiecare zi, oferindu-ți o perspectivă nouă și îndrumări
+              fresh pentru fiecare zi din viața ta. Revino mâine pentru un nou număr și noi
+              îndrumări!
             </p>
           </div>
 
           {/* Loading State */}
-          {dailyData === undefined && (
-            <LoadingSpinner text="Se încarcă numărul zilei..." />
-          )}
+          {dailyData === undefined && <LoadingSpinner text="Se încarcă numărul zilei..." />}
 
           {/* Error State */}
           {dailyData === null && (
