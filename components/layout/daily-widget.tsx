@@ -1,17 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
-import { getBiorhythmHintForDay } from "@/lib/biorhythm";
+import type { DailyWidgetData } from "@/lib/daily-widget-server";
 
 /**
  * Props for the DailyWidget container component
  */
 export interface DailyWidgetProps {
   className?: string;
+  data: DailyWidgetData;
 }
 
 /**
@@ -32,20 +30,16 @@ interface ErrorCardProps {
  * - Semi-transparent background with backdrop blur
  * - Follows design.json specifications for styling
  * - Independent error handling for each card
- * - Optimized for parallel query execution
+ * - Data is pre-fetched server-side and cached for the entire day
  * 
  * Performance:
- * - All three queries execute in parallel via independent useQuery hooks
- * - Caching handled by Convex dailyPicks table for daily number and dream
- * - Client-side calculation for biorhythm hint (no query needed)
+ * - Data is fetched server-side using Next.js cache
+ * - Cached for 24 hours (same data for all users)
+ * - Client components handle interactivity (hover effects)
  * 
  * Requirements: 3.1, 3.8, 7.4, 7.5, 3.6, 6.1, 6.2, 6.3, 6.4, 6.5
  */
-export function DailyWidget({ className = "" }: DailyWidgetProps) {
-  // Pre-compute today's ISO date once at component level for all cards
-  // This ensures consistency and avoids redundant date calculations
-  const todayISO = getTodayISO();
-
+export function DailyWidget({ className = "", data }: DailyWidgetProps) {
   return (
     <section
       className={`w-full ${className}`}
@@ -63,36 +57,19 @@ export function DailyWidget({ className = "" }: DailyWidgetProps) {
         {/* Responsive Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 md:p-8">
           {/* Daily Number Card */}
-          <DailyNumberCard date={todayISO} />
+          <DailyNumberCard data={data.dailyNumber} />
 
           {/* Daily Dream Card */}
-          <DailyDreamCard date={todayISO} />
+          <DailyDreamCard data={data.dailyDream} />
 
           {/* Biorhythm Hint Card */}
-          <BiorhythmHintCard />
+          <BiorhythmHintCard data={data.biorhythmHint} />
         </div>
       </div>
     </section>
   );
 }
 
-/**
- * Helper: Get today's date in ISO format (YYYY-MM-DD) in Europe/Bucharest timezone
- */
-function getTodayISO(): string {
-  const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Europe/Bucharest",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(new Date());
-
-  const year = parts.find((p) => p.type === "year")?.value ?? "";
-  const month = parts.find((p) => p.type === "month")?.value ?? "";
-  const day = parts.find((p) => p.type === "day")?.value ?? "";
-
-  return `${year}-${month}-${day}`;
-}
 
 /**
  * Helper: Check if a number is a Master Number (11, 22, 33)
@@ -159,56 +136,31 @@ function ErrorCard({ title, message, linkTo, linkText }: ErrorCardProps) {
  * DailyNumberCard - Displays the daily numerology number with interpretation
  * 
  * Features:
- * - Fetches daily number from Convex getDailyNumber query
+ * - Receives pre-fetched data as props (server-side cached)
  * - Large animated number display with gradient styling
  * - Master Number badge for 11, 22, 33
  * - Title and short description from interpretation
  * - Click-through link to /numerologie/numar-zilnic
- * - Loading skeleton state
  * - Error fallback with Romanian message
- * - Independent error handling with console logging
- * - Uses dailyPicks table for caching (checked first, then fallback calculation)
+ * - Client component for hover interactivity
  * 
  * Requirements: 1.1, 1.2, 1.3, 1.4, 1.7, 3.2, 3.5, 3.7, 7.1, 3.6, 6.1, 6.2
  */
-function DailyNumberCard({ date }: { date: string }) {
-  try {
-    // Query executes in parallel with other card queries
-    // Caching: getDailyNumber checks dailyPicks table first, then calculates if missing
-    const dailyNumber = useQuery(api.numerology.getDailyNumber, { date });
+function DailyNumberCard({ data }: { data: DailyWidgetData["dailyNumber"] }) {
+  // Error state - missing or invalid data
+  if (!data || !data.number) {
+    return (
+      <ErrorCard
+        title="Numărul Zilei"
+        message="Momentan nu putem afișa numărul zilei. Te rugăm să revii mai târziu."
+        linkTo="/numerologie/numar-zilnic"
+        linkText="Vezi pagina completă →"
+      />
+    );
+  }
 
-    // Loading state
-    if (dailyNumber === undefined) {
-      return (
-        <div className="flex flex-col space-y-4 min-h-[200px]">
-          <h3 className="text-white font-semibold text-[clamp(20px,3vw,24px)] tracking-[-0.2px] leading-[1.4] text-center">
-            Numărul Zilei
-          </h3>
-          <div className="flex-1 flex flex-col justify-center space-y-4">
-            <Skeleton className="h-24 w-24 mx-auto rounded-full" />
-            <Skeleton className="h-4 w-3/4 mx-auto" />
-            <Skeleton className="h-3 w-full" />
-            <Skeleton className="h-3 w-5/6" />
-          </div>
-        </div>
-      );
-    }
-
-    // Error state - missing or invalid data
-    if (!dailyNumber || !dailyNumber.number) {
-      console.error("[DailyNumberCard] Invalid data received:", dailyNumber);
-      return (
-        <ErrorCard
-          title="Numărul Zilei"
-          message="Momentan nu putem afișa numărul zilei. Te rugăm să revii mai târziu."
-          linkTo="/numerologie/numar-zilnic"
-          linkText="Vezi pagina completă →"
-        />
-      );
-    }
-
-    const number = dailyNumber.number;
-    const isMaster = isMasterNumber(number);
+  const number = data.number;
+  const isMaster = isMasterNumber(number);
 
     return (
       <Link
@@ -246,12 +198,12 @@ function DailyNumberCard({ date }: { date: string }) {
 
           {/* Title */}
           <h4 className="text-white text-center font-semibold text-[clamp(16px,2.5vw,18px)] tracking-[-0.1px]">
-            {dailyNumber.title}
+            {data.title}
           </h4>
 
           {/* Short Description */}
           <p className="text-muted-foreground text-center text-sm leading-relaxed line-clamp-2">
-            {dailyNumber.description}
+            {data.description}
           </p>
 
           {/* Click-through hint */}
@@ -261,73 +213,36 @@ function DailyNumberCard({ date }: { date: string }) {
         </div>
       </Link>
     );
-  } catch (error) {
-    // Catch any unexpected errors (network failures, query errors, etc.)
-    console.error("[DailyNumberCard] Error rendering card:", error);
-    return (
-      <ErrorCard
-        title="Numărul Zilei"
-        message="Momentan nu putem afișa numărul zilei. Te rugăm să revii mai târziu."
-        linkTo="/numerologie/numar-zilnic"
-        linkText="Vezi pagina completă →"
-      />
-    );
-  }
 }
 
 /**
  * DailyDreamCard - Displays the daily dream symbol with interpretation
  * 
  * Features:
- * - Fetches daily dream from Convex getDailyDream query
+ * - Receives pre-fetched data as props (server-side cached)
  * - Displays dream symbol name with category badge
  * - Shows short meaning (1-2 sentences)
  * - Click-through link to /vise/visul-zilei
- * - Loading skeleton state
  * - Error fallback with Romanian message
- * - Independent error handling with console logging
- * - Uses dailyPicks table for caching (checked first, then fallback calculation)
+ * - Client component for hover interactivity
  * 
  * Requirements: 2.1, 2.2, 2.3, 3.3, 3.5, 3.7, 7.2, 3.6, 6.1, 6.2
  */
-function DailyDreamCard({ date }: { date: string }) {
-  try {
-    // Query executes in parallel with other card queries
-    // Caching: getDailyDream checks dailyPicks table first, then calculates if missing
-    const dailyDream = useQuery(api.dreams.getDailyDream, { date });
+function DailyDreamCard({ data }: { data: DailyWidgetData["dailyDream"] }) {
+  // Error state - missing or invalid data
+  if (!data || !data.name) {
+    return (
+      <ErrorCard
+        title="Visul Zilei"
+        message="Momentan nu putem afișa visul zilei. Te rugăm să revii mai târziu."
+        linkTo="/vise/visul-zilei"
+        linkText="Vezi pagina completă →"
+      />
+    );
+  }
 
-    // Loading state
-    if (dailyDream === undefined) {
-      return (
-        <div className="flex flex-col space-y-4 min-h-[200px]">
-          <h3 className="text-white font-semibold text-[clamp(20px,3vw,24px)] tracking-[-0.2px] leading-[1.4] text-center">
-            Visul Zilei
-          </h3>
-          <div className="flex-1 flex flex-col justify-center space-y-4">
-            <Skeleton className="h-16 w-16 mx-auto rounded-lg" />
-            <Skeleton className="h-4 w-2/3 mx-auto" />
-            <Skeleton className="h-3 w-full" />
-            <Skeleton className="h-3 w-5/6" />
-          </div>
-        </div>
-      );
-    }
-
-    // Error state - missing or invalid data
-    if (!dailyDream || !dailyDream.name) {
-      console.error("[DailyDreamCard] Invalid data received:", dailyDream);
-      return (
-        <ErrorCard
-          title="Visul Zilei"
-          message="Momentan nu putem afișa visul zilei. Te rugăm să revii mai târziu."
-          linkTo="/vise/visul-zilei"
-          linkText="Vezi pagina completă →"
-        />
-      );
-    }
-
-    // Format category for display (capitalize first letter)
-    const categoryDisplay = dailyDream.category.charAt(0).toUpperCase() + dailyDream.category.slice(1);
+  // Format category for display (capitalize first letter)
+  const categoryDisplay = data.category.charAt(0).toUpperCase() + data.category.slice(1);
 
     return (
       <Link
@@ -371,7 +286,7 @@ function DailyDreamCard({ date }: { date: string }) {
           {/* Dream Symbol Name with Category Badge */}
           <div className="space-y-2">
             <h4 className="text-white text-center font-semibold text-[clamp(16px,2.5vw,18px)] tracking-[-0.1px]">
-              {dailyDream.name}
+              {data.name}
             </h4>
             <div className="flex justify-center">
               <Badge
@@ -385,7 +300,7 @@ function DailyDreamCard({ date }: { date: string }) {
 
           {/* Short Meaning */}
           <p className="text-muted-foreground text-center text-sm leading-relaxed line-clamp-2">
-            {dailyDream.shortDescription}
+            {data.shortDescription}
           </p>
 
           {/* Click-through hint */}
@@ -395,63 +310,22 @@ function DailyDreamCard({ date }: { date: string }) {
         </div>
       </Link>
     );
-  } catch (error) {
-    // Catch any unexpected errors (network failures, query errors, etc.)
-    console.error("[DailyDreamCard] Error rendering card:", error);
-    return (
-      <ErrorCard
-        title="Visul Zilei"
-        message="Momentan nu putem afișa visul zilei. Te rugăm să revii mai târziu."
-        linkTo="/vise/visul-zilei"
-        linkText="Vezi pagina completă →"
-      />
-    );
-  }
 }
 
 /**
  * BiorhythmHintCard - Displays a generic biorhythm hint based on day of the week
  * 
  * Features:
- * - Client-side only (no Convex query needed)
- * - Calls getBiorhythmHintForDay with current date
+ * - Receives pre-calculated hint data as props (server-side)
  * - Displays hint title and text in Romanian
  * - Click-through link to /bioritm with call-to-action
- * - Error fallback with console logging
- * - Independent error handling
+ * - Error fallback with Romanian message
+ * - Client component for hover interactivity
  * 
  * Requirements: 4.1, 4.2, 4.4, 4.5, 3.4, 3.5, 3.7, 7.3
  */
-function BiorhythmHintCard() {
-  try {
-    // Get current date in Europe/Bucharest timezone
-    const now = new Date();
-    const parts = new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Europe/Bucharest",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }).formatToParts(now);
-
-    const year = parseInt(parts.find((p) => p.type === "year")?.value ?? "0", 10);
-    const month = parseInt(parts.find((p) => p.type === "month")?.value ?? "0", 10) - 1;
-    const day = parseInt(parts.find((p) => p.type === "day")?.value ?? "0", 10);
-
-    // Validate parsed date values
-    if (!year || year === 0 || month < 0 || day === 0) {
-      throw new Error("Invalid date values parsed from timezone formatter");
-    }
-
-    // Create date object in Bucharest timezone
-    const bucharestDate = new Date(year, month, day);
-
-    // Get biorhythm hint for today
-    const { title, hint, dayOfWeek } = getBiorhythmHintForDay(bucharestDate);
-
-    // Validate hint data
-    if (!title || !hint || !dayOfWeek) {
-      throw new Error("Invalid hint data returned from getBiorhythmHintForDay");
-    }
+function BiorhythmHintCard({ data }: { data: DailyWidgetData["biorhythmHint"] }) {
+  const { title, hint, dayOfWeek } = data;
 
     return (
       <Link
@@ -521,16 +395,4 @@ function BiorhythmHintCard() {
         </div>
       </Link>
     );
-  } catch (error) {
-    // Error fallback with console logging for monitoring
-    console.error("[BiorhythmHintCard] Error rendering card:", error);
-    return (
-      <ErrorCard
-        title="Sfat Bioritm"
-        message="Momentan nu putem afișa sfatul zilei. Te rugăm să revii mai târziu."
-        linkTo="/bioritm"
-        linkText="Vezi calculatorul de bioritm →"
-      />
-    );
-  }
 }
