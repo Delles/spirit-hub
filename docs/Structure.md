@@ -12,11 +12,18 @@ The app uses Next.js 16 App Router, React 19, Convex for backend/data, Tailwind 
 
 - `app/` - Next.js App Router pages & layouts
 - `components/` - React components (feature + UI)
-- `convex/` - Convex backend (schema, queries, actions)
+- `convex/` - Convex backend (schema, queries, actions, crons)
 - `lib/` - Domain logic, utilities, static data
 - `config/` - Configuration (site, SEO, feature config)
+- `data/` - Static JSON datasets (e.g., dream symbols)
+- `scripts/` - One-off scripts (seeding, test utilities)
 - `public/` - Static assets
 - `hooks/` - Custom React hooks
+
+Path aliases are defined in `tsconfig.json`:
+
+- `@/*` → project root (`./*`)
+- Common usage: `@/components/...`, `@/lib/...`, `@/config/...`, `@/hooks/...`, `@/app/...`
 
 ---
 
@@ -26,45 +33,50 @@ Entry point for routes using the App Router.
 
 ### Example Structure
 
+Current high-level structure:
+
 ```
 app/
 +-- layout.tsx              # Root layout (theme, fonts, base UI)
 +-- page.tsx                # Home page (tool selector + widgets)
 +-- globals.css             # Global styles (Tailwind + theme vars)
++-- error.tsx               # Global error boundary
++-- not-found.tsx           # 404 page
 
 +-- numerologie/
+¦   +-- layout.tsx          # Numerology section layout
 ¦   +-- page.tsx            # Numerology landing/overview
 ¦   +-- calea-vietii/
 ¦   ¦   +-- page.tsx        # Life Path calculator
+¦   ¦   +-- client.tsx      # Client-side form + result flow
 ¦   +-- nume-destin/
 ¦   ¦   +-- page.tsx        # Destiny Name calculator
+¦   ¦   +-- client.tsx
 ¦   +-- compatibilitate/
 ¦   ¦   +-- page.tsx        # Love compatibility calculator
+¦   ¦   +-- client.tsx
 ¦   +-- numar-zilnic/
 ¦       +-- page.tsx        # Daily numerology number
+¦       +-- client.tsx
 
 +-- vise/
+¦   +-- layout.tsx          # Dream interpretation layout
 ¦   +-- page.tsx            # Dream dictionary search
+¦   +-- client.tsx          # Search client logic
 ¦   +-- visul-zilei/
 ¦   ¦   +-- page.tsx        # Dream of the day
+¦   ¦   +-- client.tsx
 ¦   +-- interpretare/
 ¦       +-- page.tsx        # Dream combination interpreter
+¦       +-- client.tsx
 
 +-- bioritm/
-¦   +-- page.tsx            # Biorhythm calculator
-¦   +-- critice/
-¦       +-- page.tsx        # Critical days view
-
-+-- blog/
-¦   +-- page.tsx            # Blog index
-¦   +-- [slug]/
-¦       +-- page.tsx        # Blog article detail
-
-+-- api/
-¦   +-- og/
-¦   ¦   +-- route.tsx       # OG image generation for sharing
-¦   +-- health/
-¦       +-- route.ts        # Simple health check endpoint (optional)
+    +-- layout.tsx          # Biorhythm layout
+    +-- page.tsx            # Biorhythm calculator
+    +-- client.tsx          # Daily biorhythm client logic
+    +-- critice/
+        +-- page.tsx        # Critical days view
+        +-- client.tsx
 ```
 
 **Note:** Additional route groups (e.g., `(marketing)`, `(tools)`) can be introduced if needed for layout separation, but keep structure simple and readable.
@@ -83,14 +95,12 @@ components/
 ¦   +-- main-layout.tsx        # Main page shell (header, footer, content)
 ¦   +-- header.tsx             # Top navigation with tool links
 ¦   +-- footer.tsx             # Footer with links, disclaimers
-¦   +-- daily-widget.tsx       # Home widget (daily number, dream, biorhythm)
 
 +-- numerologie/
 ¦   +-- numerology-form.tsx    # Shared form layout for numerology inputs
 ¦   +-- life-path-card.tsx     # Result card for Life Path
 ¦   +-- destiny-card.tsx       # Result card for Name Destiny
 ¦   +-- compatibility-card.tsx # Result card for compatibility
-¦   +-- numerology-steps.tsx   # Step-by-step flow wrapper
 
 +-- vise/
 ¦   +-- dream-search-input.tsx # Search bar with debounced input
@@ -99,6 +109,7 @@ components/
 ¦   +-- dream-combo-form.tsx   # Form to select multiple symbols
 
 +-- bioritm/
+¦   +-- biorhythm-form.tsx     # Form for biorhythm date input
 ¦   +-- biorhythm-chart.tsx    # Visual graph of cycles
 ¦   +-- biorhythm-summary.tsx  # Text summary for a given day
 ¦   +-- critical-days-list.tsx # Upcoming "critical days"
@@ -109,13 +120,9 @@ components/
 ¦   +-- section-heading.tsx    # Consistent section headings
 ¦   +-- loading-spinner.tsx    # Loading states
 ¦   +-- error-message.tsx      # Standardized error display
-¦   +-- ad-slot.tsx            # Wrapper for ad placements
 
 +-- ui/
-¦   +-- ...                    # shadcn/ui primitives (buttons, inputs, modals, etc.)
-
-+-- kokonutui/
-¦   +-- ...                    # Third-party UI components (if used)
+    +-- ...                    # shadcn/ui primitives (buttons, inputs, modals, etc.)
 ```
 
 ### Rules:
@@ -160,9 +167,8 @@ Domain logic and utilities, separate from React.
 lib/
 +-- numerology.ts           # Pure functions for numerology math
 +-- biorhythm.ts            # Pure functions for cycles and dates
-+-- dreams.ts                # Helpers for symbol slug generation, matching
-+-- og.ts                    # Helpers for OG image text/content generation
-+-- utils.ts                 # Generic helpers (cn(), formatting)
++-- dreams.ts               # Helpers for symbol slug generation, matching
++-- utils.ts                # Generic helpers (cn(), formatting)
 +-- constants.ts            # Shared constants (e.g., cycle lengths, mappings)
 ```
 
@@ -193,10 +199,8 @@ Custom React hooks.
 
 ```
 hooks/
-+-- use-debounced-value.ts       # For search inputs (dream symbols)
-+-- use-client-only.ts            # Client-side only logic (e.g., localStorage)
-+-- use-media-query.ts            # Responsive behavior hooks
-+-- use-ads-ready.ts              # Handle when ads can be safely rendered
++-- use-debounced-value.ts   # For search inputs (dream symbols)
++-- use-client-only.ts       # Client-side only logic (e.g., localStorage)
 ```
 
 ### Rules:
@@ -213,11 +217,9 @@ Static assets consumed by the app.
 ```
 public/
 +-- images/
-¦   +-- logo-light.svg
-¦   +-- logo-dark.svg
-¦   +-- numerology-bg.jpg
-¦   +-- dreams-bg.jpg
-¦   +-- biorhythm-bg.jpg
+¦   +-- numerology.png
+¦   +-- dreams.png
+¦   +-- biorhythm.png
 +-- favicon.ico
 ```
 
@@ -260,3 +262,34 @@ public/
 - Dark mode default with a "mystical" aesthetic:
   - Deep purples/blues, gold highlights.
 - Use shadcn/ui components as base building blocks, styled via Tailwind.
+
+---
+
+## Guidelines for Future Additions
+
+When adding new features or modules, follow these structure rules to keep the project consistent:
+
+- **Routes (`app/`)**
+  - Place new tools or sections under a clear Romanian route segment (e.g., `app/astro/` if astrology is ever added).
+  - Use `layout.tsx` inside a section folder when multiple pages share the same shell.
+  - Keep route trees shallow and meaningful; avoid deeply nested folders unless required by UX.
+
+- **Components (`components/`)**
+  - For feature-specific UI, mirror the domain structure: `components/numerologie`, `components/vise`, `components/bioritm`, etc.
+  - For shared building blocks, use `components/shared` and `components/ui` (shadcn/ui primitives).
+  - Name files in kebab-case and keep components small and focused; compose rather than creating “god components”.
+
+- **Domain Logic (`lib/` + `convex/`)**
+  - Put pure calculation/derivation logic in `lib/` and call it from Convex functions and React components.
+  - For new backend capabilities, add a dedicated Convex module (e.g., `convex/astro.ts`) and extend `schema.ts` when persistent data is needed.
+  - Keep Convex functions thin: validate inputs, call `lib` helpers, and return structured results.
+
+- **Configuration & Data (`config/`, `data/`)**
+  - Store reusable mappings, thresholds, and feature flags in `config/` instead of hard-coding them in components.
+  - Use `data/` for larger static datasets (e.g., new dictionaries) that are read by Convex or lib helpers.
+
+- **Imports & Aliases**
+  - Always prefer `@/` aliases over long relative paths (`../../../`).
+  - Group imports by external packages first, then internal modules (`@/components/...`, `@/lib/...`, `@/config/...`).
+
+These rules are intentionally lightweight; when in doubt, mirror existing numerology/dream/biorhythm patterns before inventing new ones.

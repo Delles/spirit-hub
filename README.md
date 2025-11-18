@@ -23,30 +23,47 @@ SpiritHub.ro is a modern, mobile-first spiritual platform offering three interco
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 (App Router)
-- **Styling**: Tailwind CSS v4 + shadcn/ui components
-- **Language**: TypeScript
+- **Framework**: Next.js 16 (App Router) + React 19
+- **Language**: TypeScript 5
+- **Backend / Data**: Convex (serverless backend and database)
+- **Styling**: Tailwind CSS v4 + shadcn/ui (Radix-based UI components)
+- **Animations**: Framer Motion (for subtle transitions and result animations)
 - **Icons**: Lucide React
-- **Backend**: Convex (serverless backend and database)
-- **Deployment**: Vercel
+- **Runtime / Package Manager**: Bun
+- **Deployment**: Vercel (with Convex cloud backend)
 
 > 🔧 **For detailed technology stack and development guidelines, see [Tech.md](./Tech.md)**
 
 ## Project Structure
 
+High-level route structure (App Router):
+
 ```
 app/
-├── page.tsx              # Homepage
-├── layout.tsx            # Root layout with SEO metadata
-├── numerologie/          # Numerology calculators
-│   └── page.tsx
-├── vise/                 # Dream interpretation
-│   └── page.tsx
-└── bioritm/              # Biorhythm calculator
-    └── page.tsx
+├── page.tsx               # Homepage
+├── layout.tsx             # Root layout with SEO metadata
+├── numerologie/           # Numerology calculators (life path, destiny, compatibility, daily number)
+├── vise/                  # Dream interpretation (dictionary, combinations, visul zilei)
+└── bioritm/               # Biorhythm calculator (daily + critical days)
 ```
 
 > 📁 **For detailed architecture and folder structure, see [Structure.md](./Structure.md)**
+
+### Path Aliases
+
+The project uses a single `@/` alias defined in `tsconfig.json`:
+
+- `@/*` → root of the project (`./*`)
+
+Common patterns:
+
+- `@/app/...` – route files and layouts
+- `@/components/...` – shared and feature components
+- `@/lib/...` – pure domain logic (numerology, biorhythm, dreams, utilities)
+- `@/config/...` – site- and feature-level configuration
+- `@/hooks/...` – custom React hooks
+
+When adding new code, prefer `@/` imports over relative (`../../..`) paths.
 
 ## Getting Started
 
@@ -121,11 +138,23 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 
 **Important**: Both servers must be running for the application to work correctly.
 
+### Linting & Type Checking
+
+Run lint and type checks via Bun, using the scripts from `package.json`:
+
+```bash
+# ESLint
+bun run lint
+
+# TypeScript (no emit)
+bun run typecheck
+```
+
 ### Build
 
 ```bash
 # Build for production
-bun build
+bun run build
 
 # Start production server
 bun start

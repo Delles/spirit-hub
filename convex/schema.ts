@@ -26,7 +26,6 @@ export default defineSchema({
     createdAt: v.number(), // Timestamp
   })
     .index("by_slug", ["slug"])
-    .index("by_category", ["category"])
     .searchIndex("search_symbols", {
       searchField: "name",
       filterFields: ["category"],

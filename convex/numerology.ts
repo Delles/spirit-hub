@@ -26,7 +26,7 @@
  * Total: 37 interpretation records
  */
 
-import { query, mutation } from "./_generated/server";
+import { query, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
 
 /**
@@ -158,7 +158,7 @@ export const getDailyNumber = query({
  * Seeds the database with Romanian numerology interpretations
  * Should be run once during initial setup from Convex dashboard
  */
-export const seedInterpretations = mutation({
+export const seedInterpretations = internalMutation({
   args: {},
   handler: async (ctx) => {
     // Check if already seeded

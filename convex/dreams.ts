@@ -22,7 +22,7 @@
  * - locuri (10 symbols)
  */
 
-import { mutation, query, internalMutation } from "./_generated/server";
+import { query, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
 import type { Doc } from "./_generated/dataModel";
 import dreamSymbolsData from "@/data/dream-symbols.json";
@@ -135,7 +135,7 @@ function extractKeywords(name: string, interpretation: string): string[] {
  *
  * @returns Object with count of inserted and skipped symbols
  */
-export const seedDreamSymbols = mutation({
+export const seedDreamSymbols = internalMutation({
   args: {
     symbols: v.optional(
       v.array(
@@ -301,35 +301,6 @@ export const searchDreamSymbols = query({
 });
 
 /**
- * Retrieves a single dream symbol by slug
- * Returns null if symbol not found
- * Maps Convex document to DreamSymbol interface
- *
- * @param slug - URL-safe slug of the dream symbol
- * @returns Dream symbol or null if not found
- */
-export const getDreamSymbol = query({
-  args: {
-    slug: v.string(),
-  },
-  handler: async (ctx, args) => {
-    // Query using by_slug index for performance
-    const doc = await ctx.db
-      .query("dreamSymbols")
-      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
-      .first();
-
-    // Return null if symbol not found
-    if (!doc) {
-      return null;
-    }
-
-    // Map Convex document to DreamSymbol interface
-    return mapToDreamSymbol(doc);
-  },
-});
-
-/**
  * Gets the daily dream symbol deterministically based on date
  * Uses hash of date string to select consistent symbol for all users
  *
@@ -441,37 +412,6 @@ function isoDateInBucharest(date: Date = new Date()): string {
   const day = parts.find((p) => p.type === "day")?.value ?? "";
   return `${year}-${month}-${day}`;
 }
-
-/**
- * Retrieves all dream symbols, optionally filtered by category
- * Returns mapped DreamSymbol interface for consistency with other queries
- * Used by multi-symbol interpreter for symbol selection
- *
- * @param category - Optional category filter
- * @returns Array of dream symbols mapped to DreamSymbol interface
- */
-export const getAllSymbols = query({
-  args: {
-    category: v.optional(v.string()),
-  },
-  handler: async (ctx, args) => {
-    let docs;
-
-    const { category } = args;
-
-    if (category) {
-      docs = await ctx.db
-        .query("dreamSymbols")
-        .withIndex("by_category", (q) => q.eq("category", category))
-        .collect();
-    } else {
-      docs = await ctx.db.query("dreamSymbols").collect();
-    }
-
-    // Map Convex documents to DreamSymbol interface for consistency
-    return docs.map((doc) => mapToDreamSymbol(doc));
-  },
-});
 
 /**
  * Internal mutation to ensure the daily dream is persisted in `dailyPicks`.

@@ -160,10 +160,13 @@ export interface LifePathCardProps {
 ### Commands (Bun)
 
 ```bash
-bun dev      # Start dev server (localhost:3000)
-bun build    # Production build
-bun start    # Run production server
-bun lint     # ESLint (if configured)
+bun dev           # Start Next.js dev server (localhost:3000, uses package.json "dev" script)
+
+bun run lint      # ESLint (uses "lint" script: bun eslint .)
+bun run typecheck # TypeScript type checking (uses "typecheck" script: bun tsc --noEmit)
+
+bun run build     # Production build (uses "build" script: bun next build)
+bun start         # Run production server (uses "start" script: bun next start)
 ```
 
 ### shadcn/ui
