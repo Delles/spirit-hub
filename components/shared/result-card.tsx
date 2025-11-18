@@ -41,7 +41,7 @@ export function ResultCard({
           <div className="flex items-center justify-center py-8">
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
-              <div className="relative text-7xl font-bold bg-gradient-to-br from-primary to-purple-400 bg-clip-text text-transparent">
+              <div className="relative text-7xl font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">
                 {number}
               </div>
             </div>

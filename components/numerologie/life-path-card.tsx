@@ -67,7 +67,7 @@ export function LifePathCard({ number, interpretation }: LifePathCardProps) {
               className={`relative text-7xl font-bold bg-clip-text text-transparent ${
                 isMasterNumber
                   ? "bg-gradient-to-br from-yellow-400 via-amber-400 to-yellow-500"
-                  : "bg-gradient-to-br from-primary to-purple-400"
+                  : "bg-gradient-to-br from-primary to-secondary"
               }`}
             >
               {number}

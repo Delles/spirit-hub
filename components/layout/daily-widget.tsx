@@ -58,13 +58,7 @@ export function DailyWidget({ className = "" }: DailyWidgetProps) {
 
       {/* Widget Container with design.json styling */}
       <div
-        className="w-full rounded-2xl border"
-        style={{
-          backgroundColor: "rgba(26, 24, 34, 0.5)",
-          backdropFilter: "blur(40px)",
-          borderColor: "rgba(255, 255, 255, 0.05)",
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(159, 43, 255, 0.15)",
-        }}
+        className="w-full rounded-2xl border bg-card/50 backdrop-blur-[40px] border-border shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_80px_rgba(159,43,255,0.15)]"
       >
         {/* Responsive Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 md:p-8">
@@ -120,41 +114,23 @@ function isMasterNumber(num: number): boolean {
  */
 function ErrorCard({ title, message, linkTo, linkText }: ErrorCardProps) {
   return (
-    <div className="flex flex-col space-y-4" style={{ minHeight: "200px" }}>
-      <h3
-        className="text-white"
-        style={{
-          fontFamily: "Inter, sans-serif",
-          fontWeight: 600,
-          fontSize: "clamp(20px, 3vw, 24px)",
-          letterSpacing: "-0.2px",
-          lineHeight: "1.4",
-        }}
-      >
+    <div className="flex flex-col space-y-4 min-h-[200px]">
+      <h3 className="text-white font-semibold text-[clamp(20px,3vw,24px)] tracking-[-0.2px] leading-[1.4] text-center">
         {title}
       </h3>
       <div className="flex-1 flex flex-col justify-center space-y-4">
         {/* Error Icon */}
         <div className="flex items-center justify-center">
-          <div
-            className="p-3 rounded-full"
-            style={{
-              backgroundColor: "rgba(239, 68, 68, 0.1)",
-              border: "1px solid rgba(239, 68, 68, 0.2)",
-            }}
+        <div className="p-3 rounded-full bg-destructive/10 border border-destructive/20">
+          <svg
+            className="w-8 h-8 stroke-destructive"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <svg
-              className="w-8 h-8"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{
-                stroke: "#EF4444",
-                strokeWidth: 2,
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-              }}
-            >
               <circle cx="12" cy="12" r="10" />
               <line x1="12" y1="8" x2="12" y2="12" />
               <line x1="12" y1="16" x2="12.01" y2="16" />
@@ -204,17 +180,8 @@ function DailyNumberCard({ date }: { date: string }) {
     // Loading state
     if (dailyNumber === undefined) {
       return (
-        <div className="flex flex-col space-y-4" style={{ minHeight: "200px" }}>
-          <h3
-            className="text-white"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(20px, 3vw, 24px)",
-              letterSpacing: "-0.2px",
-              lineHeight: "1.4",
-            }}
-          >
+        <div className="flex flex-col space-y-4 min-h-[200px]">
+          <h3 className="text-white font-semibold text-[clamp(20px,3vw,24px)] tracking-[-0.2px] leading-[1.4] text-center">
             Numărul Zilei
           </h3>
           <div className="flex-1 flex flex-col justify-center space-y-4">
@@ -246,32 +213,17 @@ function DailyNumberCard({ date }: { date: string }) {
     return (
       <Link
         href="/numerologie/numar-zilnic"
-        className="flex flex-col space-y-4 group cursor-pointer transition-transform hover:scale-[1.02]"
-        style={{ minHeight: "200px" }}
+        className="flex flex-col space-y-4 group cursor-pointer transition-transform hover:scale-[1.02] min-h-[200px]"
       >
         {/* Card Title with Master Number Badge */}
-        <div className="flex items-center justify-between">
-          <h3
-            className="text-white"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(20px, 3vw, 24px)",
-              letterSpacing: "-0.2px",
-              lineHeight: "1.4",
-            }}
-          >
+        <div className="flex flex-col items-center gap-2">
+          <h3 className="text-white font-semibold text-[clamp(20px,3vw,24px)] tracking-[-0.2px] leading-[1.4] text-center">
             Numărul Zilei
           </h3>
           {isMaster && (
             <Badge
               variant="secondary"
-              className="ml-2"
-              style={{
-                background: "linear-gradient(135deg, #9F2BFF 0%, #4D5FFF 100%)",
-                color: "#FFFFFF",
-                border: "none",
-              }}
+              className="bg-gradient-to-r from-primary to-secondary text-primary-foreground border-none"
             >
               Maestru
             </Badge>
@@ -284,46 +236,21 @@ function DailyNumberCard({ date }: { date: string }) {
           <div className="flex items-center justify-center py-4">
             <div className="relative">
               {/* Glow effect */}
-              <div
-                className="absolute inset-0 blur-3xl rounded-full opacity-60"
-                style={{
-                  background: "linear-gradient(135deg, #9F2BFF 0%, #4D5FFF 100%)",
-                }}
-              />
+              <div className="absolute inset-0 blur-3xl rounded-full opacity-60 bg-gradient-to-r from-primary to-secondary" />
               {/* Number */}
-              <div
-                className="relative font-bold transition-transform group-hover:scale-110"
-                style={{
-                  fontSize: "clamp(48px, 8vw, 72px)",
-                  background: "linear-gradient(135deg, #9F2BFF 0%, #4D5FFF 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
+              <div className="relative font-bold transition-transform group-hover:scale-110 text-[clamp(48px,8vw,72px)] bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 {number}
               </div>
             </div>
           </div>
 
           {/* Title */}
-          <h4
-            className="text-white text-center font-semibold"
-            style={{
-              fontSize: "clamp(16px, 2.5vw, 18px)",
-              letterSpacing: "-0.1px",
-            }}
-          >
+          <h4 className="text-white text-center font-semibold text-[clamp(16px,2.5vw,18px)] tracking-[-0.1px]">
             {dailyNumber.title}
           </h4>
 
           {/* Short Description */}
-          <p
-            className="text-muted-foreground text-center text-sm leading-relaxed line-clamp-2"
-            style={{
-              fontSize: "14px",
-            }}
-          >
+          <p className="text-muted-foreground text-center text-sm leading-relaxed line-clamp-2">
             {dailyNumber.description}
           </p>
 
@@ -372,17 +299,8 @@ function DailyDreamCard({ date }: { date: string }) {
     // Loading state
     if (dailyDream === undefined) {
       return (
-        <div className="flex flex-col space-y-4" style={{ minHeight: "200px" }}>
-          <h3
-            className="text-white"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(20px, 3vw, 24px)",
-              letterSpacing: "-0.2px",
-              lineHeight: "1.4",
-            }}
-          >
+        <div className="flex flex-col space-y-4 min-h-[200px]">
+          <h3 className="text-white font-semibold text-[clamp(20px,3vw,24px)] tracking-[-0.2px] leading-[1.4] text-center">
             Visul Zilei
           </h3>
           <div className="flex-1 flex flex-col justify-center space-y-4">
@@ -414,20 +332,10 @@ function DailyDreamCard({ date }: { date: string }) {
     return (
       <Link
         href="/vise/visul-zilei"
-        className="flex flex-col space-y-4 group cursor-pointer transition-transform hover:scale-[1.02]"
-        style={{ minHeight: "200px" }}
+        className="flex flex-col space-y-4 group cursor-pointer transition-transform hover:scale-[1.02] min-h-[200px]"
       >
         {/* Card Title */}
-        <h3
-          className="text-white"
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontWeight: 600,
-            fontSize: "clamp(20px, 3vw, 24px)",
-            letterSpacing: "-0.2px",
-            lineHeight: "1.4",
-          }}
-        >
+        <h3 className="text-white font-semibold text-[clamp(20px,3vw,24px)] tracking-[-0.2px] leading-[1.4] text-center">
           Visul Zilei
         </h3>
 
@@ -435,13 +343,7 @@ function DailyDreamCard({ date }: { date: string }) {
         <div className="flex-1 flex flex-col justify-center space-y-4">
           {/* Dream Symbol Icon/Visual */}
           <div className="flex items-center justify-center py-2">
-            <div
-              className="relative p-4 rounded-xl transition-transform group-hover:scale-110"
-              style={{
-                background: "linear-gradient(135deg, rgba(159, 43, 255, 0.1) 0%, rgba(77, 95, 255, 0.1) 100%)",
-                border: "1px solid rgba(159, 43, 255, 0.2)",
-              }}
-            >
+            <div className="relative p-4 rounded-xl transition-transform group-hover:scale-110 bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20">
               {/* Moon icon as dream symbol placeholder */}
               <svg
                 className="w-12 h-12"
@@ -468,24 +370,13 @@ function DailyDreamCard({ date }: { date: string }) {
 
           {/* Dream Symbol Name with Category Badge */}
           <div className="space-y-2">
-            <h4
-              className="text-white text-center font-semibold"
-              style={{
-                fontSize: "clamp(16px, 2.5vw, 18px)",
-                letterSpacing: "-0.1px",
-              }}
-            >
+            <h4 className="text-white text-center font-semibold text-[clamp(16px,2.5vw,18px)] tracking-[-0.1px]">
               {dailyDream.name}
             </h4>
             <div className="flex justify-center">
               <Badge
                 variant="secondary"
-                className="text-xs"
-                style={{
-                  backgroundColor: "rgba(159, 43, 255, 0.15)",
-                  color: "#9F2BFF",
-                  border: "1px solid rgba(159, 43, 255, 0.3)",
-                }}
+                className="text-xs bg-primary/15 text-primary border-primary/30"
               >
                 {categoryDisplay}
               </Badge>
@@ -493,12 +384,7 @@ function DailyDreamCard({ date }: { date: string }) {
           </div>
 
           {/* Short Meaning */}
-          <p
-            className="text-muted-foreground text-center text-sm leading-relaxed line-clamp-2"
-            style={{
-              fontSize: "14px",
-            }}
-          >
+          <p className="text-muted-foreground text-center text-sm leading-relaxed line-clamp-2">
             {dailyDream.shortDescription}
           </p>
 
@@ -570,20 +456,10 @@ function BiorhythmHintCard() {
     return (
       <Link
         href="/bioritm"
-        className="flex flex-col space-y-4 group cursor-pointer transition-transform hover:scale-[1.02]"
-        style={{ minHeight: "200px" }}
+        className="flex flex-col space-y-4 group cursor-pointer transition-transform hover:scale-[1.02] min-h-[200px]"
       >
         {/* Card Title */}
-        <h3
-          className="text-white"
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontWeight: 600,
-            fontSize: "clamp(20px, 3vw, 24px)",
-            letterSpacing: "-0.2px",
-            lineHeight: "1.4",
-          }}
-        >
+        <h3 className="text-white font-semibold text-[clamp(20px,3vw,24px)] tracking-[-0.2px] leading-[1.4] text-center">
           Sfat Bioritm
         </h3>
 
@@ -591,13 +467,7 @@ function BiorhythmHintCard() {
         <div className="flex-1 flex flex-col justify-center space-y-4">
           {/* Biorhythm Icon/Visual */}
           <div className="flex items-center justify-center py-2">
-            <div
-              className="relative p-4 rounded-xl transition-transform group-hover:scale-110"
-              style={{
-                background: "linear-gradient(135deg, rgba(159, 43, 255, 0.1) 0%, rgba(77, 95, 255, 0.1) 100%)",
-                border: "1px solid rgba(159, 43, 255, 0.2)",
-              }}
-            >
+            <div className="relative p-4 rounded-xl transition-transform group-hover:scale-110 bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20">
               {/* Sine wave icon representing biorhythm cycles */}
               <svg
                 className="w-12 h-12"
@@ -628,35 +498,19 @@ function BiorhythmHintCard() {
           <div className="flex justify-center">
             <Badge
               variant="secondary"
-              className="text-xs"
-              style={{
-                backgroundColor: "rgba(159, 43, 255, 0.15)",
-                color: "#9F2BFF",
-                border: "1px solid rgba(159, 43, 255, 0.3)",
-              }}
+              className="text-xs bg-primary/15 text-primary border-primary/30"
             >
               {dayOfWeek}
             </Badge>
           </div>
 
           {/* Hint Title */}
-          <h4
-            className="text-white text-center font-semibold"
-            style={{
-              fontSize: "clamp(16px, 2.5vw, 18px)",
-              letterSpacing: "-0.1px",
-            }}
-          >
+          <h4 className="text-white text-center font-semibold text-[clamp(16px,2.5vw,18px)] tracking-[-0.1px]">
             {title}
           </h4>
 
           {/* Hint Text */}
-          <p
-            className="text-muted-foreground text-center text-sm leading-relaxed line-clamp-2"
-            style={{
-              fontSize: "14px",
-            }}
-          >
+          <p className="text-muted-foreground text-center text-sm leading-relaxed line-clamp-2">
             {hint}
           </p>
 

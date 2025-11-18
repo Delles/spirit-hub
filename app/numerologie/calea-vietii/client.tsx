@@ -35,20 +35,8 @@ export default function CaleaVietiiClient() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <main className="flex-1 container mx-auto px-4 py-8 lg:px-8">
-        <div className="mx-auto max-w-4xl space-y-8">
-          {/* Header Section */}
-          <div className="text-center space-y-4">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <Calculator className="h-8 w-8 text-primary" />
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">Calea Vieții</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Descoperă-ți numărul Căii Vieții din data nașterii și înțelege-ți scopul și direcția
-              în viață
-            </p>
-          </div>
+    <div className="container mx-auto px-4 py-8 lg:px-8">
+      <div className="mx-auto max-w-4xl space-y-8">
 
           {/* Info Section */}
           <div className="rounded-lg border bg-card p-6 space-y-3">
@@ -103,8 +91,7 @@ export default function CaleaVietiiClient() {
               />
             </div>
           )}
-        </div>
-      </main>
+      </div>
     </div>
   );
 }

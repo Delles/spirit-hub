@@ -416,9 +416,6 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
           type="submit"
           className={cn(
             "w-full h-11 min-h-[44px] text-base font-medium",
-            "bg-gradient-to-r from-[#9F2BFF] to-[#4D5FFF]",
-            "hover:opacity-90 transition-opacity",
-            "shadow-[0_8px_32px_rgba(159,43,255,0.4)]",
           )}
           disabled={isLoading}
           aria-busy={isLoading}

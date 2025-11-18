@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { MainLayout } from "@/components/layout/main-layout";
+import { SectionHeader } from "@/components/shared/section-header";
 
 export const metadata: Metadata = {
   title: "Calculator Bioritm | SpiritHub.ro",
@@ -23,5 +25,10 @@ export const metadata: Metadata = {
 };
 
 export default function BioritmLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <MainLayout>
+      <SectionHeader />
+      {children}
+    </MainLayout>
+  );
 }

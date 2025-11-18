@@ -49,11 +49,15 @@ export function BiorhythmChart({
   const daysAfter = useMemo(() => Math.floor(daysWindow / 2), [daysWindow]);
 
   // Cycle definitions - memoized to prevent unnecessary recalculations
+  // Using design system chart colors from design.json:
+  // chart1 (Physical): oklch(0.6 0.28 300) - Purple
+  // chart2 (Emotional): oklch(0.55 0.24 260) - Blue
+  // chart3 (Intellectual): oklch(0.769 0.188 70.08) - Warm accent
   const cycles: CycleData[] = useMemo(
     () => [
-      { name: "Fizic", color: "#ef4444", value: physical, cycleDays: 23 },
-      { name: "Emoțional", color: "#3b82f6", value: emotional, cycleDays: 28 },
-      { name: "Intelectual", color: "#10b981", value: intellectual, cycleDays: 33 },
+      { name: "Fizic", color: "oklch(0.6 0.28 300)", value: physical, cycleDays: 23 },
+      { name: "Emoțional", color: "oklch(0.55 0.24 260)", value: emotional, cycleDays: 28 },
+      { name: "Intelectual", color: "oklch(0.769 0.188 70.08)", value: intellectual, cycleDays: 33 },
     ],
     [physical, emotional, intellectual],
   );
@@ -127,8 +131,7 @@ export function BiorhythmChart({
         <div className="w-full overflow-x-auto" role="region" aria-label="Grafic bioritm">
           <svg
             viewBox={`0 0 ${width} ${height}`}
-            className="w-full h-auto"
-            style={{ maxHeight: isMobile ? "300px" : "400px" }}
+            className="w-full h-auto max-h-[300px] md:max-h-[400px]"
             role="img"
             aria-labelledby="biorhythm-chart-title"
             aria-describedby="biorhythm-chart-desc"

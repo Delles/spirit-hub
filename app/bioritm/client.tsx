@@ -32,20 +32,8 @@ export default function BioritmClient() {
     typeof window !== "undefined" ? `${window.location.origin}/bioritm?date=${birthDate}` : "";
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <main className="flex-1 container mx-auto px-4 py-8 lg:px-8">
-        <div className="mx-auto max-w-4xl space-y-8">
-          {/* Header Section */}
-          <div className="text-center space-y-4">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <Activity className="h-8 w-8 text-primary" />
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">Calculator Bioritm</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Urmărește ciclurile tale fizice, emoționale și intelectuale pentru a-ți planifica
-              zilele în mod optim
-            </p>
-          </div>
+    <div className="container mx-auto px-4 py-8 lg:px-8">
+      <div className="mx-auto max-w-4xl space-y-8">
 
           {/* Info Cards */}
           <div className="grid gap-4 sm:grid-cols-3">
@@ -152,8 +140,7 @@ export default function BioritmClient() {
               </Link>
             </div>
           )}
-        </div>
-      </main>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { InterpretareClient } from "./client";
 import type { Metadata } from "next";
 
@@ -12,33 +12,11 @@ export const metadata: Metadata = {
 
 export default function InterpretarePage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
-            <Link href="/vise">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="min-h-[44px] min-w-[44px]"
-                aria-label="Înapoi la căutare vise"
-              >
-                <ArrowLeft className="h-5 w-5" aria-hidden="true" />
-              </Button>
-            </Link>
-            <div className="flex items-center gap-3">
-              <Sparkles className="h-6 w-6 text-primary" aria-hidden="true" />
-              <h1 className="text-2xl font-bold text-primary">Interpretare Vis Complex</h1>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex-1 container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12">
         <div className="mx-auto max-w-4xl space-y-8">
           {/* Page Introduction */}
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold">Combină Simboluri pentru Interpretare Complexă</h2>
+            <h2 className="text-2xl font-bold">Combină Simboluri pentru Interpretare Complexă</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Visele noastre sunt adesea complexe, conținând mai multe simboluri care lucrează
               împreună pentru a transmite un mesaj. Selectează 2-3 simboluri principale din visul
@@ -89,17 +67,16 @@ export default function InterpretarePage() {
             </div>
           </div>
 
-          {/* Link back to search */}
-          <div className="flex justify-center pt-8">
-            <Link href="/vise">
-              <Button variant="outline" className="min-h-[44px]">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Înapoi la căutare simboluri
-              </Button>
-            </Link>
-          </div>
+        {/* Link back to search */}
+        <div className="flex justify-center pt-8">
+          <Link href="/vise">
+            <Button variant="outline" className="min-h-[44px]">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Înapoi la căutare simboluri
+            </Button>
+          </Link>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
