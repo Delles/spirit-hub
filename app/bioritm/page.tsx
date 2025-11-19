@@ -28,6 +28,13 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   };
 }
 
+import { Suspense } from "react";
+import { LoadingSpinner } from "@/components/shared/loading-spinner";
+
 export default function BioritmPage() {
-  return <BioritmClient />;
+  return (
+    <Suspense fallback={<LoadingSpinner text="Se încarcă..." />}>
+      <BioritmClient />
+    </Suspense>
+  );
 }

@@ -35,6 +35,13 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   };
 }
 
+import { Suspense } from "react";
+import { LoadingSpinner } from "@/components/shared/loading-spinner";
+
 export default function CaleaVietiiPage() {
-  return <CaleaVietiiClient />;
+  return (
+    <Suspense fallback={<LoadingSpinner text="Se încarcă..." />}>
+      <CaleaVietiiClient />
+    </Suspense>
+  );
 }
