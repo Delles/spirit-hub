@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
+import { DatePicker } from "@/components/ui/date-picker";
 import { AlertCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -254,16 +255,16 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
       <Label htmlFor="birthDate" className="text-white">
         Data nașterii *
       </Label>
-      <Input
+      <DatePicker
         id="birthDate"
-        type="date"
         value={birthDate}
-        onChange={(e) => handleBirthDateChange(e.target.value)}
-        className={cn("h-11 text-base min-h-[44px]", errors.birthDate && "border-destructive")}
+        onChange={(date) => handleBirthDateChange(date || "")}
+        placeholder="dd.mm.yyyy"
+        disabled={isLoading}
+        error={!!errors.birthDate}
+        maxDate={new Date()}
         aria-invalid={!!errors.birthDate}
         aria-describedby={errors.birthDate ? "birthDate-error" : undefined}
-        aria-required="true"
-        disabled={isLoading}
       />
       {renderErrorMessage(errors.birthDate, "birthDate-error")}
     </div>
@@ -319,16 +320,16 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
           <Label htmlFor="birthDate1" className="text-white">
             Prima dată de naștere *
           </Label>
-          <Input
+          <DatePicker
             id="birthDate1"
-            type="date"
             value={birthDate1}
-            onChange={(e) => handleBirthDate1Change(e.target.value)}
-            className={cn("h-11 text-base min-h-[44px]", errors.birthDate1 && "border-destructive")}
+            onChange={(date) => handleBirthDate1Change(date || "")}
+            placeholder="dd.mm.yyyy"
+            disabled={isLoading}
+            error={!!errors.birthDate1}
+            maxDate={new Date()}
             aria-invalid={!!errors.birthDate1}
             aria-describedby={errors.birthDate1 ? "birthDate1-error" : undefined}
-            aria-required="true"
-            disabled={isLoading}
           />
           {renderErrorMessage(errors.birthDate1, "birthDate1-error")}
         </div>
@@ -361,16 +362,16 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
           <Label htmlFor="birthDate2" className="text-white">
             A doua dată de naștere *
           </Label>
-          <Input
+          <DatePicker
             id="birthDate2"
-            type="date"
             value={birthDate2}
-            onChange={(e) => handleBirthDate2Change(e.target.value)}
-            className={cn("h-11 text-base min-h-[44px]", errors.birthDate2 && "border-destructive")}
+            onChange={(date) => handleBirthDate2Change(date || "")}
+            placeholder="dd.mm.yyyy"
+            disabled={isLoading}
+            error={!!errors.birthDate2}
+            maxDate={new Date()}
             aria-invalid={!!errors.birthDate2}
             aria-describedby={errors.birthDate2 ? "birthDate2-error" : undefined}
-            aria-required="true"
-            disabled={isLoading}
           />
           {renderErrorMessage(errors.birthDate2, "birthDate2-error")}
         </div>

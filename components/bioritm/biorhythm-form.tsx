@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
+import { DatePicker } from "@/components/ui/date-picker";
 import { AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -78,20 +78,21 @@ export function BiorhythmForm({
           <Label htmlFor="birthDate" className="text-white">
             Data nașterii *
           </Label>
-          <Input
+          <DatePicker
             id="birthDate"
-            type="date"
             value={birthDate}
-            onChange={(e) => {
-              setBirthDate(e.target.value);
+            onChange={(date) => {
+              setBirthDate(date || "");
               if (errors.birthDate) {
                 setErrors((prev) => ({ ...prev, birthDate: undefined }));
               }
             }}
-            className={cn("h-11 text-base", errors.birthDate && "border-destructive")}
+            placeholder="dd.mm.yyyy"
+            disabled={isLoading}
+            error={!!errors.birthDate}
+            maxDate={new Date()}
             aria-invalid={!!errors.birthDate}
             aria-describedby={errors.birthDate ? "birthDate-error" : undefined}
-            disabled={isLoading}
           />
           {errors.birthDate && (
             <div id="birthDate-error" className="flex items-center gap-2 text-sm text-destructive">
@@ -107,20 +108,21 @@ export function BiorhythmForm({
             <Label htmlFor="targetDate" className="text-white">
               Data pentru calcul (opțional)
             </Label>
-            <Input
+            <DatePicker
               id="targetDate"
-              type="date"
               value={targetDate}
-              onChange={(e) => {
-                setTargetDate(e.target.value);
+              onChange={(date) => {
+                setTargetDate(date || today);
                 if (errors.targetDate) {
                   setErrors((prev) => ({ ...prev, targetDate: undefined }));
                 }
               }}
-              className={cn("h-11 text-base", errors.targetDate && "border-destructive")}
+              placeholder="dd.mm.yyyy"
+              disabled={isLoading}
+              error={!!errors.targetDate}
+              minDate={birthDate ? new Date(birthDate) : undefined}
               aria-invalid={!!errors.targetDate}
               aria-describedby={errors.targetDate ? "targetDate-error" : undefined}
-              disabled={isLoading}
             />
             {errors.targetDate && (
               <div

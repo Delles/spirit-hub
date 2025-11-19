@@ -8,7 +8,7 @@ import { DreamSearchInput } from "@/components/vise/dream-search-input";
 import { DreamResultList } from "@/components/vise/dream-result-list";
 import { DreamDetailCard } from "@/components/vise/dream-detail-card";
 import { Button } from "@/components/ui/button";
-import { Moon, Sparkles } from "lucide-react";
+import { Moon } from "lucide-react";
 import { DreamSymbol } from "@/lib/dreams";
 
 /**
@@ -18,7 +18,7 @@ import { DreamSymbol } from "@/lib/dreams";
  * - Interactive search with debouncing
  * - Result list display
  * - Inline detail view for selected symbols
- * - Links to multi-symbol interpreter and daily dream
+ * - Link to daily dream
  * - Error handling with Romanian messages
  * - Loading states
  */
@@ -91,22 +91,7 @@ export function ViseClient() {
 
       {/* Feature Links */}
       {!searchQuery && !selectedSymbol && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-          <Link href="/vise/interpretare">
-            <Button
-              variant="outline"
-              className="w-full h-auto py-4 px-6 flex flex-col items-start gap-2 hover:bg-accent/50 transition-colors"
-            >
-              <div className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary" />
-                <span className="font-semibold">Interpretare Vis Complex</span>
-              </div>
-              <span className="text-sm text-muted-foreground text-left">
-                Combină 2-3 simboluri pentru o interpretare completă
-              </span>
-            </Button>
-          </Link>
-
+        <div className="max-w-md mx-auto">
           <Link href="/vise/visul-zilei">
             <Button
               variant="outline"
@@ -161,11 +146,6 @@ export function ViseClient() {
               <p>
                 <strong className="text-foreground">2. Explorează interpretări:</strong> Citește
                 semnificațiile bazate pe folclorul și tradițiile românești.
-              </p>
-              <p>
-                <strong className="text-foreground">3. Combină simboluri:</strong> Pentru vise
-                complexe, folosește funcția de interpretare combinată pentru a înțelege relația
-                dintre mai multe elemente.
               </p>
             </div>
           </div>

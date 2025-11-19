@@ -2,7 +2,7 @@
  * Dreams Configuration
  *
  * Centralized configuration for dream interpretation features including
- * symbol categories, search behavior, and interpretation limits.
+ * symbol categories and search behavior.
  */
 
 export interface DreamCategory {
@@ -20,7 +20,6 @@ export interface SearchConfig {
 export interface DreamsConfig {
   categories: DreamCategory[];
   search: SearchConfig;
-  maxCombinedSymbols: number;
   fallbackMessage: string;
 }
 
@@ -71,9 +70,6 @@ export const dreamsConfig: DreamsConfig = {
     debounceMs: 300, // Debounce delay in milliseconds for search input
   },
 
-  // Maximum number of symbols that can be combined for interpretation
-  maxCombinedSymbols: 3,
-
   // Fallback message when no dream symbols are found
   fallbackMessage:
     "Nu am găsit simboluri care să corespundă căutării tale. Încearcă cu alte cuvinte sau verifică ortografia.",
@@ -82,4 +78,3 @@ export const dreamsConfig: DreamsConfig = {
 // Export individual constants for convenience
 export const dreamCategories = dreamsConfig.categories;
 export const searchConfig = dreamsConfig.search;
-export const MAX_COMBINED_SYMBOLS = dreamsConfig.maxCombinedSymbols;

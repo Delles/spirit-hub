@@ -36,7 +36,6 @@ function getBreadcrumbs(pathname: string): BreadcrumbItem[] {
     compatibilitate: "Compatibilitate",
     "numar-zilnic": "Numărul Zilei",
     "visul-zilei": "Visul Zilei",
-    interpretare: "Interpretare Vis",
     critice: "Zile Critice",
   };
 

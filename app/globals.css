@@ -159,6 +159,18 @@
   white-space: normal;
 }
 
+/* Hide scrollbar for calendar year/month dropdowns */
+.rdp-dropdown select,
+[class*="rdp-dropdown"] select {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.rdp-dropdown select::-webkit-scrollbar,
+[class*="rdp-dropdown"] select::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 /* Respect user's motion preferences for accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,

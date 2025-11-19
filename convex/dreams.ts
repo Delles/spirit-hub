@@ -301,6 +301,31 @@ export const searchDreamSymbols = query({
 });
 
 /**
+ * Gets a single dream symbol by its slug
+ * Used for direct links and sharing
+ *
+ * @param slug - The slug of the dream symbol
+ * @returns The dream symbol or null if not found
+ */
+export const getDreamSymbolBySlug = query({
+  args: {
+    slug: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const doc = await ctx.db
+      .query("dreamSymbols")
+      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+      .first();
+
+    if (!doc) {
+      return null;
+    }
+
+    return mapToDreamSymbol(doc);
+  },
+});
+
+/**
  * Gets the daily dream symbol deterministically based on date
  * Uses hash of date string to select consistent symbol for all users
  *

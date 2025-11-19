@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
+import { format } from "date-fns";
+import { ro } from "date-fns/locale";
 import { Card } from "@/components/ui/card";
 
 export interface BiorhythmChartProps {
@@ -111,6 +113,26 @@ export function BiorhythmChart({
     [daysBefore, daysWindow, padding.left, chartWidth],
   );
 
+  // Check if target date is today
+  const isToday = useMemo(() => {
+    const target = new Date(targetDate);
+    const today = new Date();
+    return (
+      target.getDate() === today.getDate() &&
+      target.getMonth() === today.getMonth() &&
+      target.getFullYear() === today.getFullYear()
+    );
+  }, [targetDate]);
+
+  // Format date label: "Astăzi" if today, otherwise Romanian date format
+  const dateLabel = useMemo(() => {
+    if (isToday) {
+      return "Astăzi";
+    }
+    const target = new Date(targetDate);
+    return format(target, "dd MMMM yyyy", { locale: ro });
+  }, [isToday, targetDate]);
+
   // Grid lines at -100%, -50%, 0%, +50%, +100% - memoized
   const gridLines = useMemo(
     () =>
@@ -213,7 +235,7 @@ export function BiorhythmChart({
               fontSize="12"
               aria-hidden="true"
             >
-              Astăzi
+              {dateLabel}
             </text>
 
             {/* Value Markers at Current Day */}
