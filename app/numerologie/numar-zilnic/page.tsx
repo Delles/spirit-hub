@@ -11,6 +11,9 @@ export const metadata: Metadata = {
       "Descoperă numărul zilei de astăzi și primește îndrumări numerologice pentru ziua curentă.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://spirithub.ro/numerologie/numar-zilnic",
+  },
 };
 
 export default function NumarZilnicPage() {

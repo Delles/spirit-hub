@@ -10,26 +10,39 @@ import { NumerologyForm, type NumerologyFormData } from "@/components/numerologi
 import { LifePathCard } from "@/components/numerologie/life-path-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
+import { parseISO } from "date-fns";
 
-export default function CaleaVietiiClient() {
+interface Props {
+  initialBirthDate?: string;
+}
+
+export default function CaleaVietiiClient({ initialBirthDate }: Props) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
   const dateParam = searchParams.get("date");
-  const [birthDate, setBirthDate] = useState<string>(dateParam || "");
-  const [lifePathNumber, setLifePathNumber] = useState<number | null>(null);
-  const [hasSubmitted, setHasSubmitted] = useState(!!dateParam);
+
+  const [birthDate, setBirthDate] = useState<string>(
+    initialBirthDate || dateParam || ""
+  );
+
+  const [lifePathNumber, setLifePathNumber] = useState<number | null>(() => {
+    const date = initialBirthDate || dateParam;
+    return date ? calculateLifePath(parseISO(date)) : null;
+  });
+
+  const [hasSubmitted, setHasSubmitted] = useState(!!(initialBirthDate || dateParam));
 
   // Sync state with URL params on mount and update
   useEffect(() => {
-    if (dateParam) {
+    if (dateParam && dateParam !== birthDate) {
       setBirthDate(dateParam);
-      const number = calculateLifePath(new Date(dateParam));
+      const number = calculateLifePath(parseISO(dateParam));
       setLifePathNumber(number);
       setHasSubmitted(true);
     }
-  }, [dateParam]);
+  }, [dateParam, birthDate]);
 
   // Query interpretation from Convex (supports Master Numbers 11, 22, 33)
   const interpretation = useQuery(
@@ -39,7 +52,7 @@ export default function CaleaVietiiClient() {
 
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "lifePath") {
-      const date = new Date(data.birthDate);
+      const date = parseISO(data.birthDate);
 
       // Calculate Life Path number with Master Number detection
       const number = calculateLifePath(date);

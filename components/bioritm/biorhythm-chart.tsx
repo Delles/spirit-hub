@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { ro } from "date-fns/locale";
 import { Card } from "@/components/ui/card";
 
@@ -163,7 +163,7 @@ export function BiorhythmChart({
               Grafic bioritm arătând ciclul fizic la {Math.round(physical * 100)}%, ciclul emoțional
               la {Math.round(emotional * 100)}%, și ciclul intelectual la{" "}
               {Math.round(intellectual * 100)}% pentru data de{" "}
-              {new Date(targetDate).toLocaleDateString("ro-RO")}
+              {format(parseISO(targetDate), "d MMMM yyyy", { locale: ro })}
             </desc>
             {/* Background Grid */}
             <g aria-hidden="true">

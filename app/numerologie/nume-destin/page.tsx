@@ -11,6 +11,9 @@ export const metadata: Metadata = {
       "Calculează-ți numărul destinului din numele complet și descoperă-ți misiunea în viață prin numerologie.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://spirithub.ro/numerologie/nume-destin",
+  },
 };
 
 export default function NumeDestinPage() {

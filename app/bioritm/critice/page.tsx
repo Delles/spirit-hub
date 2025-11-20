@@ -4,6 +4,9 @@ import CriticeDaysClient from "./client";
 export const metadata: Metadata = {
   title: "Zile Critice Bioritm | SpiritHub.ro",
   description: "Descoperă zilele critice din bioritmul tău când ciclurile trec prin zero.",
+  alternates: {
+    canonical: "https://spirithub.ro/bioritm/critice",
+  },
 };
 
 export default function CriticeDaysPage() {

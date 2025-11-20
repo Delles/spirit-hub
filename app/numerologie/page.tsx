@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Numerologie - SpiritHub.ro",
   description:
     "Calculează-ți numărul destinului, numărul căii vieții, compatibilitatea și numerele zilnice. Descoperă semnificația numerelor tale personale.",
+  alternates: {
+    canonical: "https://spirithub.ro/numerologie",
+  },
 };
 
 export default function NumerologiePage() {

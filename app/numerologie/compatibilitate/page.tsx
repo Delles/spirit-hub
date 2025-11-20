@@ -11,6 +11,9 @@ export const metadata: Metadata = {
       "Verifică compatibilitatea numerologică între două persoane folosind numele și datele de naștere.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://spirithub.ro/numerologie/compatibilitate",
+  },
 };
 
 export default function CompatibilitatePage() {

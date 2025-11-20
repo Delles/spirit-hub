@@ -13,6 +13,7 @@ import { NumerologyForm, type NumerologyFormData } from "@/components/numerologi
 import { CompatibilityCard } from "@/components/numerologie/compatibility-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
+import { parseISO } from "date-fns";
 
 interface PersonData {
   name: string;
@@ -35,8 +36,8 @@ export default function CompatibilitateClient() {
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "compatibility") {
       // Calculate Life Path numbers for both people (with Master Number detection)
-      const date1 = new Date(data.birthDate1);
-      const date2 = new Date(data.birthDate2);
+      const date1 = parseISO(data.birthDate1);
+      const date2 = parseISO(data.birthDate2);
       const lifePath1 = calculateLifePath(date1);
       const lifePath2 = calculateLifePath(date2);
 
@@ -72,64 +73,64 @@ export default function CompatibilitateClient() {
     <div className="container mx-auto px-4 py-8 lg:px-8">
       <div className="mx-auto max-w-4xl space-y-8">
 
-          {/* Info Section */}
-          <div className="rounded-lg border bg-card p-6 space-y-3">
-            <h2 className="text-xl font-semibold">Ce este Compatibilitatea Numerologică?</h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Compatibilitatea numerologică analizează armonia dintre două persoane pe baza
-              numerelor lor de viață. Calculăm atât Calea Vieții (din data nașterii), cât și Numărul
-              Destinului (din nume) pentru fiecare persoană, apoi determinăm cât de bine se
-              potrivesc aceste energii numerologice.
-            </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Un scor mare indică o conexiune naturală și armonioasă, în timp ce un scor mai mic
-              sugerează că relația va necesita mai mult efort și înțelegere reciprocă. Numerele
-              Maestru (11, 22, 33) sunt evaluate la valoarea lor completă, reflectând intensitatea
-              lor spirituală unică.
-            </p>
-          </div>
+        {/* Info Section */}
+        <div className="rounded-lg border bg-card p-6 space-y-3">
+          <h2 className="text-xl font-semibold">Ce este Compatibilitatea Numerologică?</h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Compatibilitatea numerologică analizează armonia dintre două persoane pe baza
+            numerelor lor de viață. Calculăm atât Calea Vieții (din data nașterii), cât și Numărul
+            Destinului (din nume) pentru fiecare persoană, apoi determinăm cât de bine se
+            potrivesc aceste energii numerologice.
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Un scor mare indică o conexiune naturală și armonioasă, în timp ce un scor mai mic
+            sugerează că relația va necesita mai mult efort și înțelegere reciprocă. Numerele
+            Maestru (11, 22, 33) sunt evaluate la valoarea lor completă, reflectând intensitatea
+            lor spirituală unică.
+          </p>
+        </div>
 
-          {/* Form Section */}
-          <div>
-            <NumerologyForm
-              type="compatibility"
-              onSubmit={handleSubmit}
-              isLoading={interpretation === undefined && hasSubmitted}
-            />
-          </div>
+        {/* Form Section */}
+        <div>
+          <NumerologyForm
+            type="compatibility"
+            onSubmit={handleSubmit}
+            isLoading={interpretation === undefined && hasSubmitted}
+          />
+        </div>
 
-          {/* Loading State */}
-          {interpretation === undefined && hasSubmitted && (
-            <LoadingSpinner text="Se calculează compatibilitatea..." />
+        {/* Loading State */}
+        {interpretation === undefined && hasSubmitted && (
+          <LoadingSpinner text="Se calculează compatibilitatea..." />
+        )}
+
+        {/* Error State */}
+        {interpretation === null && hasSubmitted && (
+          <ErrorMessage
+            title="Eroare la încărcare"
+            message="Nu am putut încărca interpretarea. Te rugăm să încerci din nou."
+          />
+        )}
+
+        {/* Results Section */}
+        {interpretation &&
+          hasSubmitted &&
+          compatibilityScore !== null &&
+          person1Data &&
+          person2Data && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <CompatibilityCard
+                score={compatibilityScore}
+                interpretation={{
+                  title: interpretation.title,
+                  description: interpretation.description,
+                  fullText: interpretation.fullText,
+                }}
+                person1={person1Data}
+                person2={person2Data}
+              />
+            </div>
           )}
-
-          {/* Error State */}
-          {interpretation === null && hasSubmitted && (
-            <ErrorMessage
-              title="Eroare la încărcare"
-              message="Nu am putut încărca interpretarea. Te rugăm să încerci din nou."
-            />
-          )}
-
-          {/* Results Section */}
-          {interpretation &&
-            hasSubmitted &&
-            compatibilityScore !== null &&
-            person1Data &&
-            person2Data && (
-              <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <CompatibilityCard
-                  score={compatibilityScore}
-                  interpretation={{
-                    title: interpretation.title,
-                    description: interpretation.description,
-                    fullText: interpretation.fullText,
-                  }}
-                  person1={person1Data}
-                  person2={person2Data}
-                />
-              </div>
-            )}
       </div>
     </div>
   );

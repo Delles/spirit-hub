@@ -12,8 +12,15 @@ import { BiorhythmSummary } from "@/components/bioritm/biorhythm-summary";
 import { ShareButton } from "@/components/shared/share-button";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
+import { format, parseISO } from "date-fns";
+import { ro } from "date-fns/locale";
 
-export default function BioritmClient() {
+interface Props {
+  initialBirthDate?: string;
+  initialTargetDate?: string;
+}
+
+export default function BioritmClient({ initialBirthDate, initialTargetDate }: Props) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -21,22 +28,26 @@ export default function BioritmClient() {
   const dateParam = searchParams.get("date");
   const targetParam = searchParams.get("target");
 
-  const [birthDate, setBirthDate] = useState<string>(dateParam || "");
-  const [targetDate, setTargetDate] = useState<string>(
-    targetParam || new Date().toISOString().split("T")[0]
+  // Initialize state with props if available, otherwise fall back to URL params or defaults
+  const [birthDate, setBirthDate] = useState<string>(
+    initialBirthDate || dateParam || ""
   );
-  const [hasSubmitted, setHasSubmitted] = useState(!!dateParam);
+  const [targetDate, setTargetDate] = useState<string>(
+    initialTargetDate || targetParam || new Date().toISOString().split("T")[0]
+  );
+  const [hasSubmitted, setHasSubmitted] = useState(!!(initialBirthDate || dateParam));
 
   // Sync state with URL params
   useEffect(() => {
-    if (dateParam) {
+    // Only update if params exist and are different from current state
+    if (dateParam && dateParam !== birthDate) {
       setBirthDate(dateParam);
       setHasSubmitted(true);
     }
-    if (targetParam) {
+    if (targetParam && targetParam !== targetDate) {
       setTargetDate(targetParam);
     }
-  }, [dateParam, targetParam]);
+  }, [dateParam, targetParam, birthDate, targetDate]);
 
   const biorhythm = useQuery(
     api.biorhythm.getBiorhythm,
@@ -144,7 +155,7 @@ export default function BioritmClient() {
               <ShareButton
                 url={shareUrl}
                 title="Bioritmul meu - SpiritHub.ro"
-                text={`Bioritmul meu pentru ${new Date(targetDate).toLocaleDateString("ro-RO")}`}
+                text={`Bioritmul meu pentru ${format(parseISO(targetDate), "d MMMM yyyy", { locale: ro })}`}
               />
             </div>
 

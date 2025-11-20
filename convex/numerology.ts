@@ -148,7 +148,17 @@ export const ensureDailyNumber = internalMutation({
   },
   handler: async (ctx, args) => {
     // Resolve target ISO date in RO timezone
-    const targetDate = args.date ?? isoDateInBucharest(new Date());
+    let targetDate = args.date;
+    if (!targetDate) {
+      const roDate = new Date().toLocaleDateString("ro-RO", {
+        timeZone: "Europe/Bucharest",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+      const [day, month, year] = roDate.split(".");
+      targetDate = `${year}-${month}-${day}`;
+    }
 
     // If already persisted, nothing to do
     const existing = await ctx.db
