@@ -9,7 +9,7 @@ export default async function DashboardPage() {
   // Fetch daily widget data server-side with Next.js caching
   const dailyWidgetData = await getCachedDailyWidgetData();
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground overflow-x-hidden">
+    <div className="flex min-h-screen flex-col text-foreground overflow-x-hidden">
       <Header />
       
       <main className="flex-1 w-full">

@@ -114,8 +114,13 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* Radial gradient background from design.json - GalaxyLine style */
-    background: radial-gradient(ellipse at center, #1a1822 0%, #0c0b10 100%);
+    /* Background image with subtle dark overlay for readability */
+    background-image: 
+      linear-gradient(rgba(12, 11, 16, 0.7), rgba(12, 11, 16, 0.7)),
+      url('/images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-attachment: fixed;
   }
 }
