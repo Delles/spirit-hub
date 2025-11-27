@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 
@@ -7,6 +7,12 @@ const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  weight: ["700"],
 });
 
 export const metadata: Metadata = {
@@ -47,7 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ro" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
         <ConvexClientProvider>{children}</ConvexClientProvider>
       </body>
     </html>
