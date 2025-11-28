@@ -55,13 +55,13 @@ export function QuickToolsWidget({ className }: QuickToolsWidgetProps) {
           >
             {/* Icon with dark purple circle background */}
             <div className={cn(
-              "w-12 h-12 rounded-full flex items-center justify-center bg-[#1a0b2e] border border-[#9F2BFF]/20 transition-all duration-300",
+              "w-12 h-12 rounded-full flex items-center justify-center bg-[#1a0b2e] border border-white/10 transition-all duration-300",
               "group-hover:bg-[#2D1B4E] group-hover:border-[#9F2BFF]/50 group-hover:shadow-[0_0_15px_rgba(159,43,255,0.4)]",
               "shadow-inner"
             )}>
               <tool.icon className={cn("w-5 h-5", tool.color)} strokeWidth={2} />
             </div>
-            <span className="text-[10px] font-medium text-[#E0E0E0] text-center uppercase tracking-wide opacity-80 group-hover:opacity-100 group-hover:text-white transition-all">
+            <span className="text-[11px] font-medium text-[#E0E0E0] text-center uppercase tracking-wide opacity-80 group-hover:opacity-100 group-hover:text-white transition-all">
               {tool.label}
             </span>
           </Link>

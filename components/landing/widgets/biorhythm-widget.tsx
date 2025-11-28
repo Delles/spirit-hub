@@ -65,7 +65,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
         {/* Left Side: Text & Info */}
         <div className="w-1/2 flex flex-col justify-between pr-4">
           <div>
-            <h3 className="text-[#A5B4FC] font-medium text-sm uppercase tracking-wider mb-4">
+            <h3 className="font-medium text-sm uppercase tracking-wider mb-4 transition-colors duration-300" style={{ color: energy.color }}>
               Sfatul Bioritmului
             </h3>
             
@@ -73,7 +73,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
               <h4 className="text-white font-bold text-2xl font-heading leading-tight">
                 {data.title}
               </h4>
-              <p className="text-[#E0E0E0] text-sm leading-relaxed opacity-80 line-clamp-2">
+              <p className="text-[#E0E0E0] text-sm leading-relaxed opacity-80">
                 {data.hint}
               </p>
             </div>
@@ -81,7 +81,13 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
 
           <div>
             <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-5xl font-bold text-white tracking-tight" style={{ color: energy.color }}>
+              <span 
+                className="text-5xl font-bold text-white tracking-tight" 
+                style={{ 
+                  color: energy.color,
+                  textShadow: `0 0 20px ${energy.color}66` // Adding 40% opacity (hex 66) to the energy color
+                }}
+              >
                 {energy.percentage}%
               </span>
               <span className="text-sm text-[#E0E0E0] uppercase tracking-wider opacity-60">

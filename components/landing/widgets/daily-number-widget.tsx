@@ -51,7 +51,10 @@ export function DailyNumberWidget({ data, className }: DailyNumberWidgetProps) {
         </Badge>
         <div className="relative">
           <div className="absolute inset-0 bg-[#9F2BFF]/20 blur-3xl rounded-full" />
-          <span className="relative text-8xl font-bold text-white drop-shadow-[0_0_15px_rgba(159,43,255,0.5)] font-heading">
+          <span 
+            className="relative text-8xl font-bold text-white font-heading"
+            style={{ textShadow: "0 0 20px rgba(144, 107, 232, 0.4)" }}
+          >
             {data.number}
           </span>
         </div>

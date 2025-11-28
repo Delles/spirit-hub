@@ -49,7 +49,7 @@ export function DreamWidget({ data, className }: DreamWidgetProps) {
       </div>
 
       {/* Bottom Action */}
-      <div className="relative z-10 pt-4">
+      <div className="relative z-10 pt-1">
         <Button 
           variant="outline" 
           className="rounded-full bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white backdrop-blur-md w-auto px-6 h-9 text-xs uppercase tracking-wider transition-all duration-300 hover:border-[#9F2BFF]/50"
