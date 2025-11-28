@@ -1,5 +1,6 @@
 
 import { getCachedDailyWidgetData } from "@/lib/daily-widget-server";
+import { getCachedMoonPhaseForBucharest } from "@/lib/moon-phase-server";
 import { DailyNumberWidget } from "@/components/landing/widgets/daily-number-widget";
 import { DreamWidget } from "@/components/landing/widgets/dream-widget";
 import { BiorhythmWidget } from "@/components/landing/widgets/biorhythm-widget";
@@ -20,8 +21,11 @@ function getFormattedDate() {
 }
 
 export default async function DashboardPage() {
-  // Fetch daily widget data server-side with Next.js caching
-  const dailyWidgetData = await getCachedDailyWidgetData();
+  // Fetch daily widget data and moon phase server-side with Next.js caching
+  const [dailyWidgetData, moonPhase] = await Promise.all([
+    getCachedDailyWidgetData(),
+    getCachedMoonPhaseForBucharest(),
+  ]);
   
   const currentDate = getFormattedDate();
 
@@ -46,7 +50,7 @@ export default async function DashboardPage() {
             {currentDate}
           </h1>
           <p className="text-[#A5B4FC] text-sm flex items-center justify-center gap-2">
-            Lună în creștere 🌒
+            {moonPhase.labelRo} {moonPhase.emoji}
           </p>
         </div>
 
