@@ -53,9 +53,9 @@
       "headings": "#FFFFFF",
       "headingsDescription": "Pure white for maximum contrast and readability",
       "headingsOklch": "oklch(0.985 0 0)",
-      "body": "#D0D0D0",
-      "bodyDescription": "Light gray for comfortable reading of body text",
-      "bodyOklch": "oklch(0.85 0 0)",
+      "body": "#E0E0E0",
+      "bodyDescription": "Light gray for comfortable reading of body text (slightly brighter on dark background)",
+      "bodyOklch": "oklch(0.9 0 0)",
       "subtle": "#8A8A8A",
       "subtleDescription": "Medium gray for secondary information, footer text, and subtle UI elements",
       "subtleOklch": "oklch(0.708 0 0)"
@@ -103,7 +103,7 @@
       "h1": {
         "fontFamily": "Inter, sans-serif",
         "fontWeight": "700",
-        "fontSize": "clamp(32px, 5vw, 64px)",
+        "fontSize": "clamp(28px, 4vw, 40px)",
         "lineHeight": "1.2",
         "letterSpacing": "-0.5px",
         "color": "#FFFFFF",
@@ -112,7 +112,7 @@
       "h2": {
         "fontFamily": "Inter, sans-serif",
         "fontWeight": "600",
-        "fontSize": "clamp(24px, 4vw, 48px)",
+        "fontSize": "clamp(20px, 3.2vw, 32px)",
         "lineHeight": "1.3",
         "letterSpacing": "-0.3px",
         "color": "#FFFFFF",
@@ -243,13 +243,22 @@
     "structure": "Centered, single-column layout for main content with generous padding. Use grid systems for multi-column layouts on larger screens.",
 
     "homepage": {
-      "type": "Full-screen slider",
-      "columns": {
-        "mobile": "1 column (stacked)",
-        "desktop": "2/5 text + 3/5 graphic"
+      "type": "Dashboard Bento grid",
+      "hero": {
+        "title": "Energia Zilei",
+        "subTitle": "Fază lunară și dată curentă",
+        "a11y": "Provide a 'Skip to main content' link labeled in Romanian"
       },
-      "navigation": "Vertical pagination on right side with slide numbers",
-      "autoRotation": "5 seconds per slide with pause on interaction"
+      "grid": {
+        "mobile": "1 column (stacked)",
+        "desktop": "3 columns bento grid",
+        "spans": [
+          { "component": "Daily Number", "md": "col-span-2 row-span-2", "minHeight": "350px" },
+          { "component": "Dream", "md": "col-span-1 row-span-2", "minHeight": "350px" },
+          { "component": "Biorhythm", "md": "col-span-2", "minHeight": "200px" },
+          { "component": "Quick Tools", "md": "col-span-1", "minHeight": "120px" }
+        ]
+      }
     },
 
     "featurePages": {
@@ -273,7 +282,7 @@
     "container": {
       "description": "Main content container with rounded corners and semi-transparent background",
       "backgroundColor": "rgba(26, 24, 34, 0.5)",
-      "backdropFilter": "blur(40px)",
+      "backdropFilter": "blur(6px)",
       "borderRadius": "16px",
       "border": "1px solid rgba(255, 255, 255, 0.05)",
       "boxShadow": "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(159, 43, 255, 0.15)",
@@ -285,16 +294,19 @@
 
     "card": {
       "description": "Content cards for results, interpretations, and information blocks",
-      "backgroundColor": "oklch(0.18 0.03 280 / 0.5)",
-      "borderRadius": "16px",
-      "border": "1px solid oklch(1 0 0 / 0.08)",
+      "backgroundColor": "rgba(0, 0, 0, 0.05)",
+      "gradientOverlay": "linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(159,43,255,0.02) 100%)",
+      "backdropFilter": "blur(6px)",
+      "borderRadius": "20px",
+      "border": "1px solid rgba(255,255,255,0.10)",
       "padding": {
         "mobile": "24px",
         "desktop": "32px"
       },
       "hover": {
-        "transform": "translateY(-2px)",
-        "boxShadow": "0 12px 40px rgba(159, 43, 255, 0.2)"
+        "transform": "translateY(-2px) scale(1.01)",
+        "border": "1px solid rgba(255,255,255,0.20)",
+        "boxShadow": "0 2px 16px rgba(0, 0, 0, 0.15), 0 0 50px rgba(159, 43, 255, 0.2)"
       }
     },
 
@@ -313,17 +325,45 @@
         }
       },
       "secondary": {
-        "background": "transparent",
+        "background": "rgba(255,255,255,0.05)",
         "color": "#FFFFFF",
-        "border": "1px solid oklch(1 0 0 / 0.12)",
+        "border": "1px solid rgba(255,255,255,0.10)",
         "padding": "12px 32px",
         "borderRadius": "9999px",
         "fontSize": "16px",
         "fontWeight": "500",
         "hover": {
-          "borderColor": "#9F2BFF",
-          "color": "#9F2BFF"
+          "background": "rgba(255,255,255,0.10)",
+          "borderColor": "rgba(159, 43, 255, 0.50)",
+          "color": "#FFFFFF"
         }
+      }
+    },
+    "badge": {
+      "description": "Small label used to highlight context (e.g., Cifra Zilei)",
+      "backgroundColor": "rgba(159, 43, 255, 0.20)",
+      "border": "1px solid rgba(159, 43, 255, 0.40)",
+      "color": "#E0E0E0",
+      "backdropFilter": "blur(12px)"
+    },
+    "quickTools": {
+      "description": "Compact shortcuts for primary sections (Numerologie, Vise, Bioritm)",
+      "iconCircle": {
+        "size": "48px",
+        "backgroundColor": "#1a0b2e",
+        "hoverBackground": "#2D1B4E",
+        "border": "1px solid rgba(255,255,255,0.10)",
+        "hoverBorder": "1px solid rgba(159,43,255,0.50)",
+        "shadow": "inset 0 0 0 rgba(0,0,0,0)",
+        "hoverShadow": "0 0 15px rgba(159, 43, 255, 0.4)"
+      },
+      "label": {
+        "fontSize": "12px",
+        "fontWeight": "500",
+        "color": "#E0E0E0",
+        "transform": "uppercase",
+        "tracking": "wide",
+        "hoverColor": "#FFFFFF"
       }
     },
 
@@ -411,7 +451,8 @@
       "fadeIn": {
         "from": "opacity: 0",
         "to": "opacity: 1",
-        "duration": "500ms"
+        "duration": "500ms",
+        "aliases": ["fade-in"]
       },
       "slideInUp": {
         "from": "opacity: 0, transform: translateY(30px)",
@@ -446,7 +487,7 @@
     "interactions": {
       "hover": {
         "button": "opacity: 0.9, transform: translateY(-1px)",
-        "card": "transform: translateY(-2px), boxShadow: enhanced",
+        "card": "transform: translateY(-2px) scale(1.01), boxShadow: enhanced",
         "link": "color: #9F2BFF"
       },
       "focus": {
@@ -484,6 +525,12 @@
     "keyboardNavigation": {
       "required": true,
       "description": "All interactive elements must be keyboard accessible"
+    },
+    "skipLink": {
+      "label": "Sari la conținutul principal",
+      "visibleOnFocus": true,
+      "positioning": "absolute top-4 left-4 with focus ring",
+      "usage": "Place at top of main element for keyboard and screen reader users"
     }
   },
 
@@ -492,7 +539,13 @@
       "format": "WebP with PNG/JPG fallback",
       "optimization": "Use next/image for automatic optimization",
       "loading": "Lazy load below-the-fold images",
-      "blendMode": "screen for ethereal effects"
+      "blendMode": "screen for ethereal effects",
+      "background": {
+        "attachment": "fixed",
+        "position": "center",
+        "size": "cover",
+        "overlay": "radial gradient from center to edges for subtle vignette"
+      }
     },
     "fonts": {
       "loading": "Use next/font for automatic optimization",
@@ -554,24 +607,34 @@
 
   "usageExamples": {
     "heroSection": {
-      "layout": "Full-screen with centered content",
-      "background": "Radial gradient with cosmic imagery",
-      "heading": "64px bold white text with -0.5px letter spacing",
-      "description": "18px regular light gray text with 1.6 line height",
-      "cta": "Purple gradient button with glow shadow"
+      "layout": "Centered header with date and moon phase",
+      "background": "Radial gradient overlay + fixed background image",
+      "heading": "clamp(28px, 4vw, 40px) bold white text",
+      "description": "14–16px light gray supporting line",
+      "cta": "Optional; keep minimal on dashboard"
     },
     "resultCard": {
-      "container": "Semi-transparent card with 16px border radius",
+      "container": "Glassmorphism card with 20px border radius",
       "padding": "32px on desktop, 24px on mobile",
       "heading": "32px semi-bold white text",
-      "body": "16px regular light gray text",
-      "border": "1px solid white at 8% opacity"
+      "body": "16px regular light gray text (#E0E0E0)",
+      "border": "1px solid white at 10% opacity"
     },
     "form": {
       "layout": "Vertical stack with 24px gap",
       "label": "14px medium weight white text",
       "input": "16px text with subtle background and border",
       "button": "Full-width primary button with gradient"
+    },
+    "homepageBento": {
+      "grid": "1 column mobile → 3 columns desktop",
+      "items": [
+        "Daily Number: md:col-span-2 md:row-span-2, min-h 350px",
+        "Dream: md:col-span-1 md:row-span-2, min-h 350px",
+        "Biorhythm: md:col-span-2, min-h 200px",
+        "Quick Tools: md:col-span-1, min-h 120px"
+      ],
+      "cardStyle": "bg-black/5 + subtle gradient overlay, blur, 20px radius, 1px border (white/10), hover border white/20 and slight scale"
     }
   },
 
