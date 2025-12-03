@@ -3,8 +3,7 @@ import { SectionHeader } from "@/components/shared/section-header";
 
 export default function NumerologieLayout({ children }: { children: React.ReactNode }) {
   return (
-    <MainLayout>
-      <SectionHeader />
+    <MainLayout header={<SectionHeader />}>
       {children}
     </MainLayout>
   );

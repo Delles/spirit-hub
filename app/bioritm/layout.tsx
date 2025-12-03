@@ -26,8 +26,7 @@ export const metadata: Metadata = {
 
 export default function BioritmLayout({ children }: { children: React.ReactNode }) {
   return (
-    <MainLayout>
-      <SectionHeader />
+    <MainLayout header={<SectionHeader />}>
       {children}
     </MainLayout>
   );

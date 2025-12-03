@@ -1,8 +1,9 @@
 interface MainLayoutProps {
   children: React.ReactNode;
+  header?: React.ReactNode;
 }
 
-export function MainLayout({ children }: MainLayoutProps) {
+export function MainLayout({ children, header }: MainLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col text-foreground overflow-x-hidden selection:bg-[#9F2BFF] selection:text-white">
       {/* Skip to main content link for screen readers */}
@@ -12,7 +13,9 @@ export function MainLayout({ children }: MainLayoutProps) {
       >
         Sari la conținutul principal
       </a>
-      <main id="main-content" className="flex-1 w-full">
+      {/* Fixed header outside the constrained container */}
+      {header}
+      <main id="main-content" className={`flex-1 w-full ${header ? "pt-12" : ""}`}>
         <div className="mx-auto max-w-[1200px] p-4 md:p-4 lg:p-6">{children}</div>
       </main>
     </div>
