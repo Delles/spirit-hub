@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
-import { Activity, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
 import { BiorhythmChart } from "@/components/bioritm/biorhythm-chart";
@@ -12,6 +12,7 @@ import { BiorhythmSummary } from "@/components/bioritm/biorhythm-summary";
 import { ShareButton } from "@/components/shared/share-button";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
+import { Card } from "@/components/ui/card";
 import { format, parseISO } from "date-fns";
 import { ro } from "date-fns/locale";
 
@@ -29,11 +30,9 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
   const targetParam = searchParams.get("target");
 
   // Initialize state with props if available, otherwise fall back to URL params or defaults
-  const [birthDate, setBirthDate] = useState<string>(
-    initialBirthDate || dateParam || ""
-  );
+  const [birthDate, setBirthDate] = useState<string>(initialBirthDate || dateParam || "");
   const [targetDate, setTargetDate] = useState<string>(
-    initialTargetDate || targetParam || new Date().toISOString().split("T")[0]
+    initialTargetDate || targetParam || new Date().toISOString().split("T")[0],
   );
   const [hasSubmitted, setHasSubmitted] = useState(!!(initialBirthDate || dateParam));
 
@@ -66,45 +65,39 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
     router.push(`${pathname}?${params.toString()}`);
   };
 
-  const shareUrl =
-    typeof window !== "undefined" ? window.location.href : "";
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
   return (
-    <div className="container mx-auto px-4 py-8 lg:px-8">
+    <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
-
         {/* Info Cards */}
         <div className="grid gap-4 sm:grid-cols-3">
-          <div className="rounded-lg border bg-card p-6 space-y-2">
-            <h3 className="font-semibold text-lg">Ciclu Fizic</h3>
-            <p className="text-sm text-muted-foreground">23 de zile</p>
-            <p className="text-xs text-muted-foreground">
-              Energie, rezistență și vitalitate fizică
-            </p>
-          </div>
-          <div className="rounded-lg border bg-card p-6 space-y-2">
-            <h3 className="font-semibold text-lg">Ciclu Emoțional</h3>
-            <p className="text-sm text-muted-foreground">28 de zile</p>
-            <p className="text-xs text-muted-foreground">
+          <Card className="p-6 space-y-2">
+            <h3 className="font-semibold text-lg text-white">Ciclu Fizic</h3>
+            <p className="text-sm text-[#E0E0E0]">23 de zile</p>
+            <p className="text-xs text-[#E0E0E0]/60">Energie, rezistență și vitalitate fizică</p>
+          </Card>
+          <Card className="p-6 space-y-2">
+            <h3 className="font-semibold text-lg text-white">Ciclu Emoțional</h3>
+            <p className="text-sm text-[#E0E0E0]">28 de zile</p>
+            <p className="text-xs text-[#E0E0E0]/60">
               Stare de spirit, creativitate și sensibilitate
             </p>
-          </div>
-          <div className="rounded-lg border bg-card p-6 space-y-2">
-            <h3 className="font-semibold text-lg">Ciclu Intelectual</h3>
-            <p className="text-sm text-muted-foreground">33 de zile</p>
-            <p className="text-xs text-muted-foreground">
-              Claritate mentală, concentrare și memorie
-            </p>
-          </div>
+          </Card>
+          <Card className="p-6 space-y-2">
+            <h3 className="font-semibold text-lg text-white">Ciclu Intelectual</h3>
+            <p className="text-sm text-[#E0E0E0]">33 de zile</p>
+            <p className="text-xs text-[#E0E0E0]/60">Claritate mentală, concentrare și memorie</p>
+          </Card>
         </div>
 
         {/* Form Section */}
-        <div className="rounded-lg border bg-card p-6 lg:p-8">
+        <Card className="p-6 lg:p-8">
           <BiorhythmForm
             onSubmit={handleSubmit}
             isLoading={biorhythm === undefined && hasSubmitted}
           />
-        </div>
+        </Card>
 
         {/* Loading State */}
         {biorhythm === undefined && hasSubmitted && (
@@ -123,8 +116,8 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
         {biorhythm && hasSubmitted && (
           <div className="space-y-6">
             {/* Chart */}
-            <div className="rounded-lg border bg-card p-6 lg:p-8">
-              <h2 className="text-2xl font-semibold mb-6">Graficul Bioritmului Tău</h2>
+            <Card className="p-6 lg:p-8">
+              <h2 className="text-2xl font-semibold mb-6 text-white">Graficul Bioritmului Tău</h2>
               <BiorhythmChart
                 physical={biorhythm.physical}
                 emotional={biorhythm.emotional}
@@ -132,49 +125,45 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
                 birthDate={biorhythm.birthDate}
                 targetDate={biorhythm.targetDate}
               />
-            </div>
+            </Card>
 
             {/* Summary */}
-            <div className="rounded-lg border bg-card p-6 lg:p-8">
+            <Card className="p-6 lg:p-8">
               <BiorhythmSummary
                 summary={biorhythm.summary}
                 physical={biorhythm.physical}
                 emotional={biorhythm.emotional}
                 intellectual={biorhythm.intellectual}
               />
-            </div>
+            </Card>
 
             {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-between rounded-lg border bg-card p-6">
+            <Card className="flex flex-col sm:flex-row gap-4 items-center justify-between p-6">
               <div className="text-center sm:text-left">
-                <h3 className="font-semibold mb-1">Distribuie rezultatul tău</h3>
-                <p className="text-sm text-muted-foreground">
-                  Împărtășește bioritmul tău cu prietenii
-                </p>
+                <h3 className="font-semibold mb-1 text-white">Distribuie rezultatul tău</h3>
+                <p className="text-sm text-[#E0E0E0]">Împărtășește bioritmul tău cu prietenii</p>
               </div>
               <ShareButton
                 url={shareUrl}
                 title="Bioritmul meu - SpiritHub.ro"
                 text={`Bioritmul meu pentru ${format(parseISO(targetDate), "d MMMM yyyy", { locale: ro })}`}
               />
-            </div>
+            </Card>
 
             {/* Link to Critical Days */}
-            <Link
-              href="/bioritm/critice"
-              className="flex items-center justify-between rounded-lg border bg-card p-6 hover:bg-accent transition-colors group min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-              aria-label="Vezi zilele critice"
-            >
-              <div>
-                <h3 className="font-semibold mb-1">Zile Critice</h3>
-                <p className="text-sm text-muted-foreground">
-                  Descoperă zilele când ciclurile tale trec prin zero
-                </p>
-              </div>
-              <ArrowRight
-                className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors"
-                aria-hidden="true"
-              />
+            <Link href="/bioritm/critice" className="block group" aria-label="Vezi zilele critice">
+              <Card className="flex items-center justify-between p-6">
+                <div>
+                  <h3 className="font-semibold mb-1 text-white">Zile Critice</h3>
+                  <p className="text-sm text-[#E0E0E0]">
+                    Descoperă zilele când ciclurile tale trec prin zero
+                  </p>
+                </div>
+                <ArrowRight
+                  className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#9F2BFF] transition-colors"
+                  aria-hidden="true"
+                />
+              </Card>
             </Link>
           </div>
         )}

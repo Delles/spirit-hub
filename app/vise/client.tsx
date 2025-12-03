@@ -8,6 +8,7 @@ import { DreamSearchInput } from "@/components/vise/dream-search-input";
 import { DreamResultList } from "@/components/vise/dream-result-list";
 import { DreamDetailCard } from "@/components/vise/dream-detail-card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Moon } from "lucide-react";
 import { DreamSymbol } from "@/lib/dreams";
 
@@ -70,11 +71,11 @@ export function ViseClient() {
     <div className="space-y-8">
       {/* Hero Section */}
       <div className="text-center space-y-4">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-          <Moon className="h-8 w-8 text-primary" />
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40">
+          <Moon className="h-8 w-8 text-[#9F2BFF]" />
         </div>
-        <h2 className="text-3xl font-bold">Dicționar de Interpretare Vise</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+        <h2 className="text-3xl font-bold text-white">Dicționar de Interpretare Vise</h2>
+        <p className="text-[#E0E0E0] max-w-2xl mx-auto">
           Peste 100 de simboluri onirice explicate în detaliu. Caută semnificația viselor tale sau
           explorează interpretările tradiționale românești.
         </p>
@@ -94,14 +95,14 @@ export function ViseClient() {
         <div className="max-w-md mx-auto">
           <Link href="/vise/visul-zilei">
             <Button
-              variant="outline"
-              className="w-full h-auto py-4 px-6 flex flex-col items-start gap-2 hover:bg-accent/50 transition-colors"
+              variant="secondary"
+              className="w-full h-auto py-4 px-6 flex flex-col items-start gap-2"
             >
               <div className="flex items-center gap-2">
-                <Moon className="h-5 w-5 text-primary" />
-                <span className="font-semibold">Visul Zilei</span>
+                <Moon className="h-5 w-5 text-[#9F2BFF]" />
+                <span className="font-semibold text-white">Visul Zilei</span>
               </div>
-              <span className="text-sm text-muted-foreground text-left">
+              <span className="text-sm text-[#E0E0E0]/80 text-left">
                 Descoperă simbolul zilei și semnificația sa
               </span>
             </Button>
@@ -135,54 +136,53 @@ export function ViseClient() {
       {/* Educational Content */}
       {!searchQuery && !selectedSymbol && (
         <div className="max-w-2xl mx-auto mt-12 space-y-6">
-          <div className="rounded-lg border bg-card p-6 shadow-sm">
-            <h3 className="text-xl font-semibold mb-3">Cum să folosești dicționarul</h3>
-            <div className="space-y-3 text-muted-foreground">
+          <Card className="p-6">
+            <h3 className="text-xl font-semibold mb-3 text-white">Cum să folosești dicționarul</h3>
+            <div className="space-y-3 text-[#E0E0E0]">
               <p>
-                <strong className="text-foreground">1. Caută simboluri:</strong> Introdu un cuvânt
-                cheie din visul tău (de exemplu: &quot;șarpe&quot;, &quot;apă&quot;,
-                &quot;casă&quot;).
+                <strong className="text-white">1. Caută simboluri:</strong> Introdu un cuvânt cheie
+                din visul tău (de exemplu: &quot;șarpe&quot;, &quot;apă&quot;, &quot;casă&quot;).
               </p>
               <p>
-                <strong className="text-foreground">2. Explorează interpretări:</strong> Citește
+                <strong className="text-white">2. Explorează interpretări:</strong> Citește
                 semnificațiile bazate pe folclorul și tradițiile românești.
               </p>
             </div>
-          </div>
+          </Card>
 
-          <div className="rounded-lg border bg-card p-6 shadow-sm">
-            <h3 className="text-xl font-semibold mb-3">Categorii de simboluri</h3>
+          <Card className="p-6">
+            <h3 className="text-xl font-semibold mb-3 text-white">Categorii de simboluri</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-red-400" />
-                <span className="text-muted-foreground">Animale</span>
+                <span className="text-[#E0E0E0]">Animale</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-green-400" />
-                <span className="text-muted-foreground">Natură</span>
+                <span className="text-[#E0E0E0]">Natură</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-blue-400" />
-                <span className="text-muted-foreground">Obiecte</span>
+                <span className="text-[#E0E0E0]">Obiecte</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-purple-400" />
-                <span className="text-muted-foreground">Emoții</span>
+                <span className="text-[#E0E0E0]">Emoții</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-yellow-400" />
-                <span className="text-muted-foreground">Persoane</span>
+                <span className="text-[#E0E0E0]">Persoane</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-orange-400" />
-                <span className="text-muted-foreground">Acțiuni</span>
+                <span className="text-[#E0E0E0]">Acțiuni</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-cyan-400" />
-                <span className="text-muted-foreground">Locuri</span>
+                <span className="text-[#E0E0E0]">Locuri</span>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       )}
     </div>

@@ -55,7 +55,7 @@ export function BiorhythmSummary({
         <h3 className="text-xl md:text-2xl font-semibold text-white">Interpretare</h3>
 
         {/* Summary Text */}
-        <p className="text-base leading-relaxed text-[#D0D0D0]">{summary}</p>
+        <p className="text-base leading-relaxed text-[#E0E0E0]">{summary}</p>
 
         {/* Cycle Indicators */}
         <div className="space-y-4 pt-2">

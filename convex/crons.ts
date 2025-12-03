@@ -16,7 +16,8 @@ const crons = cronJobs();
 // Run hourly at minute 0 to ensure daily dream is persisted
 crons.cron("ensure-daily-dream-persisted", "0 * * * *", internal.dreams.ensureDailyDream, {});
 
-// Run daily at 00:00 UTC to ensure daily number is persisted
+// Run hourly at minute 0 to ensure daily number is persisted (idempotent - checks if exists first)
+// This provides redundancy and handles DST changes without adjusting cron expressions
 crons.cron("ensure-daily-number-persisted", "0 * * * *", internal.numerology.ensureDailyNumber, {});
 
 export default crons;

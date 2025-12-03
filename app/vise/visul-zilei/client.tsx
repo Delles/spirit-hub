@@ -33,8 +33,8 @@ export function VisulZileiClient() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="size-8 animate-spin text-primary" />
-          <p className="text-sm text-muted-foreground">Se încarcă visul zilei...</p>
+          <Loader2 className="size-8 animate-spin text-[#9F2BFF]" />
+          <p className="text-sm text-[#E0E0E0]">Se încarcă visul zilei...</p>
         </div>
       </div>
     );
@@ -53,7 +53,7 @@ export function VisulZileiClient() {
 
         <div className="flex justify-center">
           <Link href="/vise">
-            <Button variant="outline" className="min-h-[44px]">
+            <Button variant="secondary" className="min-h-[44px]">
               Caută alte simboluri
             </Button>
           </Link>
@@ -66,8 +66,8 @@ export function VisulZileiClient() {
     <div className="space-y-8">
       {/* Date Display */}
       <div className="text-center space-y-2">
-        <p className="text-sm text-muted-foreground uppercase tracking-wide">Visul Zilei</p>
-        <p className="text-xl font-semibold text-primary">{romanianDate}</p>
+        <p className="text-sm text-[#E0E0E0]/60 uppercase tracking-wide">Visul Zilei</p>
+        <p className="text-xl font-semibold text-[#9F2BFF]">{romanianDate}</p>
       </div>
 
       {/* Dream Symbol Detail */}
@@ -76,7 +76,7 @@ export function VisulZileiClient() {
       {/* Link back to search */}
       <div className="flex justify-center pt-4">
         <Link href="/vise">
-          <Button variant="outline" className="min-h-[44px]">
+          <Button variant="secondary" className="min-h-[44px]">
             Caută alte simboluri
           </Button>
         </Link>

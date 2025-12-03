@@ -1,22 +1,29 @@
-
 import { getCachedDailyWidgetData } from "@/lib/daily-widget-server";
 import { getCachedMoonPhaseForBucharest } from "@/lib/moon-phase-server";
 import { DailyNumberWidget } from "@/components/landing/widgets/daily-number-widget";
 import { DreamWidget } from "@/components/landing/widgets/dream-widget";
 import { BiorhythmWidget } from "@/components/landing/widgets/biorhythm-widget";
 import { QuickToolsWidget } from "@/components/landing/widgets/quick-tools-widget";
+import { DailyWidgetDateChecker } from "@/components/landing/daily-widget-date-checker";
 
-// Helper for date formatting
+// ISR: Revalidate every hour for optimal balance between freshness and caching
+// - Edge CDN serves cached HTML instantly (great performance)
+// - Background revalidation every hour keeps data fresh
+// - Client-side date checker handles edge case right after midnight
+// - Data only changes once per day, so 1-hour revalidation is more than sufficient
+export const revalidate = 3600; // 1 hour in seconds
+
+// Helper for date formatting - uses Bucharest timezone for consistency with daily widget data
 function getFormattedDate() {
-  const now = new Date();
   const options: Intl.DateTimeFormatOptions = { 
+    timeZone: 'Europe/Bucharest',
     weekday: 'long', 
     year: 'numeric', 
     month: 'long', 
     day: 'numeric' 
   };
   // Capitalize first letter
-  const dateStr = now.toLocaleDateString('ro-RO', options);
+  const dateStr = new Date().toLocaleDateString('ro-RO', options);
   return dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
 }
 
@@ -55,6 +62,9 @@ export default async function DashboardPage() {
         </div>
 
         <div id="main-content" className="flex flex-col items-center justify-start p-4 md:p-4 lg:p-6 max-w-[1200px] mx-auto">
+          
+          {/* Client-side date checker - ensures data matches current date */}
+          <DailyWidgetDateChecker widgetData={dailyWidgetData} />
           
           {/* Bento Grid Layout */}
           <div className="w-full grid grid-cols-1 md:grid-cols-3 auto-rows-min gap-4">

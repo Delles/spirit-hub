@@ -1,7 +1,13 @@
 /**
  * Server-side utility for fetching daily widget data
- * Uses Next.js cache to ensure data is cached for the entire day
- * Same data for all users, so we can cache aggressively
+ * 
+ * Caching strategy (works with ISR on the page level):
+ * 1. Page uses ISR with revalidate=3600 (1 hour) - serves cached HTML from edge
+ * 2. When ISR revalidates, this function is called
+ * 3. unstable_cache with date-based key ensures Convex is only queried once per day
+ * 4. Result: ~24 ISR revalidations/day, but only ~1 Convex query/day
+ * 
+ * Same data for all users, so we can cache aggressively.
  */
 
 import { ConvexHttpClient } from "convex/browser";
@@ -107,19 +113,20 @@ async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
 /**
  * Get daily widget data with Next.js caching
  * Cache key includes today's date, so it automatically invalidates at midnight
- * Revalidates every 24 hours (86400 seconds) as a safety net
+ * Revalidates every 12 hours as a safety net (cache key handles date-based invalidation)
  */
 export async function getCachedDailyWidgetData(): Promise<DailyWidgetData> {
   const todayISO = getTodayISO();
   
   // Cache key includes the date, so cache automatically invalidates when date changes
+  // This means the cache will naturally refresh at midnight Bucharest time
   const cached = unstable_cache(
     async () => {
       return fetchDailyWidgetData();
     },
     ["daily-widget-data", todayISO],
     {
-      revalidate: 86400, // 24 hours in seconds (safety net)
+      revalidate: 43200, // 12 hours in seconds - safety net (cache key handles date invalidation)
       tags: ["daily-widget"],
     }
   );

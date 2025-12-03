@@ -2,7 +2,12 @@
 
 import { SectionHeader } from "./section-header";
 
-export function PageHeader() {
-  return <SectionHeader />;
+interface PageHeaderProps {
+  title?: string;
+  subtitle?: string;
+}
+
+export function PageHeader({ title, subtitle }: PageHeaderProps) {
+  return <SectionHeader title={title} subtitle={subtitle} />;
 }
 

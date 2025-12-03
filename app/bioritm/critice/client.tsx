@@ -3,12 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useQuery } from "convex/react";
-import { AlertTriangle, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
 import { CriticalDaysList } from "@/components/bioritm/critical-days-list";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
+import { Card } from "@/components/ui/card";
 
 export default function CriticeDaysClient() {
   const [birthDate, setBirthDate] = useState<string>("");
@@ -33,61 +34,62 @@ export default function CriticeDaysClient() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 lg:px-8">
+    <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
+        {/* Info Section */}
+        <Card className="p-6 space-y-3">
+          <h2 className="text-xl font-semibold text-white">Ce sunt zilele critice?</h2>
+          <p className="text-sm text-[#E0E0E0] leading-relaxed">
+            Zilele critice apar când unul sau mai multe cicluri bioritmice trec prin punctul zero,
+            trecând de la o fază pozitivă la una negativă sau invers. În aceste zile, este recomandat
+            să fii mai atent și să eviți deciziile importante sau activitățile riscante în domeniile
+            afectate.
+          </p>
+        </Card>
 
-          {/* Info Section */}
-          <div className="rounded-lg border bg-card p-6 space-y-3">
-            <h2 className="text-xl font-semibold">Ce sunt zilele critice?</h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Zilele critice apar când unul sau mai multe cicluri bioritmice trec prin punctul zero,
-              trecând de la o fază pozitivă la una negativă sau invers. În aceste zile, este
-              recomandat să fii mai atent și să eviți deciziile importante sau activitățile riscante
-              în domeniile afectate.
-            </p>
-          </div>
+        {/* Form Section */}
+        <Card className="p-6 lg:p-8">
+          <BiorhythmForm
+            onSubmit={handleSubmit}
+            isLoading={criticalDays === undefined && hasSubmitted}
+            showTargetDate={false}
+          />
+        </Card>
 
-          {/* Form Section */}
-          <div className="rounded-lg border bg-card p-6 lg:p-8">
-            <BiorhythmForm
-              onSubmit={handleSubmit}
-              isLoading={criticalDays === undefined && hasSubmitted}
-              showTargetDate={false}
-            />
-          </div>
+        {/* Loading State */}
+        {criticalDays === undefined && hasSubmitted && (
+          <LoadingSpinner text="Se caută zilele critice..." />
+        )}
 
-          {/* Loading State */}
-          {criticalDays === undefined && hasSubmitted && (
-            <LoadingSpinner text="Se caută zilele critice..." />
-          )}
+        {/* Error State */}
+        {criticalDays === null && hasSubmitted && (
+          <ErrorMessage
+            title="Eroare la căutare"
+            message="Nu am putut identifica zilele critice. Te rugăm să verifici data nașterii și să încerci din nou."
+          />
+        )}
 
-          {/* Error State */}
-          {criticalDays === null && hasSubmitted && (
-            <ErrorMessage
-              title="Eroare la căutare"
-              message="Nu am putut identifica zilele critice. Te rugăm să verifici data nașterii și să încerci din nou."
-            />
-          )}
+        {/* Results Section */}
+        {criticalDays && hasSubmitted && (
+          <div className="space-y-6">
+            <CriticalDaysList criticalDays={criticalDays} />
 
-          {/* Results Section */}
-          {criticalDays && hasSubmitted && (
-            <div className="space-y-6">
-              <CriticalDaysList criticalDays={criticalDays} />
-
-              {/* Back Link */}
-              <Link
-                href="/bioritm"
-                className="flex items-center justify-center gap-2 rounded-lg border bg-card p-4 hover:bg-accent transition-colors group min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                aria-label="Înapoi la Calculator Bioritm"
-              >
+            {/* Back Link */}
+            <Link
+              href="/bioritm"
+              className="block group"
+              aria-label="Înapoi la Calculator Bioritm"
+            >
+              <Card className="flex items-center justify-center gap-2 p-4">
                 <ArrowLeft
-                  className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors"
+                  className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#9F2BFF] transition-colors"
                   aria-hidden="true"
                 />
-                <span className="font-medium">Înapoi la Calculator Bioritm</span>
-              </Link>
-            </div>
-          )}
+                <span className="font-medium text-white">Înapoi la Calculator Bioritm</span>
+              </Card>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

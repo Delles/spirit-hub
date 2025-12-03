@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { useQuery } from "convex/react";
-import { Sparkles } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { calculateDestinyNumber } from "@/lib/numerology";
 import { NumerologyForm, type NumerologyFormData } from "@/components/numerologie/numerology-form";
 import { DestinyCard } from "@/components/numerologie/destiny-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
+import { Card } from "@/components/ui/card";
 
 export default function NumeDestinClient() {
   const [name, setName] = useState<string>("");
@@ -34,65 +34,64 @@ export default function NumeDestinClient() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 lg:px-8">
+    <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
+        {/* Info Section */}
+        <Card className="p-6 space-y-3">
+          <h2 className="text-xl font-semibold text-white">Ce este Numărul Destinului?</h2>
+          <p className="text-sm text-[#E0E0E0] leading-relaxed">
+            Numărul Destinului este calculat din numele tău complet și reprezintă misiunea ta în
+            viață, talentele înnăscute și potențialul pe care l-ai venit să-l realizezi. Spre
+            deosebire de Calea Vieții (care arată lecțiile pe care trebuie să le înveți), Numărul
+            Destinului îți arată ce ai venit să faci și ce daruri ai de oferit lumii.
+          </p>
+          <p className="text-sm text-[#E0E0E0] leading-relaxed">
+            Fiecare literă din numele tău poartă o vibrație numerologică specifică. Sistemul nostru
+            recunoaște corect diacriticele românești (ă, â, î, ș, ț) și calculează valoarea exactă a
+            numelui tău.
+          </p>
+          <p className="text-sm text-[#E0E0E0] leading-relaxed">
+            Numerele Maestru (11, 22, 33) indică un potențial spiritual deosebit și o
+            responsabilitate mai mare în realizarea misiunii tale de viață.
+          </p>
+        </Card>
 
-          {/* Info Section */}
-          <div className="rounded-lg border bg-card p-6 space-y-3">
-            <h2 className="text-xl font-semibold">Ce este Numărul Destinului?</h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Numărul Destinului este calculat din numele tău complet și reprezintă misiunea ta în
-              viață, talentele înnăscute și potențialul pe care l-ai venit să-l realizezi. Spre
-              deosebire de Calea Vieții (care arată lecțiile pe care trebuie să le înveți), Numărul
-              Destinului îți arată ce ai venit să faci și ce daruri ai de oferit lumii.
-            </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Fiecare literă din numele tău poartă o vibrație numerologică specifică. Sistemul
-              nostru recunoaște corect diacriticele românești (ă, â, î, ș, ț) și calculează valoarea
-              exactă a numelui tău.
-            </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Numerele Maestru (11, 22, 33) indică un potențial spiritual deosebit și o
-              responsabilitate mai mare în realizarea misiunii tale de viață.
-            </p>
-          </div>
+        {/* Form Section */}
+        <div>
+          <NumerologyForm
+            type="destiny"
+            onSubmit={handleSubmit}
+            isLoading={interpretation === undefined && hasSubmitted}
+          />
+        </div>
 
-          {/* Form Section */}
-          <div>
-            <NumerologyForm
-              type="destiny"
-              onSubmit={handleSubmit}
-              isLoading={interpretation === undefined && hasSubmitted}
+        {/* Loading State */}
+        {interpretation === undefined && hasSubmitted && (
+          <LoadingSpinner text="Se încarcă interpretarea..." />
+        )}
+
+        {/* Error State */}
+        {interpretation === null && hasSubmitted && (
+          <ErrorMessage
+            title="Eroare la încărcare"
+            message="Nu am putut încărca interpretarea. Te rugăm să încerci din nou."
+          />
+        )}
+
+        {/* Results Section */}
+        {interpretation && hasSubmitted && destinyNumber !== null && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <DestinyCard
+              number={destinyNumber}
+              interpretation={{
+                title: interpretation.title,
+                description: interpretation.description,
+                fullText: interpretation.fullText,
+              }}
+              name={name}
             />
           </div>
-
-          {/* Loading State */}
-          {interpretation === undefined && hasSubmitted && (
-            <LoadingSpinner text="Se încarcă interpretarea..." />
-          )}
-
-          {/* Error State */}
-          {interpretation === null && hasSubmitted && (
-            <ErrorMessage
-              title="Eroare la încărcare"
-              message="Nu am putut încărca interpretarea. Te rugăm să încerci din nou."
-            />
-          )}
-
-          {/* Results Section */}
-          {interpretation && hasSubmitted && destinyNumber !== null && (
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <DestinyCard
-                number={destinyNumber}
-                interpretation={{
-                  title: interpretation.title,
-                  description: interpretation.description,
-                  fullText: interpretation.fullText,
-                }}
-                name={name}
-              />
-            </div>
-          )}
+        )}
       </div>
     </div>
   );

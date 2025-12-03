@@ -63,14 +63,16 @@ export function CompatibilityCard({
 
   return (
     <Card className="w-full">
-      <CardHeader>
+      <CardHeader className="px-6 pt-6 pb-0">
         <div className="flex items-start justify-between">
           <div className="space-y-1">
-            <CardTitle className="text-2xl flex items-center gap-2">
+            <CardTitle className="text-2xl flex items-center gap-2 text-white">
               <Heart className="h-6 w-6" />
               Compatibilitate Numerologică
             </CardTitle>
-            <CardDescription>{interpretation.title}</CardDescription>
+            <CardDescription className="text-[#E0E0E0]/60">
+              {interpretation.title}
+            </CardDescription>
           </div>
           <Badge variant="secondary" className={`ml-2 ${colors.badge}`}>
             {score}%
@@ -97,23 +99,23 @@ export function CompatibilityCard({
         {/* Two-column layout with both people's numbers */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Person 1 */}
-          <div className="p-4 rounded-lg bg-card/50 border border-border">
-            <p className="text-sm text-muted-foreground mb-3">Persoana 1</p>
-            <p className="text-lg font-semibold mb-4">{person1.name}</p>
+          <div className="p-4 rounded-lg bg-white/5 border border-white/10">
+            <p className="text-sm text-[#E0E0E0]/60 mb-3">Persoana 1</p>
+            <p className="text-lg font-semibold mb-4 text-white">{person1.name}</p>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Calea Vieții:</span>
+                <span className="text-sm text-[#E0E0E0]">Calea Vieții:</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-bold text-primary">{person1.lifePath}</span>
+                  <span className="text-xl font-bold text-[#9F2BFF]">{person1.lifePath}</span>
                   {masterNumbers.includes(person1.lifePath) && (
                     <Sparkles className="h-4 w-4 text-yellow-400" />
                   )}
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Destinul:</span>
+                <span className="text-sm text-[#E0E0E0]">Destinul:</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-bold text-primary">{person1.destiny}</span>
+                  <span className="text-xl font-bold text-[#9F2BFF]">{person1.destiny}</span>
                   {masterNumbers.includes(person1.destiny) && (
                     <Sparkles className="h-4 w-4 text-yellow-400" />
                   )}
@@ -123,23 +125,23 @@ export function CompatibilityCard({
           </div>
 
           {/* Person 2 */}
-          <div className="p-4 rounded-lg bg-card/50 border border-border">
-            <p className="text-sm text-muted-foreground mb-3">Persoana 2</p>
-            <p className="text-lg font-semibold mb-4">{person2.name}</p>
+          <div className="p-4 rounded-lg bg-white/5 border border-white/10">
+            <p className="text-sm text-[#E0E0E0]/60 mb-3">Persoana 2</p>
+            <p className="text-lg font-semibold mb-4 text-white">{person2.name}</p>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Calea Vieții:</span>
+                <span className="text-sm text-[#E0E0E0]">Calea Vieții:</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-bold text-primary">{person2.lifePath}</span>
+                  <span className="text-xl font-bold text-[#9F2BFF]">{person2.lifePath}</span>
                   {masterNumbers.includes(person2.lifePath) && (
                     <Sparkles className="h-4 w-4 text-yellow-400" />
                   )}
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Destinul:</span>
+                <span className="text-sm text-[#E0E0E0]">Destinul:</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-bold text-primary">{person2.destiny}</span>
+                  <span className="text-xl font-bold text-[#9F2BFF]">{person2.destiny}</span>
                   {masterNumbers.includes(person2.destiny) && (
                     <Sparkles className="h-4 w-4 text-yellow-400" />
                   )}
@@ -151,20 +153,18 @@ export function CompatibilityCard({
 
         {/* Description */}
         <div className="space-y-2">
-          <p className="text-base text-muted-foreground leading-relaxed">
-            {interpretation.description}
-          </p>
+          <p className="text-base text-[#E0E0E0] leading-relaxed">{interpretation.description}</p>
         </div>
 
         {/* Full interpretation */}
-        <div className="prose prose-sm dark:prose-invert max-w-none">
-          <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+        <div className="max-w-none">
+          <div className="text-[#E0E0E0] leading-relaxed whitespace-pre-line">
             {interpretation.fullText}
           </div>
         </div>
 
         {/* Share button */}
-        <div className="pt-4 border-t">
+        <div className="pt-4 border-t border-white/10">
           <ShareButton
             url={typeof window !== "undefined" ? window.location.href : ""}
             title={`Compatibilitatea noastră numerologică este ${score}%`}

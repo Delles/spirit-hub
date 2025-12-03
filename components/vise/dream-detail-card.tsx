@@ -70,10 +70,10 @@ export function DreamDetailCard({
 
   return (
     <Card className={cn("w-full", className)}>
-      <CardHeader>
+      <CardHeader className="px-6 pt-6 pb-0">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 space-y-2">
-            <CardTitle className="text-2xl">{symbol.name}</CardTitle>
+            <CardTitle className="text-2xl text-white">{symbol.name}</CardTitle>
             <Badge
               className={cn("w-fit", categoryColors.text, categoryColors.bg, "border-transparent")}
             >
@@ -95,14 +95,14 @@ export function DreamDetailCard({
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-6">
-        <div className="prose prose-sm dark:prose-invert max-w-none">
-          <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+      <CardContent className="space-y-6 px-6 pb-6">
+        <div className="max-w-none">
+          <p className="text-[#E0E0E0] leading-relaxed whitespace-pre-line">
             {symbol.interpretation}
           </p>
         </div>
 
-        <div className="pt-4 border-t">
+        <div className="pt-4 border-t border-white/10">
           <ShareButton url={shareUrl} title={shareTitle} />
         </div>
       </CardContent>

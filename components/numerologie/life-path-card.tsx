@@ -32,11 +32,13 @@ export function LifePathCard({ number, interpretation }: LifePathCardProps) {
 
   return (
     <Card className="w-full">
-      <CardHeader>
+      <CardHeader className="px-6 pt-6 pb-0">
         <div className="flex items-start justify-between">
           <div className="space-y-1">
-            <CardTitle className="text-2xl">Calea Vieții</CardTitle>
-            <CardDescription>{interpretation.title}</CardDescription>
+            <CardTitle className="text-2xl text-white">Calea Vieții</CardTitle>
+            <CardDescription className="text-[#E0E0E0]/60">
+              {interpretation.title}
+            </CardDescription>
           </div>
           {isMasterNumber && (
             <Badge
@@ -88,20 +90,18 @@ export function LifePathCard({ number, interpretation }: LifePathCardProps) {
 
         {/* Description */}
         <div className="space-y-2">
-          <p className="text-base text-muted-foreground leading-relaxed">
-            {interpretation.description}
-          </p>
+          <p className="text-base text-[#E0E0E0] leading-relaxed">{interpretation.description}</p>
         </div>
 
         {/* Full interpretation */}
-        <div className="prose prose-sm dark:prose-invert max-w-none">
-          <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+        <div className="max-w-none">
+          <div className="text-[#E0E0E0] leading-relaxed whitespace-pre-line">
             {interpretation.fullText}
           </div>
         </div>
 
         {/* Share button */}
-        <div className="pt-4 border-t">
+        <div className="pt-4 border-t border-white/10">
           <ShareButton
             url={typeof window !== "undefined" ? window.location.href : ""}
             title={`Calea Vieții mele este ${number}${isMasterNumber ? " (Număr Maestru)" : ""}`}
