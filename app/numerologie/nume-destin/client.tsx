@@ -14,41 +14,58 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { User, Calendar, Compass, Heart, ArrowLeft } from "lucide-react";
 
-interface Props {
-  initialName?: string;
+// Safe wrapper for calculateDestinyNumber that returns null on invalid input
+function safeCalculateDestinyNumber(name: string): number | null {
+  try {
+    return calculateDestinyNumber(name);
+  } catch {
+    // Invalid name (empty, no letters, etc.) - return null
+    return null;
+  }
 }
 
-export default function NumeDestinClient({ initialName }: Props) {
+export default function NumeDestinClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
   const nameParam = searchParams.get("name");
 
-  const [name, setName] = useState<string>(initialName || nameParam || "");
-
+  // Initialize state from URL params on first render (with error handling)
+  const [name, setName] = useState<string>(() => nameParam || "");
   const [destinyNumber, setDestinyNumber] = useState<number | null>(() => {
-    const initialValue = initialName || nameParam;
-    return initialValue ? calculateDestinyNumber(initialValue) : null;
+    if (!nameParam) return null;
+    return safeCalculateDestinyNumber(nameParam);
+  });
+  const [hasSubmitted, setHasSubmitted] = useState(() => {
+    if (!nameParam) return false;
+    // Only mark as submitted if calculation succeeds
+    return safeCalculateDestinyNumber(nameParam) !== null;
   });
 
-  const [hasSubmitted, setHasSubmitted] = useState(!!(initialName || nameParam));
-
-  // Sync state with URL params on mount and update
+  // Sync state with URL params - only depends on nameParam to avoid race conditions
   useEffect(() => {
-    if (nameParam && nameParam !== name) {
-      // URL has name param - sync state from URL
-      setName(nameParam);
-      const number = calculateDestinyNumber(nameParam);
-      setDestinyNumber(number);
-      setHasSubmitted(true);
-    } else if (!nameParam && hasSubmitted) {
-      // URL has no name param but state shows submitted - reset to form view
+    if (nameParam) {
+      const number = safeCalculateDestinyNumber(nameParam);
+      if (number !== null) {
+        // Valid name - show results
+        setName(nameParam);
+        setDestinyNumber(number);
+        setHasSubmitted(true);
+      } else {
+        // Invalid name in URL - reset to form view and clear invalid param
+        setName("");
+        setDestinyNumber(null);
+        setHasSubmitted(false);
+        router.replace(pathname);
+      }
+    } else {
+      // URL has no name param - reset to form view
       setName("");
       setDestinyNumber(null);
       setHasSubmitted(false);
     }
-  }, [nameParam, name, hasSubmitted]);
+  }, [nameParam, pathname, router]);
 
   // Query interpretation from Convex (supports Master Numbers 11, 22, 33)
   const interpretation = useQuery(
