@@ -1,6 +1,3 @@
-import { Header } from "./header";
-import { Footer } from "./footer";
-
 interface MainLayoutProps {
   children: React.ReactNode;
 }
@@ -15,11 +12,9 @@ export function MainLayout({ children }: MainLayoutProps) {
       >
         Sari la conținutul principal
       </a>
-      <Header />
       <main id="main-content" className="flex-1 w-full">
         <div className="mx-auto max-w-[1200px] p-4 md:p-4 lg:p-6">{children}</div>
       </main>
-      <Footer />
     </div>
   );
 }
