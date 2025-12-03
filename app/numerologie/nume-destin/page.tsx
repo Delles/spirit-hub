@@ -1,5 +1,7 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import NumeDestinClient from "./client";
+import { LoadingSpinner } from "@/components/shared/loading-spinner";
 
 export const metadata: Metadata = {
   title: "Numărul Destinului - Calculator Numerologie | SpiritHub.ro",
@@ -17,5 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function NumeDestinPage() {
-  return <NumeDestinClient />;
+  return (
+    <Suspense fallback={<LoadingSpinner text="Se încarcă..." />}>
+      <NumeDestinClient />
+    </Suspense>
+  );
 }
