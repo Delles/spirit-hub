@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { DatePicker } from "@/components/ui/date-picker";
-import { AlertCircle, Loader2 } from "lucide-react";
+import { AlertCircle, Loader2, User, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // ============================================================================
@@ -294,12 +294,17 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
   const renderCompatibilityForm = () => (
     <>
       {/* Person 1 Section */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-white">Prima persoană</h3>
+      <div className="rounded-lg bg-white/5 border border-white/10 p-4 space-y-4">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-[#9F2BFF]/20 border border-[#9F2BFF]/40 flex items-center justify-center">
+            <User className="w-4 h-4 text-[#9F2BFF]" />
+          </div>
+          <h3 className="text-lg font-semibold text-white">Tu</h3>
+        </div>
 
         <div className="space-y-2">
           <Label htmlFor="name1" className="text-white">
-            Primul nume *
+            Numele tău complet *
           </Label>
           <Input
             id="name1"
@@ -318,7 +323,7 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
 
         <div className="space-y-2">
           <Label htmlFor="birthDate1" className="text-white">
-            Prima dată de naștere *
+            Data ta de naștere *
           </Label>
           <DatePicker
             id="birthDate1"
@@ -335,13 +340,27 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
         </div>
       </div>
 
+      {/* Heart Divider */}
+      <div className="flex items-center justify-center py-2">
+        <div className="flex items-center gap-3">
+          <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#9F2BFF]/40" />
+          <Heart className="w-6 h-6 text-[#9F2BFF] fill-[#9F2BFF]/20" />
+          <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#9F2BFF]/40" />
+        </div>
+      </div>
+
       {/* Person 2 Section */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-white">A doua persoană</h3>
+      <div className="rounded-lg bg-white/5 border border-white/10 p-4 space-y-4">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-[#4D5FFF]/20 border border-[#4D5FFF]/40 flex items-center justify-center">
+            <Heart className="w-4 h-4 text-[#4D5FFF]" />
+          </div>
+          <h3 className="text-lg font-semibold text-white">Partenerul tău</h3>
+        </div>
 
         <div className="space-y-2">
           <Label htmlFor="name2" className="text-white">
-            Al doilea nume *
+            Numele partenerului *
           </Label>
           <Input
             id="name2"
@@ -360,7 +379,7 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
 
         <div className="space-y-2">
           <Label htmlFor="birthDate2" className="text-white">
-            A doua dată de naștere *
+            Data nașterii partenerului *
           </Label>
           <DatePicker
             id="birthDate2"
