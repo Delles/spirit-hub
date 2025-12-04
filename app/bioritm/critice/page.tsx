@@ -1,5 +1,7 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import CriticeDaysClient from "./client";
+import { LoadingSpinner } from "@/components/shared/loading-spinner";
 
 export const metadata: Metadata = {
   title: "Zile Critice Bioritm | SpiritHub.ro",
@@ -10,5 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default function CriticeDaysPage() {
-  return <CriticeDaysClient />;
+  return (
+    <Suspense fallback={<LoadingSpinner text="Se încarcă..." />}>
+      <CriticeDaysClient />
+    </Suspense>
+  );
 }
