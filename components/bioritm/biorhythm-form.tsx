@@ -3,10 +3,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Card } from "@/components/ui/card";
 import { DatePicker } from "@/components/ui/date-picker";
 import { AlertCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export interface BiorhythmFormProps {
   onSubmit: (birthDate: string, targetDate: string) => void;
@@ -71,77 +69,75 @@ export function BiorhythmForm({
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <form onSubmit={handleSubmit} className="space-y-6 p-6 md:p-8">
-        {/* Birth Date Input */}
+    <form onSubmit={handleSubmit} className="w-full space-y-6">
+      {/* Birth Date Input */}
+      <div className="space-y-2">
+        <Label htmlFor="birthDate" className="text-white">
+          Data nașterii *
+        </Label>
+        <DatePicker
+          id="birthDate"
+          value={birthDate}
+          onChange={(date) => {
+            setBirthDate(date || "");
+            if (errors.birthDate) {
+              setErrors((prev) => ({ ...prev, birthDate: undefined }));
+            }
+          }}
+          placeholder="dd.mm.yyyy"
+          disabled={isLoading}
+          error={!!errors.birthDate}
+          maxDate={new Date()}
+          aria-invalid={!!errors.birthDate}
+          aria-describedby={errors.birthDate ? "birthDate-error" : undefined}
+        />
+        {errors.birthDate && (
+          <div id="birthDate-error" className="flex items-center gap-2 text-sm text-destructive">
+            <AlertCircle className="h-4 w-4" />
+            <span>{errors.birthDate}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Target Date Input (Optional) */}
+      {showTargetDate && (
         <div className="space-y-2">
-          <Label htmlFor="birthDate" className="text-white">
-            Data nașterii *
+          <Label htmlFor="targetDate" className="text-white">
+            Data pentru calcul (opțional)
           </Label>
           <DatePicker
-            id="birthDate"
-            value={birthDate}
+            id="targetDate"
+            value={targetDate}
             onChange={(date) => {
-              setBirthDate(date || "");
-              if (errors.birthDate) {
-                setErrors((prev) => ({ ...prev, birthDate: undefined }));
+              setTargetDate(date || today);
+              if (errors.targetDate) {
+                setErrors((prev) => ({ ...prev, targetDate: undefined }));
               }
             }}
             placeholder="dd.mm.yyyy"
             disabled={isLoading}
-            error={!!errors.birthDate}
-            maxDate={new Date()}
-            aria-invalid={!!errors.birthDate}
-            aria-describedby={errors.birthDate ? "birthDate-error" : undefined}
+            error={!!errors.targetDate}
+            minDate={birthDate ? new Date(birthDate) : undefined}
+            aria-invalid={!!errors.targetDate}
+            aria-describedby={errors.targetDate ? "targetDate-error" : undefined}
           />
-          {errors.birthDate && (
-            <div id="birthDate-error" className="flex items-center gap-2 text-sm text-destructive">
+          {errors.targetDate && (
+            <div
+              id="targetDate-error"
+              className="flex items-center gap-2 text-sm text-destructive"
+            >
               <AlertCircle className="h-4 w-4" />
-              <span>{errors.birthDate}</span>
+              <span>{errors.targetDate}</span>
             </div>
           )}
+          <p className="text-sm text-muted-foreground">Lasă necompletat pentru data de astăzi</p>
         </div>
+      )}
 
-        {/* Target Date Input (Optional) */}
-        {showTargetDate && (
-          <div className="space-y-2">
-            <Label htmlFor="targetDate" className="text-white">
-              Data pentru calcul (opțional)
-            </Label>
-            <DatePicker
-              id="targetDate"
-              value={targetDate}
-              onChange={(date) => {
-                setTargetDate(date || today);
-                if (errors.targetDate) {
-                  setErrors((prev) => ({ ...prev, targetDate: undefined }));
-                }
-              }}
-              placeholder="dd.mm.yyyy"
-              disabled={isLoading}
-              error={!!errors.targetDate}
-              minDate={birthDate ? new Date(birthDate) : undefined}
-              aria-invalid={!!errors.targetDate}
-              aria-describedby={errors.targetDate ? "targetDate-error" : undefined}
-            />
-            {errors.targetDate && (
-              <div
-                id="targetDate-error"
-                className="flex items-center gap-2 text-sm text-destructive"
-              >
-                <AlertCircle className="h-4 w-4" />
-                <span>{errors.targetDate}</span>
-              </div>
-            )}
-            <p className="text-sm text-muted-foreground">Lasă necompletat pentru data de astăzi</p>
-          </div>
-        )}
-
-        {/* Submit Button */}
-        <Button type="submit" className="w-full h-11 text-base font-medium" disabled={isLoading}>
-          {isLoading ? "Se calculează..." : "Calculează Bioritmul"}
-        </Button>
-      </form>
-    </Card>
+      {/* Submit Button */}
+      <Button type="submit" className="w-full h-11 text-base font-medium" disabled={isLoading}>
+        {isLoading ? "Se calculează..." : "Calculează Bioritmul"}
+      </Button>
+    </form>
   );
 }
