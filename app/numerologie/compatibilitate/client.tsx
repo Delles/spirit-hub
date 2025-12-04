@@ -111,6 +111,7 @@ export default function CompatibilitateClient() {
   // Sync state with URL params on change
   useEffect(() => {
     if (name1Param && date1Param && name2Param && date2Param) {
+      // All 4 params present - calculate
       const result = safeCalculateFromParams(name1Param, date1Param, name2Param, date2Param);
       if (result) {
         setScores(result.scores);
@@ -131,6 +132,13 @@ export default function CompatibilitateClient() {
       setPerson1Data(null);
       setPerson2Data(null);
       setHasSubmitted(false);
+    } else {
+      // Partial params (1-3 present) - treat as invalid, reset and clear URL
+      setScores(null);
+      setPerson1Data(null);
+      setPerson2Data(null);
+      setHasSubmitted(false);
+      router.replace(pathname);
     }
   }, [name1Param, date1Param, name2Param, date2Param, pathname, router]);
 
