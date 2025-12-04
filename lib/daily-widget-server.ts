@@ -12,7 +12,7 @@
 
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "@/convex/_generated/api";
-import { getBiorhythmHintForDay } from "@/lib/biorhythm";
+import { getEnergiaZileiWidget, type DominantEnergy } from "@/lib/energia-zilei";
 import { unstable_cache } from "next/cache";
 
 /**
@@ -48,10 +48,14 @@ export interface DailyWidgetData {
     category: string;
     shortDescription: string;
   } | null;
-  biorhythmHint: {
-    title: string;
-    hint: string;
-    dayOfWeek: string;
+  energiaZilei: {
+    dayName: string;
+    theme: string;
+    shortHint: string;
+    energyLevel: number;
+    dominantEnergy: DominantEnergy;
+    color: string;
+    planetSymbol: string;
   };
 }
 
@@ -74,7 +78,7 @@ async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
     client.query(api.dreams.getDailyDream, { date: todayISO }).catch(() => null),
   ]);
 
-  // Calculate biorhythm hint (client-side calculation, no Convex query needed)
+  // Calculate energia zilei (client-side calculation, no Convex query needed)
   const now = new Date();
   const parts = new Intl.DateTimeFormat("en-CA", {
     timeZone: "Europe/Bucharest",
@@ -88,7 +92,7 @@ async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
   const day = parseInt(parts.find((p) => p.type === "day")?.value ?? "0", 10);
 
   const bucharestDate = new Date(year, month, day);
-  const biorhythmHint = getBiorhythmHintForDay(bucharestDate);
+  const energiaZilei = getEnergiaZileiWidget(bucharestDate);
 
   return {
     dailyNumber: dailyNumber
@@ -106,7 +110,7 @@ async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
           shortDescription: dailyDream.shortDescription,
         }
       : null,
-    biorhythmHint,
+    energiaZilei,
   };
 }
 

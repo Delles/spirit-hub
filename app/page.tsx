@@ -88,7 +88,7 @@ export default async function DashboardPage() {
             {/* 3. Biorhythm: Wide Rectangle (Bottom Left) - Spans 2 cols */}
             <div className="md:col-span-2 min-h-[200px]">
               <BiorhythmWidget 
-                data={dailyWidgetData.biorhythmHint} 
+                data={dailyWidgetData.energiaZilei} 
                 className="h-full"
               />
             </div>

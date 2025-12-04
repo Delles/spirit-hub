@@ -3,25 +3,15 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 interface BiorhythmWidgetProps {
-  data: DailyWidgetData["biorhythmHint"];
+  data: DailyWidgetData["energiaZilei"];
   className?: string;
 }
 
 export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
   if (!data) return null;
 
-  // Map hint title to energy type and color
-  const energyMap: Record<string, { type: string; percentage: number; color: string }> = {
-    "Zi de Odihnă": { type: "Regenerare", percentage: 90, color: "#A5B4FC" },
-    "Energie Fizică": { type: "Fizic", percentage: 85, color: "#F472B6" },
-    "Claritate Mentală": { type: "Intelectual", percentage: 88, color: "#60A5FA" },
-    "Echilibru Emoțional": { type: "Emoțional", percentage: 80, color: "#34D399" },
-    "Creativitate": { type: "Creativ", percentage: 92, color: "#FBBF24" },
-    "Socializare": { type: "Social", percentage: 85, color: "#F87171" },
-    "Reflecție": { type: "Spiritual", percentage: 75, color: "#818CF8" },
-  };
-
-  const energy = energyMap[data.title] || { type: "General", percentage: 70, color: "#A5B4FC" };
+  // Use the color from energia zilei data
+  const { color, energyLevel, dominantEnergy, theme, shortHint, planetSymbol } = data;
 
   // Generate accurate sine and cosine wave paths
   const width = 100;
@@ -40,15 +30,9 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
     return path;
   };
 
-  // Sine wave (white/pulsing)
-  const sinePath = generateWavePath(Math.sin);
-  
-  // Cosine wave (colored)
-  const cosinePath = generateWavePath(Math.cos);
-
   return (
     <Link
-      href="/bioritm"
+      href="/bioritm/energia-zilei"
       className={cn(
         "group relative flex flex-col justify-between p-8 rounded-[20px] overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_50px_rgba(96,165,250,0.2)]",
         // Glassmorphism with subtle blur
@@ -65,16 +49,17 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
         {/* Left Side: Text & Info */}
         <div className="w-1/2 flex flex-col justify-between pr-4">
           <div>
-            <h3 className="font-medium text-sm uppercase tracking-wider mb-4 transition-colors duration-300" style={{ color: energy.color }}>
-              Sfatul Bioritmului
+            <h3 className="font-medium text-sm uppercase tracking-wider mb-4 transition-colors duration-300" style={{ color }}>
+              Energia Zilei
             </h3>
             
             <div className="space-y-1 mb-4">
-              <h4 className="text-white font-bold text-2xl font-heading leading-tight">
-                {data.title}
+              <h4 className="text-white font-bold text-2xl font-heading leading-tight flex items-center gap-2">
+                <span className="text-xl">{planetSymbol}</span>
+                {theme}
               </h4>
               <p className="text-[#E0E0E0] text-sm leading-relaxed opacity-80">
-                {data.hint}
+                {shortHint}
               </p>
             </div>
           </div>
@@ -84,14 +69,14 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
               <span 
                 className="text-5xl font-bold text-white tracking-tight" 
                 style={{ 
-                  color: energy.color,
-                  textShadow: `0 0 20px ${energy.color}66` // Adding 40% opacity (hex 66) to the energy color
+                  color,
+                  textShadow: `0 0 20px ${color}66` // Adding 40% opacity (hex 66) to the energy color
                 }}
               >
-                {energy.percentage}%
+                {energyLevel}%
               </span>
               <span className="text-sm text-[#E0E0E0] uppercase tracking-wider opacity-60">
-                {energy.type}
+                {dominantEnergy}
               </span>
             </div>
           </div>
@@ -103,9 +88,9 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
              <defs>
               <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="transparent" />
-                <stop offset="20%" stopColor={energy.color} stopOpacity="0.2" />
-                <stop offset="50%" stopColor={energy.color} stopOpacity="0.8" />
-                <stop offset="80%" stopColor={energy.color} stopOpacity="0.2" />
+                <stop offset="20%" stopColor={color} stopOpacity="0.2" />
+                <stop offset="50%" stopColor={color} stopOpacity="0.8" />
+                <stop offset="80%" stopColor={color} stopOpacity="0.2" />
                 <stop offset="100%" stopColor="transparent" />
               </linearGradient>
             </defs>
@@ -114,7 +99,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
             <path 
               d={generateWavePath(Math.sin, 0)}
               fill="none" 
-              stroke={energy.color}
+              stroke={color}
               strokeWidth="1"
               className="drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             />
