@@ -54,6 +54,13 @@ export const DIACRITIC_MAP: Record<string, string> = {
  * This ensures consistent date handling across the application regardless
  * of the user's local timezone.
  *
+ * Note: We intentionally use `new Date(year, month, day)` instead of
+ * `new Date(Date.UTC(...))` because:
+ * - We need `.getDay()` to return the correct day of week for the Bucharest date
+ * - `.getDay()` returns day of week in LOCAL time, not UTC
+ * - A calendar date (e.g., Dec 5, 2025) has the same day of week everywhere
+ * - Using Date.UTC would cause `.getDay()` to return wrong day in negative UTC offsets
+ *
  * @returns Date object representing the current date in Bucharest timezone
  */
 export function getBucharestDate(): Date {
