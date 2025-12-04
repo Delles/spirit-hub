@@ -50,6 +50,29 @@ export const DIACRITIC_MAP: Record<string, string> = {
 };
 
 /**
+ * Gets the current date in Europe/Bucharest timezone as a Date object.
+ * This ensures consistent date handling across the application regardless
+ * of the user's local timezone.
+ *
+ * @returns Date object representing the current date in Bucharest timezone
+ */
+export function getBucharestDate(): Date {
+  const now = new Date();
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Bucharest",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(now);
+
+  const year = parseInt(parts.find((p) => p.type === "year")?.value ?? "0", 10);
+  const month = parseInt(parts.find((p) => p.type === "month")?.value ?? "0", 10) - 1;
+  const day = parseInt(parts.find((p) => p.type === "day")?.value ?? "0", 10);
+
+  return new Date(year, month, day);
+}
+
+/**
  * Formats a Date object as a Romanian-language date string
  * @param date - The date to format
  * @returns Formatted date string (e.g., "14 noiembrie 2025")

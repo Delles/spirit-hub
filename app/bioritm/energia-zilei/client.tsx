@@ -5,12 +5,13 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getEnergiaZilei } from "@/lib/energia-zilei";
 import { getMoonPhase } from "@/lib/moon-phase";
-import { formatRomanianDate } from "@/lib/utils";
+import { formatRomanianDate, getBucharestDate } from "@/lib/utils";
 import { Calculator, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export function EnergiaZileiClient() {
-  const today = new Date();
+  // Use Bucharest timezone for consistent date across all users
+  const today = getBucharestDate();
   const romanianDate = formatRomanianDate(today);
   const energiaZilei = getEnergiaZilei(today);
   const moonPhase = getMoonPhase(today);
