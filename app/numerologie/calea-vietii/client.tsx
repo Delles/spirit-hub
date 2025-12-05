@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -12,11 +11,22 @@ import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { parseISO } from "date-fns";
+import { parseISO, isValid } from "date-fns";
 import { Calendar, Sparkles, Heart, ArrowLeft } from "lucide-react";
 
 interface Props {
   initialBirthDate?: string;
+}
+
+// Safe calculation that returns null on invalid input
+function safeCalculateLifePath(dateStr: string): number | null {
+  try {
+    const date = parseISO(dateStr);
+    if (!isValid(date)) return null;
+    return calculateLifePath(date);
+  } catch {
+    return null;
+  }
 }
 
 export default function CaleaVietiiClient({ initialBirthDate }: Props) {
@@ -26,14 +36,10 @@ export default function CaleaVietiiClient({ initialBirthDate }: Props) {
 
   const dateParam = searchParams.get("date");
 
-  const [birthDate, setBirthDate] = useState<string>(initialBirthDate || dateParam || "");
-
-  const [lifePathNumber, setLifePathNumber] = useState<number | null>(() => {
-    const date = initialBirthDate || dateParam;
-    return date ? calculateLifePath(parseISO(date)) : null;
-  });
-
-  const [hasSubmitted, setHasSubmitted] = useState(!!(initialBirthDate || dateParam));
+  // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
+  const birthDate = initialBirthDate || dateParam || "";
+  const lifePathNumber = birthDate ? safeCalculateLifePath(birthDate) : null;
+  const hasSubmitted = !!(initialBirthDate || dateParam);
 
   // Query interpretation from Convex (supports Master Numbers 11, 22, 33)
   const interpretation = useQuery(
@@ -43,16 +49,7 @@ export default function CaleaVietiiClient({ initialBirthDate }: Props) {
 
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "lifePath") {
-      const date = parseISO(data.birthDate);
-
-      // Calculate Life Path number with Master Number detection
-      const number = calculateLifePath(date);
-
-      setLifePathNumber(number);
-      setBirthDate(data.birthDate);
-      setHasSubmitted(true);
-
-      // Update URL
+      // Update URL - derived values will automatically reflect the new params
       const params = new URLSearchParams(searchParams);
       params.set("date", data.birthDate);
       router.push(`${pathname}?${params.toString()}`);
@@ -61,10 +58,7 @@ export default function CaleaVietiiClient({ initialBirthDate }: Props) {
 
   // Reset function to go back to form view
   const handleReset = () => {
-    setHasSubmitted(false);
-    setLifePathNumber(null);
-    setBirthDate("");
-    // Clear URL params
+    // Clear URL params - derived values will automatically reset
     router.push(pathname);
   };
 

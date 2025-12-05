@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
@@ -30,12 +29,10 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
   const dateParam = searchParams.get("date");
   const targetParam = searchParams.get("target");
 
-  // Initialize state with props if available, otherwise fall back to URL params or defaults
-  const [birthDate, setBirthDate] = useState<string>(initialBirthDate || dateParam || "");
-  const [targetDate, setTargetDate] = useState<string>(
-    initialTargetDate || targetParam || new Date().toISOString().split("T")[0],
-  );
-  const [hasSubmitted, setHasSubmitted] = useState(!!(initialBirthDate || dateParam));
+  // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
+  const birthDate = initialBirthDate || dateParam || "";
+  const targetDate = initialTargetDate || targetParam || new Date().toISOString().split("T")[0];
+  const hasSubmitted = !!(initialBirthDate || dateParam);
 
   const biorhythm = useQuery(
     api.biorhythm.getBiorhythm,
@@ -43,11 +40,7 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
   );
 
   const handleSubmit = (birth: string, target: string) => {
-    setBirthDate(birth);
-    setTargetDate(target);
-    setHasSubmitted(true);
-
-    // Update URL
+    // Update URL - derived values will automatically reflect the new params
     const params = new URLSearchParams(searchParams);
     params.set("date", birth);
     params.set("target", target);
@@ -56,10 +49,7 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
 
   // Reset function to go back to form view
   const handleReset = () => {
-    setHasSubmitted(false);
-    setBirthDate("");
-    setTargetDate(new Date().toISOString().split("T")[0]);
-    // Clear URL params
+    // Clear URL params - derived values will automatically reset
     router.push(pathname);
   };
 

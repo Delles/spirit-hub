@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -31,17 +30,11 @@ export default function NumeDestinClient() {
 
   const nameParam = searchParams.get("name");
 
-  // Initialize state from URL params on first render (with error handling)
-  const [name, setName] = useState<string>(() => nameParam || "");
-  const [destinyNumber, setDestinyNumber] = useState<number | null>(() => {
-    if (!nameParam) return null;
-    return safeCalculateDestinyNumber(nameParam);
-  });
-  const [hasSubmitted, setHasSubmitted] = useState(() => {
-    if (!nameParam) return false;
-    // Only mark as submitted if calculation succeeds
-    return safeCalculateDestinyNumber(nameParam) !== null;
-  });
+  // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
+  const name = nameParam || "";
+  const destinyNumber = nameParam ? safeCalculateDestinyNumber(nameParam) : null;
+  // Only mark as submitted if we have a name param AND calculation succeeds
+  const hasSubmitted = nameParam ? safeCalculateDestinyNumber(nameParam) !== null : false;
 
   // Query interpretation from Convex (supports Master Numbers 11, 22, 33)
   const interpretation = useQuery(
@@ -51,15 +44,7 @@ export default function NumeDestinClient() {
 
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "destiny") {
-      // Calculate Destiny number with Master Number detection
-      // Romanian diacritics (ă, â, î, ș, ț) are handled by calculateDestinyNumber
-      const number = calculateDestinyNumber(data.name);
-
-      setDestinyNumber(number);
-      setName(data.name);
-      setHasSubmitted(true);
-
-      // Update URL
+      // Update URL - derived values will automatically reflect the new params
       const params = new URLSearchParams(searchParams);
       params.set("name", data.name);
       router.push(`${pathname}?${params.toString()}`);
@@ -68,10 +53,7 @@ export default function NumeDestinClient() {
 
   // Reset function to go back to form view
   const handleReset = () => {
-    setHasSubmitted(false);
-    setDestinyNumber(null);
-    setName("");
-    // Clear URL params
+    // Clear URL params - derived values will automatically reset
     router.push(pathname);
   };
 

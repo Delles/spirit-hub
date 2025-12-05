@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -75,38 +75,19 @@ export default function CompatibilitateClient() {
   const name2Param = searchParams.get("name2");
   const date2Param = searchParams.get("date2");
 
-  // Initialize state from URL params
-  const [scores, setScores] = useState<CompatibilityScores | null>(() => {
+  // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
+  // Use useMemo to avoid recalculating on every render
+  const calculatedData = useMemo(() => {
     if (name1Param && date1Param && name2Param && date2Param) {
-      const result = safeCalculateFromParams(name1Param, date1Param, name2Param, date2Param);
-      return result?.scores ?? null;
+      return safeCalculateFromParams(name1Param, date1Param, name2Param, date2Param);
     }
     return null;
-  });
+  }, [name1Param, date1Param, name2Param, date2Param]);
 
-  const [person1Data, setPerson1Data] = useState<PersonData | null>(() => {
-    if (name1Param && date1Param && name2Param && date2Param) {
-      const result = safeCalculateFromParams(name1Param, date1Param, name2Param, date2Param);
-      return result?.person1 ?? null;
-    }
-    return null;
-  });
-
-  const [person2Data, setPerson2Data] = useState<PersonData | null>(() => {
-    if (name1Param && date1Param && name2Param && date2Param) {
-      const result = safeCalculateFromParams(name1Param, date1Param, name2Param, date2Param);
-      return result?.person2 ?? null;
-    }
-    return null;
-  });
-
-  const [hasSubmitted, setHasSubmitted] = useState(() => {
-    if (name1Param && date1Param && name2Param && date2Param) {
-      const result = safeCalculateFromParams(name1Param, date1Param, name2Param, date2Param);
-      return result !== null;
-    }
-    return false;
-  });
+  const scores = calculatedData?.scores ?? null;
+  const person1Data = calculatedData?.person1 ?? null;
+  const person2Data = calculatedData?.person2 ?? null;
+  const hasSubmitted = calculatedData !== null;
 
   // Query interpretation from Convex based on compatibility score
   const interpretation = useQuery(
@@ -116,36 +97,7 @@ export default function CompatibilitateClient() {
 
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "compatibility") {
-      // Calculate Life Path numbers for both people (with Master Number detection)
-      const date1 = parseISO(data.birthDate1);
-      const date2 = parseISO(data.birthDate2);
-      const lifePath1 = calculateLifePath(date1);
-      const lifePath2 = calculateLifePath(date2);
-
-      // Calculate Destiny numbers for both people (with Master Number detection)
-      const destiny1 = calculateDestinyNumber(data.name1);
-      const destiny2 = calculateDestinyNumber(data.name2);
-
-      // Calculate compatibility scores
-      const lifePathCompat = calculateCompatibility(lifePath1, lifePath2);
-      const destinyCompat = calculateCompatibility(destiny1, destiny2);
-      const avgScore = Math.round((lifePathCompat + destinyCompat) / 2);
-
-      // Store results
-      setScores({ average: avgScore, lifePath: lifePathCompat, destiny: destinyCompat });
-      setPerson1Data({
-        name: data.name1,
-        lifePath: lifePath1,
-        destiny: destiny1,
-      });
-      setPerson2Data({
-        name: data.name2,
-        lifePath: lifePath2,
-        destiny: destiny2,
-      });
-      setHasSubmitted(true);
-
-      // Update URL for shareable link
+      // Update URL for shareable link - derived values will automatically reflect the new params
       const params = new URLSearchParams();
       params.set("name1", data.name1);
       params.set("date1", data.birthDate1);
@@ -157,11 +109,7 @@ export default function CompatibilitateClient() {
 
   // Reset function to go back to form view
   const handleReset = () => {
-    setHasSubmitted(false);
-    setScores(null);
-    setPerson1Data(null);
-    setPerson2Data(null);
-    // Clear URL params
+    // Clear URL params - derived values will automatically reset
     router.push(pathname);
   };
 

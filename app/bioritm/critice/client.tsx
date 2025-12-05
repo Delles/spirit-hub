@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
@@ -21,9 +20,9 @@ export default function CriticeDaysClient() {
 
   const dateParam = searchParams.get("date");
 
-  // Initialize state from URL params
-  const [birthDate, setBirthDate] = useState<string>(dateParam || "");
-  const [hasSubmitted, setHasSubmitted] = useState(!!dateParam);
+  // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
+  const birthDate = dateParam || "";
+  const hasSubmitted = !!dateParam;
 
   const criticalDays = useQuery(
     api.biorhythm.getCriticalDays,
@@ -39,10 +38,7 @@ export default function CriticeDaysClient() {
   // Target date is not used for critical days calculation (always uses current date)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = (birth: string, _target: string) => {
-    setBirthDate(birth);
-    setHasSubmitted(true);
-
-    // Update URL for shareable link
+    // Update URL for shareable link - derived values will automatically reflect the new params
     const params = new URLSearchParams(searchParams);
     params.set("date", birth);
     router.push(`${pathname}?${params.toString()}`);
@@ -50,9 +46,7 @@ export default function CriticeDaysClient() {
 
   // Reset function to calculate for another person
   const handleReset = () => {
-    setHasSubmitted(false);
-    setBirthDate("");
-    // Clear URL params
+    // Clear URL params - derived values will automatically reset
     router.push(pathname);
   };
 
