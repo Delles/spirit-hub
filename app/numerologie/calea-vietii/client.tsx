@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -40,12 +41,23 @@ export default function CaleaVietiiClient({ initialBirthDate }: Props) {
   const birthDate = initialBirthDate || dateParam || "";
   const lifePathNumber = birthDate ? safeCalculateLifePath(birthDate) : null;
   const hasSubmitted = !!(initialBirthDate || dateParam);
+  const shouldQueryInterpretation = hasSubmitted && lifePathNumber !== null;
+
+  // Clean up invalid URL params (e.g., invalid date formats)
+  useEffect(() => {
+    if (dateParam && lifePathNumber === null) {
+      // Invalid date param - clean up URL without adding to history
+      router.replace(pathname);
+    }
+  }, [dateParam, lifePathNumber, router, pathname]);
 
   // Query interpretation from Convex (supports Master Numbers 11, 22, 33)
   const interpretation = useQuery(
     api.numerology.getLifePathInterpretation,
-    lifePathNumber !== null ? { number: lifePathNumber } : "skip",
+    shouldQueryInterpretation ? { number: lifePathNumber } : "skip",
   );
+
+  const isLoading = shouldQueryInterpretation && interpretation === undefined;
 
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "lifePath") {
@@ -93,17 +105,15 @@ export default function CaleaVietiiClient({ initialBirthDate }: Props) {
               <NumerologyForm
                 type="lifePath"
                 onSubmit={handleSubmit}
-                isLoading={interpretation === undefined && hasSubmitted}
+                isLoading={isLoading}
               />
             </div>
 
             {/* Loading State */}
-            {interpretation === undefined && hasSubmitted && (
-              <LoadingSpinner text="Se încarcă interpretarea..." />
-            )}
+            {isLoading && <LoadingSpinner text="Se încarcă interpretarea..." />}
 
             {/* Error State */}
-            {interpretation === null && hasSubmitted && (
+            {interpretation === null && shouldQueryInterpretation && (
               <ErrorMessage
                 title="Eroare la încărcare"
                 message="Nu am putut încărca interpretarea. Te rugăm să încerci din nou."

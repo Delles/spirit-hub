@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
@@ -12,6 +13,7 @@ import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { parseISO, isValid } from "date-fns";
 
 export default function CriticeDaysClient() {
   const searchParams = useSearchParams();
@@ -22,11 +24,21 @@ export default function CriticeDaysClient() {
 
   // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
   const birthDate = dateParam || "";
+  const birthDateValid = birthDate ? isValid(parseISO(birthDate)) : false;
   const hasSubmitted = !!dateParam;
+
+  const shouldQueryCriticalDays = hasSubmitted && birthDateValid;
+
+  // Clean up invalid URL params (e.g., invalid date formats)
+  useEffect(() => {
+    if (dateParam && !birthDateValid) {
+      router.replace(pathname);
+    }
+  }, [dateParam, birthDateValid, router, pathname]);
 
   const criticalDays = useQuery(
     api.biorhythm.getCriticalDays,
-    hasSubmitted && birthDate
+    shouldQueryCriticalDays
       ? {
           birthDate,
           startDate: new Date().toISOString().split("T")[0],
@@ -34,6 +46,8 @@ export default function CriticeDaysClient() {
         }
       : "skip",
   );
+
+  const isLoading = shouldQueryCriticalDays && criticalDays === undefined;
 
   // Target date is not used for critical days calculation (always uses current date)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -74,17 +88,11 @@ export default function CriticeDaysClient() {
 
             {/* Form Section */}
             <Card className="p-6 lg:p-8">
-              <BiorhythmForm
-                onSubmit={handleSubmit}
-                isLoading={criticalDays === undefined && hasSubmitted}
-                showTargetDate={false}
-              />
+              <BiorhythmForm onSubmit={handleSubmit} isLoading={isLoading} showTargetDate={false} />
             </Card>
 
             {/* Loading State */}
-            {criticalDays === undefined && hasSubmitted && (
-              <LoadingSpinner text="Se caută zilele critice..." />
-            )}
+            {isLoading && <LoadingSpinner text="Se caută zilele critice..." />}
 
             {/* Error State */}
             {criticalDays === null && hasSubmitted && (

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
@@ -13,7 +14,7 @@ import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { format, parseISO } from "date-fns";
+import { format, parseISO, isValid } from "date-fns";
 import { ro } from "date-fns/locale";
 
 interface Props {
@@ -34,10 +35,26 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
   const targetDate = initialTargetDate || targetParam || new Date().toISOString().split("T")[0];
   const hasSubmitted = !!(initialBirthDate || dateParam);
 
+  const birthDateValid = birthDate ? isValid(parseISO(birthDate)) : false;
+  const targetDateValid = targetDate ? isValid(parseISO(targetDate)) : false;
+
+  const shouldQueryBiorhythm = hasSubmitted && birthDateValid && targetDateValid;
+
+  // Clean up invalid URL params (e.g., invalid date formats)
+  useEffect(() => {
+    const hasInvalidBirth = dateParam && !birthDateValid;
+    const hasInvalidTarget = targetParam && !targetDateValid;
+    if (hasInvalidBirth || hasInvalidTarget) {
+      router.replace(pathname);
+    }
+  }, [dateParam, targetParam, birthDateValid, targetDateValid, router, pathname]);
+
   const biorhythm = useQuery(
     api.biorhythm.getBiorhythm,
-    hasSubmitted && birthDate ? { birthDate, targetDate } : "skip",
+    shouldQueryBiorhythm ? { birthDate, targetDate } : "skip",
   );
+
+  const isLoading = shouldQueryBiorhythm && biorhythm === undefined;
 
   const handleSubmit = (birth: string, target: string) => {
     // Update URL - derived values will automatically reflect the new params
@@ -91,16 +108,11 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
 
             {/* Form Section */}
             <Card className="p-6 lg:p-8">
-              <BiorhythmForm
-                onSubmit={handleSubmit}
-                isLoading={biorhythm === undefined && hasSubmitted}
-              />
+              <BiorhythmForm onSubmit={handleSubmit} isLoading={isLoading} />
             </Card>
 
             {/* Loading State */}
-            {biorhythm === undefined && hasSubmitted && (
-              <LoadingSpinner text="Se calculează bioritmul..." />
-            )}
+            {isLoading && <LoadingSpinner text="Se calculează bioritmul..." />}
 
             {/* Error State */}
             {biorhythm === null && hasSubmitted && (
