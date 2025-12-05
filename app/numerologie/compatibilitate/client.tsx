@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -88,6 +88,20 @@ export default function CompatibilitateClient() {
   const person1Data = calculatedData?.person1 ?? null;
   const person2Data = calculatedData?.person2 ?? null;
   const hasSubmitted = calculatedData !== null;
+
+  // Check if we have any params but they're invalid or incomplete
+  const hasAnyParams = !!(name1Param || date1Param || name2Param || date2Param);
+  const hasAllParams = !!(name1Param && date1Param && name2Param && date2Param);
+
+  // Clean up invalid or partial URL params
+  useEffect(() => {
+    // Case 1: Partial params (not all 4 are present)
+    // Case 2: All params present but calculation failed (invalid data)
+    if ((hasAnyParams && !hasAllParams) || (hasAllParams && calculatedData === null)) {
+      // Invalid/partial params - clean up URL without adding to history
+      router.replace(pathname);
+    }
+  }, [hasAnyParams, hasAllParams, calculatedData, router, pathname]);
 
   // Query interpretation from Convex based on compatibility score
   const interpretation = useQuery(
