@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
@@ -24,14 +24,6 @@ export default function CriticeDaysClient() {
   // Initialize state from URL params
   const [birthDate, setBirthDate] = useState<string>(dateParam || "");
   const [hasSubmitted, setHasSubmitted] = useState(!!dateParam);
-
-  // Sync state with URL params
-  useEffect(() => {
-    if (dateParam && dateParam !== birthDate) {
-      setBirthDate(dateParam);
-      setHasSubmitted(true);
-    }
-  }, [dateParam, birthDate]);
 
   const criticalDays = useQuery(
     api.biorhythm.getCriticalDays,

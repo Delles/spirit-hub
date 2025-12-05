@@ -4,17 +4,6 @@ import { ROMANIAN_MONTHS } from "./utils";
 // Romanian day names (abbreviated for calendar headers)
 const ROMANIAN_DAYS_SHORT = ["Du", "Lu", "Ma", "Mi", "Jo", "Vi", "Sâ"];
 
-// Romanian day names (full)
-const ROMANIAN_DAYS_FULL = [
-  "Duminică",
-  "Luni",
-  "Marți",
-  "Miercuri",
-  "Joi",
-  "Vineri",
-  "Sâmbătă",
-];
-
 /**
  * Romanian locale configuration for react-day-picker v9
  * Provides Romanian month and day names for the calendar

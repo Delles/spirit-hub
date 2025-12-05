@@ -32,25 +32,6 @@ import { v } from "convex/values";
 import { reduceToSingleDigit } from "@/lib/numerology";
 
 /**
- * Helper: isoDateInBucharest
- * Converts a Date to ISO date string (YYYY-MM-DD) in Europe/Bucharest timezone
- */
-function isoDateInBucharest(date: Date = new Date()): string {
-  const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Europe/Bucharest",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(date);
-
-  const year = parts.find((p) => p.type === "year")?.value ?? "";
-  const month = parts.find((p) => p.type === "month")?.value ?? "";
-  const day = parts.find((p) => p.type === "day")?.value ?? "";
-
-  return `${year}-${month}-${day}`;
-}
-
-/**
  * Query: getLifePathInterpretation
  * Fetches Life Path interpretation for a given number (1-9)
  */

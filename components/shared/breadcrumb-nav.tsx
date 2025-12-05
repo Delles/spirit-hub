@@ -11,7 +11,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Home } from "lucide-react";
-import { siteConfig } from "@/config/site";
 
 interface BreadcrumbItem {
   label: string;
@@ -40,7 +39,7 @@ function getBreadcrumbs(pathname: string): BreadcrumbItem[] {
   };
 
   let currentPath = "";
-  segments.forEach((segment, index) => {
+  segments.forEach((segment) => {
     currentPath += `/${segment}`;
     const label = routeLabels[segment] || segment;
     breadcrumbs.push({

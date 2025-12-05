@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -34,22 +34,6 @@ export default function CaleaVietiiClient({ initialBirthDate }: Props) {
   });
 
   const [hasSubmitted, setHasSubmitted] = useState(!!(initialBirthDate || dateParam));
-
-  // Sync state with URL params on mount and update
-  useEffect(() => {
-    if (dateParam && dateParam !== birthDate) {
-      // URL has date param - sync state from URL
-      setBirthDate(dateParam);
-      const number = calculateLifePath(parseISO(dateParam));
-      setLifePathNumber(number);
-      setHasSubmitted(true);
-    } else if (!dateParam && hasSubmitted) {
-      // URL has no date param but state shows submitted - reset to form view
-      setBirthDate("");
-      setLifePathNumber(null);
-      setHasSubmitted(false);
-    }
-  }, [dateParam, birthDate, hasSubmitted]);
 
   // Query interpretation from Convex (supports Master Numbers 11, 22, 33)
   const interpretation = useQuery(

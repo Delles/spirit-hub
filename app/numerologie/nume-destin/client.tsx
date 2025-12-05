@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -42,30 +42,6 @@ export default function NumeDestinClient() {
     // Only mark as submitted if calculation succeeds
     return safeCalculateDestinyNumber(nameParam) !== null;
   });
-
-  // Sync state with URL params - only depends on nameParam to avoid race conditions
-  useEffect(() => {
-    if (nameParam) {
-      const number = safeCalculateDestinyNumber(nameParam);
-      if (number !== null) {
-        // Valid name - show results
-        setName(nameParam);
-        setDestinyNumber(number);
-        setHasSubmitted(true);
-      } else {
-        // Invalid name in URL - reset to form view and clear invalid param
-        setName("");
-        setDestinyNumber(null);
-        setHasSubmitted(false);
-        router.replace(pathname);
-      }
-    } else {
-      // URL has no name param - reset to form view
-      setName("");
-      setDestinyNumber(null);
-      setHasSubmitted(false);
-    }
-  }, [nameParam, pathname, router]);
 
   // Query interpretation from Convex (supports Master Numbers 11, 22, 33)
   const interpretation = useQuery(

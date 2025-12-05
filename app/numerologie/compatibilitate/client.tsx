@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -107,40 +107,6 @@ export default function CompatibilitateClient() {
     }
     return false;
   });
-
-  // Sync state with URL params on change
-  useEffect(() => {
-    if (name1Param && date1Param && name2Param && date2Param) {
-      // All 4 params present - calculate
-      const result = safeCalculateFromParams(name1Param, date1Param, name2Param, date2Param);
-      if (result) {
-        setScores(result.scores);
-        setPerson1Data(result.person1);
-        setPerson2Data(result.person2);
-        setHasSubmitted(true);
-      } else {
-        // Invalid params - reset and clear URL
-        setScores(null);
-        setPerson1Data(null);
-        setPerson2Data(null);
-        setHasSubmitted(false);
-        router.replace(pathname);
-      }
-    } else if (!name1Param && !date1Param && !name2Param && !date2Param) {
-      // No params - reset to form view
-      setScores(null);
-      setPerson1Data(null);
-      setPerson2Data(null);
-      setHasSubmitted(false);
-    } else {
-      // Partial params (1-3 present) - treat as invalid, reset and clear URL
-      setScores(null);
-      setPerson1Data(null);
-      setPerson2Data(null);
-      setHasSubmitted(false);
-      router.replace(pathname);
-    }
-  }, [name1Param, date1Param, name2Param, date2Param, pathname, router]);
 
   // Query interpretation from Convex based on compatibility score
   const interpretation = useQuery(

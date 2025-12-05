@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useQuery } from "convex/react";
@@ -36,17 +36,6 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
     initialTargetDate || targetParam || new Date().toISOString().split("T")[0],
   );
   const [hasSubmitted, setHasSubmitted] = useState(!!(initialBirthDate || dateParam));
-
-  // Sync state with URL params
-  useEffect(() => {
-    if (dateParam && dateParam !== birthDate) {
-      setBirthDate(dateParam);
-      setHasSubmitted(true);
-    }
-    if (targetParam && targetParam !== targetDate) {
-      setTargetDate(targetParam);
-    }
-  }, [dateParam, targetParam, birthDate, targetDate]);
 
   const biorhythm = useQuery(
     api.biorhythm.getBiorhythm,
