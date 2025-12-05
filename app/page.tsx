@@ -70,32 +70,32 @@ export default async function DashboardPage() {
           <div className="w-full grid grid-cols-1 md:grid-cols-3 auto-rows-min gap-4">
             
             {/* 1. Numerology: Large Square (Left) - Spans 2 cols, 2 rows approx */}
-            <div className="md:col-span-2 md:row-span-2 min-h-[350px]">
+            <div className="md:col-span-2 md:row-span-2 md:min-h-[350px]">
               <DailyNumberWidget 
                 data={dailyWidgetData.dailyNumber} 
-                className="h-full"
+                className="md:h-full"
               />
             </div>
 
             {/* 2. Dream: Tall Rectangle (Right) - Spans 1 col, 2 rows */}
-            <div className="md:col-span-1 md:row-span-2 min-h-[350px]">
+            <div className="md:col-span-1 md:row-span-2 md:min-h-[350px]">
               <DreamWidget 
                 data={dailyWidgetData.dailyDream} 
-                className="h-full"
+                className="md:h-full"
               />
             </div>
 
             {/* 3. Biorhythm: Wide Rectangle (Bottom Left) - Spans 2 cols */}
-            <div className="md:col-span-2 min-h-[200px]">
+            <div className="md:col-span-2 md:min-h-[200px]">
               <BiorhythmWidget 
                 data={dailyWidgetData.energiaZilei} 
-                className="h-full"
+                className="md:h-full"
               />
             </div>
 
             {/* 4. Quick Tools: Small Strip (Bottom Right) - Spans 1 col */}
-            <div className="md:col-span-1 min-h-[120px]">
-              <QuickToolsWidget className="h-full" />
+            <div className="md:col-span-1 md:min-h-[120px]">
+              <QuickToolsWidget className="md:h-full" />
             </div>
 
           </div>

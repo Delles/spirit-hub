@@ -43,47 +43,46 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
         className
       )}
     >
-      
-      <div className="relative z-10 flex flex-row h-full">
+      {/* Mobile: Fully stacked | Desktop: Side-by-side with wave */}
+      <div className="relative z-10 flex flex-col md:flex-row h-full">
         
-        {/* Left Side: Text & Info */}
-        <div className="w-1/2 flex flex-col justify-between pr-4">
-          <div>
-            <h3 className="font-medium text-sm uppercase tracking-wider mb-4 transition-colors duration-300" style={{ color }}>
-              Energia Zilei
-            </h3>
-            
-            <div className="space-y-1 mb-4">
-              <h4 className="text-white font-bold text-2xl font-heading leading-tight flex items-center gap-2">
-                <span className="text-xl">{planetSymbol}</span>
-                {theme}
-              </h4>
-              <p className="text-[#E0E0E0] text-sm leading-relaxed opacity-80">
-                {shortHint}
-              </p>
-            </div>
-          </div>
+        {/* Text Content */}
+        <div className="w-full md:w-1/2 flex flex-col justify-between md:pr-4">
+          {/* Title badge */}
+          <h3 className="font-medium text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4 transition-colors duration-300" style={{ color }}>
+            Energia Zilei
+          </h3>
+          
+          {/* Theme with planet symbol */}
+          <h4 className="text-white font-bold text-xl md:text-2xl font-heading leading-tight flex items-center gap-2 mb-2 md:mb-4">
+            <span className="text-lg md:text-xl">{planetSymbol}</span>
+            {theme}
+          </h4>
 
-          <div>
-            <div className="flex items-baseline gap-2 mb-2">
-              <span 
-                className="text-5xl font-bold text-white tracking-tight" 
-                style={{ 
-                  color,
-                  textShadow: `0 0 20px ${color}66` // Adding 40% opacity (hex 66) to the energy color
-                }}
-              >
-                {energyLevel}%
-              </span>
-              <span className="text-sm text-[#E0E0E0] uppercase tracking-wider opacity-60">
-                {dominantEnergy}
-              </span>
-            </div>
+          {/* Short hint */}
+          <p className="text-[#E0E0E0] text-sm leading-relaxed opacity-80 mb-3 md:mb-4">
+            {shortHint}
+          </p>
+
+          {/* Energy level */}
+          <div className="flex items-baseline gap-2">
+            <span 
+              className="text-4xl md:text-5xl font-bold tracking-tight" 
+              style={{ 
+                color,
+                textShadow: `0 0 20px ${color}66`
+              }}
+            >
+              {energyLevel}%
+            </span>
+            <span className="text-xs md:text-sm text-[#E0E0E0] uppercase tracking-wider opacity-60">
+              {dominantEnergy}
+            </span>
           </div>
         </div>
 
-        {/* Right Side: Pure Visual Wave */}
-        <div className="w-1/2 relative flex items-center justify-end opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+        {/* Wave Visualization - Hidden on mobile, visible on desktop */}
+        <div className="hidden md:flex w-1/2 relative items-center justify-end opacity-60 group-hover:opacity-100 transition-opacity duration-500">
           <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible" style={{ transform: 'scale(1.5) translateX(10%)' }}>
              <defs>
               <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -95,7 +94,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
               </linearGradient>
             </defs>
             
-            {/* Sine wave (thinner) */}
+            {/* Sine wave */}
             <path 
               d={generateWavePath(Math.sin, 0)}
               fill="none" 
@@ -104,7 +103,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
               className="drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             />
 
-            {/* Cosine wave (thinner, slightly offset phase/opacity for depth) */}
+            {/* Cosine wave */}
              <path 
               d={generateWavePath(Math.cos, 0)}
               fill="none" 

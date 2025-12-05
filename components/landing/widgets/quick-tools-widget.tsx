@@ -35,7 +35,7 @@ export function QuickToolsWidget({ className }: QuickToolsWidgetProps) {
       "bg-[linear-gradient(180deg,rgba(255,255,255,0.01)_0%,rgba(159,43,255,0.02)_100%)]",
       "border border-white/10 hover:border-white/20",
       "shadow-[0_2px_16px_rgba(0,0,0,0.15)]",
-      "rounded-[20px] p-6 flex flex-col",
+      "rounded-[20px] p-8 flex flex-col",
       className
     )}    >
       {/* Header */}
