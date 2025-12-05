@@ -34,8 +34,8 @@ export default function NumeDestinClient() {
   // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
   const name = nameParam || "";
   const destinyNumber = nameParam ? safeCalculateDestinyNumber(nameParam) : null;
-  // Only mark as submitted if we have a name param AND calculation succeeds
-  const hasSubmitted = nameParam ? safeCalculateDestinyNumber(nameParam) !== null : false;
+  // Only mark as submitted if calculation succeeded (destinyNumber is not null)
+  const hasSubmitted = destinyNumber !== null;
 
   // Clean up invalid URL params (e.g., names with no letters, only numbers)
   useEffect(() => {
