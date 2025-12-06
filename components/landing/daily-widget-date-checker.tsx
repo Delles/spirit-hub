@@ -31,6 +31,15 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
   const router = useRouter();
 
   useEffect(() => {
+    // Reset stale in-memory timestamps on each evaluation (helps when navigating away/back)
+    const now = Date.now();
+    if (now - lastInMemoryStalenessRetry > RETRY_COOLDOWN_MS) {
+      lastInMemoryStalenessRetry = 0;
+    }
+    if (now - lastInMemoryMissingRetry > RETRY_COOLDOWN_MS) {
+      lastInMemoryMissingRetry = 0;
+    }
+
     // Get today's date in ISO format (YYYY-MM-DD) in Europe/Bucharest timezone
     const getTodayISO = (): string => {
       const parts = new Intl.DateTimeFormat("en-CA", {
