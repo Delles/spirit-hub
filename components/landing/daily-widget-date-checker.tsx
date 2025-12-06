@@ -4,6 +4,11 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { DailyWidgetData } from "@/lib/daily-widget-server";
 
+// Module-level variables to track retries in memory (persist across soft refreshes)
+// These act as backups when sessionStorage is blocked (Private Mode)
+let hasInMemoryMissingRetry = false;
+let hasInMemoryStalenessRetry = false;
+
 interface DailyWidgetDateCheckerProps {
   widgetData: DailyWidgetData;
 }
@@ -12,10 +17,10 @@ interface DailyWidgetDateCheckerProps {
  * Client-side component that checks if the daily widget data matches today's date.
  * Only checks once on mount to avoid unnecessary refreshes.
  * 
- * The Next.js cache key includes the date, so it auto-invalidates at midnight.
- * This checker is a safety net for edge cases (e.g., browser cache, stale HTML).
- * 
- * Since data only changes once per 24 hours, we only check once per page load.
+ * Strategy:
+ * 1. Date Mismatch: Persistent throttled retry (every 5s) until fixed.
+ *    - Private Mode Fallback: Try exactly once per session.
+ * 2. Missing Data: One-shot retry (try once, then give up).
  */
 export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerProps) {
   const router = useRouter();
@@ -44,7 +49,7 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
 
     const todayISO = getTodayISO();
 
-    // Helper for safe refreshing with loop protection
+    // Helper for safe refreshing with loop protection (for persistent retries)
     const triggerSafeRefresh = () => {
       try {
         const lastRefresh = sessionStorage.getItem("convex-refresh-lock");
@@ -59,41 +64,64 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
         sessionStorage.setItem("convex-refresh-lock", now.toString());
         router.refresh();
       } catch (e) {
-        // Fallback if sessionStorage fails (e.g. private mode)
-        router.refresh();
+        // Fallback if sessionStorage fails (e.g. Private Mode)
+        // Guard against infinite loops by allowing only ONE retry for staleness in this mode
+        if (!hasInMemoryStalenessRetry) {
+          hasInMemoryStalenessRetry = true;
+          router.refresh();
+        }
       }
     };
 
-    // Check if the daily number date matches today
-    // If dailyNumber exists and has a date, compare it
-    if (widgetData.dailyNumber?.date) {
-      const dataDate = widgetData.dailyNumber.date;
+    // ========================================================================
+    // Check 1: Success / Cleanup
+    // If we have full data, clear the missing-retry flag
+    // ========================================================================
+    if (widgetData.dailyNumber && widgetData.dailyDream) {
+      // Clear storage flag
+      try {
+        sessionStorage.removeItem("convex-missing-retry");
+      } catch (e) { /* ignore */ }
 
-      // If the date doesn't match today, refresh the page to get fresh data
-      // This handles edge cases where HTML was cached before the cache key changed
-      if (dataDate !== todayISO) {
-        // Use router.refresh() to re-fetch server components without losing client state
-        // This will hit the Next.js cache (with date-based key), not Convex directly
+      // Clear memory flag
+      hasInMemoryMissingRetry = false;
+    }
+
+    // ========================================================================
+    // Check 2: Date Mismatch (Staleness)
+    // ========================================================================
+    if (widgetData.dailyNumber?.date) {
+      if (widgetData.dailyNumber.date !== todayISO) {
         triggerSafeRefresh();
         return;
+      } else {
+        // Date matches! Reset staleness retry flag so future staleness can be handled
+        hasInMemoryStalenessRetry = false;
       }
     }
 
-    // Check for partial failure: Daily Number exists but Dream is missing
-    if (widgetData.dailyNumber && !widgetData.dailyDream) {
-      triggerSafeRefresh();
-      return;
-    }
+    // ========================================================================
+    // Check 3: Missing Data (Outage)
+    // One-shot retry strategy
+    // ========================================================================
+    const isMissingData = !widgetData.dailyNumber || !widgetData.dailyDream;
 
-    // Check for partial failure: Daily Dream exists but Number is missing (Symmetric check)
-    if (widgetData.dailyDream && !widgetData.dailyNumber) {
-      triggerSafeRefresh();
-      return;
-    }
-
-    // Check for total failure: Both are missing
-    if (!widgetData.dailyNumber && !widgetData.dailyDream) {
-      triggerSafeRefresh();
+    if (isMissingData) {
+      try {
+        const hasRetried = sessionStorage.getItem("convex-missing-retry");
+        if (!hasRetried) {
+          sessionStorage.setItem("convex-missing-retry", "true");
+          router.refresh();
+        } else {
+          console.warn("Daily widget data missing, retry limit reached (storage).");
+        }
+      } catch (e) {
+        // Fallback for private mode: use in-memory flag
+        if (!hasInMemoryMissingRetry) {
+          hasInMemoryMissingRetry = true;
+          router.refresh();
+        }
+      }
       return;
     }
 
