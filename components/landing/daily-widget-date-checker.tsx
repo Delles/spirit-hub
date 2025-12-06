@@ -4,6 +4,15 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { DailyWidgetData } from "@/lib/daily-widget-server";
 
+// Module-level timestamps to track retries in memory (persist across soft refreshes)
+// These act as backups when sessionStorage is blocked (Private Mode)
+// using timestamps allows the flag to "expire" so users can retry on later visits
+// while still preventing tight infinite refresh loops
+let lastInMemoryMissingRetry = 0;
+let lastInMemoryStalenessRetry = 0;
+
+const RETRY_COOLDOWN_MS = 15000; // 15 seconds
+
 interface DailyWidgetDateCheckerProps {
   widgetData: DailyWidgetData;
 }
@@ -14,17 +23,13 @@ interface DailyWidgetDateCheckerProps {
  * 
  * Strategy:
  * 1. Date Mismatch: Persistent throttled retry (every 5s) until fixed.
- *    - Private Mode Fallback: Try exactly once per session.
+ *    - Private Mode Fallback: One retry every 15s.
  * 2. Missing Data: One-shot retry (try once, then give up).
+ *    - Private Mode Fallback: One retry every 15s.
  */
 export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerProps) {
   const router = useRouter();
   const hasCheckedRef = useRef(false);
-
-  // Refs to track retries in memory (persist across soft refreshes, reset on unmount)
-  // These act as backups when sessionStorage is blocked (Private Mode)
-  const hasInMemoryMissingRetry = useRef(false);
-  const hasInMemoryStalenessRetry = useRef(false);
 
   useEffect(() => {
     // Only check once per component mount to avoid unnecessary refreshes
@@ -65,9 +70,10 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
         router.refresh();
       } catch (e) {
         // Fallback if sessionStorage fails (e.g. Private Mode)
-        // Guard against infinite loops by allowing only ONE retry for staleness in this mode
-        if (!hasInMemoryStalenessRetry.current) {
-          hasInMemoryStalenessRetry.current = true;
+        // Guard against infinite loops by throttling retries
+        const now = Date.now();
+        if (now - lastInMemoryStalenessRetry > RETRY_COOLDOWN_MS) {
+          lastInMemoryStalenessRetry = now;
           router.refresh();
         }
       }
@@ -75,7 +81,7 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
 
     // ========================================================================
     // Check 1: Success / Cleanup
-    // If we have full data, clear the missing-retry flag
+    // If we have full data, clear the missing-retry flags
     // ========================================================================
     if (widgetData.dailyNumber && widgetData.dailyDream) {
       // Clear storage flag
@@ -83,8 +89,8 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
         sessionStorage.removeItem("convex-missing-retry");
       } catch (e) { /* ignore */ }
 
-      // Clear memory flag
-      hasInMemoryMissingRetry.current = false;
+      // Reset memory timestamp (allow immediate retry on next failure)
+      lastInMemoryMissingRetry = 0;
     }
 
     // ========================================================================
@@ -95,8 +101,8 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
         triggerSafeRefresh();
         return;
       } else {
-        // Date matches! Reset staleness retry flag so future staleness can be handled
-        hasInMemoryStalenessRetry.current = false;
+        // Date matches! Reset staleness retry timestamp
+        lastInMemoryStalenessRetry = 0;
       }
     }
 
@@ -116,9 +122,10 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
           console.warn("Daily widget data missing, retry limit reached (storage).");
         }
       } catch (e) {
-        // Fallback for private mode: use in-memory flag
-        if (!hasInMemoryMissingRetry.current) {
-          hasInMemoryMissingRetry.current = true;
+        // Fallback for private mode: use in-memory timestamp throttle
+        const now = Date.now();
+        if (now - lastInMemoryMissingRetry > RETRY_COOLDOWN_MS) {
+          lastInMemoryMissingRetry = now;
           router.refresh();
         }
       }
