@@ -4,11 +4,6 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { DailyWidgetData } from "@/lib/daily-widget-server";
 
-// Module-level variables to track retries in memory (persist across soft refreshes)
-// These act as backups when sessionStorage is blocked (Private Mode)
-let hasInMemoryMissingRetry = false;
-let hasInMemoryStalenessRetry = false;
-
 interface DailyWidgetDateCheckerProps {
   widgetData: DailyWidgetData;
 }
@@ -25,6 +20,11 @@ interface DailyWidgetDateCheckerProps {
 export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerProps) {
   const router = useRouter();
   const hasCheckedRef = useRef(false);
+
+  // Refs to track retries in memory (persist across soft refreshes, reset on unmount)
+  // These act as backups when sessionStorage is blocked (Private Mode)
+  const hasInMemoryMissingRetry = useRef(false);
+  const hasInMemoryStalenessRetry = useRef(false);
 
   useEffect(() => {
     // Only check once per component mount to avoid unnecessary refreshes
@@ -66,8 +66,8 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
       } catch (e) {
         // Fallback if sessionStorage fails (e.g. Private Mode)
         // Guard against infinite loops by allowing only ONE retry for staleness in this mode
-        if (!hasInMemoryStalenessRetry) {
-          hasInMemoryStalenessRetry = true;
+        if (!hasInMemoryStalenessRetry.current) {
+          hasInMemoryStalenessRetry.current = true;
           router.refresh();
         }
       }
@@ -84,7 +84,7 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
       } catch (e) { /* ignore */ }
 
       // Clear memory flag
-      hasInMemoryMissingRetry = false;
+      hasInMemoryMissingRetry.current = false;
     }
 
     // ========================================================================
@@ -96,7 +96,7 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
         return;
       } else {
         // Date matches! Reset staleness retry flag so future staleness can be handled
-        hasInMemoryStalenessRetry = false;
+        hasInMemoryStalenessRetry.current = false;
       }
     }
 
@@ -117,8 +117,8 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
         }
       } catch (e) {
         // Fallback for private mode: use in-memory flag
-        if (!hasInMemoryMissingRetry) {
-          hasInMemoryMissingRetry = true;
+        if (!hasInMemoryMissingRetry.current) {
+          hasInMemoryMissingRetry.current = true;
           router.refresh();
         }
       }
