@@ -44,6 +44,26 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
 
     const todayISO = getTodayISO();
 
+    // Helper for safe refreshing with loop protection
+    const triggerSafeRefresh = () => {
+      try {
+        const lastRefresh = sessionStorage.getItem("convex-refresh-lock");
+        const now = Date.now();
+        const lastRefreshTime = lastRefresh ? parseInt(lastRefresh, 10) : NaN;
+
+        if (Number.isFinite(lastRefreshTime) && (now - lastRefreshTime < 5000)) {
+          console.error("Convex auto-refresh loop detected. Aborting.");
+          return;
+        }
+
+        sessionStorage.setItem("convex-refresh-lock", now.toString());
+        router.refresh();
+      } catch (e) {
+        // Fallback if sessionStorage fails (e.g. private mode)
+        router.refresh();
+      }
+    };
+
     // Check if the daily number date matches today
     // If dailyNumber exists and has a date, compare it
     if (widgetData.dailyNumber?.date) {
@@ -54,38 +74,26 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
       if (dataDate !== todayISO) {
         // Use router.refresh() to re-fetch server components without losing client state
         // This will hit the Next.js cache (with date-based key), not Convex directly
-        router.refresh();
+        triggerSafeRefresh();
         return;
       }
     }
 
-    // Check for partial failure: Daily Number exists (so DB is up) but Dream is missing
-    // This catches cases where one query failed silently during the ISR generation
+    // Check for partial failure: Daily Number exists but Dream is missing
     if (widgetData.dailyNumber && !widgetData.dailyDream) {
-      router.refresh();
+      triggerSafeRefresh();
       return;
     }
 
-    // Check for total failure: Both are missing (Convex down during ISR)
+    // Check for partial failure: Daily Dream exists but Number is missing (Symmetric check)
+    if (widgetData.dailyDream && !widgetData.dailyNumber) {
+      triggerSafeRefresh();
+      return;
+    }
+
+    // Check for total failure: Both are missing
     if (!widgetData.dailyNumber && !widgetData.dailyDream) {
-      // Guard against infinite refresh loops via sessionStorage
-      // If we just refreshed (< 5s ago), don't do it again immediately
-      try {
-        const lastRefresh = sessionStorage.getItem("convex-refresh-lock");
-        const now = Date.now();
-        const lastRefreshTime = lastRefresh ? parseInt(lastRefresh, 10) : NaN;
-
-        if (Number.isFinite(lastRefreshTime) && (now - lastRefreshTime < 5000)) {
-          console.error("Convex outage detected: Aborting auto-refresh loop.");
-          return;
-        }
-
-        sessionStorage.setItem("convex-refresh-lock", now.toString());
-        router.refresh();
-      } catch (e) {
-        // Fallback if sessionStorage fails (e.g. private mode)
-        router.refresh();
-      }
+      triggerSafeRefresh();
       return;
     }
 
@@ -95,4 +103,3 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
   // This component doesn't render anything
   return null;
 }
-
