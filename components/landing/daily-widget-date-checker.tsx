@@ -43,19 +43,32 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
     };
 
     const todayISO = getTodayISO();
-    
+
     // Check if the daily number date matches today
     // If dailyNumber exists and has a date, compare it
     if (widgetData.dailyNumber?.date) {
       const dataDate = widgetData.dailyNumber.date;
-      
+
       // If the date doesn't match today, refresh the page to get fresh data
       // This handles edge cases where HTML was cached before the cache key changed
       if (dataDate !== todayISO) {
         // Use router.refresh() to re-fetch server components without losing client state
         // This will hit the Next.js cache (with date-based key), not Convex directly
         router.refresh();
+        return;
       }
+    }
+
+    // Check for partial failure: Daily Number exists (so DB is up) but Dream is missing
+    // This catches cases where one query failed silently during the ISR generation
+    if (widgetData.dailyNumber && !widgetData.dailyDream) {
+      router.refresh();
+      return;
+    }
+
+    // Check for total failure: Both are missing (Convex down during ISR)
+    if (!widgetData.dailyNumber && !widgetData.dailyDream) {
+      router.refresh();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty deps - only run once on mount

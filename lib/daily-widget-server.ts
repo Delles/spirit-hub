@@ -74,8 +74,14 @@ async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
 
   // Fetch daily number and dream in parallel
   const [dailyNumber, dailyDream] = await Promise.all([
-    client.query(api.numerology.getDailyNumber, { date: todayISO }).catch(() => null),
-    client.query(api.dreams.getDailyDream, { date: todayISO }).catch(() => null),
+    client.query(api.numerology.getDailyNumber, { date: todayISO }).catch((e) => {
+      console.error("Failed to fetch daily number:", e);
+      return null;
+    }),
+    client.query(api.dreams.getDailyDream, { date: todayISO }).catch((e) => {
+      console.error("Failed to fetch daily dream:", e);
+      return null;
+    }),
   ]);
 
   // Calculate energia zilei (client-side calculation, no Convex query needed)
@@ -97,18 +103,18 @@ async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
   return {
     dailyNumber: dailyNumber
       ? {
-          number: dailyNumber.number,
-          title: dailyNumber.title,
-          description: dailyNumber.description,
-          date: dailyNumber.date,
-        }
+        number: dailyNumber.number,
+        title: dailyNumber.title,
+        description: dailyNumber.description,
+        date: dailyNumber.date,
+      }
       : null,
     dailyDream: dailyDream
       ? {
-          name: dailyDream.name,
-          category: dailyDream.category,
-          shortDescription: dailyDream.shortDescription,
-        }
+        name: dailyDream.name,
+        category: dailyDream.category,
+        shortDescription: dailyDream.shortDescription,
+      }
       : null,
     energiaZilei,
   };
@@ -121,7 +127,7 @@ async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
  */
 export async function getCachedDailyWidgetData(): Promise<DailyWidgetData> {
   const todayISO = getTodayISO();
-  
+
   // Cache key includes the date, so cache automatically invalidates when date changes
   // This means the cache will naturally refresh at midnight Bucharest time
   const cached = unstable_cache(
