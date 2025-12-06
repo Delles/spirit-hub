@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { DailyWidgetData } from "@/lib/daily-widget-server";
 
@@ -29,13 +29,8 @@ interface DailyWidgetDateCheckerProps {
  */
 export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerProps) {
   const router = useRouter();
-  const hasCheckedRef = useRef(false);
 
   useEffect(() => {
-    // Only check once per component mount to avoid unnecessary refreshes
-    if (hasCheckedRef.current) return;
-    hasCheckedRef.current = true;
-
     // Get today's date in ISO format (YYYY-MM-DD) in Europe/Bucharest timezone
     const getTodayISO = (): string => {
       const parts = new Intl.DateTimeFormat("en-CA", {
@@ -133,7 +128,7 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty deps - only run once on mount
+  }, [widgetData]); // Re-run when widgetData changes to re-evaluate freshness
 
   // This component doesn't render anything
   return null;
