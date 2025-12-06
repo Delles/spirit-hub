@@ -68,8 +68,27 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
 
     // Check for total failure: Both are missing (Convex down during ISR)
     if (!widgetData.dailyNumber && !widgetData.dailyDream) {
-      router.refresh();
+      // Guard against infinite refresh loops via sessionStorage
+      // If we just refreshed (< 5s ago), don't do it again immediately
+      try {
+        const lastRefresh = sessionStorage.getItem("convex-refresh-lock");
+        const now = Date.now();
+        const lastRefreshTime = lastRefresh ? parseInt(lastRefresh, 10) : NaN;
+
+        if (Number.isFinite(lastRefreshTime) && (now - lastRefreshTime < 5000)) {
+          console.error("Convex outage detected: Aborting auto-refresh loop.");
+          return;
+        }
+
+        sessionStorage.setItem("convex-refresh-lock", now.toString());
+        router.refresh();
+      } catch (e) {
+        // Fallback if sessionStorage fails (e.g. private mode)
+        router.refresh();
+      }
+      return;
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty deps - only run once on mount
 
