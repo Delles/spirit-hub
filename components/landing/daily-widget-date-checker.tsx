@@ -79,15 +79,6 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
   const checkFreshness = useCallback(() => {
     const data = widgetDataRef.current;
 
-    // Reset stale in-memory timestamps if cooldown has passed
-    const now = Date.now();
-    if (now - lastInMemoryStalenessRetry > RETRY_COOLDOWN_MS) {
-      lastInMemoryStalenessRetry = 0;
-    }
-    if (now - lastInMemoryMissingRetry > RETRY_COOLDOWN_MS) {
-      lastInMemoryMissingRetry = 0;
-    }
-
     const todayISO = getTodayISO();
 
     // ========================================================================
