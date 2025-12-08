@@ -1,51 +1,42 @@
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { DreamDetailCard } from "@/components/vise/dream-detail-card";
-import { LoadingSpinner } from "@/components/shared/loading-spinner";
-import { ErrorMessage } from "@/components/shared/error-message";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import type { StaticDreamSymbol } from "@/lib/dream-data";
 
-export default function DreamSymbolClient({ slug }: { slug: string }) {
-  const symbol = useQuery(api.dreams.getDreamSymbolBySlug, { slug });
+interface DreamSymbolContentProps {
+  dream: StaticDreamSymbol;
+}
 
-  if (symbol === undefined) {
-    return (
-      <div className="py-12 flex justify-center">
-        <LoadingSpinner text="Se încarcă interpretarea..." />
-      </div>
-    );
-  }
-
-  if (symbol === null) {
-    return (
-      <div className="py-12 max-w-2xl mx-auto">
-        <ErrorMessage
-          title="Simbol negăsit"
-          message={`Nu am găsit interpretarea pentru "${slug}". Încearcă să cauți alt simbol.`}
-        />
-        <div className="mt-6 flex justify-center">
-          <Link href="/vise">
-            <Button variant="secondary" className="gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              Înapoi la dicționar
-            </Button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
+/**
+ * Dream Symbol Content Component
+ *
+ * Displays the full interpretation for a dream symbol.
+ * Receives pre-loaded data from parent server component (no loading states needed).
+ */
+export function DreamSymbolContent({ dream }: DreamSymbolContentProps) {
+  // Transform StaticDreamSymbol to the format expected by DreamDetailCard
+  const symbol = {
+    id: dream.slug,
+    name: dream.name,
+    slug: dream.slug,
+    category: dream.category,
+    interpretation: dream.fullInterpretation,
+    shortDescription: dream.shortMeaning,
+  };
 
   return (
     <div className="py-8">
       <div className="max-w-3xl mx-auto space-y-6">
         <Link href="/vise" className="inline-block">
-          <Button variant="ghost" className="gap-2 pl-0 hover:pl-2 transition-all text-white">
+          <Button
+            variant="ghost"
+            className="gap-2 pl-0 hover:pl-2 transition-all text-white"
+          >
             <ArrowLeft className="h-4 w-4" />
-            Înapoi la dicționar
+            Înapoi la interpretări
           </Button>
         </Link>
 
@@ -54,3 +45,6 @@ export default function DreamSymbolClient({ slug }: { slug: string }) {
     </div>
   );
 }
+
+// Keep default export for backward compatibility
+export default DreamSymbolContent;

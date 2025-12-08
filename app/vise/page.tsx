@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
 import { ViseClient } from "./client";
+import { getFeaturedSymbols } from "@/lib/dream-data";
 
 export const metadata: Metadata = {
-  title: "Interpretare Vise - SpiritHub.ro",
+  title: "Interpretare Vise - Dicționar de Simboluri Onirice | SpiritHub.ro",
   description:
-    "Dicționar complet de interpretare vise cu peste 100 de simboluri onirice explicate în detaliu. Caută semnificația viselor tale bazată pe folclorul românesc.",
+    "Descoperă semnificația viselor tale prin simboluri onirice tradiționale românești. Explorează interpretări profunde bazate pe folclorul și tradițiile românești.",
   alternates: {
     canonical: "https://spirithub.ro/vise",
   },
 };
 
 export default function VisePage() {
+  // Get featured symbols at build time (SSG)
+  const featuredSymbols = getFeaturedSymbols();
+
   return (
     <div className="py-8">
       <div className="mx-auto max-w-4xl">
-        <ViseClient />
+        <ViseClient featuredSymbols={featuredSymbols} />
       </div>
     </div>
   );

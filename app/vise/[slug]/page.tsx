@@ -1,18 +1,30 @@
 import { Metadata } from "next";
-import DreamSymbolClient from "./client";
+import { notFound } from "next/navigation";
+import { getAllSymbols, getSymbolBySlug } from "@/lib/dream-data";
+import { DreamSymbolContent } from "./client";
 
 type Props = {
     params: Promise<{ slug: string }>;
 };
 
-import { ConvexHttpClient } from "convex/browser";
-import { api } from "@/convex/_generated/api";
+/**
+ * Generate static params for all dream symbols
+ * This enables SSG for all 98 symbol pages at build time
+ */
+export async function generateStaticParams() {
+    const symbols = getAllSymbols();
+    return symbols.map((symbol) => ({
+        slug: symbol.slug,
+    }));
+}
 
+/**
+ * Generate metadata for SEO
+ * Uses static data, no Convex runtime dependency
+ */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-
-    const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
-    const dream = await convex.query(api.dreams.getDreamSymbolBySlug, { slug });
+    const dream = getSymbolBySlug(slug);
 
     if (!dream) {
         return {
@@ -24,18 +36,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: `Interpretare vis: ${dream.name} | SpiritHub.ro`,
-        description: dream.shortDescription || `Descoperă semnificația visului despre ${dream.name} și mesajele subconștientului tău pe SpiritHub.ro.`,
+        description:
+            dream.shortMeaning ||
+            `Descoperă semnificația visului despre ${dream.name} și mesajele subconștientului tău pe SpiritHub.ro.`,
         alternates: {
             canonical: `https://spirithub.ro/vise/${slug}`,
         },
         openGraph: {
             title: `Ce înseamnă când visezi ${dream.name}?`,
-            description: dream.shortDescription || `Citește interpretarea completă a visului despre ${dream.name} în dicționarul nostru de vise.`,
+            description:
+                dream.shortMeaning ||
+                `Citește interpretarea completă a visului despre ${dream.name} în dicționarul nostru de vise.`,
         },
     };
 }
 
+/**
+ * Dream Symbol Page
+ * Statically generated at build time from JSON data
+ */
 export default async function DreamSymbolPage({ params }: Props) {
     const { slug } = await params;
-    return <DreamSymbolClient slug={slug} />;
+    const dream = getSymbolBySlug(slug);
+
+    if (!dream) {
+        notFound();
+    }
+
+    return <DreamSymbolContent dream={dream} />;
 }
