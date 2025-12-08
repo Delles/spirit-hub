@@ -50,7 +50,6 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
   const router = useRouter();
   // Keep a ref to widgetData so event handlers always see current value
   const widgetDataRef = useRef(widgetData);
-  widgetDataRef.current = widgetData;
 
   // Helper for safe refreshing with loop protection (for persistent retries)
   const triggerSafeRefresh = useCallback(() => {
@@ -139,9 +138,6 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
   }, [router, triggerSafeRefresh]);
 
   useEffect(() => {
-    // Run check on mount
-    checkFreshness();
-
     // Handle bfcache restore (mobile back/forward navigation, history restore)
     const handlePageShow = (event: PageTransitionEvent) => {
       if (event.persisted) {
@@ -164,6 +160,12 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [checkFreshness]);
+
+  // Re-run freshness check whenever widgetData changes (e.g., after router.refresh)
+  useEffect(() => {
+    widgetDataRef.current = widgetData;
+    checkFreshness();
+  }, [widgetData, checkFreshness]);
 
   // This component doesn't render anything
   return null;
