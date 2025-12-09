@@ -354,7 +354,9 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
 
         // Calculate remaining delay (schedule even if partially elapsed)
         const elapsed = now - lastAttempt;
-        const remainingDelay = usingCookie || usingWindowName ? Math.max(0, backoffMs - elapsed) : backoffMs;
+        const remainingDelay = usingCookie || usingWindowName || usingUrl
+          ? Math.max(0, backoffMs - elapsed)
+          : backoffMs;
 
         const nextCount = retryCount + 1;
         // Update retry count in the active persistence layer (promote to cookie/window.name/url if currently in-memory)
