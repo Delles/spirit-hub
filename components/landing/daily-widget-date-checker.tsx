@@ -3,23 +3,98 @@
 import { useEffect, useCallback, useRef } from "react";
 import { DailyWidgetData } from "@/lib/daily-widget-server";
 
-// Module-level timestamps and counters to track retries in memory (persist across soft refreshes)
-// These act as backups when sessionStorage is blocked (Private Mode)
-// Using timestamps allows the flag to "expire" so users can retry on later visits
-// while still preventing tight infinite refresh loops
-let lastInMemoryReloadTimestamp = 0;
-let privateModeMissingRetryCount = 0;
-
 // Cooldown between reload attempts (prevents infinite reload loops)
 const RELOAD_COOLDOWN_MS = 10000; // 10 seconds
 const MAX_BACKOFF_MS = 300000; // 5 minutes
+const MAX_PRIVATE_MODE_RETRIES = 3; // Hard cap for private mode retries
 
 // Session storage keys
 const STORAGE_KEY_RELOAD_LOCK = "spirithub-reload-lock";
 const STORAGE_KEY_MISSING_RETRY = "spirithub-missing-retry";
 
+// Cookie name for private mode retry persistence (survives page reloads)
+const COOKIE_PRIVATE_MODE_RETRY = "spirithub-pm-retry";
+// Token used in window.name as a last-resort persistence when BOTH sessionStorage AND cookies are blocked
+const WINDOW_NAME_RETRY_TOKEN = "__spirithub_pm_retry__";
+
+/**
+ * Get private mode retry state from cookie
+ * Returns { count: number, timestamp: number } or null if no cookie
+ */
+function getPrivateModeRetryCookie(): { count: number; timestamp: number } | null {
+  try {
+    const match = document.cookie.match(new RegExp(`${COOKIE_PRIVATE_MODE_RETRY}=([^;]+)`));
+    if (match) {
+      const [count, timestamp] = match[1].split(":").map(Number);
+      if (!isNaN(count) && !isNaN(timestamp)) {
+        return { count, timestamp };
+      }
+    }
+  } catch { /* ignore */ }
+  return null;
+}
+
+/**
+ * Set private mode retry cookie (expires in 10 minutes)
+ */
+function setPrivateModeRetryCookie(count: number, timestamp: number): void {
+  try {
+    const expires = new Date(Date.now() + 600000).toUTCString(); // 10 min expiry
+    document.cookie = `${COOKIE_PRIVATE_MODE_RETRY}=${count}:${timestamp}; path=/; expires=${expires}; SameSite=Lax`;
+  } catch { /* ignore */ }
+}
+
+/**
+ * Clear private mode retry cookie
+ */
+function clearPrivateModeRetryCookie(): void {
+  try {
+    document.cookie = `${COOKIE_PRIVATE_MODE_RETRY}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+  } catch { /* ignore */ }
+}
+
+/**
+ * Read retry state from window.name (last-resort persistence when all storage is blocked)
+ * Format: "...|||__spirithub_pm_retry__=count:timestamp"
+ */
+function getWindowNameRetry(): { count: number; timestamp: number } | null {
+  try {
+    const match = window.name.match(new RegExp(`${WINDOW_NAME_RETRY_TOKEN}=([0-9]+):([0-9]+)`));
+    if (match) {
+      const count = parseInt(match[1], 10);
+      const timestamp = parseInt(match[2], 10);
+      if (!isNaN(count) && !isNaN(timestamp)) {
+        return { count, timestamp };
+      }
+    }
+  } catch { /* ignore */ }
+  return null;
+}
+
+/**
+ * Write retry state to window.name without destroying existing content
+ */
+function setWindowNameRetry(count: number, timestamp: number): void {
+  try {
+    const existing = window.name || "";
+    const withoutToken = existing.replace(new RegExp(`\\|\\|\\|?${WINDOW_NAME_RETRY_TOKEN}=[^|]+`), "");
+    const suffix = `${WINDOW_NAME_RETRY_TOKEN}=${count}:${timestamp}`;
+    window.name = withoutToken ? `${withoutToken}|||${suffix}` : suffix;
+  } catch { /* ignore */ }
+}
+
+/**
+ * Clear retry state from window.name
+ */
+function clearWindowNameRetry(): void {
+  try {
+    window.name = (window.name || "").replace(new RegExp(`\\|\\|\\|?${WINDOW_NAME_RETRY_TOKEN}=[^|]+`), "");
+  } catch { /* ignore */ }
+}
+
 interface DailyWidgetDateCheckerProps {
   widgetData: DailyWidgetData;
+  onGaveUp?: () => void; // Callback when max retries reached in private mode
 }
 
 /**
@@ -40,9 +115,35 @@ function getTodayISO(): string {
   return `${year}-${month}-${day}`;
 }
 
+// Cookie name for reload lock in private mode (survives page reloads)
+const COOKIE_RELOAD_LOCK = "spirithub-reload-lock";
+
+/**
+ * Get reload lock timestamp from cookie
+ */
+function getReloadLockCookie(): number {
+  try {
+    const match = document.cookie.match(new RegExp(`${COOKIE_RELOAD_LOCK}=([^;]+)`));
+    if (match) {
+      return parseInt(match[1], 10) || 0;
+    }
+  } catch { /* ignore */ }
+  return 0;
+}
+
+/**
+ * Set reload lock cookie (expires in 1 minute)
+ */
+function setReloadLockCookie(timestamp: number): void {
+  try {
+    const expires = new Date(Date.now() + 60000).toUTCString(); // 1 min expiry
+    document.cookie = `${COOKIE_RELOAD_LOCK}=${timestamp}; path=/; expires=${expires}; SameSite=Lax`;
+  } catch { /* ignore */ }
+}
+
 /**
  * Trigger a hard page reload with cache busting.
- * Uses sessionStorage (with in-memory fallback) to prevent infinite reload loops.
+ * Uses sessionStorage (with cookie fallback) to prevent infinite reload loops.
  * Returns true if reload was triggered, false if blocked by cooldown.
  */
 function triggerHardReload(): boolean {
@@ -59,11 +160,12 @@ function triggerHardReload(): boolean {
 
     sessionStorage.setItem(STORAGE_KEY_RELOAD_LOCK, now.toString());
   } catch {
-    // Fallback if sessionStorage fails (e.g., Private Mode)
-    if (now - lastInMemoryReloadTimestamp < RELOAD_COOLDOWN_MS) {
+    // Fallback if sessionStorage fails (e.g., Private Mode) - use cookies
+    const lastReloadTime = getReloadLockCookie();
+    if (now - lastReloadTime < RELOAD_COOLDOWN_MS) {
       return false;
     }
-    lastInMemoryReloadTimestamp = now;
+    setReloadLockCookie(now);
   }
 
   // Force a hard reload - browsers will bypass cache for location.reload()
@@ -82,11 +184,28 @@ function triggerHardReload(): boolean {
  *    to bypass all cache layers (browser HTTP cache, CDN cache)
  * 5. **Loop Protection**: 10-second cooldown between reload attempts
  */
-export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerProps) {
+export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDateCheckerProps) {
   // Keep a ref to widgetData so event handlers always see current value
   const widgetDataRef = useRef(widgetData);
   // Track if initial mount check has been performed
   const hasRunInitialCheck = useRef(false);
+  // Track backoff timeout to clear on unmount
+  const backoffTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  // Track if we've already given up (to prevent duplicate onGaveUp calls)
+  const hasGivenUp = useRef(false);
+  // In-memory fallback counter for when BOTH sessionStorage AND cookies are blocked
+  // This survives within the same page session but resets on reload
+  // Combined with the pending timeout check, this prevents runaway loops
+  const inMemoryRetryCount = useRef(0);
+  const inMemoryLastAttempt = useRef(0);
+
+  // Helper to clear any pending reload timeout
+  const clearPendingReload = useCallback(() => {
+    if (backoffTimeoutRef.current) {
+      clearTimeout(backoffTimeoutRef.current);
+      backoffTimeoutRef.current = null;
+    }
+  }, []);
 
   // Core freshness check logic
   const checkFreshness = useCallback((source: string) => {
@@ -99,25 +218,27 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
     // ========================================================================
     if (data.dailyNumber?.date) {
       if (data.dailyNumber.date !== todayISO) {
-        console.log(`[DailyWidgetDateChecker] Stale data detected (${source}): data date ${data.dailyNumber.date} !== today ${todayISO}`);
         triggerHardReload();
         return;
       }
     }
 
     // ========================================================================
-    // Check 2: Success - Clear any retry flags
+    // Check 2: Success - Clear any retry flags and pending timeouts
     // If we have fresh, complete data, cleanup stale state
     // ========================================================================
     if (data.dailyNumber && data.dailyDream && data.dailyNumber.date === todayISO) {
-      console.log(`[DailyWidgetDateChecker] Data is fresh (${source}): ${todayISO}`);
+      // Cancel any pending reload since data arrived
+      clearPendingReload();
       try {
         sessionStorage.removeItem(STORAGE_KEY_MISSING_RETRY);
         sessionStorage.removeItem(STORAGE_KEY_RELOAD_LOCK);
       } catch { /* ignore */ }
-      // Reset in-memory timestamp and counters on success
-      lastInMemoryReloadTimestamp = 0;
-      privateModeMissingRetryCount = 0;
+      clearPrivateModeRetryCookie();
+      clearWindowNameRetry();
+      inMemoryRetryCount.current = 0;
+      inMemoryLastAttempt.current = 0;
+      hasGivenUp.current = false; // Reset for future retries
       return;
     }
 
@@ -131,37 +252,75 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
       try {
         const hasRetried = sessionStorage.getItem(STORAGE_KEY_MISSING_RETRY);
         if (!hasRetried) {
-          console.log(`[DailyWidgetDateChecker] Missing data detected (${source}), attempting recovery reload`);
           sessionStorage.setItem(STORAGE_KEY_MISSING_RETRY, "true");
           triggerHardReload();
         }
       } catch {
-        // Fallback for private mode with exponential backoff
+        // Fallback for private mode: use cookies that survive page reloads
+        const now = Date.now();
+        const cookieState = getPrivateModeRetryCookie();
+        const windowNameState = getWindowNameRetry();
+
+        // Prefer cookie, then window.name, then in-memory as last resort
+        const usingCookie = cookieState !== null;
+        const usingWindowName = !usingCookie && windowNameState !== null;
+
+        let retryCount: number;
+        let lastAttempt: number;
+
+        if (usingCookie) {
+          retryCount = cookieState.count;
+          lastAttempt = cookieState.timestamp;
+        } else if (usingWindowName) {
+          retryCount = windowNameState!.count;
+          lastAttempt = windowNameState!.timestamp;
+        } else {
+          retryCount = inMemoryRetryCount.current;
+          lastAttempt = inMemoryLastAttempt.current;
+        }
+
+        // Check if we've hit the hard cap (works for both cookie and in-memory)
+        if (retryCount >= MAX_PRIVATE_MODE_RETRIES) {
+          if (!hasGivenUp.current) {
+            hasGivenUp.current = true;
+            onGaveUp?.();
+          }
+          return;
+        }
+
+        // Don't schedule if we already have a pending timeout
+        if (backoffTimeoutRef.current) {
+          return;
+        }
+
         // Calculate backoff: 10s -> 20s -> 40s -> ... -> 5m cap
         const backoffMs = Math.min(
-          RELOAD_COOLDOWN_MS * Math.pow(2, privateModeMissingRetryCount),
+          RELOAD_COOLDOWN_MS * Math.pow(2, retryCount),
           MAX_BACKOFF_MS
         );
-        const now = Date.now();
 
-        // Check if we waited long enough since the last attempt
-        if (now - lastInMemoryReloadTimestamp >= backoffMs) {
-          console.log(`[DailyWidgetDateChecker] Missing data in private mode (${source}), retry #${privateModeMissingRetryCount + 1} in ${backoffMs}ms`);
+        // Calculate remaining delay (schedule even if partially elapsed)
+        const elapsed = now - lastAttempt;
+        const remainingDelay = usingCookie || usingWindowName ? Math.max(0, backoffMs - elapsed) : backoffMs;
 
-          // We set the timestamp update here effectively starting the "cooldown" for the next check
-          // but we also rely on setTimeout ensuring we actually wait this duration before reloading.
-          lastInMemoryReloadTimestamp = now;
-          privateModeMissingRetryCount++;
-
-          // Use setTimeout to enforce the backoff delay before the hard reload occurs
-          // This prevents tight loops even if in-memory state is lost on reload
-          setTimeout(() => {
-            triggerHardReload();
-          }, backoffMs);
+        // Update retry count in the active persistence layer
+        if (usingCookie) {
+          setPrivateModeRetryCookie(retryCount + 1, now);
+        } else if (usingWindowName) {
+          setWindowNameRetry(retryCount + 1, now);
+        } else {
+          inMemoryRetryCount.current = retryCount + 1;
+          inMemoryLastAttempt.current = now;
         }
+
+        // Schedule reload with remaining delay (or full backoff for in-memory)
+        backoffTimeoutRef.current = setTimeout(() => {
+          backoffTimeoutRef.current = null;
+          triggerHardReload();
+        }, remainingDelay);
       }
     }
-  }, []);
+  }, [onGaveUp, clearPendingReload]);
 
   // Update ref after render via useEffect
   // This ensures event handlers see the latest widgetData
@@ -211,6 +370,10 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
     return () => {
       window.removeEventListener("pageshow", handlePageShow);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      if (backoffTimeoutRef.current) {
+        clearTimeout(backoffTimeoutRef.current);
+        backoffTimeoutRef.current = null;
+      }
     };
   }, [checkFreshness]);
 
