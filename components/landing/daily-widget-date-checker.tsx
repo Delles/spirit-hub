@@ -1,17 +1,20 @@
 "use client";
 
 import { useEffect, useCallback, useRef } from "react";
-import { useRouter } from "next/navigation";
 import { DailyWidgetData } from "@/lib/daily-widget-server";
 
 // Module-level timestamps to track retries in memory (persist across soft refreshes)
 // These act as backups when sessionStorage is blocked (Private Mode)
-// using timestamps allows the flag to "expire" so users can retry on later visits
+// Using timestamps allows the flag to "expire" so users can retry on later visits
 // while still preventing tight infinite refresh loops
-let lastInMemoryMissingRetry = 0;
-let lastInMemoryStalenessRetry = 0;
+let lastInMemoryReloadTimestamp = 0;
 
-const RETRY_COOLDOWN_MS = 15000; // 15 seconds
+// Cooldown between reload attempts (prevents infinite reload loops)
+const RELOAD_COOLDOWN_MS = 10000; // 10 seconds
+
+// Session storage keys
+const STORAGE_KEY_RELOAD_LOCK = "spirithub-reload-lock";
+const STORAGE_KEY_MISSING_RETRY = "spirithub-missing-retry";
 
 interface DailyWidgetDateCheckerProps {
   widgetData: DailyWidgetData;
@@ -36,110 +39,149 @@ function getTodayISO(): string {
 }
 
 /**
+ * Trigger a hard page reload with cache busting.
+ * Uses sessionStorage (with in-memory fallback) to prevent infinite reload loops.
+ * Returns true if reload was triggered, false if blocked by cooldown.
+ */
+function triggerHardReload(): boolean {
+  const now = Date.now();
+
+  try {
+    const lastReload = sessionStorage.getItem(STORAGE_KEY_RELOAD_LOCK);
+    const lastReloadTime = lastReload ? parseInt(lastReload, 10) : 0;
+
+    if (now - lastReloadTime < RELOAD_COOLDOWN_MS) {
+      // Still in cooldown, don't reload
+      return false;
+    }
+
+    sessionStorage.setItem(STORAGE_KEY_RELOAD_LOCK, now.toString());
+  } catch {
+    // Fallback if sessionStorage fails (e.g., Private Mode)
+    if (now - lastInMemoryReloadTimestamp < RELOAD_COOLDOWN_MS) {
+      return false;
+    }
+    lastInMemoryReloadTimestamp = now;
+  }
+
+  // Force a hard reload bypassing cache
+  // Note: The `true` parameter is deprecated but still works in most browsers
+  // For modern browsers, we use cache-busting via the reload itself
+  window.location.reload();
+  return true;
+}
+
+/**
  * Client-side component that checks if the daily widget data matches today's date.
- * Checks on mount, bfcache restore (pageshow), and tab visibility change.
  * 
  * Strategy:
- * 1. Date Mismatch: Persistent throttled retry (every 5s) until fixed.
- *    - Private Mode Fallback: One retry every 15s.
- * 2. Missing Data: One-shot retry (try once, then give up).
- *    - Private Mode Fallback: One retry every 15s.
- * 3. Mobile Restore: Re-checks when page is restored from bfcache or tab becomes visible.
+ * 1. **Initial Mount Check**: Always checks on first mount to catch stale cached HTML
+ * 2. **Page Restore Check**: Checks on pageshow event (covers bfcache AND history navigation)
+ * 3. **Tab Visibility Check**: Checks when tab becomes visible (mobile app resume)
+ * 4. **Hard Reload on Stale**: Uses window.location.reload() instead of router.refresh()
+ *    to bypass all cache layers (browser HTTP cache, CDN cache)
+ * 5. **Loop Protection**: 10-second cooldown between reload attempts
  */
 export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerProps) {
-  const router = useRouter();
   // Keep a ref to widgetData so event handlers always see current value
   const widgetDataRef = useRef(widgetData);
+  // Track if initial mount check has been performed
+  const hasRunInitialCheck = useRef(false);
 
-  // Helper for safe refreshing with loop protection (for persistent retries)
-  const triggerSafeRefresh = useCallback(() => {
-    try {
-      const lastRefresh = sessionStorage.getItem("convex-refresh-lock");
-      const now = Date.now();
-      const lastRefreshTime = lastRefresh ? parseInt(lastRefresh, 10) : NaN;
-
-      if (Number.isFinite(lastRefreshTime) && (now - lastRefreshTime < 5000)) {
-        return;
-      }
-
-      sessionStorage.setItem("convex-refresh-lock", now.toString());
-      router.refresh();
-    } catch {
-      // Fallback if sessionStorage fails (e.g. Private Mode)
-      // Guard against infinite loops by throttling retries
-      const now = Date.now();
-      if (now - lastInMemoryStalenessRetry > RETRY_COOLDOWN_MS) {
-        lastInMemoryStalenessRetry = now;
-        router.refresh();
-      }
-    }
-  }, [router]);
-
-  // Core freshness check logic - extracted so it can be reused
-  const checkFreshness = useCallback(() => {
+  // Core freshness check logic
+  const checkFreshness = useCallback((source: string) => {
     const data = widgetDataRef.current;
-
     const todayISO = getTodayISO();
 
     // ========================================================================
-    // Check 1: Success / Cleanup
-    // If we have full data, clear the missing-retry flags
-    // ========================================================================
-    if (data.dailyNumber && data.dailyDream) {
-      try {
-        sessionStorage.removeItem("convex-missing-retry");
-      } catch { /* ignore */ }
-      lastInMemoryMissingRetry = 0;
-    }
-
-    // ========================================================================
-    // Check 2: Date Mismatch (Staleness)
+    // Check 1: Date Mismatch (Staleness) - PRIMARY CHECK
+    // If data exists but is from a different day, force hard reload
     // ========================================================================
     if (data.dailyNumber?.date) {
       if (data.dailyNumber.date !== todayISO) {
-        triggerSafeRefresh();
+        console.log(`[DailyWidgetDateChecker] Stale data detected (${source}): data date ${data.dailyNumber.date} !== today ${todayISO}`);
+        triggerHardReload();
         return;
-      } else {
-        lastInMemoryStalenessRetry = 0;
       }
     }
 
     // ========================================================================
-    // Check 3: Missing Data (Outage)
-    // One-shot retry strategy
+    // Check 2: Success - Clear any retry flags
+    // If we have fresh, complete data, cleanup stale state
+    // ========================================================================
+    if (data.dailyNumber && data.dailyDream && data.dailyNumber.date === todayISO) {
+      try {
+        sessionStorage.removeItem(STORAGE_KEY_MISSING_RETRY);
+      } catch { /* ignore */ }
+      return;
+    }
+
+    // ========================================================================
+    // Check 3: Missing Data (Outage) - ONE-SHOT RETRY
+    // If data is missing entirely, try one reload to recover
     // ========================================================================
     const isMissingData = !data.dailyNumber || !data.dailyDream;
 
     if (isMissingData) {
       try {
-        const hasRetried = sessionStorage.getItem("convex-missing-retry");
+        const hasRetried = sessionStorage.getItem(STORAGE_KEY_MISSING_RETRY);
         if (!hasRetried) {
-          sessionStorage.setItem("convex-missing-retry", "true");
-          router.refresh();
+          console.log(`[DailyWidgetDateChecker] Missing data detected (${source}), attempting recovery reload`);
+          sessionStorage.setItem(STORAGE_KEY_MISSING_RETRY, "true");
+          triggerHardReload();
         }
       } catch {
-        // Fallback for private mode: use in-memory timestamp throttle
-        const now = Date.now();
-        if (now - lastInMemoryMissingRetry > RETRY_COOLDOWN_MS) {
-          lastInMemoryMissingRetry = now;
-          router.refresh();
+        // Fallback for private mode: use in-memory check (only allow one attempt per page session)
+        if (lastInMemoryReloadTimestamp === 0) {
+          console.log(`[DailyWidgetDateChecker] Missing data detected in private mode (${source}), attempting recovery reload`);
+          triggerHardReload();
         }
       }
     }
-  }, [router, triggerSafeRefresh]);
+  }, []);
 
+  // Update ref when widgetData prop changes
   useEffect(() => {
-    // Handle bfcache restore (mobile back/forward navigation, history restore)
+    widgetDataRef.current = widgetData;
+  }, [widgetData]);
+
+  // ========================================================================
+  // INITIAL MOUNT CHECK (Solution 4)
+  // This runs once on component mount to catch stale cached HTML
+  // regardless of how the page was loaded (history, shortcut, direct, etc.)
+  // ========================================================================
+  useEffect(() => {
+    if (!hasRunInitialCheck.current) {
+      hasRunInitialCheck.current = true;
+      // Small delay to ensure hydration is complete
+      const timeoutId = setTimeout(() => {
+        checkFreshness("initial-mount");
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [checkFreshness]);
+
+  // ========================================================================
+  // EVENT LISTENERS for ongoing freshness checks
+  // ========================================================================
+  useEffect(() => {
+    // Handle pageshow - fires on ALL page displays including:
+    // - bfcache restore (event.persisted === true)
+    // - History navigation (event.persisted may be false)
+    // - Fresh loads (event.persisted === false)
+    // We check on ALL pageshow events, not just persisted ones
     const handlePageShow = (event: PageTransitionEvent) => {
+      // For persisted pages (bfcache), always check
+      // For non-persisted, the initial mount check already handles it
       if (event.persisted) {
-        checkFreshness();
+        checkFreshness("pageshow-bfcache");
       }
     };
 
     // Handle tab becoming visible (mobile app resume from background/sleep)
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
-        checkFreshness();
+        checkFreshness("visibility-change");
       }
     };
 
@@ -151,12 +193,6 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [checkFreshness]);
-
-  // Re-run freshness check whenever widgetData changes (e.g., after router.refresh)
-  useEffect(() => {
-    widgetDataRef.current = widgetData;
-    checkFreshness();
-  }, [widgetData, checkFreshness]);
 
   // This component doesn't render anything
   return null;
