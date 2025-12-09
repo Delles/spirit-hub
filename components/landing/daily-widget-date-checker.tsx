@@ -131,11 +131,9 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
           triggerHardReload();
         }
       } catch {
-        // Fallback for private mode: use in-memory check (only allow one attempt per page session)
-        if (lastInMemoryReloadTimestamp === 0) {
-          console.log(`[DailyWidgetDateChecker] Missing data detected in private mode (${source}), attempting recovery reload`);
-          triggerHardReload();
-        }
+        // Fallback for private mode: triggerHardReload() already implements cooldown logic
+        console.log(`[DailyWidgetDateChecker] Missing data detected in private mode (${source}), attempting recovery reload`);
+        triggerHardReload();
       }
     }
   }, []);
