@@ -16,6 +16,8 @@ const STORAGE_KEY_MISSING_RETRY = "spirithub-missing-retry";
 const COOKIE_PRIVATE_MODE_RETRY = "spirithub-pm-retry";
 // Token used in window.name as a last-resort persistence when BOTH sessionStorage AND cookies are blocked
 const WINDOW_NAME_RETRY_TOKEN = "__spirithub_pm_retry__";
+// URL query param used as ultimate fallback when all storage mechanisms fail
+const URL_RETRY_PARAM = "pmr";
 
 /**
  * Get private mode retry state from cookie
@@ -95,6 +97,45 @@ function clearWindowNameRetry(): void {
       .filter(Boolean)
       .filter((part) => !part.startsWith(`${WINDOW_NAME_RETRY_TOKEN}=`));
     window.name = entries.join("|||");
+  } catch { /* ignore */ }
+}
+
+/**
+ * Read retry state from the URL (count:timestamp) used as ultimate fallback.
+ */
+function getUrlRetryState(): { count: number; timestamp: number } | null {
+  try {
+    const search = new URL(window.location.href).searchParams.get(URL_RETRY_PARAM);
+    if (!search) return null;
+    const [countStr, tsStr] = search.split(":");
+    const count = parseInt(countStr ?? "", 10);
+    const timestamp = parseInt(tsStr ?? "", 10);
+    if (!isNaN(count) && !isNaN(timestamp)) {
+      return { count, timestamp };
+    }
+  } catch { /* ignore */ }
+  return null;
+}
+
+/**
+ * Persist retry state in the URL query param (count:timestamp).
+ */
+function setUrlRetryState(count: number, timestamp: number): void {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set(URL_RETRY_PARAM, `${count}:${timestamp}`);
+    window.history.replaceState(null, "", url.toString());
+  } catch { /* ignore */ }
+}
+
+/**
+ * Clear retry state from the URL query param.
+ */
+function clearUrlRetryState(): void {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.delete(URL_RETRY_PARAM);
+    window.history.replaceState(null, "", url.toString());
   } catch { /* ignore */ }
 }
 
@@ -242,6 +283,7 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
       } catch { /* ignore */ }
       clearPrivateModeRetryCookie();
       clearWindowNameRetry();
+      clearUrlRetryState();
       inMemoryRetryCount.current = 0;
       inMemoryLastAttempt.current = 0;
       hasGivenUp.current = false; // Reset for future retries
@@ -266,10 +308,12 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
         const now = Date.now();
         const cookieState = getPrivateModeRetryCookie();
         const windowNameState = getWindowNameRetry();
+        const urlState = getUrlRetryState();
 
-        // Prefer cookie, then window.name, then in-memory as last resort
+        // Prefer cookie, then window.name, then URL param, then in-memory as last resort
         const usingCookie = cookieState !== null;
         const usingWindowName = !usingCookie && windowNameState !== null;
+        const usingUrl = !usingCookie && !usingWindowName && urlState !== null;
 
         let retryCount: number;
         let lastAttempt: number;
@@ -280,6 +324,9 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
         } else if (usingWindowName) {
           retryCount = windowNameState!.count;
           lastAttempt = windowNameState!.timestamp;
+        } else if (usingUrl) {
+          retryCount = urlState!.count;
+          lastAttempt = urlState!.timestamp;
         } else {
           retryCount = inMemoryRetryCount.current;
           lastAttempt = inMemoryLastAttempt.current;
@@ -310,11 +357,13 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
         const remainingDelay = usingCookie || usingWindowName ? Math.max(0, backoffMs - elapsed) : backoffMs;
 
         const nextCount = retryCount + 1;
-        // Update retry count in the active persistence layer (promote to cookie/window.name if currently in-memory)
+        // Update retry count in the active persistence layer (promote to cookie/window.name/url if currently in-memory)
         if (usingCookie) {
           setPrivateModeRetryCookie(nextCount, now);
         } else if (usingWindowName) {
           setWindowNameRetry(nextCount, now);
+        } else if (usingUrl) {
+          setUrlRetryState(nextCount, now);
         } else {
           // Try to promote to cookie first
           setPrivateModeRetryCookie(nextCount, now);
@@ -325,10 +374,17 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
             // Try window.name fallback
             setWindowNameRetry(nextCount, now);
             const windowNameAfterWrite = getWindowNameRetry();
-            if (!windowNameAfterWrite) {
-              // Final fallback: in-memory only (does not survive hard reloads)
-              inMemoryRetryCount.current = nextCount;
-              inMemoryLastAttempt.current = now;
+            if (windowNameAfterWrite) {
+              // ok
+            } else {
+              // Try URL param fallback
+              setUrlRetryState(nextCount, now);
+              const urlAfterWrite = getUrlRetryState();
+              if (!urlAfterWrite) {
+                // Final fallback: in-memory only (does not survive hard reloads)
+                inMemoryRetryCount.current = nextCount;
+                inMemoryLastAttempt.current = now;
+              }
             }
           }
         }
