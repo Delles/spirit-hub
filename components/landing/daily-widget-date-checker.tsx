@@ -76,10 +76,12 @@ function getWindowNameRetry(): { count: number; timestamp: number } | null {
  */
 function setWindowNameRetry(count: number, timestamp: number): void {
   try {
-    const existing = window.name || "";
-    const withoutToken = existing.replace(new RegExp(`\\|\\|\\|?${WINDOW_NAME_RETRY_TOKEN}=[^|]+`), "");
-    const suffix = `${WINDOW_NAME_RETRY_TOKEN}=${count}:${timestamp}`;
-    window.name = withoutToken ? `${withoutToken}|||${suffix}` : suffix;
+    const entries = (window.name || "")
+      .split("|||")
+      .filter(Boolean)
+      .filter((part) => !part.startsWith(`${WINDOW_NAME_RETRY_TOKEN}=`));
+    entries.push(`${WINDOW_NAME_RETRY_TOKEN}=${count}:${timestamp}`);
+    window.name = entries.join("|||");
   } catch { /* ignore */ }
 }
 
@@ -88,7 +90,11 @@ function setWindowNameRetry(count: number, timestamp: number): void {
  */
 function clearWindowNameRetry(): void {
   try {
-    window.name = (window.name || "").replace(new RegExp(`\\|\\|\\|?${WINDOW_NAME_RETRY_TOKEN}=[^|]+`), "");
+    const entries = (window.name || "")
+      .split("|||")
+      .filter(Boolean)
+      .filter((part) => !part.startsWith(`${WINDOW_NAME_RETRY_TOKEN}=`));
+    window.name = entries.join("|||");
   } catch { /* ignore */ }
 }
 
