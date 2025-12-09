@@ -3,14 +3,16 @@
 import { useEffect, useCallback, useRef } from "react";
 import { DailyWidgetData } from "@/lib/daily-widget-server";
 
-// Module-level timestamps to track retries in memory (persist across soft refreshes)
+// Module-level timestamps and counters to track retries in memory (persist across soft refreshes)
 // These act as backups when sessionStorage is blocked (Private Mode)
 // Using timestamps allows the flag to "expire" so users can retry on later visits
 // while still preventing tight infinite refresh loops
 let lastInMemoryReloadTimestamp = 0;
+let privateModeMissingRetryCount = 0;
 
 // Cooldown between reload attempts (prevents infinite reload loops)
 const RELOAD_COOLDOWN_MS = 10000; // 10 seconds
+const MAX_BACKOFF_MS = 300000; // 5 minutes
 
 // Session storage keys
 const STORAGE_KEY_RELOAD_LOCK = "spirithub-reload-lock";
@@ -64,9 +66,7 @@ function triggerHardReload(): boolean {
     lastInMemoryReloadTimestamp = now;
   }
 
-  // Force a hard reload bypassing cache
-  // Note: The `true` parameter is deprecated but still works in most browsers
-  // For modern browsers, we use cache-busting via the reload itself
+  // Force a hard reload - browsers will bypass cache for location.reload()
   window.location.reload();
   return true;
 }
@@ -110,9 +110,14 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
     // If we have fresh, complete data, cleanup stale state
     // ========================================================================
     if (data.dailyNumber && data.dailyDream && data.dailyNumber.date === todayISO) {
+      console.log(`[DailyWidgetDateChecker] Data is fresh (${source}): ${todayISO}`);
       try {
         sessionStorage.removeItem(STORAGE_KEY_MISSING_RETRY);
+        sessionStorage.removeItem(STORAGE_KEY_RELOAD_LOCK);
       } catch { /* ignore */ }
+      // Reset in-memory timestamp and counters on success
+      lastInMemoryReloadTimestamp = 0;
+      privateModeMissingRetryCount = 0;
       return;
     }
 
@@ -131,14 +136,35 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
           triggerHardReload();
         }
       } catch {
-        // Fallback for private mode: triggerHardReload() already implements cooldown logic
-        console.log(`[DailyWidgetDateChecker] Missing data detected in private mode (${source}), attempting recovery reload`);
-        triggerHardReload();
+        // Fallback for private mode with exponential backoff
+        // Calculate backoff: 10s -> 20s -> 40s -> ... -> 5m cap
+        const backoffMs = Math.min(
+          RELOAD_COOLDOWN_MS * Math.pow(2, privateModeMissingRetryCount),
+          MAX_BACKOFF_MS
+        );
+        const now = Date.now();
+
+        // Check if we waited long enough since the last attempt
+        if (now - lastInMemoryReloadTimestamp >= backoffMs) {
+          console.log(`[DailyWidgetDateChecker] Missing data in private mode (${source}), retry #${privateModeMissingRetryCount + 1} in ${backoffMs}ms`);
+
+          // We set the timestamp update here effectively starting the "cooldown" for the next check
+          // but we also rely on setTimeout ensuring we actually wait this duration before reloading.
+          lastInMemoryReloadTimestamp = now;
+          privateModeMissingRetryCount++;
+
+          // Use setTimeout to enforce the backoff delay before the hard reload occurs
+          // This prevents tight loops even if in-memory state is lost on reload
+          setTimeout(() => {
+            triggerHardReload();
+          }, backoffMs);
+        }
       }
     }
   }, []);
 
-  // Update ref when widgetData prop changes
+  // Update ref after render via useEffect
+  // This ensures event handlers see the latest widgetData
   useEffect(() => {
     widgetDataRef.current = widgetData;
   }, [widgetData]);
@@ -149,14 +175,14 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
   // regardless of how the page was loaded (history, shortcut, direct, etc.)
   // ========================================================================
   useEffect(() => {
-    if (!hasRunInitialCheck.current) {
-      hasRunInitialCheck.current = true;
-      // Small delay to ensure hydration is complete
-      const timeoutId = setTimeout(() => {
+    // Small delay to ensure hydration is complete
+    const timeoutId = setTimeout(() => {
+      if (!hasRunInitialCheck.current) {
+        hasRunInitialCheck.current = true;
         checkFreshness("initial-mount");
-      }, 100);
-      return () => clearTimeout(timeoutId);
-    }
+      }
+    }, 100);
+    return () => clearTimeout(timeoutId);
   }, [checkFreshness]);
 
   // ========================================================================
@@ -165,15 +191,11 @@ export function DailyWidgetDateChecker({ widgetData }: DailyWidgetDateCheckerPro
   useEffect(() => {
     // Handle pageshow - fires on ALL page displays including:
     // - bfcache restore (event.persisted === true)
-    // - History navigation (event.persisted may be false)
+    // - History navigation from disk cache (event.persisted === false)
     // - Fresh loads (event.persisted === false)
-    // We check on ALL pageshow events, not just persisted ones
-    const handlePageShow = (event: PageTransitionEvent) => {
-      // For persisted pages (bfcache), always check
-      // For non-persisted, the initial mount check already handles it
-      if (event.persisted) {
-        checkFreshness("pageshow-bfcache");
-      }
+    // We check on ALL pageshow events to catch disk-cached HTML that may be stale
+    const handlePageShow = () => {
+      checkFreshness("pageshow");
     };
 
     // Handle tab becoming visible (mobile app resume from background/sleep)
