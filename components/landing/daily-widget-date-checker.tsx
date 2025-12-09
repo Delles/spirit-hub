@@ -303,14 +303,28 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
         const elapsed = now - lastAttempt;
         const remainingDelay = usingCookie || usingWindowName ? Math.max(0, backoffMs - elapsed) : backoffMs;
 
-        // Update retry count in the active persistence layer
+        const nextCount = retryCount + 1;
+        // Update retry count in the active persistence layer (promote to cookie/window.name if currently in-memory)
         if (usingCookie) {
-          setPrivateModeRetryCookie(retryCount + 1, now);
+          setPrivateModeRetryCookie(nextCount, now);
         } else if (usingWindowName) {
-          setWindowNameRetry(retryCount + 1, now);
+          setWindowNameRetry(nextCount, now);
         } else {
-          inMemoryRetryCount.current = retryCount + 1;
-          inMemoryLastAttempt.current = now;
+          // Try to promote to cookie first
+          setPrivateModeRetryCookie(nextCount, now);
+          const cookieAfterWrite = getPrivateModeRetryCookie();
+          if (cookieAfterWrite) {
+            // Promotion succeeded; optionally update lastAttempt for remainingDelay parity
+          } else {
+            // Try window.name fallback
+            setWindowNameRetry(nextCount, now);
+            const windowNameAfterWrite = getWindowNameRetry();
+            if (!windowNameAfterWrite) {
+              // Final fallback: in-memory only (does not survive hard reloads)
+              inMemoryRetryCount.current = nextCount;
+              inMemoryLastAttempt.current = now;
+            }
+          }
         }
 
         // Schedule reload with remaining delay (or full backoff for in-memory)
