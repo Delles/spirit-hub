@@ -6,13 +6,12 @@ This document describes the high-level architecture and folder structure for the
 
 ## Top-Level Overview
 
-The app uses Next.js 16 App Router, React 19, Convex for backend/data, Tailwind CSS 4 for styling, and shadcn/ui for UI primitives. The platform is divided into three main feature domains (Numerology, Dreams, Biorhythm) plus shared marketing and blog content.
+The app uses Next.js 16 App Router, React 19, static JSON data + SSG/ISR, Tailwind CSS 4 for styling, and shadcn/ui for UI primitives. The platform is divided into three main feature domains (Numerology, Dreams, Biorhythm) plus shared marketing and blog content.
 
 ### Core Directories
 
 - `app/` - Next.js App Router pages & layouts
 - `components/` - React components (feature + UI)
-- `convex/` - Convex backend (schema, queries, actions, crons)
 - `lib/` - Domain logic, utilities, static data
 - `config/` - Configuration (site, SEO, feature config)
 - `data/` - Static JSON datasets (e.g., dream symbols)
@@ -133,32 +132,6 @@ components/
 
 ---
 
-## convex/ Directory
-
-Convex backend functionality: schema, queries, and actions.
-
-### Example Structure
-
-```
-convex/
-+-- schema.ts                # Convex schema (tables: users, interpretations, logs)
-+-- numerology.ts            # Convex functions for numerology (queries/actions)
-+-- dreams.ts                 # Convex functions for dream symbols/search
-+-- biorhythm.ts              # Convex functions for biorhythms
-+-- daily.ts                  # Daily rotation, "of the day" content helpers
-+-- analytics.ts              # Simple analytics logging (pageviews, usage)
-```
-
-### Responsibilities:
-
-- `schema.ts`: tables for static interpretations, daily picks, and optional users/analytics.
-- `numerology.ts`: deterministic calculation utilities + queries for interpretations.
-- `dreams.ts`: search functions, symbol lookup.
-- `biorhythm.ts`: calculation utilities, today's summary & critical days.
-- `daily.ts`: utilities used by cron-like processes to select "Numarul zilei" and "Visul zilei".
-
----
-
 ## lib/ Directory
 
 Domain logic and utilities, separate from React.
@@ -175,7 +148,7 @@ lib/
 ### Rules:
 
 - No React imports here; keep functions pure.
-- Numerology math and biorhythm formulas live here, then are consumed by Convex and components.
+- Numerology math and biorhythm formulas live here, then are consumed by components and server utilities.
 
 ---
 
@@ -242,7 +215,7 @@ public/
 ### 3. Data Flow
 
 - For simple deterministic calculations: call pure functions from `@/lib`.
-- For data backed by Convex (symbol DB, static interpretations): call Convex queries using their React bindings.
+- For data backed by static JSON: import from `@/data` or helper loaders in `@/lib`.
 
 ---
 
@@ -279,14 +252,14 @@ When adding new features or modules, follow these structure rules to keep the pr
   - For shared building blocks, use `components/shared` and `components/ui` (shadcn/ui primitives).
   - Name files in kebab-case and keep components small and focused; compose rather than creating “god components”.
 
-- **Domain Logic (`lib/` + `convex/`)**
-  - Put pure calculation/derivation logic in `lib/` and call it from Convex functions and React components.
-  - For new backend capabilities, add a dedicated Convex module (e.g., `convex/astro.ts`) and extend `schema.ts` when persistent data is needed.
-  - Keep Convex functions thin: validate inputs, call `lib` helpers, and return structured results.
+- **Domain Logic (`lib/` + static data)**
+- Put pure calculation/derivation logic in `lib/` and call it from components or server utilities.
+- For new capabilities that need persistence, prefer static JSON/SSG; introduce APIs only if unavoidable.
+- Keep server utilities thin: validate inputs, call `lib` helpers, and return structured results.
 
 - **Configuration & Data (`config/`, `data/`)**
   - Store reusable mappings, thresholds, and feature flags in `config/` instead of hard-coding them in components.
-  - Use `data/` for larger static datasets (e.g., new dictionaries) that are read by Convex or lib helpers.
+- Use `data/` for larger static datasets (e.g., new dictionaries) that are read by lib helpers.
 
 - **Imports & Aliases**
   - Always prefer `@/` aliases over long relative paths (`../../../`).

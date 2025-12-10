@@ -2,8 +2,7 @@
 
 import { useMemo, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { getInterpretation } from "@/lib/interpretations";
 import {
   calculateLifePath,
   calculateDestinyNumber,
@@ -103,11 +102,12 @@ export default function CompatibilitateClient() {
     }
   }, [hasAnyParams, hasAllParams, calculatedData, router, pathname]);
 
-  // Query interpretation from Convex based on compatibility score
-  const interpretation = useQuery(
-    api.numerology.getCompatibilityInterpretation,
-    scores !== null ? { score: scores.average } : "skip",
-  );
+  // Query interpretation from static library
+  const interpretation = useMemo(() => {
+    if (scores === null) return undefined;
+    const result = getInterpretation("compatibility", scores.average);
+    return result || null;
+  }, [scores]);
 
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "compatibility") {

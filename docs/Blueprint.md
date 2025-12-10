@@ -2,7 +2,7 @@ Numerologie.ro: Technical Blueprint & Implementation Plan
 
 1. Executive Summary
 
-A mobile-first Romanian numerology platform delivering instant calculations (Life Path, Destiny Number, Daily Forecast) with optional AI-enhanced personalization. Built on Next.js 16 + Convex for 99.5% autonomy, monetized via AdSense, targeting 50K monthly pageviews within 6 months.
+A mobile-first Romanian numerology platform delivering instant calculations (Life Path, Destiny Number, Daily Forecast) with optional AI-enhanced personalization. Built on Next.js 16 + static SSG/ISR for 99.5% autonomy, monetized via AdSense, targeting 50K monthly pageviews within 6 months.
 
 ---
 
@@ -18,7 +18,7 @@ Target Audience
 
 Competitive Advantage
 
-- Speed: <2s load time (Vercel edge + Convex)
+- Speed: <2s load time (Vercel edge + static SSG/ISR)
 
 - Simplicity: 3-click flow vs. competitors' cluttered multi-page sites
 
@@ -42,11 +42,11 @@ Core Stack (100% Free Tier)
 
     Frontend:      Next.js 16 (App Router) + React 18
 
-    Backend:       Convex (primary) + Supabase (fallback auth)
+    Data:          Static JSON + deterministic lib functions (no backend)
 
     Hosting:       Vercel (free tier) + Cloudflare CDN
 
-    Database:      Convex localStorage (users) + Static JSON (interpretations)
+    State:         LocalStorage (optional user prefs), static interpretations
 
     CMS:           Decap CMS (Git-based)
 
@@ -56,29 +56,25 @@ Core Stack (100% Free Tier)
 
 Architecture Diagram
 
-    [User] → [Cloudflare] → [Vercel Edge] → [Next.js]
+    [User] → [Cloudflare] → [Vercel Edge] → [Next.js SSG/ISR]
 
                                                ↓
 
-                                        [Convex Functions]
+                                        [Lib Functions]
 
                                                ↓
 
-            ┌──────────────────┬──────────────────┬──────────────────┐
+            ┌──────────────────┬──────────────────┐
 
-            ↓                  ↓                  ↓                  ↓
+            ↓                  ↓                  ↓
 
-       [Calculate]      [Static JSON]      [Supabase]       [DeepSeek LLM]
+       [Calculate]      [Static JSON]      [DeepSeek LLM]
 
-       (Life Path)      (Interpretations)  (Auth Backup)    (Premium Daily)
+       (Life Path)      (Interpretations)  (Premium Daily)
 
 Free Tier Capacity Analysis
 
 Service Free Limit Your Usage (50K PV/mo) Buffer
-
-Convex 1M calls/mo ~5K calls/day (150K/mo) 85% unused
-
-Supabase 50K MAUs ~100 users/day (3K/mo) 94% unused
 
 Vercel 100GB bandwidth ~10GB (lightweight) 90% unused
 
@@ -162,35 +158,21 @@ AI-Powered "Deep Insight" (Optional, Premium Feel)
 
     - Usage: ~5% of users = $0.10/month at 50K PV
 
-Content Database Structure
+Content Data Structure
 
-    // convex/interpretations.ts
+    // data/interpretations/*.json (static)
 
-    export const INTERPRETATIONS = {
-
-      lifePath: {
-
-        1: { title: "Liderul", text: "Ești un vizionar..." },
-
-        2: { title: "Mediatorul", text: "Ai darul diplomatiei..." },
-
-        // ... 3-9
-
+    {
+      "lifePath": {
+        "1": { "title": "Liderul", "text": "Ești un vizionar..." },
+        "2": { "title": "Mediatorul", "text": "Ai darul diplomatiei..." }
       },
-
-      daily: {
-
-        1: { forecast: "Astăzi este o zi pentru noi începuturi..." },
-
-        // ... 3-9
-
+      "daily": {
+        "1": { "forecast": "Astăzi este o zi pentru noi începuturi..." }
       }
+    }
 
-    };
-
-
-
-    // cron job updates "daily" array every midnight
+    // daily content chosen deterministically from date (no cron job)
 
 ---
 
@@ -281,7 +263,7 @@ Week Tasks Deliverable Owner
 
 1 - Set up Git repo
 
-- Install Next.js 16 + Convex
+- Install Next.js 16
 
 - Configure Vercel + Cloudflare
 
@@ -327,7 +309,7 @@ Post-Launch: Months 2-6
 
 - Month 4: Write 5 blog posts for SEO ("Numerologie românească")
 
-- Month 5: A/B test result page layouts (Convex analytics)
+- Month 5: A/B test result page layouts (lightweight analytics)
 
 - Month 6: Reach 50K pageviews, evaluate Ezoic upgrade
 
@@ -343,7 +325,7 @@ Domain (.ro) $1.70 Via Rotld, annual payment
 
 Vercel $0 Free tier (100GB bandwidth)
 
-Convex $0 Free tier (1M calls, 0.5GB storage)
+- (static stack) no backend call costs
 
 Supabase $0 Free tier (50K MAUs, backup only)
 
@@ -383,7 +365,7 @@ ROI: 830% by Month 6 (if time valued at $0)
 
 Automated (No Human Input)
 
-- ✅ Calculations (Convex functions)
+- ✅ Calculations (pure lib functions)
 
 - ✅ Result generation (static JSON lookup)
 
@@ -403,29 +385,15 @@ Manual (0.5% = 20 min/month)
 
 - 🔄 Add 2-3 new interpretation texts (10 min via Decap CMS)
 
-- 🔄 Review Convex usage metrics (5 min)
+- 🔄 Review traffic/ads metrics (5 min)
 
 Optional (0% if disabled)
 
 - 🤖 LLM generations: Fully automated, cost-capped at $1/month
 
-Cron Job Setup
+Daily Content Rotation
 
-    // convex/cron.ts
-
-    import { cron } from 'croner';
-
-
-
-    // Rotate daily forecast every midnight UTC
-
-    cron('0 0 * * *', () => {
-
-      const today = new Date().toISOString().split('T')[0];
-
-      // Update "dailyNumber" in Convex DB or static file
-
-    });
+- Deterministic by date (no cron jobs required)
 
 ---
 
@@ -471,11 +439,11 @@ AdSense rejection Low High - No AI content on first 3 pages
 
 - Wait 30 days post-launch
 
-Convex free tier limits Low Medium - Monitor calls daily
+Cache drift (ISR) Low Medium - Monitor daily content freshness
 
-- Cache results in localStorage
+- Use date-based cache keys
 
-- Upgrade to $25/mo if needed
+- Trigger on-demand revalidation if needed
 
 Low Romanian RPM Medium Medium - Focus on pageviews (SEO)
 
@@ -521,11 +489,11 @@ Growth KPIs (Month 6)
 
 Autonomy KPIs
 
-- 🎯 <30 min manual work/month: Achieved via cron + static content
+- 🎯 <30 min manual work/month: Achieved via deterministic static content
 
 - 🎯 99.9% uptime: UptimeRobot monitoring
 
-- 🎯 Zero server maintenance: Vercel + Convex handle infra
+- 🎯 Zero server maintenance: Vercel + static assets handle infra
 
 ---
 
@@ -533,7 +501,7 @@ Autonomy KPIs
 
 DO Use Your Tech Stack
 
-- ✅ Next.js 16 + Convex: Faster dev, better UX, still free
+- ✅ Next.js 16 + Static JSON/ISR: Faster dev, better UX, still free
 
 - ✅ Vercel: Edge caching = <2s loads = higher ad viewability
 
@@ -543,7 +511,7 @@ DON'T Overcomplicate
 
 - ❌ No user authentication: Use localStorage (no Supabase needed)
 
-- ❌ No complex state: Convex useQuery is enough
+- ❌ No complex state: keep client state minimal
 
 - ❌ No paid APIs: Everything runs on free tiers
 
@@ -551,7 +519,7 @@ DON'T Overcomplicate
 
 Key Differentiator
 
-Your edge is modern performance + Romanian localization. Competitors have outdated PHP sites with 5s load times. Your Next.js + Convex stack will feel like a native app, and Google rewards speed with higher rankings.
+Your edge is modern performance + Romanian localization. Competitors have outdated PHP sites with 5s load times. Your Next.js + static stack will feel like a native app, and Google rewards speed with higher rankings.
 
 ---
 
@@ -563,9 +531,9 @@ Your edge is modern performance + Romanian localization. Competitors have outdat
 
 - Install: npx create-next-app@latest (use App Router)
 
-- Install: npm i convex + set up project
+- Install: npm i (dependencies from package.json)
 
-- Create Convex function: lifePath (hardcode 9 interpretations)
+- Create interpretations JSON and lib calculators
 
 - Design in Figma: 3 screens (date → name → result)
 

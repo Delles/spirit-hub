@@ -33,7 +33,7 @@ function LifePathPage() {
       setIsLoading(true);
       const date = new Date(data.birthDate);
       const lifePathNumber = calculateLifePath(date);
-      // Fetch interpretation from Convex...
+      // Fetch interpretation from static data...
       setIsLoading(false);
     }
   };
@@ -52,7 +52,7 @@ function DestinyPage() {
   const handleSubmit = (data) => {
     if (data.type === "destiny") {
       const destinyNumber = calculateDestinyNumber(data.name);
-      // Fetch interpretation from Convex...
+      // Fetch interpretation from static data...
     }
   };
 
@@ -84,7 +84,7 @@ function CompatibilityPage() {
       const destinyCompat = calculateCompatibility(destiny1, destiny2);
       const avgScore = Math.round((lifePathCompat + destinyCompat) / 2);
 
-      // Fetch interpretation from Convex...
+      // Fetch interpretation from static data...
     }
   };
 

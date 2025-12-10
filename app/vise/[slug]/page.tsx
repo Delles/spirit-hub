@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 
 /**
  * Generate metadata for SEO
- * Uses static data, no Convex runtime dependency
+ * Uses static data, no external backend dependency
  */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;

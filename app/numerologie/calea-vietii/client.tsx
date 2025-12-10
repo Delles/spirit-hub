@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { getInterpretation } from "@/lib/interpretations";
 import { calculateLifePath } from "@/lib/numerology";
 import { NumerologyForm, type NumerologyFormData } from "@/components/numerologie/numerology-form";
 import { LifePathCard } from "@/components/numerologie/life-path-card";
@@ -51,11 +50,13 @@ export default function CaleaVietiiClient({ initialBirthDate }: Props) {
     }
   }, [dateParam, lifePathNumber, router, pathname]);
 
-  // Query interpretation from Convex (supports Master Numbers 11, 22, 33)
-  const interpretation = useQuery(
-    api.numerology.getLifePathInterpretation,
-    shouldQueryInterpretation ? { number: lifePathNumber } : "skip",
-  );
+  // Query interpretation from static library
+  const interpretation = useMemo(() => {
+    if (!shouldQueryInterpretation || lifePathNumber === null) return undefined;
+    const result = getInterpretation('life-path', lifePathNumber);
+    // If not found, return null to show error state, mirroring a missing backend record
+    return result || null;
+  }, [shouldQueryInterpretation, lifePathNumber]);
 
   const isLoading = shouldQueryInterpretation && interpretation === undefined;
 

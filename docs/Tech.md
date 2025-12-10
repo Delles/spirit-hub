@@ -9,7 +9,7 @@ SpiritHub.ro uses a modern, performant, and mostly serverless stack focused on s
 - **Framework**: Next.js 16 (App Router)
 - **UI Library**: React 19.x
 - **Language**: TypeScript 5 (strict mode)
-- **Backend / Data**: Convex
+- **Data**: Static JSON datasets + deterministic lib functions (SSG/ISR)
 - **Styling**: Tailwind CSS 4
 - **UI Components**: shadcn/ui ("new-york" variant), Radix UI primitives
 - **Animations**: Framer Motion
@@ -19,26 +19,12 @@ SpiritHub.ro uses a modern, performant, and mostly serverless stack focused on s
 
 ---
 
-## Backend: Convex
+## Data & Content
 
-Convex is the primary backend for:
-
-- **Data storage:**
-  - Static interpretations (numerology, dream symbols, biorhythm texts).
-  - Optional user-related info (anonymous IDs, saved dates).
-  - Simple analytics (pageviews, feature usage).
-
-- **Server-side logic:**
-  - Queries for dream search.
-  - Actions for daily selection (Numarul zilei, Visul zilei).
-  - Any future features requiring transactional operations.
-
-### Guidelines:
-
-- Define all tables and indexes in `convex/schema.ts`.
-- Keep calculation logic in `@/lib` and call it from Convex functions.
-- Use Convex React bindings for data fetching in components.
-- Prefer queries for read-only operations, actions for writes or side effects.
+- **Storage**: Static JSON datasets under `data/` (interpretations, dream symbols, search index).
+- **Logic**: Pure TypeScript functions in `@/lib` for numerology, biorhythm, daily content.
+- **Delivery**: Next.js SSG/ISR for pages; deterministic calculations for hydration consistency.
+- **Guidelines**: Keep logic pure and deterministic; prefer static content over runtime dependencies.
 
 ---
 
@@ -99,7 +85,7 @@ Convex is the primary backend for:
   - `@/hooks/...`
 
 - Import order:
-  1. External packages (React, Next, Convex, shadcn).
+  1. External packages (React, Next, shadcn).
   2. Internal components.
   3. Internal utilities and types.
 

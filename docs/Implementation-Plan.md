@@ -19,7 +19,7 @@
 
 **What's Working:**
 
-- ✅ Complete foundation (Convex, lib functions, shared components, layouts)
+- ✅ Complete foundation (static data, lib functions, shared components, layouts)
 - ✅ Biorhythm calculator with interactive chart
 - ✅ Critical days detection and display
 - ✅ Numerology module with 4 calculators (Life Path, Destiny, Compatibility, Daily Number)
@@ -27,7 +27,7 @@
 - ✅ Dream search with diacritic-insensitive matching
 - ✅ Multi-symbol interpreter (2-3 symbols)
 - ✅ Daily dream feature with deterministic selection
-- ✅ Romanian interpretations seeded in Convex database
+- ✅ Romanian interpretations stored in static JSON
 - ✅ Master Numbers (11, 22, 33) support
 - ✅ Mobile-responsive design
 - ✅ Share functionality
@@ -48,13 +48,10 @@
   - Path aliases configured (`@/`)
   - Bun as package manager
 
-- **Convex Backend (1.1):**
-  - Convex installed and configured
-  - Database schema with 4 tables (interpretations, dreamSymbols, dailyPicks, analytics)
-  - Indexes defined for efficient queries
-  - ConvexProvider integrated in app/layout.tsx
-  - Environment variables configured
-  - Developer documentation in README.md
+- **Data Layer (1.1):**
+  - Static JSON datasets for interpretations and dream symbols
+  - Deterministic daily content utilities (numbers, dreams, energia zilei)
+  - No external backend dependency
 
 - **Core Domain Logic (1.2):**
   - `lib/numerology.ts` - All numerology calculations with Romanian diacritics
@@ -95,10 +92,8 @@
 
 ### ✅ Completed - Phase 2.1: Biorhythm Module
 
-- **Convex Backend:**
-  - `convex/biorhythm.ts` with getBiorhythm and getCriticalDays queries
-  - Full integration with lib/biorhythm.ts calculations
-  - Romanian-language summaries
+- **Data/Logic:**
+  - Pure calculations in `lib/biorhythm.ts` (cycles, critical days, summaries)
 
 - **Biorhythm Components:**
   - `biorhythm-form.tsx` - Date input with validation
@@ -121,9 +116,9 @@
 
 ### ✅ Completed - Phase 2.2: Numerology Module
 
-- **Convex Backend:**
-  - `convex/numerology.ts` with all queries (Life Path, Destiny, Compatibility, Daily Number)
-  - `seedInterpretations` mutation with 37 Romanian interpretations
+- **Data/Logic:**
+  - Pure calculations in `lib/numerology.ts` (life path, destiny, compatibility)
+  - Static interpretations in `data/interpretations/*.json`
   - Master Numbers (11, 22, 33) support for Life Path and Destiny
 
 - **Numerology Components:**
@@ -156,14 +151,10 @@
   - All symbols with Romanian interpretations based on traditional folklore
   - Proper UTF-8 encoding with diacritics (ă, â, î, ș, ț)
 
-- **Convex Backend:**
-  - `convex/dreams.ts` with all queries and mutations
-  - `searchDreamSymbols` - Diacritic-insensitive search (e.g., "sarpe" matches "șarpe")
-  - `getDreamSymbol` - Fetch by slug with index optimization
-  - `getDailyDream` - Deterministic daily selection with caching
-  - `seedDreamSymbols` - Idempotent seeding mutation
-  - `getAllSymbols` - Fetch all symbols with optional category filter
-  - `ensureDailyDream` - Internal mutation for daily pick persistence
+- **Data/Logic:**
+  - `lib/dream-data.ts` for static symbol access and search helpers
+  - `lib/daily-content.ts` for deterministic daily dream selection
+  - Static datasets under `data/dream-symbols.json` and `data/dreams-search-index.json`
 
 - **Dream Components:**
   - `dream-search-input.tsx` - Debounced search (300ms) with validation
@@ -190,7 +181,7 @@
 
 ### ❌ Missing - Phase 3
 
-- Daily automation features (cron jobs for daily picks)
+- Daily automation polish (ISR timings, cache validation)
 - SEO optimization (OG images, metadata enhancements)
 - Analytics integration
 
@@ -222,39 +213,29 @@ Building in **horizontal layers** before completing features vertically provides
 
 All foundation components have been implemented, tested, and cleaned up. The codebase is ready for Phase 2 feature implementation.
 
-### ✅ 1.1 Convex Backend Setup (COMPLETED)
+### ✅ 1.1 Data Layer Setup (COMPLETED)
 
-**Goal:** Initialize Convex and define data schema
+**Goal:** Establish static data and deterministic daily content
 
 **Tasks:**
 
-- [x] Install Convex dependencies (`bun install convex`)
-- [x] Run `npx convex dev` to initialize project
-- [x] Create `convex/schema.ts` with tables:
-  - `interpretations` - Static numerology/dream interpretations
-  - `dreamSymbols` - Dream dictionary entries with search index
-  - `dailyPicks` - Daily number and dream selections
-  - `analytics` - Optional usage tracking
-- [x] Define indexes for efficient queries (by_type_and_number, by_slug, by_category, search_symbols, etc.)
-- [x] Set up Convex environment variables (.env.local and .env.local.example)
-- [x] Integrate ConvexProvider in app/layout.tsx
-- [x] Verify frontend-backend connection with test queries
-- [x] Update README.md with setup instructions and troubleshooting
+- [x] Add static interpretation datasets under `data/interpretations/*.json`
+- [x] Add dream symbols dataset and search index under `data/`
+- [x] Implement deterministic daily utilities in `lib/daily-content.ts`
+- [x] Document SSG/ISR data flow in README
 
 **Files Created:**
 
-- `convex/schema.ts` ✅
-- `convex/_generated/` (auto-generated) ✅
-- `.env.local.example` ✅
-- Updated `README.md` with Convex documentation ✅
+- `data/interpretations/*.json` ✅
+- `data/dream-symbols.json` ✅
+- `data/dreams-search-index.json` ✅
+- `lib/daily-content.ts` ✅
 
 **Acceptance Criteria:** ✅ ALL MET
 
-- ✅ Convex dev server runs successfully
-- ✅ Schema compiles without errors
-- ✅ Can query empty tables from React components
-- ✅ Two-terminal workflow documented
-- ✅ Environment variables properly configured
+- ✅ SSG/ISR pages build without external services
+- ✅ Daily number/dream generated deterministically from date
+- ✅ Static datasets load correctly in `lib` helpers
 
 ---
 
@@ -504,7 +485,7 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 - [x] Update `app/layout.tsx`:
   - Import and wrap children with `<MainLayout>`
   - Ensure dark theme CSS variables are set
-  - Add any global providers (Convex, if needed)
+  - Add any global providers (if needed)
   - Apply `dark` class to html element for global dark theme
 
 **Files Modified:**
@@ -532,7 +513,6 @@ All foundation components have been implemented, tested, and cleaned up. The cod
   - `components/layout/__tests__/`
   - `components/shared/__tests__/`
   - `config/__tests__/`
-  - `convex/__tests__/`
   - `hooks/__tests__/`
   - `lib/__tests__/`
 
@@ -560,12 +540,6 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 **Goal:** Working biorhythm calculator with visual output
 
 **Tasks:**
-
-- [x] Create `convex/biorhythm.ts`:
-  - Query: `getBiorhythm(birthDate: string, targetDate: string)`
-  - Query: `getCriticalDays(birthDate: string, startDate: string, days: number)`
-  - Uses lib/biorhythm.ts functions
-  - Returns cycles and Romanian summary text
 
 - [x] Create `components/bioritm/biorhythm-form.tsx`:
   - Date of birth input with validation
@@ -611,7 +585,6 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 
 **Files Created:**
 
-- `convex/biorhythm.ts` ✅
 - `components/bioritm/biorhythm-form.tsx` ✅
 - `components/bioritm/biorhythm-chart.tsx` ✅
 - `components/bioritm/biorhythm-summary.tsx` ✅
@@ -645,13 +618,8 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 
 **Tasks:**
 
-- [x] Create `convex/numerology.ts`:
-  - Query: `getLifePathInterpretation(number: number)` ✅
-  - Query: `getDestinyInterpretation(number: number)` ✅
-  - Query: `getCompatibilityInterpretation(score: number)` ✅
-  - Query: `getDailyNumber(date: string)` ✅
-  - Mutation: `seedInterpretations()` with 37 Romanian interpretations ✅
-  - Master Numbers (11, 22, 33) support ✅
+- [x] Populate interpretations in `data/interpretations/*.json`
+- [x] Ensure `lib/numerology.ts` covers Life Path, Destiny, Compatibility, Daily number (with Master Numbers)
 
 - [x] Create `components/numerologie/numerology-form.tsx`:
   - Reusable form wrapper with 3 variants ✅
@@ -663,7 +631,7 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 - [x] Create `components/numerologie/life-path-card.tsx`:
   - Display Life Path number (1-9, 11, 22, 33) ✅
   - Master Number badges and explanations ✅
-  - Show interpretation from Convex ✅
+  - Show interpretation from static data ✅
   - Share functionality ✅
 
 - [x] Create `components/numerologie/destiny-card.tsx`:
@@ -705,7 +673,7 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 
 **Files Created:**
 
-- `convex/numerology.ts` ✅
+- `data/interpretations/*.json` ✅
 - `components/numerologie/numerology-form.tsx` ✅
 - `components/numerologie/life-path-card.tsx` ✅
 - `components/numerologie/destiny-card.tsx` ✅
@@ -750,14 +718,10 @@ All foundation components have been implemented, tested, and cleaned up. The cod
   - Categories (animale, natură, obiecte, emoții, persoane, acțiuni, locuri)
   - JSON format in `data/dream-symbols.json`
 
-- [x] Create `convex/dreams.ts`:
-  - Query: `searchDreamSymbols(query: string, category?: string, limit: number)` with diacritic-insensitive search
-  - Query: `getDreamSymbol(slug: string)` with index optimization
-  - Query: `getDailyDream(date: string)` with deterministic selection and caching
-  - Query: `getAllSymbols(category?: string)` for multi-symbol form
-  - Mutation: `seedDreamSymbols()` with idempotency
-  - Mutation: `updateNormalizedName()` for migration support
-  - Internal Mutation: `ensureDailyDream()` for daily pick persistence
+- [x] Implement static access helpers:
+  - `lib/dream-data.ts` for loading/searching symbols
+  - `lib/daily-content.ts` for deterministic daily dream selection
+  - `data/dreams-search-index.json` for fast client search
 
 - [x] Create `components/vise/dream-search-input.tsx`:
   - Search bar with 300ms debounced input
@@ -820,17 +784,13 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 **Files Created:**
 
 - `data/dream-symbols.json` ✅
-- `scripts/seed-dream-symbols.ts` ✅
-- `convex/dreams.ts` ✅
-- `convex/dreams.test.ts` ✅
+- `data/dreams-search-index.json` ✅
+- `lib/dream-data.ts` ✅
+- `lib/daily-content.ts` ✅
 - `components/vise/dream-search-input.tsx` ✅
 - `components/vise/dream-result-list.tsx` ✅
 - `components/vise/dream-detail-card.tsx` ✅
-- `components/vise/dream-combo-form.tsx` ✅
-- `components/vise/__tests__/` (comprehensive test suite) ✅
 - `app/vise/client.tsx` ✅
-- `app/vise/interpretare/page.tsx` ✅
-- `app/vise/interpretare/client.tsx` ✅
 - `app/vise/visul-zilei/page.tsx` ✅
 - `app/vise/visul-zilei/client.tsx` ✅
 - `components/ui/skeleton.tsx` ✅
@@ -838,7 +798,6 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 **Files Modified:**
 
 - `app/vise/page.tsx` ✅
-- `convex/schema.ts` (added normalizedName field and search index) ✅
 - `lib/utils.ts` (added DIACRITIC_MAP export) ✅
 
 **Acceptance Criteria:** ✅ ALL MET
@@ -867,29 +826,21 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 
 **Tasks:**
 
-- [ ] Create `convex/daily.ts`:
-  - Action: `selectDailyNumber(date: string)`
-  - Action: `selectDailyDream(date: string)`
-  - Deterministic selection based on date hash
+- [x] Implement deterministic daily utilities:
+  - `lib/daily-content.ts` for daily number + dream by date
+  - `lib/daily-widget-server.ts` for cached ISR data (energia zilei + daily content)
 
-- [ ] Set up Convex cron jobs:
-  - Daily at 00:00 UTC: update daily picks
-  - Store in `dailyPicks` table
-
-- [ ] Create `components/layout/daily-widget.tsx`:
-  - Display on homepage
-  - Shows: Numărul zilei, Visul zilei, Bioritm hint
+- [x] Daily widget UI:
+  - Homepage widget showing Numărul zilei, Visul zilei, Energia zilei
   - Links to full pages
 
-- [ ] Update `app/page.tsx`:
-  - Add daily widget above tool cards
-  - Fetch from Convex
+- [x] Update `app/page.tsx` to render widget with cached data
 
 **Files Created:**
 
-- `convex/daily.ts`
-- `convex/crons.ts` (Convex cron configuration)
-- `components/layout/daily-widget.tsx`
+- `lib/daily-content.ts`
+- `lib/daily-widget-server.ts`
+- `components/landing/widgets/*` (daily/biorhythm/dream widgets)
 
 **Files Modified:**
 
@@ -897,7 +848,7 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 
 **Acceptance Criteria:**
 
-- Daily content updates automatically at midnight
+- Daily content updates automatically via ISR/date-based cache keys
 - Widget loads quickly (<500ms)
 - Links work correctly
 - Content is deterministic (same for all users on same day)
@@ -974,8 +925,7 @@ All foundation components have been implemented, tested, and cleaned up. The cod
   - Enable Next.js static generation where possible
 
 - [ ] Analytics integration (optional):
-  - Simple pageview tracking in Convex
-  - Privacy-compliant (no personal data)
+  - Simple privacy-compliant pageview tracking
   - Track: page visits, calculator usage
 
 - [ ] Error handling:
@@ -1037,9 +987,9 @@ All foundation components have been implemented, tested, and cleaned up. The cod
 
 ### Potential Issues
 
-1. **Convex Learning Curve**
-   - Mitigation: Start with simple queries, reference docs
-   - Fallback: Use Next.js API routes if Convex proves difficult
+1. **ISR/Cache Invalidation**
+   - Mitigation: Date-based cache keys for daily content; limit revalidate windows
+   - Fallback: Reduce revalidate interval or trigger on-demand revalidation
 
 2. **Romanian Diacritics**
    - Mitigation: Test early with real Romanian text

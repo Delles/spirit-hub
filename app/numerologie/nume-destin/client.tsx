@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { getInterpretation } from "@/lib/interpretations";
 import { calculateDestinyNumber } from "@/lib/numerology";
 import { NumerologyForm, type NumerologyFormData } from "@/components/numerologie/numerology-form";
 import { DestinyCard } from "@/components/numerologie/destiny-card";
@@ -45,11 +44,12 @@ export default function NumeDestinClient() {
     }
   }, [nameParam, destinyNumber, router, pathname]);
 
-  // Query interpretation from Convex (supports Master Numbers 11, 22, 33)
-  const interpretation = useQuery(
-    api.numerology.getDestinyInterpretation,
-    destinyNumber !== null ? { number: destinyNumber } : "skip",
-  );
+  // Query interpretation from static library
+  const interpretation = useMemo(() => {
+    if (destinyNumber === null) return undefined;
+    const result = getInterpretation("destiny", destinyNumber);
+    return result || null;
+  }, [destinyNumber]);
 
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "destiny") {

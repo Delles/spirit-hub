@@ -581,7 +581,7 @@
     "framework": "Next.js 16 (App Router)",
     "uiLibrary": "React 19.x",
     "language": "TypeScript 5 (strict mode)",
-    "backend": "Convex",
+    "backend": "Static JSON + deterministic lib functions (SSG/ISR)",
     "styling": "Tailwind CSS 4",
     "components": "shadcn/ui (new-york variant) + Radix UI",
     "animations": "Framer Motion (optional)",
@@ -599,7 +599,7 @@
   "importConventions": {
     "pathAlias": "@/ for all internal imports",
     "order": [
-      "1. External packages (React, Next, Convex, shadcn)",
+      "1. External packages (React, Next, shadcn)",
       "2. Internal components",
       "3. Internal utilities and types"
     ]

@@ -4,16 +4,16 @@
  * Caching strategy (works with ISR on the page level):
  * 1. Page uses ISR with revalidate=3600 (1 hour) - serves cached HTML from edge
  * 2. When ISR revalidates, this function is called
- * 3. unstable_cache with date-based key ensures Convex is only queried once per day
- * 4. Result: ~24 ISR revalidations/day, but only ~1 Convex query/day
+ * 3. unstable_cache with date-based key ensures data is only recalculated once per day
+ * 4. Result: ~24 ISR revalidations/day, but only ~1 data calculation/day
  * 
  * Same data for all users, so we can cache aggressively.
  */
 
-import { ConvexHttpClient } from "convex/browser";
-import { api } from "@/convex/_generated/api";
 import { getEnergiaZileiWidget, type DominantEnergy } from "@/lib/energia-zilei";
 import { unstable_cache } from "next/cache";
+import { calculateDailyNumber, getDailyDream } from "@/lib/daily-content";
+import { getInterpretation } from "@/lib/interpretations";
 
 /**
  * Get today's date in ISO format (YYYY-MM-DD) in Europe/Bucharest timezone
@@ -60,62 +60,50 @@ export interface DailyWidgetData {
 }
 
 /**
- * Fetch daily widget data from Convex
- * This function is called server-side and uses ConvexHttpClient
+ * Fetch daily widget data locally (deterministic)
  */
 async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
-  const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
-  if (!convexUrl) {
-    throw new Error("NEXT_PUBLIC_CONVEX_URL is not set");
-  }
-
-  const client = new ConvexHttpClient(convexUrl);
   const todayISO = getTodayISO();
 
-  // Fetch daily number and dream in parallel
-  const [dailyNumber, dailyDream] = await Promise.all([
-    client.query(api.numerology.getDailyNumber, { date: todayISO }).catch((e) => {
-      console.error("Failed to fetch daily number:", e);
-      return null;
-    }),
-    client.query(api.dreams.getDailyDream, { date: todayISO }).catch((e) => {
-      console.error("Failed to fetch daily dream:", e);
-      return null;
-    }),
-  ]);
+  // 1. Calculate Daily Number
+  const dailyNumVal = calculateDailyNumber(todayISO);
+  const dailyNumInterp = getInterpretation("daily", dailyNumVal);
 
-  // Calculate energia zilei (client-side calculation, no Convex query needed)
-  const now = new Date();
-  const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Europe/Bucharest",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(now);
+  const dailyNumberData = dailyNumInterp ? {
+    number: dailyNumVal,
+    title: dailyNumInterp.title,
+    description: dailyNumInterp.description,
+    date: todayISO,
+  } : null;
 
-  const year = parseInt(parts.find((p) => p.type === "year")?.value ?? "0", 10);
-  const month = parseInt(parts.find((p) => p.type === "month")?.value ?? "0", 10) - 1;
-  const day = parseInt(parts.find((p) => p.type === "day")?.value ?? "0", 10);
+  // 2. Get Daily Dream
+  let dailyDreamData = null;
+  try {
+    const dreamSymbol = getDailyDream(todayISO);
+    if (dreamSymbol) {
+      dailyDreamData = {
+        name: dreamSymbol.name,
+        category: dreamSymbol.category,
+        shortDescription: dreamSymbol.shortMeaning, // Map shortMeaning to shortDescription
+      };
+    }
+  } catch (e) {
+    console.error("Failed to fetch daily dream:", e);
+  }
 
-  const bucharestDate = new Date(year, month, day);
+  // 3. Calculate Energia Zilei using Bucharest date for consistency
+  // Parse todayISO to create a Date object representing the Bucharest date
+  const [yearStr, monthStr, dayStr] = todayISO.split("-");
+  const bucharestDate = new Date(
+    parseInt(yearStr, 10),
+    parseInt(monthStr, 10) - 1,
+    parseInt(dayStr, 10)
+  );
   const energiaZilei = getEnergiaZileiWidget(bucharestDate);
 
   return {
-    dailyNumber: dailyNumber
-      ? {
-        number: dailyNumber.number,
-        title: dailyNumber.title,
-        description: dailyNumber.description,
-        date: dailyNumber.date,
-      }
-      : null,
-    dailyDream: dailyDream
-      ? {
-        name: dailyDream.name,
-        category: dailyDream.category,
-        shortDescription: dailyDream.shortDescription,
-      }
-      : null,
+    dailyNumber: dailyNumberData,
+    dailyDream: dailyDreamData,
     energiaZilei,
   };
 }

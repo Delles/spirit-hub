@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useQuery } from "convex/react";
 import { User, Hash, Moon, ArrowLeft, Activity } from "lucide-react";
-import { api } from "@/convex/_generated/api";
+import { getCriticalDays } from "@/lib/biorhythm";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
 import { CriticalDaysList } from "@/components/bioritm/critical-days-list";
 import { ShareButton } from "@/components/shared/share-button";
@@ -36,16 +35,21 @@ export default function CriticeDaysClient() {
     }
   }, [dateParam, birthDateValid, router, pathname]);
 
-  const criticalDays = useQuery(
-    api.biorhythm.getCriticalDays,
-    shouldQueryCriticalDays
-      ? {
-          birthDate,
-          startDate: new Date().toISOString().split("T")[0],
-          days: 30,
-        }
-      : "skip",
-  );
+  const criticalDays = useMemo(() => {
+    if (!shouldQueryCriticalDays) return undefined;
+
+    try {
+      const birth = parseISO(birthDate);
+      const start = new Date();
+      return getCriticalDays(birth, start, 30).map(day => ({
+        ...day,
+        date: day.date.toISOString()
+      }));
+    } catch (error) {
+      console.error("Error calculating critical days:", error);
+      return null;
+    }
+  }, [shouldQueryCriticalDays, birthDate]);
 
   const isLoading = shouldQueryCriticalDays && criticalDays === undefined;
 

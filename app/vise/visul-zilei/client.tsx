@@ -6,12 +6,12 @@
  */
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { useMemo } from "react";
+import { getDailyDream } from "@/lib/daily-content";
 import { DreamDetailCard } from "@/components/vise/dream-detail-card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Loader2, AlertCircle } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import { formatRomanianDate } from "@/lib/utils";
 import Link from "next/link";
 
@@ -20,25 +20,17 @@ export function VisulZileiClient() {
   const today = new Date();
   const isoDate = today.toISOString().split("T")[0];
 
-  // Fetch daily dream symbol
-  const dailyDream = useQuery(api.dreams.getDailyDream, {
-    date: isoDate,
-  });
+  // Fetch daily dream symbol locally
+  const dailyDream = useMemo(() => {
+    try {
+      return getDailyDream(isoDate);
+    } catch {
+      return null;
+    }
+  }, [isoDate]);
 
   // Format date in Romanian
   const romanianDate = formatRomanianDate(today);
-
-  // Loading state
-  if (dailyDream === undefined) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="size-8 animate-spin text-[#9F2BFF]" />
-          <p className="text-sm text-[#E0E0E0]">Se încarcă visul zilei...</p>
-        </div>
-      </div>
-    );
-  }
 
   // Error state - symbol not found
   if (dailyDream === null) {
@@ -62,6 +54,16 @@ export function VisulZileiClient() {
     );
   }
 
+  // Map to DreamSymbol interface expected by card
+  const mappedSymbol = dailyDream ? {
+    id: dailyDream.slug,
+    name: dailyDream.name,
+    slug: dailyDream.slug,
+    category: dailyDream.category,
+    interpretation: dailyDream.fullInterpretation,
+    shortDescription: dailyDream.shortMeaning,
+  } : null;
+
   return (
     <div className="space-y-8">
       {/* Date Display */}
@@ -71,7 +73,7 @@ export function VisulZileiClient() {
       </div>
 
       {/* Dream Symbol Detail */}
-      <DreamDetailCard symbol={dailyDream} />
+      {mappedSymbol && <DreamDetailCard symbol={mappedSymbol} />}
 
       {/* Link back to search */}
       <div className="flex justify-center pt-4">

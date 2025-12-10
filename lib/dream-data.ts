@@ -110,6 +110,14 @@ export function getFeaturedSymbols(): StaticDreamSymbol[] {
 }
 
 /**
+ * Get all slugs for SSG generateStaticParams
+ * @returns Array of slugs
+ */
+export function getAllSlugs(): string[] {
+    return allSymbols.map((s) => s.slug);
+}
+
+/**
  * Get all unique categories
  * @returns Array of category names
  */

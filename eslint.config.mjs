@@ -12,8 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Generated Convex code (safe to ignore for linting)
-    "convex/_generated/**",
+
   ]),
 ]);
 

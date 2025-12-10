@@ -1,7 +1,8 @@
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { useMemo } from "react";
+import { calculateDailyNumber } from "@/lib/daily-content";
+import { getInterpretation } from "@/lib/interpretations";
 import { ResultCard } from "@/components/shared/result-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
@@ -39,8 +40,20 @@ export default function NumarZilnicClient() {
   const todayISO = today.toISOString().split("T")[0];
   const romanianDate = formatRomanianDate(today);
 
-  // Query daily number and interpretation from Convex
-  const dailyData = useQuery(api.numerology.getDailyNumber, { date: todayISO });
+// Calculate daily number and get interpretation locally
+  const dailyData = useMemo(() => {
+    const number = calculateDailyNumber(todayISO);
+    const interpretation = getInterpretation("daily", number);
+
+    if (!interpretation) return null;
+
+    return {
+      number,
+      title: interpretation.title,
+      description: interpretation.description,
+      fullText: interpretation.fullText,
+    };
+  }, [todayISO]);
 
   // Share URL and title
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";

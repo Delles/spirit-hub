@@ -1,11 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useQuery } from "convex/react";
 import { Calendar, Hash, Moon, ArrowLeft, AlertTriangle } from "lucide-react";
-import { api } from "@/convex/_generated/api";
+import {
+  getPhysicalCycle,
+  getEmotionalCycle,
+  getIntellectualCycle,
+  getBiorhythmSummary
+} from "@/lib/biorhythm";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
 import { BiorhythmChart } from "@/components/bioritm/biorhythm-chart";
 import { BiorhythmSummary } from "@/components/bioritm/biorhythm-summary";
@@ -49,10 +53,31 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
     }
   }, [dateParam, targetParam, birthDateValid, targetDateValid, router, pathname]);
 
-  const biorhythm = useQuery(
-    api.biorhythm.getBiorhythm,
-    shouldQueryBiorhythm ? { birthDate, targetDate } : "skip",
-  );
+  const biorhythm = useMemo(() => {
+    if (!shouldQueryBiorhythm) return undefined;
+
+    try {
+      const birth = parseISO(birthDate);
+      const target = parseISO(targetDate);
+
+      const physical = getPhysicalCycle(birth, target);
+      const emotional = getEmotionalCycle(birth, target);
+      const intellectual = getIntellectualCycle(birth, target);
+      const summary = getBiorhythmSummary(physical, emotional, intellectual);
+
+      return {
+        physical,
+        emotional,
+        intellectual,
+        summary,
+        birthDate,
+        targetDate
+      };
+    } catch (error) {
+      console.error("Error calculating biorhythm:", error);
+      return null;
+    }
+  }, [shouldQueryBiorhythm, birthDate, targetDate]);
 
   const isLoading = shouldQueryBiorhythm && biorhythm === undefined;
 

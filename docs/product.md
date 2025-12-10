@@ -172,11 +172,11 @@ All UI and content are in Romanian; development and technical docs are in Englis
 
 2. **Autonomy**
    - Minimize manual content updates.
-   - Use cron jobs/automation for daily selections (numărul zilei, visul zilei).
+   - Use deterministic date-based selection for daily content (numărul zilei, visul zilei).
    - Prefer static interpretations and deterministic logic over frequent editorial work.
 
 3. **Availability & Reliability**
-   - Aim for high uptime (99.9%) using Vercel + Convex.
+   - Aim for high uptime (99.9%) using Vercel + static/ISR.
    - Minimal moving parts and no heavy infrastructure.
 
 4. **SEO & Discoverability**
