@@ -12,7 +12,8 @@ import { DailyWidgetDateChecker } from "@/components/landing/daily-widget-date-c
 // - Client-side date checker handles edge case right after midnight
 // - Data only changes once per day, so 6-hour revalidation is more than sufficient
 export const revalidate = 21600; // 6 hours in seconds
-export const runtime = "edge";
+// Use Node runtime because helpers rely on unstable_cache (not available on Edge)
+export const runtime = "nodejs";
 
 // Helper for date formatting - uses Bucharest timezone for consistency with daily widget data
 function getFormattedDate() {
