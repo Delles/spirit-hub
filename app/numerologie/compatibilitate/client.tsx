@@ -105,7 +105,11 @@ export default function CompatibilitateClient() {
   // Query interpretation from static library
   const interpretation = useMemo(() => {
     if (scores === null) return undefined;
-    const result = getInterpretation("compatibility", scores.average);
+    // Map raw score to interpretation bucket (mirrors former backend thresholds)
+    const level =
+      scores.average >= 76 ? "100" : scores.average >= 51 ? "75" : scores.average >= 26 ? "50" : "25";
+
+    const result = getInterpretation("compatibility", level);
     return result || null;
   }, [scores]);
 

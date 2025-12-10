@@ -5,7 +5,6 @@ import { calculateDailyNumber, getTodayISOBucharest } from "@/lib/daily-content"
 import { getInterpretation } from "@/lib/interpretations";
 import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
 import { ResultCard } from "@/components/shared/result-card";
-import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
@@ -60,9 +59,6 @@ export default function NumarZilnicClient() {
             pentru fiecare zi din viața ta. Revino mâine pentru un nou număr și noi îndrumări!
           </p>
         </Card>
-
-        {/* Loading State */}
-        {dailyData === undefined && <LoadingSpinner text="Se încarcă numărul zilei..." />}
 
         {/* Error State */}
         {dailyData === null && (
