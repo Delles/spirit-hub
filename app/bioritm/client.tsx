@@ -22,12 +22,9 @@ import { Button } from "@/components/ui/button";
 import { format, parseISO, isValid } from "date-fns";
 import { ro } from "date-fns/locale";
 
-interface Props {
-  initialBirthDate?: string;
-  initialTargetDate?: string;
-}
 
-export default function BioritmClient({ initialBirthDate, initialTargetDate }: Props) {
+
+export default function BioritmClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -36,9 +33,9 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
   const targetParam = searchParams.get("target");
 
   // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
-  const birthDate = initialBirthDate || dateParam || "";
-  const targetDate = initialTargetDate || targetParam || getTodayISOBucharest();
-  const hasSubmitted = !!(initialBirthDate || dateParam);
+  const birthDate = dateParam || "";
+  const targetDate = targetParam || getTodayISOBucharest();
+  const hasSubmitted = !!dateParam;
 
   const birthDateValid = birthDate ? isValid(parseISO(birthDate)) : false;
   const targetDateValid = targetDate ? isValid(parseISO(targetDate)) : false;

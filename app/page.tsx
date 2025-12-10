@@ -6,13 +6,13 @@ import { BiorhythmWidget } from "@/components/landing/widgets/biorhythm-widget";
 import { QuickToolsWidget } from "@/components/landing/widgets/quick-tools-widget";
 import { DailyWidgetDateChecker } from "@/components/landing/daily-widget-date-checker";
 
-// ISR: Revalidate every hour for optimal balance between freshness and caching
+// ISR: Revalidate every 6 hours for optimal balance between freshness and caching
 // - Edge CDN serves cached HTML instantly (great performance)
-// - Background revalidation every hour keeps data fresh
+// - Background revalidation keeps data fresh
 // - Client-side date checker handles edge case right after midnight
-// - Data only changes once per day, so 1-hour revalidation is more than sufficient
-export const revalidate = 3600; // 1 hour in seconds
-export const runtime = "nodejs";
+// - Data only changes once per day, so 6-hour revalidation is more than sufficient
+export const revalidate = 21600; // 6 hours in seconds
+export const runtime = "edge";
 
 // Helper for date formatting - uses Bucharest timezone for consistency with daily widget data
 function getFormattedDate() {

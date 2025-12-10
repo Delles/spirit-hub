@@ -28,6 +28,7 @@ export default function CriticeDaysClient() {
   const hasSubmitted = !!dateParam;
 
   const shouldQueryCriticalDays = hasSubmitted && birthDateValid;
+  const todayISO = getTodayISOBucharest();
 
   // Clean up invalid URL params (e.g., invalid date formats)
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function CriticeDaysClient() {
 
     try {
       const birth = parseISO(birthDate);
-      const start = parseISO(getTodayISOBucharest());
+      const start = parseISO(todayISO);
       return getCriticalDays(birth, start, 30).map(day => ({
         ...day,
         date: day.date.toISOString()
@@ -50,7 +51,7 @@ export default function CriticeDaysClient() {
       console.error("Error calculating critical days:", error);
       return null;
     }
-  }, [shouldQueryCriticalDays, birthDate]);
+  }, [shouldQueryCriticalDays, birthDate, todayISO]);
 
   const isLoading = shouldQueryCriticalDays && criticalDays === undefined;
 

@@ -14,9 +14,7 @@ import Link from "next/link";
 import { parseISO, isValid } from "date-fns";
 import { Calendar, Sparkles, Heart, ArrowLeft } from "lucide-react";
 
-interface Props {
-  initialBirthDate?: string;
-}
+
 
 // Safe calculation that returns null on invalid input
 function safeCalculateLifePath(dateStr: string): number | null {
@@ -29,7 +27,7 @@ function safeCalculateLifePath(dateStr: string): number | null {
   }
 }
 
-export default function CaleaVietiiClient({ initialBirthDate }: Props) {
+export default function CaleaVietiiClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -37,9 +35,9 @@ export default function CaleaVietiiClient({ initialBirthDate }: Props) {
   const dateParam = searchParams.get("date");
 
   // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
-  const birthDate = initialBirthDate || dateParam || "";
+  const birthDate = dateParam || "";
   const lifePathNumber = birthDate ? safeCalculateLifePath(birthDate) : null;
-  const hasSubmitted = !!(initialBirthDate || dateParam);
+  const hasSubmitted = !!dateParam;
   const shouldQueryInterpretation = hasSubmitted && lifePathNumber !== null;
 
   // Clean up invalid URL params (e.g., invalid date formats)

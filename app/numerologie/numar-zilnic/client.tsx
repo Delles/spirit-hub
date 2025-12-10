@@ -1,36 +1,24 @@
 "use client";
 
-import { useMemo } from "react";
-import { calculateDailyNumber, getTodayISOBucharest } from "@/lib/daily-content";
-import { getInterpretation } from "@/lib/interpretations";
-import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
 import { ResultCard } from "@/components/shared/result-card";
 import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { Calculator, Sparkles, Heart, ArrowLeft } from "lucide-react";
 
-export default function NumarZilnicClient() {
-  // Bucharest-aligned date for both display and calculation
-  const todayISO = getTodayISOBucharest();
-  const bucharestDate = getBucharestDate();
-  const romanianDate = formatRomanianDate(bucharestDate);
+interface DailyData {
+  number: number;
+  title: string;
+  description: string;
+  fullText: string;
+}
 
-  // Calculate daily number and get interpretation locally
-  const dailyData = useMemo(() => {
-    const number = calculateDailyNumber(todayISO);
-    const interpretation = getInterpretation("daily", number);
+interface Props {
+  dailyData: DailyData | null;
+  romanianDate: string;
+}
 
-    if (!interpretation) return null;
-
-    return {
-      number,
-      title: interpretation.title,
-      description: interpretation.description,
-      fullText: interpretation.fullText,
-    };
-  }, [todayISO]);
-
+export default function NumarZilnicClient({ dailyData, romanianDate }: Props) {
   // Share URL and title
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   const shareTitle = dailyData

@@ -1,6 +1,8 @@
 import { VisulZileiClient } from "./client";
 import { Card } from "@/components/ui/card";
 import type { Metadata } from "next";
+import { getDailyDream, getTodayISOBucharest } from "@/lib/daily-content";
+import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Visul Zilei - SpiritHub.ro",
@@ -12,6 +14,21 @@ export const metadata: Metadata = {
 };
 
 export default function VisulZileiPage() {
+  // Resolve daily dream server-side to keep dataset off client bundle
+  const isoDate = getTodayISOBucharest();
+  const dailyDream = getDailyDream(isoDate);
+  const romanianDate = formatRomanianDate(getBucharestDate());
+
+  // Map to DreamSymbol interface expected by card
+  const mappedSymbol = {
+    id: dailyDream.slug,
+    name: dailyDream.name,
+    slug: dailyDream.slug,
+    category: dailyDream.category,
+    interpretation: dailyDream.fullInterpretation,
+    shortDescription: dailyDream.shortMeaning,
+  };
+
   return (
     <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
@@ -25,7 +42,7 @@ export default function VisulZileiPage() {
         </div>
 
         {/* Client Component with Daily Dream */}
-        <VisulZileiClient />
+        <VisulZileiClient dailyDream={mappedSymbol} romanianDate={romanianDate} />
 
         {/* Educational Content */}
         <Card className="mt-12 p-6 space-y-6">
