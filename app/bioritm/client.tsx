@@ -10,6 +10,7 @@ import {
   getIntellectualCycle,
   getBiorhythmSummary
 } from "@/lib/biorhythm";
+import { getTodayISOBucharest } from "@/lib/daily-content";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
 import { BiorhythmChart } from "@/components/bioritm/biorhythm-chart";
 import { BiorhythmSummary } from "@/components/bioritm/biorhythm-summary";
@@ -36,7 +37,7 @@ export default function BioritmClient({ initialBirthDate, initialTargetDate }: P
 
   // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
   const birthDate = initialBirthDate || dateParam || "";
-  const targetDate = initialTargetDate || targetParam || new Date().toISOString().split("T")[0];
+  const targetDate = initialTargetDate || targetParam || getTodayISOBucharest();
   const hasSubmitted = !!(initialBirthDate || dateParam);
 
   const birthDateValid = birthDate ? isValid(parseISO(birthDate)) : false;

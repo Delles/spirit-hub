@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { calculateDailyNumber } from "@/lib/daily-content";
+import { calculateDailyNumber, getTodayISOBucharest } from "@/lib/daily-content";
 import { getInterpretation } from "@/lib/interpretations";
 import { ResultCard } from "@/components/shared/result-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
@@ -35,12 +35,12 @@ function formatRomanianDate(date: Date): string {
 }
 
 export default function NumarZilnicClient() {
-  // Get current date in ISO format
+  // Get current date in Bucharest timezone (ISO format)
   const today = new Date();
-  const todayISO = today.toISOString().split("T")[0];
+  const todayISO = getTodayISOBucharest();
   const romanianDate = formatRomanianDate(today);
 
-// Calculate daily number and get interpretation locally
+  // Calculate daily number and get interpretation locally
   const dailyData = useMemo(() => {
     const number = calculateDailyNumber(todayISO);
     const interpretation = getInterpretation("daily", number);

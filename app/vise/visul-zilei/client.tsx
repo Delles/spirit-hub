@@ -7,7 +7,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { getDailyDream } from "@/lib/daily-content";
+import { getDailyDream, getTodayISOBucharest } from "@/lib/daily-content";
 import { DreamDetailCard } from "@/components/vise/dream-detail-card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -16,9 +16,9 @@ import { formatRomanianDate } from "@/lib/utils";
 import Link from "next/link";
 
 export function VisulZileiClient() {
-  // Get current date in ISO format (YYYY-MM-DD)
+  // Get current date in Bucharest timezone (YYYY-MM-DD)
   const today = new Date();
-  const isoDate = today.toISOString().split("T")[0];
+  const isoDate = getTodayISOBucharest();
 
   // Fetch daily dream symbol locally
   const dailyDream = useMemo(() => {
