@@ -8,17 +8,17 @@
 
 import { useMemo } from "react";
 import { getDailyDream, getTodayISOBucharest } from "@/lib/daily-content";
+import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
 import { DreamDetailCard } from "@/components/vise/dream-detail-card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { AlertCircle } from "lucide-react";
-import { formatRomanianDate } from "@/lib/utils";
 import Link from "next/link";
 
 export function VisulZileiClient() {
   // Get current date in Bucharest timezone (YYYY-MM-DD)
-  const today = new Date();
   const isoDate = getTodayISOBucharest();
+  const bucharestDate = getBucharestDate();
 
   // Fetch daily dream symbol locally
   const dailyDream = useMemo(() => {
@@ -30,7 +30,7 @@ export function VisulZileiClient() {
   }, [isoDate]);
 
   // Format date in Romanian
-  const romanianDate = formatRomanianDate(today);
+  const romanianDate = formatRomanianDate(bucharestDate);
 
   // Error state - symbol not found
   if (dailyDream === null) {

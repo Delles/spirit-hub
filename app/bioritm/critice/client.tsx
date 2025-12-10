@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { User, Hash, Moon, ArrowLeft, Activity } from "lucide-react";
 import { getCriticalDays } from "@/lib/biorhythm";
+import { getTodayISOBucharest } from "@/lib/daily-content";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
 import { CriticalDaysList } from "@/components/bioritm/critical-days-list";
 import { ShareButton } from "@/components/shared/share-button";
@@ -40,7 +41,7 @@ export default function CriticeDaysClient() {
 
     try {
       const birth = parseISO(birthDate);
-      const start = new Date();
+      const start = parseISO(getTodayISOBucharest());
       return getCriticalDays(birth, start, 30).map(day => ({
         ...day,
         date: day.date.toISOString()

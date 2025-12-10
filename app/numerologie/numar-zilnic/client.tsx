@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { calculateDailyNumber, getTodayISOBucharest } from "@/lib/daily-content";
 import { getInterpretation } from "@/lib/interpretations";
+import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
 import { ResultCard } from "@/components/shared/result-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
@@ -10,35 +11,11 @@ import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { Calculator, Sparkles, Heart, ArrowLeft } from "lucide-react";
 
-// Romanian month names
-const romanianMonths = [
-  "ianuarie",
-  "februarie",
-  "martie",
-  "aprilie",
-  "mai",
-  "iunie",
-  "iulie",
-  "august",
-  "septembrie",
-  "octombrie",
-  "noiembrie",
-  "decembrie",
-];
-
-// Format date in Romanian (e.g., "17 noiembrie 2025")
-function formatRomanianDate(date: Date): string {
-  const day = date.getDate();
-  const month = romanianMonths[date.getMonth()];
-  const year = date.getFullYear();
-  return `${day} ${month} ${year}`;
-}
-
 export default function NumarZilnicClient() {
-  // Get current date in Bucharest timezone (ISO format)
-  const today = new Date();
+  // Bucharest-aligned date for both display and calculation
   const todayISO = getTodayISOBucharest();
-  const romanianDate = formatRomanianDate(today);
+  const bucharestDate = getBucharestDate();
+  const romanianDate = formatRomanianDate(bucharestDate);
 
   // Calculate daily number and get interpretation locally
   const dailyData = useMemo(() => {
