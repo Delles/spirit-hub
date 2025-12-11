@@ -38,48 +38,15 @@ export default function VisulZileiPage() {
       <div className="mx-auto max-w-4xl space-y-8">
         {/* Page Introduction */}
         <div className="space-y-4 text-center">
-          <h2 className="text-3xl font-bold text-white">Simbolul Oniric al Zilei</h2>
+          <h2 className="text-3xl font-bold text-white">Visul Zilei de Astăzi</h2>
           <p className="text-lg text-[#E0E0E0] leading-relaxed">
-            Fiecare zi aduce un nou simbol din dicționarul nostru de vise. Descoperă semnificația
-            simbolului de astăzi și reflectează asupra mesajului său pentru viața ta.
+            Descoperă simbolul care îți ghidează pașii astăzi. Chiar dacă nu l-ai visat, mesajul său
+            îți poate oferi un răspuns sau o nouă perspectivă asupra situațiilor tale actuale.
           </p>
         </div>
 
         {/* Client Component with Daily Dream */}
         <VisulZileiClient dailyDream={mappedSymbol} romanianDate={romanianDate} />
-
-        {/* Educational Content */}
-        <Card className="mt-12 p-6 space-y-6">
-          <h3 className="text-xl font-semibold text-white">Despre Visul Zilei</h3>
-
-          <div className="space-y-4 text-[#E0E0E0]">
-            <div className="space-y-2">
-              <h4 className="text-base font-medium text-white">Un simbol nou în fiecare zi</h4>
-              <p className="text-sm leading-relaxed">
-                Visul zilei este selectat în mod deterministic pentru fiecare dată, ceea ce înseamnă
-                că toți utilizatorii văd același simbol în aceeași zi. Revino mâine pentru a
-                descoperi un nou simbol oniric.
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <h4 className="text-base font-medium text-white">Reflectează asupra mesajului</h4>
-              <p className="text-sm leading-relaxed">
-                Chiar dacă nu ai visat acest simbol recent, interpretarea sa poate oferi perspective
-                valoroase pentru situația ta actuală. Gândește-te cum se aplică mesajul la viața ta
-                de zi cu zi.
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <h4 className="text-base font-medium text-white">Explorează mai multe simboluri</h4>
-              <p className="text-sm leading-relaxed">
-                Dacă vrei să afli mai multe despre alte simboluri din visele tale, folosește funcția
-                de căutare pentru a explora întregul nostru dicționar de interpretare vise.
-              </p>
-            </div>
-          </div>
-        </Card>
       </div>
     </div>
   );

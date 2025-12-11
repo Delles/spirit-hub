@@ -82,22 +82,15 @@ export default function CaleaVietiiClient() {
         {/* Show form view when no results yet */}
         {!showResults && (
           <>
-            {/* Info Section */}
-            <Card className="p-6 space-y-3">
-              <h2 className="text-xl font-semibold text-white">Ce este Calea Vieții?</h2>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                Calea Vieții este cel mai important număr în numerologie, calculat din data ta de
-                naștere. Acesta reprezintă lecțiile pe care trebuie să le înveți, provocările pe care le
-                vei întâmpina și oportunitățile care ți se vor deschide pe parcursul vieții. Este ca o
-                hartă a destinului tău, oferindu-ți îndrumări despre cine ești cu adevărat și ce ai venit
-                să realizezi în această viață.
+            {/* Page Introduction */}
+            <div className="space-y-4 text-center">
+              <h2 className="text-3xl font-bold text-white">Calculator Calea Vieții</h2>
+              <p className="text-lg text-[#E0E0E0] leading-relaxed">
+                Descoperă cel mai important număr din numerologie. Calea Vieții îți dezvăluie
+                lecțiile majore, provocările și oportunitățile destinului tău, calculate din data
+                nașterii.
               </p>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                Numerele Maestru (11, 22, 33) sunt numere speciale care poartă o vibrație spirituală
-                intensă și o responsabilitate mai mare. Dacă primești un Număr Maestru, înseamnă că ai un
-                potențial spiritual deosebit și o misiune importantă în această viață.
-              </p>
-            </Card>
+            </div>
 
             {/* Form Section */}
             <div>

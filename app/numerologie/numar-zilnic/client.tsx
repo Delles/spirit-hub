@@ -29,25 +29,15 @@ export default function NumarZilnicClient({ dailyData, romanianDate }: Props) {
   return (
     <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
-        {/* Date Display */}
-        <div className="text-center">
-          <p className="text-2xl font-semibold text-[#9F2BFF]">{romanianDate}</p>
+        {/* Page Introduction */}
+        <div className="space-y-4 text-center">
+          <h2 className="text-3xl font-bold text-white">Numărul Zilei de Astăzi</h2>
+          <p className="text-lg text-[#E0E0E0] leading-relaxed">
+            Energia numerologică pentru {romanianDate}
+          </p>
         </div>
 
-        {/* Info Section */}
-        <Card className="p-6 space-y-3">
-          <h2 className="text-xl font-semibold text-white">Ce este Numărul Zilei?</h2>
-          <p className="text-sm text-[#E0E0E0] leading-relaxed">
-            Numărul Zilei este calculat din data curentă și oferă îndrumări specifice pentru ziua de
-            astăzi. Fiecare zi are propria sa energie numerologică care influențează activitățile,
-            deciziile și interacțiunile tale. Înțelegând energia zilei, poți să îți aliniezi
-            acțiunile cu ritmul natural al universului.
-          </p>
-          <p className="text-sm text-[#E0E0E0] leading-relaxed">
-            Numărul zilei se schimbă în fiecare zi, oferindu-ți o perspectivă nouă și îndrumări fresh
-            pentru fiecare zi din viața ta. Revino mâine pentru un nou număr și noi îndrumări!
-          </p>
-        </Card>
+
 
         {/* Error State */}
         {dailyData === null && (

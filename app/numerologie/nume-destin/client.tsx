@@ -75,25 +75,14 @@ export default function NumeDestinClient() {
         {/* Show form view when no results yet */}
         {!showResults && (
           <>
-            {/* Info Section */}
-            <Card className="p-6 space-y-3">
-              <h2 className="text-xl font-semibold text-white">Ce este Numărul Destinului?</h2>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                Numărul Destinului este calculat din numele tău complet și reprezintă misiunea ta în
-                viață, talentele înnăscute și potențialul pe care l-ai venit să-l realizezi. Spre
-                deosebire de Calea Vieții (care arată lecțiile pe care trebuie să le înveți), Numărul
-                Destinului îți arată ce ai venit să faci și ce daruri ai de oferit lumii.
+            {/* Page Introduction */}
+            <div className="space-y-4 text-center">
+              <h2 className="text-3xl font-bold text-white">Calculator Număr Destin</h2>
+              <p className="text-lg text-[#E0E0E0] leading-relaxed">
+                Calculat din numele tău complet, Numărul Destinului îți dezvăluie misiunea în viață,
+                talentele înnăscute și darurile pe care ai venit să le oferi lumii.
               </p>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                Fiecare literă din numele tău poartă o vibrație numerologică specifică. Sistemul nostru
-                recunoaște corect diacriticele românești (ă, â, î, ș, ț) și calculează valoarea exactă a
-                numelui tău.
-              </p>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                Numerele Maestru (11, 22, 33) indică un potențial spiritual deosebit și o
-                responsabilitate mai mare în realizarea misiunii tale de viață.
-              </p>
-            </Card>
+            </div>
 
             {/* Form Section */}
             <div>

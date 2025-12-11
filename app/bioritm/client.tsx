@@ -104,30 +104,14 @@ export default function BioritmClient() {
         {/* Show form view when no results yet */}
         {!showResults && (
           <>
-            {/* Info Section - Single comprehensive card */}
-            <Card className="p-6 space-y-3">
-              <h2 className="text-xl font-semibold text-white">Ce este Bioritmul?</h2>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                Bioritmul este o teorie care descrie trei cicluri biologice naturale ce influențează
-                capacitățile tale fizice, emoționale și intelectuale. Aceste cicluri încep de la
-                naștere și oscilează în mod constant între valori pozitive (perioadă favorabilă) și
-                negative (perioadă de recuperare).
+            {/* Page Introduction */}
+            <div className="space-y-4 text-center">
+              <h2 className="text-3xl font-bold text-white">Calculator Bioritm</h2>
+              <p className="text-lg text-[#E0E0E0] leading-relaxed">
+                Explorează cele 3 cicluri naturale (Fizic, Emoțional, Intelectual) care îți
+                influențează energia zilnică și descoperă zilele tale critice.
               </p>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                <strong className="text-white">Ciclul Fizic (23 zile)</strong> — energie, vitalitate
-                și rezistență fizică.
-                <br />
-                <strong className="text-white">Ciclul Emoțional (28 zile)</strong> — stare de spirit,
-                creativitate și sensibilitate.
-                <br />
-                <strong className="text-white">Ciclul Intelectual (33 zile)</strong> — claritate
-                mentală, concentrare și memorie.
-              </p>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                Zilele critice apar când un ciclu trece prin zero — acestea sunt momente de tranziție
-                care pot aduce instabilitate temporară în zona respectivă.
-              </p>
-            </Card>
+            </div>
 
             {/* Form Section */}
             <Card className="p-6 lg:p-8">

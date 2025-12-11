@@ -140,22 +140,14 @@ export default function CompatibilitateClient() {
         {/* Show form view when no results yet */}
         {!showResults && (
           <>
-            {/* Info Section */}
-            <Card className="p-6 space-y-3">
-              <h2 className="text-xl font-semibold text-white">Ce este Compatibilitatea Numerologică?</h2>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                Compatibilitatea numerologică analizează armonia dintre două persoane pe baza numerelor
-                lor de viață. Calculăm atât Calea Vieții (din data nașterii), cât și Numărul Destinului
-                (din nume) pentru fiecare persoană, apoi determinăm cât de bine se potrivesc aceste
-                energii numerologice.
+            {/* Page Introduction */}
+            <div className="space-y-4 text-center">
+              <h2 className="text-3xl font-bold text-white">Compatibilitate Numerologică</h2>
+              <p className="text-lg text-[#E0E0E0] leading-relaxed">
+                Analizează armonia dintre două persoane comparând Calea Vieții și Numărul Destinului.
+                Descoperă punctele forte ale relației și oportunitățile de creștere împreună.
               </p>
-              <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                Un scor mare indică o conexiune naturală și armonioasă, în timp ce un scor mai mic
-                sugerează că relația va necesita mai mult efort și înțelegere reciprocă. Numerele Maestru
-                (11, 22, 33) sunt evaluate la valoarea lor completă, reflectând intensitatea lor
-                spirituală unică.
-              </p>
-            </Card>
+            </div>
 
             {/* Form Section */}
             <div>
