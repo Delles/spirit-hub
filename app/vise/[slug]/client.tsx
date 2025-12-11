@@ -68,6 +68,13 @@ export function DreamSymbolContent({ dream, relatedDreams }: DreamSymbolContentP
 
           {/* Sidebar */}
           <div className="lg:col-span-4 space-y-8">
+            {/* Related Dreams Widget */}
+            {relatedDreams && relatedDreams.length > 0 && (
+              <div className="bg-[#1A1A2E]/50 p-6 rounded-xl border border-white/10">
+                <RelatedDreamsWidget dreams={relatedDreams} />
+              </div>
+            )}
+
             {/* Search Widget */}
             <div className="bg-[#1A1A2E]/50 p-6 rounded-xl border border-white/10 sticky top-24">
               <h3 className="text-xl font-semibold text-white mb-4">Caută alt simbol</h3>

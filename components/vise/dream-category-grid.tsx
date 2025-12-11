@@ -7,8 +7,7 @@ import {
     Heart,
     Users,
     Zap,
-    MapPin,
-    Sparkles
+    MapPin
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -72,13 +71,6 @@ const CATEGORIES: CategoryItem[] = [
         icon: MapPin,
         color: "text-cyan-400",
         bg: "bg-cyan-500/10 hover:bg-cyan-500/20"
-    },
-    {
-        id: "altele",
-        name: "Mistic",
-        icon: Sparkles,
-        color: "text-indigo-400",
-        bg: "bg-indigo-500/10 hover:bg-indigo-500/20"
     },
 ];
 

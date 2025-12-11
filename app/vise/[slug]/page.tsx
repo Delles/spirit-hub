@@ -87,8 +87,8 @@ export default async function DreamSymbolPage({ params }: Props) {
             "@type": "WebPage",
             "@id": `https://spirithub.ro/vise/${slug}`
         },
-        "datePublished": "2024-01-01T00:00:00+02:00", // Static date for dictionary
-        "dateModified": new Date().toISOString()
+        "datePublished": "2024-01-01T00:00:00+02:00",
+        "dateModified": "2024-12-01T00:00:00+02:00" // Static date for SSG consistency
     };
 
     return (
