@@ -59,6 +59,18 @@ const symbolsBySlug = new Map<string, StaticDreamSymbol>(
     allSymbols.map((s) => [s.slug, s])
 );
 
+/**
+ * Fisher–Yates shuffle to provide unbiased random order
+ */
+function shuffle<T>(items: T[]): T[] {
+    const arr = [...items];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 // ============================================================================
 // Public API
 // ============================================================================
@@ -150,7 +162,7 @@ export function getRelatedSymbols(currentSlug: string, count = 5): StaticDreamSy
 
     // If we have enough, return random subset
     if (sameCategory.length >= count) {
-        return sameCategory.sort(() => 0.5 - Math.random()).slice(0, count);
+        return shuffle(sameCategory).slice(0, count);
     }
 
     // If not enough, fill with others
@@ -158,8 +170,6 @@ export function getRelatedSymbols(currentSlug: string, count = 5): StaticDreamSy
         (s) => s.category !== current.category && s.slug !== currentSlug
     );
 
-    return [
-        ...sameCategory,
-        ...others.sort(() => 0.5 - Math.random())
-    ].slice(0, count);
+    const pool = [...sameCategory, ...others];
+    return shuffle(pool).slice(0, count);
 }
