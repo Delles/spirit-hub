@@ -4,6 +4,10 @@ import type { Metadata } from "next";
 import { getDailyDream, getTodayISOBucharest } from "@/lib/daily-content";
 import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
 
+// ISR: Revalidate every hour to ensure daily content stays fresh
+// Data only changes at midnight Bucharest time, but 1-hour revalidation provides safety margin
+export const revalidate = 3600; // 1 hour in seconds
+
 export const metadata: Metadata = {
   title: "Visul Zilei - SpiritHub.ro",
   description:
