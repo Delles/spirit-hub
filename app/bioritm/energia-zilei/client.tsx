@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getEnergiaZilei } from "@/lib/energia-zilei";
 import { getMoonPhase } from "@/lib/moon-phase";
 import { formatRomanianDate, getBucharestDate } from "@/lib/utils";
-import { Calculator, ArrowRight } from "lucide-react";
+import { Calculator, ArrowRight, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export function EnergiaZileiClient() {
@@ -19,6 +19,18 @@ export function EnergiaZileiClient() {
   return (
     <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
+        <div className="flex justify-start">
+          <Link href="/bioritm" className="inline-block">
+            <Button
+              variant="ghost"
+              className="gap-2 pl-0 hover:pl-2 transition-all text-white/70 hover:text-white"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Înapoi la Bioritm
+            </Button>
+          </Link>
+        </div>
+
         {/* Date Display */}
         <div className="text-center space-y-2">
           <p className="text-sm text-[#E0E0E0]/60 uppercase tracking-wide">Energia Zilei</p>
@@ -68,7 +80,7 @@ export function EnergiaZileiClient() {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40">
               <Calculator className="w-7 h-7 text-[#9F2BFF]" />
             </div>
-            
+
             <div className="space-y-2">
               <h3 className="text-xl font-semibold text-white">
                 Vrei o analiză personalizată?
