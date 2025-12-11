@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllSymbols, getSymbolBySlug } from "@/lib/dream-data";
+import { getAllSymbols, getSymbolBySlug, getRelatedSymbols } from "@/lib/dream-data";
 import { DreamSymbolContent } from "./client";
 
 type Props = {
@@ -59,9 +59,45 @@ export default async function DreamSymbolPage({ params }: Props) {
     const { slug } = await params;
     const dream = getSymbolBySlug(slug);
 
+    // Fetch related symbols (random mix of same category + others)
+    const relatedDreams = dream ? getRelatedSymbols(dream.slug, 5) : [];
+
     if (!dream) {
         notFound();
     }
 
-    return <DreamSymbolContent dream={dream} />;
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": `Ce înseamnă când visezi ${dream.name}?`,
+        "description": dream.shortMeaning,
+        "author": {
+            "@type": "Organization",
+            "name": "SpiritHub"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "SpiritHub",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://spirithub.ro/logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://spirithub.ro/vise/${slug}`
+        },
+        "datePublished": "2024-01-01T00:00:00+02:00", // Static date for dictionary
+        "dateModified": new Date().toISOString()
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <DreamSymbolContent dream={dream} relatedDreams={relatedDreams} />
+        </>
+    );
 }

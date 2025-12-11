@@ -1,0 +1,492 @@
+[
+  {
+    "name": "Șarpe",
+    "slug": "sarpe",
+    "category": "animale"
+  },
+  {
+    "name": "Pisică",
+    "slug": "pisica",
+    "category": "animale"
+  },
+  {
+    "name": "Câine",
+    "slug": "caine",
+    "category": "animale"
+  },
+  {
+    "name": "Cal",
+    "slug": "cal",
+    "category": "animale"
+  },
+  {
+    "name": "Pasăre",
+    "slug": "pasare",
+    "category": "animale"
+  },
+  {
+    "name": "Lup",
+    "slug": "lup",
+    "category": "animale"
+  },
+  {
+    "name": "Urs",
+    "slug": "urs",
+    "category": "animale"
+  },
+  {
+    "name": "Vacă",
+    "slug": "vaca",
+    "category": "animale"
+  },
+  {
+    "name": "Oaie",
+    "slug": "oaie",
+    "category": "animale"
+  },
+  {
+    "name": "Pește",
+    "slug": "peste",
+    "category": "animale"
+  },
+  {
+    "name": "Vulpă",
+    "slug": "vulpa",
+    "category": "animale"
+  },
+  {
+    "name": "Leu",
+    "slug": "leu",
+    "category": "animale"
+  },
+  {
+    "name": "Șoarece",
+    "slug": "soarece",
+    "category": "animale"
+  },
+  {
+    "name": "Păianjen",
+    "slug": "paianjen",
+    "category": "animale"
+  },
+  {
+    "name": "Porumbel",
+    "slug": "porumbel",
+    "category": "animale"
+  },
+  {
+    "name": "Corb",
+    "slug": "corb",
+    "category": "animale"
+  },
+  {
+    "name": "Delfin",
+    "slug": "delfin",
+    "category": "animale"
+  },
+  {
+    "name": "Cocoș",
+    "slug": "cocos",
+    "category": "animale"
+  },
+  {
+    "name": "Bou",
+    "slug": "bou",
+    "category": "animale"
+  },
+  {
+    "name": "Liliac",
+    "slug": "liliac",
+    "category": "animale"
+  },
+  {
+    "name": "Apă",
+    "slug": "apa",
+    "category": "natură"
+  },
+  {
+    "name": "Foc",
+    "slug": "foc",
+    "category": "natură"
+  },
+  {
+    "name": "Pământ",
+    "slug": "pamant",
+    "category": "natură"
+  },
+  {
+    "name": "Vânt",
+    "slug": "vant",
+    "category": "natură"
+  },
+  {
+    "name": "Ploaie",
+    "slug": "ploaie",
+    "category": "natură"
+  },
+  {
+    "name": "Zăpadă",
+    "slug": "zapada",
+    "category": "natură"
+  },
+  {
+    "name": "Munte",
+    "slug": "munte",
+    "category": "natură"
+  },
+  {
+    "name": "Pădure",
+    "slug": "padure",
+    "category": "natură"
+  },
+  {
+    "name": "Câmp",
+    "slug": "camp",
+    "category": "natură"
+  },
+  {
+    "name": "Mare",
+    "slug": "mare",
+    "category": "natură"
+  },
+  {
+    "name": "Râu",
+    "slug": "rau",
+    "category": "natură"
+  },
+  {
+    "name": "Lac",
+    "slug": "lac",
+    "category": "natură"
+  },
+  {
+    "name": "Soare",
+    "slug": "soare",
+    "category": "natură"
+  },
+  {
+    "name": "Lună",
+    "slug": "luna",
+    "category": "natură"
+  },
+  {
+    "name": "Stea",
+    "slug": "stea",
+    "category": "natură"
+  },
+  {
+    "name": "Curcubeu",
+    "slug": "curcubeu",
+    "category": "natură"
+  },
+  {
+    "name": "Nor",
+    "slug": "nor",
+    "category": "natură"
+  },
+  {
+    "name": "Floare",
+    "slug": "floare",
+    "category": "natură"
+  },
+  {
+    "name": "Copac",
+    "slug": "copac",
+    "category": "natură"
+  },
+  {
+    "name": "Cheie",
+    "slug": "cheie",
+    "category": "obiecte"
+  },
+  {
+    "name": "Oglindă",
+    "slug": "oglinda",
+    "category": "obiecte"
+  },
+  {
+    "name": "Casă",
+    "slug": "casa",
+    "category": "obiecte"
+  },
+  {
+    "name": "Ușă",
+    "slug": "usa",
+    "category": "obiecte"
+  },
+  {
+    "name": "Fereastră",
+    "slug": "fereastra",
+    "category": "obiecte"
+  },
+  {
+    "name": "Inel",
+    "slug": "inel",
+    "category": "obiecte"
+  },
+  {
+    "name": "Cruce",
+    "slug": "cruce",
+    "category": "obiecte"
+  },
+  {
+    "name": "Lumânare",
+    "slug": "lumanare",
+    "category": "obiecte"
+  },
+  {
+    "name": "Carte",
+    "slug": "carte",
+    "category": "obiecte"
+  },
+  {
+    "name": "Telefon",
+    "slug": "telefon",
+    "category": "obiecte"
+  },
+  {
+    "name": "Ceas",
+    "slug": "ceas",
+    "category": "obiecte"
+  },
+  {
+    "name": "Masă",
+    "slug": "masa",
+    "category": "obiecte"
+  },
+  {
+    "name": "Haine",
+    "slug": "haine",
+    "category": "obiecte"
+  },
+  {
+    "name": "Bani",
+    "slug": "bani",
+    "category": "obiecte"
+  },
+  {
+    "name": "Frică",
+    "slug": "frica",
+    "category": "emoții"
+  },
+  {
+    "name": "Bucurie",
+    "slug": "bucurie",
+    "category": "emoții"
+  },
+  {
+    "name": "Tristețe",
+    "slug": "tristete",
+    "category": "emoții"
+  },
+  {
+    "name": "Furie",
+    "slug": "furie",
+    "category": "emoții"
+  },
+  {
+    "name": "Rușine",
+    "slug": "rusine",
+    "category": "emoții"
+  },
+  {
+    "name": "Vinovăție",
+    "slug": "vinovatie",
+    "category": "emoții"
+  },
+  {
+    "name": "Iubire",
+    "slug": "iubire",
+    "category": "emoții"
+  },
+  {
+    "name": "Dor",
+    "slug": "dor",
+    "category": "emoții"
+  },
+  {
+    "name": "Uimire",
+    "slug": "uimire",
+    "category": "emoții"
+  },
+  {
+    "name": "Îngrijorare",
+    "slug": "ingrijorare",
+    "category": "emoții"
+  },
+  {
+    "name": "Speranță",
+    "slug": "speranta",
+    "category": "emoții"
+  },
+  {
+    "name": "Confuzie",
+    "slug": "confuzie",
+    "category": "emoții"
+  },
+  {
+    "name": "Pace interioară",
+    "slug": "pace-interioara",
+    "category": "emoții"
+  },
+  {
+    "name": "Singurătate",
+    "slug": "singuratate",
+    "category": "emoții"
+  },
+  {
+    "name": "Entuziasm",
+    "slug": "entuziasm",
+    "category": "emoții"
+  },
+  {
+    "name": "Mamă",
+    "slug": "mama",
+    "category": "persoane"
+  },
+  {
+    "name": "Tată",
+    "slug": "tata",
+    "category": "persoane"
+  },
+  {
+    "name": "Copil",
+    "slug": "copil",
+    "category": "persoane"
+  },
+  {
+    "name": "Prieten",
+    "slug": "prieten",
+    "category": "persoane"
+  },
+  {
+    "name": "Străin",
+    "slug": "strain",
+    "category": "persoane"
+  },
+  {
+    "name": "Bătrân",
+    "slug": "batran",
+    "category": "persoane"
+  },
+  {
+    "name": "Preot",
+    "slug": "preot",
+    "category": "persoane"
+  },
+  {
+    "name": "Șef",
+    "slug": "sef",
+    "category": "persoane"
+  },
+  {
+    "name": "Vecin",
+    "slug": "vecin",
+    "category": "persoane"
+  },
+  {
+    "name": "Partener",
+    "slug": "partener",
+    "category": "persoane"
+  },
+  {
+    "name": "A cădea",
+    "slug": "a-cadea",
+    "category": "acțiuni"
+  },
+  {
+    "name": "A zbura",
+    "slug": "a-zbura",
+    "category": "acțiuni"
+  },
+  {
+    "name": "A fugi",
+    "slug": "a-fugi",
+    "category": "acțiuni"
+  },
+  {
+    "name": "A plânge",
+    "slug": "a-plange",
+    "category": "acțiuni"
+  },
+  {
+    "name": "A râde",
+    "slug": "a-rade",
+    "category": "acțiuni"
+  },
+  {
+    "name": "A fi urmărit",
+    "slug": "a-fi-urmarit",
+    "category": "acțiuni"
+  },
+  {
+    "name": "A nu putea vorbi",
+    "slug": "a-nu-putea-vorbi",
+    "category": "acțiuni"
+  },
+  {
+    "name": "A căuta",
+    "slug": "a-cauta",
+    "category": "acțiuni"
+  },
+  {
+    "name": "A se rătăci",
+    "slug": "a-se-rataci",
+    "category": "acțiuni"
+  },
+  {
+    "name": "A naște",
+    "slug": "a-naste",
+    "category": "acțiuni"
+  },
+  {
+    "name": "Casă veche",
+    "slug": "casa-veche",
+    "category": "locuri"
+  },
+  {
+    "name": "Biserică",
+    "slug": "biserica",
+    "category": "locuri"
+  },
+  {
+    "name": "Cimitir",
+    "slug": "cimitir",
+    "category": "locuri"
+  },
+  {
+    "name": "Școală",
+    "slug": "scoala",
+    "category": "locuri"
+  },
+  {
+    "name": "Spital",
+    "slug": "spital",
+    "category": "locuri"
+  },
+  {
+    "name": "Piață",
+    "slug": "piata",
+    "category": "locuri"
+  },
+  {
+    "name": "Sat",
+    "slug": "sat",
+    "category": "locuri"
+  },
+  {
+    "name": "Oraș necunoscut",
+    "slug": "oras-necunoscut",
+    "category": "locuri"
+  },
+  {
+    "name": "Gară",
+    "slug": "gara",
+    "category": "locuri"
+  },
+  {
+    "name": "Drum",
+    "slug": "drum",
+    "category": "locuri"
+  }
+]

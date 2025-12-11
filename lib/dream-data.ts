@@ -134,3 +134,32 @@ export function getAllCategories(): string[] {
 export function getSymbolsByCategory(category: string): StaticDreamSymbol[] {
     return allSymbols.filter((s) => s.category === category);
 }
+
+/**
+ * Get related symbols for a specific symbol
+ * Returns random fallback symbols from same category or random
+ */
+export function getRelatedSymbols(currentSlug: string, count = 5): StaticDreamSymbol[] {
+    const current = getSymbolBySlug(currentSlug);
+    if (!current) return [];
+
+    // Filter by same category, excluding current
+    const sameCategory = allSymbols.filter(
+        (s) => s.category === current.category && s.slug !== currentSlug
+    );
+
+    // If we have enough, return random subset
+    if (sameCategory.length >= count) {
+        return sameCategory.sort(() => 0.5 - Math.random()).slice(0, count);
+    }
+
+    // If not enough, fill with others
+    const others = allSymbols.filter(
+        (s) => s.category !== current.category && s.slug !== currentSlug
+    );
+
+    return [
+        ...sameCategory,
+        ...others.sort(() => 0.5 - Math.random())
+    ].slice(0, count);
+}

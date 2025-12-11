@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const dreamsPath = path.join(process.cwd(), 'data', 'dream-symbols.json');
-const indexPath = path.join(process.cwd(), 'data', 'dreams-search-index.json');
+const indexPath = path.join(process.cwd(), 'public', 'dreams-search-index.json');
 
 try {
     const dreamsData = fs.readFileSync(dreamsPath, 'utf-8');

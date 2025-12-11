@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ViseClient } from "./client";
 import { getFeaturedSymbols } from "@/lib/dream-data";
 
@@ -18,7 +19,9 @@ export default function VisePage() {
   return (
     <div className="py-8">
       <div className="mx-auto max-w-4xl">
-        <ViseClient featuredSymbols={featuredSymbols} />
+        <Suspense fallback={<div className="h-96 flex items-center justify-center text-white">Se încarcă...</div>}>
+          <ViseClient featuredSymbols={featuredSymbols} />
+        </Suspense>
       </div>
     </div>
   );
