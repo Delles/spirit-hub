@@ -57,6 +57,8 @@ export interface DailyWidgetData {
     color: string;
     planetSymbol: string;
   };
+  /** Unix timestamp (ms) when data was rendered server-side. Used to detect stale bfcache pages. */
+  serverRenderTimestamp: number;
 }
 
 /**
@@ -105,6 +107,7 @@ async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
     dailyNumber: dailyNumberData,
     dailyDream: dailyDreamData,
     energiaZilei,
+    serverRenderTimestamp: Date.now(),
   };
 }
 

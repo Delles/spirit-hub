@@ -215,6 +215,7 @@ function triggerHardReload(): boolean {
     setReloadLockCookie(now);
   }
 
+
   // Force a hard reload - browsers will bypass cache for location.reload()
   window.location.reload();
   return true;
@@ -258,6 +259,21 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
   const checkFreshness = useCallback((source: string) => {
     const data = widgetDataRef.current;
     const todayISO = getTodayISO();
+    const now = Date.now();
+
+    // ========================================================================
+    // Check 0: Server Render Timestamp (Failsafe for bfcache)
+    // If the page was rendered more than 24 hours ago, force reload
+    // This catches edge cases where date comparison might fail
+    // ========================================================================
+    if (data.serverRenderTimestamp) {
+      const ageMs = now - data.serverRenderTimestamp;
+      const maxAgeMs = 24 * 60 * 60 * 1000; // 24 hours
+      if (ageMs > maxAgeMs) {
+        triggerHardReload();
+        return;
+      }
+    }
 
     // ========================================================================
     // Check 1: Date Mismatch (Staleness) - PRIMARY CHECK
@@ -390,6 +406,7 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
             }
           }
         }
+
 
         // Schedule reload with remaining delay (or full backoff for in-memory)
         backoffTimeoutRef.current = setTimeout(() => {
