@@ -32,7 +32,7 @@ const CATEGORIES: CategoryItem[] = [
         bg: "bg-red-500/10 hover:bg-red-500/20"
     },
     {
-        id: "natura",
+        id: "natură",
         name: "Natură",
         icon: Leaf,
         color: "text-green-400",
@@ -46,7 +46,7 @@ const CATEGORIES: CategoryItem[] = [
         bg: "bg-blue-500/10 hover:bg-blue-500/20"
     },
     {
-        id: "emotii",
+        id: "emoții",
         name: "Emoții",
         icon: Heart,
         color: "text-purple-400",
@@ -60,7 +60,7 @@ const CATEGORIES: CategoryItem[] = [
         bg: "bg-yellow-500/10 hover:bg-yellow-500/20"
     },
     {
-        id: "actiuni",
+        id: "acțiuni",
         name: "Acțiuni",
         icon: Zap,
         color: "text-orange-400",

@@ -98,7 +98,7 @@ export function ViseClient({ featuredSymbols }: ViseClientProps) {
   }, [index, categoryParam, letterParam]);
 
   const clearFilters = () => {
-    router.push("/vise", { scroll: false });
+    router.push("/vise");
   };
 
   const isFiltering = !!(categoryParam || letterParam);
