@@ -3,6 +3,7 @@
 import { ResultCard } from "@/components/shared/result-card";
 import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Calculator, Sparkles, Heart, ArrowLeft } from "lucide-react";
 
@@ -59,6 +60,16 @@ export default function NumarZilnicClient({ dailyData, romanianDate }: Props) {
         {/* Results Section */}
         {dailyData && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
+            <Link href="/numerologie" className="inline-block">
+              <Button
+                variant="ghost"
+                className="gap-2 pl-0 hover:pl-2 transition-all text-white/70 hover:text-white"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                Înapoi la Numerologie
+              </Button>
+            </Link>
+
             <ResultCard
               title={dailyData.title}
               number={dailyData.number}

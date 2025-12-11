@@ -124,6 +124,16 @@ export default function CaleaVietiiClient() {
         {/* Results View - only shown after successful calculation */}
         {showResults && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
+            <Link href="/numerologie" className="inline-block">
+              <Button
+                variant="ghost"
+                className="gap-2 pl-0 hover:pl-2 transition-all text-white/70 hover:text-white"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                Înapoi la Numerologie
+              </Button>
+            </Link>
+
             <LifePathCard
               number={lifePathNumber}
               interpretation={{
