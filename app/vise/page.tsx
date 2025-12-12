@@ -17,12 +17,15 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default function VisePage() {
-  // Get random featured symbols at build time (SSG) - rotates daily
-  const featuredSymbols = getRandomFeaturedSymbols(8);
+  // Extract date once to ensure consistency across midnight boundary
+  // Both featured symbols and daily dream will use the exact same date
+  const todayISO = getTodayISOBucharest();
 
-  // Get today's daily dream for the Visul Zilei card
-  const isoDate = getTodayISOBucharest();
-  const dailyDream = getDailyDream(isoDate);
+  // Get random featured symbols using the same date
+  const featuredSymbols = getRandomFeaturedSymbols(8, todayISO);
+
+  // Get today's daily dream using the same date
+  const dailyDream = getDailyDream(todayISO);
 
   return (
     <div className="py-8">

@@ -116,7 +116,9 @@ function seededShuffle<T>(items: T[], seed: number): T[] {
     let state = seed;
     const next = () => {
         state = (state * 1103515245 + 12345) & 0x7fffffff;
-        return state / 0x7fffffff;
+        // Divide by 0x80000000 (not 0x7fffffff) to ensure range [0, 1)
+        // This prevents Math.floor(1.0 * (i+1)) = i+1 out-of-bounds access
+        return state / 0x80000000;
     };
 
     // Fisher-Yates with seeded random
@@ -129,15 +131,14 @@ function seededShuffle<T>(items: T[], seed: number): T[] {
 
 /**
  * Get random featured symbols for hub page
- * Uses seeded random based on current Bucharest date for daily rotation
+ * Uses seeded random based on Bucharest date for daily rotation
  * This ensures the same set is shown to all users on the same day
- * and stays in sync with getDailyDream() which also uses Bucharest time
  * @param count Number of symbols to return (default 8)
+ * @param dateStr Optional ISO date string (YYYY-MM-DD) - if not provided, uses current Bucharest date
  */
-export function getRandomFeaturedSymbols(count = 8): StaticDreamSymbol[] {
-    // Use Bucharest timezone for consistency with getDailyDream()
-    // This ensures featured symbols and daily dream rotate at the same time
-    const today = getTodayISOBucharest();
+export function getRandomFeaturedSymbols(count = 8, dateStr?: string): StaticDreamSymbol[] {
+    // Use provided date or fall back to current Bucharest date
+    const today = dateStr ?? getTodayISOBucharest();
     const seed = hashString(today);
 
     return seededShuffle(allSymbols, seed).slice(0, count);

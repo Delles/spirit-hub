@@ -11,7 +11,7 @@ export const revalidate = 3600; // 1 hour in seconds
 export const metadata: Metadata = {
   title: "Visul Zilei - SpiritHub.ro",
   description:
-    "Descoperă simbolul zilei din dicționarul de vise. Fiecare zi aduce un nou simbol oniric cu interpretare completă bazată pe folclorul românesc.",
+    "Descoperă visul zilei și află ce înseamnă. În fiecare zi un nou simbol cu interpretare completă din tradiția românească.",
   alternates: {
     canonical: "https://spirithub.ro/vise/visul-zilei",
   },
