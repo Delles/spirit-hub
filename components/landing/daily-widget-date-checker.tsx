@@ -18,6 +18,9 @@ const COOKIE_PRIVATE_MODE_RETRY = "spirithub-pm-retry";
 const WINDOW_NAME_RETRY_TOKEN = "__spirithub_pm_retry__";
 // URL query param used as ultimate fallback when all storage mechanisms fail
 const URL_RETRY_PARAM = "pmr";
+// URL query param used to force a fresh server render when HTML is stale (ISR/bfcache/disk cache).
+// Use a stable value (YYYY-MM-DD) to avoid creating infinite CDN cache variants.
+const URL_DAILY_CACHE_BUST_PARAM = "__dw";
 
 /**
  * Get private mode retry state from cookie
@@ -139,6 +142,18 @@ function clearUrlRetryState(): void {
   } catch { /* ignore */ }
 }
 
+/**
+ * Remove the daily cache-bust param from the URL (cosmetic; avoids sharing the param).
+ */
+function clearDailyCacheBustParam(): void {
+  try {
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has(URL_DAILY_CACHE_BUST_PARAM)) return;
+    url.searchParams.delete(URL_DAILY_CACHE_BUST_PARAM);
+    window.history.replaceState(null, "", url.toString());
+  } catch { /* ignore */ }
+}
+
 interface DailyWidgetDateCheckerProps {
   widgetData: DailyWidgetData;
   onGaveUp?: () => void; // Callback when max retries reached in private mode
@@ -216,9 +231,33 @@ function triggerHardReload(): boolean {
   }
 
 
-  // Force a hard reload - browsers will bypass cache for location.reload()
+  // Note: location.reload() is NOT reliably cache-busting on mobile (and can re-use stale HTML),
+  // especially when the page was restored from bfcache or loaded from disk cache.
+  // We keep this as a fallback for cases where we cannot/do-not want to change the URL.
   window.location.reload();
   return true;
+}
+
+/**
+ * Force a full navigation to a cache-busted URL so we always get a fresh HTML/RSC response.
+ * This is more reliable than location.reload() for Android Chrome shortcuts / bfcache restores.
+ */
+function triggerCacheBustedNavigation(todayISO: string): void {
+  try {
+    const url = new URL(window.location.href);
+    // If we're already on the cache-busted URL for today, fall back to reload.
+    const current = url.searchParams.get(URL_DAILY_CACHE_BUST_PARAM);
+    if (current === todayISO) {
+      triggerHardReload();
+      return;
+    }
+    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
+    // Force a real navigation (not SPA) and replace history to avoid back-button weirdness.
+    window.location.replace(url.toString());
+  } catch {
+    // If URL construction fails for any reason, fallback to reload.
+    triggerHardReload();
+  }
 }
 
 /**
@@ -228,8 +267,8 @@ function triggerHardReload(): boolean {
  * 1. **Initial Mount Check**: Always checks on first mount to catch stale cached HTML
  * 2. **Page Restore Check**: Checks on pageshow event (covers bfcache AND history navigation)
  * 3. **Tab Visibility Check**: Checks when tab becomes visible (mobile app resume)
- * 4. **Hard Reload on Stale**: Uses window.location.reload() instead of router.refresh()
- *    to bypass all cache layers (browser HTTP cache, CDN cache)
+ * 4. **Cache-busted Navigation on Stale**: Navigates to `/?__dw=YYYY-MM-DD` to force a fresh
+ *    server render, bypassing stale ISR HTML and bfcache/disk cache edge cases.
  * 5. **Loop Protection**: 10-second cooldown between reload attempts
  */
 export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDateCheckerProps) {
@@ -270,7 +309,8 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
       const ageMs = now - data.serverRenderTimestamp;
       const maxAgeMs = 24 * 60 * 60 * 1000; // 24 hours
       if (ageMs > maxAgeMs) {
-        triggerHardReload();
+        // If the HTML is extremely old, force a fresh navigation.
+        triggerCacheBustedNavigation(todayISO);
         return;
       }
     }
@@ -281,7 +321,9 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
     // ========================================================================
     if (data.dailyNumber?.date) {
       if (data.dailyNumber.date !== todayISO) {
-        triggerHardReload();
+        // This is the common case after midnight with ISR: first request returns yesterday HTML.
+        // Cache-busted navigation ensures we get today's server render immediately.
+        triggerCacheBustedNavigation(todayISO);
         return;
       }
     }
@@ -300,6 +342,7 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
       clearPrivateModeRetryCookie();
       clearWindowNameRetry();
       clearUrlRetryState();
+      clearDailyCacheBustParam();
       inMemoryRetryCount.current = 0;
       inMemoryLastAttempt.current = 0;
       hasGivenUp.current = false; // Reset for future retries
