@@ -7,6 +7,7 @@
 
 import dreamSymbolsData from "@/data/dream-symbols.json";
 import { generateSlug } from "@/lib/dreams";
+import { getTodayISOBucharest } from "@/lib/daily-content";
 
 // ============================================================================
 // Types
@@ -128,13 +129,15 @@ function seededShuffle<T>(items: T[], seed: number): T[] {
 
 /**
  * Get random featured symbols for hub page
- * Uses seeded random based on current date for daily rotation
+ * Uses seeded random based on current Bucharest date for daily rotation
  * This ensures the same set is shown to all users on the same day
+ * and stays in sync with getDailyDream() which also uses Bucharest time
  * @param count Number of symbols to return (default 8)
  */
 export function getRandomFeaturedSymbols(count = 8): StaticDreamSymbol[] {
-    // Seed based on current date (YYYY-MM-DD) for daily rotation
-    const today = new Date().toISOString().split('T')[0];
+    // Use Bucharest timezone for consistency with getDailyDream()
+    // This ensures featured symbols and daily dream rotate at the same time
+    const today = getTodayISOBucharest();
     const seed = hashString(today);
 
     return seededShuffle(allSymbols, seed).slice(0, count);

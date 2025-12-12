@@ -1,26 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   Moon, Sparkles
 } from "lucide-react";
 import type { StaticDreamSymbol } from "@/lib/dream-data";
 import { DreamSearchHero } from "@/components/vise/dream-search-hero";
-
-// ============================================================================
-// Analytics Tracking (non-intrusive, respects user privacy)
-// ============================================================================
-
-function trackIntent(intent: "dictionary" | "ai-interpretation") {
-  if (typeof window !== "undefined" && "gtag" in window) {
-    (window as any).gtag("event", "feature_interest", {
-      feature: intent,
-      page: "/vise",
-    });
-  }
-}
 
 // ============================================================================
 // Quick Links - Popular dream symbols for instant navigation
