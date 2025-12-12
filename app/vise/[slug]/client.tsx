@@ -2,24 +2,22 @@
 
 import { DreamDetailCard } from "@/components/vise/dream-detail-card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { ArrowLeft, Search, Sparkles, Activity, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { StaticDreamSymbol } from "@/lib/dream-data";
 
-import { RelatedDreamsWidget } from "@/components/vise/related-dreams-widget";
-
 interface DreamSymbolContentProps {
   dream: StaticDreamSymbol;
-  relatedDreams?: StaticDreamSymbol[];
 }
 
 /**
  * Dream Symbol Content Component
  *
  * Displays the full interpretation for a dream symbol.
- * Receives pre-loaded data from parent server component (no loading states needed).
+ * Simplified single-column layout with CTA sections at bottom.
  */
-export function DreamSymbolContent({ dream, relatedDreams }: DreamSymbolContentProps) {
+export function DreamSymbolContent({ dream }: DreamSymbolContentProps) {
   // Transform StaticDreamSymbol to the format expected by DreamDetailCard
   const symbol = {
     id: dream.slug,
@@ -31,63 +29,105 @@ export function DreamSymbolContent({ dream, relatedDreams }: DreamSymbolContentP
   };
 
   return (
-    <div className="py-8">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Breadcrumb Navigation */}
-        <div className="mb-6 flex items-center gap-2 text-sm text-[#E0E0E0]/60">
-          <Link href="/" className="hover:text-white transition-colors">Acasă</Link>
-          <span>/</span>
-          <Link href="/vise" className="hover:text-white transition-colors">Vise</Link>
-          <span>/</span>
-          <Link href={`/vise?category=${dream.category}`} className="hover:text-white transition-colors capitalize">{dream.category}</Link>
-          <span>/</span>
-          <span className="text-white">{dream.name}</span>
-        </div>
+    <div className="py-6 md:py-8">
+      <div className="max-w-3xl mx-auto px-4">
+        {/* Back Button */}
+        <Link href="/vise" className="inline-block mb-6">
+          <Button
+            variant="ghost"
+            className="gap-2 pl-0 hover:pl-2 transition-all text-white/80 hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Înapoi la dicționar
+          </Button>
+        </Link>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-8 space-y-6">
-            <Link href="/vise" className="inline-block">
-              <Button
-                variant="ghost"
-                className="gap-2 pl-0 hover:pl-2 transition-all text-white/80 hover:text-white"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Înapoi la dicționar
-              </Button>
-            </Link>
+        {/* Main Dream Card */}
+        <DreamDetailCard symbol={symbol} />
 
-            <DreamDetailCard symbol={symbol} />
-
-            {/* Inline Search for Mobile/Tablet */}
-            <div className="lg:hidden mt-12 pt-8 border-t border-white/10">
-              <h3 className="text-lg font-semibold text-white mb-4">Caută alt vis</h3>
-              {/* We can import DreamSearchHero here if we want, or keep it simple */}
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-4 space-y-8">
-            {/* Related Dreams Widget */}
-            {relatedDreams && relatedDreams.length > 0 && (
-              <div className="bg-[#1A1A2E]/50 p-6 rounded-xl border border-white/10">
-                <RelatedDreamsWidget dreams={relatedDreams} />
+        {/* CTA Section - Search More Dreams */}
+        <div className="mt-8">
+          <Card className="p-6 bg-gradient-to-br from-[#9F2BFF]/10 to-[#4F46E5]/10 border-[#9F2BFF]/20">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <div className="p-3 rounded-full bg-[#9F2BFF]/20 shrink-0">
+                <Search className="h-5 w-5 text-[#9F2BFF]" />
               </div>
-            )}
-
-            {/* Search Widget */}
-            <div className="bg-[#1A1A2E]/50 p-6 rounded-xl border border-white/10 sticky top-24">
-              <h3 className="text-xl font-semibold text-white mb-4">Caută alt simbol</h3>
-              <p className="text-sm text-[#E0E0E0]/60 mb-4">
-                Explorează alte semnificații din dicționarul nostru.
-              </p>
-              <Link href="/vise">
-                <Button className="w-full bg-[#9F2BFF]/20 hover:bg-[#9F2BFF]/30 text-[#9F2BFF] border border-[#9F2BFF]/50">
-                  Căutare Avansată
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="font-semibold text-white text-lg">Descoperă alte vise</h3>
+                <p className="text-sm text-[#E0E0E0]/70 mt-1">
+                  Explorează dicționarul cu peste 98 de simboluri și semnificații
+                </p>
+              </div>
+              <Link href="/vise" className="shrink-0">
+                <Button className="gap-2 bg-[#9F2BFF] hover:bg-[#8B24E0] text-white min-h-[44px]">
+                  Caută alt vis
+                  <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
             </div>
+          </Card>
+        </div>
+
+        {/* Cross-Feature CTAs */}
+        <div className="mt-10">
+          <h3 className="text-center text-white/60 text-sm font-medium uppercase tracking-wider mb-5">
+            Explorează alte funcții
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Numerologie CTA */}
+            <Link href="/numerologie" className="block group">
+              <Card className="p-5 h-full bg-white/5 border-white/10 hover:border-[#9F2BFF]/40 hover:bg-white/10 transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/30 shrink-0 group-hover:bg-[#9F2BFF]/20 transition-colors">
+                    <Sparkles className="h-5 w-5 text-[#9F2BFF]" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-white text-base group-hover:text-[#9F2BFF] transition-colors">
+                      Numerologie
+                    </h4>
+                    <p className="text-sm text-[#E0E0E0]/70 mt-1 leading-relaxed">
+                      Descoperă-ți calea vieții și numărul destinului
+                    </p>
+                    <span className="inline-flex items-center text-sm text-[#9F2BFF] mt-3 font-medium group-hover:translate-x-1 transition-transform">
+                      Calculează
+                      <ArrowRight className="h-4 w-4 ml-1" />
+                    </span>
+                  </div>
+                </div>
+              </Card>
+            </Link>
+
+            {/* Bioritm CTA */}
+            <Link href="/bioritm" className="block group">
+              <Card className="p-5 h-full bg-white/5 border-white/10 hover:border-[#9F2BFF]/40 hover:bg-white/10 transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/30 shrink-0 group-hover:bg-[#9F2BFF]/20 transition-colors">
+                    <Activity className="h-5 w-5 text-[#9F2BFF]" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-white text-base group-hover:text-[#9F2BFF] transition-colors">
+                      Bioritm
+                    </h4>
+                    <p className="text-sm text-[#E0E0E0]/70 mt-1 leading-relaxed">
+                      Află cum te afectează ciclurile bioenergetice
+                    </p>
+                    <span className="inline-flex items-center text-sm text-[#9F2BFF] mt-3 font-medium group-hover:translate-x-1 transition-transform">
+                      Calculează
+                      <ArrowRight className="h-4 w-4 ml-1" />
+                    </span>
+                  </div>
+                </div>
+              </Card>
+            </Link>
           </div>
+        </div>
+
+        {/* Return Tomorrow Message */}
+        <div className="text-center pt-8">
+          <p className="text-sm text-[#E0E0E0]/50">
+            ✨ Revino mâine pentru a descoperi noi simboluri în Visul Zilei ✨
+          </p>
         </div>
       </div>
     </div>

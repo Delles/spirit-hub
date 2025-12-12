@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllSymbols, getSymbolBySlug, getRelatedSymbols } from "@/lib/dream-data";
+import { getAllSymbols, getSymbolBySlug } from "@/lib/dream-data";
 import { DreamSymbolContent } from "./client";
 
 type Props = {
@@ -59,9 +59,6 @@ export default async function DreamSymbolPage({ params }: Props) {
     const { slug } = await params;
     const dream = getSymbolBySlug(slug);
 
-    // Fetch related symbols (random mix of same category + others)
-    const relatedDreams = dream ? getRelatedSymbols(dream.slug, 5) : [];
-
     if (!dream) {
         notFound();
     }
@@ -97,7 +94,7 @@ export default async function DreamSymbolPage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <DreamSymbolContent dream={dream} relatedDreams={relatedDreams} />
+            <DreamSymbolContent dream={dream} />
         </>
     );
 }

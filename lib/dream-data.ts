@@ -93,8 +93,56 @@ export function getSymbolBySlug(slug: string): StaticDreamSymbol | null {
 }
 
 /**
- * Get 7 featured symbols for the teaser grid
- * Curated selection across categories for visual diversity
+ * Simple string hash for seeding random
+ */
+function hashString(str: string): number {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash);
+}
+
+/**
+ * Seeded shuffle using a simple LCG (Linear Congruential Generator)
+ * Produces deterministic shuffle for the same seed
+ */
+function seededShuffle<T>(items: T[], seed: number): T[] {
+    const arr = [...items];
+    // LCG parameters (same as glibc)
+    let state = seed;
+    const next = () => {
+        state = (state * 1103515245 + 12345) & 0x7fffffff;
+        return state / 0x7fffffff;
+    };
+
+    // Fisher-Yates with seeded random
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(next() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+/**
+ * Get random featured symbols for hub page
+ * Uses seeded random based on current date for daily rotation
+ * This ensures the same set is shown to all users on the same day
+ * @param count Number of symbols to return (default 8)
+ */
+export function getRandomFeaturedSymbols(count = 8): StaticDreamSymbol[] {
+    // Seed based on current date (YYYY-MM-DD) for daily rotation
+    const today = new Date().toISOString().split('T')[0];
+    const seed = hashString(today);
+
+    return seededShuffle(allSymbols, seed).slice(0, count);
+}
+
+/**
+ * Get 7 featured symbols for the teaser grid (legacy, curated)
+ * Kept for backward compatibility
  *
  * Selected symbols (mystic number 7):
  * 1. Șarpe (animale) - transformation, popular search
