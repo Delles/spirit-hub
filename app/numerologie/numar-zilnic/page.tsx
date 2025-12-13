@@ -3,8 +3,9 @@ import NumarZilnicClient from "./client";
 import { calculateDailyNumber, getTodayISOBucharest } from "@/lib/daily-content";
 import { getInterpretation } from "@/lib/interpretations";
 import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
+import { DailyPageDateChecker } from "@/components/shared/daily-page-date-checker";
 
-// ISR: Revalidate every 6 hours - data changes daily, client handles midnight edge case
+// ISR: Revalidate every 6 hours - data changes daily, client date checker handles midnight edge case
 export const revalidate = 21600;
 
 export const metadata: Metadata = {
@@ -36,5 +37,11 @@ export default function NumarZilnicPage() {
     fullText: interpretation.fullText,
   } : null;
 
-  return <NumarZilnicClient dailyData={dailyData} romanianDate={romanianDate} />;
+  return (
+    <>
+      <DailyPageDateChecker serverDate={todayISO} />
+      <NumarZilnicClient dailyData={dailyData} romanianDate={romanianDate} />
+    </>
+  );
 }
+

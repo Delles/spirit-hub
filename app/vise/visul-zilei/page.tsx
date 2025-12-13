@@ -1,10 +1,10 @@
 import { VisulZileiClient } from "./client";
-import { Card } from "@/components/ui/card";
 import type { Metadata } from "next";
 import { getDailyDream, getTodayISOBucharest } from "@/lib/daily-content";
 import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
+import { DailyPageDateChecker } from "@/components/shared/daily-page-date-checker";
 
-// ISR: Revalidate every 6 hours - data changes daily, client handles midnight edge case
+// ISR: Revalidate every 6 hours - data changes daily, client date checker handles midnight edge case
 export const revalidate = 21600;
 
 export const metadata: Metadata = {
@@ -35,6 +35,7 @@ export default function VisulZileiPage() {
   return (
     <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
+        <DailyPageDateChecker serverDate={isoDate} />
         {/* Page Introduction */}
         <div className="space-y-4 text-center">
           <h2 className="text-3xl font-bold text-white">Visul Zilei de Astăzi</h2>
@@ -50,3 +51,4 @@ export default function VisulZileiPage() {
     </div>
   );
 }
+
