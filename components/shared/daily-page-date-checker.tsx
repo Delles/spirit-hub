@@ -9,11 +9,22 @@ const RELOAD_COOLDOWN_MS = 10000;
 
 /**
  * Get today's date in ISO format (YYYY-MM-DD) in Europe/Bucharest timezone.
- * Uses the same technique as server-side getTodayISOBucharest() for consistency.
- * The 'en-CA' locale always produces ISO format YYYY-MM-DD with zero-padded values.
+ * Uses formatToParts for maximum mobile browser compatibility.
+ * (toLocaleDateString can have edge cases on older Android/Samsung Internet)
  */
 function getTodayISO(): string {
-    return new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Bucharest" });
+    const parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Europe/Bucharest",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+    }).formatToParts(new Date());
+
+    const year = parts.find((p) => p.type === "year")?.value ?? "";
+    const month = parts.find((p) => p.type === "month")?.value ?? "";
+    const day = parts.find((p) => p.type === "day")?.value ?? "";
+
+    return `${year}-${month}-${day}`;
 }
 
 interface DailyPageDateCheckerProps {

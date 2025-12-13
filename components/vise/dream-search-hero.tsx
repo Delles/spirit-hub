@@ -41,9 +41,13 @@ export function DreamSearchHero({ className }: { className?: string }) {
     useEffect(() => {
         async function loadIndex() {
             try {
-                // Use build ID for cache busting, fallback to static version
-                const version = process.env.NEXT_PUBLIC_BUILD_ID || "v1";
-                const res = await fetch(`/dreams-search-index.json?v=${version}`);
+                // Use Vercel's deployment ID for cache busting (changes per deploy)
+                // Falls back to "dev" for local development
+                const version =
+                    process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ||
+                    process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_ID ||
+                    "dev";
+                const res = await fetch(`/dreams-search-index.json?v=${encodeURIComponent(version)}`);
                 if (!res.ok) throw new Error("Failed to load index");
                 const data = await res.json();
                 setIndex(data);
