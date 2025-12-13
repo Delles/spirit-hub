@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   },
 };
 
-// ISR: Revalidate hourly to keep daily dream fresh
-export const revalidate = 3600;
+// ISR: Revalidate every 6 hours - data changes daily, client handles midnight edge case
+export const revalidate = 21600;
 
 export default function VisePage() {
   // Extract date once to ensure consistency across midnight boundary

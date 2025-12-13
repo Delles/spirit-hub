@@ -7,6 +7,9 @@ type Props = {
     params: Promise<{ slug: string }>;
 };
 
+// Return 404 for unknown slugs instead of invoking serverless function
+export const dynamicParams = false;
+
 /**
  * Generate static params for all dream symbols
  * This enables SSG for all 98 symbol pages at build time

@@ -201,20 +201,24 @@ export function getSymbolsByCategory(category: string): StaticDreamSymbol[] {
 
 /**
  * Get related symbols for a specific symbol
- * Returns random fallback symbols from same category or random
+ * Returns deterministic fallback symbols from same category or random
+ * Uses seeded shuffle for consistent SSG output across ISR regenerations
  */
 export function getRelatedSymbols(currentSlug: string, count = 5): StaticDreamSymbol[] {
     const current = getSymbolBySlug(currentSlug);
     if (!current) return [];
+
+    // Use seeded shuffle for deterministic SSG output
+    const seed = hashString(currentSlug);
 
     // Filter by same category, excluding current
     const sameCategory = allSymbols.filter(
         (s) => s.category === current.category && s.slug !== currentSlug
     );
 
-    // If we have enough, return random subset
+    // If we have enough, return seeded random subset
     if (sameCategory.length >= count) {
-        return shuffle(sameCategory).slice(0, count);
+        return seededShuffle(sameCategory, seed).slice(0, count);
     }
 
     // If not enough, fill with others
@@ -223,5 +227,5 @@ export function getRelatedSymbols(currentSlug: string, count = 5): StaticDreamSy
     );
 
     const pool = [...sameCategory, ...others];
-    return shuffle(pool).slice(0, count);
+    return seededShuffle(pool, seed).slice(0, count);
 }

@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import { EnergiaZileiClient } from "./client";
 
+// ISR: Revalidate every 6 hours - data changes daily at midnight
+export const revalidate = 21600;
+
 export const metadata: Metadata = {
   title: "Energia Zilei - Ghid Energetic Zilnic | SpiritHub.ro",
   description:

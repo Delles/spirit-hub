@@ -4,9 +4,8 @@ import { calculateDailyNumber, getTodayISOBucharest } from "@/lib/daily-content"
 import { getInterpretation } from "@/lib/interpretations";
 import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
 
-// ISR: Revalidate every hour to ensure daily content stays fresh
-// Data only changes at midnight Bucharest time, but 1-hour revalidation provides safety margin
-export const revalidate = 3600; // 1 hour in seconds
+// ISR: Revalidate every 6 hours - data changes daily, client handles midnight edge case
+export const revalidate = 21600;
 
 export const metadata: Metadata = {
   title: "Numărul Zilei - Numerologie Zilnică | SpiritHub.ro",
