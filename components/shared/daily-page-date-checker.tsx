@@ -46,6 +46,12 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
         const todayISO = getTodayISO();
 
         if (serverDate !== todayISO) {
+            // Don't try to refresh if offline - stale content is better than error page
+            if (typeof navigator !== "undefined" && !navigator.onLine) {
+                console.info("[DailyPageDateChecker] Stale content detected but offline - skipping refresh");
+                return;
+            }
+
             // Navigate to cache-busted URL
             try {
                 const url = new URL(window.location.href);

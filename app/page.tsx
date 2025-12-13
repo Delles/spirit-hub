@@ -14,6 +14,8 @@ import { DailyWidgetDateChecker } from "@/components/landing/daily-widget-date-c
 export const revalidate = 21600; // 6 hours in seconds
 // Use Node runtime because helpers rely on unstable_cache (not available on Edge)
 export const runtime = "nodejs";
+// Prefer Frankfurt region - closest to Romania for lower TTFB
+export const preferredRegion = ["fra1"];
 
 // Helper for date formatting - uses Bucharest timezone for consistency with daily widget data
 function getFormattedDate() {

@@ -37,10 +37,13 @@ export function DreamSearchHero({ className }: { className?: string }) {
     const inputRef = useRef<HTMLInputElement>(null);
 
     // Load the lightweight search index
+    // Version param prevents stale mobile disk cache after deployments
     useEffect(() => {
         async function loadIndex() {
             try {
-                const res = await fetch("/dreams-search-index.json");
+                // Use build ID for cache busting, fallback to static version
+                const version = process.env.NEXT_PUBLIC_BUILD_ID || "v1";
+                const res = await fetch(`/dreams-search-index.json?v=${version}`);
                 if (!res.ok) throw new Error("Failed to load index");
                 const data = await res.json();
                 setIndex(data);
