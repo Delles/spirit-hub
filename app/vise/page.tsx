@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   },
 };
 
-// ISR: Revalidate every 6 hours - data changes daily, client date checker handles midnight edge case
-export const revalidate = 21600;
+// ISR: Revalidate every 24 hours - content changes at midnight (date checker handles it)
+export const revalidate = 86400;
 
 export default function VisePage() {
   // Extract date once to ensure consistency across midnight boundary

@@ -79,7 +79,6 @@ export async function getCachedMoonPhaseForBucharest(): Promise<MoonPhaseData> {
     ["moon-phase", cacheKeySegment],
     {
       revalidate: 21600, // 6 hours in seconds
-      tags: ["moon-phase"],
     }
   );
 

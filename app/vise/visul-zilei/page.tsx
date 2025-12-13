@@ -4,8 +4,8 @@ import { getDailyDream, getTodayISOBucharest } from "@/lib/daily-content";
 import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
 import { DailyPageDateChecker } from "@/components/shared/daily-page-date-checker";
 
-// ISR: Revalidate every 6 hours - data changes daily, client date checker handles midnight edge case
-export const revalidate = 21600;
+// ISR: Revalidate every 24 hours - content changes at midnight (date checker handles it)
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Visul Zilei - SpiritHub.ro",

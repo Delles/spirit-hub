@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 
 // Query param used to force a fresh server render
 const URL_DAILY_CACHE_BUST_PARAM = "__dw";
@@ -39,11 +39,12 @@ interface DailyPageDateCheckerProps {
  * with the client's current Bucharest date. If stale, triggers a cache-busted
  * navigation to force a fresh ISR render.
  * 
- * This enables 6-hour ISR revalidation while guaranteeing fresh content at midnight.
+ * Shows an offline banner if content is stale but user is offline.
  */
 export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) {
     const lastCheckTime = useRef(0);
     const hasChecked = useRef(false);
+    const [showOfflineBanner, setShowOfflineBanner] = useState(false);
 
     const checkFreshness = useCallback(() => {
         const now = Date.now();
@@ -57,11 +58,14 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
         const todayISO = getTodayISO();
 
         if (serverDate !== todayISO) {
-            // Don't try to refresh if offline - stale content is better than error page
+            // Don't try to refresh if offline - show banner instead
             if (typeof navigator !== "undefined" && !navigator.onLine) {
-                console.info("[DailyPageDateChecker] Stale content detected but offline - skipping refresh");
+                setShowOfflineBanner(true);
                 return;
             }
+
+            // Hide banner if we're online now
+            setShowOfflineBanner(false);
 
             // Navigate to cache-busted URL
             try {
@@ -78,7 +82,8 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
                 window.location.reload();
             }
         } else {
-            // Clean up cache bust param if present (cosmetic)
+            // Content is fresh - hide banner and clean up URL
+            setShowOfflineBanner(false);
             try {
                 const url = new URL(window.location.href);
                 if (url.searchParams.has(URL_DAILY_CACHE_BUST_PARAM)) {
@@ -118,5 +123,28 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
         return () => window.removeEventListener("pageshow", handlePageShow);
     }, [checkFreshness]);
 
-    return null;
+    // Listen for online event to refresh when connection is restored
+    useEffect(() => {
+        const handleOnline = () => {
+            if (showOfflineBanner) {
+                checkFreshness();
+            }
+        };
+        window.addEventListener("online", handleOnline);
+        return () => window.removeEventListener("online", handleOnline);
+    }, [showOfflineBanner, checkFreshness]);
+
+    if (!showOfflineBanner) {
+        return null;
+    }
+
+    return (
+        <div
+            role="alert"
+            className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-md rounded-lg border border-yellow-500/30 bg-yellow-900/90 px-4 py-3 text-center text-sm text-yellow-100 shadow-lg backdrop-blur-sm"
+        >
+            📶 Ești offline — conținutul se va actualiza când revii online
+        </div>
+    );
 }
+

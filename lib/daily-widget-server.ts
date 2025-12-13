@@ -128,7 +128,6 @@ export async function getCachedDailyWidgetData(): Promise<DailyWidgetData> {
     ["daily-widget-data", todayISO],
     {
       revalidate: 43200, // 12 hours in seconds - safety net (cache key handles date invalidation)
-      tags: ["daily-widget"],
     }
   );
 
