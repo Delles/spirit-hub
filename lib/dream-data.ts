@@ -94,14 +94,19 @@ export function getSymbolBySlug(slug: string): StaticDreamSymbol | null {
     }
 
     const key = decoded.trim().toLowerCase();
+    if (!key) return null;
 
     // Fast path: exact match
     const direct = symbolsBySlug.get(key);
     if (direct) return direct;
 
     // Fallback: normalize via slug generator (e.g. if someone linked with diacritics)
-    const normalizedKey = generateSlug(key);
-    return symbolsBySlug.get(normalizedKey) ?? null;
+    try {
+        const normalizedKey = generateSlug(key);
+        return symbolsBySlug.get(normalizedKey) ?? null;
+    } catch {
+        return null;
+    }
 }
 
 /**
