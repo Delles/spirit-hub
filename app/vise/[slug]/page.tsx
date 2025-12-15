@@ -4,7 +4,7 @@ import { getAllSymbols, getSymbolBySlug } from "@/lib/dream-data";
 import { DreamSymbolContent } from "./client";
 
 type Props = {
-    params: Promise<{ slug: string }>;
+    params: { slug: string };
 };
 
 // Return 404 for unknown slugs instead of invoking serverless function
@@ -26,7 +26,7 @@ export async function generateStaticParams() {
  * Uses static data, no external backend dependency
  */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = await params;
+    const { slug } = params;
     const dream = getSymbolBySlug(slug);
 
     if (!dream) {
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  * Statically generated at build time from JSON data
  */
 export default async function DreamSymbolPage({ params }: Props) {
-    const { slug } = await params;
+    const { slug } = params;
     const dream = getSymbolBySlug(slug);
 
     if (!dream) {

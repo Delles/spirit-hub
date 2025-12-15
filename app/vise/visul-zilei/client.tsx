@@ -18,11 +18,6 @@ interface Props {
 }
 
 export function VisulZileiClient({ dailyDream, romanianDate }: Props) {
-  const symbol = {
-    ...dailyDream,
-    category: dailyDream.category as any // simple cast to satisfy type
-  };
-
   return (
     <div className="py-8">
       <div className="max-w-3xl mx-auto px-4 space-y-8">
@@ -52,7 +47,7 @@ export function VisulZileiClient({ dailyDream, romanianDate }: Props) {
 
         {/* Dream Card Container */}
         <div className="bg-[#1A1A2E]/30 p-1 rounded-2xl border border-white/5 shadow-2xl backdrop-blur-sm">
-          <DreamDetailCard symbol={symbol} />
+          <DreamDetailCard symbol={dailyDream} />
         </div>
 
         {/* Footer Actions */}

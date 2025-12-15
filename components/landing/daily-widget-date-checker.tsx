@@ -7,6 +7,8 @@ import { DailyWidgetData } from "@/lib/daily-widget-server";
 const RELOAD_COOLDOWN_MS = 10000; // 10 seconds
 const MAX_BACKOFF_MS = 300000; // 5 minutes
 const MAX_PRIVATE_MODE_RETRIES = 3; // Hard cap for private mode retries
+// Only log in development to reduce noise and mobile perf impact
+const DEBUG = process.env.NODE_ENV !== "production";
 
 // Session storage keys
 const STORAGE_KEY_RELOAD_LOCK = "spirithub-reload-lock";
@@ -213,7 +215,7 @@ let isNavigating = false;
  */
 function triggerHardReload(): boolean {
   if (isNavigating) {
-    console.log("[DateChecker] triggerHardReload blocked: already navigating");
+    if (DEBUG) console.log("[DateChecker] triggerHardReload blocked: already navigating");
     return false;
   }
 
@@ -224,7 +226,7 @@ function triggerHardReload(): boolean {
     const lastReloadTime = lastReload ? parseInt(lastReload, 10) : 0;
 
     if (now - lastReloadTime < RELOAD_COOLDOWN_MS) {
-      console.log(`[DateChecker] triggerHardReload blocked: cooldown (${now - lastReloadTime}ms < ${RELOAD_COOLDOWN_MS}ms)`);
+      if (DEBUG) console.log(`[DateChecker] triggerHardReload blocked: cooldown (${now - lastReloadTime}ms < ${RELOAD_COOLDOWN_MS}ms)`);
       return false;
     }
 
@@ -233,13 +235,13 @@ function triggerHardReload(): boolean {
     // Fallback if sessionStorage fails (e.g., Private Mode) - use cookies
     const lastReloadTime = getReloadLockCookie();
     if (now - lastReloadTime < RELOAD_COOLDOWN_MS) {
-      console.log(`[DateChecker] triggerHardReload blocked: cooldown via cookie`);
+      if (DEBUG) console.log(`[DateChecker] triggerHardReload blocked: cooldown via cookie`);
       return false;
     }
     setReloadLockCookie(now);
   }
 
-  console.log("[DateChecker] triggerHardReload: executing window.location.reload()");
+  if (DEBUG) console.log("[DateChecker] triggerHardReload: executing window.location.reload()");
   isNavigating = true;
   window.location.reload();
   return true;
@@ -253,38 +255,39 @@ function triggerHardReload(): boolean {
  */
 function triggerCacheBustedNavigation(todayISO: string): boolean {
   if (isNavigating) {
-    console.log("[DateChecker] triggerCacheBustedNavigation blocked: already navigating");
+    if (DEBUG) console.log("[DateChecker] triggerCacheBustedNavigation blocked: already navigating");
     return false;
   }
 
   try {
     const url = new URL(window.location.href);
     const current = url.searchParams.get(URL_DAILY_CACHE_BUST_PARAM);
-    console.log(`[DateChecker] triggerCacheBustedNavigation: current __dw=${current}, target=${todayISO}`);
+    if (DEBUG) console.log(`[DateChecker] triggerCacheBustedNavigation: current __dw=${current}, target=${todayISO}`);
 
-    // Logic to prevent infinite loops:
+    // Logic to prevent infinite loops and CDN variant explosion:
     // 1. No param OR param is from a different day → add today's date
-    // 2. Param is exactly today's date → add timestamp suffix (one retry attempt)
-    // 3. Param already has timestamp suffix (todayISO-*) → GIVE UP, ISR is stuck
+    // 2. Param is exactly today's date → add fixed "-r2" suffix (one retry attempt)
+    // 3. Param already has "-r2" suffix → GIVE UP, ISR is stuck
+    // Using fixed suffix instead of timestamp to cap CDN variants to 2 per day per route
 
     if (!current || !current.startsWith(todayISO)) {
       // Case 1: First attempt - add today's date
       url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
-      console.log(`[DateChecker] First attempt, navigating to: ${url.toString()}`);
+      if (DEBUG) console.log(`[DateChecker] First attempt, navigating to: ${url.toString()}`);
       isNavigating = true;
       window.location.replace(url.toString());
       return true;
     } else if (current === todayISO) {
-      // Case 2: Already tried with date, add timestamp for one more attempt
-      const uniqueValue = `${todayISO}-${Date.now()}`;
-      url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, uniqueValue);
-      console.log(`[DateChecker] Second attempt with timestamp, navigating to: ${url.toString()}`);
+      // Case 2: Already tried with date, add fixed retry suffix
+      const retryValue = `${todayISO}-r2`;
+      url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, retryValue);
+      if (DEBUG) console.log(`[DateChecker] Second attempt with -r2, navigating to: ${url.toString()}`);
       isNavigating = true;
       window.location.replace(url.toString());
       return true;
     } else {
-      // Case 3: Already has timestamp suffix - ISR is serving stale content, give up
-      console.log(`[DateChecker] Already tried with timestamp suffix, giving up. ISR may be serving stale content.`);
+      // Case 3: Already has suffix - ISR is serving stale content, give up
+      if (DEBUG) console.log(`[DateChecker] Already tried with -r2, giving up.`);
       return false;
     }
   } catch (err) {
@@ -340,10 +343,12 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
     const now = Date.now();
 
     // Debug logging for mobile issue investigation
-    console.log(`[DateChecker] checkFreshness called from: ${source}`);
-    console.log(`[DateChecker] todayISO: ${todayISO}`);
-    console.log(`[DateChecker] data.dailyNumber?.date: ${data.dailyNumber?.date}`);
-    console.log(`[DateChecker] serverRenderTimestamp: ${data.serverRenderTimestamp}, age: ${now - (data.serverRenderTimestamp || 0)}ms`);
+    if (DEBUG) {
+      console.log(`[DateChecker] checkFreshness called from: ${source}`);
+      console.log(`[DateChecker] todayISO: ${todayISO}`);
+      console.log(`[DateChecker] data.dailyNumber?.date: ${data.dailyNumber?.date}`);
+      console.log(`[DateChecker] serverRenderTimestamp: ${data.serverRenderTimestamp}, age: ${now - (data.serverRenderTimestamp || 0)}ms`);
+    }
 
     // ========================================================================
     // Check 0: Server Render Timestamp (Failsafe for bfcache)
@@ -354,7 +359,7 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
       const ageMs = now - data.serverRenderTimestamp;
       const maxAgeMs = 6 * 60 * 60 * 1000; // 6 hours (more aggressive for daily content)
       if (ageMs > maxAgeMs) {
-        console.log(`[DateChecker] Timestamp failsafe triggered: page is ${ageMs}ms old (>${maxAgeMs}ms)`);
+        if (DEBUG) console.log(`[DateChecker] Timestamp failsafe triggered: page is ${ageMs}ms old (>${maxAgeMs}ms)`);
         triggerCacheBustedNavigation(todayISO);
         return;
       }
@@ -366,7 +371,7 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
     // ========================================================================
     if (data.dailyNumber?.date) {
       if (data.dailyNumber.date !== todayISO) {
-        console.log(`[DateChecker] Date mismatch detected: ${data.dailyNumber.date} !== ${todayISO}`);
+        if (DEBUG) console.log(`[DateChecker] Date mismatch detected: ${data.dailyNumber.date} !== ${todayISO}`);
         // This is the common case after midnight with ISR: first request returns yesterday HTML.
         // Cache-busted navigation ensures we get today's server render immediately.
         triggerCacheBustedNavigation(todayISO);

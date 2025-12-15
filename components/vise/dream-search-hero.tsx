@@ -41,12 +41,9 @@ export function DreamSearchHero({ className }: { className?: string }) {
     useEffect(() => {
         async function loadIndex() {
             try {
-                // Use Vercel's deployment ID for cache busting (changes per deploy)
-                // Falls back to "dev" for local development
-                const version =
-                    process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ||
-                    process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_ID ||
-                    "dev";
+                // Use asset version from next.config.ts (exposed from Vercel's deployment vars)
+                // This changes per deploy, busting mobile disk cache
+                const version = process.env.NEXT_PUBLIC_ASSET_VERSION ?? "dev";
                 const res = await fetch(`/dreams-search-index.json?v=${encodeURIComponent(version)}`);
                 if (!res.ok) throw new Error("Failed to load index");
                 const data = await res.json();
@@ -237,7 +234,7 @@ export function DreamSearchHero({ className }: { className?: string }) {
                         <Search className="h-5 w-5 text-white/30" />
                     </div>
                     <p className="text-white/60 text-sm">
-                        Nu am găsit niciun vis pentru „<span className="text-white font-medium">{query}</span>"
+                        Nu am găsit niciun vis pentru „<span className="text-white font-medium">{query}</span>”
                     </p>
                     <p className="text-white/40 text-xs mt-2">
                         Încearcă alt cuvânt cheie

@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // Expose Vercel's deployment ID to client-side for cache busting
+  // Vercel provides VERCEL_* but NOT NEXT_PUBLIC_* versions by default
+  env: {
+    NEXT_PUBLIC_ASSET_VERSION:
+      process.env.VERCEL_GIT_COMMIT_SHA ??
+      process.env.VERCEL_DEPLOYMENT_ID ??
+      "dev",
+  },
   // Optimize images
   images: {
     formats: ["image/avif", "image/webp"],
@@ -19,12 +27,13 @@ const nextConfig: NextConfig = {
       static: 180,  // 3 minutes for static content
     },
   },
-  // Logging for cache debugging in dev and Vercel logs
-  logging: {
+  // Logging for cache debugging - only in development
+  // In production, full URLs could leak sensitive query params
+  logging: process.env.NODE_ENV === "development" ? {
     fetches: {
       fullUrl: true,
     },
-  },
+  } : undefined,
 };
 
 export default nextConfig;

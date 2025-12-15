@@ -6,6 +6,8 @@ import { useEffect, useRef, useCallback, useState } from "react";
 const URL_DAILY_CACHE_BUST_PARAM = "__dw";
 // Cooldown between reload attempts
 const RELOAD_COOLDOWN_MS = 10000;
+// Only log in development to reduce noise and mobile perf impact
+const DEBUG = process.env.NODE_ENV !== "production";
 
 // Module-level navigation guard
 let isNavigating = false;
@@ -57,7 +59,7 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
     const checkFreshness = useCallback(() => {
         // Guard against concurrent navigation attempts
         if (isNavigating) {
-            console.log("[DailyPageDateChecker] checkFreshness blocked: already navigating");
+            if (DEBUG) console.log("[DailyPageDateChecker] checkFreshness blocked: already navigating");
             return;
         }
 
@@ -65,19 +67,19 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
 
         // Cooldown to prevent rapid reloads
         if (now - lastCheckTime.current < RELOAD_COOLDOWN_MS) {
-            console.log("[DailyPageDateChecker] checkFreshness blocked: cooldown");
+            if (DEBUG) console.log("[DailyPageDateChecker] checkFreshness blocked: cooldown");
             return;
         }
         lastCheckTime.current = now;
 
         const todayISO = getTodayISO();
 
-        console.log(`[DailyPageDateChecker] serverDate: ${serverDate}, todayISO: ${todayISO}`);
+        if (DEBUG) console.log(`[DailyPageDateChecker] serverDate: ${serverDate}, todayISO: ${todayISO}`);
 
         if (serverDate !== todayISO) {
             // Don't try to refresh if offline - show banner instead
             if (typeof navigator !== "undefined" && !navigator.onLine) {
-                console.log("[DailyPageDateChecker] Offline - showing banner");
+                if (DEBUG) console.log("[DailyPageDateChecker] Offline - showing banner");
                 setShowOfflineBanner(true);
                 return;
             }
@@ -89,29 +91,30 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
             try {
                 const url = new URL(window.location.href);
                 const current = url.searchParams.get(URL_DAILY_CACHE_BUST_PARAM);
-                console.log(`[DailyPageDateChecker] current __dw: ${current}, target: ${todayISO}`);
+                if (DEBUG) console.log(`[DailyPageDateChecker] current __dw: ${current}, target: ${todayISO}`);
 
-                // Logic to prevent infinite loops:
+                // Logic to prevent infinite loops and CDN variant explosion:
                 // 1. No param OR param is from a different day → add today's date
-                // 2. Param is exactly today's date → add timestamp suffix (one retry attempt)
-                // 3. Param already has timestamp suffix (todayISO-*) → GIVE UP, ISR is stuck
+                // 2. Param is exactly today's date → add fixed "-r2" suffix (one retry attempt)
+                // 3. Param already has "-r2" suffix → GIVE UP, ISR is stuck
+                // Using fixed suffix instead of timestamp to cap CDN variants to 2 per day per route
 
                 if (!current || !current.startsWith(todayISO)) {
                     // Case 1: First attempt - add today's date
                     url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
-                    console.log(`[DailyPageDateChecker] First attempt, navigating to: ${url.toString()}`);
+                    if (DEBUG) console.log(`[DailyPageDateChecker] First attempt, navigating to: ${url.toString()}`);
                     isNavigating = true;
                     window.location.replace(url.toString());
                 } else if (current === todayISO) {
-                    // Case 2: Already tried with date, add timestamp for one more attempt
-                    const uniqueValue = `${todayISO}-${Date.now()}`;
-                    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, uniqueValue);
-                    console.log(`[DailyPageDateChecker] Second attempt with timestamp, navigating to: ${url.toString()}`);
+                    // Case 2: Already tried with date, add fixed retry suffix
+                    const retryValue = `${todayISO}-r2`;
+                    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, retryValue);
+                    if (DEBUG) console.log(`[DailyPageDateChecker] Second attempt with -r2, navigating to: ${url.toString()}`);
                     isNavigating = true;
                     window.location.replace(url.toString());
                 } else {
-                    // Case 3: Already has timestamp suffix - ISR is serving stale content, give up
-                    console.log(`[DailyPageDateChecker] Already tried with timestamp suffix, giving up. ISR may be serving stale content.`);
+                    // Case 3: Already has suffix - ISR is serving stale content, give up
+                    if (DEBUG) console.log(`[DailyPageDateChecker] Already tried with -r2, giving up.`);
                     // Show offline banner as a way to indicate something is wrong
                     setShowOfflineBanner(true);
                     return;
