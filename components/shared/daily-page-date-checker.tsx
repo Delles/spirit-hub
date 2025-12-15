@@ -7,6 +7,9 @@ const URL_DAILY_CACHE_BUST_PARAM = "__dw";
 // Cooldown between reload attempts
 const RELOAD_COOLDOWN_MS = 10000;
 
+// Module-level navigation guard
+let isNavigating = false;
+
 /**
  * Get today's date in ISO format (YYYY-MM-DD) in Europe/Bucharest timezone.
  * Uses formatToParts for maximum mobile browser compatibility.
@@ -46,20 +49,35 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
     const hasChecked = useRef(false);
     const [showOfflineBanner, setShowOfflineBanner] = useState(false);
 
+    // Reset navigation guard on mount (handles cases where previous navigation failed)
+    useEffect(() => {
+        isNavigating = false;
+    }, []);
+
     const checkFreshness = useCallback(() => {
+        // Guard against concurrent navigation attempts
+        if (isNavigating) {
+            console.log("[DailyPageDateChecker] checkFreshness blocked: already navigating");
+            return;
+        }
+
         const now = Date.now();
 
         // Cooldown to prevent rapid reloads
         if (now - lastCheckTime.current < RELOAD_COOLDOWN_MS) {
+            console.log("[DailyPageDateChecker] checkFreshness blocked: cooldown");
             return;
         }
         lastCheckTime.current = now;
 
         const todayISO = getTodayISO();
 
+        console.log(`[DailyPageDateChecker] serverDate: ${serverDate}, todayISO: ${todayISO}`);
+
         if (serverDate !== todayISO) {
             // Don't try to refresh if offline - show banner instead
             if (typeof navigator !== "undefined" && !navigator.onLine) {
+                console.log("[DailyPageDateChecker] Offline - showing banner");
                 setShowOfflineBanner(true);
                 return;
             }
@@ -71,15 +89,33 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
             try {
                 const url = new URL(window.location.href);
                 const current = url.searchParams.get(URL_DAILY_CACHE_BUST_PARAM);
-                if (current === todayISO) {
-                    // Already tried with today's date, just reload
-                    window.location.reload();
-                    return;
+                console.log(`[DailyPageDateChecker] current __dw: ${current}, target: ${todayISO}`);
+
+                // If we already have today's date in the param but still seeing stale data,
+                // add a timestamp suffix to force completely fresh fetch
+                if (current?.startsWith(todayISO)) {
+                    const uniqueValue = `${todayISO}-${Date.now()}`;
+                    console.log(`[DailyPageDateChecker] Already has today's param, using unique: ${uniqueValue}`);
+                    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, uniqueValue);
+                } else {
+                    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
                 }
-                url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
+
+                console.log(`[DailyPageDateChecker] Navigating to: ${url.toString()}`);
+                isNavigating = true;
                 window.location.replace(url.toString());
-            } catch {
-                window.location.reload();
+            } catch (err) {
+                console.error("[DailyPageDateChecker] Navigation failed:", err);
+                // If URL construction fails, try a timestamp-based navigation
+                try {
+                    const baseUrl = window.location.origin + window.location.pathname;
+                    const fallbackUrl = `${baseUrl}?${URL_DAILY_CACHE_BUST_PARAM}=${todayISO}-${Date.now()}`;
+                    isNavigating = true;
+                    window.location.replace(fallbackUrl);
+                } catch {
+                    // Last resort - but this is unreliable on mobile
+                    window.location.reload();
+                }
             }
         } else {
             // Content is fresh - hide banner and clean up URL

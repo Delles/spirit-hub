@@ -203,12 +203,20 @@ function setReloadLockCookie(timestamp: number): void {
   } catch { /* ignore */ }
 }
 
+// Flag to prevent multiple simultaneous navigation attempts
+let isNavigating = false;
+
 /**
  * Trigger a hard page reload with cache busting.
  * Uses sessionStorage (with cookie fallback) to prevent infinite reload loops.
  * Returns true if reload was triggered, false if blocked by cooldown.
  */
 function triggerHardReload(): boolean {
+  if (isNavigating) {
+    console.log("[DateChecker] triggerHardReload blocked: already navigating");
+    return false;
+  }
+
   const now = Date.now();
 
   try {
@@ -216,7 +224,7 @@ function triggerHardReload(): boolean {
     const lastReloadTime = lastReload ? parseInt(lastReload, 10) : 0;
 
     if (now - lastReloadTime < RELOAD_COOLDOWN_MS) {
-      // Still in cooldown, don't reload
+      console.log(`[DateChecker] triggerHardReload blocked: cooldown (${now - lastReloadTime}ms < ${RELOAD_COOLDOWN_MS}ms)`);
       return false;
     }
 
@@ -225,15 +233,14 @@ function triggerHardReload(): boolean {
     // Fallback if sessionStorage fails (e.g., Private Mode) - use cookies
     const lastReloadTime = getReloadLockCookie();
     if (now - lastReloadTime < RELOAD_COOLDOWN_MS) {
+      console.log(`[DateChecker] triggerHardReload blocked: cooldown via cookie`);
       return false;
     }
     setReloadLockCookie(now);
   }
 
-
-  // Note: location.reload() is NOT reliably cache-busting on mobile (and can re-use stale HTML),
-  // especially when the page was restored from bfcache or loaded from disk cache.
-  // We keep this as a fallback for cases where we cannot/do-not want to change the URL.
+  console.log("[DateChecker] triggerHardReload: executing window.location.reload()");
+  isNavigating = true;
   window.location.reload();
   return true;
 }
@@ -243,18 +250,33 @@ function triggerHardReload(): boolean {
  * This is more reliable than location.reload() for Android Chrome shortcuts / bfcache restores.
  */
 function triggerCacheBustedNavigation(todayISO: string): void {
+  if (isNavigating) {
+    console.log("[DateChecker] triggerCacheBustedNavigation blocked: already navigating");
+    return;
+  }
+
   try {
     const url = new URL(window.location.href);
-    // If we're already on the cache-busted URL for today, fall back to reload.
     const current = url.searchParams.get(URL_DAILY_CACHE_BUST_PARAM);
-    if (current === todayISO) {
-      triggerHardReload();
-      return;
+    console.log(`[DateChecker] triggerCacheBustedNavigation: current __dw=${current}, target=${todayISO}`);
+
+    // If we're already on the cache-busted URL for today but still seeing stale data,
+    // something is wrong - add a unique timestamp to force a completely fresh fetch
+    if (current?.startsWith(todayISO)) {
+      // Already tried with today's date, add timestamp suffix to make it unique
+      const uniqueValue = `${todayISO}-${Date.now()}`;
+      console.log(`[DateChecker] Already has today's param, using unique: ${uniqueValue}`);
+      url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, uniqueValue);
+    } else {
+      url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
     }
-    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
+
+    console.log(`[DateChecker] Navigating to: ${url.toString()}`);
+    isNavigating = true;
     // Force a real navigation (not SPA) and replace history to avoid back-button weirdness.
     window.location.replace(url.toString());
-  } catch {
+  } catch (err) {
+    console.error("[DateChecker] URL construction failed:", err);
     // If URL construction fails for any reason, fallback to reload.
     triggerHardReload();
   }
@@ -286,6 +308,11 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
   const inMemoryRetryCount = useRef(0);
   const inMemoryLastAttempt = useRef(0);
 
+  // Reset navigation guard on mount (handles cases where previous navigation failed)
+  useEffect(() => {
+    isNavigating = false;
+  }, []);
+
   // Helper to clear any pending reload timeout
   const clearPendingReload = useCallback(() => {
     if (backoffTimeoutRef.current) {
@@ -300,16 +327,22 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
     const todayISO = getTodayISO();
     const now = Date.now();
 
+    // Debug logging for mobile issue investigation
+    console.log(`[DateChecker] checkFreshness called from: ${source}`);
+    console.log(`[DateChecker] todayISO: ${todayISO}`);
+    console.log(`[DateChecker] data.dailyNumber?.date: ${data.dailyNumber?.date}`);
+    console.log(`[DateChecker] serverRenderTimestamp: ${data.serverRenderTimestamp}, age: ${now - (data.serverRenderTimestamp || 0)}ms`);
+
     // ========================================================================
     // Check 0: Server Render Timestamp (Failsafe for bfcache)
-    // If the page was rendered more than 24 hours ago, force reload
-    // This catches edge cases where date comparison might fail
+    // If the page was rendered more than 6 hours ago, force reload
+    // This catches edge cases where date comparison might fail or bfcache serves stale HTML
     // ========================================================================
     if (data.serverRenderTimestamp) {
       const ageMs = now - data.serverRenderTimestamp;
-      const maxAgeMs = 24 * 60 * 60 * 1000; // 24 hours
+      const maxAgeMs = 6 * 60 * 60 * 1000; // 6 hours (more aggressive for daily content)
       if (ageMs > maxAgeMs) {
-        // If the HTML is extremely old, force a fresh navigation.
+        console.log(`[DateChecker] Timestamp failsafe triggered: page is ${ageMs}ms old (>${maxAgeMs}ms)`);
         triggerCacheBustedNavigation(todayISO);
         return;
       }
@@ -321,6 +354,7 @@ export function DailyWidgetDateChecker({ widgetData, onGaveUp }: DailyWidgetDate
     // ========================================================================
     if (data.dailyNumber?.date) {
       if (data.dailyNumber.date !== todayISO) {
+        console.log(`[DateChecker] Date mismatch detected: ${data.dailyNumber.date} !== ${todayISO}`);
         // This is the common case after midnight with ISR: first request returns yesterday HTML.
         // Cache-busted navigation ensures we get today's server render immediately.
         triggerCacheBustedNavigation(todayISO);

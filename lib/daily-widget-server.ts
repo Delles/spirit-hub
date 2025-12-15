@@ -107,7 +107,9 @@ async function fetchDailyWidgetData(): Promise<DailyWidgetData> {
     dailyNumber: dailyNumberData,
     dailyDream: dailyDreamData,
     energiaZilei,
-    serverRenderTimestamp: Date.now(),
+    // Note: serverRenderTimestamp is added in getCachedDailyWidgetData() AFTER cache read
+    // to reflect actual page render time, not cache population time
+    serverRenderTimestamp: 0, // placeholder, will be overwritten
   };
 }
 
@@ -128,9 +130,18 @@ export async function getCachedDailyWidgetData(): Promise<DailyWidgetData> {
     ["daily-widget-data", todayISO],
     {
       revalidate: 43200, // 12 hours in seconds - safety net (cache key handles date invalidation)
+      tags: ["daily-content", `daily-${todayISO}`],
     }
   );
 
-  return cached();
+  const data = await cached();
+
+  // IMPORTANT: Set serverRenderTimestamp AFTER cache read, not inside cached function!
+  // This ensures the timestamp reflects when the PAGE was rendered (for bfcache detection),
+  // not when the unstable_cache was populated.
+  return {
+    ...data,
+    serverRenderTimestamp: Date.now(),
+  };
 }
 

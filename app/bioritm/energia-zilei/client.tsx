@@ -3,19 +3,21 @@
 import { EnergiaZileiCard } from "@/components/bioritm/energia-zilei-card";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getEnergiaZilei } from "@/lib/energia-zilei";
-import { getMoonPhase } from "@/lib/moon-phase";
-import { formatRomanianDate, getBucharestDate } from "@/lib/utils";
+import type { EnergiaZileiData } from "@/lib/energia-zilei";
+import type { MoonPhaseData } from "@/lib/moon-phase";
 import { Calculator, ArrowRight, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-export function EnergiaZileiClient() {
-  // Use Bucharest timezone for consistent date across all users
-  const today = getBucharestDate();
-  const romanianDate = formatRomanianDate(today);
-  const energiaZilei = getEnergiaZilei(today);
-  const moonPhase = getMoonPhase(today);
+interface EnergiaZileiClientProps {
+  /** Pre-computed energia data from server */
+  energia: EnergiaZileiData;
+  /** Pre-computed moon phase from server */
+  moonPhase: MoonPhaseData;
+  /** Pre-formatted Romanian date string from server */
+  romanianDate: string;
+}
 
+export function EnergiaZileiClient({ energia, moonPhase, romanianDate }: EnergiaZileiClientProps) {
   return (
     <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
@@ -41,7 +43,7 @@ export function EnergiaZileiClient() {
         </div>
 
         {/* Main Energy Card */}
-        <EnergiaZileiCard energia={energiaZilei} moonPhase={moonPhase} />
+        <EnergiaZileiCard energia={energia} moonPhase={moonPhase} />
 
         {/* CTA to Personal Biorhythm */}
         <Card className="p-6 space-y-6">
