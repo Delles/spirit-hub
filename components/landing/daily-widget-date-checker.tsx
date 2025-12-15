@@ -248,11 +248,13 @@ function triggerHardReload(): boolean {
 /**
  * Force a full navigation to a cache-busted URL so we always get a fresh HTML/RSC response.
  * This is more reliable than location.reload() for Android Chrome shortcuts / bfcache restores.
+ * 
+ * Returns true if navigation was triggered, false if we gave up (to prevent infinite loops).
  */
-function triggerCacheBustedNavigation(todayISO: string): void {
+function triggerCacheBustedNavigation(todayISO: string): boolean {
   if (isNavigating) {
     console.log("[DateChecker] triggerCacheBustedNavigation blocked: already navigating");
-    return;
+    return false;
   }
 
   try {
@@ -260,25 +262,35 @@ function triggerCacheBustedNavigation(todayISO: string): void {
     const current = url.searchParams.get(URL_DAILY_CACHE_BUST_PARAM);
     console.log(`[DateChecker] triggerCacheBustedNavigation: current __dw=${current}, target=${todayISO}`);
 
-    // If we're already on the cache-busted URL for today but still seeing stale data,
-    // something is wrong - add a unique timestamp to force a completely fresh fetch
-    if (current?.startsWith(todayISO)) {
-      // Already tried with today's date, add timestamp suffix to make it unique
-      const uniqueValue = `${todayISO}-${Date.now()}`;
-      console.log(`[DateChecker] Already has today's param, using unique: ${uniqueValue}`);
-      url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, uniqueValue);
-    } else {
-      url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
-    }
+    // Logic to prevent infinite loops:
+    // 1. No param OR param is from a different day → add today's date
+    // 2. Param is exactly today's date → add timestamp suffix (one retry attempt)
+    // 3. Param already has timestamp suffix (todayISO-*) → GIVE UP, ISR is stuck
 
-    console.log(`[DateChecker] Navigating to: ${url.toString()}`);
-    isNavigating = true;
-    // Force a real navigation (not SPA) and replace history to avoid back-button weirdness.
-    window.location.replace(url.toString());
+    if (!current || !current.startsWith(todayISO)) {
+      // Case 1: First attempt - add today's date
+      url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
+      console.log(`[DateChecker] First attempt, navigating to: ${url.toString()}`);
+      isNavigating = true;
+      window.location.replace(url.toString());
+      return true;
+    } else if (current === todayISO) {
+      // Case 2: Already tried with date, add timestamp for one more attempt
+      const uniqueValue = `${todayISO}-${Date.now()}`;
+      url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, uniqueValue);
+      console.log(`[DateChecker] Second attempt with timestamp, navigating to: ${url.toString()}`);
+      isNavigating = true;
+      window.location.replace(url.toString());
+      return true;
+    } else {
+      // Case 3: Already has timestamp suffix - ISR is serving stale content, give up
+      console.log(`[DateChecker] Already tried with timestamp suffix, giving up. ISR may be serving stale content.`);
+      return false;
+    }
   } catch (err) {
     console.error("[DateChecker] URL construction failed:", err);
-    // If URL construction fails for any reason, fallback to reload.
-    triggerHardReload();
+    // Don't retry on error to prevent loops
+    return false;
   }
 }
 

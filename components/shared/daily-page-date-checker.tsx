@@ -91,31 +91,34 @@ export function DailyPageDateChecker({ serverDate }: DailyPageDateCheckerProps) 
                 const current = url.searchParams.get(URL_DAILY_CACHE_BUST_PARAM);
                 console.log(`[DailyPageDateChecker] current __dw: ${current}, target: ${todayISO}`);
 
-                // If we already have today's date in the param but still seeing stale data,
-                // add a timestamp suffix to force completely fresh fetch
-                if (current?.startsWith(todayISO)) {
-                    const uniqueValue = `${todayISO}-${Date.now()}`;
-                    console.log(`[DailyPageDateChecker] Already has today's param, using unique: ${uniqueValue}`);
-                    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, uniqueValue);
-                } else {
-                    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
-                }
+                // Logic to prevent infinite loops:
+                // 1. No param OR param is from a different day → add today's date
+                // 2. Param is exactly today's date → add timestamp suffix (one retry attempt)
+                // 3. Param already has timestamp suffix (todayISO-*) → GIVE UP, ISR is stuck
 
-                console.log(`[DailyPageDateChecker] Navigating to: ${url.toString()}`);
-                isNavigating = true;
-                window.location.replace(url.toString());
+                if (!current || !current.startsWith(todayISO)) {
+                    // Case 1: First attempt - add today's date
+                    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, todayISO);
+                    console.log(`[DailyPageDateChecker] First attempt, navigating to: ${url.toString()}`);
+                    isNavigating = true;
+                    window.location.replace(url.toString());
+                } else if (current === todayISO) {
+                    // Case 2: Already tried with date, add timestamp for one more attempt
+                    const uniqueValue = `${todayISO}-${Date.now()}`;
+                    url.searchParams.set(URL_DAILY_CACHE_BUST_PARAM, uniqueValue);
+                    console.log(`[DailyPageDateChecker] Second attempt with timestamp, navigating to: ${url.toString()}`);
+                    isNavigating = true;
+                    window.location.replace(url.toString());
+                } else {
+                    // Case 3: Already has timestamp suffix - ISR is serving stale content, give up
+                    console.log(`[DailyPageDateChecker] Already tried with timestamp suffix, giving up. ISR may be serving stale content.`);
+                    // Show offline banner as a way to indicate something is wrong
+                    setShowOfflineBanner(true);
+                    return;
+                }
             } catch (err) {
                 console.error("[DailyPageDateChecker] Navigation failed:", err);
-                // If URL construction fails, try a timestamp-based navigation
-                try {
-                    const baseUrl = window.location.origin + window.location.pathname;
-                    const fallbackUrl = `${baseUrl}?${URL_DAILY_CACHE_BUST_PARAM}=${todayISO}-${Date.now()}`;
-                    isNavigating = true;
-                    window.location.replace(fallbackUrl);
-                } catch {
-                    // Last resort - but this is unreliable on mobile
-                    window.location.reload();
-                }
+                // Don't retry on error to prevent loops
             }
         } else {
             // Content is fresh - hide banner and clean up URL
