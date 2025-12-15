@@ -21,6 +21,8 @@ interface RawDreamSymbol {
     category: string;
     shortMeaning: string;
     fullInterpretation: string;
+    /** Optional precomputed slug from dataset */
+    slug?: string;
 }
 
 /**
@@ -40,12 +42,14 @@ export interface StaticDreamSymbol {
 
 /**
  * Process raw JSON symbols into StaticDreamSymbol with slugs
- * Slugs are generated from names using our diacritic-aware slug function
+ * Prefers dataset slug when present; falls back to generating from name.
  */
 function processSymbols(): StaticDreamSymbol[] {
     return (dreamSymbolsData.symbols as RawDreamSymbol[]).map((symbol) => ({
         name: symbol.name,
-        slug: generateSlug(symbol.name),
+        // Use curated slug from the dataset if present; otherwise derive from name.
+        // Always normalize via generateSlug to guarantee URL-safe output.
+        slug: generateSlug(symbol.slug ?? symbol.name),
         category: symbol.category,
         shortMeaning: symbol.shortMeaning,
         fullInterpretation: symbol.fullInterpretation,
@@ -57,7 +61,7 @@ const allSymbols: StaticDreamSymbol[] = processSymbols();
 
 // Create slug lookup map for O(1) access
 const symbolsBySlug = new Map<string, StaticDreamSymbol>(
-    allSymbols.map((s) => [s.slug, s])
+    allSymbols.map((s) => [s.slug.trim().toLowerCase(), s])
 );
 
 /**
@@ -81,7 +85,23 @@ export function getAllSymbols(): StaticDreamSymbol[] {
  * @returns Symbol or null if not found
  */
 export function getSymbolBySlug(slug: string): StaticDreamSymbol | null {
-    return symbolsBySlug.get(slug) ?? null;
+    // Normalize URL segment defensively (handles weird casing, trailing spaces, or encoded diacritics).
+    let decoded = slug;
+    try {
+        decoded = decodeURIComponent(slug);
+    } catch {
+        // ignore decode errors; fall back to raw input
+    }
+
+    const key = decoded.trim().toLowerCase();
+
+    // Fast path: exact match
+    const direct = symbolsBySlug.get(key);
+    if (direct) return direct;
+
+    // Fallback: normalize via slug generator (e.g. if someone linked with diacritics)
+    const normalizedKey = generateSlug(key);
+    return symbolsBySlug.get(normalizedKey) ?? null;
 }
 
 /**
