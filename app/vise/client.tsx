@@ -1,11 +1,11 @@
 "use client";
 
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
-import {
-  Moon, Sparkles
-} from "lucide-react";
-import type { StaticDreamSymbol } from "@/lib/dream-data";
+import { Moon, Sparkles } from "lucide-react";
+import { getAllSymbols, getRandomFeaturedSymbols } from "@/lib/dream-data";
 import { DreamSearchHero } from "@/components/vise/dream-search-hero";
 
 // ============================================================================
@@ -21,15 +21,50 @@ const QUICK_LINKS = [
 ];
 
 // ============================================================================
-// Components
+// Loading Skeleton
 // ============================================================================
 
-interface ViseClientProps {
-  featuredSymbols: StaticDreamSymbol[];
-  dailyDream: StaticDreamSymbol;
+function LoadingSkeleton() {
+  return (
+    <div className="space-y-10">
+      {/* Hero skeleton */}
+      <div className="text-center space-y-6 pt-4 md:pt-8">
+        <div className="mx-auto h-14 w-14 rounded-full bg-white/10 animate-pulse" />
+        <div className="h-12 w-72 mx-auto bg-white/10 rounded animate-pulse" />
+        <div className="h-6 w-96 mx-auto bg-white/10 rounded animate-pulse" />
+        <div className="h-12 w-full max-w-md mx-auto bg-white/10 rounded-lg animate-pulse" />
+      </div>
+      {/* Daily dream card skeleton */}
+      <div className="h-32 bg-white/5 rounded-xl animate-pulse" />
+      {/* Grid skeleton */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="h-24 bg-white/5 rounded-lg animate-pulse" />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export function ViseClient({ featuredSymbols, dailyDream }: ViseClientProps) {
+// ============================================================================
+// Main Component
+// ============================================================================
+
+export function ViseClient() {
+  const data = useQuery(api.daily.getDailyContent);
+
+  // Loading state
+  if (!data) {
+    return <LoadingSkeleton />;
+  }
+
+  // Get dream data from static JSON using index from Convex
+  const allSymbols = getAllSymbols();
+  const dailyDream = allSymbols[data.dailyDreamIndex];
+
+  // Get featured symbols using the same date for consistency
+  const featuredSymbols = getRandomFeaturedSymbols(8, data.date);
+
   return (
     <div className="space-y-10">
       {/* Hero Section - Mobile First */}

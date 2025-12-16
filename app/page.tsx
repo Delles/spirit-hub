@@ -1,20 +1,12 @@
-import { getCachedDailyWidgetData } from "@/lib/daily-widget-server";
-import { getCachedMoonPhaseForBucharest } from "@/lib/moon-phase-server";
-import { DailyNumberWidget } from "@/components/landing/widgets/daily-number-widget";
-import { DreamWidget } from "@/components/landing/widgets/dream-widget";
-import { BiorhythmWidget } from "@/components/landing/widgets/biorhythm-widget";
-import { QuickToolsWidget } from "@/components/landing/widgets/quick-tools-widget";
-import { DailyWidgetDateChecker } from "@/components/landing/daily-widget-date-checker";
+import { Suspense } from "react";
+import { DailyWidgetsClient } from "@/components/landing/daily-widgets-client";
+import { MoonPhaseHeader } from "@/components/landing/moon-phase-header";
 
-// ISR: Revalidate every 24 hours - content only changes at midnight (handled by date checker)
-// All content changes require a deployment which rebuilds everything
-export const revalidate = 86400; // 24 hours in seconds
-// Use Node runtime because helpers rely on unstable_cache (not available on Edge)
-export const runtime = "nodejs";
-// Prefer Frankfurt region - closest to Romania for lower TTFB
-export const preferredRegion = ["fra1"];
+// Make homepage fully static - no ISR revalidation needed
+// Daily content is fetched client-side from Convex (always fresh)
+export const dynamic = "force-static";
 
-// Helper for date formatting - uses Bucharest timezone for consistency with daily widget data
+// Helper for date formatting - uses Bucharest timezone for consistency
 function getFormattedDate() {
   const options: Intl.DateTimeFormatOptions = {
     timeZone: 'Europe/Bucharest',
@@ -23,18 +15,11 @@ function getFormattedDate() {
     month: 'long',
     day: 'numeric'
   };
-  // Capitalize first letter
   const dateStr = new Date().toLocaleDateString('ro-RO', options);
   return dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
 }
 
-export default async function DashboardPage() {
-  // Fetch daily widget data and moon phase server-side with Next.js caching
-  const [dailyWidgetData, moonPhase] = await Promise.all([
-    getCachedDailyWidgetData(),
-    getCachedMoonPhaseForBucharest(),
-  ]);
-
+export default function DashboardPage() {
   const currentDate = getFormattedDate();
 
   return (
@@ -57,51 +42,22 @@ export default async function DashboardPage() {
           <h1 className="text-white font-heading text-3xl md:text-4xl font-bold">
             {currentDate}
           </h1>
-          <p className="text-[#A5B4FC] text-sm flex items-center justify-center gap-2">
-            {moonPhase.labelRo} {moonPhase.emoji}
-          </p>
+          {/* Moon phase - fetched client-side from Convex */}
+          <Suspense fallback={<div className="h-5" />}>
+            <MoonPhaseHeader />
+          </Suspense>
         </div>
 
         <div id="main-content" className="flex flex-col items-center justify-start p-4 md:p-4 lg:p-6 max-w-[1200px] mx-auto">
 
-          {/* Client-side date checker - ensures data matches current date */}
-          <DailyWidgetDateChecker widgetData={dailyWidgetData} />
+          {/* Daily Widgets - fetched client-side from Convex */}
+          <Suspense fallback={
+            <div className="w-full h-[600px] animate-pulse bg-white/5 rounded-xl" />
+          }>
+            <DailyWidgetsClient />
+          </Suspense>
 
-          {/* Bento Grid Layout */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 auto-rows-min gap-4">
-
-            {/* 1. Numerology: Large Square (Left) - Spans 2 cols, 2 rows approx */}
-            <div className="md:col-span-2 md:row-span-2 md:min-h-[350px]">
-              <DailyNumberWidget
-                data={dailyWidgetData.dailyNumber}
-                className="md:h-full"
-              />
-            </div>
-
-            {/* 2. Dream: Tall Rectangle (Right) - Spans 1 col, 2 rows */}
-            <div className="md:col-span-1 md:row-span-2 md:min-h-[350px]">
-              <DreamWidget
-                data={dailyWidgetData.dailyDream}
-                className="md:h-full"
-              />
-            </div>
-
-            {/* 3. Biorhythm: Wide Rectangle (Bottom Left) - Spans 2 cols */}
-            <div className="md:col-span-2 md:min-h-[200px]">
-              <BiorhythmWidget
-                data={dailyWidgetData.energiaZilei}
-                className="md:h-full"
-              />
-            </div>
-
-            {/* 4. Quick Tools: Small Strip (Bottom Right) - Spans 1 col */}
-            <div className="md:col-span-1 md:min-h-[120px]">
-              <QuickToolsWidget className="md:h-full" />
-            </div>
-
-          </div>
-
-          {/* SEO / About Section (Simplified) */}
+          {/* SEO / About Section */}
           <section className="w-full mt-8 pt-6 border-t border-white/5 text-center">
             <p className="text-white/40 text-sm max-w-2xl mx-auto leading-relaxed">
               SpiritHub.ro - Călătoria ta spre autocunoaștere prin numerologie, simbolismul viselor și bioritm.

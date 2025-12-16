@@ -1,25 +1,68 @@
 "use client";
 
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { ResultCard } from "@/components/shared/result-card";
-import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Calculator, Sparkles, Heart, ArrowLeft } from "lucide-react";
+import { getInterpretation } from "@/lib/interpretations";
 
-interface DailyData {
-  number: number;
-  title: string;
-  description: string;
-  fullText: string;
+/**
+ * Loading skeleton for the daily number page
+ */
+function LoadingSkeleton() {
+  return (
+    <div className="py-8">
+      <div className="mx-auto max-w-4xl space-y-8">
+        <div className="space-y-4 text-center">
+          <div className="h-9 w-64 mx-auto bg-white/10 rounded animate-pulse" />
+          <div className="h-6 w-48 mx-auto bg-white/10 rounded animate-pulse" />
+        </div>
+        <div className="h-96 bg-white/5 rounded-xl animate-pulse" />
+      </div>
+    </div>
+  );
 }
 
-interface Props {
-  dailyData: DailyData | null;
-  romanianDate: string;
+/**
+ * Format date in Romanian
+ */
+function formatRomanianDate(dateStr: string): string {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const formatted = date.toLocaleDateString("ro-RO", options);
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
 }
 
-export default function NumarZilnicClient({ dailyData, romanianDate }: Props) {
+export default function NumarZilnicClient() {
+  const data = useQuery(api.daily.getDailyContent);
+
+  // Loading state
+  if (!data) {
+    return <LoadingSkeleton />;
+  }
+
+  // Get interpretation from static data
+  const interpretation = getInterpretation("daily", data.dailyNumber.number);
+  const romanianDate = formatRomanianDate(data.date);
+
+  const dailyData = interpretation
+    ? {
+      number: data.dailyNumber.number,
+      title: interpretation.title,
+      description: interpretation.description,
+      fullText: interpretation.fullText,
+    }
+    : null;
+
   // Share URL and title
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   const shareTitle = dailyData
@@ -37,14 +80,11 @@ export default function NumarZilnicClient({ dailyData, romanianDate }: Props) {
           </p>
         </div>
 
-
-
         {/* Error State */}
         {dailyData === null && (
-          <ErrorMessage
-            title="Eroare la încărcare"
-            message="Nu am putut încărca numărul zilei. Te rugăm să reîncarci pagina."
-          />
+          <Card className="p-6 text-center">
+            <p className="text-red-400">Nu am putut încărca numărul zilei. Te rugăm să reîncarci pagina.</p>
+          </Card>
         )}
 
         {/* Results Section */}

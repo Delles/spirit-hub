@@ -3,8 +3,8 @@ import { Suspense } from "react";
 import CriticeDaysClient from "./client";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 
-// ISR: Revalidate every 24 hours - content changes at midnight
-export const revalidate = 86400;
+// Static page - calculations happen client-side
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Zile Critice Bioritm | SpiritHub.ro",
