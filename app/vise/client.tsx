@@ -1,11 +1,10 @@
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { useDailyContent } from "@/components/providers/daily-content-provider";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Moon, Sparkles } from "lucide-react";
-import { getAllSymbols, getRandomFeaturedSymbols } from "@/lib/dream-data";
+import { getRandomFeaturedSymbols } from "@/lib/dream-data";
 import { DreamSearchHero } from "@/components/vise/dream-search-hero";
 
 // ============================================================================
@@ -51,16 +50,12 @@ function LoadingSkeleton() {
 // ============================================================================
 
 export function ViseClient() {
-  const data = useQuery(api.daily.getDailyContent);
+  const data = useDailyContent();
 
-  // Loading state
+  // Loading state - show skeleton during SSR/initial render
   if (!data) {
     return <LoadingSkeleton />;
   }
-
-  // Get dream data from static JSON using index from Convex
-  const allSymbols = getAllSymbols();
-  const dailyDream = allSymbols[data.dailyDreamIndex];
 
   // Get featured symbols using the same date for consistency
   const featuredSymbols = getRandomFeaturedSymbols(8, data.date);
@@ -126,10 +121,10 @@ export function ViseClient() {
               {/* Center: Dream Name + Description */}
               <div className="flex-1 min-w-0 space-y-2">
                 <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#9F2BFF] transition-colors">
-                  {dailyDream.name}
+                  {data.dailyDream.name}
                 </h3>
                 <p className="text-sm text-[#E0E0E0]/70 leading-relaxed line-clamp-2 border-l-2 border-[#9F2BFF]/50 pl-3 italic">
-                  {dailyDream.shortMeaning}
+                  {data.dailyDream.shortMeaning}
                 </p>
               </div>
 

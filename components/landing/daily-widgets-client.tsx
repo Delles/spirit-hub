@@ -1,12 +1,10 @@
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { useDailyContent } from "@/components/providers/daily-content-provider";
 import { DailyNumberWidget } from "./widgets/daily-number-widget";
 import { DreamWidget } from "./widgets/dream-widget";
 import { BiorhythmWidget } from "./widgets/biorhythm-widget";
 import { QuickToolsWidget } from "./widgets/quick-tools-widget";
-import { getAllSymbols } from "@/lib/dream-data";
 import { getInterpretation } from "@/lib/interpretations";
 
 /**
@@ -54,26 +52,22 @@ function WidgetsSkeleton() {
 /**
  * Daily Widgets Client Component
  * 
- * Fetches daily content from Convex and renders the homepage widgets.
- * This component is client-side to enable real-time updates.
+ * Renders the homepage widgets using daily content computed client-side.
+ * Shows skeleton during SSR/initial render for hydration safety.
  * 
  * Data flow:
- * - Daily number: from Convex + interpretation from static JSON
- * - Daily dream: index from Convex, actual symbol from static JSON
- * - Energia Zilei: fully from Convex
- * - Moon Phase: from Convex (displayed in parent component)
+ * - Daily number: computed locally + interpretation from static JSON
+ * - Daily dream: computed locally from static JSON
+ * - Energia Zilei: computed locally
+ * - Moon Phase: computed locally (displayed in parent component)
  */
 export function DailyWidgetsClient() {
-    const data = useQuery(api.daily.getDailyContent);
+    const data = useDailyContent();
 
-    // Loading state - show skeleton
+    // Loading state - show skeleton during SSR/initial render
     if (!data) {
         return <WidgetsSkeleton />;
     }
-
-    // Get dream from static data using index from Convex
-    const allSymbols = getAllSymbols();
-    const dailyDream = allSymbols[data.dailyDreamIndex];
 
     // Get interpretation from static data
     const interpretation = getInterpretation("daily", data.dailyNumber.number);
@@ -88,11 +82,11 @@ export function DailyWidgetsClient() {
         }
         : null;
 
-    const dailyDreamData = dailyDream
+    const dailyDreamData = data.dailyDream
         ? {
-            name: dailyDream.name,
-            category: dailyDream.category,
-            shortDescription: dailyDream.shortMeaning,
+            name: data.dailyDream.name,
+            category: data.dailyDream.category,
+            shortDescription: data.dailyDream.shortMeaning,
         }
         : null;
 
@@ -121,10 +115,3 @@ export function DailyWidgetsClient() {
     );
 }
 
-/**
- * Export the moon phase data for use in the page header
- * This is a convenience hook for components that need just the moon phase
- */
-export function useDailyContent() {
-    return useQuery(api.daily.getDailyContent);
-}

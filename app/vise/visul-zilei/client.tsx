@@ -1,17 +1,15 @@
 /**
  * Daily Dream Client Component
  *
- * Fetches the daily dream from Convex and displays it.
+ * Displays the daily dream using locally computed content.
  */
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { useDailyContent } from "@/components/providers/daily-content-provider";
 import { DreamDetailCard } from "@/components/vise/dream-detail-card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { getAllSymbols } from "@/lib/dream-data";
 
 /**
  * Loading skeleton
@@ -48,26 +46,23 @@ function formatRomanianDate(dateStr: string): string {
 }
 
 export function VisulZileiClient() {
-  const data = useQuery(api.daily.getDailyContent);
+  const data = useDailyContent();
 
-  // Loading state
+  // Loading state - show skeleton during SSR/initial render
   if (!data) {
     return <LoadingSkeleton />;
   }
 
-  // Get dream from static data using index from Convex
-  const allSymbols = getAllSymbols();
-  const dailyDream = allSymbols[data.dailyDreamIndex];
   const romanianDate = formatRomanianDate(data.date);
 
   // Map to DreamSymbol interface expected by card
   const mappedSymbol = {
-    id: dailyDream.slug,
-    name: dailyDream.name,
-    slug: dailyDream.slug,
-    category: dailyDream.category,
-    interpretation: dailyDream.fullInterpretation,
-    shortDescription: dailyDream.shortMeaning,
+    id: data.dailyDream.slug,
+    name: data.dailyDream.name,
+    slug: data.dailyDream.slug,
+    category: data.dailyDream.category,
+    interpretation: data.dailyDream.fullInterpretation,
+    shortDescription: data.dailyDream.shortMeaning,
   };
 
   return (

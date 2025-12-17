@@ -1,16 +1,16 @@
 "use client";
 
-import { useDailyContent } from "./daily-widgets-client";
+import { useDailyContent } from "@/components/providers/daily-content-provider";
 
 /**
  * Moon Phase Header Component
  * Displays the current moon phase in the page header
- * Fetches data from Convex via the shared useDailyContent hook
+ * Data is computed client-side - always available immediately
  */
 export function MoonPhaseHeader() {
     const data = useDailyContent();
 
-    // Loading state
+    // Loading state - show placeholder during SSR/initial render
     if (!data) {
         return (
             <p className="text-[#A5B4FC] text-sm flex items-center justify-center gap-2 h-5">

@@ -1,7 +1,6 @@
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { useDailyContent } from "@/components/providers/daily-content-provider";
 import { ResultCard } from "@/components/shared/result-card";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,7 @@ import { Calculator, Sparkles, Heart, ArrowLeft } from "lucide-react";
 import { getInterpretation } from "@/lib/interpretations";
 
 /**
- * Loading skeleton for the daily number page
+ * Loading skeleton
  */
 function LoadingSkeleton() {
   return (
@@ -43,9 +42,9 @@ function formatRomanianDate(dateStr: string): string {
 }
 
 export default function NumarZilnicClient() {
-  const data = useQuery(api.daily.getDailyContent);
+  const data = useDailyContent();
 
-  // Loading state
+  // Loading state - show skeleton during SSR/initial render
   if (!data) {
     return <LoadingSkeleton />;
   }

@@ -1,7 +1,6 @@
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { useDailyContent } from "@/components/providers/daily-content-provider";
 import { EnergiaZileiCard } from "@/components/bioritm/energia-zilei-card";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -43,16 +42,16 @@ function formatRomanianDate(dateStr: string): string {
 }
 
 export function EnergiaZileiClient() {
-  const data = useQuery(api.daily.getDailyContent);
+  const data = useDailyContent();
 
-  // Loading state
+  // Loading state - show skeleton during SSR/initial render
   if (!data) {
     return <LoadingSkeleton />;
   }
 
   const romanianDate = formatRomanianDate(data.date);
 
-  // Map Convex energia data to the expected type
+  // Map energia data to the expected type
   // Spread arrays to convert from readonly to mutable
   const energia = {
     ...data.energiaZilei,
@@ -88,12 +87,7 @@ export function EnergiaZileiClient() {
         {/* Main Energy Card */}
         <EnergiaZileiCard
           energia={energia}
-          moonPhase={{
-            phaseKey: data.moonPhase.phase as "new" | "waxing_crescent" | "first_quarter" | "waxing_gibbous" | "full" | "waning_gibbous" | "last_quarter" | "waning_crescent",
-            labelRo: data.moonPhase.labelRo,
-            emoji: data.moonPhase.emoji,
-            ageDays: data.moonPhase.ageInDays,
-          }}
+          moonPhase={data.moonPhase}
         />
 
         {/* CTA to Personal Biorhythm */}
