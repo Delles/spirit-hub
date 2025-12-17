@@ -135,7 +135,7 @@ export function DreamSearchHero({ className }: { className?: string }) {
                     onChange={(e) => setQuery(e.target.value)}
                     onFocus={() => query.length >= 2 && setIsOpen(true)}
                     onKeyDown={handleKeyDown}
-                    className="h-14 pl-12 pr-4 text-lg glass-card shadow-oracle-sm text-white placeholder:text-white/40 focus:border-[#9F2BFF]/40 focus:shadow-oracle rounded-2xl transition-all duration-200"
+                    className="h-14 pl-12 pr-4 text-lg glass-card shadow-oracle-sm text-white placeholder:text-white/40 focus:border-[#9F2BFF]/40 focus:[box-shadow:0_4px_24px_rgba(0,0,0,0.3),0_1px_4px_rgba(0,0,0,0.2)] rounded-2xl transition-all duration-200"
                 />
                 {isLoading && (
                     <div className="absolute right-4 top-1/2 -translate-y-1/2">
