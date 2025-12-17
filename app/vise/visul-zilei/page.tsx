@@ -1,11 +1,8 @@
-import { VisulZileiClient } from "./client";
 import type { Metadata } from "next";
-import { getDailyDream, getTodayISOBucharest } from "@/lib/daily-content";
-import { getBucharestDate, formatRomanianDate } from "@/lib/utils";
-import { DailyPageDateChecker } from "@/components/shared/daily-page-date-checker";
+import { VisulZileiClient } from "./client";
 
-// ISR: Revalidate every 24 hours - content changes at midnight (date checker handles it)
-export const revalidate = 86400;
+// Static page - daily content fetched client-side from Convex
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Visul Zilei - SpiritHub.ro",
@@ -17,25 +14,9 @@ export const metadata: Metadata = {
 };
 
 export default function VisulZileiPage() {
-  // Resolve daily dream server-side to keep dataset off client bundle
-  const isoDate = getTodayISOBucharest();
-  const dailyDream = getDailyDream(isoDate);
-  const romanianDate = formatRomanianDate(getBucharestDate());
-
-  // Map to DreamSymbol interface expected by card
-  const mappedSymbol = {
-    id: dailyDream.slug,
-    name: dailyDream.name,
-    slug: dailyDream.slug,
-    category: dailyDream.category,
-    interpretation: dailyDream.fullInterpretation,
-    shortDescription: dailyDream.shortMeaning,
-  };
-
   return (
     <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
-        <DailyPageDateChecker serverDate={isoDate} />
         {/* Page Introduction */}
         <div className="space-y-4 text-center">
           <h2 className="text-3xl font-bold text-white">Visul Zilei de Astăzi</h2>
@@ -45,10 +26,9 @@ export default function VisulZileiPage() {
           </p>
         </div>
 
-        {/* Client Component with Daily Dream */}
-        <VisulZileiClient dailyDream={mappedSymbol} romanianDate={romanianDate} />
+        {/* Client Component fetches from Convex */}
+        <VisulZileiClient />
       </div>
     </div>
   );
 }
-

@@ -1,23 +1,66 @@
 "use client";
 
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { EnergiaZileiCard } from "@/components/bioritm/energia-zilei-card";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import type { EnergiaZileiData } from "@/lib/energia-zilei";
-import type { MoonPhaseData } from "@/lib/moon-phase";
 import { Calculator, ArrowRight, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-interface EnergiaZileiClientProps {
-  /** Pre-computed energia data from server */
-  energia: EnergiaZileiData;
-  /** Pre-computed moon phase from server */
-  moonPhase: MoonPhaseData;
-  /** Pre-formatted Romanian date string from server */
-  romanianDate: string;
+/**
+ * Loading skeleton
+ */
+function LoadingSkeleton() {
+  return (
+    <div className="py-8">
+      <div className="mx-auto max-w-4xl space-y-8">
+        <div className="h-10 w-48 bg-white/10 rounded animate-pulse" />
+        <div className="space-y-4 text-center">
+          <div className="h-9 w-64 mx-auto bg-white/10 rounded animate-pulse" />
+          <div className="h-6 w-96 mx-auto bg-white/10 rounded animate-pulse" />
+        </div>
+        <div className="h-96 bg-white/5 rounded-xl animate-pulse" />
+      </div>
+    </div>
+  );
 }
 
-export function EnergiaZileiClient({ energia, moonPhase, romanianDate }: EnergiaZileiClientProps) {
+/**
+ * Format date in Romanian
+ */
+function formatRomanianDate(dateStr: string): string {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const formatted = date.toLocaleDateString("ro-RO", options);
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+}
+
+export function EnergiaZileiClient() {
+  const data = useQuery(api.daily.getDailyContent);
+
+  // Loading state
+  if (!data) {
+    return <LoadingSkeleton />;
+  }
+
+  const romanianDate = formatRomanianDate(data.date);
+
+  // Map Convex energia data to the expected type
+  // Spread arrays to convert from readonly to mutable
+  const energia = {
+    ...data.energiaZilei,
+    tips: [...data.energiaZilei.tips],
+    toEmbrace: [...data.energiaZilei.toEmbrace],
+    toAvoid: [...data.energiaZilei.toAvoid],
+  };
+
   return (
     <div className="py-8">
       <div className="mx-auto max-w-4xl space-y-8">
@@ -43,7 +86,15 @@ export function EnergiaZileiClient({ energia, moonPhase, romanianDate }: Energia
         </div>
 
         {/* Main Energy Card */}
-        <EnergiaZileiCard energia={energia} moonPhase={moonPhase} />
+        <EnergiaZileiCard
+          energia={energia}
+          moonPhase={{
+            phaseKey: data.moonPhase.phase as "new" | "waxing_crescent" | "first_quarter" | "waxing_gibbous" | "full" | "waning_gibbous" | "last_quarter" | "waning_crescent",
+            labelRo: data.moonPhase.labelRo,
+            emoji: data.moonPhase.emoji,
+            ageDays: data.moonPhase.ageInDays,
+          }}
+        />
 
         {/* CTA to Personal Biorhythm */}
         <Card className="p-6 space-y-6">
@@ -81,4 +132,3 @@ export function EnergiaZileiClient({ energia, moonPhase, romanianDate }: Energia
     </div>
   );
 }
-

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { ConvexClientProvider } from "./convex-provider";
 
 
 const inter = Inter({
@@ -54,8 +55,11 @@ export default function RootLayout({
   return (
     <html lang="ro" className="dark" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
-        {children}
+        <ConvexClientProvider>
+          {children}
+        </ConvexClientProvider>
       </body>
     </html>
   );
 }
+

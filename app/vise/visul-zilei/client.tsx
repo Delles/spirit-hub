@@ -1,23 +1,75 @@
 /**
  * Daily Dream Client Component
  *
- * Displays a deterministically selected dream symbol for the current day.
- * Receives the resolved symbol from the server component.
+ * Fetches the daily dream from Convex and displays it.
  */
 "use client";
 
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { DreamDetailCard } from "@/components/vise/dream-detail-card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import type { DreamSymbol } from "@/lib/dreams";
+import { getAllSymbols } from "@/lib/dream-data";
 
-interface Props {
-  dailyDream: DreamSymbol;
-  romanianDate: string;
+/**
+ * Loading skeleton
+ */
+function LoadingSkeleton() {
+  return (
+    <div className="py-8">
+      <div className="max-w-3xl mx-auto px-4 space-y-8">
+        <div className="h-10 w-48 bg-white/10 rounded animate-pulse" />
+        <div className="text-center space-y-3 pb-4">
+          <div className="h-6 w-32 mx-auto bg-white/10 rounded animate-pulse" />
+          <div className="h-10 w-64 mx-auto bg-white/10 rounded animate-pulse" />
+        </div>
+        <div className="h-96 bg-white/5 rounded-2xl animate-pulse" />
+      </div>
+    </div>
+  );
 }
 
-export function VisulZileiClient({ dailyDream, romanianDate }: Props) {
+/**
+ * Format date in Romanian
+ */
+function formatRomanianDate(dateStr: string): string {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const formatted = date.toLocaleDateString("ro-RO", options);
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+}
+
+export function VisulZileiClient() {
+  const data = useQuery(api.daily.getDailyContent);
+
+  // Loading state
+  if (!data) {
+    return <LoadingSkeleton />;
+  }
+
+  // Get dream from static data using index from Convex
+  const allSymbols = getAllSymbols();
+  const dailyDream = allSymbols[data.dailyDreamIndex];
+  const romanianDate = formatRomanianDate(data.date);
+
+  // Map to DreamSymbol interface expected by card
+  const mappedSymbol = {
+    id: dailyDream.slug,
+    name: dailyDream.name,
+    slug: dailyDream.slug,
+    category: dailyDream.category,
+    interpretation: dailyDream.fullInterpretation,
+    shortDescription: dailyDream.shortMeaning,
+  };
+
   return (
     <div className="py-8">
       <div className="max-w-3xl mx-auto px-4 space-y-8">
@@ -47,7 +99,7 @@ export function VisulZileiClient({ dailyDream, romanianDate }: Props) {
 
         {/* Dream Card Container */}
         <div className="bg-[#1A1A2E]/30 p-1 rounded-2xl border border-white/5 shadow-2xl backdrop-blur-sm">
-          <DreamDetailCard symbol={dailyDream} />
+          <DreamDetailCard symbol={mappedSymbol} />
         </div>
 
         {/* Footer Actions */}

@@ -1,11 +1,16 @@
-import { DailyWidgetData } from "@/lib/daily-widget-server";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+interface DailyDreamData {
+  name: string;
+  category: string;
+  shortDescription: string;
+}
+
 interface DreamWidgetProps {
-  data: DailyWidgetData["dailyDream"];
+  data: DailyDreamData | null;
   className?: string;
 }
 
@@ -26,14 +31,14 @@ export function DreamWidget({ data, className }: DreamWidgetProps) {
         className
       )}
     >
-      
+
       {/* Top Content */}
       <div className="relative z-10 space-y-4 md:space-y-6">
         <div className="space-y-3 md:space-y-4">
           <Badge className="bg-[#9F2BFF]/20 text-[#E0E0E0] hover:bg-[#9F2BFF]/30 border-[#9F2BFF]/40 backdrop-blur-md">
             Simbolul Viselor
           </Badge>
-          
+
           <div>
             <span className="text-xs md:text-sm text-white/60 font-medium uppercase tracking-wider block mb-1">
               Visul Zilei
@@ -51,8 +56,8 @@ export function DreamWidget({ data, className }: DreamWidgetProps) {
 
       {/* Bottom Action */}
       <div className="relative z-10">
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           className="rounded-full bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white backdrop-blur-md w-auto px-6 h-9 text-xs uppercase tracking-wider transition-all duration-300 hover:border-[#9F2BFF]/50"
         >
           Dicționar Vise

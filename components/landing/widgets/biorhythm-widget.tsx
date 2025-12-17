@@ -1,9 +1,18 @@
-import { DailyWidgetData } from "@/lib/daily-widget-server";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
+interface EnergiaZileiWidgetData {
+  dayName: string;
+  theme: string;
+  shortHint: string;
+  energyLevel: number;
+  dominantEnergy: string;
+  color: string;
+  planetSymbol: string;
+}
+
 interface BiorhythmWidgetProps {
-  data: DailyWidgetData["energiaZilei"];
+  data: EnergiaZileiWidgetData | null;
   className?: string;
 }
 
@@ -23,7 +32,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
     let path = `M0 ${centerY - func(0 + phaseShift) * amplitude}`;
     for (let x = 1; x <= width; x++) {
       // 2 full cycles across the width (4PI)
-      const angle = (x / width) * Math.PI * 4; 
+      const angle = (x / width) * Math.PI * 4;
       const y = centerY - func(angle + phaseShift) * amplitude;
       path += ` L${x} ${y.toFixed(2)}`;
     }
@@ -45,14 +54,14 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
     >
       {/* Mobile: Fully stacked | Desktop: Side-by-side with wave */}
       <div className="relative z-10 flex flex-col md:flex-row h-full">
-        
+
         {/* Text Content */}
         <div className="w-full md:w-1/2 flex flex-col justify-between md:pr-4">
           {/* Title badge */}
           <h3 className="font-medium text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4 transition-colors duration-300" style={{ color }}>
             Energia Zilei
           </h3>
-          
+
           {/* Theme with planet symbol */}
           <h4 className="text-white font-bold text-xl md:text-2xl font-heading leading-tight flex items-center gap-2 mb-2 md:mb-4">
             <span className="text-lg md:text-xl">{planetSymbol}</span>
@@ -66,9 +75,9 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
 
           {/* Energy level */}
           <div className="flex items-baseline gap-2">
-            <span 
-              className="text-4xl md:text-5xl font-bold tracking-tight" 
-              style={{ 
+            <span
+              className="text-4xl md:text-5xl font-bold tracking-tight"
+              style={{
                 color,
                 textShadow: `0 0 20px ${color}66`
               }}
@@ -84,7 +93,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
         {/* Wave Visualization - Hidden on mobile, visible on desktop */}
         <div className="hidden md:flex w-1/2 relative items-center justify-end opacity-60 group-hover:opacity-100 transition-opacity duration-500">
           <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible" style={{ transform: 'scale(1.5) translateX(10%)' }}>
-             <defs>
+            <defs>
               <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="transparent" />
                 <stop offset="20%" stopColor={color} stopOpacity="0.2" />
@@ -93,20 +102,20 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
                 <stop offset="100%" stopColor="transparent" />
               </linearGradient>
             </defs>
-            
+
             {/* Sine wave */}
-            <path 
+            <path
               d={generateWavePath(Math.sin, 0)}
-              fill="none" 
+              fill="none"
               stroke={color}
               strokeWidth="1"
               className="drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             />
 
             {/* Cosine wave */}
-             <path 
+            <path
               d={generateWavePath(Math.cos, 0)}
-              fill="none" 
+              fill="none"
               stroke="url(#waveGradient)"
               strokeWidth="1"
               opacity="0.7"
