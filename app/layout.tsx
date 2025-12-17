@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Cinzel } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "./convex-provider";
 
@@ -10,7 +10,7 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
-const playfair = Playfair_Display({
+const cinzel = Cinzel({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["700"],
@@ -54,7 +54,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ro" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased`}>
         <ConvexClientProvider>
           {children}
         </ConvexClientProvider>

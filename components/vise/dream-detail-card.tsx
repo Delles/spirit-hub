@@ -69,11 +69,13 @@ export function DreamDetailCard({
   const shareTitle = `Interpretare vis: ${symbol.name}`;
 
   return (
-    <Card className={cn("w-full", className)}>
+    <Card className={cn("w-full glass-card", className)}>
       <CardHeader className="px-6 pt-6 pb-0">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 space-y-2">
-            <CardTitle className="text-2xl text-white">{symbol.name}</CardTitle>
+            <CardTitle className="text-2xl md:text-3xl text-white font-heading">
+              {symbol.name}
+            </CardTitle>
             <Badge
               className={cn("w-fit", categoryColors.text, categoryColors.bg, "border-transparent")}
             >
@@ -96,7 +98,18 @@ export function DreamDetailCard({
       </CardHeader>
 
       <CardContent className="space-y-6 px-6 pb-6">
-        <div className="max-w-none">
+        {/* Short Meaning - matching daily dream card style */}
+        {symbol.shortDescription && (
+          <p className="text-sm md:text-base text-[#E0E0E0]/80 leading-relaxed line-clamp-3 border-l-2 border-[#9F2BFF]/50 pl-3 italic mt-4">
+            {symbol.shortDescription}
+          </p>
+        )}
+
+        {/* Full Interpretation */}
+        <div className="max-w-none pt-2">
+          <h3 className="text-sm font-medium text-white/50 mb-3">
+            Interpretare completă
+          </h3>
           <p className="text-[#E0E0E0] leading-relaxed whitespace-pre-line">
             {symbol.interpretation}
           </p>
@@ -109,3 +122,4 @@ export function DreamDetailCard({
     </Card>
   );
 }
+

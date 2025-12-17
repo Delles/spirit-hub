@@ -92,20 +92,18 @@ export function VisulZileiClient() {
           <div className="inline-block px-3 py-1 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/30 backdrop-blur-sm">
             <span className="text-sm font-medium text-[#c084fc] uppercase tracking-wider">Interpretare pentru</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight capitalize">
+          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight capitalize font-heading">
             {romanianDate}
           </h1>
         </div>
 
-        {/* Dream Card Container */}
-        <div className="bg-[#1A1A2E]/30 p-1 rounded-2xl border border-white/5 shadow-2xl backdrop-blur-sm">
-          <DreamDetailCard symbol={mappedSymbol} />
-        </div>
+        {/* Dream Card - no wrapper to avoid double glass effect */}
+        <DreamDetailCard symbol={mappedSymbol} />
 
         {/* Footer Actions */}
         <div className="flex justify-center pt-8 border-t border-white/5">
           <Link href="/vise">
-            <Button className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
+            <Button className="gap-2 bg-[#9F2BFF] hover:bg-[#8B24E0] text-white px-6">
               Caută un alt vis specific
             </Button>
           </Link>

@@ -47,7 +47,7 @@ export function DreamSymbolContent({ dream }: DreamSymbolContentProps) {
 
         {/* CTA Section - Search More Dreams */}
         <div className="mt-8">
-          <Card className="p-6 bg-gradient-to-br from-[#9F2BFF]/10 to-[#4F46E5]/10 border-[#9F2BFF]/20">
+          <Card className="p-6 glass-card">
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <div className="p-3 rounded-full bg-[#9F2BFF]/20 shrink-0">
                 <Search className="h-5 w-5 text-[#9F2BFF]" />
@@ -77,7 +77,7 @@ export function DreamSymbolContent({ dream }: DreamSymbolContentProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Numerologie CTA */}
             <Link href="/numerologie" className="block group">
-              <Card className="p-5 h-full bg-white/5 border-white/10 hover:border-[#9F2BFF]/40 hover:bg-white/10 transition-all">
+              <Card className="p-5 h-full glass-card hover:border-[#9F2BFF]/40 transition-all">
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/30 shrink-0 group-hover:bg-[#9F2BFF]/20 transition-colors">
                     <Sparkles className="h-5 w-5 text-[#9F2BFF]" />
@@ -100,7 +100,7 @@ export function DreamSymbolContent({ dream }: DreamSymbolContentProps) {
 
             {/* Bioritm CTA */}
             <Link href="/bioritm" className="block group">
-              <Card className="p-5 h-full bg-white/5 border-white/10 hover:border-[#9F2BFF]/40 hover:bg-white/10 transition-all">
+              <Card className="p-5 h-full glass-card hover:border-[#9F2BFF]/40 transition-all">
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/30 shrink-0 group-hover:bg-[#9F2BFF]/20 transition-colors">
                     <Activity className="h-5 w-5 text-[#9F2BFF]" />

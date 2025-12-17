@@ -19,7 +19,7 @@ export default function VisulZileiPage() {
       <div className="mx-auto max-w-4xl space-y-8">
         {/* Page Introduction */}
         <div className="space-y-4 text-center">
-          <h2 className="text-3xl font-bold text-white">Visul Zilei de Astăzi</h2>
+          <h2 className="text-3xl font-bold text-white font-heading">Visul Zilei de Astăzi</h2>
           <p className="text-lg text-[#E0E0E0] leading-relaxed">
             Descoperă simbolul care îți ghidează pașii astăzi. Chiar dacă nu l-ai visat, mesajul său
             îți poate oferi un răspuns sau o nouă perspectivă asupra situațiilor tale actuale.

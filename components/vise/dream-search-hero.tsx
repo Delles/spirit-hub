@@ -135,7 +135,7 @@ export function DreamSearchHero({ className }: { className?: string }) {
                     onChange={(e) => setQuery(e.target.value)}
                     onFocus={() => query.length >= 2 && setIsOpen(true)}
                     onKeyDown={handleKeyDown}
-                    className="h-14 pl-12 pr-4 text-lg bg-black/20 backdrop-blur-sm border-white/10 text-white placeholder:text-white/40 focus:border-[#9F2BFF]/50 focus:bg-black/30 rounded-2xl shadow-xl transition-all duration-200"
+                    className="h-14 pl-12 pr-4 text-lg glass-card shadow-oracle-sm text-white placeholder:text-white/40 focus:border-[#9F2BFF]/40 focus:shadow-oracle rounded-2xl transition-all duration-200"
                 />
                 {isLoading && (
                     <div className="absolute right-4 top-1/2 -translate-y-1/2">
@@ -146,7 +146,7 @@ export function DreamSearchHero({ className }: { className?: string }) {
 
             {/* Dropdown Results */}
             {isOpen && results.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-3 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full left-0 right-0 mt-3 glass-card shadow-oracle rounded-2xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                     {/* Results Header */}
                     <div className="px-4 py-3 border-b border-white/5">
                         <span className="text-xs font-medium text-white/50 uppercase tracking-wider">
@@ -229,7 +229,7 @@ export function DreamSearchHero({ className }: { className?: string }) {
 
             {/* No Results State */}
             {isOpen && query.length >= 2 && results.length === 0 && !isLoading && (
-                <div className="absolute top-full left-0 right-0 mt-3 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl z-50 text-center animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full left-0 right-0 mt-3 p-6 glass-card shadow-oracle rounded-2xl z-50 text-center animate-in fade-in slide-in-from-top-2 duration-200">
                     <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-white/5 flex items-center justify-center">
                         <Search className="h-5 w-5 text-white/30" />
                     </div>

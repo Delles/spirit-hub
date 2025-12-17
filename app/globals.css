@@ -66,19 +66,23 @@
 
 .dark {
   /* Mystical dark background inspired by GalaxyLine */
-  --background: oklch(0.12 0.02 280); /* Deep purple-tinted black */
+  --background: oklch(0.12 0.02 280);
+  /* Deep purple-tinted black */
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.18 0.03 280 / 0.5); /* Semi-transparent purple card */
+  --card: oklch(0.18 0.03 280 / 0.5);
+  /* Semi-transparent purple card */
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0.02 280);
   --popover-foreground: oklch(0.985 0 0);
 
   /* Vibrant purple accent - #9F2BFF from design.json */
-  --primary: oklch(0.6 0.28 300); /* Vivid purple */
+  --primary: oklch(0.6 0.28 300);
+  /* Vivid purple */
   --primary-foreground: oklch(0.985 0 0);
 
   /* Secondary blue accent - #4D5FFF from design.json */
-  --secondary: oklch(0.55 0.24 260); /* Vivid blue */
+  --secondary: oklch(0.55 0.24 260);
+  /* Vivid blue */
   --secondary-foreground: oklch(0.985 0 0);
 
   --muted: oklch(0.269 0.02 280);
@@ -92,8 +96,10 @@
   --input: oklch(1 0 0 / 0.12);
   --ring: oklch(0.6 0.28 300 / 0.5);
 
-  --chart-1: oklch(0.6 0.28 300); /* Purple */
-  --chart-2: oklch(0.55 0.24 260); /* Blue */
+  --chart-1: oklch(0.6 0.28 300);
+  /* Purple */
+  --chart-2: oklch(0.55 0.24 260);
+  /* Blue */
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
@@ -112,10 +118,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     background-color: #0C0B10;
-    background-image: 
+    background-image:
       /* Slightly dimmed overlay for better text contrast */
       radial-gradient(circle at center, rgba(12, 11, 16, 0.5) 0%, #0C0B10 95%),
       /* The user-provided background image */
@@ -127,11 +134,64 @@
   }
 }
 
+/* Glass effect utilities for Dream Oracle aesthetic */
+.glass-card {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-subtle {
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Soft shadow for mobile-friendly depth (no harsh glow) */
+.shadow-oracle {
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-oracle-sm {
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus ring with subtle purple tint - mobile friendly */
+.focus-oracle:focus,
+.focus-oracle:focus-visible {
+  outline: none;
+  border-color: rgba(159, 43, 255, 0.5);
+  box-shadow:
+    0 0 0 3px rgba(159, 43, 255, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Insight card styling for shortMeaning quotes */
+.insight-card {
+  background: linear-gradient(135deg,
+      rgba(159, 43, 255, 0.08) 0%,
+      rgba(79, 70, 229, 0.08) 100%);
+  border: 1px solid rgba(159, 43, 255, 0.25);
+  border-radius: 1rem;
+}
+
+/* Heading font utility */
+.font-heading {
+  font-family: var(--font-heading), serif;
+}
+
 /* Custom animations for landing page */
 @keyframes fade-in {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -169,17 +229,21 @@
 /* Hide scrollbar for calendar year/month dropdowns */
 .rdp-dropdown select,
 [class*="rdp-dropdown"] select {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .rdp-dropdown select::-webkit-scrollbar,
 [class*="rdp-dropdown"] select::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 /* Respect user's motion preferences for accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
