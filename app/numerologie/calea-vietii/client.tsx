@@ -2,7 +2,7 @@
 
 import { useMemo, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { getInterpretation } from "@/lib/interpretations";
+import { getInterpretation, type LifePathInterpretation } from "@/lib/interpretations";
 import { calculateLifePath } from "@/lib/numerology";
 import { NumerologyForm, type NumerologyFormData } from "@/components/numerologie/numerology-form";
 import { LifePathCard } from "@/components/numerologie/life-path-card";
@@ -51,7 +51,7 @@ export default function CaleaVietiiClient() {
   // Query interpretation from static library
   const interpretation = useMemo(() => {
     if (!shouldQueryInterpretation || lifePathNumber === null) return undefined;
-    const result = getInterpretation('life-path', lifePathNumber);
+    const result = getInterpretation<LifePathInterpretation>('life-path', lifePathNumber);
     // If not found, return null to show error state, mirroring a missing backend record
     return result || null;
   }, [shouldQueryInterpretation, lifePathNumber]);
@@ -129,11 +129,7 @@ export default function CaleaVietiiClient() {
 
             <LifePathCard
               number={lifePathNumber}
-              interpretation={{
-                title: interpretation.title,
-                description: interpretation.description,
-                fullText: interpretation.fullText,
-              }}
+              interpretation={interpretation}
               birthDate={birthDate}
             />
 

@@ -1,62 +1,401 @@
 {
     "1": {
-        "title": "Lider Natural",
-        "description": "Ești un pionier independent, cu spirit inovator și dorință de a conduce.",
-        "fullText": "Calea ta în viață este marcată de independență, curaj și dorința de a fi primul. Ești un lider natural, cu o energie puternică care te împinge să inițiezi proiecte noi și să deschizi drumuri neexplorate. Ai o minte creativă și inovatoare, fiind mereu în căutarea de soluții originale.\n\nPersonalitatea ta este caracterizată de determinare și ambiție. Nu îți place să urmezi mulțimea - preferi să creezi propriul tău drum. Ești independent și ai nevoie de libertate pentru a-ți exprima individualitatea. Curajul tău te face să înfrunți provocările cu încredere, chiar dacă alții ar ezita.\n\nÎn relațiile tale, poți fi uneori prea autoritar sau impulsiv. Învață să asculți și să colaborezi cu ceilalți, fără a-ți pierde din vedere viziunea ta. Scopul tău în viață este să conduci prin exemplu, să inspiri pe alții și să aduci schimbări pozitive în lume prin inițiativele tale curajoase.\n\nPunctele tale forte includ: leadership natural, creativitate, curaj, determinare și capacitatea de a începe lucruri noi. Provocările tale sunt: tendința de a fi prea autoritar, impaciența, dificultatea de a lucra în echipă și riscul de a deveni egocentric."
+        "theme": {
+            "primary": "from-orange-500 to-red-600",
+            "accent": "text-orange-600",
+            "bg_soft": "bg-orange-50"
+        },
+        "hero": {
+            "icon": "Flame",
+            "title": "Pionierul",
+            "subtitle": "Cifra Destinului 1",
+            "headline": "Ești scânteia care aprinde lumea."
+        },
+        "tags": [
+            "Leadership",
+            "Inovație",
+            "Curaj Pur",
+            "Independență"
+        ],
+        "content": {
+            "main_text": "Tu ești **Începutul**. Energia ta este un motor V12 care nu așteaptă permisiunea nimănui; te-ai născut să conduci, nu să urmezi. Totuși, această independență vine adesea cu o luptă interioară: sentimentul că ești singur împotriva tuturor sau teama că, dacă te oprești, totul se va prăbuși. Misiunea ta reală nu este doar să ajungi primul, ci să ai curajul de a sparge tiparele vechi și de a deschide drumuri pe care alții nici nu îndrăznesc să le imagineze.",
+            "dos": [
+                "Ai încredere în ideile tale 'out of the box'.",
+                "Fii primul care face pasul.",
+                "Asumă-ți riscuri calculate."
+            ],
+            "donts": [
+                "Nu lăsa nerăbdarea să te consume.",
+                "Evită să devii autoritar cu cei mai lenți.",
+                "Nu aștepta validarea celorlalți."
+            ]
+        },
+        "mantra": "Sunt arhitectul propriului meu drum."
     },
     "2": {
-        "title": "Diplomat și Cooperant",
-        "description": "Ești sensibil, intuitiv și ai un talent natural pentru mediere și colaborare.",
-        "fullText": "Calea ta în viață este marcată de sensibilitate, diplomație și dorința de armonie. Ești un mediator natural, cu o capacitate remarcabilă de a înțelege emoțiile și nevoile celorlalți. Intuiția ta puternică te ghidează în relațiile tale și te ajută să creezi punți între oameni.\n\nPersonalitatea ta este caracterizată de blândețe, răbdare și empatie. Ai un talent special pentru a lucra în echipă și pentru a crea atmosfere armonioase. Ești un ascultător excelent și știi cum să oferi sprijin emoțional celor din jur. Pacea și echilibrul sunt esențiale pentru bunăstarea ta.\n\nÎn relațiile tale, poți fi uneori prea sensibil sau dependent de aprobarea altora. Învață să îți stabilești limite sănătoase și să îți exprimi nevoile fără teamă. Scopul tău în viață este să aduci oamenii împreună, să rezolvi conflicte și să creezi armonie în toate aspectele vieții tale.\n\nPunctele tale forte includ: empatie profundă, diplomație, capacitate de colaborare, intuiție puternică și talent pentru mediere. Provocările tale sunt: sensibilitate excesivă, dificultatea de a lua decizii, tendința de a evita conflictele și riscul de a-ți neglija propriile nevoi."
+        "theme": {
+            "primary": "from-teal-400 to-blue-500",
+            "accent": "text-teal-600",
+            "bg_soft": "bg-teal-50"
+        },
+        "hero": {
+            "icon": "HeartHandshake",
+            "title": "Diplomatul",
+            "subtitle": "Cifra Destinului 2",
+            "headline": "Ești puntea care unește lumi."
+        },
+        "tags": [
+            "Empatie",
+            "Echilibru",
+            "Intuiție",
+            "Cooperare"
+        ],
+        "content": {
+            "main_text": "Tu ești **Pacea** în mijlocul furtunii. Ai superputerea rară de a simți emoțiile celorlalți înainte ca ei să le rostească, fiind liantul care ține lucrurile unite. Însă, provocarea ta majoră este să nu te pierzi pe tine însuți încercând să mulțumești pe toată lumea sau să eviți conflictele necesare. Misiunea ta este să demonstrezi că adevărata putere nu stă în dominație, ci în cooperare, empatie și capacitatea de a aduce armonie în cele mai dificile situații.",
+            "dos": [
+                "Ascultă-ți intuiția, e GPS-ul tău.",
+                "Mediază conflictele cu grație.",
+                "Creează parteneriate strategice."
+            ],
+            "donts": [
+                "Nu te pierde în nevoile altora.",
+                "Evită să eviți confruntarea necesară.",
+                "Nu te subestima din modestie."
+            ]
+        },
+        "mantra": "În liniște și armonie găsesc adevărata putere."
     },
     "3": {
-        "title": "Creator Expresiv",
-        "description": "Ești artistic, optimist și ai un talent natural pentru comunicare și exprimare.",
-        "fullText": "Calea ta în viață este marcată de creativitate, exprimare și bucurie. Ești un artist în suflet, cu o imaginație bogată și o capacitate remarcabilă de a te exprima prin cuvinte, artă sau alte forme creative. Optimismul tău este contagios și aduci lumină în viețile celor din jur.\n\nPersonalitatea ta este caracterizată de entuziasm, sociabilitate și spontaneitate. Ai un talent natural pentru comunicare și știi cum să captivezi un public. Creativitatea ta se manifestă în tot ce faci - de la modul în care te îmbraci până la felul în care rezolvi problemele. Îți place să te distrezi și să aduci bucurie în lume.\n\nÎn relațiile tale, poți fi uneori prea superficial sau dispersat. Învață să te concentrezi pe ceea ce este cu adevărat important și să dezvolți relații mai profunde. Scopul tău în viață este să inspiri pe alții prin creativitatea ta, să aduci bucurie și să te exprimi autentic în tot ce faci.\n\nPunctele tale forte includ: creativitate abundentă, talent pentru comunicare, optimism natural, sociabilitate și capacitatea de a inspira pe alții. Provocările tale sunt: tendința de dispersare, dificultatea de concentrare, superficialitate și riscul de a nu finaliza proiectele începute."
+        "theme": {
+            "primary": "from-yellow-400 to-amber-500",
+            "accent": "text-amber-600",
+            "bg_soft": "bg-amber-50"
+        },
+        "hero": {
+            "icon": "Sparkles",
+            "title": "Artistul",
+            "subtitle": "Cifra Destinului 3",
+            "headline": "Ești culoarea într-o lume alb-negru."
+        },
+        "tags": [
+            "Expresie",
+            "Charismă",
+            "Optimism",
+            "Creativitate"
+        ],
+        "content": {
+            "main_text": "Tu ești **Vocea** universului. Prezența ta este magnetică; ai darul de a transforma cuvintele și ideile în magie pură, ridicând instant vibrația celor din jur. Dar în spatele zâmbetului, te poți lupta cu îndoiala de sine sau cu tendința de a dispersa energia în prea multe direcții, lăsând proiecte neterminate. Scopul tău suprem este să îți folosești creativitatea nu doar pentru a distra, ci pentru a inspira și a vindeca sufletele prin bucurie autentică.",
+            "dos": [
+                "Exprimă-te liber (scris, vorbit, artă).",
+                "Socializează și conectează-te.",
+                "Păstrează-ți simțul umorului."
+            ],
+            "donts": [
+                "Nu îți risipi energia în 'drama'.",
+                "Evită bârfa și superficialitatea.",
+                "Nu lăsa critica să îți stingă lumina."
+            ]
+        },
+        "mantra": "Bucuria mea este un dar pentru lume."
     },
     "4": {
-        "title": "Constructor Practic",
-        "description": "Ești disciplinat, organizat și ai un talent pentru a construi fundații solide.",
-        "fullText": "Calea ta în viață este marcată de stabilitate, disciplină și muncă asiduă. Ești un constructor natural, cu o capacitate remarcabilă de a crea structuri solide și durabile. Ai o minte practică și organizată, fiind mereu concentrat pe detalii și pe realizarea obiectivelor tale pas cu pas.\n\nPersonalitatea ta este caracterizată de responsabilitate, loialitate și perseverență. Ai o etică de muncă impresionantă și nu te dai bătut în fața obstacolelor. Îți place ordinea și predictibilitatea, iar ceilalți se pot baza pe tine în orice situație. Ești pragmatic și preferi soluțiile testate în timp.\n\nÎn relațiile tale, poți fi uneori prea rigid sau rezistent la schimbare. Învață să fii mai flexibil și să accepți că nu totul poate fi controlat sau planificat. Scopul tău în viață este să construiești fundații solide pentru tine și pentru ceilalți, să creezi stabilitate și să lași o moștenire durabilă.\n\nPunctele tale forte includ: disciplină puternică, organizare excelentă, loialitate, perseverență și capacitatea de a construi lucruri durabile. Provocările tale sunt: rigiditate, rezistență la schimbare, tendința de a fi prea serios și dificultatea de a te relaxa."
+        "theme": {
+            "primary": "from-emerald-600 to-green-700",
+            "accent": "text-emerald-700",
+            "bg_soft": "bg-emerald-50"
+        },
+        "hero": {
+            "icon": "ShieldCheck",
+            "title": "Constructorul",
+            "subtitle": "Cifra Destinului 4",
+            "headline": "Ești stânca pe care se poate construi orice."
+        },
+        "tags": [
+            "Stabilitate",
+            "Disciplină",
+            "Muncă",
+            "Structură"
+        ],
+        "content": {
+            "main_text": "Tu ești **Structura**. Într-o lume haotică, tu aduci ordine, claritate și o stabilitate pe care toți se pot baza. Adesea însă, poți simți că viața este o serie nesfârșită de responsabilități, sau te poți bloca în propria rigiditate de teama schimbării. Misiunea ta este să construiești fundații solide pentru viitor, demonstrând că disciplina și răbdarea sunt singurele unelte care pot transforma visurile mari în realitate tangibilă.",
+            "dos": [
+                "Planifică pe termen lung.",
+                "Organizează-ți mediul pentru eficiență.",
+                "Fii mândru de disciplina ta."
+            ],
+            "donts": [
+                "Nu deveni rigid în gândire.",
+                "Evită să muncești până la epuizare.",
+                "Nu uita să te mai și distrezi."
+            ]
+        },
+        "mantra": "Cu răbdare și efort, construiesc un viitor solid."
     },
     "5": {
-        "title": "Aventurier Liber",
-        "description": "Ești adaptabil, curios și ai o dorință puternică de libertate și experiențe noi.",
-        "fullText": "Calea ta în viață este marcată de libertate, aventură și schimbare constantă. Ești un spirit liber, cu o curiozitate insațiabilă și o dorință puternică de a explora tot ce viața are de oferit. Adaptabilitatea ta remarcabilă te ajută să prosperi în orice situație nouă.\n\nPersonalitatea ta este caracterizată de versatilitate, energie și deschidere către nou. Îți place să călătorești, să cunoști oameni noi și să încerci lucruri diferite. Rutina te sufocă - ai nevoie de varietate și stimulare constantă. Ești un comunicator excelent și te adaptezi cu ușurință la orice mediu.\n\nÎn relațiile tale, poți fi uneori prea neangajat sau instabil. Învață să găsești un echilibru între dorința ta de libertate și nevoia de conexiuni profunde. Scopul tău în viață este să experimentezi tot ce viața are de oferit, să îți folosești libertatea cu înțelepciune și să inspiri pe alții să își depășească limitele.\n\nPunctele tale forte includ: adaptabilitate remarcabilă, curiozitate naturală, versatilitate, spirit aventuros și capacitatea de a te reinventa. Provocările tale sunt: instabilitate, dificultatea de angajament, tendința de dispersare și riscul de a fugi de responsabilități."
+        "theme": {
+            "primary": "from-blue-500 to-cyan-400",
+            "accent": "text-blue-600",
+            "bg_soft": "bg-blue-50"
+        },
+        "hero": {
+            "icon": "Wind",
+            "title": "Exploratorul",
+            "subtitle": "Cifra Destinului 5",
+            "headline": "Ești vântul schimbării și al libertății."
+        },
+        "tags": [
+            "Libertate",
+            "Aventură",
+            "Adaptabilitate",
+            "Senzorial"
+        ],
+        "content": {
+            "main_text": "Tu ești **Libertatea** întruchipată. Curiozitatea este combustibilul tău, iar rutina este singurul inamic de care te temi cu adevărat. Provocarea ta este neliniștea constantă și tendința de a fugi de angajamente atunci când lucrurile devin prea previzibile sau dificile. Ești aici să experimentezi tot ce are viața de oferit și să le arăți celorlalți că schimbarea nu este ceva de temut, ci singura cale reală spre evoluție.",
+            "dos": [
+                "Îmbrățișează schimbarea și noul.",
+                "Călătorește și explorează culturi.",
+                "Fii flexibil și adaptabil."
+            ],
+            "donts": [
+                "Nu fugi de responsabilități.",
+                "Evită excesele distructive.",
+                "Nu lăsa plictiseala să dicteze haosul."
+            ]
+        },
+        "mantra": "Sunt liber să experimentez viața în toate formele ei."
     },
     "6": {
-        "title": "Protector Responsabil",
-        "description": "Ești armonios, responsabil și ai un talent natural pentru îngrijire și protecție.",
-        "fullText": "Calea ta în viață este marcată de responsabilitate, îngrijire și dorința de a crea armonie. Ești un protector natural, cu o capacitate remarcabilă de a îngriji și de a sprijini pe cei din jur. Familia și comunitatea sunt esențiale pentru tine, iar tu ești mereu prezent când cineva are nevoie.\n\nPersonalitatea ta este caracterizată de compasiune, generozitate și devotament. Ai un simț puternic al datoriei și îți asumi responsabilități cu seriozitate. Îți place să creezi un mediu frumos și armonios în jurul tău. Ești un consilier natural și oamenii vin la tine pentru sfaturi și sprijin.\n\nÎn relațiile tale, poți fi uneori prea protector sau sacrificial. Învață să îți păstrezi propria identitate și să nu te pierzi în nevoile altora. Scopul tău în viață este să îngrijești și să protejezi pe cei dragi, să creezi armonie în familie și comunitate, și să oferi dragoste necondiționată.\n\nPunctele tale forte includ: compasiune profundă, responsabilitate, talent pentru îngrijire, capacitate de a crea armonie și devotament față de cei dragi. Provocările tale sunt: tendința de a te sacrifica excesiv, dificultatea de a spune nu, perfecționism și riscul de a deveni controlant."
+        "theme": {
+            "primary": "from-pink-500 to-rose-600",
+            "accent": "text-rose-600",
+            "bg_soft": "bg-rose-50"
+        },
+        "hero": {
+            "icon": "Heart",
+            "title": "Vindecătorul",
+            "subtitle": "Cifra Destinului 6",
+            "headline": "Ești inima care ține comunitatea unită."
+        },
+        "tags": [
+            "Iubire",
+            "Familie",
+            "Responsabilitate",
+            "Armonie"
+        ],
+        "content": {
+            "main_text": "Tu ești **Protectorul**. Pentru tine, acasă nu este un loc, ci un sentiment pe care îl creezi oriunde te duci, având o capacitate infinită de a iubi. Totuși, această grijă devine o umbră când încerci să 'salvezi' oameni care nu vor să fie salvați sau când uiți complet de propriile nevoi. Misiunea ta este să aduci frumusețe și echilibru în lume, învățând lecția esențială că nu poți turna nimic dintr-o cupă goală.",
+            "dos": [
+                "Creează un mediu armonios.",
+                "Ai grijă de ceilalți, dar și de tine.",
+                "Susține dreptatea și frumosul."
+            ],
+            "donts": [
+                "Nu deveni 'salvatorul' tuturor.",
+                "Evită perfecționismul critic.",
+                "Nu îți sacrifica propria fericire."
+            ]
+        },
+        "mantra": "Iubirea mea aduce vindecare și echilibru."
     },
     "7": {
-        "title": "Căutător Spiritual",
-        "description": "Ești analitic, înțelept și ai o dorință profundă de cunoaștere și înțelegere.",
-        "fullText": "Calea ta în viață este marcată de căutare spirituală, analiză profundă și dorința de înțelegere. Ești un filosof natural, cu o minte analitică și o curiozitate profundă despre misterele vieții. Ai nevoie de timp pentru introspecție și contemplare pentru a-ți găsi pacea interioară.\n\nPersonalitatea ta este caracterizată de înțelepciune, intuiție și profunzime. Îți place să studiezi, să cercetezi și să înțelegi lucrurile la un nivel profund. Nu te mulțumești cu răspunsuri superficiale - vrei să ajungi la adevărul esențial. Ai o conexiune puternică cu spiritualitatea și lumea interioară.\n\nÎn relațiile tale, poți fi uneori prea retras sau distant. Învață să îți deschizi inima și să împărtășești înțelepciunea ta cu ceilalți. Scopul tău în viață este să cauți adevărul, să dezvolți înțelepciune spirituală și să ajuți pe alții să găsească sens și înțelegere în viața lor.\n\nPunctele tale forte includ: minte analitică puternică, intuiție profundă, înțelepciune spirituală, capacitate de introspecție și talent pentru cercetare. Provocările tale sunt: tendința de izolare, dificultatea de a te conecta emoțional, perfecționism intelectual și riscul de a te pierde în gânduri."
+        "theme": {
+            "primary": "from-violet-600 to-purple-800",
+            "accent": "text-violet-700",
+            "bg_soft": "bg-violet-50"
+        },
+        "hero": {
+            "icon": "Search",
+            "title": "Filozoful",
+            "subtitle": "Cifra Destinului 7",
+            "headline": "Ești căutătorul adevărului suprem."
+        },
+        "tags": [
+            "Analiză",
+            "Spiritualitate",
+            "Mister",
+            "Înțelepciune"
+        ],
+        "content": {
+            "main_text": "Tu ești **Misticul**. Privirea ta trece dincolo de aparențe, căutând mereu răspunsuri la marile întrebări ale existenței. Adesea te poți simți neînțeles sau izolat, preferând lumea profundă a ideilor tale în locul conexiunilor umane superficiale. Scopul tău este să unești intelectul cu intuiția și să decodezi misterele universului, aducând înțelepciune spirituală într-o lume care are disperată nevoie de profunzime.",
+            "dos": [
+                "Petrece timp în solitudine și meditație.",
+                "Studiază, cercetează, învață.",
+                "Ascultă-ți vocea interioară."
+            ],
+            "donts": [
+                "Nu te izola complet de lume.",
+                "Evită cinismul și suspiciunea.",
+                "Nu 'gândi prea mult' (overthinking)."
+            ]
+        },
+        "mantra": "Caut adevărul și găsesc liniștea în interior."
     },
     "8": {
-        "title": "Realizator Ambițios",
-        "description": "Ești puternic, ambițios și ai un talent natural pentru afaceri și realizări materiale.",
-        "fullText": "Calea ta în viață este marcată de putere, succes material și realizări impresionante. Ești un lider în lumea afacerilor, cu o capacitate remarcabilă de a transforma viziunile în realitate. Ai o înțelegere naturală a banilor și a puterii, și știi cum să le folosești pentru a crea abundență.\n\nPersonalitatea ta este caracterizată de ambiție, determinare și autoritate naturală. Ai o energie puternică și o capacitate impresionantă de muncă. Îți place să construiești imperii și să lași o moștenire materială. Ești pragmatic și orientat spre rezultate, având mereu ochii pe obiectivele tale mari.\n\nÎn relațiile tale, poți fi uneori prea concentrat pe muncă sau materialist. Învață să găsești echilibru între succes material și relații semnificative. Scopul tău în viață este să realizezi lucruri mari, să creezi abundență și să folosești puterea ta pentru a face bine în lume.\n\nPunctele tale forte includ: capacitate de leadership în afaceri, determinare puternică, înțelegere a banilor și puterii, ambiție și talent pentru realizări materiale. Provocările tale sunt: tendința de workaholism, materialism excesiv, dificultatea de a delega și riscul de a neglija viața personală."
+        "theme": {
+            "primary": "from-slate-700 to-stone-900",
+            "accent": "text-stone-700",
+            "bg_soft": "bg-stone-50"
+        },
+        "hero": {
+            "icon": "Gem",
+            "title": "Liderul",
+            "subtitle": "Cifra Destinului 8",
+            "headline": "Ești manifestarea puterii și a abundenței."
+        },
+        "tags": [
+            "Putere",
+            "Succes",
+            "Bani",
+            "Ambiție"
+        ],
+        "content": {
+            "main_text": "Tu ești **Manifestarea**. Înțelegi lumea materială, puterea și resursele mai bine decât oricine, având un potențial imens de realizare. Lupta ta interioară este adesea între dorința de succes și teama de a nu fi suficient, sau riscul de a defini valoarea ta doar prin ceea ce ai. Misiunea ta nu este doar să acumulezi, ci să folosești puterea și abundența pentru a crea oportunitați și valoare reală pentru ceilalți.",
+            "dos": [
+                "Asumă-ți roluri de conducere.",
+                "Gestionează banii cu înțelepciune.",
+                "Fii corect și integru în afaceri."
+            ],
+            "donts": [
+                "Nu deveni obsedat de material.",
+                "Evită să calci pe cadavre.",
+                "Nu neglija latura spirituală."
+            ]
+        },
+        "mantra": "Sunt un canal de abundență și putere pozitivă."
     },
     "9": {
-        "title": "Umanitar Generos",
-        "description": "Ești generos, vizionar și ai o dorință puternică de a servi umanitatea.",
-        "fullText": "Calea ta în viață este marcată de compasiune universală, generozitate și dorința de a face lumea un loc mai bun. Ești un umanitar natural, cu o capacitate remarcabilă de a înțelege și de a empatiza cu suferința umană. Ai o viziune largă și te preocupă binele întregii umanități.\n\nPersonalitatea ta este caracterizată de altruism, înțelepciune și idealism. Ai o inimă mare și ești mereu gata să ajuți pe cei în nevoie. Ești un vizionar care vede dincolo de limitările prezentului și lucrezi pentru un viitor mai bun. Ai talent artistic și o sensibilitate profundă față de frumusețe și suferință.\n\nÎn relațiile tale, poți fi uneori prea idealist sau dezamăgit de imperfecțiunile lumii. Învață să accepți limitările umane și să găsești bucurie în micile victorii. Scopul tău în viață este să servești umanitatea, să inspiri prin exemplul tău și să lași lumea mai bună decât ai găsit-o.\n\nPunctele tale forte includ: compasiune universală, generozitate, viziune largă, talent artistic și capacitatea de a inspira schimbări pozitive. Provocările tale sunt: idealism excesiv, tendința de a te sacrifica prea mult, dificultatea de a pune limite și riscul de dezamăgire."
+        "theme": {
+            "primary": "from-fuchsia-600 to-pink-700",
+            "accent": "text-fuchsia-700",
+            "bg_soft": "bg-fuchsia-50"
+        },
+        "hero": {
+            "icon": "Globe",
+            "title": "Umanitarul",
+            "subtitle": "Cifra Destinului 9",
+            "headline": "Ești sufletul lumii, plin de compasiune."
+        },
+        "tags": [
+            "Generozitate",
+            "Idealism",
+            "Compasiune",
+            "Finalizare"
+        ],
+        "content": {
+            "main_text": "Tu ești **Vizionarul**. Vezi lumea nu așa cum este, ci așa cum *ar putea fi*, iubind umanitatea în ansamblul ei. Provocarea ta este dezamăgirea profundă pe care o simți atunci când oamenii nu se ridică la înălțimea idealurilor tale, sau dificultatea de a da drumul trecutului. Ești aici pentru a ne învăța despre iubirea necondiționată și pentru a inspira transformarea globală prin propriul exemplu de compasiune și iertare.",
+            "dos": [
+                "Implică-te în cauze nobile.",
+                "Practică iertarea și detașarea.",
+                "Fii un exemplu de generozitate."
+            ],
+            "donts": [
+                "Nu te sacrifica până la epuizare.",
+                "Evită dezamăgirea când realitatea e dură.",
+                "Nu uita să trăiești și pentru tine."
+            ]
+        },
+        "mantra": "Lumina mea vindecă și inspiră lumea."
     },
     "11": {
-        "title": "Iluminat Spiritual",
-        "description": "Ești un maestru spiritual cu intuiție puternică și misiune de a inspira și ilumina.",
-        "fullText": "Calea ta în viață este marcată de o sensibilitate spirituală extraordinară și o intuiție profundă. Numărul 11 este primul Număr Maestru, purtând o vibrație spirituală intensă care te conectează cu planuri superioare de conștiință. Ești un canal pentru înțelepciune spirituală și ai misiunea de a ilumina calea altora.\n\nPersonalitatea ta este caracterizată de o sensibilitate extremă, viziuni profunde și o capacitate remarcabilă de a percepe adevăruri ascunse. Ai o intuiție puternică care te ghidează și te ajută să înțelegi lucruri pe care alții nu le văd. Ești un inspirator natural, iar prezența ta aduce claritate și lumină celor din jur. Ai potențialul de a fi un lider spiritual, un învățător sau un ghid pentru alții.\n\nProvocările tale sunt semnificative - energia intensă a numărului 11 poate fi copleșitoare. Poți experimenta anxietate, nervozitate sau dificultăți în a te înrădăcina în realitatea practică. Sensibilitatea ta extremă te face vulnerabil la energiile negative din jur. Există riscul de a te simți incompris sau izolat din cauza naturii tale spirituale profunde.\n\nÎn relațiile tale, ai nevoie de parteneri care să înțeleagă și să respecte natura ta spirituală. Poți fi uneori prea idealist sau detașat de realitatea practică. Învață să îți echilibrezi natura spirituală cu nevoile practice ale vieții cotidiene. Scopul tău în viață este să fii un far de lumină spirituală, să inspiri pe alții prin exemplul tău și să aduci înțelepciune superioară în lume.\n\nPunctele tale forte includ: intuiție extraordinară, sensibilitate spirituală profundă, capacitate de a inspira și ilumina, viziune clară și conexiune cu planuri superioare. Provocările tale sunt: sensibilitate extremă, tendința de anxietate, dificultatea de a te înrădăcina în realitate, riscul de izolare și presiunea misiunii spirituale.\n\nNotă: Deși numărul 11 se reduce la 2 (1+1=2), energia sa este mult mai intensă și poartă o responsabilitate spirituală mai mare. Dacă simți că energia numărului 11 este prea intensă, poți lucra și cu calitățile numărului 2 pentru echilibru."
+        "theme": {
+            "primary": "from-violet-500 via-purple-500 to-indigo-600",
+            "accent": "text-indigo-600",
+            "bg_soft": "bg-indigo-50"
+        },
+        "hero": {
+            "icon": "Zap",
+            "title": "Iluminatul",
+            "subtitle": "Număr Maestru 11",
+            "headline": "Ești canalul prin care curge inspirația divină."
+        },
+        "tags": [
+            "Viziune",
+            "Inspirație",
+            "Intuiție Supremă",
+            "Maestru"
+        ],
+        "content": {
+            "main_text": "Tu ești **Antena Divină**. Vibrația ta este electrică și intensă, având acces la idei care par venite direct din viitor. Această energie poate fi însă copleșitoare, manifestându-se prin nervozitate sau sentimentul că nu îți găsești locul în această lume pragmatică. Misiunea ta este să fii un canal de inspirație, aducând adevăruri spirituale înalte într-o formă care să ilumineze și să ghideze viața celorlalți.",
+            "dos": [
+                "Ai încredere totală în 'flash-urile' tale.",
+                "Inspiră-i pe alții prin ideile tale.",
+                "Găsește un canal creativ pentru energie."
+            ],
+            "donts": [
+                "Nu te lăsa copleșit de nervozitate.",
+                "Evită să trăiești doar în capul tău.",
+                "Nu ignora detaliile practice."
+            ],
+            "master_note": "11 este un 2 suprataxat. Când tensiunea e prea mare, întoarce-te la diplomația lui 2."
+        },
+        "mantra": "Sunt un mesager al luminii și adevărului."
     },
     "22": {
-        "title": "Constructor Maestru",
-        "description": "Ești un vizionar practic cu capacitatea de a transforma vise în realitate la scară mare.",
-        "fullText": "Calea ta în viață este marcată de o combinație unică între viziune spirituală și abilitate practică extraordinară. Numărul 22 este cel mai puternic Număr Maestru, cunoscut ca \"Constructorul Maestru\". Ai capacitatea rară de a transforma vise și viziuni spirituale în realități concrete și durabile care pot schimba lumea.\n\nPersonalitatea ta este caracterizată de o combinație remarcabilă între idealismul spiritual și pragmatismul solid. Ai viziuni mari și îndrăznețe, dar spre deosebire de alți vizionari, tu ai și capacitatea practică de a le realiza. Ești un lider natural în proiecte mari, cu o capacitate impresionantă de organizare, planificare și execuție. Poți construi \"imperii\" - fie ele afaceri, organizații sau sisteme care servesc umanitatea.\n\nProvocările tale sunt proporționale cu potențialul tău imens. Presiunea de a realiza lucruri mari poate fi copleșitoare. Riști să devii workaholic sau să te epuizezi în încercarea de a-ți manifesta viziunea. Există și pericolul de a te pierde în detaliile practice și de a uita de viziunea spirituală care te-a inspirat inițial. Așteptările înalte pe care le ai față de tine și de alții pot crea tensiune și dezamăgire.\n\nÎn relațiile tale, ai nevoie de parteneri care să înțeleagă și să susțină misiunea ta de viață. Poți fi uneori prea concentrat pe obiective și să neglijezi nevoile emoționale ale celor dragi. Învață să găsești echilibru între realizările tale materiale și viața personală. Scopul tău în viață este să construiești ceva durabil și semnificativ care să servească binele comun și să lase o moștenire pozitivă pentru generațiile viitoare.\n\nPunctele tale forte includ: viziune spirituală combinată cu abilitate practică, capacitate extraordinară de realizare, leadership în proiecte mari, organizare impecabilă și potențial de a schimba lumea. Provocările tale sunt: presiune enormă, risc de epuizare, tendința de workaholism, așteptări foarte înalte și dificultatea de a echilibra viața personală cu misiunea.\n\nNotă: Deși numărul 22 se reduce la 4 (2+2=4), energia sa este mult mai amplificată. Dacă simți că responsabilitatea este prea mare, poți lucra temporar cu calitățile numărului 4 pentru a-ți construi fundații solide înainte de a îmbrățișa pe deplin energia numărului 22."
+        "theme": {
+            "primary": "from-emerald-700 via-teal-700 to-cyan-800",
+            "accent": "text-teal-800",
+            "bg_soft": "bg-teal-50"
+        },
+        "hero": {
+            "icon": "Pyramid",
+            "title": "Maestrul Constructor",
+            "subtitle": "Număr Maestru 22",
+            "headline": "Transformi visurile imposibile în realitate."
+        },
+        "tags": [
+            "Manifestare",
+            "Putere",
+            "Scală Mare",
+            "Maestru"
+        ],
+        "content": {
+            "main_text": "Tu ești **Arhitectul Viitorului**. Ai viziunea idealistă a lui 11 combinată cu pragmatismul absolut al lui 4, o forță rară de manifestare. Greutatea pe care o simți vine din imensa responsabilitate pe care o porți; teama de a nu irosi acest potențial uriaș te poate paraliza uneori. Nu ești aici pentru proiecte mici, ci pentru a construi sisteme și structuri care vor dăinui generații întregi și vor schimba lumea.",
+            "dos": [
+                "Gândește la scară mare, globală.",
+                "Fii disciplinat și organizat.",
+                "Transformă idealismul în planuri de acțiune."
+            ],
+            "donts": [
+                "Nu te lăsa strivit de responsabilitate.",
+                "Evită obsesia pentru control.",
+                "Nu uita de latura umană a proiectelor."
+            ],
+            "master_note": "22 este un 4 amplificat. Ai grija la rigiditate și odihnește-te."
+        },
+        "mantra": "Am puterea de a manifesta orice viziune în planul fizic."
     },
     "33": {
-        "title": "Învățător Maestru",
-        "description": "Ești un maestru al compasiunii cu misiunea de a vindeca și transforma prin dragoste universală.",
-        "fullText": "Calea ta în viață este marcată de compasiune universală, dragoste necondiționată și o misiune profundă de vindecare și transformare. Numărul 33 este cel mai rar și mai evoluat Număr Maestru, cunoscut ca \"Învățătorul Maestru\" sau \"Maestrul Compasiunii\". Ai venit în această viață cu o misiune spirituală profundă de a ridica conștiința umanității prin dragoste și serviciu.\n\nPersonalitatea ta este caracterizată de o capacitate extraordinară de compasiune, empatie și înțelegere. Ai o inimă imensă și o dorință profundă de a ajuta, vindeca și transforma viețile altora. Ești un învățător natural, nu prin cuvinte, ci prin exemplul tău de viață. Prezența ta aduce vindecare și transformare celor din jur. Ai potențialul de a fi un lider spiritual, un vindecător, un artist inspirațional sau un activist pentru cauze umanitare.\n\nProvocările tale sunt intense și profunde. Energia numărului 33 este atât de puternică încât mulți oameni cu acest număr aleg să trăiască la nivelul numărului 6 (3+3=6) până când sunt pregătiți să își asume pe deplin misiunea. Riști să te sacrifici excesiv pentru alții și să îți neglijezi propriile nevoi. Sensibilitatea ta extremă la suferința din lume poate duce la epuizare emoțională sau depresie. Există pericolul de a deveni martir sau de a te pierde complet în serviciul față de alții.\n\nÎn relațiile tale, ai nevoie de parteneri care să înțeleagă profunzimea misiunii tale spirituale și să te susțină fără a profita de natura ta generoasă. Poți fi uneori prea idealist sau dezamăgit de imperfecțiunile umane. Învață să îți stabilești limite sănătoase și să practici auto-îngrijirea. Scopul tău în viață este să fii un exemplu viu de dragoste necondiționată, să vindeci și să transformi prin compasiune, și să ridici conștiința colectivă a umanității.\n\nPunctele tale forte includ: compasiune universală extraordinară, capacitate profundă de vindecare, dragoste necondiționată, talent pentru predare și inspirare, și potențial de transformare spirituală. Provocările tale sunt: risc major de sacrificiu excesiv, epuizare emoțională, tendința de a deveni martir, sensibilitate extremă la suferință și dificultatea de a pune limite.\n\nNotă: Numărul 33 este extrem de rar și puțini oameni trăiesc la acest nivel vibrator. Dacă simți că energia este prea intensă, este perfect normal să lucrezi cu calitățile numărului 6 (3+3=6) până când ești pregătit să îmbrățișezi pe deplin misiunea numărului 33. Aceasta nu este o slăbiciune, ci o înțelepciune."
+        "theme": {
+            "primary": "from-rose-500 via-pink-500 to-fuchsia-600",
+            "accent": "text-rose-700",
+            "bg_soft": "bg-rose-50"
+        },
+        "hero": {
+            "icon": "Sun",
+            "title": "Ghidul Spiritual",
+            "subtitle": "Număr Maestru 33",
+            "headline": "Ești expresia pură a iubirii necondiționate."
+        },
+        "tags": [
+            "Compasiune",
+            "Vindecare",
+            "Sacrificiu",
+            "Maestru"
+        ],
+        "content": {
+            "main_text": "Tu ești **Avatarul Iubirii**. Aceasta este vibrația compasiunii pure, un nivel de conștiință care caută să vindece tot ce atinge. Provocarea ta imensă este să nu absorbi toată suferința lumii în inima ta și să eviți capcana martiriului personal. Misiunea ta este simplă, dar profundă: să fii un far de lumină și bunătate, demonstrând că iubirea este cea mai puternică forță transformatoare din univers.",
+            "dos": [
+                "Iubește necondiționat.",
+                "Fii un mentor și un ghid blând.",
+                "Protejează-ți energia empatică."
+            ],
+            "donts": [
+                "Nu te sacrifica inutil (Sindromul Martirului).",
+                "Evită să preiei suferința lumii.",
+                "Nu uita că și tu ai nevoie de grijă."
+            ],
+            "master_note": "33 este un 6 la octavă superioară. Păstrează echilibrul emoțional."
+        },
+        "mantra": "Iubirea mea este o forță care transformă universul."
     }
 }

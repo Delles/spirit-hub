@@ -1,114 +1,186 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/shared/share-button";
-import { Sparkles } from "lucide-react";
+import {
+  Flame,
+  HeartHandshake,
+  Sparkles,
+  ShieldCheck,
+  Wind,
+  Heart,
+  Search,
+  Gem,
+  Globe,
+  Zap,
+  Pyramid,
+  Sun,
+  CheckCircle2,
+  AlertTriangle,
+  Quote,
+  Share2,
+  LucideIcon
+} from "lucide-react";
+import type { LifePathInterpretation } from "@/lib/interpretations";
 
 export interface LifePathCardProps {
   number: number;
-  interpretation: {
-    title: string;
-    description: string;
-    fullText: string;
-  };
+  interpretation: LifePathInterpretation;
   birthDate: string;
 }
 
-const masterNumbers = [11, 22, 33];
+const iconMap: Record<string, LucideIcon> = {
+  Flame,
+  HeartHandshake,
+  Sparkles,
+  ShieldCheck,
+  Wind,
+  Heart,
+  Search,
+  Gem,
+  Globe,
+  Zap,
+  Pyramid,
+  Sun
+};
 
-export function LifePathCard({ number, interpretation }: LifePathCardProps) {
-  const isMasterNumber = masterNumbers.includes(number);
+export function LifePathCard({ number, interpretation, birthDate }: LifePathCardProps) {
+  const isMasterNumber = [11, 22, 33].includes(number);
+  const IconComponent = iconMap[interpretation.hero.icon] || Sparkles;
 
-  // Get reduced number for Master Numbers
-  const getReducedNumber = (n: number): number => {
-    if (n === 11) return 2;
-    if (n === 22) return 4;
-    if (n === 33) return 6;
-    return n;
-  };
+  // Reduced number calculation for master numbers
+  const reducedNumber = number === 11 ? 2 : number === 22 ? 4 : number === 33 ? 6 : number;
 
-  const reducedNumber = isMasterNumber ? getReducedNumber(number) : null;
+  // Dynamic gradient based on theme string from JSON
+  // We'll use the theme primary gradient but with reduced opacity for the hero background
 
   return (
-    <Card className="w-full">
-      <CardHeader className="px-6 pt-6 pb-0">
-        <div className="flex items-start justify-between">
-          <div className="space-y-1">
-            <CardTitle className="text-2xl text-white">Calea Vieții</CardTitle>
-            <CardDescription className="text-[#E0E0E0]/60">
-              {interpretation.title}
-            </CardDescription>
-          </div>
-          {isMasterNumber && (
-            <Badge
-              variant="secondary"
-              className="ml-2 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border-yellow-500/30 text-yellow-200"
-            >
-              <Sparkles className="h-3 w-3 mr-1" />
-              Număr Maestru
-            </Badge>
-          )}
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        {/* Large animated number display */}
-        <div className="flex items-center justify-center py-8">
-          <div className="relative animate-in fade-in zoom-in duration-500">
-            {/* Glow effect */}
-            <div
-              className={`absolute inset-0 blur-3xl rounded-full ${
-                isMasterNumber
-                  ? "bg-gradient-to-br from-yellow-500/30 to-amber-500/30"
-                  : "bg-primary/20"
-              }`}
-            />
+    <div className="w-full space-y-6">
+      {/* Main Container with Glassmorphism */}
+      <Card className="w-full overflow-hidden border-0 bg-black/40 backdrop-blur-xl border-white/10 ring-1 ring-white/5 shadow-2xl">
 
-            {/* Number */}
-            <div
-              className={`relative text-7xl font-bold bg-clip-text text-transparent ${
-                isMasterNumber
-                  ? "bg-gradient-to-br from-yellow-400 via-amber-400 to-yellow-500"
-                  : "bg-gradient-to-br from-primary to-secondary"
-              }`}
-            >
-              {number}
+        {/* 1. HERO SECTION - Toned Down & Glassy */}
+        <div className="relative overflow-hidden p-8 pt-10 text-white">
+          {/* Subtle gradient background instead of solid block */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${interpretation.theme.primary} opacity-20`} />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/40" />
+
+          <div className="relative z-10 flex flex-col items-center text-center">
+            {/* Icon Box - Smaller & Glassy */}
+            <div className={`p-3 rounded-2xl mb-5 shadow-lg ring-1 ring-white/20 bg-gradient-to-br ${interpretation.theme.primary} bg-opacity-20 backdrop-blur-md`}>
+              <IconComponent size={32} className="text-white drop-shadow-md" />
             </div>
-          </div>
-        </div>
 
-        {/* Master Number explanation */}
-        {isMasterNumber && reducedNumber && (
-          <div className="p-4 rounded-lg bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border border-yellow-500/20">
-            <p className="text-sm text-yellow-200/90 leading-relaxed">
-              <strong>Număr Maestru {number}:</strong> Acest număr poartă o vibrație spirituală
-              intensă și o responsabilitate mai mare. Deși se reduce la {reducedNumber}, energia sa
-              este mult mai amplificată și vine cu provocări și oportunități unice.
+            {/* Subtitle - More subtle */}
+            <h2 className="text-xs font-bold tracking-[0.2em] uppercase opacity-70 mb-2">
+              {interpretation.hero.subtitle}
+            </h2>
+
+            {/* Title - Clean & Elegant */}
+            <h1 className="text-4xl font-bold mb-3 font-heading tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/80 drop-shadow-sm">
+              {interpretation.hero.title}
+            </h1>
+
+            {/* Headline - Lighter touch */}
+            <p className="text-base font-medium text-white/80 italic max-w-lg mx-auto leading-relaxed opacity-90">
+              &ldquo;{interpretation.hero.headline}&rdquo;
             </p>
           </div>
-        )}
-
-        {/* Description */}
-        <div className="space-y-2">
-          <p className="text-base text-[#E0E0E0] leading-relaxed">{interpretation.description}</p>
         </div>
 
-        {/* Full interpretation */}
-        <div className="max-w-none">
-          <div className="text-[#E0E0E0] leading-relaxed whitespace-pre-line">
-            {interpretation.fullText}
+        <div className="px-6 pb-8 relative z-20 space-y-8">
+          {/* 2. TAGS - Minimalist Pills */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {interpretation.tags.map((tag) => (
+              <Badge
+                key={tag}
+                variant="secondary"
+                className="bg-white/5 hover:bg-white/10 text-white/80 border-white/10 px-3 py-1 text-xs backdrop-blur-sm transition-all"
+              >
+                {tag}
+              </Badge>
+            ))}
+          </div>
+
+          {/* 3. MAIN INSIGHT */}
+          <div className="space-y-4">
+            <div
+              className="prose prose-invert prose-p:text-slate-300 prose-p:leading-relaxed prose-strong:text-white prose-strong:font-semibold max-w-none text-center sm:text-left"
+              dangerouslySetInnerHTML={{
+                __html: interpretation.content.main_text
+                  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                  .replace(/\*(.*?)\*/g, '<em>$1</em>')
+              }}
+            />
+          </div>
+
+          {/* 4. TACTICAL GRID - Glass Cards */}
+          <div className="grid gap-4 sm:gap-6">
+            {/* Power Up Card */}
+            <div className="rounded-xl bg-emerald-500/5 border border-emerald-500/10 p-5 backdrop-blur-sm">
+              <h3 className="font-semibold text-emerald-400 flex items-center gap-2 mb-4 text-base">
+                <CheckCircle2 className="w-4 h-4" /> Activează-ți Puterea
+              </h3>
+              <ul className="space-y-3">
+                {interpretation.content.dos.map((item, idx) => (
+                  <li key={idx} className="flex gap-3 text-sm text-slate-300 items-start">
+                    <div className="w-1 h-1 rounded-full bg-emerald-500/60 mt-2 shrink-0" />
+                    <span className="leading-relaxed opacity-90">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Warning Card */}
+            <div className="rounded-xl bg-amber-500/5 border border-amber-500/10 p-5 backdrop-blur-sm">
+              <h3 className="font-semibold text-amber-400 flex items-center gap-2 mb-4 text-base">
+                <AlertTriangle className="w-4 h-4" /> Capcane de Evitat
+              </h3>
+              <ul className="space-y-3">
+                {interpretation.content.donts.map((item, idx) => (
+                  <li key={idx} className="flex gap-3 text-sm text-slate-300 items-start">
+                    <div className="w-1 h-1 rounded-full bg-amber-500/60 mt-2 shrink-0" />
+                    <span className="leading-relaxed opacity-90">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Master Note */}
+            {interpretation.content.master_note && (
+              <div className="rounded-xl bg-indigo-500/5 border border-indigo-500/10 p-5 backdrop-blur-sm">
+                <p className="text-sm text-indigo-300 leading-relaxed italic">
+                  <span className="font-bold not-italic mr-1">🌌 Notă Maestru:</span>
+                  {interpretation.content.master_note}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* 5. MANTRA - The "Shareable" */}
+          <div className="mt-8 mb-4 text-center">
+            <div className="relative p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 ring-1 ring-white/5 overflow-hidden group">
+              <Quote className="w-6 h-6 text-white/20 mx-auto mb-4" />
+
+              <p className="relative z-10 font-serif text-lg italic leading-relaxed text-white/90 drop-shadow-md">
+                &ldquo;{interpretation.mantra}&rdquo;
+              </p>
+
+
+            </div>
+          </div>
+
+          {/* Footer Share Button */}
+          <div className="pt-4 border-t border-white/5 flex justify-center">
+            <ShareButton
+              url={typeof window !== "undefined" ? window.location.href : ""}
+              title={`Calea Vieții mele este ${number} - ${interpretation.hero.title}`}
+              text={`Am descoperit că Calea Vieții mele este ${number}: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă și tu pe SpiritHub.ro`}
+            />
           </div>
         </div>
-
-        {/* Share button */}
-        <div className="pt-4 border-t border-white/10">
-          <ShareButton
-            url={typeof window !== "undefined" ? window.location.href : ""}
-            title={`Calea Vieții mele este ${number}${isMasterNumber ? " (Număr Maestru)" : ""}`}
-            text={`Am descoperit că Calea Vieții mele este ${number}${isMasterNumber ? " - un Număr Maestru" : ""}! ${interpretation.title}. Descoperă și tu pe SpiritHub.ro`}
-          />
-        </div>
-      </CardContent>
-    </Card>
+      </Card>
+    </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useMemo, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { getInterpretation } from "@/lib/interpretations";
+import { getInterpretation, type BaseInterpretation } from "@/lib/interpretations";
 import {
   calculateLifePath,
   calculateDestinyNumber,
@@ -109,7 +109,7 @@ export default function CompatibilitateClient() {
     const level =
       scores.average >= 76 ? "100" : scores.average >= 51 ? "75" : scores.average >= 26 ? "50" : "25";
 
-    const result = getInterpretation("compatibility", level);
+    const result = getInterpretation<BaseInterpretation>("compatibility", level);
     return result || null;
   }, [scores]);
 

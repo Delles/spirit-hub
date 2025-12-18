@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Calculator, Sparkles, Heart, ArrowLeft } from "lucide-react";
-import { getInterpretation } from "@/lib/interpretations";
+import { getInterpretation, type BaseInterpretation } from "@/lib/interpretations";
 
 /**
  * Loading skeleton
@@ -50,7 +50,7 @@ export default function NumarZilnicClient() {
   }
 
   // Get interpretation from static data
-  const interpretation = getInterpretation("daily", data.dailyNumber.number);
+  const interpretation = getInterpretation<BaseInterpretation>("daily", data.dailyNumber.number);
   const romanianDate = formatRomanianDate(data.date);
 
   const dailyData = interpretation
