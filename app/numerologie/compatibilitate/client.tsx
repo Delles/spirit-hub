@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { getInterpretation, type BaseInterpretation } from "@/lib/interpretations";
+import { getInterpretation, type CompatibilityInterpretation } from "@/lib/interpretations";
 import {
   calculateLifePath,
   calculateDestinyNumber,
@@ -89,18 +89,9 @@ export default function CompatibilitateClient() {
   const hasSubmitted = calculatedData !== null;
 
   // Check if we have any params but they're invalid or incomplete
+  // NOTE: Server-side validation in page.tsx handles redirects for invalid params,
+  // so this is just for state derivation
   const hasAnyParams = !!(name1Param || date1Param || name2Param || date2Param);
-  const hasAllParams = !!(name1Param && date1Param && name2Param && date2Param);
-
-  // Clean up invalid or partial URL params
-  useEffect(() => {
-    // Case 1: Partial params (not all 4 are present)
-    // Case 2: All params present but calculation failed (invalid data)
-    if ((hasAnyParams && !hasAllParams) || (hasAllParams && calculatedData === null)) {
-      // Invalid/partial params - clean up URL without adding to history
-      router.replace(pathname);
-    }
-  }, [hasAnyParams, hasAllParams, calculatedData, router, pathname]);
 
   // Query interpretation from static library
   const interpretation = useMemo(() => {
@@ -109,7 +100,7 @@ export default function CompatibilitateClient() {
     const level =
       scores.average >= 76 ? "100" : scores.average >= 51 ? "75" : scores.average >= 26 ? "50" : "25";
 
-    const result = getInterpretation<BaseInterpretation>("compatibility", level);
+    const result = getInterpretation<CompatibilityInterpretation>("compatibility", level);
     return result || null;
   }, [scores]);
 
@@ -190,13 +181,10 @@ export default function CompatibilitateClient() {
               score={scores.average}
               lifePathCompatibility={scores.lifePath}
               destinyCompatibility={scores.destiny}
-              interpretation={{
-                title: interpretation.title,
-                description: interpretation.description,
-                fullText: interpretation.fullText,
-              }}
+              interpretation={interpretation}
               person1={person1Data}
               person2={person2Data}
+              shareUrl={`https://spirithub.ro${pathname}?name1=${encodeURIComponent(person1Data.name)}&date1=${date1Param}&name2=${encodeURIComponent(person2Data.name)}&date2=${date2Param}`}
             />
 
             {/* CTA Section - Explore More */}
