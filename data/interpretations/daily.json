@@ -1,62 +1,422 @@
 {
     "1": {
-        "title": "Zi de Noi Începuturi",
-        "description": "Astăzi este ziua perfectă pentru a începe proiecte noi și a lua inițiativa.",
-        "fullText": "Astăzi, energia numărului 1 îți aduce vitalitate, curaj și dorința de a începe ceva nou. Este o zi excelentă pentru a lansa proiecte, a lua decizii importante și a te afirma. Universul te susține să fii liderul propriei tale vieți și să acționezi cu încredere.\n\nCe este favorabil astăzi: Începerea unei noi afaceri sau proiect, luarea de decizii curajoase, activități fizice, afirmarea independenței, și orice acțiune care necesită curaj și inițiativă. Este momentul să plantezi semințele pentru viitor.\n\nPe ce să te concentrezi: Fii proactiv și nu aștepta ca lucrurile să se întâmple de la sine. Concentrează-te pe obiectivele tale și fă primul pas, oricât de mic. Ai încredere în instinctele tale și nu te lăsa descurajat de obstacole.\n\nCe să eviți: Evită pasivitatea, amânarea și dependența de alții. Nu lăsa frica să te blocheze. Fii atent să nu devii prea agresiv sau dominator în relațiile cu ceilalți.\n\nSfat pentru ziua de astăzi: Fă ceva ce ai amânat de mult timp. Această zi îți oferă energia necesară pentru a sparge barierele și a face progrese semnificative. Fii curajos!"
+        "theme": {
+            "primary": "from-red-500 to-orange-600",
+            "accent": "text-red-500",
+            "bg_soft": "bg-red-50"
+        },
+        "hero": {
+            "icon": "Flame",
+            "title": "Inițiatorul",
+            "subtitle": "Număr Personal 1",
+            "headline": "Ești scânteia care aprinde noi începuturi."
+        },
+        "tags": [
+            "Noi Începuturi",
+            "Curaj",
+            "Independență",
+            "Acțiune"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Liderul** propriei tale vieți. Energia cifrei 1 îți aduce o vitalitate debordantă și curajul de a sparge barierele. Universul te împinge de la spate să faci primul pas, să inițiezi acel proiect la care visezi sau să iei acea decizie importantă pe care ai tot amânat-o.\n\nTotuși, s-ar putea să simți o nerăbdare intensă sau tentația de a face totul singur. Este posibil să te lovești de rezistența celor din jur sau de propriile frici de a greși. Nu lăsa izolarea să te cuprindă; independența nu înseamnă singurătate.\n\nMisiunea ta astăzi este să acționezi cu **încredere** și **determinare**. Plantează semințele viitorului tău. Nu aștepta permisiunea nimănui pentru a străluci. Fii proactiv, asumă-ți riscuri calculate și arată lumii din ce ești făcut.",
+            "dos": [
+                "Lansează proiecte noi.",
+                "Ia decizii rapide și ferme.",
+                "Fă ceva ce nu ai mai făcut niciodată.",
+                "Afirmă-ți independența."
+            ],
+            "donts": [
+                "Nu aștepta aprobarea altora.",
+                "Nu fi agresiv sau dominator.",
+                "Evită pasivitatea și amânarea.",
+                "Nu te izola complet."
+            ]
+        },
+        "mantra": "Sunt forța care deschide drumuri noi."
     },
     "2": {
-        "title": "Zi de Cooperare și Armonie",
-        "description": "Astăzi este ziua perfectă pentru parteneriate, diplomație și răbdare.",
-        "fullText": "Astăzi, energia numărului 2 îți aduce calm, sensibilitate și dorința de cooperare. Este o zi excelentă pentru a lucra în echipă, a rezolva conflicte și a te conecta emoțional cu alții. Universul te încurajează să fii răbdător și să lași lucrurile să se desfășoare natural.\n\nCe este favorabil astăzi: Colaborarea, munca în echipă, negocierile diplomatice, petrecerea timpului cu partenerul, ascultarea intuiției și oferirea de sprijin emoțional. Este momentul să cultivi relațiile existente.\n\nPe ce să te concentrezi: Fii un bun ascultător și caută să înțelegi punctele de vedere ale celorlalți. Concentrează-te pe crearea de armonie și pe găsirea de soluții care să mulțumească pe toți. Ai răbdare și încredere în proces.\n\nCe să eviți: Evită conflictele directe, graba și impunerea voinței tale. Nu lua lucrurile prea personal și nu te lăsa copleșit de emoții. Fii atent să nu devii indecis sau pasiv.\n\nSfat pentru ziua de astăzi: Fii blând cu tine și cu ceilalți. Această zi nu este despre a forța lucrurile, ci despre a curge cu ele. Cooperarea îți va aduce mai mult succes decât competiția astăzi."
+        "theme": {
+            "primary": "from-orange-400 to-amber-500",
+            "accent": "text-orange-500",
+            "bg_soft": "bg-orange-50"
+        },
+        "hero": {
+            "icon": "Handshake",
+            "title": "Diplomatul",
+            "subtitle": "Număr Personal 2",
+            "headline": "Ești puntea care unește lumi diferite."
+        },
+        "tags": [
+            "Cooperare",
+            "Răbdare",
+            "Intuiție",
+            "Armonie"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Pacificatorul**. Energia cifrei 2 îți aduce o sensibilitate aparte și o capacitate naturală de a simți emoțiile celor din jur. Este o zi despre \"noi\", nu despre \"eu\". Universul te invită să colaborezi, să asculți și să aduci armonie acolo unde există conflict.\n\nPoate simți astăzi o vulnerabilitate crescută sau tendința de a lua lucrurile prea personal. Ești ca un burete emoțional, absorbind energiile din jur. Atenție să nu devii indecis sau să faci compromisuri care te dezavantajează doar de dragul păcii.\n\nMisiunea ta este să cultivi **conexiunea** și **înțelegerea**. Folosește-ți diplomația pentru a rezolva tensiuni. Fii blând cu tine și cu ceilalți. Puterea ta stă în răbdare și în capacitatea de a vedea ambele fețe ale monedei.",
+            "dos": [
+                "Ascultă mai mult decât vorbești.",
+                "Caută compromisuri și soluții win-win.",
+                "Petrece timp de calitate cu partenerul.",
+                "Ai încredere în intuiția ta."
+            ],
+            "donts": [
+                "Nu lua criticile personal.",
+                "Nu te grăbi să iei decizii majore.",
+                "Evită conflictele agresive.",
+                "Nu îți neglija propriile nevoi."
+            ]
+        },
+        "mantra": "Aduc armonie și înțelegere în tot ce fac."
     },
     "3": {
-        "title": "Zi de Creativitate și Bucurie",
-        "description": "Astăzi este ziua perfectă pentru exprimare creativă, socializare și distracție.",
-        "fullText": "Astăzi, energia numărului 3 îți aduce optimism, inspirație și dorința de a te exprima. Este o zi excelentă pentru activități artistice, socializare și pentru a te bucura de viață. Universul te încurajează să îți folosești vocea și talentul creativ.\n\nCe este favorabil astăzi: Scrisul, pictura, muzica, întâlnirile cu prietenii, comunicarea ideilor, divertismentul și orice formă de auto-exprimare. Este momentul să îți lași copilul interior să se joace.\n\nPe ce să te concentrezi: Exprimă-te liber și autentic. Concentrează-te pe lucrurile care îți aduc bucurie și împărtășește această energie cu ceilalți. Fii deschis la comunicare și lasă-ți creativitatea să strălucească.\n\nCe să eviți: Evită să fii prea critic sau să te plângi. Nu te dispersa în prea multe direcții și nu îți risipi energia pe lucruri superficiale. Fii atent la cuvintele tale - ele au putere mare astăzi.\n\nSfat pentru ziua de astăzi: Lasă-ți creativitatea să curgă liber și nu te judeca. Această zi îți oferă oportunitatea de a te exprima într-un mod unic și de a aduce lumină în lume. Bucură-te de proces, nu doar de rezultat!"
+        "theme": {
+            "primary": "from-yellow-400 to-orange-500",
+            "accent": "text-yellow-600",
+            "bg_soft": "bg-yellow-50"
+        },
+        "hero": {
+            "icon": "Sparkles",
+            "title": "Artistul",
+            "subtitle": "Număr Personal 3",
+            "headline": "Ești raza de soare care inspiră bucurie."
+        },
+        "tags": [
+            "Creativitate",
+            "Exprimare",
+            "Optimism",
+            "Socializare"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Creatorul** de bucurie. Energia cifrei 3 vine cu un val de optimism, inspirație și dorință de exprimare. Cuvintele tale au putere magică astăzi. Universul te încurajează să ieși în lume, să comunici, să râzi și să îți folosești talentele creative.\n\nS-ar putea să simți o tendință spre dispersare, începând multe și terminând puține. Sau poate cazi în capcana superficialității, evitând subiectele serioase. Fii atent să nu îți risipești energia în bârfe sau drame inutile.\n\nMisiunea ta este să te **exprimi autentic** și să aduci **lumină**. Scrie, vorbește, pictează, dansează – fă orice îți face sufletul să cânte. Socializează și împărtășește ideile tale. Ești un magnet pentru oportunități fericite astăzi.",
+            "dos": [
+                "Exprimă-ți ideile liber.",
+                "Socializează și distrează-te.",
+                "Fii creativ în orice faci.",
+                "Râzi și fă-i pe alții să râdă."
+            ],
+            "donts": [
+                "Nu bârfi și nu critica.",
+                "Nu îți împrăștia energia în toate direcțiile.",
+                "Evită promisiunile pe care nu le poți ține.",
+                "Nu te lăsa pradă toanelor."
+            ]
+        },
+        "mantra": "Mă exprim liber și aduc bucurie în lume."
     },
     "4": {
-        "title": "Zi de Organizare și Muncă",
-        "description": "Astăzi este ziua perfectă pentru planificare, organizare și muncă productivă.",
-        "fullText": "Astăzi, energia numărului 4 îți aduce disciplină, concentrare și dorința de a construi ceva solid. Este o zi excelentă pentru organizare, planificare și muncă asiduă. Universul te susține să pui bazele pentru succesul viitor prin efort constant și atenție la detalii.\n\nCe este favorabil astăzi: Organizarea spațiului și timpului, planificarea pe termen lung, munca la proiecte importante, stabilirea de rutine sănătoase, rezolvarea de probleme practice și construirea de fundații solide. Este momentul perfect pentru productivitate.\n\nPe ce să te concentrezi: Fii disciplinat și metodic în abordarea sarcinilor tale. Concentrează-te pe detalii și pe calitatea muncii tale. Stabilește obiective clare și lucrează constant spre realizarea lor. Construiește pas cu pas, fără să te grăbești.\n\nCe să eviți: Evită să fii prea rigid sau rezistent la schimbare. Nu te pierde în detalii până la punctul în care pierzi imaginea de ansamblu. Fii atent să nu devii workaholic sau să ignori nevoile tale de relaxare și distracție.\n\nSfat pentru ziua de astăzi: Fă o listă cu prioritățile tale și lucrează sistematic la fiecare. Această zi îți oferă energia necesară pentru a face progrese semnificative în proiectele tale importante. Fii răbdător și persistent!"
+        "theme": {
+            "primary": "from-green-500 to-emerald-600",
+            "accent": "text-green-600",
+            "bg_soft": "bg-green-50"
+        },
+        "hero": {
+            "icon": "Hammer",
+            "title": "Constructorul",
+            "subtitle": "Număr Personal 4",
+            "headline": "Ești stânca pe care se construiesc imperii."
+        },
+        "tags": [
+            "Muncă",
+            "Organizare",
+            "Stabilitate",
+            "Detalii"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Arhitectul** realității tale. Energia cifrei 4 îți aduce o putere imensă de concentrare, disciplină și pragmatism. Nu e zi de visare, e zi de \"făcut\". Universul te susține să pui ordine în haos, să construiești fundații solide și să rezolvi problemele concrete pas cu pas.\n\nPoate simți că totul merge puțin mai greu sau că responsabilitățile te apasă. Există riscul să devii prea rigid, încăpățânat sau critic cu cei care nu țin pasul. Nu te pierde în detalii nesemnificative până uiți imaginea de ansamblu.\n\nMisiunea ta este să **construiești durabil**. Organizează-ți spațiul, fă acel plan de afaceri, ocupă-te de detalii administrative. Munca depusă astăzi va aduce roade bogate și sigure în viitor. Fii metodic și perseverent.",
+            "dos": [
+                "Organizează și planifică.",
+                "Muncește concentrat la detalii.",
+                "Fii punctual și serios.",
+                "Rezolvă probleme practice."
+            ],
+            "donts": [
+                "Nu fi rigid cu tine sau cu alții.",
+                "Nu lăsa perfecționismul să te blocheze.",
+                "Nu ignora odihna necesară.",
+                "Evită scurtăturile riscante."
+            ]
+        },
+        "mantra": "Construiesc viitorul meu pe o fundație solidă."
     },
     "5": {
-        "title": "Zi de Aventură și Schimbare",
-        "description": "Astăzi este ziua perfectă pentru experiențe noi, aventură și adaptare.",
-        "fullText": "Astăzi, energia numărului 5 îți aduce libertate, aventură și dorința de schimbare. Este o zi excelentă pentru a încerca lucruri noi, a ieși din zona de confort și a te adapta la circumstanțe noi. Universul te încurajează să îmbrățișezi schimbarea și să explorezi posibilități noi.\n\nCe este favorabil astăzi: Încercarea de experiențe noi, călătorii (chiar și scurte), întâlniri cu oameni noi, învățarea de lucruri noi, adaptarea la schimbări și explorarea de oportunități neașteptate. Este momentul perfect pentru spontaneitate.\n\nPe ce să te concentrezi: Fii deschis la oportunități neașteptate și flexibil în planurile tale. Îmbrățișează schimbarea în loc să o reziști. Concentrează-te pe a învăța ceva nou sau pe a experimenta ceva diferit. Lasă-te purtat de curiozitatea ta naturală.\n\nCe să eviți: Evită să fii prea impulsiv sau iresponsabil în deciziile tale. Nu neglija responsabilitățile importante în căutarea aventurii. Fii atent să nu te dispersezi în prea multe direcții fără să finalizezi nimic.\n\nSfat pentru ziua de astăzi: Spune da la o oportunitate neașteptată sau încearcă ceva ce nu ai mai făcut înainte. Această zi îți oferă energia necesară pentru a ieși din rutină și a descoperi noi posibilități. Fii curajos și aventuros!"
+        "theme": {
+            "primary": "from-blue-400 to-cyan-500",
+            "accent": "text-blue-500",
+            "bg_soft": "bg-blue-50"
+        },
+        "hero": {
+            "icon": "Wind",
+            "title": "Exploratorul",
+            "subtitle": "Număr Personal 5",
+            "headline": "Ești vântul schimbării care aduce prospețime."
+        },
+        "tags": [
+            "Schimbare",
+            "Libertate",
+            "Aventură",
+            "Adaptabilitate"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Agentul Schimbării**. Energia cifrei 5 este electrică, rapidă și imprevizibilă. Rutina este inamicul tău numărul unu. Universul îți trimite surprize și oportunități neașteptate, invitându-te să fii flexibil, să călătorești (măcar cu mintea) și să îmbrățișezi noul.\n\nS-ar putea să te simți neliniștit, agitat sau să ai o dorință impulsivă de a renunța la responsabilități. Atenție la excese de orice fel și la decizii luate la nervi. Libertatea nu înseamnă haos; înseamnă alegere conștientă.\n\nMisiunea ta este să fii **curajos** și **adaptabil**. Spune \"DA\" unei aventuri spontane. Încearcă ceva complet diferit. Comunică, promovează-te și lasă-te purtat de fluxul vieții. Cele mai bune lucruri se întâmplă astăzi când ieși din zona de confort.",
+            "dos": [
+                "Îmbrățișează schimbarea.",
+                "Fii flexibil și spontan.",
+                "Promovează-ți ideile.",
+                "Caută experiențe noi."
+            ],
+            "donts": [
+                "Nu te agăța de rutină.",
+                "Evită impulsivitatea distructivă.",
+                "Nu neglija responsabilitățile majore.",
+                "Nu face excese (mâncare, cheltuieli)."
+            ]
+        },
+        "mantra": "Sunt liber să aleg și să mă transform."
     },
     "6": {
-        "title": "Zi de Familie și Responsabilitate",
-        "description": "Astăzi este ziua perfectă pentru familie, îngrijire și crearea de armonie.",
-        "fullText": "Astăzi, energia numărului 6 îți aduce compasiune, responsabilitate și dorința de a îngriji pe cei dragi. Este o zi excelentă pentru familie, pentru a crea armonie în casa ta și pentru a oferi sprijin celor care au nevoie. Universul te încurajează să îți asumi responsabilitățile cu dragoste.\n\nCe este favorabil astăzi: Petrecerea timpului cu familia, îngrijirea casei, oferirea de sprijin celor dragi, crearea de armonie în relații, activități de voluntariat și exprimarea dragostei față de cei apropiați. Este momentul perfect pentru a hrăni relațiile importante.\n\nPe ce să te concentrezi: Fii prezent pentru cei dragi și oferă-le atenția și sprijinul de care au nevoie. Concentrează-te pe crearea unui mediu armonios și frumos în jurul tău. Exprimă-ți dragostea și aprecierea față de cei importanți din viața ta.\n\nCe să eviți: Evită să te sacrifici excesiv sau să îți neglijezi propriile nevoi în timp ce îngrijești pe alții. Nu deveni controlant în dorința ta de a proteja. Fii atent să nu îți asumi responsabilități care nu îți aparțin.\n\nSfat pentru ziua de astăzi: Fă ceva special pentru cineva drag sau petrece timp de calitate cu familia. Această zi îți oferă oportunitatea de a întări legăturile importante și de a crea amintiri frumoase. Oferă dragoste, dar nu uita să o primești și tu!"
+        "theme": {
+            "primary": "from-indigo-400 to-purple-500",
+            "accent": "text-indigo-500",
+            "bg_soft": "bg-indigo-50"
+        },
+        "hero": {
+            "icon": "HeartHandshake",
+            "title": "Părintele",
+            "subtitle": "Număr Personal 6",
+            "headline": "Ești inima care oferă adăpost și căldură."
+        },
+        "tags": [
+            "Familie",
+            "Responsabilitate",
+            "Vindecare",
+            "Armonie"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Gardianul Armoniei**. Energia cifrei 6 este caldă, protectoare și orientată spre \"casă\" (fie ea fizică sau sufletească). Simți nevoia să îi îngrijești pe ceilalți, să înfrumusețezi mediul în care trăiești și să rezolvi problemele celor dragi. Universul te cheamă să fii un stâlp de susținere.\n\nAtenție însă la capcana \"salvatorului\". Poți aluneca ușor în a-ți neglija propriile nevoi sau în a deveni sufocant, încercând să controlezi viața altora \"spre binele lor\". Perfecționismul domestic te poate epuiza.\n\nMisiunea ta este să oferi **iubire** și **echilibru**. Petrece timp cu familia. Cumpără ceva frumos pentru casă. Oferă un sfat blând, nu o critică. Vindecă prin prezența ta calmă și iubitoare, dar nu uita să te incluzi și pe tine în acest cerc de grijă.",
+            "dos": [
+                "Petrece timp cu familia.",
+                "Înfrumusețează-ți casa.",
+                "Ajută pe cineva la nevoie.",
+                "Rezolvă probleme domestice."
+            ],
+            "donts": [
+                "Nu deveni posesiv sau sufocant.",
+                "Nu îți neglija propriile nevoi.",
+                "Nu încerca să îi schimbi pe ceilalți.",
+                "Evită critica și perfecționismul."
+            ]
+        },
+        "mantra": "Ofer iubire, dar mă hrănesc și pe mine cu ea."
     },
     "7": {
-        "title": "Zi de Introspecție și Înțelepciune",
-        "description": "Astăzi este ziua perfectă pentru meditație, studiu și căutare interioară.",
-        "fullText": "Astăzi, energia numărului 7 îți aduce dorința de introspecție, înțelegere profundă și conexiune spirituală. Este o zi excelentă pentru meditație, studiu, analiză și pentru a te conecta cu lumea ta interioară. Universul te încurajează să cauți răspunsuri în interior și să dezvolți înțelepciune.\n\nCe este favorabil astăzi: Meditația, studiul, cititul, analiza profundă, petrecerea timpului în natură, activități spirituale și reflecția asupra vieții tale. Este momentul perfect pentru a te conecta cu esența ta și a căuta înțelegere profundă.\n\nPe ce să te concentrezi: Ascultă-ți vocea interioară și acordă-ți timp pentru introspecție. Concentrează-te pe întrebările importante din viața ta și caută răspunsuri în interior. Dezvoltă-ți înțelepciunea prin studiu și contemplare.\n\nCe să eviți: Evită să te izolezi complet sau să devii prea retras. Nu te pierde în analize excesive până la punctul în care te paralizezi. Fii atent să nu devii prea critic sau perfecționist cu tine însuți sau cu alții.\n\nSfat pentru ziua de astăzi: Acordă-ți timp pentru liniște și reflecție. Această zi îți oferă oportunitatea de a te conecta cu înțelepciunea ta interioară și de a găsi claritate. Fii răbdător cu procesul de descoperire interioară!"
+        "theme": {
+            "primary": "from-purple-500 to-indigo-600",
+            "accent": "text-purple-600",
+            "bg_soft": "bg-purple-50"
+        },
+        "hero": {
+            "icon": "Moon",
+            "title": "Înțeleptul",
+            "subtitle": "Număr Personal 7",
+            "headline": "Ești ochiul care vede dincolo de aparențe."
+        },
+        "tags": [
+            "Introspecție",
+            "Analiză",
+            "Spiritualitate",
+            "Liniște"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Căutătorul de Adevăr**. Energia cifrei 7 este misterioasă, profundă și introvertită. Nu este o zi pentru gălăgie socială, ci pentru retragere strategică. Mintea ta este ascuțită ca un brici, gata să dezlege enigme și să înțeleagă dedesubturile vieții. Universul te invită la studiu și meditație.\n\nS-ar putea să te simți neînțeles, cinic sau distant față de ceilalți. \"Zgomotul\" cotidian te poate irita mai mult decât de obicei. Există riscul de a te pierde în propriile gânduri sau de a deveni prea analitic, uitând să simți.\n\nMisiunea ta este să cauți **înțelepciunea**. Citește o carte bună, plimbă-te singur în natură, meditează. Analizează-ți planurile în tăcere. În liniștea de astăzi vei găsi răspunsurile pe care le cauți de mult timp. Ai încredere în vocea ta interioară.",
+            "dos": [
+                "Petrece timp în singurătate.",
+                "Studiază și cercetează.",
+                "Meditează și reflectează.",
+                "Plimbă-te în natură."
+            ],
+            "donts": [
+                "Nu forța socializarea dacă nu simți.",
+                "Nu fi cinic sau suspicios.",
+                "Evită agitația și zgomotul.",
+                "Nu ignora realitatea materială."
+            ]
+        },
+        "mantra": "În liniște găsesc răspunsurile universului."
     },
     "8": {
-        "title": "Zi de Realizări și Succes",
-        "description": "Astăzi este ziua perfectă pentru afaceri, realizări și manifestarea abundenței.",
-        "fullText": "Astăzi, energia numărului 8 îți aduce putere, ambiție și capacitatea de a realiza lucruri mari. Este o zi excelentă pentru afaceri, pentru a lua decizii importante legate de carieră sau finanțe, și pentru a-ți manifesta obiectivele materiale. Universul te susține să îți asumi puterea și să creezi abundență.\n\nCe este favorabil astăzi: Negocieri de afaceri, decizii financiare importante, avansarea în carieră, stabilirea de obiective ambițioase, demonstrarea de leadership și luarea de măsuri concrete pentru succesul tău material. Este momentul perfect pentru acțiune decisivă.\n\nPe ce să te concentrezi: Fii ambițios și nu te teme să îți asumi puterea. Concentrează-te pe obiectivele tale materiale și ia măsuri concrete pentru realizarea lor. Gândește strategic și pe termen lung. Folosește-ți autoritatea cu înțelepciune și integritate.\n\nCe să eviți: Evită să devii obsedat de bani sau putere. Nu neglija relațiile personale în căutarea succesului material. Fii atent să nu devii autoritar sau să folosești puterea în mod abuziv. Balansează ambiția cu compasiunea.\n\nSfat pentru ziua de astăzi: Ia o decizie importantă legată de cariera sau finanțele tale. Această zi îți oferă energia și claritatea necesare pentru a face pași mari spre succesul tău material. Fii curajos și strategic!"
+        "theme": {
+            "primary": "from-slate-700 to-black",
+            "accent": "text-slate-700",
+            "bg_soft": "bg-slate-50"
+        },
+        "hero": {
+            "icon": "Crown",
+            "title": "Vizionarul",
+            "subtitle": "Număr Personal 8",
+            "headline": "Ești puterea care transformă ambiția în realitate."
+        },
+        "tags": [
+            "Putere",
+            "Succes",
+            "Bani",
+            "Organizare"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **CEO-ul** vieții tale. Energia cifrei 8 este despre putere, bani, autoritate și rezultate concrete. Nu e loc de modestie falsă. Universul te pune în poziția de a prelua comanda, de a lua decizii financiare inteligente și de a avansa către obiectivele tale majore.\n\nPoți simți presiunea responsabilității sau o dorință de control exagerată. Atenție să nu devii nemilos, agresiv sau obsedat doar de câștigul material. Puterea adevărată vine din echilibru, nu din dominare.\n\nMisiunea ta este să **manifesti abundența**. Verifică-ți finanțele, negociază, fă planuri de expansiune. Arată că ești capabil și demn de încredere. Astăzi ai forța de a muta munții din loc în plan material. Asumă-ți rolul de lider.",
+            "dos": [
+                "Focusează-te pe carieră și bani.",
+                "Ia decizii de leadership.",
+                "Fii eficient și organizat.",
+                "Gândește mare."
+            ],
+            "donts": [
+                "Nu fi arogant sau abuziv.",
+                "Nu neglija etica.",
+                "Nu te suprasolicita.",
+                "Nu uita de latura umană."
+            ]
+        },
+        "mantra": "Sunt un magnet pentru succes și abundență."
     },
     "9": {
-        "title": "Zi de Compasiune și Serviciu",
-        "description": "Astăzi este ziua perfectă pentru generozitate, compasiune și serviciu față de alții.",
-        "fullText": "Astăzi, energia numărului 9 îți aduce compasiune universală, generozitate și dorința de a face bine în lume. Este o zi excelentă pentru a ajuta pe alții, pentru a te implica în cauze nobile și pentru a-ți exprima latura umanitară. Universul te încurajează să gândești dincolo de tine și să contribui la binele comun.\n\nCe este favorabil astăzi: Voluntariatul, ajutorarea celor în nevoie, implicarea în cauze sociale, actele de generozitate, iertarea și lăsarea în urmă a trecutului. Este momentul perfect pentru a face o diferență pozitivă în viața altora.\n\nPe ce să te concentrezi: Fii generos cu timpul, energia și resursele tale. Concentrează-te pe cum poți contribui la binele comun și la ameliorarea suferinței din jurul tău. Practică compasiunea și înțelegerea față de toți, inclusiv față de tine însuți.\n\nCe să eviți: Evită să te sacrifici excesiv sau să îți neglijezi propriile nevoi în timp ce ajuți pe alții. Nu deveni martir sau să te aștepți la recunoștință pentru generozitatea ta. Fii atent să nu te dezamăgești când lumea nu se schimbă atât de repede pe cât ai dori.\n\nSfat pentru ziua de astăzi: Fă un act de bunătate fără să aștepți nimic în schimb. Această zi îți oferă oportunitatea de a face o diferență reală în viața cuiva și de a-ți exprima compasiunea. Fii lumina pe care vrei să o vezi în lume!"
+        "theme": {
+            "primary": "from-rose-500 to-pink-600",
+            "accent": "text-rose-600",
+            "bg_soft": "bg-rose-50"
+        },
+        "hero": {
+            "icon": "Globe",
+            "title": "Umanitarul",
+            "subtitle": "Număr Personal 9",
+            "headline": "Ești lumina care încheie un ciclu pentru a renaște."
+        },
+        "tags": [
+            "Finaluri",
+            "Compasiune",
+            "Iertare",
+            "Generozitate"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Înțeleptul care eliberează**. Energia cifrei 9 marchează un final de ciclu. Este momentul curățeniei – în casă, în viață, în suflet. Universul te îndeamnă să dai drumul la ce nu-ți mai servește, să ierți și să privești tabloul general al vieții cu compasiune și detașare.\n\nS-ar putea să te simți melancolic, emoțional sau copleșit de dramele altora. Ai grijă să nu te agăți de trecut sau să joci rolul de martir. Nu începe proiecte noi majore astăzi; concentrează-te pe finalizarea celor vechi.\n\nMisiunea ta este să **eliberezi** și să **dăruiești**. Încheie socotelile, aruncă vechiturile, iartă pe cineva (sau pe tine). Fii generos fără să aștepți nimic în schimb. Pregătește terenul gol și fertil pentru noul început care vine mâine.",
+            "dos": [
+                "Finalizează proiecte începute.",
+                "Fă curățenie și donează.",
+                "Iartă și detașează-te.",
+                "Fii generos și altruist."
+            ],
+            "donts": [
+                "Nu începe nimic complet nou.",
+                "Nu te agăța de trecut.",
+                "Nu fi posesiv.",
+                "Evită conflictele meschine."
+            ]
+        },
+        "mantra": "Eliberez trecutul și îmbrățișez viitorul cu inima deschisă."
     },
     "11": {
-        "title": "Zi de Iluminare Spirituală",
-        "description": "Astăzi este o zi specială de conexiune spirituală profundă și intuiție intensificată.",
-        "fullText": "Astăzi, energia numărului 11, primul Număr Maestru, îți aduce o conexiune spirituală extraordinară și intuiție intensificată. Este o zi de iluminare și claritate interioară, când percepțiile tale sunt amplificate și ai acces la înțelepciune superioară. Universul te susține să fii un canal pentru mesaje spirituale și să inspiri pe alții prin exemplul tău.\n\nCe este favorabil astăzi: Meditația profundă, conectarea cu lumea spirituală, ascultarea intuiției tale, împărtășirea înțelepciunii cu alții, activități creative inspirate și momente de contemplare. Este momentul perfect să te conectezi cu esența ta spirituală și să primești claritate.\n\nPe ce să te concentrezi: Ascultă-ți vocea interioară și fii deschis la mesajele spirituale care îți vin astăzi. Concentrează-te pe a fi prezent și conștient, observând sincronicitățile și semnele din jurul tău. Este o zi excelentă pentru a inspira și a fi inspirat.\n\nCe să eviți: Evită să te copleșești cu informații sau să devii prea sensibil la energiile din jur. Nu ignora nevoile tale practice în căutarea spiritualității. Fii atent să nu te izolezi complet sau să devii prea detașat de realitatea cotidiană.\n\nSfat pentru ziua de astăzi: Acordă-ți timp pentru meditație sau contemplare. Această zi îți oferă acces la înțelepciune spirituală profundă - folosește-o pentru a găsi claritate și pentru a inspira pe alții. Fii un far de lumină spirituală!"
+        "theme": {
+            "primary": "from-violet-500 to-fuchsia-600",
+            "accent": "text-violet-600",
+            "bg_soft": "bg-violet-50"
+        },
+        "hero": {
+            "icon": "Zap",
+            "title": "Iluminatul",
+            "subtitle": "Număr Maestru 11",
+            "headline": "Ești canalul prin care curge inspirația divină."
+        },
+        "tags": [
+            "Intuiție",
+            "Inspirație",
+            "Viziune",
+            "Maestru"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Mesagerul**. Energia maestră 11 este o octavă superioară a lui 2, aducând o intuiție și o sensibilitate electrică. Ești ca o antenă racordată la frecvențe înalte. Universul îți trimite idei geniale, viziuni și sincronicități. Rolul tău nu este doar să visezi, ci să inspiri.\n\nAceastă energie înaltă poate fi epuizantă nervos. Poți simți o anxietate nejustificată sau te poți simți neînțeles de cei preocupați doar de material. Rămâi cu picioarele pe pământ chiar dacă capul îți este în nori.\n\nMisiunea ta este să **inspiri** și să **ascuiți vocea interioară**. Notează-ți visele și ideile care îți vin \"de nicăieri\". Fii un far de lumină pentru cei din jur. Încrederea în intuiția ta este cheia succesului astăzi.",
+            "dos": [
+                "Urmează-ți intuiția orbește.",
+                "Inspiră-i pe cei din jur.",
+                "Notează-ți ideile vizionare.",
+                "Meditează pentru claritate."
+            ],
+            "donts": [
+                "Nu te lăsa copleșit de emoții.",
+                "Nu ignora detaliile practice.",
+                "Evită mediile toxice.",
+                "Nu te îndoi de tine."
+            ]
+        },
+        "mantra": "Sunt ghidat de lumină și inspir lumea."
     },
     "22": {
-        "title": "Zi de Manifestare și Construcție",
-        "description": "Astăzi este o zi puternică pentru a transforma viziunile în realitate și a construi ceva durabil.",
-        "fullText": "Astăzi, energia numărului 22, cel mai puternic Număr Maestru pentru manifestare materială, îți aduce capacitatea extraordinară de a transforma viziuni mari în realități concrete. Este o zi excelentă pentru proiecte ambițioase, construirea de fundații solide și manifestarea obiectivelor tale pe termen lung. Universul te susține să realizezi lucruri mari și durabile.\n\nCe este favorabil astăzi: Planificarea pe termen lung, începerea de proiecte mari, construirea de structuri și sisteme, manifestarea obiectivelor materiale, organizarea eficientă și luarea de decizii strategice importante. Este momentul perfect pentru a pune bazele unor realizări semnificative.\n\nPe ce să te concentrezi: Gândește mare și acționează strategic. Concentrează-te pe construirea de fundații solide pentru viitorul tău și pentru proiectele tale importante. Este o zi excelentă pentru a combina viziunea cu acțiunea practică și pentru a transforma ideile în realitate.\n\nCe să eviți: Evită să te copleșești cu prea multe responsabilități sau să devii workaholic. Nu neglija echilibrul între muncă și viața personală. Fii atent să nu devii prea rigid sau să pierzi din vedere viziunea spirituală care te-a inspirat inițial.\n\nSfat pentru ziua de astăzi: Ia o decizie importantă legată de un proiect mare sau începe să construiești ceva semnificativ. Această zi îți oferă energia și capacitatea de a manifesta viziunile tale în realitate. Fii ambițios și strategic!"
+        "theme": {
+            "primary": "from-emerald-600 to-teal-700",
+            "accent": "text-emerald-700",
+            "bg_soft": "bg-emerald-50"
+        },
+        "hero": {
+            "icon": "Pyramid",
+            "title": "Maestrul Constructor",
+            "subtitle": "Număr Maestru 22",
+            "headline": "Ești arhitectul care transformă vise imposibile în realitate."
+        },
+        "tags": [
+            "Manifestare",
+            "Putere",
+            "Viziune",
+            "Construcție"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Făuritorul de Lumi**. Energia maestră 22 (octavă a lui 4) este cea mai puternică pentru manifestare. Ai viziunea lui 11 și pragmatismul lui 4. Poți realiza, literalmente, imposibilul. Universul îți dă un cec în alb pentru a construi ceva ce va dăinui generații.\n\nPresiunea de a performa poate fi uriașă. Riscul este să te blochezi în fața magnitudinii propriei tale puteri sau să devii un workaholic lipsit de suflet. Amintește-ți că marile realizări necesită timp și colaborare.\n\nMisiunea ta este să **gândești la scară mare**. Nu te mulțumi cu puțin. Fă acel plan grandios. Pune bazele unui proiect care va ajuta mulți oameni. Ai forța de a uni idealul cu realul. Acționează!",
+            "dos": [
+                "Lansează proiecte majore.",
+                "Gândește global, nu local.",
+                "Construiește sisteme durabile.",
+                "Fii lider vizionar."
+            ],
+            "donts": [
+                "Nu te pierde în birocrație.",
+                "Nu visa fără să acționezi.",
+                "Nu te subestima.",
+                "Evită epuizarea fizică."
+            ]
+        },
+        "mantra": "Am puterea de a transforma viziunea în realitate tangibilă."
     },
     "33": {
-        "title": "Zi de Compasiune și Transformare",
-        "description": "Astăzi este o zi profundă de dragoste necondiționată, vindecare și serviciu față de umanitate.",
-        "fullText": "Astăzi, energia numărului 33, cel mai evoluat Număr Maestru, îți aduce compasiune universală profundă și capacitatea de a transforma prin dragoste. Este o zi specială de serviciu dezinteresat, vindecare și conectare cu esența umanității. Universul te susține să fii un exemplu de dragoste necondiționată și să ajuți la transformarea lumii prin compasiune.\n\nCe este favorabil astăzi: Acte de generozitate și compasiune, vindecarea relațiilor, serviciul față de comunitate, iertarea profundă, conectarea cu dragostea universală și oferirea de sprijin celor în nevoie. Este momentul perfect pentru a face o diferență pozitivă în viața altora.\n\nPe ce să te concentrezi: Fii prezent pentru cei care au nevoie de tine și oferă dragoste necondiționată. Concentrează-te pe vindecare - atât pentru tine, cât și pentru alții. Este o zi excelentă pentru a transforma suferința în înțelepciune și pentru a inspira schimbare pozitivă prin exemplul tău.\n\nCe să eviți: Evită să te sacrifici complet sau să îți neglijezi propriile nevoi în timp ce ajuți pe alții. Nu deveni martir sau să te aștepți la recunoștință pentru generozitatea ta. Fii atent să nu te epuizezi emoțional sau să devii prea sensibil la suferința din jur.\n\nSfat pentru ziua de astăzi: Fă un act de bunătate profundă sau oferă sprijin cuiva care are nevoie. Această zi îți oferă oportunitatea de a transforma prin dragoste și compasiune. Fii lumina care aduce vindecare și transformare în lume!"
+        "theme": {
+            "primary": "from-fuchsia-500 to-pink-600",
+            "accent": "text-fuchsia-600",
+            "bg_soft": "bg-fuchsia-50"
+        },
+        "hero": {
+            "icon": "Heart",
+            "title": "Învățătorul",
+            "subtitle": "Număr Maestru 33",
+            "headline": "Ești inima care vindecă lumea prin iubire necondiționată."
+        },
+        "tags": [
+            "Iubire Universală",
+            "Vindecare",
+            "Serviciu",
+            "Compasiune"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Vindecătorul de Suflete**. Energia maestră 33 este rară și reprezintă iubirea în forma ei cea mai pură. Ești o octavă superioară a lui 6. Simți nevoia să ajuți, să alini suferința și să aduci speranță. Universul te folosește ca instrument al compasiunii divine.\n\nEste ușor să te sacrifici complet, uitând că și tu ești om. Poți deveni copleșit de durerea lumii. Provocarea este să ajuți fără să te distrugi pe tine și să înțelegi că nu poți salva pe cineva care nu vrea să fie salvat.\n\nMisiunea ta este să **fii iubire**. Un gest mic, o vorbă bună, un zâmbet pot schimba viața cuiva astăzi. Nu trebuie să faci fapte eroice; simpla ta prezență caldă este un balsam. Oferă din preaplinul tău.",
+            "dos": [
+                "Fii generos și empatic.",
+                "Ascultă cu inima deschisă.",
+                "Oferă sfaturi înțelepte.",
+                "Vindecă prin prezență."
+            ],
+            "donts": [
+                "Nu te sacrifica de tot.",
+                "Nu prelua karman altora.",
+                "Nu judeca suferința.",
+                "Evită drama inutilă."
+            ]
+        },
+        "mantra": "Sunt canalul iubirii și vindecării divine."
     }
 }

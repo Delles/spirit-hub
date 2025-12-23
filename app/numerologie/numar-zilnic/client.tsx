@@ -6,7 +6,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Calculator, Sparkles, Heart, ArrowLeft } from "lucide-react";
-import { getInterpretation, type BaseInterpretation } from "@/lib/interpretations";
+import { DailyCard } from "@/components/numerologie/daily-card";
+import { getInterpretation, type DailyInterpretation } from "@/lib/interpretations";
 
 /**
  * Loading skeleton
@@ -50,23 +51,8 @@ export default function NumarZilnicClient() {
   }
 
   // Get interpretation from static data
-  const interpretation = getInterpretation<BaseInterpretation>("daily", data.dailyNumber.number);
+  const interpretation = getInterpretation<DailyInterpretation>("daily", data.dailyNumber.number);
   const romanianDate = formatRomanianDate(data.date);
-
-  const dailyData = interpretation
-    ? {
-      number: data.dailyNumber.number,
-      title: interpretation.title,
-      description: interpretation.description,
-      fullText: interpretation.fullText,
-    }
-    : null;
-
-  // Share URL and title
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-  const shareTitle = dailyData
-    ? `Numărul zilei: ${dailyData.number} - ${dailyData.title}`
-    : "Numărul Zilei - SpiritHub.ro";
 
   return (
     <div className="py-8">
@@ -80,14 +66,14 @@ export default function NumarZilnicClient() {
         </div>
 
         {/* Error State */}
-        {dailyData === null && (
+        {!interpretation && (
           <Card className="p-6 text-center">
             <p className="text-red-400">Nu am putut încărca numărul zilei. Te rugăm să reîncarci pagina.</p>
           </Card>
         )}
 
         {/* Results Section */}
-        {dailyData && (
+        {interpretation && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
             <Link href="/numerologie" className="inline-block">
               <Button
@@ -99,13 +85,10 @@ export default function NumarZilnicClient() {
               </Button>
             </Link>
 
-            <ResultCard
-              title={dailyData.title}
-              number={dailyData.number}
-              description={dailyData.description}
-              interpretation={dailyData.fullText}
-              shareUrl={shareUrl}
-              shareTitle={shareTitle}
+            <DailyCard
+              number={data.dailyNumber.number}
+              interpretation={interpretation}
+              date={romanianDate}
             />
 
             {/* Enhanced Section: Explore More */}

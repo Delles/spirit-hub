@@ -5,7 +5,7 @@ import { DailyNumberWidget } from "./widgets/daily-number-widget";
 import { DreamWidget } from "./widgets/dream-widget";
 import { BiorhythmWidget } from "./widgets/biorhythm-widget";
 import { QuickToolsWidget } from "./widgets/quick-tools-widget";
-import { getInterpretation, type BaseInterpretation } from "@/lib/interpretations";
+import { getInterpretation, type DailyInterpretation } from "@/lib/interpretations";
 
 /**
  * Skeleton component for loading state
@@ -70,14 +70,14 @@ export function DailyWidgetsClient() {
     }
 
     // Get interpretation from static data
-    const interpretation = getInterpretation<BaseInterpretation>("daily", data.dailyNumber.number);
+    const interpretation = getInterpretation<DailyInterpretation>("daily", data.dailyNumber.number);
 
     // Prepare widget data
     const dailyNumberData = interpretation
         ? {
             number: data.dailyNumber.number,
-            title: interpretation.title,
-            description: interpretation.description,
+            title: interpretation.hero.title,
+            description: interpretation.hero.headline,
             date: data.date,
         }
         : null;

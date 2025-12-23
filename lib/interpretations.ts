@@ -34,14 +34,18 @@ export interface LifePathInterpretation {
 }
 
 // Union type for all interpretations
-export type Interpretation = BaseInterpretation | LifePathInterpretation;
+export type Interpretation = BaseInterpretation | LifePathInterpretation | DailyInterpretation;
 
 const dataMap: Record<InterpretationType, Record<string, Interpretation>> = {
     'life-path': lifePathData as unknown as Record<string, LifePathInterpretation>,
     'destiny': destinyData as unknown as Record<string, LifePathInterpretation>,
     'compatibility': compatibilityData as unknown as Record<string, BaseInterpretation>,
-    'daily': dailyData as unknown as Record<string, BaseInterpretation>,
+    'daily': dailyData as unknown as Record<string, DailyInterpretation>,
 };
+
+// DailyInterpretation shares the same structure as LifePathInterpretation
+// If these ever diverge, this type alias should be replaced with a separate interface
+export type DailyInterpretation = LifePathInterpretation;
 
 export function getInterpretation<T = Interpretation>(type: InterpretationType, number: number | string): T | null {
     const dataset = dataMap[type];
