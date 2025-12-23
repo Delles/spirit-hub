@@ -85,12 +85,14 @@ export function getAllSymbols(): StaticDreamSymbol[] {
  * @returns Symbol or null if not found
  */
 export function getSymbolBySlug(slug: string): StaticDreamSymbol | null {
-    // Normalize URL segment defensively (handles weird casing, trailing spaces, or encoded diacritics).
     let decoded = slug;
     try {
         decoded = decodeURIComponent(slug);
-    } catch {
-        // ignore decode errors; fall back to raw input
+    } catch (e) {
+        // Log decode errors in development; fall back to raw input for production resilience
+        if (process.env.NODE_ENV === "development") {
+            console.error("Failed to decode dream slug:", decoded, e);
+        }
     }
 
     const key = decoded.trim().toLowerCase();
@@ -104,7 +106,10 @@ export function getSymbolBySlug(slug: string): StaticDreamSymbol | null {
     try {
         const normalizedKey = generateSlug(key);
         return symbolsBySlug.get(normalizedKey) ?? null;
-    } catch {
+    } catch (e) {
+        if (process.env.NODE_ENV === "development") {
+            console.warn("Slug generation failed for key:", key, e);
+        }
         return null;
     }
 }

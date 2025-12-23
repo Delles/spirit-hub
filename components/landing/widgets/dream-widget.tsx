@@ -21,13 +21,17 @@ export function DreamWidget({ data, className }: DreamWidgetProps) {
     <Link
       href="/vise/visul-zilei"
       className={cn(
-        // Mobile: compact stacked | Desktop: spread to fill height
-        "group relative flex flex-col gap-4 md:gap-0 md:justify-between p-8 rounded-[20px] overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_50px_rgba(159,43,255,0.2)]",
-        // Glassmorphism with subtle blur
-        "bg-black/5 backdrop-blur-sm",
-        "bg-[linear-gradient(180deg,rgba(255,255,255,0.01)_0%,rgba(159,43,255,0.02)_100%)]",
-        "border border-white/10 hover:border-white/20",
-        "shadow-[0_2px_16px_rgba(0,0,0,0.15)]",
+        // Layout
+        "group relative flex flex-col gap-4 p-8 rounded-[20px] overflow-hidden",
+        "md:gap-0 md:justify-between",
+        // Glassmorphism - using custom utility from globals.css
+        "glass-card",
+        // Additional background nuance for this specific widget
+        "bg-[linear-gradient(180deg,rgba(255,255,255,0.01)_0%,rgba(159,43,255,0.01)_100%)]",
+        // Interactive states
+        "transition-all duration-300",
+        "hover:scale-[1.01] hover:border-[#9F2BFF]/30",
+        "hover:shadow-[0_0_50px_rgba(159,43,255,0.2)]",
         className
       )}
     >

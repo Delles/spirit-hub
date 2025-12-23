@@ -40,13 +40,8 @@ export default function CaleaVietiiClient() {
   const hasSubmitted = !!dateParam;
   const shouldQueryInterpretation = hasSubmitted && lifePathNumber !== null;
 
-  // Clean up invalid URL params (e.g., invalid date formats)
-  useEffect(() => {
-    if (dateParam && lifePathNumber === null) {
-      // Invalid date param - clean up URL without adding to history
-      router.replace(pathname);
-    }
-  }, [dateParam, lifePathNumber, router, pathname]);
+  // Note: URL cleanup for invalid dates is now handled on the server (page.tsx)
+  // via redirect to ensure a clean state before client hydration.
 
   // Query interpretation from static library
   const interpretation = useMemo(() => {

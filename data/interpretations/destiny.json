@@ -1,62 +1,401 @@
 {
     "1": {
-        "title": "Pionier și Inovator",
-        "description": "Ești destinat să conduci, să inovezi și să deschizi drumuri noi.",
-        "fullText": "Destinul tău este să fii un pionier, un inițiator de schimbări și un lider care deschide drumuri noi. Numele tău poartă energia independenței și a curajului de a fi primul. Ești chemat să îți urmezi propria viziune și să inspiri pe alții prin exemplul tău.\n\nMisiunea ta în viață este să dezvolți încredere în sine și să îți asumi rolul de lider natural. Vei fi pus în situații care îți cer să iei inițiativa, să iei decizii importante și să îți asumi responsabilitatea pentru direcția ta în viață. Nu ești destinat să urmezi - ești destinat să conduci.\n\nProvocările tale includ învățarea să echilibrezi independența cu colaborarea, să îți temperezi impulsivitatea și să dezvolți răbdare cu cei care nu se mișcă la fel de repede ca tine. Succesul tău vine când îți folosești energia de lider pentru a crea oportunități nu doar pentru tine, ci și pentru alții.\n\nRealizarea destinului tău necesită curaj de a fi diferit, încredere în viziunea ta și determinare de a persevera chiar când alții îndoiesc. Ești aici să arăți că este posibil să îți creezi propriul drum și să reușești prin originalitate și inovație."
+        "theme": {
+            "primary": "from-orange-500 to-red-600",
+            "accent": "text-orange-600",
+            "bg_soft": "bg-orange-50"
+        },
+        "hero": {
+            "icon": "Flame",
+            "title": "Inițiatorul",
+            "subtitle": "Destin 1",
+            "headline": "Ești scânteia care pune totul în mișcare."
+        },
+        "tags": [
+            "Leadership",
+            "Independență",
+            "Curaj",
+            "Inovație"
+        ],
+        "content": {
+            "main_text": "Tu ești **Deschizătorul de Drumuri**. Destinul tău este să conduci, să inovezi și să stai pe propriile picioare. Ești aici pentru a sparge bariere și a arăta altora că se poate, având o forță interioară care nu acceptă 'nu' ca răspuns. Adesea însă, te poți simți singur în vârful piramidei sau epuizat de presiunea de a fi mereu cel ‘tare’. Misiunea ta supremă este să înțelegi că adevăratul lider nu este cel care domină, ci cel care inspiră prin autenticitate și curajul de a fi diferit.",
+            "dos": [
+                "Ai curaj să fii primul în tot ce faci.",
+                "Dezvoltă-ți independența financiară și emoțională.",
+                "Crede în viziunea ta, chiar dacă ești singurul."
+            ],
+            "donts": [
+                "Nu aștepta validarea celorlalți.",
+                "Evită agresivitatea și impulsivitatea.",
+                "Nu te teme să mergi singur uneori."
+            ]
+        },
+        "mantra": "Sunt liderul propriei mele vieți."
     },
     "2": {
-        "title": "Mediator și Pacificator",
-        "description": "Ești destinat să aduci pace, echilibru și armonie în lume.",
-        "fullText": "Destinul tău este să fii un mediator, un pacificator și un creator de armonie. Numele tău poartă energia diplomației și a cooperării. Ești chemat să aduci oamenii împreună, să rezolvi conflicte și să creezi punți de înțelegere între persoane și grupuri.\n\nMisiunea ta în viață este să dezvolți sensibilitate emoțională și să îți folosești intuiția pentru a înțelege nevoile altora. Vei fi pus în situații care îți cer să mediezi, să asculți cu empatie și să găsești soluții care să mulțumească pe toată lumea. Ești destinat să lucrezi în parteneriat și colaborare.\n\nProvocările tale includ învățarea să îți stabilești limite sănătoase, să îți exprimi propriile nevoi fără teamă și să nu te pierzi în dorința de a face pe toată lumea fericită. Succesul tău vine când reușești să creezi armonie fără a-ți sacrifica propria identitate.\n\nRealizarea destinului tău necesită dezvoltarea încrederii în intuiția ta, curajul de a fi vulnerabil și răbdarea de a lucra cu ritmul altora. Ești aici să arăți că pacea și cooperarea sunt mai puternice decât conflictul și competiția."
+        "theme": {
+            "primary": "from-teal-400 to-blue-500",
+            "accent": "text-teal-600",
+            "bg_soft": "bg-teal-50"
+        },
+        "hero": {
+            "icon": "HeartHandshake",
+            "title": "Diplomatul",
+            "subtitle": "Destin 2",
+            "headline": "Ești armonia care unește lumea."
+        },
+        "tags": [
+            "Colaborare",
+            "Empatie",
+            "Diplomație",
+            "Răbdare"
+        ],
+        "content": {
+            "main_text": "Tu ești **Puntea de Legătură**. Destinul tău este să aduci pace, să mediezi conflicte și să creezi parteneriate durabile. Ai un radar emoțional fin care simte nevoile celorlalți înainte ca ei să le exprime. Provocarea ta este tendința de a te lăsa pe ultimul loc sau de a evita confruntările necesare doar pentru a păstra liniștea. Misiunea ta este să demonstrezi că blândețea și cooperarea sunt forțe imense, capabile să rezolve ceea ce forța brută nu poate.",
+            "dos": [
+                "Ascultă-ți intuiția în relații.",
+                "Caută soluții win-win în orice conflict.",
+                "Cultivă răbdarea și atenția la detalii."
+            ],
+            "donts": [
+                "Nu fi preșul nimănui.",
+                "Evită să fii indecis la nesfârșit.",
+                "Nu îți sacrifica propriile nevoi pentru pace."
+            ]
+        },
+        "mantra": "Aduc armonie și înțelegere oriunde merg."
     },
     "3": {
-        "title": "Artist și Comunicator",
-        "description": "Ești destinat să creezi, să te exprimi și să aduci bucurie în lume.",
-        "fullText": "Destinul tău este să fii un artist, un comunicator și un purtător de bucurie. Numele tău poartă energia creativității și a expresiei de sine. Ești chemat să îți folosești talentele creative pentru a inspira, a distra și a aduce lumină în viețile altora.\n\nMisiunea ta în viață este să îți dezvolți și să îți exprimi creativitatea în toate formele ei - fie prin artă, cuvinte, muzică sau orice altă formă de exprimare. Vei fi pus în situații care îți cer să comunici, să creezi și să aduci optimism în lume. Ești destinat să fii o sursă de inspirație și bucurie.\n\nProvocările tale includ învățarea să te concentrezi pe un singur proiect, să dezvolți disciplină în procesul creativ și să nu te dispersezi în prea multe direcții. Succesul tău vine când reușești să îți canalizezi energia creativă într-un mod productiv și semnificativ.\n\nRealizarea destinului tău necesită curajul de a te exprima autentic, disciplina de a-ți perfecționa talentele și generozitatea de a împărtăși darurile tale cu lumea. Ești aici să arăți că creativitatea și bucuria sunt esențiale pentru o viață împlinită."
+        "theme": {
+            "primary": "from-yellow-400 to-amber-500",
+            "accent": "text-amber-600",
+            "bg_soft": "bg-amber-50"
+        },
+        "hero": {
+            "icon": "Sparkles",
+            "title": "Expresivul",
+            "subtitle": "Destin 3",
+            "headline": "Ești vocea care aduce bucurie."
+        },
+        "tags": [
+            "Creativitate",
+            "Comunicare",
+            "Optimism",
+            "Socializare"
+        ],
+        "content": {
+            "main_text": "Tu ești **Artistul Sufletului**. Destinul tău este să te exprimi, să comunici și să ridici vibrația celor din jur prin creativitate și optimism. Cuvintele sunt superputerea ta. Totuși, riscul tău este superficialitatea sau risipirea energiei în mii de direcții fără a finaliza nimic. Misiunea ta este să îți găsești vocea autentică și să o folosești pentru a inspira, a motiva și a aduce lumină într-o lume uneori prea serioasă.",
+            "dos": [
+                "Exprimă-ți emoțiile prin artă sau vorbire.",
+                "Fii sufletul petrecerii, conectează oamenii.",
+                "Păstrează-ți simțul umorului viu."
+            ],
+            "donts": [
+                "Nu bârfi și nu vorbi fără rost.",
+                "Evită să lași proiectele neterminate.",
+                "Nu îți ascunde tristețea sub o mască de zâmbet."
+            ]
+        },
+        "mantra": "Cuvintele mele creează realitatea mea."
     },
     "4": {
-        "title": "Constructor și Organizator",
-        "description": "Ești destinat să construiești fundații solide și să creezi stabilitate.",
-        "fullText": "Destinul tău este să fii un constructor, un organizator și un creator de structuri durabile. Numele tău poartă energia stabilității și a muncii asidue. Ești chemat să construiești fundații solide pentru tine și pentru alții, să creezi ordine din haos și să lași o moștenire durabilă.\n\nMisiunea ta în viață este să dezvolți disciplină, organizare și o etică de muncă puternică. Vei fi pus în situații care îți cer să planifici, să organizezi și să construiești pas cu pas. Ești destinat să fii o piatră de temelie pe care alții se pot baza.\n\nProvocările tale includ învățarea să fii mai flexibil, să accepți schimbarea și să nu devii prea rigid în abordările tale. Succesul tău vine când reușești să echilibrezi nevoia de structură cu capacitatea de a te adapta la circumstanțe noi.\n\nRealizarea destinului tău necesită perseverență, răbdare și dedicare față de obiectivele tale pe termen lung. Ești aici să arăți că succesul durabil vine prin muncă asiduă, planificare atentă și construire solidă, pas cu pas."
+        "theme": {
+            "primary": "from-emerald-600 to-green-700",
+            "accent": "text-emerald-700",
+            "bg_soft": "bg-emerald-50"
+        },
+        "hero": {
+            "icon": "ShieldCheck",
+            "title": "Constructorul",
+            "subtitle": "Destin 4",
+            "headline": "Ești fundația solidă a succesului."
+        },
+        "tags": [
+            "Stabilitate",
+            "Muncă",
+            "Organizare",
+            "Realism"
+        ],
+        "content": {
+            "main_text": "Tu ești **Pilonul de Rezistență**. Destinul tău este să construiești ceva durabil, fie că e o carieră, o familie sau o afacere. Ești pragmatic, muncitor și extrem de loial. Adesea însă, poți deveni prea rigid, refuzând schimbarea sau muncind până la epuizare totală. Misiunea ta este să creezi ordine din haos și să oferi lumii o structură sigură pe care se poate baza, învățând totodată că flexibilitatea este necesară pentru a nu te frânge.",
+            "dos": [
+                "Planifică pașii cu atenție.",
+                "Fii disciplinat și consecvent.",
+                "Construiește baze solide pentru viitor."
+            ],
+            "donts": [
+                "Nu fi rigid cu tine sau cu alții.",
+                "Evită să te plângi de munca grea.",
+                "Nu uita să te relaxezi."
+            ]
+        },
+        "mantra": "Construiesc pas cu pas un viitor sigur."
     },
     "5": {
-        "title": "Explorator și Agent al Schimbării",
-        "description": "Ești destinat să explorezi, să experimentezi și să aduci schimbare.",
-        "fullText": "Destinul tău este să fii un explorator, un agent al schimbării și un promotor al libertății. Numele tău poartă energia aventurii și a transformării. Ești chemat să experimentezi tot ce viața are de oferit, să aduci schimbare pozitivă și să inspiri pe alții să își depășească limitele.\n\nMisiunea ta în viață este să îmbrățișezi schimbarea, să explorezi noi teritorii și să îți folosești versatilitatea pentru a te adapta la orice situație. Vei fi pus în situații care îți cer să fii flexibil, să comunici eficient și să promovezi progresul. Ești destinat să fii un catalizator al schimbării.\n\nProvocările tale includ învățarea să găsești stabilitate în mijlocul schimbării, să te angajezi profund în relații și proiecte, și să nu fugi de responsabilități. Succesul tău vine când reușești să îți folosești libertatea cu înțelepciune și să aduci schimbări constructive.\n\nRealizarea destinului tău necesită curajul de a ieși din zona de confort, deschiderea către experiențe noi și înțelepciunea de a învăța din fiecare aventură. Ești aici să arăți că viața este o călătorie de descoperire și că schimbarea este esențială pentru creștere."
+        "theme": {
+            "primary": "from-blue-500 to-cyan-400",
+            "accent": "text-blue-600",
+            "bg_soft": "bg-blue-50"
+        },
+        "hero": {
+            "icon": "Wind",
+            "title": "Aventurierul",
+            "subtitle": "Destin 5",
+            "headline": "Ești libertatea în mișcare."
+        },
+        "tags": [
+            "Libertate",
+            "Schimbare",
+            "Adaptabilitate",
+            "Curiozitate"
+        ],
+        "content": {
+            "main_text": "Tu ești **Spiritul Liber**. Destinul tău este să explorezi, să experimentezi noul și să îmbrățișezi schimbarea. Rutina te sufocă; ai nevoie de varietate ca de aer. Provocarea ta este neliniștea constantă și tendința de a fugi de angajamente de profunzime. Misiunea ta este să arăți lumii cum să se adapteze rapid și cum să trăiască viața la maxim, găsind totuși o ancoră interioară care să îți ofere stabilitate în haos.",
+            "dos": [
+                "Îmbrățișează oportunitățile noi.",
+                "Călătorește și lărgește-ți orizonturile.",
+                "Fii flexibil și deschis la minte."
+            ],
+            "donts": [
+                "Nu fugi de responsabilități.",
+                "Evită excesele de orice fel.",
+                "Nu lăsa plictiseala să dicteze decizii proaste."
+            ]
+        },
+        "mantra": "Sunt liber să aleg orice direcție."
     },
     "6": {
-        "title": "Îngrijitor și Armonizator",
-        "description": "Ești destinat să îngrijești, să protejezi și să creezi armonie.",
-        "fullText": "Destinul tău este să fii un îngrijitor, un protector și un creator de armonie în familie și comunitate. Numele tău poartă energia responsabilității și a compasiunii. Ești chemat să oferi dragoste, sprijin și îngrijire celor din jur, și să creezi un mediu armonios pentru toți.\n\nMisiunea ta în viață este să dezvolți capacitatea de a îngriji fără a te sacrifica excesiv, să creezi frumusețe și armonie în jurul tău, și să fii un consilier înțelept pentru cei care au nevoie. Vei fi pus în situații care îți cer să îți asumi responsabilități față de familie și comunitate.\n\nProvocările tale includ învățarea să îți păstrezi propria identitate în timp ce îngrijești pe alții, să spui nu când este necesar și să nu devii controlant în dorința ta de a proteja. Succesul tău vine când reușești să oferi dragoste necondiționată fără a te pierde pe tine însuți.\n\nRealizarea destinului tău necesită echilibru între a da și a primi, înțelepciunea de a ști când să ajuți și când să lași pe alții să învețe din propriile experiențe. Ești aici să arăți că dragostea, responsabilitatea și armonia sunt fundamentele unei vieți împlinite."
+        "theme": {
+            "primary": "from-pink-500 to-rose-600",
+            "accent": "text-rose-600",
+            "bg_soft": "bg-rose-50"
+        },
+        "hero": {
+            "icon": "Heart",
+            "title": "Protectorul",
+            "subtitle": "Destin 6",
+            "headline": "Ești inima familiei și a comunității."
+        },
+        "tags": [
+            "Responsabilitate",
+            "Iubire",
+            "Vindecare",
+            "Armonie"
+        ],
+        "content": {
+            "main_text": "Tu ești **Părintele Universal**. Destinul tău este să iubești, să protejezi și să îți asumi responsabilități față de familie și comunitate. Ești cel la care toată lumea vine pentru sfat și alinare. Însă, umbra ta este tendința de a controla viețile altora 'pentru binele lor' sau de a te sacrifica până la martiriu. Misiunea ta este să aduci frumusețe și echilibru, învățând să oferi ajutor doar atunci când este cerut și să ai grijă întâi de tine.",
+            "dos": [
+                "Creează un cămin cald și primitor.",
+                "Oferă sprijin celor dragi.",
+                "Cultivă frumusețea și arta."
+            ],
+            "donts": [
+                "Nu încerca să îi controlezi pe ceilalți.",
+                "Evită perfecționismul critic.",
+                "Nu îți ignora propriile nevoi."
+            ]
+        },
+        "mantra": "Iubesc și protejez în echilibru perfect."
     },
     "7": {
-        "title": "Înțelept și Căutător al Adevărului",
-        "description": "Ești destinat să cauți înțelepciune, adevăr și înțelegere profundă.",
-        "fullText": "Destinul tău este să fii un căutător al adevărului, un filosof și un ghid spiritual. Numele tău poartă energia înțelepciunii și a cunoașterii profunde. Ești chemat să explorezi misterele vieții, să dezvolți înțelegere spirituală și să împărtășești înțelepciunea ta cu cei pregătiți să o primească.\n\nMisiunea ta în viață este să dezvolți o conexiune profundă cu lumea interioară, să studiezi și să înțelegi legile universale, și să ajuți pe alții să găsească sens și înțelegere. Vei fi pus în situații care îți cer să analizezi profund, să meditezi și să cauți adevărul dincolo de aparențe.\n\nProvocările tale includ învățarea să îți deschizi inima și să te conectezi emoțional cu alții, să nu te izolezi în turnul tău de fildeș și să împărtășești înțelepciunea ta într-un mod accesibil. Succesul tău vine când reușești să echilibrezi viața interioară cu cea exterioară.\n\nRealizarea destinului tău necesită dedicare față de căutarea adevărului, curajul de a pune întrebări profunde și răbdarea de a aștepta răspunsurile. Ești aici să arăți că înțelepciunea și înțelegerea spirituală sunt esențiale pentru evoluția umană."
+        "theme": {
+            "primary": "from-violet-600 to-purple-800",
+            "accent": "text-violet-700",
+            "bg_soft": "bg-violet-50"
+        },
+        "hero": {
+            "icon": "Search",
+            "title": "Înțeleptul",
+            "subtitle": "Destin 7",
+            "headline": "Ești căutătorul adevărului absolut."
+        },
+        "tags": [
+            "Analiză",
+            "Introspecție",
+            "Spiritualitate",
+            "Mister"
+        ],
+        "content": {
+            "main_text": "Tu ești **Gânditorul Profund**. Destinul tău este să cauți răspunsuri la marile întrebări, să analizezi și să descoperi adevăruri ascunse. Ești un detectiv al vieții, fie în știință, fie în spiritualitate. Provocarea ta este izolarea și scepticismul; poți deveni cinic dacă nu găsești răspunsurile rapid. Misiunea ta este să dezvolți o înțelepciune unică și să împărtășești cunoașterea ta, conectând intelectul brici cu intuiția spirituală.",
+            "dos": [
+                "Petrece timp în solitudine pentru a gândi.",
+                "Studiază subiecte care te fascinează.",
+                "Ai încredere în intuiția ta analitică."
+            ],
+            "donts": [
+                "Nu te izola emoțional de oameni.",
+                "Evită să fii prea critic sau suspicios.",
+                "Nu trăi doar în mintea ta."
+            ]
+        },
+        "mantra": "Cunoașterea este lumina mea interioară."
     },
     "8": {
-        "title": "Magnat și Realizator",
-        "description": "Ești destinat să realizezi lucruri mari și să creezi abundență.",
-        "fullText": "Destinul tău este să fii un magnat, un realizator de lucruri mari și un creator de abundență materială. Numele tău poartă energia puterii și a succesului. Ești chemat să construiești imperii, să transformi viziuni în realitate și să folosești puterea ta pentru a face bine în lume.\n\nMisiunea ta în viață este să dezvolți abilități de leadership în afaceri, să înțelegi și să gestionezi resurse materiale și să creezi prosperitate nu doar pentru tine, ci și pentru alții. Vei fi pus în situații care îți cer să iei decizii importante, să gestionezi putere și să realizezi obiective ambițioase.\n\nProvocările tale includ învățarea să echilibrezi succesul material cu viața personală, să folosești puterea cu înțelepciune și compasiune, și să nu devii obsedat de bani și statut. Succesul tău vine când reușești să creezi abundență în mod etic și să o folosești pentru binele comun.\n\nRealizarea destinului tău necesită ambiție temperată cu integritate, determinare combinată cu compasiune și putere folosită cu responsabilitate. Ești aici să arăți că succesul material și spiritual pot merge mână în mână și că abundența poate fi o forță pentru bine."
+        "theme": {
+            "primary": "from-slate-700 to-stone-900",
+            "accent": "text-stone-700",
+            "bg_soft": "bg-stone-50"
+        },
+        "hero": {
+            "icon": "Gem",
+            "title": "Vizionarul",
+            "subtitle": "Destin 8",
+            "headline": "Ești maestrul manifestării materiale."
+        },
+        "tags": [
+            "Putere",
+            "Abundență",
+            "Succes",
+            "Autoritate"
+        ],
+        "content": {
+            "main_text": "Tu ești **CEO-ul Cosmic**. Destinul tău este să obții succes, să gestionezi resurse mari și să manifești abundență în lumea materială. Ai fler pentru afaceri și organizare la scară largă. Lupta ta este cu ego-ul și cu echilibrul între material și spiritual; riscul este să devii obsedat de putere sau bani. Misiunea ta reală este să folosești influența și resursele acumulate pentru a imputernici pe alții și a face bine în lume.",
+            "dos": [
+                "Asumă-ți roluri de conducere.",
+                "Fii ambițios și etic în afaceri.",
+                "Gestionează banii cu responsabilitate."
+            ],
+            "donts": [
+                "Nu abuza de puterea ta.",
+                "Evită lăcomia și materialismul pur.",
+                "Nu neglija familia pentru carieră."
+            ]
+        },
+        "mantra": "Succesul meu aduce beneficii tuturor."
     },
     "9": {
-        "title": "Filantrop și Transformator",
-        "description": "Ești destinat să servești umanitatea și să transformi lumea.",
-        "fullText": "Destinul tău este să fii un filantrop, un umanitar și un transformator al lumii. Numele tău poartă energia compasiunii universale și a serviciului. Ești chemat să servești umanitatea, să lupți pentru cauze nobile și să lași lumea mai bună decât ai găsit-o.\n\nMisiunea ta în viață este să dezvolți compasiune pentru toată omenirea, să îți folosești talentele pentru a ajuta pe cei în nevoie și să inspiri schimbări pozitive la scară largă. Vei fi pus în situații care îți cer să te ridici deasupra intereselor personale și să lucrezi pentru binele comun.\n\nProvocările tale includ învățarea să accepți imperfecțiunile umane, să nu te dezamăgești când lumea nu se schimbă atât de repede pe cât ai dori și să îți păstrezi echilibrul emoțional în fața suferinței. Succesul tău vine când reușești să faci diferența fără a te epuiza complet.\n\nRealizarea destinului tău necesită o inimă deschisă, o viziune largă și curajul de a acționa pentru convingerile tale. Ești aici să arăți că fiecare dintre noi poate face o diferență și că serviciul față de umanitate este cea mai înaltă formă de realizare."
+        "theme": {
+            "primary": "from-fuchsia-600 to-pink-700",
+            "accent": "text-fuchsia-700",
+            "bg_soft": "bg-fuchsia-50"
+        },
+        "hero": {
+            "icon": "Globe",
+            "title": "Idealistul",
+            "subtitle": "Destin 9",
+            "headline": "Ești un suflet bătrân venit să vindece lumea."
+        },
+        "tags": [
+            "Compasiune",
+            "Umanitarism",
+            "Generozitate",
+            "Încheiere"
+        ],
+        "content": {
+            "main_text": "Tu ești **Filantropul**. Destinul tău este să servești umanitatea, să inspiri și să închei cicluri karmice. Ai o viziune largă și o inimă mare, dorind să faci lumea un loc mai bun. Adesea suferi când realitatea nu se ridică la înălțimea idealurilor tale, și ai dificultăți în a lăsa trecutul în urmă. Misiunea ta este să înveți să dăruiești necondiționat, să ierți și să inspiri prin exemplul propriu de compasiune universală.",
+            "dos": [
+                "Implică-te în cauze sociale.",
+                "Practică iertarea și detașarea.",
+                "Fii un exemplu de toleranță."
+            ],
+            "donts": [
+                "Nu te agăța de trecut.",
+                "Evită să fii dezamăgit de imperfecțiuni.",
+                "Nu te sacrifica inutil."
+            ]
+        },
+        "mantra": "Lumea este familia mea."
     },
     "11": {
-        "title": "Mesager Spiritual",
-        "description": "Ești destinat să transmiți înțelepciune spirituală și să inspiri iluminare.",
-        "fullText": "Destinul tău este să fii un mesager spiritual, un canal pentru înțelepciune superioară și un inspirator al conștiinței elevate. Numele tău poartă vibrația numărului 11, cel mai intuitiv și spiritual dintre toate numerele. Ești chemat să aduci lumină spirituală în lume și să ajuți pe alții să se trezească la adevărul lor interior.\n\nMisiunea ta în viață este să dezvolți și să îți folosești intuiția extraordinară pentru a ghida și inspira pe alții. Vei fi pus în situații care îți cer să fii un exemplu de viață spirituală, să transmiți mesaje de înțelepciune și să ajuți pe alții să își găsească calea spirituală. Ești destinat să fii un far de lumină într-o lume care are nevoie de iluminare.\n\nProvocările tale includ gestionarea sensibilității extreme și a presiunii de a trăi la un standard spiritual înalt. Riști să te simți copleșit de intensitatea percepțiilor tale sau izolat din cauza naturii tale spirituale profunde. Învață să îți înrădăcinezi energia spirituală în realitatea practică și să găsești modalități de a împărtăși darurile tale fără a te epuiza.\n\nRealizarea destinului tău necesită curajul de a îmbrățișa natura ta spirituală unică, disciplina de a-ți dezvolta darurile intuitive și înțelepciunea de a ști când și cum să împărtășești mesajele tale. Ești aici să arăți că spiritualitatea și intuiția sunt puteri reale care pot transforma viețile și lumea. Misiunea ta este să inspiri trezirea spirituală și să ajuți umanitatea să evolueze către o conștiință mai înaltă.\n\nNotă: Energia numărului 11 este intensă. Dacă simți că este prea mult, poți lucra și cu calitățile numărului 2 (1+1=2) pentru echilibru, concentrându-te pe diplomație și cooperare până când ești pregătit să îmbrățișezi pe deplin misiunea spirituală a numărului 11."
+        "theme": {
+            "primary": "from-violet-500 via-purple-500 to-indigo-600",
+            "accent": "text-indigo-600",
+            "bg_soft": "bg-indigo-50"
+        },
+        "hero": {
+            "icon": "Zap",
+            "title": "Iluminatorul",
+            "subtitle": "Destin Maestru 11",
+            "headline": "Ești canalul de inspirație divină."
+        },
+        "tags": [
+            "Intuiție",
+            "Inspirație",
+            "Viziune",
+            "Spiritualitate"
+        ],
+        "content": {
+            "main_text": "Tu ești **Mesagerul**. Destinul tău este unul special, de Maestru: să aduci lumină și revelații spirituale celorlalți. Ai o intuiție electrizantă și idei vizionare. Însă, vibrația înaltă te poate face anxios, nervos sau neînțeles. Provocarea ta este să îți stăpânești energia nervoasă și să nu te pierzi în visare. Misiunea ta este să fii un far de inspirație, trăind adevărul spiritual în viața de zi cu zi.",
+            "dos": [
+                "Ai încredere totală în instinctele tale.",
+                "Inspiră-i pe alții prin idei noi.",
+                "Găsește echilibrul emoțional."
+            ],
+            "donts": [
+                "Nu te lăsa copleșit de emoții.",
+                "Evită critica excesivă.",
+                "Nu eșua în a acționa practic."
+            ],
+            "master_note": "11 este un 2 amplificat. Când tensiunea e prea mare, practică diplomația lui 2."
+        },
+        "mantra": "Sunt un canal de lumină și inspirație."
     },
     "22": {
-        "title": "Arhitect al Schimbării Globale",
-        "description": "Ești destinat să construiești sisteme și structuri care transformă lumea.",
-        "fullText": "Destinul tău este să fii un arhitect al schimbării globale, un constructor de sisteme și structuri care pot transforma societatea și servi umanitatea la scară largă. Numele tău poartă vibrația numărului 22, cel mai puternic număr pentru manifestare materială a viziunilor spirituale. Ești chemat să construiești ceva durabil și semnificativ care va avea impact asupra generațiilor viitoare.\n\nMisiunea ta în viață este să combini viziunea spirituală cu abilitatea practică pentru a crea schimbare reală și tangibilă în lume. Vei fi pus în situații care îți cer să conduci proiecte mari, să organizezi sisteme complexe și să transformi idei îndrăznețe în realități concrete. Ești destinat să fii un lider vizionar care nu doar visează, ci și realizează.\n\nProvocările tale includ gestionarea presiunii enorme de a realiza lucruri mari și riscul de a te epuiza în procesul de manifestare a viziunii tale. Poți deveni obsedat de obiective și să neglijezi echilibrul în viață. Învață să îți păstrezi viziunea spirituală în timp ce lucrezi cu realitățile practice și să îți îngrijești sănătatea fizică și emoțională în procesul de realizare.\n\nRealizarea destinului tău necesită o combinație rară de viziune înaltă și pragmatism solid, de idealism spiritual și abilitate practică, de ambiție și umilință. Ești aici să arăți că este posibil să construiești \"raiul pe pământ\" - să creezi sisteme, organizații sau structuri care servesc binele comun și îmbunătățesc viața multor oameni. Misiunea ta este să lași o moștenire durabilă care va continua să servească umanitatea mult timp după ce vei pleca.\n\nNotă: Energia numărului 22 este extraordinar de puternică și vine cu responsabilități mari. Dacă simți că presiunea este prea mare, poți lucra temporar cu calitățile numărului 4 (2+2=4) pentru a construi fundații solide înainte de a îmbrățișa pe deplin misiunea numărului 22."
+        "theme": {
+            "primary": "from-emerald-700 via-teal-700 to-cyan-800",
+            "accent": "text-teal-800",
+            "bg_soft": "bg-teal-50"
+        },
+        "hero": {
+            "icon": "Pyramid",
+            "title": "Marele Constructor",
+            "subtitle": "Destin Maestru 22",
+            "headline": "Transformi visurile imposibile în realitate."
+        },
+        "tags": [
+            "Manifestare",
+            "Putere",
+            "Viziune",
+            "Pragmatism"
+        ],
+        "content": {
+            "main_text": "Tu ești **Arhitectul Viitorului**. Destinul tău este să construiești la scară mare, pentru binele colectiv. Combini idealismul lui 11 cu pragmatismul lui 4. Poți realiza aproape orice îți pui în minte. Greutatea destinului tău este responsabilitatea imensă și riscul de a te prăbuși sub propria ambiție sau frică de eșec. Misiunea ta este să lași o moștenire tangibilă care să servească umanității.",
+            "dos": [
+                "Gândește proiecte globale.",
+                "Planifică strategic fiecare pas.",
+                "Folosește puterea pentru bine."
+            ],
+            "donts": [
+                "Nu te lăsa paralizat de frica de eșec.",
+                "Evită munca fără odihnă.",
+                "Nu uita de latura umană."
+            ],
+            "master_note": "22 este un 4 amplificat. Ai grijă la rigiditate și odihnește-te."
+        },
+        "mantra": "Visele mele devin realitate prin muncă."
     },
     "33": {
-        "title": "Avatar al Dragostei Universale",
-        "description": "Ești destinat să încarni și să răspândești dragoste necondiționată și compasiune universală.",
-        "fullText": "Destinul tău este să fii un avatar al dragostei universale, un vindecător al sufletelor și un transformator al conștiinței umane prin compasiune pură. Numele tău poartă vibrația numărului 33, cel mai evoluat și mai rar Număr Maestru. Ești chemat să încarni dragoste necondiționată și să servești ca un exemplu viu de compasiune, sacrificiu și transformare spirituală.\n\nMisiunea ta în viață este să ridici conștiința umanității prin dragoste, să vindeci suferința prin compasiune și să transformi lumea prin serviciu dezinteresat. Vei fi pus în situații care îți cer să oferi dragoste necondiționată, să vindeci răni profunde și să inspiri transformare spirituală în cei din jur. Ești destinat să fii un învățător maestru, nu prin cuvinte, ci prin însăși viața ta.\n\nProvocările tale sunt profunde și intense. Riști să te sacrifici complet pentru alții și să îți pierzi propria identitate în procesul de servire. Sensibilitatea ta extremă la suferința din lume poate duce la epuizare spirituală și emoțională. Există pericolul de a deveni martir sau de a fi exploatat de cei care nu înțeleg sau nu respectă natura ta sacră. Învață să îți stabilești limite sănătoase și să practici auto-compasiunea în timp ce servești pe alții.\n\nRealizarea destinului tău necesită o maturitate spirituală extraordinară, o capacitate profundă de iertare și o înțelegere că adevărata servire începe cu iubirea de sine. Ești aici să arăți că dragostea necondiționată este cea mai puternică forță din univers și că prin compasiune autentică putem transforma nu doar indivizi, ci întreaga umanitate. Misiunea ta este să fii un far de lumină divină într-o lume care are nevoie disperată de dragoste și vindecare.\n\nNotă: Numărul 33 este extrem de rar și puțini oameni sunt pregătiți să trăiască la acest nivel vibrator. Este perfect normal și înțelept să lucrezi cu calitățile numărului 6 (3+3=6) până când ești pregătit spiritual, emoțional și fizic să îmbrățișezi pe deplin misiunea sacră a numărului 33. Aceasta nu este o eșec, ci o cale graduală de pregătire pentru o responsabilitate spirituală imensă."
+        "theme": {
+            "primary": "from-rose-500 via-pink-500 to-fuchsia-600",
+            "accent": "text-rose-700",
+            "bg_soft": "bg-rose-50"
+        },
+        "hero": {
+            "icon": "Sun",
+            "title": "Ghidul Compasiunii",
+            "subtitle": "Destin Maestru 33",
+            "headline": "Ești iubirea necondiționată în acțiune."
+        },
+        "tags": [
+            "Vindecare",
+            "Sacrificiu",
+            "Iubire",
+            "Serviciu"
+        ],
+        "content": {
+            "main_text": "Tu ești **Avatarul Iubirii**. Destinul tău este rar și înalt: să vindeci suflete prin puterea iubirii necondiționate și a sacrificiului de sine. Ești protectorul tuturor. Provocarea imensă este să nu te distrugi pe tine încercând să salvezi lumea (Sindromul Martirului). Misiunea ta este să fii un exemplu viu de bunătate și compasiune, arătând că iubirea este cea mai mare putere vindecătoare.",
+            "dos": [
+                "Oferă ajutor fără a aștepta nimic.",
+                "Fii blând cu tine și cu alții.",
+                "Vindecă prin prezența ta."
+            ],
+            "donts": [
+                "Nu te sacrifica inutil.",
+                "Evită să preiei durerea altora.",
+                "Nu uita că și tu meriți iubire."
+            ],
+            "master_note": "33 este un 6 la octavă superioară. Păstrează echilibrul emoțional."
+        },
+        "mantra": "Iubirea mea vindecă tot ce atinge."
     }
 }

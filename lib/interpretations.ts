@@ -38,7 +38,7 @@ export type Interpretation = BaseInterpretation | LifePathInterpretation;
 
 const dataMap: Record<InterpretationType, Record<string, Interpretation>> = {
     'life-path': lifePathData as unknown as Record<string, LifePathInterpretation>,
-    'destiny': destinyData as unknown as Record<string, BaseInterpretation>,
+    'destiny': destinyData as unknown as Record<string, LifePathInterpretation>,
     'compatibility': compatibilityData as unknown as Record<string, BaseInterpretation>,
     'daily': dailyData as unknown as Record<string, BaseInterpretation>,
 };

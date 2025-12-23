@@ -2,7 +2,7 @@
 
 import { useMemo, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { getInterpretation, type BaseInterpretation } from "@/lib/interpretations";
+import { getInterpretation, type LifePathInterpretation } from "@/lib/interpretations";
 import { calculateDestinyNumber } from "@/lib/numerology";
 import { NumerologyForm, type NumerologyFormData } from "@/components/numerologie/numerology-form";
 import { DestinyCard } from "@/components/numerologie/destiny-card";
@@ -47,7 +47,7 @@ export default function NumeDestinClient() {
   // Query interpretation from static library
   const interpretation = useMemo(() => {
     if (destinyNumber === null) return undefined;
-    const result = getInterpretation<BaseInterpretation>("destiny", destinyNumber);
+    const result = getInterpretation<LifePathInterpretation>("destiny", destinyNumber);
     return result || null;
   }, [destinyNumber]);
 
@@ -123,11 +123,7 @@ export default function NumeDestinClient() {
 
             <DestinyCard
               number={destinyNumber}
-              interpretation={{
-                title: interpretation.title,
-                description: interpretation.description,
-                fullText: interpretation.fullText,
-              }}
+              interpretation={interpretation}
               name={name}
             />
 

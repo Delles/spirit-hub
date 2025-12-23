@@ -3,25 +3,34 @@ import CaleaVietiiClient from "./client";
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 
-// Force static generation - client handles URL params
-export const dynamic = "force-static";
+import { redirect } from "next/navigation";
+import { parseISO, isValid } from "date-fns";
 
-export const metadata: Metadata = {
-  title: "Calea Vieții - Calculator Numerologie | SpiritHub.ro",
-  description:
-    "Descoperă-ți numărul Căii Vieții și înțelege-ți scopul și direcția în viață prin numerologie.",
-  alternates: {
-    canonical: "https://spirithub.ro/numerologie/calea-vietii",
-  },
-  openGraph: {
-    title: "Calea Vieții - Calculator Numerologie | SpiritHub.ro",
-    description:
-      "Descoperă-ți numărul Căii Vieții și înțelege-ți scopul și direcția în viață prin numerologie.",
-    type: "website",
-  },
-};
+interface PageProps {
+  searchParams: Promise<{ date?: string }>;
+}
 
-export default function CaleaVietiiPage() {
+/**
+ * Validation helper
+ */
+function isDateValid(dateStr?: string): boolean {
+  if (!dateStr) return true; // Optional param
+  try {
+    const date = parseISO(dateStr);
+    return isValid(date);
+  } catch {
+    return false;
+  }
+}
+
+export default async function CaleaVietiiPage({ searchParams }: PageProps) {
+  const { date } = await searchParams;
+
+  // Validate date param on server
+  if (date && !isDateValid(date)) {
+    redirect("/numerologie/calea-vietii");
+  }
+
   return (
     <Suspense fallback={<LoadingSpinner text="Se încarcă..." />}>
       <CaleaVietiiClient />
