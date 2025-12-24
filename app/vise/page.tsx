@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
 };
 
-// Static page - daily content fetched client-side from Convex
+// Static page - daily content computed client-side via DailyContentProvider
 export const dynamic = "force-static";
 
 export default function VisePage() {

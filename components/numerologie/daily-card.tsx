@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/shared/share-button";
+import ReactMarkdown from "react-markdown";
+import type { Components } from "react-markdown";
 import {
     Flame,
     HeartHandshake,
@@ -50,22 +52,18 @@ const iconMap: Record<string, LucideIcon> = {
     Moon
 };
 
-// Extract prose classes for better readability and maintainability
-const PROSE_CLASSES =
-    "prose prose-invert prose-p:text-slate-300 prose-p:leading-relaxed " +
-    "prose-strong:text-white prose-strong:font-semibold max-w-none " +
-    "text-center sm:text-left";
-
-/**
- * Format markdown-style text to HTML
- * Safe to use with dangerouslySetInnerHTML because content comes from trusted static JSON
- */
-function formatMainText(text: string): string {
-    return text
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/\n\n/g, '<br/><br/>');
-}
+// Memoized markdown components - defined outside component to avoid re-creation
+const MARKDOWN_COMPONENTS: Components = {
+    p: ({ children }) => (
+        <p className="text-slate-300 leading-relaxed mb-4 last:mb-0">{children}</p>
+    ),
+    strong: ({ children }) => (
+        <strong className="text-white font-semibold">{children}</strong>
+    ),
+    em: ({ children }) => (
+        <em className="italic">{children}</em>
+    ),
+};
 
 export function DailyCard({ number, interpretation, date }: DailyCardProps) {
     const IconComponent = iconMap[interpretation.hero.icon] || Sparkles;
@@ -127,12 +125,11 @@ export function DailyCard({ number, interpretation, date }: DailyCardProps) {
 
                     {/* 3. MAIN INSIGHT */}
                     <div className="space-y-4">
-                        <div
-                            className={PROSE_CLASSES}
-                            dangerouslySetInnerHTML={{
-                                __html: formatMainText(interpretation.content.main_text)
-                            }}
-                        />
+                        <div className="prose prose-invert prose-p:text-slate-300 prose-p:leading-relaxed prose-strong:text-white prose-strong:font-semibold max-w-none text-center sm:text-left">
+                            <ReactMarkdown components={MARKDOWN_COMPONENTS}>
+                                {interpretation.content.main_text}
+                            </ReactMarkdown>
+                        </div>
                     </div>
 
                     {/* 4. TACTICAL GRID - Glass Cards */}

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import NumarZilnicClient from "./client";
 
-// Static page - daily content fetched client-side from Convex
+// Static page - daily content computed client-side via DailyContentProvider
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {

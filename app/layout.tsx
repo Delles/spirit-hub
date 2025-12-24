@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Cinzel } from "next/font/google";
 import "./globals.css";
-import { ConvexClientProvider } from "./convex-provider";
 import { DailyContentProvider } from "@/components/providers/daily-content-provider";
 
 
@@ -56,11 +55,9 @@ export default function RootLayout({
   return (
     <html lang="ro" className="dark" suppressHydrationWarning>
       <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased`}>
-        <ConvexClientProvider>
-          <DailyContentProvider>
-            {children}
-          </DailyContentProvider>
-        </ConvexClientProvider>
+        <DailyContentProvider>
+          {children}
+        </DailyContentProvider>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { VisulZileiClient } from "./client";
 
-// Static page - daily content fetched client-side from Convex
+// Static page - daily content computed client-side via DailyContentProvider
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function VisulZileiPage() {
           </p>
         </div>
 
-        {/* Client Component fetches from Convex */}
+        {/* Client Component receives data via DailyContentProvider */}
         <VisulZileiClient />
       </div>
     </div>
