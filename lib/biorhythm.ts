@@ -11,10 +11,36 @@ import {
   CRITICAL_THRESHOLD,
 } from "@/config/biorhythm";
 import { ValidationError, validateDate } from "@/lib/utils";
+import biorhythmData from "@/data/interpretations/biorhythm.json";
 
 // ============================================================================
 // Type Definitions
 // ============================================================================
+
+/**
+ * Represents the structured interpretation data from JSON
+ */
+export interface BiorhythmInterpretationData {
+  theme: {
+    primary: string;
+    accent: string;
+    bg_soft: string;
+    hex: string;
+  };
+  hero: {
+    icon: string;
+    title: string;
+    subtitle: string;
+    headline: string;
+  };
+  tags: string[];
+  content: {
+    main_text: string;
+    dos: string[];
+    donts: string[];
+  };
+  mantra: string;
+}
 
 /**
  * Represents the three biorhythm cycle values for a given date
@@ -41,6 +67,9 @@ export interface BiorhythmHint {
   hint: string;
   dayOfWeek: string;
 }
+
+// Type the imported JSON
+const typedBiorhythmData = biorhythmData as Record<string, BiorhythmInterpretationData>;
 
 // ============================================================================
 // Core Calculation Functions
@@ -226,98 +255,75 @@ export function getBiorhythmHintForDay(date: Date = new Date()): BiorhythmHint {
 }
 
 // ============================================================================
-// Romanian Biorhythm Summary
+// Romanian Biorhythm Interpretation (Rich Data)
 // ============================================================================
 
 /**
- * Generates a Romanian-language summary of biorhythm cycles
- * Analyzes cycle values and provides guidance based on their states
+ * Returns the most relevant biorhythm interpretation card based on cycle values
+ *
+ * Priority:
+ * 1. Critical Days (most impacts safety/stability)
+ * 2. All High (Super Day)
+ * 3. All Low (Recharge Day)
+ * 4. Dominant Cycle (Greatest absolute value deviation from 0)
  *
  * @param physical - Physical cycle value (-1 to 1)
  * @param emotional - Emotional cycle value (-1 to 1)
  * @param intellectual - Intellectual cycle value (-1 to 1)
- * @returns Romanian-language guidance text
+ * @returns BiorhythmInterpretationData with theme, hero, tags, content, etc.
  */
-export function getBiorhythmSummary(
+export function getBiorhythmInterpretation(
   physical: number,
   emotional: number,
-  intellectual: number,
-): string {
-  // Categorize each cycle as high (>0.3), low (<-0.3), or neutral
-  const isPhysicalHigh = physical > 0.3;
-  const isPhysicalLow = physical < -0.3;
-  const isEmotionalHigh = emotional > 0.3;
-  const isEmotionalLow = emotional < -0.3;
-  const isIntellectualHigh = intellectual > 0.3;
-  const isIntellectualLow = intellectual < -0.3;
+  intellectual: number
+): BiorhythmInterpretationData {
+  const HIGH_THRESHOLD = 0.3;
+  const LOW_THRESHOLD = -0.3;
 
-  // Check for critical states (near zero)
+  // Helper to safely get interpretation with fallback
+  const getInterpretation = (key: string): BiorhythmInterpretationData => {
+    const data = typedBiorhythmData[key];
+    if (!data) {
+      // Fallback to a safe default if key is missing (defensive programming)
+      console.error(`[Biorhythm] Missing interpretation key: ${key}`);
+      return typedBiorhythmData["physical_high"]; // Safe fallback
+    }
+    return data;
+  };
+
+  // Check for critical states (using CRITICAL_THRESHOLD from config, likely 0.2)
   const isPhysicalCritical = Math.abs(physical) <= CRITICAL_THRESHOLD;
   const isEmotionalCritical = Math.abs(emotional) <= CRITICAL_THRESHOLD;
   const isIntellectualCritical = Math.abs(intellectual) <= CRITICAL_THRESHOLD;
 
-  // Build summary based on cycle combinations
-  const summaryParts: string[] = [];
+  // 1. Critical Priority
+  if (isPhysicalCritical) return getInterpretation("physical_critical");
+  if (isEmotionalCritical) return getInterpretation("emotional_critical");
+  if (isIntellectualCritical) return getInterpretation("intellectual_critical");
 
-  // All cycles high - excellent day
-  if (isPhysicalHigh && isEmotionalHigh && isIntellectualHigh) {
-    return "Zi excelentă pentru activități complexe! Toate ciclurile tale sunt în fază pozitivă. Este momentul ideal pentru proiecte importante, decizii majore și activități care necesită energie fizică, claritate mentală și stabilitate emotională.";
+  // 2. All High
+  if (physical > HIGH_THRESHOLD && emotional > HIGH_THRESHOLD && intellectual > HIGH_THRESHOLD) {
+    return getInterpretation("all_high");
   }
 
-  // All cycles low - rest day
-  if (isPhysicalLow && isEmotionalLow && isIntellectualLow) {
-    return "Zi de odihnă și recuperare. Toate ciclurile tale sunt în fază negativă. Evită deciziile importante, efortul fizic intens și sarcinile mentale complexe. Concentrează-te pe relaxare, meditație și activități simple.";
+  // 3. All Low
+  if (physical < LOW_THRESHOLD && emotional < LOW_THRESHOLD && intellectual < LOW_THRESHOLD) {
+    return getInterpretation("all_low");
   }
 
-  // Physical cycle guidance
-  if (isPhysicalHigh) {
-    summaryParts.push(
-      "Energia fizică este ridicată - zi bună pentru sport, exerciții și activități fizice",
-    );
-  } else if (isPhysicalLow) {
-    summaryParts.push(
-      "Energia fizică este scăzută - evită efortul fizic intens și odihnește-te mai mult",
-    );
-  } else if (isPhysicalCritical) {
-    summaryParts.push(
-      "Ciclul fizic este în fază critică - fii atent la sănătatea ta și evită riscurile fizice",
-    );
-  }
+  // 4. Dominant Cycle
+  const pAbs = Math.abs(physical);
+  const eAbs = Math.abs(emotional);
+  const iAbs = Math.abs(intellectual);
 
-  // Emotional cycle guidance
-  if (isEmotionalHigh) {
-    summaryParts.push("starea emoțională este pozitivă - moment bun pentru relații și comunicare");
-  } else if (isEmotionalLow) {
-    summaryParts.push(
-      "starea emoțională este fragilă - evită conflictele și deciziile emoționale importante",
-    );
-  } else if (isEmotionalCritical) {
-    summaryParts.push(
-      "ciclul emoțional este în fază critică - fii prudent în relațiile interpersonale",
-    );
-  }
+  const maxAbs = Math.max(pAbs, eAbs, iAbs);
 
-  // Intellectual cycle guidance
-  if (isIntellectualHigh) {
-    summaryParts.push(
-      "claritatea mentală este excelentă - zi ideală pentru studiu, analiză și rezolvarea problemelor",
-    );
-  } else if (isIntellectualLow) {
-    summaryParts.push(
-      "claritatea mentală este redusă - amână deciziile complexe și sarcinile analitice",
-    );
-  } else if (isIntellectualCritical) {
-    summaryParts.push(
-      "ciclul intelectual este în fază critică - verifică de două ori informațiile importante",
-    );
+  if (maxAbs === pAbs) {
+    return physical > 0 ? getInterpretation("physical_high") : getInterpretation("physical_low");
   }
-
-  // If no specific guidance was added, provide neutral summary
-  if (summaryParts.length === 0) {
-    return "Zi echilibrată cu cicluri în fază neutră. Poți desfășura activități normale, dar fără a forța limitele. Ascultă-ți corpul și emoțiile.";
+  if (maxAbs === eAbs) {
+    return emotional > 0 ? getInterpretation("emotional_high") : getInterpretation("emotional_low");
   }
-
-  // Combine parts with proper capitalization
-  const summary = summaryParts.join(", ");
-  return summary.charAt(0).toUpperCase() + summary.slice(1) + ".";
+  // Default to intellectual
+  return intellectual > 0 ? getInterpretation("intellectual_high") : getInterpretation("intellectual_low");
 }

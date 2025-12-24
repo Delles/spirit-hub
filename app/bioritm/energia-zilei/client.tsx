@@ -51,14 +51,8 @@ export function EnergiaZileiClient() {
 
   const romanianDate = formatRomanianDate(data.date);
 
-  // Map energia data to the expected type
-  // Spread arrays to convert from readonly to mutable
-  const energia = {
-    ...data.energiaZilei,
-    tips: [...data.energiaZilei.tips],
-    toEmbrace: [...data.energiaZilei.toEmbrace],
-    toAvoid: [...data.energiaZilei.toAvoid],
-  };
+  // Data now matches the expected structure directly
+  const energia = data.energiaZilei;
 
   return (
     <div className="py-8">

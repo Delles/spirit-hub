@@ -1,0 +1,398 @@
+{
+    "physical_high": {
+        "theme": {
+            "primary": "from-red-500 to-orange-600",
+            "accent": "text-red-600",
+            "bg_soft": "bg-red-50",
+            "hex": "#EF4444"
+        },
+        "hero": {
+            "icon": "Zap",
+            "title": "Fizic: Maxim",
+            "subtitle": "Ciclu Activ",
+            "headline": "Ești o forță a naturii, gata de acțiune."
+        },
+        "tags": [
+            "Vitalitate",
+            "Rezistență",
+            "Acțiune",
+            "Sport"
+        ],
+        "content": {
+            "main_text": "Astăzi corpul tău este **Bateria Principală**. Te simți plin de energie, iar limitele fizice par să fi dispărut. Este momentul în care rezistența ta este la cote maxime și poți duce la bun sfârșit sarcini care altădată te-ar fi epuizat.\n\nAceastă abundență de energie te poate face neliniștit sau impulsiv. Dacă nu o consumi constructiv, se poate transforma în agitație. Există riscul să te suprasoliciti crezând gresit că ești invincibil.\n\nMisiunea ta este să **te miști**. Fă acel antrenament intens, ocupă-te de proiectele grele din casă sau grădină, ieși la alergat. Corpul tău cere acțiune – oferă-i-o și vei fi recompensat cu o stare de bine profundă.",
+            "dos": [
+                "Antrenamente intense.",
+                "Muncă fizică solicitantă.",
+                "Competiții sportive.",
+                "Reparații prin casă."
+            ],
+            "donts": [
+                "Nu sta sedentar toată ziua.",
+                "Nu ignora semnele de sete/foame.",
+                "Nu deveni agresiv fizic.",
+                "Nu îți asuma riscuri extreme."
+            ]
+        },
+        "mantra": "Corpul meu este puternic și capabil."
+    },
+    "physical_low": {
+        "theme": {
+            "primary": "from-orange-200 to-red-300",
+            "accent": "text-orange-400",
+            "bg_soft": "bg-orange-50",
+            "hex": "#FB923C"
+        },
+        "hero": {
+            "icon": "BatteryLow",
+            "title": "Fizic: Regenerare",
+            "subtitle": "Ciclu Pasiv",
+            "headline": "Este timpul pentru odihnă strategică și recuperare."
+        },
+        "tags": [
+            "Odihnă",
+            "Recuperare",
+            "Lentoare",
+            "Îngrijire"
+        ],
+        "content": {
+            "main_text": "Astăzi ești în **Modul de Încărcare**. Corpul tău îți cere imperativ să încetinești ritmul. Nu este un semn de slăbiciune, ci o necesitate biologică de a repara și consolida resursele consumate în perioada activă.\n\nS-ar putea să te simți frustrat că lucrurile merg mai greu sau că obosești repede. Nu te forța și nu te critica. Împingerea limitelor acum poate duce la epuizare sau chiar la mici accidentări.\n\nMisiunea ta este să **îți asculți corpul**. Prioritizează somnul, alimentația ușoară și activitățile blânde. Este o zi perfectă pentru masaj, spa, sau pur și simplu pentru a dormi o oră în plus. Regenerarea de azi este forța de mâine.",
+            "dos": [
+                "Dormi mai mult.",
+                "Fă plimbări ușoare.",
+                "Mănâncă nutritiv.",
+                "Programează un masaj."
+            ],
+            "donts": [
+                "Nu trage de tine la sală.",
+                "Nu sări peste mese.",
+                "Nu te priva de somn.",
+                "Nu ignora durerile mici."
+            ]
+        },
+        "mantra": "Onorez nevoia corpului meu de odihnă."
+    },
+    "physical_critical": {
+        "theme": {
+            "primary": "from-red-600 to-rose-700",
+            "accent": "text-red-700",
+            "bg_soft": "bg-red-100",
+            "hex": "#DC2626"
+        },
+        "hero": {
+            "icon": "AlertTriangle",
+            "title": "Fizic: Zi Critică",
+            "subtitle": "Tranziție",
+            "headline": "Atenție sporită. Corpul tău schimbă macazul."
+        },
+        "tags": [
+            "Atenție",
+            "Prudență",
+            "Tranziție",
+            "Vulnerabilitate"
+        ],
+        "content": {
+            "main_text": "Astăzi ești într-un **Punct de Cotitură**. Ciclul tău fizic traversează axa zero, trecând dintr-o fază în alta. Este un moment de instabilitate energetică, ca și cum sistemul tău ar face un 'reboot'. Reflexele pot fi mai lente și imunitatea ușor scăzută.\n\nRiscul de accidentare este statistic mai mare în aceste zile. Nu este momentul pentru recorduri personale sau pentru a încerca sporturi extreme. O neatenție mică poate avea consecințe neplăcute.\n\nMisiunea ta este **prudența activă**. Fii prezent în tot ce faci, mai ales când conduci sau manevrezi obiecte grele. Protejează-te și evită eforturile inutile. Treci prin această zi cu blândețe și atenție.",
+            "dos": [
+                "Condu cu mare atenție.",
+                "Verifică echipamentele de două ori.",
+                "Păstrează ritmul calm.",
+                "Evită locurile aglomerate/riscurile."
+            ],
+            "donts": [
+                "Nu te grăbi nicăieri.",
+                "Nu face sporturi extreme.",
+                "Nu te expune la frig/soare excesiv.",
+                "Nu ignora semnalele de amețeală."
+            ]
+        },
+        "mantra": "Sunt prezent și atent la fiecare pas."
+    },
+    "emotional_high": {
+        "theme": {
+            "primary": "from-sky-400 to-blue-500",
+            "accent": "text-sky-600",
+            "bg_soft": "bg-sky-50",
+            "hex": "#0EA5E9"
+        },
+        "hero": {
+            "icon": "Heart",
+            "title": "Emoțional: Maxim",
+            "subtitle": "Ciclu Activ",
+            "headline": "Radiezi optimism și armonie în jurul tău."
+        },
+        "tags": [
+            "Empatie",
+            "Iubire",
+            "Optimism",
+            "Conexiune"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Sufletul Petrecerii**. Te simți echilibrat, deschis și capabil să gestionezi orice situație socială cu grație. Ești 'magnetic' pentru ceilalți și ai o capacitate crescută de a oferi și primi afecțiune. Relațiile înfloresc sub această influență.\n\nTotuși, poți fi tentat să ignori problemele reale de dragul menținerii unei atmosfere pozitive. Nu promite marea cu sarea doar pentru că te simți bine pe moment.\n\nMisiunea ta este să **te conectezi**. Sună un prieten vechi, ieși la o întâlnire, petrece timp de calitate cu familia. Folosește această deschidere emoțională pentru a rezolva neînțelegeri vechi sau pentru a crea amintiri noi. Ești un vector de armonie.",
+            "dos": [
+                "Socializează intens.",
+                "Exprimă-ți sentimentele.",
+                "Rezolvă conflicte vechi.",
+                "Fii creativ."
+            ],
+            "donts": [
+                "Nu face promisiuni exagerate.",
+                "Nu ignora realitatea practică.",
+                "Nu fi naiv cu străinii.",
+                "Nu îți ascunde adevărul."
+            ]
+        },
+        "mantra": "Mă deschid către iubire și înțelegere."
+    },
+    "emotional_low": {
+        "theme": {
+            "primary": "from-blue-200 to-indigo-300",
+            "accent": "text-indigo-400",
+            "bg_soft": "bg-indigo-50",
+            "hex": "#818CF8"
+        },
+        "hero": {
+            "icon": "CloudRain",
+            "title": "Emoțional: Introspecție",
+            "subtitle": "Ciclu Pasiv",
+            "headline": "O zi pentru liniște interioară și protecție sufletească."
+        },
+        "tags": [
+            "Sensibilitate",
+            "Introspecție",
+            "Liniște",
+            "Refugiu"
+        ],
+        "content": {
+            "main_text": "Astăzi ești în **Cochilia Ta**. Sensibilitatea ta este la cote maxime, dar nu într-un mod expansiv, ci introspectiv. Este posibil să te simți melancolic, irascibil sau pur și simplu să ai nevoie de distanță față de zgomotul lumii. Nu ești 'defect', ești doar în regenerare emoțională.\n\nAi grijă să nu interpretezi greșit vorbele celorlalți. Tendința de a lua totul personal este mare azi. Nu lua decizii radicale bazate pe starea de moment.\n\nMisiunea ta este să **îți protejezi pacea**. Evită mediile toxice, dramele inutile și oamenii care te secătuiesc. Fă activități care te liniștesc: citit, muzică, o baie caldă. Fii cel mai bun prieten al tău astăzi.",
+            "dos": [
+                "Stai în liniște.",
+                "Scrie în jurnal.",
+                "Ascultă muzică calmă.",
+                "Meditează."
+            ],
+            "donts": [
+                "Nu intra în certuri.",
+                "Nu lua decizii relaționale.",
+                "Nu te judeca aspru.",
+                "Nu te izola complet de suport."
+            ]
+        },
+        "mantra": "Îmi accept emoțiile și îmi găsesc pacea interioară."
+    },
+    "emotional_critical": {
+        "theme": {
+            "primary": "from-indigo-600 to-violet-700",
+            "accent": "text-indigo-700",
+            "bg_soft": "bg-indigo-100",
+            "hex": "#4F46E5"
+        },
+        "hero": {
+            "icon": "AlertTriangle",
+            "title": "Emoțional: Zi Critică",
+            "subtitle": "Tranziție",
+            "headline": "Furtună posibilă. Păstrează-ți calmul."
+        },
+        "tags": [
+            "Instabilitate",
+            "Reacție",
+            "Prudență",
+            "Echilibru"
+        ],
+        "content": {
+            "main_text": "Astăzi ești pe **Teren Minat**. Emoțiile tale trec prin punctul zero, ceea ce poate crea confuzie, apatie bruscă sau izbucniri neașteptate. Poți trece de la râs la plâns fără un motiv aparent. Este o zi de recalibrare sufletească.\n\nRiscul major este conflictul. O scânteie mică poate aprinde un incendiu relațional azi. Judecata ta emoțională este temporar suspendată.\n\nMisiunea ta este **observarea detașată**. Încearcă să fii martorul propriilor emoții, nu victima lor. Numără până la zece înainte de a reacționa. Amână discuțiile sensibile pentru o altă zi. Astăzi, e mai bine să taci și să asculți.",
+            "dos": [
+                "Păstrează-ți calmul.",
+                "Amână discuțiile grele.",
+                "Fii blând cu tine.",
+                "Respiră conștient."
+            ],
+            "donts": [
+                "Nu reacționa impulsiv.",
+                "Nu te lăsa provocat.",
+                "Nu lua decizii definitive.",
+                "Nu pune presiune pe alții."
+            ]
+        },
+        "mantra": "Rămân centrat în mijlocul schimbării."
+    },
+    "intellectual_high": {
+        "theme": {
+            "primary": "from-yellow-400 to-amber-500",
+            "accent": "text-yellow-600",
+            "bg_soft": "bg-yellow-50",
+            "hex": "#EAB308"
+        },
+        "hero": {
+            "icon": "Lightbulb",
+            "title": "Intelectual: Maxim",
+            "subtitle": "Ciclu Activ",
+            "headline": "Mintea ta este brici. Soluțiile vin de la sine."
+        },
+        "tags": [
+            "Claritate",
+            "Focus",
+            "Idei",
+            "Strategie"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Strategul**. Gândirea ta este rapidă, logică și precisă. Conexiunile mentale se fac instantaneu, iar capacitatea de a învăța și de a asimila informații noi este la vârf. Este momentul “Evrika” pe care îl așteptai.\n\nAi grijă să nu devii arogant intelectual sau să pierzi contactul cu partea umană, emoțională a lucrurilor. Logica rece poate răni dacă nu e temperată cu empatie.\n\nMisiunea ta este să **rezolvi probleme**. Atacă cele mai complexe sarcini de la muncă, fă planuri de viitor, învață ceva tehnic. Mintea ta este o unealtă ascuțită azi; folosește-o pentru a tăia prin confuzie și a găsi adevărul.",
+            "dos": [
+                "Rezolvă probleme complexe.",
+                "Ia decizii importante.",
+                "Învață ceva nou.",
+                "Scrie/Planifică."
+            ],
+            "donts": [
+                "Nu ignora sentimentele altora.",
+                "Nu despica firul în patru inutil.",
+                "Nu te suprasolicita mental.",
+                "Nu critica aspru."
+            ]
+        },
+        "mantra": "Găsesc soluții clare și inteligente."
+    },
+    "intellectual_low": {
+        "theme": {
+            "primary": "from-amber-200 to-yellow-300",
+            "accent": "text-amber-500",
+            "bg_soft": "bg-amber-50",
+            "hex": "#D97706"
+        },
+        "hero": {
+            "icon": "BrainCircuit",
+            "title": "Intelectual: Odihnă",
+            "subtitle": "Ciclu Pasiv",
+            "headline": "Lăsă logica deoparte și bazează-te pe intuiție."
+        },
+        "tags": [
+            "Intuiție",
+            "Relaxare",
+            "Subconștient",
+            "Creativitate"
+        ],
+        "content": {
+            "main_text": "Astăzi ești în **Modul Creativ**. Mintea rațională este în pauză, ceea ce poate face dificilă concentrarea la detalii tehnice sau la calcule. În schimb, subconștientul este activ. Este un timp bun pentru visare, artă și gândire laterală, nu pentru matematică.\n\nSenzatia de 'ceață mentală' poate fi frustrantă dacă încerci să forțezi activități analitice. Poți uita ușor lucruri sau face erori de neatenție.\n\nMisiunea ta este să **te relaxezi mental**. Evită suprasolicitarea intelectuală. Fă activități repetitive care nu cer concentrare maximă sau lasă-ți mintea să zburde liberă. Cele mai bune idei pot veni azi nu prin efort, ci prin relaxare.",
+            "dos": [
+                "Fă activități creative.",
+                "Organizează lucruri simple.",
+                "Bazează-te pe instinct.",
+                "Ia notițe (ca să nu uiți)."
+            ],
+            "donts": [
+                "Nu lua decizii financiare majore.",
+                "Nu semna contracte complexe.",
+                "Nu te forța să înveți greu.",
+                "Nu te baza doar pe memorie."
+            ]
+        },
+        "mantra": "Îmi las mintea să se odihnească și să viseze."
+    },
+    "intellectual_critical": {
+        "theme": {
+            "primary": "from-yellow-600 to-orange-700",
+            "accent": "text-yellow-700",
+            "bg_soft": "bg-yellow-100",
+            "hex": "#CA8A04"
+        },
+        "hero": {
+            "icon": "AlertTriangle",
+            "title": "Intelectual: Zi Critică",
+            "subtitle": "Tranziție",
+            "headline": "Atenție la detalii. Judecata poate fi înșelătoare."
+        },
+        "tags": [
+            "Verificare",
+            "Atenție",
+            "Eroare",
+            "Prudență"
+        ],
+        "content": {
+            "main_text": "Astăzi ești în **Zona de Eroare**. Ciclul intelectual schimbă polaritatea, ceea ce poate duce la lapsusuri, neînțelegeri și decizii pripite greșite. Este ziua clasică în care 'măsuri de două ori și tai o dată' ar trebui să fie lege.\n\nRiscul de a comunica greșit sau de a interpreta eronat informațiile este mare. Nu este momentul să ai încredere oarbă în prima ta impresie logică.\n\nMisiunea ta este **verificarea dublă**. Recitește emailurile înainte de a le trimite. Verifică calculele. Dacă ai de luat o decizie majoră, mai așteaptă o zi sau cere o a doua opinie. Prudența te salvează de erori azi.",
+            "dos": [
+                "Verifică totul de două ori.",
+                "Cere o a doua opinie.",
+                "Fă liste de verificare.",
+                "Vorbește clar și rar."
+            ],
+            "donts": [
+                "Nu te baza pe noroc.",
+                "Nu improviza în chestiuni importante.",
+                "Nu trimite fără corectură.",
+                "Nu te angaja la termene strânse."
+            ]
+        },
+        "mantra": "Verific și acționez cu înțelepciune."
+    },
+    "all_high": {
+        "theme": {
+            "primary": "from-fuchsia-500 to-purple-600",
+            "accent": "text-fuchsia-600",
+            "bg_soft": "bg-fuchsia-50",
+            "hex": "#D946EF"
+        },
+        "hero": {
+            "icon": "Star",
+            "title": "Zi de Vârf",
+            "subtitle": "Super Putere",
+            "headline": "Ești invincibil. Totul se aliniază perfect pentru tine."
+        },
+        "tags": [
+            "Succes",
+            "Armonie",
+            "Putere",
+            "Realizare"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Super-Eroul**. Toate cele trei cicluri (fizic, emoțional, intelectual) sunt în zona pozitivă. Te simți bine în pielea ta, mintea îți merge brici și ai o stare sufletească excelentă. Este una dintre acele zile rare în care totul pare să curgă fără efort.\n\nSingurul risc este să lași această zi să treacă fără să profiti de ea. Nu irosi acest potențial fantastic stând pe canapea (decât dacă asta îți dorești cu adevărat).\n\nMisiunea ta este să **faci ceva măreț**. Abordează cel mai mare vis, cea mai grea problemă sau cea mai importantă relație. Universul îți oferă vânt din pupa pe toate planurile. Îndrăznește!",
+            "dos": [
+                "Lansează proiecte noi.",
+                "Susține prezentări publice.",
+                "Cucerește obiective mari.",
+                "Sărbătorește viața."
+            ],
+            "donts": [
+                "Nu sta degeaba.",
+                "Nu fi timid.",
+                "Nu amâna succesul.",
+                "Nu te mulțumi cu puțin."
+            ]
+        },
+        "mantra": "Sunt aliniat cu cea mai bună versiune a mea."
+    },
+    "all_low": {
+        "theme": {
+            "primary": "from-slate-400 to-gray-500",
+            "accent": "text-slate-500",
+            "bg_soft": "bg-slate-50",
+            "hex": "#64748B"
+        },
+        "hero": {
+            "icon": "BatteryCharging",
+            "title": "Zi de Regenerare Totală",
+            "subtitle": "Hibernare",
+            "headline": "O pauză cosmică. Universul te invită la liniște."
+        },
+        "tags": [
+            "Pauză",
+            "Somn",
+            "Retragere",
+            "Liniște"
+        ],
+        "content": {
+            "main_text": "Astăzi ești în **Modul Avion**. Toate ciclurile tale sunt în faza de refacere. Nu ai energie fizică, cheful emoțional este scăzut, iar mintea vrea pauză. Nu trage de tine! Această zi este necesară pentru ca sistemul tău să se calibreze pentru viitor.\n\nLupta împotriva acestei stări va duce doar la frustrare și epuizare. Acceptă că azi nu este ziua marilor cuceriri, ci ziua marilor odihne.\n\nMisiunea ta este **non-acțiunea**. Redu turația motoarelor la minim. Fă doar strictul necesar și apoi retrage-te în sanctuarul tău. Mâine soarele va răsări din nou, dar azi trebuie să apună pentru tine.",
+            "dos": [
+                "Dormi mult.",
+                "Deconectează-te de la tehnologie.",
+                "Stai în natură.",
+                "Răsfață-te."
+            ],
+            "donts": [
+                "Nu începe nimic nou.",
+                "Nu lua decizii.",
+                "Nu te învinovăți.",
+                "Nu te compara cu alții."
+            ]
+        },
+        "mantra": "Mă regenerez în liniște și pace."
+    }
+}

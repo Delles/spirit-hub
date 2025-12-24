@@ -1,26 +1,27 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-
-interface EnergiaZileiWidgetData {
-  dayName: string;
-  theme: string;
-  shortHint: string;
-  energyLevel: number;
-  dominantEnergy: string;
-  color: string;
-  planetSymbol: string;
-}
+import { useId } from "react";
+import { type EnergiaZileiData } from "@/lib/energia-zilei";
+import { getPlanetaryIcon } from "@/lib/planetary-icons";
 
 interface BiorhythmWidgetProps {
-  data: EnergiaZileiWidgetData | null;
+  data: EnergiaZileiData | null;
   className?: string;
 }
 
 export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
+  // Generate unique ID for gradient to avoid collisions when multiple widgets render
+  const gradientId = useId();
+
   if (!data) return null;
 
-  // Use the color from energia zilei data
-  const { color, energyLevel, dominantEnergy, theme, shortHint, planetSymbol } = data;
+  // Map new data structure to widget needs
+  const color = data.theme.hex;
+  const energyLevel = data.energyLevel;
+  const dominantEnergy = data.tags[0];
+  const theme = data.hero.title;
+  const shortHint = data.hero.headline;
+  const IconComponent = getPlanetaryIcon(data.hero.icon);
 
   // Generate accurate sine and cosine wave paths
   const width = 100;
@@ -51,6 +52,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
         "shadow-[0_2px_16px_rgba(0,0,0,0.15)]",
         className
       )}
+      aria-label={`Energia Zilei: ${theme}`}
     >
       {/* Mobile: Fully stacked | Desktop: Side-by-side with wave */}
       <div className="relative z-10 flex flex-col md:flex-row h-full">
@@ -62,14 +64,14 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
             Energia Zilei
           </h3>
 
-          {/* Theme with planet symbol */}
+          {/* Theme with planet icon */}
           <h4 className="text-white font-bold text-xl md:text-2xl font-heading leading-tight flex items-center gap-2 mb-2 md:mb-4">
-            <span className="text-lg md:text-xl">{planetSymbol}</span>
+            <IconComponent size={24} className="text-white/90" aria-hidden="true" />
             {theme}
           </h4>
 
           {/* Short hint */}
-          <p className="text-[#E0E0E0] text-sm leading-relaxed opacity-80 mb-3 md:mb-4">
+          <p className="text-[#E0E0E0] text-sm leading-relaxed opacity-80 mb-3 md:mb-4 line-clamp-2">
             {shortHint}
           </p>
 
@@ -91,10 +93,10 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
         </div>
 
         {/* Wave Visualization - Hidden on mobile, visible on desktop */}
-        <div className="hidden md:flex w-1/2 relative items-center justify-end opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+        <div className="hidden md:flex w-1/2 relative items-center justify-end opacity-60 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true">
           <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible" style={{ transform: 'scale(1.5) translateX(10%)' }}>
             <defs>
-              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="transparent" />
                 <stop offset="20%" stopColor={color} stopOpacity="0.2" />
                 <stop offset="50%" stopColor={color} stopOpacity="0.8" />
@@ -116,7 +118,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
             <path
               d={generateWavePath(Math.cos, 0)}
               fill="none"
-              stroke="url(#waveGradient)"
+              stroke={`url(#${gradientId})`}
               strokeWidth="1"
               opacity="0.7"
             />
@@ -127,3 +129,5 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
     </Link>
   );
 }
+
+

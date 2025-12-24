@@ -1,0 +1,261 @@
+{
+    "0": {
+        "theme": {
+            "primary": "from-amber-400 to-orange-500",
+            "accent": "text-amber-500",
+            "bg_soft": "bg-amber-50",
+            "hex": "#F59E0B"
+        },
+        "hero": {
+            "icon": "Sun",
+            "title": "Soarele",
+            "subtitle": "Duminică",
+            "headline": "Ești Sursa de Lumină care hrănește totul în jur."
+        },
+        "energyLevel": 85,
+        "tags": [
+            "Vitalitate",
+            "Esență",
+            "Regenerare",
+            "Bucurie"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Centrul Universului** tău. Energia solară a duminicii îți oferă o strălucire naturală și o vitalitate care atrage oamenii ca un magnet. Ești menit să radiezi, să te bucuri de simpla existență și să îți încarci bateriile direct de la sursă. Este ziua în care sufletul tău vorbește cel mai clar.\n\nTotuși, s-ar putea să simți o presiune invizibilă de a 'performă' sau de a fi mereu cel care oferă energie altora. Există riscul să te arzi dacă nu îți respecți nevoia de odihnă regală. Nu confunda lenea cu regenerarea necesară; chiar și soarele apune pentru a răsări din nou.\n\nMisiunea ta este să te **reconectezi cu tine**. Fă exact ce îți cere inima, fără vinovăție. Fie că e o plimbare în natură, o masă cu familia sau o oră de liniște absolută, onorează-ți lumina interioară. Astăzi, tu ești prioritatea.",
+            "dos": [
+                "Petrece timp la lumina naturală.",
+                "Fă activități care îți aduc bucurie pură.",
+                "Practică recunoștința.",
+                "Odihnește-te activ."
+            ],
+            "donts": [
+                "Nu te suprasolicita cu muncă.",
+                "Nu intra în conflicte de ego.",
+                "Nu îți ignora nevoia de singurătate.",
+                "Nu sta închis în casă toată ziua."
+            ]
+        },
+        "mantra": "Lumina mea interioară strălucește și mă ghidează."
+    },
+    "1": {
+        "theme": {
+            "primary": "from-indigo-300 to-purple-400",
+            "accent": "text-indigo-400",
+            "bg_soft": "bg-indigo-50",
+            "hex": "#818CF8"
+        },
+        "hero": {
+            "icon": "Moon",
+            "title": "Luna",
+            "subtitle": "Luni",
+            "headline": "Ești Gardianul Emoțiilor și al intuiției profunde."
+        },
+        "energyLevel": 72,
+        "tags": [
+            "Intuiție",
+            "Emoție",
+            "Subconștient",
+            "Feminitate"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Receptaculul Divin**. Energia Lunii îți amplifică simțurile și te conectează la fluxurile invizibile ale vieții. Ai o 'antenă' specială pentru stările celorlalți și o capacitate unică de a hrăni și proteja. Este momentul ideal să asculți ce îți șoptește instinctul, nu logica rece.\n\nAceastă sensibilitate vine însă cu un preț: poți absorbi negativitatea din jur ca un burete. S-ar putea să ai stări schimbătoare, să te simți vulnerabil sau defensiv. Nu te retrage într-o carapace de frică doar pentru că simți totul prea intens.\n\nMisiunea ta este să **navighezi cu grație** prin apele emoționale. Folosește-ți intuiția pentru a lua decizii, nu frica. Îngrijește-te de tine la fel cum ai grijă de alții. Astăzi, 'acasă' și 'suflet' sunt cuvintele de ordine.",
+            "dos": [
+                "Ascultă-ți vocea interioară.",
+                "Protejează-ți spațiul personal.",
+                "Exprimă-ți emoțiile creativ.",
+                "Dormește mai mult dacă simți nevoia."
+            ],
+            "donts": [
+                "Nu lua decizii majore pe fond emoțional.",
+                "Nu te lăsa vampirizat de alții.",
+                "Nu ignora visele și presimțirile.",
+                "Evită mediile agresive."
+            ]
+        },
+        "mantra": "Am încredere în fluxul vieții și în intuiția mea."
+    },
+    "2": {
+        "theme": {
+            "primary": "from-red-500 to-rose-600",
+            "accent": "text-red-600",
+            "bg_soft": "bg-red-50",
+            "hex": "#EF4444"
+        },
+        "hero": {
+            "icon": "Swords",
+            "title": "Marte",
+            "subtitle": "Marți",
+            "headline": "Ești Războinicul care transformă dorința în realitate."
+        },
+        "energyLevel": 92,
+        "tags": [
+            "Acțiune",
+            "Curaj",
+            "Energie",
+            "Pasiune"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Forța de Acțiune**. Energia lui Marte îți injectează adrenalină și determinare pură. Ești gata să muți munții, să spargi barierele și să cucerești noi teritorii. Universul nu îți cere să planifici, ci să faci. Este ziua perfectă pentru a începe, a tăia nodul gordian și a te afirma.\n\nReversul medaliei este nerăbdarea. Poți deveni irascibil, impulsiv sau chiar agresiv dacă lucrurile nu se mișcă în ritmul tău. Ai grijă să nu calci pe cadavre în drumul tău spre succes sau să provoci conflicte inutile doar pentru a elibera tensiunea.\n\nMisiunea ta este să **canalizezi focul**. Folosește acest surplus de energie pentru sport, muncă fizică sau proiecte dificile. Fii curajos, dar nu nesăbuit. Atacă problemele direct, dar păstrează-ți capul limpede.",
+            "dos": [
+                "Fă sport sau efort fizic.",
+                "Rezolvă sarcinile cele mai grele.",
+                "Apără-ți punctul de vedere.",
+                "Ia inițiativa imediat."
+            ],
+            "donts": [
+                "Nu intra în certuri inutile.",
+                "Nu conduce agresiv.",
+                "Nu lua decizii la nervi.",
+                "Evită rănirile prin grabă."
+            ]
+        },
+        "mantra": "Acționez cu curaj și îmi controlez puterea."
+    },
+    "3": {
+        "theme": {
+            "primary": "from-blue-400 to-cyan-500",
+            "accent": "text-blue-500",
+            "bg_soft": "bg-blue-50",
+            "hex": "#3B82F6"
+        },
+        "hero": {
+            "icon": "MessageCircle",
+            "title": "Mercur",
+            "subtitle": "Miercuri",
+            "headline": "Ești Arhitectul Ideilor și maestrul conexiunilor."
+        },
+        "energyLevel": 88,
+        "tags": [
+            "Comunicare",
+            "Inteligență",
+            "Comerț",
+            "Adaptabilitate"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Mesagerul Rapid**. Energia lui Mercur îți ascute mintea și îți dăruiește o elocvență de invidiat. Cuvintele tale au putere de a convinge, de a vinde și de a clarifica. Ești o enciclopedie ambulantă și un nod de rețea umană. Este ziua ideală pentru a învăța, a negocia și a conecta punctele.\n\nPericolul vine din dispersare. Mintea ta poate sări de la o idee la alta atât de repede încât nu finalizezi nimic. De asemenea, există riscul de a deveni superficial, de a bârfi sau de a manipula adevărul prin omisiune. Nu te pierde în detalii nesemnificative.\n\nMisiunea ta este să **fii clar și eficient**. Scrie acel email important, fă-ți planul de afaceri, sună pe cineva cu care nu ai mai vorbit. Folosește-ți agilitatea mentală pentru a găsi soluții ingenioase la probleme vechi. Comunică adevărul.",
+            "dos": [
+                "Învață ceva nou.",
+                "Negociază contracte sau termeni.",
+                "Socializează și fă networking.",
+                "Organizează-ți documentele."
+            ],
+            "donts": [
+                "Nu minți și nu exagera.",
+                "Nu te împrăștia în zece direcții.",
+                "Nu semna fără să citești.",
+                "Evită bârfa de birou."
+            ]
+        },
+        "mantra": "Gândesc clar și comunic cu integritate."
+    },
+    "4": {
+        "theme": {
+            "primary": "from-purple-500 to-indigo-600",
+            "accent": "text-purple-600",
+            "bg_soft": "bg-purple-50",
+            "hex": "#8B5CF6"
+        },
+        "hero": {
+            "icon": "Crown",
+            "title": "Jupiter",
+            "subtitle": "Joi",
+            "headline": "Ești Vizionarul care extinde orizonturile posibilului."
+        },
+        "energyLevel": 90,
+        "tags": [
+            "Noroc",
+            "Expansiune",
+            "Înțelepciune",
+            "Abundență"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Exploratorul Oportunităților**. Energia lui Jupiter, Marele Benefic, suflă în pânzele tale. Simți că poți face orice, că lumea este mică și că norocul este de partea ta. Este momentul să gândești 'mare', să îți setezi obiective înalte și să cauți sensul profund al lucrurilor.\n\nCapcana este excesul. Prea mult optimism te poate face să promiti ce nu poți livra sau să îți asumi riscuri financiare necalculate. De asemenea, poți deveni arogant, crezând că le știi pe toate. Nu uita că și norocul trebuie ajutat cu muncă.\n\nMisiunea ta este să **crești**. Fie că e vorba de cunoștințe, de afaceri sau de spirit, fă un pas spre expansiune. Fii generos, fii mentor pentru cineva, studiază o filozofie nouă. Astăzi plantezi semințele abundenței viitoare.",
+            "dos": [
+                "Lansează proiecte mari.",
+                "Călătorește sau planifică o călătorie.",
+                "Studiază subiecte înalte.",
+                "Fii generos și optimist."
+            ],
+            "donts": [
+                "Nu cheltui bani pe care nu îi ai.",
+                "Nu fi dogmatic sau fanatic.",
+                "Nu mânca și nu bea în exces.",
+                "Nu neglija detaliile practice."
+            ]
+        },
+        "mantra": "Universul mă susține și îmi oferă oportunități infinite."
+    },
+    "5": {
+        "theme": {
+            "primary": "from-pink-400 to-rose-500",
+            "accent": "text-pink-500",
+            "bg_soft": "bg-pink-50",
+            "hex": "#EC4899"
+        },
+        "hero": {
+            "icon": "Heart",
+            "title": "Venus",
+            "subtitle": "Vineri",
+            "headline": "Ești Creatorul de Frumos și armonie."
+        },
+        "energyLevel": 85,
+        "tags": [
+            "Iubire",
+            "Artă",
+            "Plăcere",
+            "Relații"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Magnetul Iubirii**. Energia venusiană te înconjoară cu o aură de farmec și diplomație. Totul pare mai frumos, mai dulce și mai ușor. Este ziua dedicată plăcerilor vieții, artei, romantismului și conexiunii umane. Ai puterea de a aplana orice conflict doar cu un zâmbet.\n\nExistă riscul să cazi în lene, superficialitate sau indulgență excesivă. Poți fi tentat să eviți problemele dificile 'pentru a nu strica vibe-ul' sau să cheltui compulsiv pe lucruri drăguțe dar inutile. Atenție la vanitate și la dorința de a plăcea cu orice preț.\n\nMisiunea ta este să **celebrezi viața**. Înconjoară-te de frumos, fie că e vorba de oameni, haine, muzică sau natură. Fă un gest romantic, creează ceva artistic sau pur și simplu savurează o cafea bună. Armonia pe care o cultivi azi te va hrăni mult timp.",
+            "dos": [
+                "Ieși la o întâlnire romantică.",
+                "Cumpără-ți ceva frumos.",
+                "Mergi la un eveniment artistic.",
+                "Rezolvă conflicte cu blândețe."
+            ],
+            "donts": [
+                "Nu te certa cu nimeni.",
+                "Nu munci până la epuizare.",
+                "Nu fi posesiv în iubire.",
+                "Evită grosolănia și urâtul."
+            ]
+        },
+        "mantra": "Atrage iubire și frumusețe în viața mea."
+    },
+    "6": {
+        "theme": {
+            "primary": "from-slate-600 to-gray-800",
+            "accent": "text-slate-700",
+            "bg_soft": "bg-slate-50",
+            "hex": "#64748B"
+        },
+        "hero": {
+            "icon": "Hourglass",
+            "title": "Saturn",
+            "subtitle": "Sâmbătă",
+            "headline": "Ești Maestrul Timpului și al construcției durabile."
+        },
+        "energyLevel": 75,
+        "tags": [
+            "Disciplină",
+            "Răbdare",
+            "Structură",
+            "Karma"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Domnul Karmei**. Energia lui Saturn este serioasă, rece și extrem de eficientă. Nu este o zi pentru scurtături, ci pentru efort susținut și responsabilitate. Vezi lucrurile exact așa cum sunt, fără iluzii. Este momentul bilanțului, al organizării și al punerii pietrelor de temelie.\n\nSenzația de greutate sau de restricție poate fi prezentă. Poți simți că lumea e un loc dur sau te poți critica aspru pentru greșelile trecutului. Melancolia sau izolarea sunt capcanele acestei zile. Nu lăsa perfecționismul să te paralizeze.\n\nMisiunea ta este să **construiești**. Fă curățenie, organizează, planifică bugetul, repară ce e stricat. Ocupă-te de datoriile vechi (materiale sau morale). Satisfacția de azi vine din lucrul bine făcut și din sentimentul datoriei împlinite. Maturitatea ta este superputerea ta.",
+            "dos": [
+                "Fă planuri pe termen lung.",
+                "Ocupă-te de treburi administrative.",
+                "Petrece timp cu bătrânii.",
+                "Fii disciplinat și punctual."
+            ],
+            "donts": [
+                "Nu amâna responsabilitățile grele.",
+                "Nu te plânge de greutăți.",
+                "Nu fi pesimist.",
+                "Nu te izola complet de ceilalți."
+            ]
+        },
+        "mantra": "Construiesc viitorul meu cu răbdare și înțelepciune."
+    }
+}

@@ -8,12 +8,12 @@ import {
   getPhysicalCycle,
   getEmotionalCycle,
   getIntellectualCycle,
-  getBiorhythmSummary
+  getBiorhythmInterpretation
 } from "@/lib/biorhythm";
 import { getTodayISOBucharest } from "@/lib/daily-content";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
 import { BiorhythmChart } from "@/components/bioritm/biorhythm-chart";
-import { BiorhythmSummary } from "@/components/bioritm/biorhythm-summary";
+import { BiorhythmCard } from "@/components/bioritm/biorhythm-card";
 import { ShareButton } from "@/components/shared/share-button";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
@@ -21,8 +21,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { format, parseISO, isValid } from "date-fns";
 import { ro } from "date-fns/locale";
-
-
 
 export default function BioritmClient() {
   const searchParams = useSearchParams();
@@ -61,13 +59,15 @@ export default function BioritmClient() {
       const physical = getPhysicalCycle(birth, target);
       const emotional = getEmotionalCycle(birth, target);
       const intellectual = getIntellectualCycle(birth, target);
-      const summary = getBiorhythmSummary(physical, emotional, intellectual);
+
+      // Get the rich interpretation based on the cycles
+      const interpretation = getBiorhythmInterpretation(physical, emotional, intellectual);
 
       return {
         physical,
         emotional,
         intellectual,
-        summary,
+        interpretation,
         birthDate,
         targetDate
       };
@@ -81,7 +81,7 @@ export default function BioritmClient() {
 
   const handleSubmit = (birth: string, target: string) => {
     // Update URL - derived values will automatically reflect the new params
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams.toString());
     params.set("date", birth);
     params.set("target", target);
     router.push(`${pathname}?${params.toString()}`);
@@ -133,9 +133,13 @@ export default function BioritmClient() {
 
         {/* Results View - only shown after successful calculation */}
         {showResults && (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
-            {/* Chart */}
-            <Card className="p-6 lg:p-8">
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8">
+            {/* 1. Interpretation Card (The "Stream of Cards") */}
+            <BiorhythmCard interpretation={biorhythm.interpretation} />
+
+            {/* 2. Chart Visualization */}
+            <Card className="p-6 lg:p-8 bg-black/40 backdrop-blur-xl border-white/10">
+              <h3 className="text-xl font-semibold text-white mb-6">Grafic Bioritm</h3>
               <BiorhythmChart
                 physical={biorhythm.physical}
                 emotional={biorhythm.emotional}
@@ -145,18 +149,8 @@ export default function BioritmClient() {
               />
             </Card>
 
-            {/* Summary */}
-            <Card className="p-6 lg:p-8">
-              <BiorhythmSummary
-                summary={biorhythm.summary}
-                physical={biorhythm.physical}
-                emotional={biorhythm.emotional}
-                intellectual={biorhythm.intellectual}
-              />
-            </Card>
-
             {/* Share Section */}
-            <Card className="flex flex-col sm:flex-row gap-4 items-center justify-between p-6">
+            <Card className="flex flex-col sm:flex-row gap-4 items-center justify-between p-6 bg-black/40 backdrop-blur-xl border-white/10">
               <div className="text-center sm:text-left">
                 <h3 className="font-semibold mb-1 text-white">Distribuie rezultatul tău</h3>
                 <p className="text-sm text-[#E0E0E0]">Împărtășește bioritmul tău cu prietenii</p>
@@ -169,7 +163,7 @@ export default function BioritmClient() {
             </Card>
 
             {/* CTA Section - Explore More */}
-            <Card className="p-6 space-y-6">
+            <Card className="p-6 space-y-6 bg-black/40 backdrop-blur-xl border-white/10">
               {/* Calculate for Different Date */}
               <div className="text-center border-b border-white/10 pb-6">
                 <p className="text-lg font-medium text-[#9F2BFF]">
@@ -195,7 +189,7 @@ export default function BioritmClient() {
 
                 <div className="grid gap-4 sm:grid-cols-3">
                   <Link href="/bioritm/critice" className="group">
-                    <Card className="p-4 h-full transition-all duration-300 hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5">
+                    <Card className="p-4 h-full transition-all duration-300 hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5 bg-black/20 border-white/10">
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 flex items-center justify-center group-hover:bg-[#9F2BFF]/20 transition-colors">
                           <AlertTriangle className="w-5 h-5 text-[#9F2BFF]" />
@@ -215,7 +209,7 @@ export default function BioritmClient() {
                   </Link>
 
                   <Link href="/numerologie" className="group">
-                    <Card className="p-4 h-full transition-all duration-300 hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5">
+                    <Card className="p-4 h-full transition-all duration-300 hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5 bg-black/20 border-white/10">
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 flex items-center justify-center group-hover:bg-[#9F2BFF]/20 transition-colors">
                           <Hash className="w-5 h-5 text-[#9F2BFF]" />
@@ -235,7 +229,7 @@ export default function BioritmClient() {
                   </Link>
 
                   <Link href="/vise" className="group">
-                    <Card className="p-4 h-full transition-all duration-300 hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5">
+                    <Card className="p-4 h-full transition-all duration-300 hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5 bg-black/20 border-white/10">
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 flex items-center justify-center group-hover:bg-[#9F2BFF]/20 transition-colors">
                           <Moon className="w-5 h-5 text-[#9F2BFF]" />
