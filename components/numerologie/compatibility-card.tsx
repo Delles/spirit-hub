@@ -21,8 +21,6 @@ import type { CompatibilityInterpretation } from "@/lib/interpretations";
 
 export interface CompatibilityCardProps {
   score: number;
-  lifePathCompatibility: number;
-  destinyCompatibility: number;
   interpretation: CompatibilityInterpretation;
   person1: {
     name: string;
@@ -48,8 +46,6 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function CompatibilityCard({
   score,
-  lifePathCompatibility,
-  destinyCompatibility,
   interpretation,
   person1,
   person2,

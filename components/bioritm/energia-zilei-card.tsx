@@ -15,8 +15,10 @@ interface EnergiaZileiCardProps {
   className?: string;
 }
 
+import { useMemo } from "react";
+
 export function EnergiaZileiCard({ energia, moonPhase, className }: EnergiaZileiCardProps) {
-  const IconComponent = getPlanetaryIcon(energia.hero.icon);
+  const IconComponent = useMemo(() => getPlanetaryIcon(energia.hero.icon), [energia.hero.icon]);
 
   return (
     <div className={cn("w-full space-y-6", className)} role="article" aria-label="Energia Zilei">
@@ -31,6 +33,7 @@ export function EnergiaZileiCard({ energia, moonPhase, className }: EnergiaZilei
           <div className="relative z-10 flex flex-col items-center text-center">
             {/* Icon */}
             <div className={`p-4 rounded-2xl mb-5 shadow-lg ring-1 ring-white/20 bg-gradient-to-br ${energia.theme.primary} bg-opacity-20 backdrop-blur-md`}>
+              {/* eslint-disable-next-line react-hooks/static-components */}
               <IconComponent size={32} className="text-white drop-shadow-md" aria-hidden="true" />
             </div>
             {/* Text Content */}

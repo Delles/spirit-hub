@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/shared/share-button";
 import ReactMarkdown from "react-markdown";
@@ -21,7 +21,6 @@ import {
   CheckCircle2,
   AlertTriangle,
   Quote,
-  Share2,
   LucideIcon
 } from "lucide-react";
 import type { LifePathInterpretation } from "@/lib/interpretations";
@@ -42,7 +41,6 @@ const MARKDOWN_COMPONENTS: Components = {
 export interface LifePathCardProps {
   number: number;
   interpretation: LifePathInterpretation;
-  birthDate: string;
 }
 
 const iconMap: Record<string, LucideIcon> = {
@@ -60,12 +58,8 @@ const iconMap: Record<string, LucideIcon> = {
   Sun
 };
 
-export function LifePathCard({ number, interpretation, birthDate }: LifePathCardProps) {
-  const isMasterNumber = [11, 22, 33].includes(number);
+export function LifePathCard({ number, interpretation }: LifePathCardProps) {
   const IconComponent = iconMap[interpretation.hero.icon] || Sparkles;
-
-  // Reduced number calculation for master numbers
-  const reducedNumber = number === 11 ? 2 : number === 22 ? 4 : number === 33 ? 6 : number;
 
   // Dynamic gradient based on theme string from JSON
   // We'll use the theme primary gradient but with reduced opacity for the hero background

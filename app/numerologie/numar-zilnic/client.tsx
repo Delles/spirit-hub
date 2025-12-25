@@ -1,7 +1,7 @@
 "use client";
 
 import { useDailyContent } from "@/components/providers/daily-content-provider";
-import { ResultCard } from "@/components/shared/result-card";
+// ResultCard import removed
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

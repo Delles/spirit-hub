@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useId } from "react";
+import { useId, useMemo } from "react";
 import { type EnergiaZileiData } from "@/lib/energia-zilei";
-import { getPlanetaryIcon } from "@/lib/planetary-icons";
+import { getPlanetaryIcon, Sun } from "@/lib/planetary-icons";
 
 interface BiorhythmWidgetProps {
   data: EnergiaZileiData | null;
@@ -13,6 +13,9 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
   // Generate unique ID for gradient to avoid collisions when multiple widgets render
   const gradientId = useId();
 
+  // Determine icon safely before conditional return
+  const IconComponent = useMemo(() => data ? getPlanetaryIcon(data.hero.icon) : Sun, [data]);
+
   if (!data) return null;
 
   // Map new data structure to widget needs
@@ -21,7 +24,6 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
   const dominantEnergy = data.tags[0];
   const theme = data.hero.title;
   const shortHint = data.hero.headline;
-  const IconComponent = getPlanetaryIcon(data.hero.icon);
 
   // Generate accurate sine and cosine wave paths
   const width = 100;
@@ -66,6 +68,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
 
           {/* Theme with planet icon */}
           <h4 className="text-white font-bold text-xl md:text-2xl font-heading leading-tight flex items-center gap-2 mb-2 md:mb-4">
+            {/* eslint-disable-next-line react-hooks/static-components */}
             <IconComponent size={24} className="text-white/90" aria-hidden="true" />
             {theme}
           </h4>

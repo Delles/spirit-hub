@@ -32,3 +32,5 @@ export const planetaryIconMap: Record<string, LucideIcon> = {
 export function getPlanetaryIcon(iconName: string): LucideIcon {
     return planetaryIconMap[iconName] || Sun;
 }
+
+export { Sun };

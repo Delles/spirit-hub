@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+// Metadata import removed
 import CaleaVietiiClient from "./client";
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";

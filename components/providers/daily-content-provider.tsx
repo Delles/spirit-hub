@@ -139,7 +139,8 @@ export function DailyContentProvider({ children }: DailyContentProviderProps) {
             setCurrentDate(getTodayISOBucharest());
             setContent(computeDailyContent());
         }
-    }, [content]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // Event listeners for date change detection
     useEffect(() => {

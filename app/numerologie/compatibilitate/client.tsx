@@ -91,7 +91,6 @@ export default function CompatibilitateClient() {
   // Check if we have any params but they're invalid or incomplete
   // NOTE: Server-side validation in page.tsx handles redirects for invalid params,
   // so this is just for state derivation
-  const hasAnyParams = !!(name1Param || date1Param || name2Param || date2Param);
 
   // Query interpretation from static library
   const interpretation = useMemo(() => {
@@ -179,8 +178,6 @@ export default function CompatibilitateClient() {
 
             <CompatibilityCard
               score={scores.average}
-              lifePathCompatibility={scores.lifePath}
-              destinyCompatibility={scores.destiny}
               interpretation={interpretation}
               person1={person1Data}
               person2={person2Data}

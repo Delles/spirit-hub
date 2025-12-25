@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { getInterpretation, type LifePathInterpretation } from "@/lib/interpretations";
 import { calculateLifePath } from "@/lib/numerology";
@@ -125,7 +125,6 @@ export default function CaleaVietiiClient() {
             <LifePathCard
               number={lifePathNumber}
               interpretation={interpretation}
-              birthDate={birthDate}
             />
 
             {/* CTA Section - Explore More */}

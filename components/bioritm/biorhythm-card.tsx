@@ -16,8 +16,10 @@ interface BiorhythmCardProps {
   className?: string;
 }
 
+import { useMemo } from "react";
+
 export function BiorhythmCard({ interpretation, className }: BiorhythmCardProps) {
-  const IconComponent = getPlanetaryIcon(interpretation.hero.icon);
+  const IconComponent = useMemo(() => getPlanetaryIcon(interpretation.hero.icon), [interpretation.hero.icon]);
 
   return (
     <div
@@ -45,6 +47,7 @@ export function BiorhythmCard({ interpretation, className }: BiorhythmCardProps)
                 interpretation.theme.primary,
               )}
             >
+              {/* eslint-disable-next-line react-hooks/static-components */}
               <IconComponent size={32} className="text-white drop-shadow-md" aria-hidden="true" />
             </div>
             {/* Text Content */}
