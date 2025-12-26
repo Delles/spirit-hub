@@ -4,6 +4,7 @@ import { useDailyContent } from "@/components/providers/daily-content-provider";
 import { DailyNumberWidget } from "./widgets/daily-number-widget";
 import { BiorhythmWidget } from "./widgets/biorhythm-widget";
 import { QuickToolsWidget } from "./widgets/quick-tools-widget";
+import { OracleWidget } from "./widgets/oracle-widget";
 import { getInterpretation, type DailyInterpretation } from "@/lib/interpretations";
 
 /**
@@ -88,13 +89,8 @@ export function DailyWidgetsClient() {
             </div>
 
             {/* 2. Oracle Widget: Tall Rectangle (Right) - Spans 1 col, 2 rows */}
-            {/* TODO: Replace with OracleWidget in Phase 2 */}
             <div className="md:col-span-1 md:row-span-2 md:min-h-[350px]">
-                <div className="h-full min-h-[200px] md:min-h-[350px] rounded-xl glass-card flex flex-col items-center justify-center gap-4 p-6">
-                    <div className="text-4xl">✨</div>
-                    <div className="text-lg font-medium text-white/80">Mesajul Universului</div>
-                    <div className="text-sm text-white/50">În curând...</div>
-                </div>
+                <OracleWidget data={data.dailyOracle} className="h-full" />
             </div>
 
             {/* 3. Biorhythm: Wide Rectangle (Bottom Left) - Spans 2 cols */}

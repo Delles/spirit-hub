@@ -12,6 +12,7 @@ import {
 import { getTodayISOBucharest, calculateDailyNumber } from "@/lib/daily-content";
 import { getEnergiaZilei, type EnergiaZileiData } from "@/lib/energia-zilei";
 import { getMoonPhase, type MoonPhaseData } from "@/lib/moon-phase";
+import { getDailyOracle, type OracleMessage } from "@/lib/oracle";
 import { getBucharestDate } from "@/lib/utils";
 
 // ============================================================================
@@ -29,6 +30,8 @@ export interface DailyContent {
     energiaZilei: EnergiaZileiData;
     /** Moon phase data */
     moonPhase: MoonPhaseData;
+    /** Daily oracle message */
+    dailyOracle: OracleMessage;
 }
 
 interface DailyContentContextValue {
@@ -59,12 +62,14 @@ function computeDailyContent(): DailyContent {
     const energiaZilei = getEnergiaZilei(bucharestDate);
     // Moon phase computed at stable "date" (not current moment) for daily consistency
     const moonPhase = getMoonPhase(bucharestDate);
+    const dailyOracle = getDailyOracle(bucharestDate);
 
     return {
         date: dateISO,
         dailyNumber: { number: dailyNumber },
         energiaZilei,
         moonPhase,
+        dailyOracle,
     };
 }
 
