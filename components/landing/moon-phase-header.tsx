@@ -1,11 +1,13 @@
 "use client";
 
 import { useDailyContent } from "@/components/providers/daily-content-provider";
+import Link from "next/link";
 
 /**
  * Moon Phase Header Component
  * Displays the current moon phase in the page header
  * Data is computed client-side - always available immediately
+ * Tappable - links to Energia Zilei page
  */
 export function MoonPhaseHeader() {
     const data = useDailyContent();
@@ -20,8 +22,13 @@ export function MoonPhaseHeader() {
     }
 
     return (
-        <p className="text-[#A5B4FC] text-sm flex items-center justify-center gap-2">
-            {data.moonPhase.labelRo} {data.moonPhase.emoji}
-        </p>
+        <Link
+            href="/bioritm/energia-zilei"
+            className="block hover:opacity-80 transition-opacity"
+        >
+            <span className="text-[#A5B4FC] text-sm flex items-center justify-center gap-2">
+                {data.moonGuide.labelRo} {data.moonGuide.emoji}
+            </span>
+        </Link>
     );
 }

@@ -81,7 +81,7 @@ export function EnergiaZileiClient() {
         {/* Main Energy Card */}
         <EnergiaZileiCard
           energia={energia}
-          moonPhase={data.moonPhase}
+          moonGuide={data.moonGuide}
         />
 
         {/* CTA to Personal Biorhythm */}

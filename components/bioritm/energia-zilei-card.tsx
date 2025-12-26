@@ -3,18 +3,18 @@
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { EnergiaZileiData } from "@/lib/energia-zilei";
-import type { MoonPhaseData } from "@/lib/moon-phase";
-import { Check, X, Quote } from "lucide-react";
+import type { MoonGuideData } from "@/lib/moon-guide";
+import { Check, X, Quote, Moon, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import ReactMarkdown from "react-markdown";
 
 interface EnergiaZileiCardProps {
   energia: EnergiaZileiData;
-  moonPhase?: MoonPhaseData;
+  moonGuide?: MoonGuideData;
   className?: string;
 }
 
-export function EnergiaZileiCard({ energia, moonPhase, className }: EnergiaZileiCardProps) {
+export function EnergiaZileiCard({ energia, moonGuide, className }: EnergiaZileiCardProps) {
   return (
     <div className={cn("w-full space-y-6", className)} role="article" aria-label="Energia Zilei">
       {/* Main Container with Glassmorphism */}
@@ -107,18 +107,93 @@ export function EnergiaZileiCard({ energia, moonPhase, className }: EnergiaZilei
               <p className="text-xs uppercase tracking-widest text-white/40">Mantra Zilei</p>
             </div>
           </div>
-
-          {/* Moon Phase (Optional Context) */}
-          {moonPhase && (
-            <div className="flex items-center justify-center gap-3 pt-4 border-t border-white/5">
-              <span className="text-xl" aria-hidden="true">{moonPhase.emoji}</span>
-              <span className="text-sm text-white/50">Faza Lunii: <span className="text-white/80">{moonPhase.labelRo}</span></span>
-            </div>
-          )}
         </div>
       </Card>
+
+      {/* 6. MOON GUIDE SECTION */}
+      {moonGuide && (
+        <Card className="w-full overflow-hidden bg-black/40 backdrop-blur-xl ring-1 ring-white/5 shadow-2xl">
+          {/* Moon Header */}
+          <div className="relative overflow-hidden p-6 text-white">
+            <div className={`absolute inset-0 bg-gradient-to-br ${moonGuide.theme.primary} opacity-15`} />
+
+            <div className="relative z-10 flex flex-col items-center text-center">
+              {/* Moon Emoji */}
+              <div className={`p-3 rounded-xl mb-4 shadow-lg ring-1 ring-white/20 bg-gradient-to-br ${moonGuide.theme.primary} bg-opacity-20 backdrop-blur-md`}>
+                <span className="text-3xl" aria-hidden="true">{moonGuide.emoji}</span>
+              </div>
+
+              <div className="flex items-center gap-2 mb-2">
+                <Moon size={14} className={moonGuide.theme.accent} aria-hidden="true" />
+                <p className="text-xs uppercase tracking-[0.2em] text-white/60 font-medium">
+                  Faza Lunii
+                </p>
+              </div>
+
+              <h2 className="text-2xl font-bold mb-1 font-heading text-white">
+                {moonGuide.title}
+              </h2>
+              <p className="text-sm text-white/60 italic">
+                {moonGuide.subtitle}
+              </p>
+            </div>
+          </div>
+
+          <div className="px-6 pb-6 space-y-6">
+            {/* Moon Insight */}
+            <div className="prose prose-invert prose-sm prose-p:text-slate-300 prose-p:leading-relaxed prose-strong:text-white max-w-none">
+              <ReactMarkdown>
+                {moonGuide.insight}
+              </ReactMarkdown>
+            </div>
+
+            {/* Moon Guidance Grid */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Guidance Tips */}
+              <div className="rounded-xl bg-indigo-500/5 border border-indigo-500/10 p-4 backdrop-blur-sm space-y-3">
+                <h3 className="text-indigo-400 font-semibold flex items-center gap-2 text-sm uppercase tracking-wide">
+                  <Sparkles size={14} aria-hidden="true" /> Recomandări
+                </h3>
+                <ul className="space-y-2">
+                  {moonGuide.guidance.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-white/80">
+                      <span className="text-indigo-500/50 mt-1" aria-hidden="true">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Avoid */}
+              <div className="rounded-xl bg-rose-500/5 border border-rose-500/10 p-4 backdrop-blur-sm space-y-3">
+                <h3 className="text-rose-400 font-semibold flex items-center gap-2 text-sm uppercase tracking-wide">
+                  <X size={14} aria-hidden="true" /> De evitat
+                </h3>
+                <ul className="space-y-2">
+                  {moonGuide.avoid.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-white/80">
+                      <span className="text-rose-500/50 mt-1" aria-hidden="true">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Moon Mantra */}
+            <div className="text-center pt-2">
+              <div className="relative p-6 rounded-xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 overflow-hidden">
+                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${moonGuide.theme.primary} opacity-40`} />
+                <Quote className="w-6 h-6 text-white/10 mx-auto mb-3" aria-hidden="true" />
+                <p className="font-serif text-lg italic text-white/90 mb-2">
+                  &ldquo;{moonGuide.mantra}&rdquo;
+                </p>
+                <p className="text-xs uppercase tracking-widest text-white/40">Mantra Lunară</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+      )}
     </div>
   );
 }
-
-

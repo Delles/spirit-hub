@@ -1,0 +1,170 @@
+{
+    "new": {
+        "theme": {
+            "primary": "from-slate-700 to-slate-900",
+            "accent": "text-slate-400"
+        },
+        "title": "Lună Nouă",
+        "subtitle": "Un nou început",
+        "insight": "Luna Nouă este **punctul zero** al ciclului lunar – un moment de întuneric fertil unde totul este posibil. Este timpul să plantezi semințe invizibile în solul subconștientului tău. Ceea ce intenționezi acum va crește împreună cu Luna în săptămânile următoare.",
+        "guidance": [
+            "Stabilește intenții clare pentru ciclul următor",
+            "Scrie-ți dorințele într-un jurnal",
+            "Meditează asupra noilor începuturi",
+            "Retrage-te în liniște pentru introspecție"
+        ],
+        "avoid": [
+            "Nu lansa proiecte mari azi – plantează doar semințele",
+            "Evită deciziile impulsive",
+            "Nu te epuiza cu activități externe intense"
+        ],
+        "mantra": "În întuneric, îmi găsesc lumina interioară."
+    },
+    "waxing_crescent": {
+        "theme": {
+            "primary": "from-indigo-600 to-slate-800",
+            "accent": "text-indigo-400"
+        },
+        "title": "Semilună în Creștere",
+        "subtitle": "Primii pași",
+        "insight": "Prima felie de lumină apare pe cer, iar cu ea, **primele semne de viață** în proiectele tale. Este momentul să treci de la intenție la acțiune concretă. Încrederea în sine este cheia – chiar dacă nu vezi încă rezultatele.",
+        "guidance": [
+            "Fă primul pas concret către obiectivele tale",
+            "Depășește fricile inițiale cu curaj",
+            "Construiește fundația pentru ceea ce urmează",
+            "Cere ajutor sau resurse de care ai nevoie"
+        ],
+        "avoid": [
+            "Nu te lăsa descurajat de obstacole mici",
+            "Evită să îți compari începuturile cu rezultatele altora",
+            "Nu abandona la prima dificultate"
+        ],
+        "mantra": "Fiecare pas mic mă duce mai aproape de vis."
+    },
+    "first_quarter": {
+        "theme": {
+            "primary": "from-amber-500 to-orange-600",
+            "accent": "text-amber-400"
+        },
+        "title": "Primul Pătrar",
+        "subtitle": "Acțiune și hotărâre",
+        "insight": "Luna este pe jumătate luminată – un punct de **criză creativă**. Obstacolele apar pentru a testa dedicarea ta. Acest moment cere hotărâre: perseverezi sau renunți? Alegerea ta acum definește restul ciclului.",
+        "guidance": [
+            "Confruntă direct obstacolele apărute",
+            "Ia decizii ferme și asumă-ți răspunderea",
+            "Ajustează-ți planul dacă e necesar, dar nu scopul",
+            "Canalizează energia în acțiuni concrete"
+        ],
+        "avoid": [
+            "Nu amâna deciziile importante",
+            "Evită să te plângi de dificultăți",
+            "Nu te lăsa paralizat de perfecționism"
+        ],
+        "mantra": "Am curajul să acționez și puterea să perseverez."
+    },
+    "waxing_gibbous": {
+        "theme": {
+            "primary": "from-yellow-400 to-amber-500",
+            "accent": "text-yellow-400"
+        },
+        "title": "Lună aproape Plină",
+        "subtitle": "Rafinare și progres",
+        "insight": "Luna crește spre plenitudine și așa fac și eforturile tale. Este timpul pentru **ajustări fine** – analizează ce funcționează și ce nu. Perfecționează, nu reinventa. Răbdarea este virtutea acestei faze.",
+        "guidance": [
+            "Revizuiește și îmbunătățește ceea ce ai construit",
+            "Cere feedback de la persoane de încredere",
+            "Rămâi concentrat pe obiectivul final",
+            "Pregătește-te pentru recoltă"
+        ],
+        "avoid": [
+            "Nu începe proiecte complet noi acum",
+            "Evită să te grăbești să termini",
+            "Nu ignora detaliile importante"
+        ],
+        "mantra": "Răbdarea mea transformă efortul în măreție."
+    },
+    "full": {
+        "theme": {
+            "primary": "from-violet-400 to-purple-600",
+            "accent": "text-violet-300"
+        },
+        "title": "Lună Plină",
+        "subtitle": "Claritate și intensitate",
+        "insight": "**Punctul culminant** al ciclului lunar. Emoțiile sunt amplificate, adevărurile ies la suprafață, iar ceea ce ai semănat la Lună Nouă acum se manifestă. Este momentul revelațiilor, al recunoștinței și al celebrării.",
+        "guidance": [
+            "Celebrează progresul și reușitele tale",
+            "Practică recunoștința pentru tot ce ai",
+            "Eliberează ce nu îți mai servește",
+            "Fii atent la semnele și sincronicități"
+        ],
+        "avoid": [
+            "Nu lua decizii majore sub impuls emoțional",
+            "Evită conflictele și confruntările",
+            "Nu te lăsa copleșit de intensitatea emoțiilor"
+        ],
+        "mantra": "Strălucesc în lumina plenitudinii mele."
+    },
+    "waning_gibbous": {
+        "theme": {
+            "primary": "from-teal-500 to-cyan-600",
+            "accent": "text-teal-400"
+        },
+        "title": "Lună în Descreștere",
+        "subtitle": "Lecții și recunoștință",
+        "insight": "Lumina începe să scadă, iar cu ea vine **înțelepciunea retrospectivei**. Ce ai învățat în acest ciclu? Ce a funcționat și ce nu? Este momentul să integrezi lecțiile și să împărtășești din abundența ta cu alții.",
+        "guidance": [
+            "Reflectează asupra lecțiilor ciclului",
+            "Împărtășește cunoștințele și resursele cu alții",
+            "Practică generozitatea și mentoratul",
+            "Finalizează proiecte în desfășurare"
+        ],
+        "avoid": [
+            "Nu te agăța de rezultate sau așteptări",
+            "Evită să începi inițiative noi majore",
+            "Nu ignora lecțiile neplăcute"
+        ],
+        "mantra": "Împărtășesc din abundența mea și cresc prin dăruire."
+    },
+    "last_quarter": {
+        "theme": {
+            "primary": "from-rose-500 to-pink-600",
+            "accent": "text-rose-400"
+        },
+        "title": "Ultimul Pătrar",
+        "subtitle": "Curățare și clarificare",
+        "insight": "A doua **criză a ciclului** – un moment de eliberare. Ce trebuie lăsat în urmă? Ce relații, obiceiuri sau credințe nu te mai servesc? Curățenia de acum face loc pentru noile semințe de la următoarea Lună Nouă.",
+        "guidance": [
+            "Eliberează ce nu mai funcționează",
+            "Fă curățenie fizică și emoțională",
+            "Iartă și lasă să plece resentimentele",
+            "Simplifică-ți viața și prioritățile"
+        ],
+        "avoid": [
+            "Nu te agăța de trecut",
+            "Evită să începi relații sau proiecte noi",
+            "Nu rezista schimbării necesare"
+        ],
+        "mantra": "Eliberez trecutul și fac loc pentru nou."
+    },
+    "waning_crescent": {
+        "theme": {
+            "primary": "from-slate-600 to-gray-800",
+            "accent": "text-slate-400"
+        },
+        "title": "Semilună în Descreștere",
+        "subtitle": "Odihnă și vindecare",
+        "insight": "Ultima felie de lumină înainte de întunericul regenerator. Este **timpul sacru al odihnei** – când corpul și sufletul se recuperează. Nu forța nimic; doar fii. Visele din această perioadă pot aduce mesaje importante.",
+        "guidance": [
+            "Odihnește-te mai mult decât de obicei",
+            "Meditează și fă practici contemplative",
+            "Ascultă-ți visele și notează-le",
+            "Pregătește-te mental pentru noul ciclu"
+        ],
+        "avoid": [
+            "Nu forța lucrurile să se întâmple",
+            "Evită suprasolicitarea fizică sau mentală",
+            "Nu lua decizii importante acum"
+        ],
+        "mantra": "În liniște, mă regenerez și îmi găsesc pacea."
+    }
+}

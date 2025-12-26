@@ -11,7 +11,7 @@ import {
 } from "react";
 import { getTodayISOBucharest, calculateDailyNumber } from "@/lib/daily-content";
 import { getEnergiaZilei, type EnergiaZileiData } from "@/lib/energia-zilei";
-import { getMoonPhase, type MoonPhaseData } from "@/lib/moon-phase";
+import { getMoonGuide, type MoonGuideData } from "@/lib/moon-guide";
 import { getDailyOracle, type OracleMessage } from "@/lib/oracle";
 import { getBucharestDate } from "@/lib/utils";
 
@@ -28,8 +28,8 @@ export interface DailyContent {
     };
     /** Planetary day energy data */
     energiaZilei: EnergiaZileiData;
-    /** Moon phase data */
-    moonPhase: MoonPhaseData;
+    /** Moon phase with spiritual guidance (includes phaseKey, emoji, labelRo) */
+    moonGuide: MoonGuideData;
     /** Daily oracle message */
     dailyOracle: OracleMessage;
 }
@@ -60,15 +60,14 @@ function computeDailyContent(): DailyContent {
     const bucharestDate = getBucharestDate();
     const dailyNumber = calculateDailyNumber(dateISO);
     const energiaZilei = getEnergiaZilei(bucharestDate);
-    // Moon phase computed at stable "date" (not current moment) for daily consistency
-    const moonPhase = getMoonPhase(bucharestDate);
+    const moonGuide = getMoonGuide(bucharestDate);
     const dailyOracle = getDailyOracle(bucharestDate);
 
     return {
         date: dateISO,
         dailyNumber: { number: dailyNumber },
         energiaZilei,
-        moonPhase,
+        moonGuide,
         dailyOracle,
     };
 }
