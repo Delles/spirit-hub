@@ -279,6 +279,566 @@
             "insight": "Râsul este o rugăciune. Nu lua viața prea în serios. **Bucuria atrage** circumstanțe fericite.",
             "action": "Găsește un motiv să râzi cu poftă azi.",
             "mantra": "Aleg bucuria în fiecare moment."
+        },
+        {
+            "id": 21,
+            "slug": "rabdare-divina",
+            "title": "Răbdare Divină",
+            "category": "spirit",
+            "theme": {
+                "primary": "from-amber-600 to-yellow-700",
+                "accent": "text-amber-300",
+                "icon": "Clock"
+            },
+            "insight": "Uneori, Universul spune 'nu încă', nu 'nu niciodată'. **Sămânța are nevoie de întuneric** înainte de a sparge pământul către lumină.",
+            "action": "Așteaptă un moment înainte de a reacționa la orice provocare azi.",
+            "mantra": "Aştept cu încredere momentul divin perfect."
+        },
+        {
+            "id": 22,
+            "slug": "forta-interioara",
+            "title": "Forță Interioară",
+            "category": "energy",
+            "theme": {
+                "primary": "from-orange-500 to-red-700",
+                "accent": "text-orange-300",
+                "icon": "Zap"
+            },
+            "insight": "Ești mult mai puternic decât crezi. **Reziliența ta** s-a construit în furtuni pe care le-ai depășit deja cu brio.",
+            "action": "Amintește-ți de o victorie personală majoră de anul acesta.",
+            "mantra": "Sunt neclintit în fața provocărilor."
+        },
+        {
+            "id": 23,
+            "slug": "claritate",
+            "title": "Claritate",
+            "category": "growth",
+            "theme": {
+                "primary": "from-sky-400 to-blue-600",
+                "accent": "text-sky-300",
+                "icon": "Lightbulb"
+            },
+            "insight": "Ceața se risipește atunci când te oprești din a mai căuta cu disperare. **Răspunsul este deja în tine**, așteptând doar liniștea.",
+            "action": "Scrie pe o foaie care este prioritatea ta numărul 1 acum.",
+            "mantra": "Văd calea mea cu o claritate absolută."
+        },
+        {
+            "id": 24,
+            "slug": "iubire-de-sine",
+            "title": "Iubire de Sine",
+            "category": "love",
+            "theme": {
+                "primary": "from-rose-300 to-pink-500",
+                "accent": "text-rose-400",
+                "icon": "UserCheck"
+            },
+            "insight": "Ești singura persoană cu care vei petrece toată viața. **Fii bun cu tine**, așa cum ai fi cu cel mai bun prieten.",
+            "action": "Fă-ți un compliment sincer în fața oglinzii.",
+            "mantra": "Mă accept și mă iubesc exact așa cum sunt."
+        },
+        {
+            "id": 25,
+            "slug": "abundenta-mentala",
+            "title": "Abundență Mentală",
+            "category": "abundance",
+            "theme": {
+                "primary": "from-emerald-500 to-green-700",
+                "accent": "text-emerald-300",
+                "icon": "Brain"
+            },
+            "insight": "Bogăția începe în minte. Când vezi **oportunități în loc de obstacole**, întreaga lume se deschide pentru tine.",
+            "action": "Identifică o oportunitate într-o situație aparent dificilă.",
+            "mantra": "Mintea mea este o sursă infinită de prosperitate."
+        },
+        {
+            "id": 26,
+            "slug": "armonie",
+            "title": "Armonie",
+            "category": "energy",
+            "theme": {
+                "primary": "from-teal-400 to-cyan-500",
+                "accent": "text-teal-300",
+                "icon": "Waves"
+            },
+            "insight": "Corpul și sufletul tău cer un moment de respiro. **Armonia nu este un scop**, ci un mod de a călători prin viață.",
+            "action": "Ascultă o melodie care îți liniștește complet mintea.",
+            "mantra": "Sunt în armonie totală cu fluxul vieții."
+        },
+        {
+            "id": 27,
+            "slug": "curaj-vulnerabil",
+            "title": "Curaj Vulnerabil",
+            "category": "love",
+            "theme": {
+                "primary": "from-fuchsia-400 to-purple-600",
+                "accent": "text-fuchsia-300",
+                "icon": "HeartHandshake"
+            },
+            "insight": "Să ceri ajutor este un act de mare curaj. **Nu trebuie să porți totul singur**; comunitatea este puterea ta.",
+            "action": "Cere sprijin sau un sfat de la cineva în care ai încredere.",
+            "mantra": "Sunt în siguranță să cer și să primesc ajutor."
+        },
+        {
+            "id": 28,
+            "slug": "ghidare",
+            "title": "Ghidare",
+            "category": "spirit",
+            "theme": {
+                "primary": "from-violet-400 to-indigo-600",
+                "accent": "text-violet-300",
+                "icon": "Compass"
+            },
+            "insight": "Semnele sunt peste tot dacă ești atent. **Universul îți șoptește** prin coincidențe și sincronicități.",
+            "action": "Fii atent la primul mesaj sau cântec pe care îl auzi întâmplător azi.",
+            "mantra": "Sunt mereu ghidat către binele meu suprem."
+        },
+        {
+            "id": 29,
+            "slug": "actiune-inspirata",
+            "title": "Acțiune Inspirată",
+            "category": "growth",
+            "theme": {
+                "primary": "from-orange-400 to-amber-600",
+                "accent": "text-orange-300",
+                "icon": "Rocket"
+            },
+            "insight": "Nu trebuie să vezi toată scara ca să faci primul pas. **Acționează din entuziasm**, nu din obligație.",
+            "action": "Fă un mic pas către un vis de care ți-a fost teamă.",
+            "mantra": "Acționez cu ușurință și bucurie."
+        },
+        {
+            "id": 30,
+            "slug": "intelepciunea-corpului",
+            "title": "Înțelepciunea Corpului",
+            "category": "energy",
+            "theme": {
+                "primary": "from-lime-400 to-green-600",
+                "accent": "text-lime-500",
+                "icon": "Activity"
+            },
+            "insight": "Corpul tău îți vorbește constant. **Simptomele sunt mesaje**, nu doar probleme care trebuie reparate.",
+            "action": "Bea un pahar cu apă în mod conștient, mulțumindu-i corpului tău.",
+            "mantra": "Îmi onorez corpul și îi ascult nevoile."
+        },
+        {
+            "id": 31,
+            "slug": "flux-financiar",
+            "title": "Flux Financiar",
+            "category": "abundance",
+            "theme": {
+                "primary": "from-emerald-600 to-teal-800",
+                "accent": "text-emerald-400",
+                "icon": "Wallet"
+            },
+            "insight": "Banii sunt energie în mișcare. **Dai cu bucurie, primești cu recunoștință**. Menține fluxul deschis.",
+            "action": "Binecuvântează fiecare plată pe care o faci astăzi.",
+            "mantra": "Atrag prosperitatea fără efort."
+        },
+        {
+            "id": 32,
+            "slug": "iertare-de-sine",
+            "title": "Iertare de Sine",
+            "category": "growth",
+            "theme": {
+                "primary": "from-slate-400 to-stone-600",
+                "accent": "text-slate-300",
+                "icon": "Eraser"
+            },
+            "insight": "Ai făcut ce ai putut mai bine cu ce știai atunci. **Nu te mai pedepsi** pentru trecut; prezentul are nevoie de tine.",
+            "action": "Spune-ți: 'Te iert pentru că nu ai știut mai mult atunci'.",
+            "mantra": "Mă eliberez de regrete și aleg să evoluez."
+        },
+        {
+            "id": 33,
+            "slug": "scanteie-creativa",
+            "title": "Scânteie Creativă",
+            "category": "abundance",
+            "theme": {
+                "primary": "from-indigo-400 to-purple-500",
+                "accent": "text-indigo-300",
+                "icon": "Wand2"
+            },
+            "insight": "Ideile noi au nevoie de spațiu să respire. **Nu analiza totul**, lasă-te purtat de curiozitate.",
+            "action": "Desenează sau scrie ceva fără să te gândești la rezultat.",
+            "mantra": "Sunt o sursă inepuizabilă de idei geniale."
+        },
+        {
+            "id": 34,
+            "slug": "linistea-mintii",
+            "title": "Liniștea Minții",
+            "category": "energy",
+            "theme": {
+                "primary": "from-blue-500 to-indigo-700",
+                "accent": "text-blue-300",
+                "icon": "Shrink"
+            },
+            "insight": "Gândurile sunt ca norii, tu ești cerul. **Observă-le fără să te identifici** cu ele. Totul trece.",
+            "action": "Observă-ți gândurile timp de 2 minute ca și cum ar fi un film.",
+            "mantra": "Sunt stăpânul gândurilor mele, nu sclavul lor."
+        },
+        {
+            "id": 35,
+            "slug": "adevar-personal",
+            "title": "Adevăr Personal",
+            "category": "spirit",
+            "theme": {
+                "primary": "from-violet-600 to-fuchsia-700",
+                "accent": "text-violet-300",
+                "icon": "Gem"
+            },
+            "insight": "Adevărul tău nu trebuie să fie pe placul tuturor. **Autenticitatea ta** este cea mai mare vibrație pe care o poți emite.",
+            "action": "Exprimă o opinie sinceră, chiar dacă e diferită de a celorlalți.",
+            "mantra": "Trăiesc în acord cu adevărul sufletului meu."
+        },
+        {
+            "id": 36,
+            "slug": "rodnicie",
+            "title": "Rodnicie",
+            "category": "growth",
+            "theme": {
+                "primary": "from-orange-600 to-rose-700",
+                "accent": "text-orange-400",
+                "icon": "Sprout"
+            },
+            "insight": "Munca ta începe să dea roade. **Nu renunța acum**, ești la doar un pas de recoltă.",
+            "action": "Uită-te înapoi la cât de mult ai evoluat în ultimele 6 luni.",
+            "mantra": "Succesul meu este inevitabil."
+        },
+        {
+            "id": 37,
+            "slug": "magia-clipei",
+            "title": "Magia Clipei",
+            "category": "spirit",
+            "theme": {
+                "primary": "from-cyan-300 to-teal-500",
+                "accent": "text-cyan-400",
+                "icon": "Sun"
+            },
+            "insight": "Viitorul este o proiecție, trecutul o amintire. **Singurul loc unde poți fi fericit** este AICI și ACUM.",
+            "action": "Simte parfumul dimineții sau gustul cafelei/ceaiului cu atenție maximă.",
+            "mantra": "Sunt prezent și recunoscător pentru fiece clipă."
+        },
+        {
+            "id": 38,
+            "slug": "prietenie-sincera",
+            "title": "Prietenie Sinceră",
+            "category": "love",
+            "theme": {
+                "primary": "from-pink-400 to-rose-600",
+                "accent": "text-pink-300",
+                "icon": "Users"
+            },
+            "insight": "Oamenii potriviți te vor ridica mereu. **Nu te teme să te distanțezi** de cei care îți consumă energia.",
+            "action": "Trimite un mesaj scurt de apreciere cuiva care te susține.",
+            "mantra": "Atrag în viața mea doar relații hrănitoare."
+        },
+        {
+            "id": 39,
+            "slug": "viziune",
+            "title": "Viziune",
+            "category": "growth",
+            "theme": {
+                "primary": "from-indigo-600 to-blue-800",
+                "accent": "text-indigo-400",
+                "icon": "Telescope"
+            },
+            "insight": "Îndrăznește să visezi la scară mare. **Universul nu are limite**, doar tu ți le impui prin credințele tale.",
+            "action": "Închide ochii și vizualizează-te peste 3 ani, fiind exact cine vrei să fii.",
+            "mantra": "Văd mare, visez mărire, creez măreție."
+        },
+        {
+            "id": 40,
+            "slug": "sarbatoreste",
+            "title": "Sărbătorește",
+            "category": "abundance",
+            "theme": {
+                "primary": "from-yellow-500 to-orange-600",
+                "accent": "text-yellow-400",
+                "icon": "PartyPopper"
+            },
+            "insight": "Fiecare mică reușită merită aplaudată. **Bucuria succesului mic** atrage succesul mare.",
+            "action": "Răsplătește-te astăzi cu ceva mic ce îți face plăcere.",
+            "mantra": "Sunt demn de tot ce e mai bun în viață."
+        },
+        {
+            "id": 41,
+            "slug": "recunostinta-profunda",
+            "title": "Recunoștință Profundă",
+            "category": "spirit",
+            "theme": {
+                "primary": "from-red-600 to-rose-700",
+                "accent": "text-red-400",
+                "icon": "HeartPulse"
+            },
+            "insight": "Când mulțumești pentru ce ai, creezi spațiu pentru ce îți dorești. **Recunoștința este cea mai înaltă stare**, un semnal clar către abundență.",
+            "action": "Spune 'mulțumesc' pentru 5 lucruri mărunte pe care de obicei le ignori.",
+            "mantra": "Inima mea bate în ritmul recunoștinței."
+        },
+        {
+            "id": 42,
+            "slug": "ascultare-activa",
+            "title": "Ascultare Activă",
+            "category": "love",
+            "theme": {
+                "primary": "from-blue-400 to-indigo-500",
+                "accent": "text-blue-300",
+                "icon": "Ear"
+            },
+            "insight": "Cea mai mare dovadă de iubire este atenția. **Ascultă pentru a înțelege**, nu doar pentru a răspunde. Universul îți vorbește prin ceilalți.",
+            "action": "Ascultă pe cineva drag astăzi fără să îl întrerupi deloc.",
+            "mantra": "Ascult cu inima și înțeleg cu sufletul."
+        },
+        {
+            "id": 43,
+            "slug": "adaptabilitate",
+            "title": "Adaptabilitate",
+            "category": "growth",
+            "theme": {
+                "primary": "from-amber-400 to-orange-500",
+                "accent": "text-amber-500",
+                "icon": "Shuffle"
+            },
+            "insight": "Apa care se adaptează cursului râului ajunge mereu la mare. **Nu te opune curentului**, ci folosește-i energia pentru a înainta.",
+            "action": "Schimbă o rutină mică astăzi (calea spre job, ordinea sarcinilor).",
+            "mantra": "Sunt flexibil și curg cu ușurință prin schimbare."
+        },
+        {
+            "id": 44,
+            "slug": "maretie",
+            "title": "Măreție",
+            "category": "abundance",
+            "theme": {
+                "primary": "from-emerald-600 to-green-800",
+                "accent": "text-emerald-400",
+                "icon": "Mountain"
+            },
+            "insight": "Vizuinele mari cer eforturi pe măsură. **Nu te teme de munte**, ci bucură-te de fiecare pas al ascensiunii. Ești menit pentru culmi.",
+            "action": "Privește o imagine cu un munte sau ieși la înălțime și respiră adânc.",
+            "mantra": "Am forța și viziunea necesare pentru a reuși."
+        },
+        {
+            "id": 45,
+            "slug": "ingrijire",
+            "title": "Îngrijire de Sine",
+            "category": "energy",
+            "theme": {
+                "primary": "from-stone-500 to-slate-700",
+                "accent": "text-stone-300",
+                "icon": "Coffee"
+            },
+            "insight": "Nu poți turna dintr-o cupă goală. **Pauza nu este lene**, ci reîncărcare necesară. Sufletul tău are nevoie de tandrețe astăzi.",
+            "action": "Savurează o băutură caldă sau fă o baie lungă, fără grabă.",
+            "mantra": "Îmi prețuiesc energia și mă odihnesc cu drag."
+        },
+        {
+            "id": 46,
+            "slug": "autenticitate",
+            "title": "Autenticitate",
+            "category": "spirit",
+            "theme": {
+                "primary": "from-violet-500 to-purple-600",
+                "accent": "text-violet-300",
+                "icon": "Fingerprint"
+            },
+            "insight": "Lumea nu are nevoie de o copie, are nevoie de Tine. **Amprenta ta unică** este darul tău pentru omenire. Îndrăznește să fii tu.",
+            "action": "Fă un lucru astăzi exact așa cum simți, fără a te gândi la judecata altora.",
+            "mantra": "Sunt unic, sunt real, sunt eu însumi."
+        },
+        {
+            "id": 47,
+            "slug": "stabilitate",
+            "title": "Stabilitate",
+            "category": "growth",
+            "theme": {
+                "primary": "from-blue-700 to-indigo-900",
+                "accent": "text-blue-200",
+                "icon": "Anchor"
+            },
+            "insight": "Baza solidă se construiește în liniște. **Rămâi ancorat** în valorile tale, chiar și atunci când apele sunt agitate în exterior.",
+            "action": "Petrece 10 minute mergând desculț (dacă poți) sau simțindu-ți picioarele pe pământ.",
+            "mantra": "Sunt centrat, stabil și în siguranță."
+        },
+        {
+            "id": 48,
+            "slug": "libertate",
+            "title": "Libertate",
+            "category": "abundance",
+            "theme": {
+                "primary": "from-sky-400 to-cyan-500",
+                "accent": "text-sky-300",
+                "icon": "Bird"
+            },
+            "insight": "Lanțurile cele mai grele sunt cele pe care ni le punem singuri. **Ești liber să alegi** o nouă perspectivă în orice secundă.",
+            "action": "Iartă-te pentru o greșeală veche și las-o să plece.",
+            "mantra": "Zbor deasupra limitelor și îmi aleg destinul."
+        },
+        {
+            "id": 49,
+            "slug": "invatare",
+            "title": "Învățare Continuă",
+            "category": "growth",
+            "theme": {
+                "primary": "from-indigo-500 to-blue-600",
+                "accent": "text-indigo-200",
+                "icon": "GraduationCap"
+            },
+            "insight": "Fiecare interacțiune este o lecție ascunsă. **Rămâi student** al vieții și vei fi mereu tânăr în spirit.",
+            "action": "Citește un articol sau uită-te la un video despre un subiect nou azi.",
+            "mantra": "Îmi deschid mintea către noi cunoașteri."
+        },
+        {
+            "id": 50,
+            "slug": "lumina-calauzitoare",
+            "title": "Lumină Călăuzitoare",
+            "category": "spirit",
+            "theme": {
+                "primary": "from-yellow-400 to-orange-500",
+                "accent": "text-yellow-600",
+                "icon": "Lamp"
+            },
+            "insight": "Tu ești farul pentru cei din jur. **Lumina ta** nu se pierde dacă este împărțită, ci se multiplică infinit.",
+            "action": "Oferă un sfat bun sau o vorbă de încurajare cuiva aflat în dificultate.",
+            "mantra": "Sunt o sursă de lumină și inspirație."
+        },
+        {
+            "id": 51,
+            "slug": "liniste-mentala",
+            "title": "Liniște Mentală",
+            "category": "energy",
+            "theme": {
+                "primary": "from-sky-100/20 to-sky-200/20",
+                "accent": "text-sky-400",
+                "icon": "Cloud"
+            },
+            "insight": "Gândurile sunt doar nori trecători. **Tu ești cerul infinit** din spatele lor. Lasă-le să treacă fără să le reții.",
+            "action": "Privește cerul timp de 5 minute și observă cum norii se transformă.",
+            "mantra": "Pacea mea este neschimbată de gânduri."
+        },
+        {
+            "id": 52,
+            "slug": "vitalitate-extrema",
+            "title": "Vitalitate Maximă",
+            "category": "energy",
+            "theme": {
+                "primary": "from-green-400 to-emerald-500",
+                "accent": "text-green-600",
+                "icon": "BatteryCharging"
+            },
+            "insight": "Energia ta este combustibilul viselor tale. **Alimentează-te corect** fizic și emoțional pentru a străluci.",
+            "action": "Mănâncă ceva verde și viu sau fă 10 genuflexiuni energice.",
+            "mantra": "Sunt plin de energie vibrantă și viață."
+        },
+        {
+            "id": 53,
+            "slug": "generozitate-fara-limite",
+            "title": "Generozitate",
+            "category": "abundance",
+            "theme": {
+                "primary": "from-rose-500 to-red-600",
+                "accent": "text-rose-200",
+                "icon": "Gift"
+            },
+            "insight": "Universul îi iubește pe cei care dăruiesc cu inima deschisă. **Dăruiește fără așteptări** și vei primi însutit.",
+            "action": "Fă un mic cadou simbolic sau o donație neplanificată.",
+            "mantra": "Dăruiesc cu bucurie și primesc cu recunoștință."
+        },
+        {
+            "id": 54,
+            "slug": "timp-pretios",
+            "title": "Timp Prețios",
+            "category": "growth",
+            "theme": {
+                "primary": "from-stone-600 to-stone-800",
+                "accent": "text-stone-400",
+                "icon": "Timer"
+            },
+            "insight": "Timpul este singura resursă care nu se poate recupera. **Alege-ți luptele cu grijă** și investiția de timp cu discernământ.",
+            "action": "Setează un cronometru de 30 de minute pentru a lucra intens la ceva ce contează.",
+            "mantra": "Folosesc fiecare secundă cu rost și sens."
+        },
+        {
+            "id": 55,
+            "slug": "conexiune-universala",
+            "title": "Conexiune Universală",
+            "category": "spirit",
+            "theme": {
+                "primary": "from-purple-800 to-indigo-900",
+                "accent": "text-purple-300",
+                "icon": "Infinity"
+            },
+            "insight": "Totul este legat prin fire invizibile. **Acțiunile tale au ecou** în întreg Universul. Ești parte din marele Tot.",
+            "action": "Trage aer adânc în piept și vizualizează firele de lumină ce te leagă de tot ce există.",
+            "mantra": "Sunt una cu Universul și cu viața."
+        },
+        {
+            "id": 56,
+            "slug": "purificare-energetica",
+            "title": "Purificare",
+            "category": "energy",
+            "theme": {
+                "primary": "from-cyan-400 to-blue-500",
+                "accent": "text-cyan-200",
+                "icon": "Droplets"
+            },
+            "insight": "Curățarea spațiului și a minții lasă loc noului. **Îndepărtează reziduurile** emoționale pentru a vibra mai sus.",
+            "action": "Aruncă ceva vechi sau fă un duș conștient, vizualizând apa cum spală oboseala.",
+            "mantra": "Sunt curat, sunt clar, sunt proaspăt."
+        },
+        {
+            "id": 57,
+            "slug": "protectie-divina",
+            "title": "Protecție Divină",
+            "category": "spirit",
+            "theme": {
+                "primary": "from-amber-600 to-yellow-800",
+                "accent": "text-amber-300",
+                "icon": "Shield"
+            },
+            "insight": "Ești mereu în siguranță sub aripa Universului. **Nicio umbră nu poate rezista** luminii tale interioare.",
+            "action": "Imaginează-ți un glob de lumină aurie care te înconjoară complet.",
+            "mantra": "Sunt protejat și ghidat în fiecare pas."
+        },
+        {
+            "id": 58,
+            "slug": "noroc-neașteptat",
+            "title": "Noroc Neașteptat",
+            "category": "abundance",
+            "theme": {
+                "primary": "from-emerald-400 to-teal-600",
+                "accent": "text-green-300",
+                "icon": "Clover"
+            },
+            "insight": "Sincronicitatea este modul Universului de a rămâne anonim. **Fii gata pentru surprize** plăcute astăzi.",
+            "action": "Stăi treaz astăzi pentru semne de noroc și sincronicitate.",
+            "mantra": "Atrag norocul și binecuvântările fără efort."
+        },
+        {
+            "id": 59,
+            "slug": "succes-de-plin",
+            "title": "Succes Deplin",
+            "category": "growth",
+            "theme": {
+                "primary": "from-orange-500 to-red-600",
+                "accent": "text-orange-200",
+                "icon": "Flag"
+            },
+            "insight": "Ai ajuns unde trebuia să fii. **Onorează călătoria** și bucură-te de victorie. Succesul este o stare de spirit.",
+            "action": "Sărbătorește o mică reușită de astăzi cu ceva memorabil.",
+            "mantra": "Sunt un învingător și îmi merit succesul."
+        },
+        {
+            "id": 60,
+            "slug": "cheia-succesului",
+            "title": "Cheia Succesului",
+            "category": "abundance",
+            "theme": {
+                "primary": "from-yellow-600 to-orange-700",
+                "accent": "text-yellow-400",
+                "icon": "Key"
+            },
+            "insight": "Răspunsul pe care îl cauți este la un pas distanță. **Cheia este acțiunea** însoțită de credință.",
+            "action": "Deblochează o problemă veche făcând un apel sau trimițând un mail amânat.",
+            "mantra": "Am toate cheile pentru a deschide ușile succesului meu."
         }
     ]
 }

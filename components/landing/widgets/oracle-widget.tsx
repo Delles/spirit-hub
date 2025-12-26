@@ -1,7 +1,17 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight, Hourglass, Flame, Moon, Heart, Sparkles, Eye, Wind, Palette, Scale, Users, Coins, Feather, Target, Leaf, ShieldOff, Sun, Circle, BookOpen, Smile, Star } from "lucide-react";
+import {
+    ArrowRight, Hourglass, Flame, Moon, Heart, Sparkles, Eye,
+    Wind, Palette, Scale, Users, Coins, Feather, Target,
+    Leaf, ShieldOff, Sun, Circle, BookOpen, Smile, Star,
+    Clock, Zap, Lightbulb, UserCheck, Brain, Waves, HeartHandshake,
+    Compass, Rocket, Activity, Wallet, Eraser, Wand2, Shrink,
+    Gem, Sprout, Telescope, PartyPopper, HeartPulse, Ear, Shuffle,
+    Mountain, Coffee, Fingerprint, Anchor, Bird, GraduationCap,
+    Lamp, Cloud, BatteryCharging, Gift, Timer, Infinity, Droplets,
+    Shield, Clover, Flag, Key
+} from "lucide-react";
 import type { OracleMessage } from "@/lib/oracle";
 
 // Map icon strings to Lucide components with correct typing
@@ -9,6 +19,12 @@ const iconMap: Record<string, LucideIcon> = {
     Hourglass, Flame, Moon, Heart, Sparkles, Eye, Wind, Palette, Scale,
     Butterfly: Sparkles, // Fallback for missing icon
     Users, Coins, Feather, Target, Leaf, ShieldOff, Sun, Circle, BookOpen, Smile,
+    Clock, Zap, Lightbulb, UserCheck, Brain, Waves, HeartHandshake,
+    Compass, Rocket, Activity, Wallet, Eraser, Wand2, Shrink,
+    Gem, Sprout, Telescope, PartyPopper, HeartPulse, Ear, Shuffle,
+    Mountain, Coffee, Fingerprint, Anchor, Bird, GraduationCap,
+    Lamp, Cloud, BatteryCharging, Gift, Timer, Infinity, Droplets,
+    Shield, Clover, Flag, Key
 };
 
 const FALLBACK_ICON: LucideIcon = Star;
