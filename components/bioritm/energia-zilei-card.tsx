@@ -4,7 +4,6 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { EnergiaZileiData } from "@/lib/energia-zilei";
 import type { MoonPhaseData } from "@/lib/moon-phase";
-import { getPlanetaryIcon } from "@/lib/planetary-icons";
 import { Check, X, Quote } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import ReactMarkdown from "react-markdown";
@@ -15,11 +14,7 @@ interface EnergiaZileiCardProps {
   className?: string;
 }
 
-import { useMemo } from "react";
-
 export function EnergiaZileiCard({ energia, moonPhase, className }: EnergiaZileiCardProps) {
-  const IconComponent = useMemo(() => getPlanetaryIcon(energia.hero.icon), [energia.hero.icon]);
-
   return (
     <div className={cn("w-full space-y-6", className)} role="article" aria-label="Energia Zilei">
       {/* Main Container with Glassmorphism */}
@@ -31,10 +26,11 @@ export function EnergiaZileiCard({ energia, moonPhase, className }: EnergiaZilei
           <div className={`absolute inset-0 bg-gradient-to-br ${energia.theme.primary} opacity-20`} />
 
           <div className="relative z-10 flex flex-col items-center text-center">
-            {/* Icon */}
+            {/* Planet Symbol */}
             <div className={`p-4 rounded-2xl mb-5 shadow-lg ring-1 ring-white/20 bg-gradient-to-br ${energia.theme.primary} bg-opacity-20 backdrop-blur-md`}>
-              {/* eslint-disable-next-line react-hooks/static-components */}
-              <IconComponent size={32} className="text-white drop-shadow-md" aria-hidden="true" />
+              <span className="text-4xl text-white drop-shadow-md" aria-hidden="true">
+                {energia.hero.icon}
+              </span>
             </div>
             {/* Text Content */}
             <p className="text-xs uppercase tracking-[0.2em] text-white/60 mb-2 font-medium">

@@ -2,14 +2,44 @@
 
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { getPlanetaryIcon } from "@/lib/planetary-icons";
-import { Check, X, Quote } from "lucide-react";
+import {
+  Check,
+  X,
+  Quote,
+  Zap,
+  BatteryLow,
+  AlertTriangle,
+  Heart,
+  CloudRain,
+  Lightbulb,
+  BrainCircuit,
+  Star,
+  BatteryCharging,
+  type LucideIcon,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import ReactMarkdown from "react-markdown";
 import type { BiorhythmInterpretationData } from "@/lib/biorhythm";
 
 // Re-export for consumers who import from this file
 export type BiorhythmInterpretation = BiorhythmInterpretationData;
+
+// Map biorhythm icon names to Lucide components
+const biorhythmIconMap: Record<string, LucideIcon> = {
+  Zap,
+  BatteryLow,
+  AlertTriangle,
+  Heart,
+  CloudRain,
+  Lightbulb,
+  BrainCircuit,
+  Star,
+  BatteryCharging,
+};
+
+function getBiorhythmIcon(iconName: string): LucideIcon {
+  return biorhythmIconMap[iconName] || Star;
+}
 
 interface BiorhythmCardProps {
   interpretation: BiorhythmInterpretation;
@@ -19,7 +49,7 @@ interface BiorhythmCardProps {
 import { useMemo } from "react";
 
 export function BiorhythmCard({ interpretation, className }: BiorhythmCardProps) {
-  const IconComponent = useMemo(() => getPlanetaryIcon(interpretation.hero.icon), [interpretation.hero.icon]);
+  const IconComponent = useMemo(() => getBiorhythmIcon(interpretation.hero.icon), [interpretation.hero.icon]);
 
   return (
     <div
