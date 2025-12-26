@@ -49,11 +49,6 @@ export const siteConfig: SiteConfig = {
       description: "Descoperă-ți calea vieții, numărul destinului și compatibilitatea",
     },
     {
-      title: "Vise",
-      href: "/vise",
-      description: "Interpretează simbolurile din visele tale",
-    },
-    {
       title: "Bioritm",
       href: "/bioritm",
       description: "Calculează ciclurile tale fizice, emoționale și intelectuale",
@@ -61,18 +56,17 @@ export const siteConfig: SiteConfig = {
   ],
 
   seo: {
-    defaultTitle: "SpiritHub.ro - Numerologie, Vise și Bioritm",
+    defaultTitle: "SpiritHub.ro - Numerologie și Bioritm",
     titleTemplate: "%s | SpiritHub.ro",
     defaultDescription:
-      "Descoperă-ți calea spirituală cu instrumente moderne de numerologie, interpretare vise și calcul bioritm. Ghidaj zilnic gratuit în limba română.",
+      "Descoperă-ți calea spirituală cu instrumente moderne de numerologie și calcul bioritm. Ghidaj zilnic gratuit în limba română.",
     keywords: [
       "numerologie",
-      "interpretare vise",
       "bioritm",
       "calea vieții",
       "număr destin",
       "compatibilitate numerologică",
-      "dicționar vise",
+      "energia zilei",
       "zile critice",
       "spiritualitate",
       "ghidaj spiritual",

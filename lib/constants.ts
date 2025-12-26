@@ -4,7 +4,6 @@
  * NOTE: Most configuration has been moved to dedicated config modules:
  * - Numerology config: @/config/numerology
  * - Biorhythm config: @/config/biorhythm
- * - Dreams config: @/config/dreams
  * - Site config: @/config/site
  *
  * This file is kept for backward compatibility and legacy constants.

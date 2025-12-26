@@ -9,7 +9,7 @@ import {
     useMemo,
     type ReactNode,
 } from "react";
-import { getTodayISOBucharest, calculateDailyNumber, getDailyDream } from "@/lib/daily-content";
+import { getTodayISOBucharest, calculateDailyNumber } from "@/lib/daily-content";
 import { getEnergiaZilei, type EnergiaZileiData } from "@/lib/energia-zilei";
 import { getMoonPhase, type MoonPhaseData } from "@/lib/moon-phase";
 import { getBucharestDate } from "@/lib/utils";
@@ -24,14 +24,6 @@ export interface DailyContent {
     /** Daily numerology number (1-9 or master numbers) */
     dailyNumber: {
         number: number;
-    };
-    /** Daily dream symbol data */
-    dailyDream: {
-        name: string;
-        category: string;
-        slug: string;
-        shortMeaning: string;
-        fullInterpretation: string;
     };
     /** Planetary day energy data */
     energiaZilei: EnergiaZileiData;
@@ -64,7 +56,6 @@ function computeDailyContent(): DailyContent {
     const dateISO = getTodayISOBucharest();
     const bucharestDate = getBucharestDate();
     const dailyNumber = calculateDailyNumber(dateISO);
-    const dailyDream = getDailyDream(dateISO);
     const energiaZilei = getEnergiaZilei(bucharestDate);
     // Moon phase computed at stable "date" (not current moment) for daily consistency
     const moonPhase = getMoonPhase(bucharestDate);
@@ -72,13 +63,6 @@ function computeDailyContent(): DailyContent {
     return {
         date: dateISO,
         dailyNumber: { number: dailyNumber },
-        dailyDream: {
-            name: dailyDream.name,
-            category: dailyDream.category,
-            slug: dailyDream.slug,
-            shortMeaning: dailyDream.shortMeaning,
-            fullInterpretation: dailyDream.fullInterpretation,
-        },
         energiaZilei,
         moonPhase,
     };

@@ -37,10 +37,10 @@ export default function NotFound() {
             Numerologie
           </Link>
           <Link
-            href="/vise"
+            href="/bioritm/energia-zilei"
             className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium hover:bg-white/10 transition-colors min-h-[44px]"
           >
-            Interpretare vise
+            Energia Zilei
           </Link>
           <Link
             href="/bioritm"

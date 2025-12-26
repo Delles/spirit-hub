@@ -228,16 +228,16 @@ export default function BioritmClient() {
                     </Card>
                   </Link>
 
-                  <Link href="/vise" className="group">
+                  <Link href="/bioritm/energia-zilei" className="group">
                     <Card className="p-4 h-full transition-all duration-300 hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5 bg-black/20 border-white/10">
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 flex items-center justify-center group-hover:bg-[#9F2BFF]/20 transition-colors">
                           <Moon className="w-5 h-5 text-[#9F2BFF]" />
                         </div>
                         <div className="space-y-1">
-                          <h4 className="font-semibold text-white text-sm">Interpretare Vise</h4>
+                          <h4 className="font-semibold text-white text-sm">Energia Zilei</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Află semnificația viselor tale
+                            Descoperă energia planetară
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

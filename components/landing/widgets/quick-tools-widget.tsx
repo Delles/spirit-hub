@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Calculator, Moon, Activity } from "lucide-react";
+import { Calculator, Sparkles, Activity } from "lucide-react";
 
 interface QuickToolsWidgetProps {
   className?: string;
@@ -15,9 +15,9 @@ export function QuickToolsWidget({ className }: QuickToolsWidgetProps) {
       color: "text-[#C084FC]" // Purple-ish
     },
     {
-      icon: Moon,
-      label: "Interpretare Vise",
-      link: "/vise",
+      icon: Sparkles,
+      label: "Energia Zilei",
+      link: "/bioritm/energia-zilei",
       color: "text-[#818CF8]" // Indigo-ish
     },
     {
@@ -44,12 +44,12 @@ export function QuickToolsWidget({ className }: QuickToolsWidgetProps) {
           Explorează
         </h3>
       </div>
-      
+
       {/* Tools */}
       <div className="flex items-start justify-between w-full px-2 gap-3 mt-10">
         {tools.map((tool, index) => (
-          <Link 
-            key={index} 
+          <Link
+            key={index}
             href={tool.link}
             className="group flex flex-col items-center gap-2 transition-transform hover:scale-105 flex-1"
           >

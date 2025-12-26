@@ -2,7 +2,6 @@
 
 import { useDailyContent } from "@/components/providers/daily-content-provider";
 import { DailyNumberWidget } from "./widgets/daily-number-widget";
-import { DreamWidget } from "./widgets/dream-widget";
 import { BiorhythmWidget } from "./widgets/biorhythm-widget";
 import { QuickToolsWidget } from "./widgets/quick-tools-widget";
 import { getInterpretation, type DailyInterpretation } from "@/lib/interpretations";
@@ -23,7 +22,7 @@ function WidgetsSkeleton() {
                 </div>
             </div>
 
-            {/* Dream widget skeleton */}
+            {/* Oracle widget skeleton (placeholder for Phase 2) */}
             <div className="md:col-span-1 md:row-span-2 md:min-h-[350px]">
                 <div className="h-full min-h-[200px] md:min-h-[350px] rounded-xl bg-white/5 animate-pulse flex flex-col items-center justify-center gap-4 p-6">
                     <div className="w-12 h-12 rounded-full bg-white/10" />
@@ -57,7 +56,6 @@ function WidgetsSkeleton() {
  * 
  * Data flow:
  * - Daily number: computed locally + interpretation from static JSON
- * - Daily dream: computed locally from static JSON
  * - Energia Zilei: computed locally
  * - Moon Phase: computed locally (displayed in parent component)
  */
@@ -82,14 +80,6 @@ export function DailyWidgetsClient() {
         }
         : null;
 
-    const dailyDreamData = data.dailyDream
-        ? {
-            name: data.dailyDream.name,
-            category: data.dailyDream.category,
-            shortDescription: data.dailyDream.shortMeaning,
-        }
-        : null;
-
     return (
         <div className="w-full grid grid-cols-1 md:grid-cols-3 auto-rows-min gap-4">
             {/* 1. Daily Number: Large Square (Left) - Spans 2 cols, 2 rows */}
@@ -97,9 +87,14 @@ export function DailyWidgetsClient() {
                 <DailyNumberWidget data={dailyNumberData} className="md:h-full" />
             </div>
 
-            {/* 2. Dream: Tall Rectangle (Right) - Spans 1 col, 2 rows */}
+            {/* 2. Oracle Widget: Tall Rectangle (Right) - Spans 1 col, 2 rows */}
+            {/* TODO: Replace with OracleWidget in Phase 2 */}
             <div className="md:col-span-1 md:row-span-2 md:min-h-[350px]">
-                <DreamWidget data={dailyDreamData} className="md:h-full" />
+                <div className="h-full min-h-[200px] md:min-h-[350px] rounded-xl glass-card flex flex-col items-center justify-center gap-4 p-6">
+                    <div className="text-4xl">✨</div>
+                    <div className="text-lg font-medium text-white/80">Mesajul Universului</div>
+                    <div className="text-sm text-white/50">În curând...</div>
+                </div>
             </div>
 
             {/* 3. Biorhythm: Wide Rectangle (Bottom Left) - Spans 2 cols */}
@@ -114,4 +109,3 @@ export function DailyWidgetsClient() {
         </div>
     );
 }
-

@@ -1,5 +1,3 @@
-import { getAllSymbols, StaticDreamSymbol } from '@/lib/dream-data';
-
 /**
  * Get today's date in Bucharest time (ISO format YYYY-MM-DD)
  * reliable regardless of server location/timezone
@@ -36,42 +34,4 @@ export function calculateDailyNumber(dateStr: string): number {
     const sum = day + month + universalYear;
 
     return reduce(sum);
-}
-
-/**
- * Deterministically pick a dream symbol for the day
- * Uses a string hash of the date and total symbols count
- */
-export function getDailyDream(dateStr: string): StaticDreamSymbol {
-    const symbols = getAllSymbols();
-    if (symbols.length === 0) {
-        throw new Error("No dream symbols available");
-    }
-
-    // Simple string hash function (djb2 variant)
-    let hash = 5381;
-    for (let i = 0; i < dateStr.length; i++) {
-        hash = ((hash << 5) + hash) + dateStr.charCodeAt(i); /* hash * 33 + c */
-    }
-
-    // Important: Use Math.abs to handle negative hash values from overflow
-    const index = Math.abs(hash) % symbols.length;
-
-    return symbols[index];
-}
-
-
-/**
- * Get all daily widget data for today (or specific date)
- * Used by Homepage and Daily pages
- */
-export function getDailyWidgetData(dateStr: string = getTodayISOBucharest()) {
-    const dailyNumber = calculateDailyNumber(dateStr);
-    const dailyDream = getDailyDream(dateStr);
-
-    return {
-        date: dateStr,
-        dailyNumber,
-        dailyDream
-    };
 }

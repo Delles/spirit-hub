@@ -11,7 +11,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Home } from "lucide-react";
-import { getSymbolBySlug } from "@/lib/dream-data";
 
 interface BreadcrumbItem {
   label: string;
@@ -29,37 +28,21 @@ function getBreadcrumbs(pathname: string): BreadcrumbItem[] {
   // Map route segments to Romanian labels
   const routeLabels: Record<string, string> = {
     numerologie: "Numerologie",
-    vise: "Vise",
     bioritm: "Bioritm",
     "calea-vietii": "Calea Vieții",
     "nume-destin": "Numărul Destinului",
     compatibilitate: "Compatibilitate",
     "numar-zilnic": "Numărul Zilei",
-    "visul-zilei": "Visul Zilei",
     critice: "Zile Critice",
     "energia-zilei": "Energia Zilei",
   };
 
   let currentPath = "";
-  segments.forEach((segment, index) => {
+  segments.forEach((segment) => {
     currentPath += `/${segment}`;
 
-    // Check if this is a dream symbol slug (path starts with /vise/ and has a second segment)
-    let label = routeLabels[segment];
-
-    if (!label && segments[0] === "vise" && index === 1) {
-      // This is a dream symbol slug - look up the proper name
-      const symbol = getSymbolBySlug(segment);
-      if (symbol) {
-        // Capitalize the name (first letter uppercase)
-        label = symbol.name.charAt(0).toUpperCase() + symbol.name.slice(1);
-      }
-    }
-
-    // Fallback to segment if no label found
-    if (!label) {
-      label = segment;
-    }
+    // Get label from route labels or fallback to segment
+    const label = routeLabels[segment] || segment;
 
     breadcrumbs.push({
       label,
