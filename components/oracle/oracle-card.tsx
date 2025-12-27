@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import type { OracleMessage } from "@/lib/oracle";
 import { Quote, Zap } from "lucide-react";
 import { Markdown } from "@/components/shared/markdown";
-import { ShareButton } from "@/components/common/share-button";
+import { ShareButton } from "@/components/shared/share-button";
 // Import icon map from widget or duplicate/move common utility later
 // For now, fast iteration: reimplement icon logic or pass from parent
 // Actually, let's keep it simple and just use the icon name passed in theme or a generic one if not needed
@@ -79,8 +79,10 @@ export function OracleCard({ oracle, className }: OracleCardProps) {
 
                             <div className="relative z-10 flex justify-center">
                                 <ShareButton
+                                    url={typeof window !== "undefined" ? window.location.href : ""}
                                     title="Mesajul Universului pentru mine"
                                     text={`"${oracle.mantra}" - Mesajul meu de azi pe SpiritHub`}
+                                    label="Deschide inima și dă mai departe"
                                 />
                             </div>
                         </div>

@@ -3,14 +3,17 @@
 import { useState } from "react";
 import { Share2, Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export interface ShareButtonProps {
   url: string;
   title: string;
   text?: string;
+  label?: string;
+  className?: string;
 }
 
-export function ShareButton({ url, title, text }: ShareButtonProps) {
+export function ShareButton({ url, title, text, label, className }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
 
   const canShare = typeof navigator !== "undefined" && "share" in navigator;
@@ -35,7 +38,8 @@ export function ShareButton({ url, title, text }: ShareButtonProps) {
 
     // Fallback: Copy to clipboard
     try {
-      await navigator.clipboard.writeText(url);
+      const shareContent = text ? `"${text}" ${url}` : url;
+      await navigator.clipboard.writeText(shareContent);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -48,8 +52,8 @@ export function ShareButton({ url, title, text }: ShareButtonProps) {
       variant="outline"
       size="sm"
       onClick={handleShare}
-      className="gap-2 min-h-[44px]"
-      aria-label={copied ? "Link copiat" : "Distribuie rezultatul"}
+      className={cn("gap-2 min-h-[44px]", className)}
+      aria-label={copied ? "Link copiat" : (label || "Distribuie rezultatul")}
     >
       {copied ? (
         <>
@@ -59,7 +63,7 @@ export function ShareButton({ url, title, text }: ShareButtonProps) {
       ) : (
         <>
           {canShare ? <Share2 className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-          Distribuie
+          {label || "Distribuie"}
         </>
       )}
     </Button>
