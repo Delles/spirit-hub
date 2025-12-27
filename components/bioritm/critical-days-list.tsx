@@ -1,6 +1,7 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
+import { Markdown } from "@/components/shared/markdown";
 import type { Components } from "react-markdown";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +18,7 @@ import {
   Star,
   BatteryCharging,
 } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+
 import { cn } from "@/lib/utils";
 import BIORHYTHM_DATA from "@/data/interpretations/biorhythm.json";
 
@@ -407,9 +408,9 @@ export function CriticalDaysList({ criticalDays }: CriticalDaysListProps) {
 
                         {/* Main Text - Using memoized ReactMarkdown components */}
                         <div className="prose prose-invert max-w-none">
-                          <ReactMarkdown components={MARKDOWN_COMPONENTS}>
+                          <Markdown components={MARKDOWN_COMPONENTS}>
                             {data.content.main_text}
-                          </ReactMarkdown>
+                          </Markdown>
                         </div>
 
                         {/* Tactical Grid */}

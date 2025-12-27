@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Cinzel } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { DailyContentProvider } from "@/components/providers/daily-content-provider";
 
@@ -17,17 +19,17 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "SpiritHub.ro - Numerologie, Interpretare Vise, Bioritm",
+  title: "SpiritHub.ro - Numerologie și Bioritm",
   description:
-    "Platformă spirituală românească pentru numerologie, interpretare vise și calcul bioritm. Descoperă-ți numărul destinului, interpretează visele și urmărește ciclurile tale fizice, emoționale și intelectuale.",
+    "Platformă spirituală românească pentru numerologie și bioritm. Descoperă-ți numărul destinului și urmărește ciclurile tale fizice, emoționale și intelectuale.",
   keywords: [
     "numerologie",
-    "interpretare vise",
     "bioritm",
     "spiritualitate",
     "românia",
     "număr destin",
-    "vise",
+    "calea vietii",
+    "compatibilitate numerologica",
   ],
   authors: [{ name: "SpiritHub.ro" }],
   metadataBase: new URL("https://spirithub.ro"),
@@ -35,11 +37,27 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "SpiritHub.ro - Numerologie, Interpretare Vise, Bioritm",
+    title: "SpiritHub.ro - Numerologie și Bioritm",
     description:
-      "Platformă spirituală românească pentru numerologie, interpretare vise și calcul bioritm.",
+      "Platformă spirituală românească pentru numerologie și bioritm. Descoperă-ți numărul destinului.",
     locale: "ro_RO",
     type: "website",
+    siteName: "SpiritHub.ro",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SpiritHub.ro - Numerologie și Bioritm",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SpiritHub.ro - Numerologie și Bioritm",
+    description:
+      "Platformă spirituală românească pentru numerologie și bioritm.",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -58,6 +76,8 @@ export default function RootLayout({
         <DailyContentProvider>
           {children}
         </DailyContentProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

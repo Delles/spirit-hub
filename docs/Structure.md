@@ -190,9 +190,9 @@ Static assets consumed by the app.
 ```
 public/
 +-- images/
-¦   +-- numerology.png
-¦   +-- dreams.png
-¦   +-- biorhythm.png
+¦   +-- background.avif    # Optimized background (24KB)
+¦   +-- background.webp    # WebP fallback (36KB)
+¦   +-- background.jpg     # JPG fallback (545KB)
 +-- favicon.ico
 ```
 

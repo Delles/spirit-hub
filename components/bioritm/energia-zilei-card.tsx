@@ -6,7 +6,7 @@ import type { EnergiaZileiData } from "@/lib/energia-zilei";
 import type { MoonGuideData } from "@/lib/moon-guide";
 import { Check, X, Quote, Moon, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "@/components/shared/markdown";
 
 interface EnergiaZileiCardProps {
   energia: EnergiaZileiData;
@@ -58,9 +58,9 @@ export function EnergiaZileiCard({ energia, moonGuide, className }: EnergiaZilei
           {/* 3. MAIN INSIGHT (3-Beat Rhythm) */}
           <div className="space-y-4">
             <div className="prose prose-invert prose-p:text-slate-300 prose-p:leading-relaxed prose-strong:text-white prose-strong:font-semibold max-w-none">
-              <ReactMarkdown>
+              <Markdown>
                 {energia.content.main_text}
-              </ReactMarkdown>
+              </Markdown>
             </div>
           </div>
 
@@ -142,9 +142,9 @@ export function EnergiaZileiCard({ energia, moonGuide, className }: EnergiaZilei
           <div className="px-6 pb-6 space-y-6">
             {/* Moon Insight */}
             <div className="prose prose-invert prose-sm prose-p:text-slate-300 prose-p:leading-relaxed prose-strong:text-white max-w-none">
-              <ReactMarkdown>
+              <Markdown>
                 {moonGuide.insight}
-              </ReactMarkdown>
+              </Markdown>
             </div>
 
             {/* Moon Guidance Grid */}

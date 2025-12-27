@@ -18,7 +18,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "@/components/shared/markdown";
 import type { BiorhythmInterpretationData } from "@/lib/biorhythm";
 
 // Re-export for consumers who import from this file
@@ -114,7 +114,7 @@ export function BiorhythmCard({ interpretation, className }: BiorhythmCardProps)
           {/* 3. MAIN INSIGHT (3-Beat Rhythm) */}
           <div className="space-y-4">
             <div className="prose prose-invert prose-p:text-slate-300 prose-p:leading-relaxed prose-strong:text-white prose-strong:font-semibold max-w-none">
-              <ReactMarkdown>{interpretation.content.main_text}</ReactMarkdown>
+              <Markdown>{interpretation.content.main_text}</Markdown>
             </div>
           </div>
 

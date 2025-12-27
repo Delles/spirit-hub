@@ -1,9 +1,10 @@
- "use client";
+"use client";
 
 import { useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, RotateCw, Home } from "lucide-react";
+import { captureException } from "@/lib/error-reporting";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -12,8 +13,10 @@ interface ErrorProps {
 
 export default function GlobalError({ error, reset }: ErrorProps) {
   useEffect(() => {
-    // Optional: send error to monitoring in the future
-    console.error(error);
+    captureException(error, {
+      source: "ErrorBoundary",
+      extra: { digest: error.digest },
+    });
   }, [error]);
 
   return (

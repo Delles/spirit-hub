@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { OracleMessage } from "@/lib/oracle";
 import { Quote, Zap } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "@/components/shared/markdown";
 import { ShareButton } from "@/components/common/share-button";
 // Import icon map from widget or duplicate/move common utility later
 // For now, fast iteration: reimplement icon logic or pass from parent
@@ -39,7 +39,7 @@ export function OracleCard({ oracle, className }: OracleCardProps) {
 
                         {/* Insight */}
                         <div className="prose prose-invert prose-p:text-lg prose-p:leading-relaxed text-white/90 max-w-md mx-auto">
-                            <ReactMarkdown>{oracle.insight}</ReactMarkdown>
+                            <Markdown>{oracle.insight}</Markdown>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ export function OracleCard({ oracle, className }: OracleCardProps) {
 
                             <Quote className="w-8 h-8 text-white/10 mx-auto mb-4" />
                             <p className="font-serif text-2xl italic text-white/95 mb-6 relative z-10 leading-relaxed">
-                                "{oracle.mantra}"
+                                &ldquo;{oracle.mantra}&rdquo;
                             </p>
 
                             <div className="relative z-10 flex justify-center">

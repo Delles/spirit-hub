@@ -1,8 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/shared/share-button";
-import ReactMarkdown from "react-markdown";
-import type { Components } from "react-markdown";
+import { Markdown, MARKDOWN_COMPONENTS } from "@/components/shared/markdown";
 import {
     Flame,
     HeartHandshake,
@@ -52,18 +51,7 @@ const iconMap: Record<string, LucideIcon> = {
     Moon
 };
 
-// Memoized markdown components - defined outside component to avoid re-creation
-const MARKDOWN_COMPONENTS: Components = {
-    p: ({ children }) => (
-        <p className="text-slate-300 leading-relaxed mb-4 last:mb-0">{children}</p>
-    ),
-    strong: ({ children }) => (
-        <strong className="text-white font-semibold">{children}</strong>
-    ),
-    em: ({ children }) => (
-        <em className="italic">{children}</em>
-    ),
-};
+
 
 export function DailyCard({ number, interpretation, date }: DailyCardProps) {
     const IconComponent = iconMap[interpretation.hero.icon] || Sparkles;
@@ -126,9 +114,9 @@ export function DailyCard({ number, interpretation, date }: DailyCardProps) {
                     {/* 3. MAIN INSIGHT */}
                     <div className="space-y-4">
                         <div className="prose prose-invert prose-p:text-slate-300 prose-p:leading-relaxed prose-strong:text-white prose-strong:font-semibold max-w-none text-center sm:text-left">
-                            <ReactMarkdown components={MARKDOWN_COMPONENTS}>
+                            <Markdown components={MARKDOWN_COMPONENTS}>
                                 {interpretation.content.main_text}
-                            </ReactMarkdown>
+                            </Markdown>
                         </div>
                     </div>
 

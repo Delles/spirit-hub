@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/shared/share-button";
 import { cn } from "@/lib/utils";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "@/components/shared/markdown";
 import {
   Heart,
   Sparkles,
@@ -185,9 +185,9 @@ export function CompatibilityCard({
           {/* 4. MAIN INSIGHT */}
           <div className="space-y-4">
             <div className="prose prose-invert prose-p:text-slate-300 prose-p:leading-relaxed prose-strong:text-white prose-strong:font-semibold max-w-none text-center sm:text-left">
-              <ReactMarkdown>
+              <Markdown>
                 {interpretation.content.main_text}
-              </ReactMarkdown>
+              </Markdown>
             </div>
           </div>
 
