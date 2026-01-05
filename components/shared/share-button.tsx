@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Share2, Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -16,7 +16,13 @@ export interface ShareButtonProps {
 export function ShareButton({ url, title, text, label, className }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
 
-  const canShare = typeof navigator !== "undefined" && "share" in navigator;
+  const [canShare, setCanShare] = useState(false);
+
+  useEffect(() => {
+    if (typeof navigator !== "undefined" && "share" in navigator) {
+      setCanShare(true);
+    }
+  }, []);
 
   const handleShare = async () => {
     // Try Web Share API first (mobile)
