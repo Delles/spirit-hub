@@ -1,7 +1,8 @@
 /**
  * OG Image Helper Functions
  * 
- * Shared utilities for dynamic OG image generation.
+ * Mobile-first design system for viral social share images.
+ * Strategy: Identity-first, curiosity gaps, scroll-stopping visuals.
  */
 
 import oracleData from "@/data/interpretations/oracle.json";
@@ -12,10 +13,26 @@ import type { OracleMessage } from "./oracle";
 // ============================================================================
 
 /**
- * Standard OG image dimensions
+ * Standard OG image dimensions (for link previews)
  */
 export const OG_WIDTH = 1200;
 export const OG_HEIGHT = 630;
+
+/**
+ * Multi-format image dimensions
+ * - og: Facebook/WhatsApp link previews (1.91:1)
+ * - story: Instagram/TikTok/FB Stories (9:16)
+ * - feed: Instagram/FB Feed posts (4:5)
+ * - square: Universal square format (1:1)
+ */
+export const IMAGE_FORMATS = {
+    og: { width: 1200, height: 630, label: 'Link Preview', isVertical: false },
+    story: { width: 1080, height: 1920, label: 'Story (9:16)', isVertical: true },
+    feed: { width: 1080, height: 1350, label: 'Feed (4:5)', isVertical: true },
+    square: { width: 1080, height: 1080, label: 'Pătrat (1:1)', isVertical: false },
+} as const;
+
+export type ImageFormat = keyof typeof IMAGE_FORMATS;
 
 /**
  * Brand colors for OG images
@@ -26,23 +43,42 @@ export const OG_COLORS = {
     primary: "#FFFFFF",
     accent: "#9F2BFF",
     muted: "rgba(255, 255, 255, 0.7)",
-    success: "#4ADE80",
-    danger: "#F87171",
+    success: "#22C55E",
+    warning: "#F59E0B",
+    danger: "#EF4444",
     border: "rgba(159, 43, 255, 0.3)",
     cardBg: "rgba(255, 255, 255, 0.05)",
 } as const;
 
 /**
- * Font sizes for OG images
+ * Mobile-optimized font sizes - AGGRESSIVE for mobile feeds
+ * When image shrinks to ~500px, these should still be readable
  */
 export const OG_FONTS = {
+    brandPill: 22,
+    heroNumber: 280,
+    title: 72,
+    subtitle: 36,
+    quote: 40,
+    body: 32,
+    footer: 28,
+    // Legacy (deprecated - kept for backwards compatibility)
     header: 20,
-    title: 48,
-    subtitle: 28,
     number: 160,
-    body: 18,
     small: 16,
-    footer: 16,
+} as const;
+
+/**
+ * Vertical format font sizes (for Story/Feed - more space = bigger fonts)
+ */
+export const OG_FONTS_VERTICAL = {
+    brandPill: 28,
+    heroNumber: 380,
+    title: 96,
+    subtitle: 44,
+    quote: 52,
+    body: 40,
+    footer: 32,
 } as const;
 
 // ============================================================================
@@ -162,7 +198,7 @@ export function XIcon() {
 // ============================================================================
 
 /**
- * Premium glassmorphic container
+ * Premium glassmorphic container - MINIMAL padding for max content
  */
 export const ogContainerStyle: React.CSSProperties = {
     display: "flex",
@@ -172,22 +208,22 @@ export const ogContainerStyle: React.CSSProperties = {
     background: `linear-gradient(135deg, ${OG_COLORS.bgGradientStart} 0%, ${OG_COLORS.bgGradientEnd} 100%)`,
     color: OG_COLORS.primary,
     fontFamily: "Inter, sans-serif",
-    padding: "40px",
+    padding: "20px",
     position: "relative",
 };
 
 /**
- * Inner card content border/glow
+ * Inner card content border/glow - MINIMAL padding
  */
 export const ogCardStyle: React.CSSProperties = {
     display: "flex",
     width: "100%",
     height: "100%",
-    borderRadius: "24px",
+    borderRadius: "20px",
     border: `1px solid ${OG_COLORS.border}`,
     background: "rgba(255, 255, 255, 0.03)",
     boxShadow: "0 0 80px rgba(159, 43, 255, 0.15)",
-    padding: "40px",
+    padding: "24px",
     position: "relative",
     overflow: "hidden",
 };
@@ -278,7 +314,8 @@ export const ogListItemStyle: React.CSSProperties = {
 };
 
 /**
- * Section Label (Recommended/Avoid)
+ * Section Label (Recommended/Avoid) - LEGACY
+ * @deprecated Use centered layout instead
  */
 export const ogSectionLabel: React.CSSProperties = {
     fontSize: 12,
@@ -287,3 +324,334 @@ export const ogSectionLabel: React.CSSProperties = {
     marginBottom: "8px",
     fontWeight: 600,
 };
+
+// ============================================================================
+// Mobile-First Centered Layout (NEW)
+// ============================================================================
+
+/**
+ * Centered layout container - leaves room for footer
+ */
+export const ogCenteredLayout: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+    position: "relative",
+    zIndex: 1,
+    textAlign: "center",
+    gap: "8px",
+    paddingBottom: "70px", // Space for footer
+};
+
+/**
+ * Hero number/icon - GIANT for mobile visibility
+ */
+export const ogHeroNumberStyle: React.CSSProperties = {
+    fontSize: OG_FONTS.heroNumber,
+    fontWeight: 800,
+    color: OG_COLORS.primary,
+    lineHeight: 1,
+    textShadow: "0 0 60px rgba(159, 43, 255, 0.5)",
+};
+
+/**
+ * Hero icon (for planets, oracle) - large centered symbol
+ */
+export const ogHeroIconStyle: React.CSSProperties = {
+    fontSize: 140,
+    lineHeight: 1,
+    textShadow: "0 0 40px rgba(159, 43, 255, 0.4)",
+};
+
+/**
+ * Title - prominent but secondary to number
+ */
+export const ogTitleStyle: React.CSSProperties = {
+    fontSize: OG_FONTS.title,
+    fontWeight: "bold",
+    color: OG_COLORS.primary,
+    lineHeight: 1.2,
+    maxWidth: "90%",
+};
+
+/**
+ * Quote/Mantra - the shareable hook
+ */
+export const ogQuoteStyle: React.CSSProperties = {
+    fontSize: OG_FONTS.quote,
+    fontStyle: "italic",
+    color: OG_COLORS.muted,
+    lineHeight: 1.4,
+    maxWidth: "85%",
+};
+
+/**
+ * Mobile-optimized brand pill
+ */
+export const ogBrandPillMobile: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    padding: "10px 20px",
+    borderRadius: "24px",
+    background: "rgba(255, 255, 255, 0.08)",
+    border: "1px solid rgba(255, 255, 255, 0.15)",
+    fontSize: OG_FONTS.brandPill,
+    color: OG_COLORS.muted,
+    textTransform: "uppercase",
+    letterSpacing: "0.15em",
+    fontWeight: 600,
+};
+
+/**
+ * Footer container with CTA - positioned at bottom of card
+ */
+export const ogFooterStyle: React.CSSProperties = {
+    position: "absolute",
+    bottom: "20px",
+    left: "0",
+    right: "0",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "16px",
+    paddingTop: "16px",
+    borderTop: `1px solid ${OG_COLORS.border}`,
+    marginLeft: "30px",
+    marginRight: "30px",
+};
+
+/**
+ * Footer CTA text
+ */
+export const ogFooterTextStyle: React.CSSProperties = {
+    fontSize: OG_FONTS.footer,
+    color: OG_COLORS.primary,
+    fontWeight: 700,
+};
+
+/**
+ * Footer CTA accent
+ */
+export const ogFooterCtaStyle: React.CSSProperties = {
+    fontSize: OG_FONTS.footer,
+    color: OG_COLORS.accent,
+    fontWeight: 600,
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
+};
+
+// ============================================================================
+// Brand Footer Component
+// ============================================================================
+
+interface OGBrandFooterProps {
+    emoji: string;
+    cta: string;
+}
+
+/**
+ * Reusable brand footer with personalized CTA
+ */
+export function OGBrandFooter({ emoji, cta }: OGBrandFooterProps) {
+    return (
+        <div style={ogFooterStyle}>
+            <span style={{ fontSize: 20 }}>{emoji}</span>
+            <span style={ogFooterTextStyle}>SpiritHub.ro</span>
+            <span style={{ color: OG_COLORS.muted, fontSize: OG_FONTS.footer }}>·</span>
+            <span style={ogFooterCtaStyle}>{cta} →</span>
+        </div>
+    );
+}
+
+// ============================================================================
+// Helper: Score Color
+// ============================================================================
+
+/**
+ * Get color based on score/energy level
+ */
+export function getScoreColor(score: number): string {
+    if (score >= 85) return OG_COLORS.success;
+    if (score >= 65) return OG_COLORS.warning;
+    return OG_COLORS.danger;
+}
+
+// ============================================================================
+// Vertical Layout Styles (Story/Feed Formats)
+// ============================================================================
+
+/**
+ * Container for vertical formats (Story 9:16, Feed 4:5)
+ */
+export const ogVerticalContainerStyle: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    height: "100%",
+    background: `linear-gradient(180deg, ${OG_COLORS.bgGradientStart} 0%, ${OG_COLORS.bgGradientEnd} 100%)`,
+    color: OG_COLORS.primary,
+    fontFamily: "Inter, sans-serif",
+    padding: "40px",
+    position: "relative",
+};
+
+/**
+ * Card for vertical formats
+ */
+export const ogVerticalCardStyle: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    height: "100%",
+    borderRadius: "32px",
+    border: `1px solid ${OG_COLORS.border}`,
+    background: "rgba(255, 255, 255, 0.03)",
+    boxShadow: "0 0 100px rgba(159, 43, 255, 0.2)",
+    padding: "50px 40px",
+    position: "relative",
+    overflow: "hidden",
+};
+
+/**
+ * Centered layout for vertical formats
+ */
+export const ogVerticalLayout: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    flex: 1,
+    textAlign: "center",
+    gap: "24px",
+    paddingBottom: "100px", // Space for footer
+};
+
+/**
+ * Hero number for vertical formats (MASSIVE)
+ */
+export const ogVerticalHeroNumberStyle: React.CSSProperties = {
+    fontSize: OG_FONTS_VERTICAL.heroNumber,
+    fontWeight: 800,
+    color: OG_COLORS.primary,
+    lineHeight: 1,
+    textShadow: "0 0 80px rgba(159, 43, 255, 0.6)",
+};
+
+/**
+ * Hero icon for vertical (larger)
+ */
+export const ogVerticalHeroIconStyle: React.CSSProperties = {
+    fontSize: 200,
+    lineHeight: 1,
+    textShadow: "0 0 60px rgba(159, 43, 255, 0.5)",
+};
+
+/**
+ * Title for vertical
+ */
+export const ogVerticalTitleStyle: React.CSSProperties = {
+    fontSize: OG_FONTS_VERTICAL.title,
+    fontWeight: "bold",
+    color: OG_COLORS.primary,
+    lineHeight: 1.2,
+    maxWidth: "90%",
+};
+
+/**
+ * Quote for vertical (more space for longer text)
+ */
+export const ogVerticalQuoteStyle: React.CSSProperties = {
+    fontSize: OG_FONTS_VERTICAL.quote,
+    fontStyle: "italic",
+    color: OG_COLORS.muted,
+    lineHeight: 1.4,
+    maxWidth: "90%",
+    marginTop: "20px",
+};
+
+/**
+ * Brand pill for vertical
+ */
+export const ogVerticalBrandPill: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    padding: "14px 28px",
+    borderRadius: "30px",
+    background: "rgba(255, 255, 255, 0.08)",
+    border: "1px solid rgba(255, 255, 255, 0.15)",
+    fontSize: OG_FONTS_VERTICAL.brandPill,
+    color: OG_COLORS.muted,
+    textTransform: "uppercase",
+    letterSpacing: "0.15em",
+    fontWeight: 600,
+};
+
+/**
+ * Footer for vertical formats
+ */
+export const ogVerticalFooterStyle: React.CSSProperties = {
+    position: "absolute",
+    bottom: "50px",
+    left: "0",
+    right: "0",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "16px",
+    paddingTop: "24px",
+    borderTop: `1px solid ${OG_COLORS.border}`,
+    marginLeft: "50px",
+    marginRight: "50px",
+};
+
+/**
+ * Brand footer for vertical formats
+ */
+export function OGVerticalBrandFooter({ emoji, cta }: OGBrandFooterProps) {
+    return (
+        <div style={ogVerticalFooterStyle}>
+            <span style={{ fontSize: 28 }}>{emoji}</span>
+            <span style={{ fontSize: OG_FONTS_VERTICAL.footer, fontWeight: 700, color: OG_COLORS.primary }}>
+                SpiritHub.ro
+            </span>
+            <span style={{ color: OG_COLORS.muted, fontSize: OG_FONTS_VERTICAL.footer }}>·</span>
+            <span style={{
+                fontSize: OG_FONTS_VERTICAL.footer,
+                color: OG_COLORS.accent,
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+            }}>
+                {cta} →
+            </span>
+        </div>
+    );
+}
+
+/**
+ * Glow effect for vertical formats
+ */
+export const ogVerticalGlowStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "10%",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "800px",
+    height: "800px",
+    background: "radial-gradient(circle, rgba(159, 43, 255, 0.25) 0%, transparent 70%)",
+    filter: "blur(80px)",
+    display: "flex",
+};
+
+/**
+ * Helper to get format dimensions
+ */
+export function getFormatDimensions(format: ImageFormat = 'og') {
+    return IMAGE_FORMATS[format] || IMAGE_FORMATS.og;
+}

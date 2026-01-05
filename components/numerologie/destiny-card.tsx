@@ -169,6 +169,8 @@ export function DestinyCard({ number, interpretation, name }: DestinyCardProps) 
           {/* Footer Share Button */}
           <div className="pt-4 border-t border-white/5 flex justify-center">
             <ShareButton
+              contentType="destin"
+              contentId={number}
               url={typeof window !== "undefined" ? window.location.href : ""}
               title={`Numărul Destinului meu este ${number} - ${interpretation.hero.title}`}
               text={`Am descoperit că Numărul Destinului meu este ${number}: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă și tu pe SpiritHub.ro`}

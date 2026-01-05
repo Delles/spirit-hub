@@ -177,6 +177,8 @@ export function DailyCard({ number, interpretation, date }: DailyCardProps) {
                     {/* Footer Share Button */}
                     <div className="pt-4 border-t border-white/5 flex justify-center">
                         <ShareButton
+                            contentType="numar-zilnic"
+                            contentId={number}
                             url={typeof window !== "undefined" ? window.location.href : ""}
                             title={`Numărul Zilei ${date} este ${number} - ${interpretation.hero.title}`}
                             text={`Azi este o zi ${number}: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă numărul zilei tale pe SpiritHub.ro`}

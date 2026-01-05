@@ -79,6 +79,8 @@ export function OracleCard({ oracle, className }: OracleCardProps) {
 
                             <div className="relative z-10 flex justify-center">
                                 <ShareButton
+                                    contentType="mesaj-zilnic"
+                                    contentId={oracle.id}
                                     url={typeof window !== "undefined" ? window.location.href : ""}
                                     title="Mesajul Universului pentru mine"
                                     text={`"${oracle.mantra}" - Mesajul meu de azi pe SpiritHub`}

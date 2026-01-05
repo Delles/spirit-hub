@@ -1,29 +1,42 @@
 /**
  * Dynamic OG Image for Life Path (Calea Vieții)
  * 
- * Generates personalized social share images for life path numbers.
- * Route: /api/og/calea-vietii/[number]
+ * Supports multiple formats:
+ * - og (default): 1200x630 for link previews
+ * - story: 1080x1920 for Instagram/TikTok Stories
+ * - feed: 1080x1350 for Instagram/Facebook Feed
+ * - square: 1080x1080 for universal use
+ * 
+ * Route: /api/og/calea-vietii/[number]?format=og|story|feed|square
  */
 
 import { ImageResponse } from "next/og";
 import { getInterpretation, type LifePathInterpretation } from "@/lib/interpretations";
 import {
-    OG_WIDTH,
-    OG_HEIGHT,
-    OG_COLORS,
-    OG_FONTS,
+    IMAGE_FORMATS,
+    type ImageFormat,
+    getFormatDimensions,
+    // Horizontal (OG) styles
     ogContainerStyle,
     ogCardStyle,
     ogGlowStyle,
-    ogSplitLayout,
-    ogLeftCol,
-    ogRightCol,
-    ogBrandPill,
-    ogSectionLabel,
-    ogListItemStyle,
-    CheckIcon,
-    XIcon,
-    getIconForName,
+    ogCenteredLayout,
+    ogBrandPillMobile,
+    ogHeroNumberStyle,
+    ogTitleStyle,
+    ogQuoteStyle,
+    OGBrandFooter,
+    // Vertical (Story/Feed) styles
+    ogVerticalContainerStyle,
+    ogVerticalCardStyle,
+    ogVerticalGlowStyle,
+    ogVerticalLayout,
+    ogVerticalBrandPill,
+    ogVerticalHeroNumberStyle,
+    ogVerticalTitleStyle,
+    ogVerticalQuoteStyle,
+    OGVerticalBrandFooter,
+    truncateText,
 } from "@/lib/og-helpers";
 
 export const runtime = "edge";
@@ -34,6 +47,12 @@ export async function GET(
 ) {
     const { number: numberStr } = await params;
     const number = parseInt(numberStr, 10);
+
+    // Get format from query string
+    const { searchParams } = new URL(request.url);
+    const formatParam = searchParams.get('format') || 'og';
+    const format = (formatParam in IMAGE_FORMATS ? formatParam : 'og') as ImageFormat;
+    const { width, height, isVertical } = getFormatDimensions(format);
 
     // Validate number
     if (isNaN(number) || number < 1 || (number > 9 && ![11, 22, 33].includes(number))) {
@@ -50,96 +69,86 @@ export async function GET(
         return new Response("Interpretation not found", { status: 404 });
     }
 
-    // Get first 2 dos and don'ts
-    const dos = interpretation.content.dos.slice(0, 2);
-    const donts = interpretation.content.donts.slice(0, 2);
+    // Truncate mantra - vertical has more space
+    const displayMantra = truncateText(interpretation.mantra, isVertical ? 80 : 50);
 
+    // Render vertical layout for Story/Feed
+    if (isVertical) {
+        return new ImageResponse(
+            (
+                <div style={ogVerticalContainerStyle}>
+                    <div style={ogVerticalGlowStyle} />
+                    <div style={ogVerticalCardStyle}>
+                        <div style={ogVerticalLayout}>
+                            {/* Brand Pill */}
+                            <div style={ogVerticalBrandPill}>
+                                <span>✨ CALEA VIEȚII</span>
+                            </div>
+
+                            {/* Hero Number - MASSIVE */}
+                            <span style={ogVerticalHeroNumberStyle}>
+                                {number}
+                            </span>
+
+                            {/* Title */}
+                            <span style={ogVerticalTitleStyle}>
+                                {interpretation.hero.title}
+                            </span>
+
+                            {/* Mantra - The Hook */}
+                            <span style={ogVerticalQuoteStyle}>
+                                &ldquo;{displayMantra}&rdquo;
+                            </span>
+                        </div>
+
+                        {/* Footer CTA */}
+                        <OGVerticalBrandFooter
+                            emoji="🌟"
+                            cta="Descoperă-l pe al TĂU"
+                        />
+                    </div>
+                </div>
+            ),
+            { width, height }
+        );
+    }
+
+    // Render horizontal layout for OG/Square
     return new ImageResponse(
         (
             <div style={ogContainerStyle}>
                 <div style={ogGlowStyle} />
                 <div style={ogCardStyle}>
-                    <div style={ogSplitLayout}>
-                        {/* Left Column - Number */}
-                        <div style={ogLeftCol}>
-                            <div style={ogBrandPill}>
-                                <span>✨ CALEA VIEȚII</span>
-                            </div>
-                            <span style={{ fontSize: 180, fontWeight: 800, color: OG_COLORS.primary, lineHeight: 1 }}>
-                                {number}
-                            </span>
+                    <div style={ogCenteredLayout}>
+                        {/* Brand Pill */}
+                        <div style={ogBrandPillMobile}>
+                            <span>✨ CALEA VIEȚII</span>
                         </div>
 
-                        {/* Right Column - Content */}
-                        <div style={ogRightCol}>
-                            {/* Header */}
-                            <div style={{ display: "flex", flexDirection: "column" }}>
-                                <span style={{ fontSize: OG_FONTS.title, fontWeight: "bold", lineHeight: 1.1 }}>
-                                    {interpretation.hero.title}
-                                </span>
-                                <span style={{ fontSize: OG_FONTS.body, color: OG_COLORS.muted, marginTop: "8px" }}>
-                                    {interpretation.hero.headline}
-                                </span>
-                            </div>
+                        {/* Hero Number - GIANT */}
+                        <span style={ogHeroNumberStyle}>
+                            {number}
+                        </span>
 
-                            {/* Dos and Don'ts Grid */}
-                            <div style={{ display: "flex", flexDirection: 'column', gap: "16px", marginTop: "30px" }}>
-                                {/* Header Row */}
-                                <div style={{ display: "flex", width: '100%' }}>
-                                    <div style={{ display: "flex", flex: 1 }}><span style={{ ...ogSectionLabel, color: OG_COLORS.success }}>Recomandări</span></div>
-                                    <div style={{ display: "flex", width: '20px' }}></div>
-                                    <div style={{ display: "flex", flex: 1 }}><span style={{ ...ogSectionLabel, color: OG_COLORS.danger }}>De Evitat</span></div>
-                                </div>
+                        {/* Title */}
+                        <span style={ogTitleStyle}>
+                            {interpretation.hero.title}
+                        </span>
 
-                                {/* Row 1 */}
-                                <div style={{ display: "flex", width: '100%', alignItems: 'stretch' }}>
-                                    <div style={{ flex: 1, display: 'flex' }}>
-                                        <div style={{ ...ogListItemStyle, marginBottom: 0, height: '100%' }}>
-                                            <CheckIcon />
-                                            <span style={{ fontSize: OG_FONTS.small }}>{dos[0]}</span>
-                                        </div>
-                                    </div>
-                                    <div style={{ display: "flex", width: '20px' }}></div>
-                                    <div style={{ flex: 1, display: 'flex' }}>
-                                        <div style={{ ...ogListItemStyle, marginBottom: 0, height: '100%' }}>
-                                            <XIcon />
-                                            <span style={{ fontSize: OG_FONTS.small }}>{donts[0]}</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Row 2 */}
-                                <div style={{ display: "flex", width: '100%', alignItems: 'stretch' }}>
-                                    <div style={{ flex: 1, display: 'flex' }}>
-                                        <div style={{ ...ogListItemStyle, marginBottom: 0, height: '100%' }}>
-                                            <CheckIcon />
-                                            <span style={{ fontSize: OG_FONTS.small }}>{dos[1]}</span>
-                                        </div>
-                                    </div>
-                                    <div style={{ display: "flex", width: '20px' }}></div>
-                                    <div style={{ flex: 1, display: 'flex' }}>
-                                        <div style={{ ...ogListItemStyle, marginBottom: 0, height: '100%' }}>
-                                            <XIcon />
-                                            <span style={{ fontSize: OG_FONTS.small }}>{donts[1]}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Footer / Mantra */}
-                            <div style={{ display: "flex", marginTop: "30px", paddingTop: "20px", borderTop: `1px solid ${OG_COLORS.border}` }}>
-                                <span style={{ fontSize: OG_FONTS.body, fontStyle: "italic", color: OG_COLORS.muted }}>
-                                    &ldquo;{interpretation.mantra}&rdquo;
-                                </span>
-                            </div>
-                        </div>
+                        {/* Mantra - The Hook (truncated) */}
+                        <span style={ogQuoteStyle}>
+                            &ldquo;{displayMantra}&rdquo;
+                        </span>
                     </div>
+
+                    {/* Footer CTA */}
+                    <OGBrandFooter
+                        emoji="🌟"
+                        cta="Descoperă-l pe al TĂU"
+                    />
                 </div>
             </div>
         ),
-        {
-            width: OG_WIDTH,
-            height: OG_HEIGHT,
-        }
+        { width, height }
     );
 }

@@ -168,6 +168,8 @@ export function LifePathCard({ number, interpretation }: LifePathCardProps) {
           {/* Footer Share Button */}
           <div className="pt-4 border-t border-white/5 flex justify-center">
             <ShareButton
+              contentType="calea-vietii"
+              contentId={number}
               url={typeof window !== "undefined" ? window.location.href : ""}
               title={`Calea Vieții mele este ${number} - ${interpretation.hero.title}`}
               text={`Am descoperit că Calea Vieții mele este ${number}: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă și tu pe SpiritHub.ro`}

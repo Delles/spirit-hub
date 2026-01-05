@@ -237,6 +237,8 @@ export function CompatibilityCard({
           {/* Footer Share Button */}
           <div className="pt-4 border-t border-white/5 flex justify-center">
             <ShareButton
+              contentType="compatibilitate"
+              contentId={score}
               url={shareUrl}
               title={`Compatibilitatea noastră este ${score}% - ${interpretation.hero.title}`}
               text={`${person1.name} și ${person2.name} au o compatibilitate de ${score}%: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă pe SpiritHub.ro`}
