@@ -16,6 +16,7 @@ import {
     ogVerticalContainerStyle, ogVerticalCardStyle, ogVerticalGlowStyle, ogVerticalLayout,
     ogVerticalBrandPill, ogVerticalHeroIconStyle, ogVerticalTitleStyle,
     OGVerticalBrandFooter, getOracleById, truncateText,
+    OG_CACHE,
 } from "@/lib/og-helpers";
 
 export const runtime = "edge";
@@ -72,7 +73,7 @@ export async function GET(
                     </div>
                 </div>
             ),
-            { width, height }
+            { width, height, headers: { 'Cache-Control': OG_CACHE.STATIC } }
         );
     }
 
@@ -106,6 +107,6 @@ export async function GET(
                 </div>
             </div>
         ),
-        { width, height }
+        { width, height, headers: { 'Cache-Control': OG_CACHE.STATIC } }
     );
 }

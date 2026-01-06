@@ -17,6 +17,7 @@ import {
     ogVerticalContainerStyle, ogVerticalCardStyle, ogVerticalGlowStyle, ogVerticalLayout,
     ogVerticalBrandPill, ogVerticalQuoteStyle,
     OGVerticalBrandFooter, getScoreColor, truncateText,
+    OG_CACHE,
 } from "@/lib/og-helpers";
 
 export const runtime = "edge";
@@ -86,7 +87,7 @@ export async function GET(
                     </div>
                 </div>
             ),
-            { width, height }
+            { width, height, headers: { 'Cache-Control': OG_CACHE.DAILY } }
         );
     }
 
@@ -125,6 +126,6 @@ export async function GET(
                 </div>
             </div>
         ),
-        { width, height }
+        { width, height, headers: { 'Cache-Control': OG_CACHE.DAILY } }
     );
 }

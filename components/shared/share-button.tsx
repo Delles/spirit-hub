@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { Share2, Check, Copy, Link, MessageCircle, Smartphone, Image, Download, X } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Share2, Check, Link, Image, Download, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -18,6 +18,8 @@ export interface ShareButtonProps {
   contentType?: ShareContentType;
   /** ID or value for the content (number, score, date, etc.) */
   contentId?: string | number;
+  /** Pre-fetched image blob (from usePrefetchShareImage hook) */
+  prefetchedImage?: Blob | null;
   /** URL to share (for link sharing) */
   url: string;
   /** Title for the share */
@@ -30,35 +32,84 @@ export interface ShareButtonProps {
   className?: string;
 }
 
-type ShareFormat = 'link' | 'story' | 'feed';
+/** Single image format for all social sharing */
+const SHARE_IMAGE_FORMAT = 'story';
 
 export function ShareButton({
   contentType,
   contentId,
+  prefetchedImage,
   url,
   title,
   text,
   label,
   className
 }: ShareButtonProps) {
-  const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState<ShareFormat | null>(null);
+  const [linkShared, setLinkShared] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageBlob, setImageBlob] = useState<Blob | null>(null);
   const [canShareFiles, setCanShareFiles] = useState(false);
+  const [canShareLinks, setCanShareLinks] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  const hasImageSupport = Boolean(contentType && contentId);
+
+  // Check browser capabilities
   useEffect(() => {
-    // Check if browser supports sharing files
-    if (typeof navigator !== "undefined" && "canShare" in navigator) {
-      // Test with a dummy file
-      try {
-        const testFile = new File(["test"], "test.png", { type: "image/png" });
-        setCanShareFiles(navigator.canShare({ files: [testFile] }));
-      } catch {
-        setCanShareFiles(false);
+    if (typeof navigator !== "undefined") {
+      // Check link sharing
+      setCanShareLinks("share" in navigator);
+
+      // Check file sharing
+      if ("canShare" in navigator) {
+        try {
+          const testFile = new File(["test"], "test.png", { type: "image/png" });
+          setCanShareFiles(navigator.canShare({ files: [testFile] }));
+        } catch {
+          setCanShareFiles(false);
+        }
       }
     }
   }, []);
+
+  // Pre-fetch image when modal opens (only if not already prefetched)
+  const prefetchImage = useCallback(async () => {
+    // Use prefetched image if available
+    if (prefetchedImage) {
+      setImageBlob(prefetchedImage);
+      return;
+    }
+
+    if (!contentType || !contentId || imageBlob) return;
+
+    setImageLoading(true);
+    try {
+      const imageUrl = `/api/og/${contentType}/${contentId}?format=${SHARE_IMAGE_FORMAT}`;
+      const response = await fetch(imageUrl);
+      if (response.ok) {
+        const blob = await response.blob();
+        setImageBlob(blob);
+      }
+    } catch (err) {
+      console.error("Failed to prefetch image:", err);
+    } finally {
+      setImageLoading(false);
+    }
+  }, [contentType, contentId, imageBlob, prefetchedImage]);
+
+  // Use prefetched image immediately if available
+  useEffect(() => {
+    if (prefetchedImage && !imageBlob) {
+      setImageBlob(prefetchedImage);
+    }
+  }, [prefetchedImage, imageBlob]);
+
+  useEffect(() => {
+    if (isOpen && hasImageSupport && !imageBlob) {
+      prefetchImage();
+    }
+  }, [isOpen, hasImageSupport, prefetchImage, imageBlob]);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -74,12 +125,40 @@ export function ShareButton({
     }
   }, [isOpen]);
 
-  const handleCopyLink = async () => {
+  // Reset state when modal closes
+  useEffect(() => {
+    if (!isOpen) {
+      setLinkShared(false);
+    }
+  }, [isOpen]);
+
+  const handleShareLink = async () => {
+    const shareData = {
+      title,
+      text: text || title,
+      url,
+    };
+
+    try {
+      // Try native share first (mobile)
+      if (canShareLinks && navigator.share) {
+        await navigator.share(shareData);
+        setIsOpen(false);
+        return;
+      }
+    } catch (err) {
+      // User cancelled or share failed, fall through to clipboard
+      if ((err as Error).name === "AbortError") {
+        return;
+      }
+    }
+
+    // Fallback: copy to clipboard
     try {
       await navigator.clipboard.writeText(url);
-      setCopied(true);
+      setLinkShared(true);
       setTimeout(() => {
-        setCopied(false);
+        setLinkShared(false);
         setIsOpen(false);
       }, 1500);
     } catch (err) {
@@ -87,76 +166,49 @@ export function ShareButton({
     }
   };
 
-  const handleWhatsApp = () => {
-    const shareText = text ? `${text}\n\n${url}` : url;
-    window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, "_blank");
-    setIsOpen(false);
-  };
-
-  const handleShareAsImage = async (format: 'story' | 'feed') => {
-    if (!contentType || !contentId) {
-      console.error("contentType and contentId required for image sharing");
+  const handleShareImage = async () => {
+    if (!imageBlob) {
+      // If image not ready, wait for it
+      if (!imageLoading) {
+        await prefetchImage();
+      }
       return;
     }
 
-    setLoading(format);
+    const file = new File([imageBlob], `spirithub-${contentType}.png`, { type: "image/png" });
 
     try {
-      // Fetch the image from our API
-      const imageUrl = `/api/og/${contentType}/${contentId}?format=${format}`;
-      const response = await fetch(imageUrl);
-      const blob = await response.blob();
-      const file = new File([blob], `spirithub-${contentType}.png`, { type: "image/png" });
-
-      // Try to share directly
+      // Try native share with file (mobile)
       if (canShareFiles && navigator.canShare?.({ files: [file] })) {
         await navigator.share({
           files: [file],
           title,
         });
-      } else {
-        // Fallback: download the image
-        downloadBlob(blob, `spirithub-${contentType}.png`);
+        setIsOpen(false);
+        return;
       }
     } catch (err) {
-      if ((err as Error).name !== "AbortError") {
-        console.error("Share failed:", err);
+      if ((err as Error).name === "AbortError") {
+        return;
       }
-    } finally {
-      setLoading(null);
-      setIsOpen(false);
+      console.error("Native share failed:", err);
     }
-  };
 
-  const handleDownload = async () => {
-    if (!contentType || !contentId) return;
-
-    setLoading('story');
-    try {
-      const imageUrl = `/api/og/${contentType}/${contentId}?format=story`;
-      const response = await fetch(imageUrl);
-      const blob = await response.blob();
-      downloadBlob(blob, `spirithub-${contentType}.png`);
-    } catch (err) {
-      console.error("Download failed:", err);
-    } finally {
-      setLoading(null);
-      setIsOpen(false);
-    }
+    // Fallback: download the image
+    downloadBlob(imageBlob, `spirithub-${contentType}.png`);
+    setIsOpen(false);
   };
 
   const downloadBlob = (blob: Blob, filename: string) => {
-    const url = URL.createObjectURL(blob);
+    const blobUrl = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url;
+    a.href = blobUrl;
     a.download = filename;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(blobUrl);
   };
-
-  const hasImageSupport = contentType && contentId;
 
   return (
     <div className="relative" ref={menuRef}>
@@ -173,73 +225,53 @@ export function ShareButton({
       </Button>
 
       {isOpen && (
-        <div className="absolute bottom-full left-0 mb-2 z-50 min-w-[220px] rounded-xl border border-border/50 bg-background/95 backdrop-blur-xl shadow-xl p-2 space-y-1 animate-in fade-in-0 zoom-in-95">
+        <div className="absolute bottom-full left-0 mb-2 z-50 min-w-[200px] rounded-xl border border-border/50 bg-background/95 backdrop-blur-xl shadow-xl p-3 space-y-2 animate-in fade-in-0 zoom-in-95">
           {/* Close button */}
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-2 right-2 p-1 rounded-md hover:bg-muted/50 text-muted-foreground"
+            className="absolute top-2 right-2 p-1.5 rounded-md hover:bg-muted/50 text-muted-foreground"
             aria-label="Închide"
           >
             <X className="h-4 w-4" />
           </button>
 
-          <p className="text-xs text-muted-foreground px-2 pt-1 pb-2">Distribuie ca link:</p>
-
-          {/* Copy Link */}
+          {/* Share Link */}
           <button
-            onClick={handleCopyLink}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted/50 text-sm transition-colors"
+            onClick={handleShareLink}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted/50 text-sm transition-colors min-h-[48px]"
           >
-            {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
-            <span>{copied ? "Link copiat!" : "Copiază link"}</span>
+            {linkShared ? (
+              <Check className="h-5 w-5 text-green-500" />
+            ) : (
+              <Link className="h-5 w-5" />
+            )}
+            <span className="font-medium">
+              {linkShared ? "Link copiat!" : "Distribuie link"}
+            </span>
           </button>
 
-          {/* WhatsApp */}
-          <button
-            onClick={handleWhatsApp}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted/50 text-sm transition-colors"
-          >
-            <MessageCircle className="h-4 w-4" />
-            <span>WhatsApp</span>
-          </button>
-
+          {/* Share Image */}
           {hasImageSupport && (
-            <>
-              <div className="border-t border-border/50 my-2" />
-              <p className="text-xs text-muted-foreground px-2 pb-2">Postează ca imagine:</p>
-
-              {/* Story */}
-              <button
-                onClick={() => handleShareAsImage('story')}
-                disabled={loading !== null}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted/50 text-sm transition-colors disabled:opacity-50"
-              >
-                <Smartphone className="h-4 w-4" />
-                <span>{loading === 'story' ? "Se încarcă..." : "Story (Instagram/TikTok)"}</span>
-              </button>
-
-              {/* Feed */}
-              <button
-                onClick={() => handleShareAsImage('feed')}
-                disabled={loading !== null}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted/50 text-sm transition-colors disabled:opacity-50"
-              >
-                <Image className="h-4 w-4" />
-                <span>{loading === 'feed' ? "Se încarcă..." : "Feed (Instagram/Facebook)"}</span>
-              </button>
-
-              <div className="border-t border-border/50 my-2" />
-
-              {/* Download */}
-              <button
-                onClick={handleDownload}
-                disabled={loading !== null}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted/50 text-sm transition-colors disabled:opacity-50"
-              >
-                <Download className="h-4 w-4" />
-                <span>Descarcă imaginea</span>
-              </button>
-            </>
+            <button
+              onClick={handleShareImage}
+              disabled={imageLoading && !imageBlob}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted/50 text-sm transition-colors min-h-[48px] disabled:opacity-50"
+            >
+              {imageLoading && !imageBlob ? (
+                <Loader2 className="h-5 w-5 animate-spin" />
+              ) : canShareFiles ? (
+                <Image className="h-5 w-5" />
+              ) : (
+                <Download className="h-5 w-5" />
+              )}
+              <span className="font-medium">
+                {imageLoading && !imageBlob
+                  ? "Se pregătește..."
+                  : canShareFiles
+                    ? "Distribuie imagine"
+                    : "Descarcă imagine"}
+              </span>
+            </button>
           )}
         </div>
       )}

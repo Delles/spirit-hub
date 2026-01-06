@@ -655,3 +655,26 @@ export const ogVerticalGlowStyle: React.CSSProperties = {
 export function getFormatDimensions(format: ImageFormat = 'og') {
     return IMAGE_FORMATS[format] || IMAGE_FORMATS.og;
 }
+
+// ============================================================================
+// Cache Configuration for OG Images
+// ============================================================================
+
+/**
+ * Cache durations for different content types
+ * - STATIC: Content that rarely changes (life path, destiny, oracle messages)
+ * - DAILY: Content that changes daily (energia zilei, daily number)
+ */
+export const OG_CACHE = {
+    /** 30 days for static content */
+    STATIC: 'public, max-age=2592000, s-maxage=2592000, stale-while-revalidate=86400',
+    /** 24 hours for daily content */
+    DAILY: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600',
+} as const;
+
+export type OGCacheType = keyof typeof OG_CACHE;
+
+/**
+ * Default format for social sharing (Story format for Instagram/TikTok)
+ */
+export const SHARE_IMAGE_FORMAT: ImageFormat = 'story';
