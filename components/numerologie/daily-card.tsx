@@ -1,6 +1,9 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/shared/share-button";
+import { usePrefetchShareImage } from "@/hooks/use-prefetch-share-image";
 import { Markdown, MARKDOWN_COMPONENTS } from "@/components/shared/markdown";
 import {
     Flame,
@@ -55,6 +58,12 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function DailyCard({ number, interpretation, date }: DailyCardProps) {
     const IconComponent = iconMap[interpretation.hero.icon] || Sparkles;
+
+    // Prefetch share image on mount for instant sharing
+    const { imageBlob } = usePrefetchShareImage({
+        contentType: 'numar-zilnic',
+        contentId: number
+    });
 
     return (
         <div className="w-full space-y-6">
@@ -179,6 +188,7 @@ export function DailyCard({ number, interpretation, date }: DailyCardProps) {
                         <ShareButton
                             contentType="numar-zilnic"
                             contentId={number}
+                            prefetchedImage={imageBlob}
                             url={typeof window !== "undefined" ? window.location.href : ""}
                             title={`Numărul Zilei ${date} este ${number} - ${interpretation.hero.title}`}
                             text={`Azi este o zi ${number}: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă numărul zilei tale pe SpiritHub.ro`}

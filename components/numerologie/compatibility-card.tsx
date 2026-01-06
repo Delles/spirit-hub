@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/shared/share-button";
+import { usePrefetchShareImage } from "@/hooks/use-prefetch-share-image";
 import { cn } from "@/lib/utils";
 import { Markdown } from "@/components/shared/markdown";
 import {
@@ -52,6 +53,12 @@ export function CompatibilityCard({
   shareUrl = "",
 }: CompatibilityCardProps) {
   const IconComponent = iconMap[interpretation.hero.icon] || Heart;
+
+  // Prefetch share image on mount for instant sharing
+  const { imageBlob } = usePrefetchShareImage({
+    contentType: 'compatibilitate',
+    contentId: score
+  });
 
   return (
     <div className="w-full space-y-6">
@@ -239,6 +246,7 @@ export function CompatibilityCard({
             <ShareButton
               contentType="compatibilitate"
               contentId={score}
+              prefetchedImage={imageBlob}
               url={shareUrl}
               title={`Compatibilitatea noastră este ${score}% - ${interpretation.hero.title}`}
               text={`${person1.name} și ${person2.name} au o compatibilitate de ${score}%: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă pe SpiritHub.ro`}

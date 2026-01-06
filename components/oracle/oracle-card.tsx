@@ -1,9 +1,12 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { OracleMessage } from "@/lib/oracle";
 import { Quote, Zap } from "lucide-react";
 import { Markdown } from "@/components/shared/markdown";
 import { ShareButton } from "@/components/shared/share-button";
+import { usePrefetchShareImage } from "@/hooks/use-prefetch-share-image";
 // Import icon map from widget or duplicate/move common utility later
 // For now, fast iteration: reimplement icon logic or pass from parent
 // Actually, let's keep it simple and just use the icon name passed in theme or a generic one if not needed
@@ -15,6 +18,12 @@ interface OracleCardProps {
 }
 
 export function OracleCard({ oracle, className }: OracleCardProps) {
+    // Prefetch share image on mount for instant sharing
+    const { imageBlob } = usePrefetchShareImage({
+        contentType: 'mesaj-zilnic',
+        contentId: oracle.id
+    });
+
     return (
         <div className={cn("w-full space-y-6", className)} role="article" aria-label="Mesajul Universului">
             {/* Main Container with Glassmorphism */}
@@ -81,6 +90,7 @@ export function OracleCard({ oracle, className }: OracleCardProps) {
                                 <ShareButton
                                     contentType="mesaj-zilnic"
                                     contentId={oracle.id}
+                                    prefetchedImage={imageBlob}
                                     url={typeof window !== "undefined" ? window.location.href : ""}
                                     title="Mesajul Universului pentru mine"
                                     text={`"${oracle.mantra}" - Mesajul meu de azi pe SpiritHub`}

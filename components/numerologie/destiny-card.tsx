@@ -1,6 +1,9 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/shared/share-button";
+import { usePrefetchShareImage } from "@/hooks/use-prefetch-share-image";
 import { Markdown, MARKDOWN_COMPONENTS } from "@/components/shared/markdown";
 import {
   Flame,
@@ -47,6 +50,12 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function DestinyCard({ number, interpretation, name }: DestinyCardProps) {
   const IconComponent = iconMap[interpretation.hero.icon] || Sparkles;
+
+  // Prefetch share image on mount for instant sharing
+  const { imageBlob } = usePrefetchShareImage({
+    contentType: 'destin',
+    contentId: number
+  });
 
   return (
     <div className="w-full space-y-6">
@@ -171,6 +180,7 @@ export function DestinyCard({ number, interpretation, name }: DestinyCardProps) 
             <ShareButton
               contentType="destin"
               contentId={number}
+              prefetchedImage={imageBlob}
               url={typeof window !== "undefined" ? window.location.href : ""}
               title={`Numărul Destinului meu este ${number} - ${interpretation.hero.title}`}
               text={`Am descoperit că Numărul Destinului meu este ${number}: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă și tu pe SpiritHub.ro`}

@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/shared/share-button";
+import { usePrefetchShareImage } from "@/hooks/use-prefetch-share-image";
 import { Markdown, MARKDOWN_COMPONENTS } from "@/components/shared/markdown";
 import {
   Flame,
@@ -48,6 +49,12 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function LifePathCard({ number, interpretation }: LifePathCardProps) {
   const IconComponent = iconMap[interpretation.hero.icon] || Sparkles;
+
+  // Prefetch share image on mount for instant sharing
+  const { imageBlob } = usePrefetchShareImage({
+    contentType: 'calea-vietii',
+    contentId: number
+  });
 
   // Dynamic gradient based on theme string from JSON
   // We'll use the theme primary gradient but with reduced opacity for the hero background
@@ -170,6 +177,7 @@ export function LifePathCard({ number, interpretation }: LifePathCardProps) {
             <ShareButton
               contentType="calea-vietii"
               contentId={number}
+              prefetchedImage={imageBlob}
               url={typeof window !== "undefined" ? window.location.href : ""}
               title={`Calea Vieții mele este ${number} - ${interpretation.hero.title}`}
               text={`Am descoperit că Calea Vieții mele este ${number}: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă și tu pe SpiritHub.ro`}
