@@ -1,6 +1,8 @@
 /**
  * Dynamic OG Image for Daily Number (Număr Zilnic)
  * 
+ * ENHANCED: Violet themed design with daily number display
+ * 
  * Supports multiple formats: og, story, feed, square
  * Route: /api/og/numar-zilnic/[number]?format=og|story|feed|square
  */
@@ -11,11 +13,14 @@ import {
     IMAGE_FORMATS,
     type ImageFormat,
     getFormatDimensions,
-    ogContainerStyle, ogCardStyle, ogGlowStyle, ogCenteredLayout,
-    ogBrandPillMobile, ogHeroNumberStyle, ogTitleStyle, ogQuoteStyle, OGBrandFooter,
-    ogVerticalContainerStyle, ogVerticalCardStyle, ogVerticalGlowStyle, ogVerticalLayout,
-    ogVerticalBrandPill, ogVerticalHeroNumberStyle, ogVerticalTitleStyle, ogVerticalQuoteStyle,
-    OGVerticalBrandFooter, truncateText,
+    OG_COLORS,
+    OG_FONTS,
+    OG_FONTS_VERTICAL,
+    getThemedStyles,
+    OGKeywordBadges,
+    OGArchetypeTitle,
+    OGThemedFooter,
+    truncateText,
     OG_CACHE,
 } from "@/lib/og-helpers";
 
@@ -45,42 +50,89 @@ export async function GET(
         return new Response("Interpretation not found", { status: 404 });
     }
 
-    const displayMantra = truncateText(interpretation.mantra, isVertical ? 80 : 50);
+    const { containerStyle, glowStyle, heroNumberStyle, brandPillStyle, theme } =
+        getThemedStyles('numar-zilnic', isVertical);
 
-    if (isVertical) {
-        return new ImageResponse(
-            (
-                <div style={ogVerticalContainerStyle}>
-                    <div style={ogVerticalGlowStyle} />
-                    <div style={ogVerticalCardStyle}>
-                        <div style={ogVerticalLayout}>
-                            <div style={ogVerticalBrandPill}>
-                                <span>🌟 CIFRA ZILEI</span>
-                            </div>
-                            <span style={ogVerticalHeroNumberStyle}>{number}</span>
-                            <span style={ogVerticalTitleStyle}>{interpretation.hero.title}</span>
-                            <span style={ogVerticalQuoteStyle}>&ldquo;{displayMantra}&rdquo;</span>
-                        </div>
-                        <OGVerticalBrandFooter emoji="🌟" cta="Care e cifra TA?" />
-                    </div>
-                </div>
-            ),
-            { width, height, headers: { 'Cache-Control': OG_CACHE.DAILY } }
-        );
-    }
+    const archetype = interpretation.hero.title;
+    const keywords = interpretation.tags || [];
+    const displayMantra = truncateText(interpretation.mantra, isVertical ? 70 : 45);
+
+    const cardStyle: React.CSSProperties = {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        height: "100%",
+        borderRadius: isVertical ? "32px" : "20px",
+        border: `1px solid ${theme.accent}30`,
+        background: "rgba(255, 255, 255, 0.03)",
+        boxShadow: `0 0 ${isVertical ? 100 : 80}px ${theme.glowColor}30`,
+        padding: isVertical ? "50px 40px" : "24px",
+        position: "relative",
+        overflow: "hidden",
+    };
+
+    const layoutStyle: React.CSSProperties = {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        textAlign: "center",
+        gap: isVertical ? "20px" : "12px",
+        paddingBottom: isVertical ? "100px" : "70px",
+    };
+
+    const quoteStyle: React.CSSProperties = {
+        fontSize: isVertical ? OG_FONTS_VERTICAL.quote : OG_FONTS.quote,
+        fontStyle: "italic",
+        color: OG_COLORS.muted,
+        lineHeight: 1.4,
+        maxWidth: "85%",
+        marginTop: isVertical ? "16px" : "8px",
+    };
 
     return new ImageResponse(
         (
-            <div style={ogContainerStyle}>
-                <div style={ogGlowStyle} />
-                <div style={ogCardStyle}>
-                    <div style={ogCenteredLayout}>
-                        <div style={ogBrandPillMobile}><span>🌟 CIFRA ZILEI</span></div>
-                        <span style={ogHeroNumberStyle}>{number}</span>
-                        <span style={ogTitleStyle}>{interpretation.hero.title}</span>
-                        <span style={ogQuoteStyle}>&ldquo;{displayMantra}&rdquo;</span>
+            <div style={containerStyle}>
+                <div style={glowStyle} />
+                <div style={cardStyle}>
+                    <div style={layoutStyle}>
+                        <div style={brandPillStyle}>
+                            <span>{theme.emoji} {theme.label}</span>
+                        </div>
+
+                        {/* Personal Frame */}
+                        <span style={{
+                            fontSize: isVertical ? 36 : 24,
+                            color: OG_COLORS.muted,
+                            fontWeight: 500,
+                            letterSpacing: '0.05em',
+                            textTransform: 'uppercase',
+                        }}>
+                            {theme.personalFrame}
+                        </span>
+
+                        <span style={heroNumberStyle}>{number}</span>
+
+                        <OGArchetypeTitle
+                            title={archetype}
+                            isVertical={isVertical}
+                            accentColor={theme.accent}
+                        />
+
+                        <OGKeywordBadges
+                            keywords={keywords}
+                            isVertical={isVertical}
+                            accentColor={theme.accent}
+                        />
+
+                        <span style={quoteStyle}>
+                            &ldquo;{displayMantra}&rdquo;
+                        </span>
                     </div>
-                    <OGBrandFooter emoji="🌟" cta="Care e cifra TA?" />
+
+                    <OGThemedFooter contentType="numar-zilnic" isVertical={isVertical} />
                 </div>
             </div>
         ),

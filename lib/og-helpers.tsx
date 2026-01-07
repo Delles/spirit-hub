@@ -51,6 +51,75 @@ export const OG_COLORS = {
 } as const;
 
 /**
+ * Content-specific theme colors for visual differentiation
+ * Each content type has its own accent color and gradient
+ */
+export const OG_THEMES = {
+    'calea-vietii': {
+        accent: '#9F2BFF',           // Purple cosmic
+        gradientStart: '#1a0533',
+        gradientEnd: '#0d0015',
+        glowColor: 'rgba(159, 43, 255, 0.5)',
+        label: 'CALEA VIEȚII',
+        emoji: '✨',
+        personalFrame: 'Calea mea este...',
+        cta: 'Care e calea TA?',
+    },
+    'destin': {
+        accent: '#3B82F6',           // Deep blue cosmic
+        gradientStart: '#0c1929',
+        gradientEnd: '#050a12',
+        glowColor: 'rgba(59, 130, 246, 0.5)',
+        label: 'CALEA DESTINULUI',
+        emoji: '🌟',
+        personalFrame: 'Destinul meu este...',
+        cta: 'Care e destinul TĂU?',
+    },
+    'compatibilitate': {
+        accent: '#EC4899',           // Pink/magenta love
+        gradientStart: '#2d0a1f',
+        gradientEnd: '#150510',
+        glowColor: 'rgba(236, 72, 153, 0.5)',
+        label: 'COMPATIBILITATE',
+        emoji: '💕',
+        personalFrame: 'Suntem compatibili...',
+        cta: 'Verifică compatibilitatea',
+    },
+    'energia-zilei': {
+        accent: '#F59E0B',           // Gold/amber energy  
+        gradientStart: '#1f1508',
+        gradientEnd: '#0d0a04',
+        glowColor: 'rgba(245, 158, 11, 0.5)',
+        label: 'ENERGIA ZILEI',
+        emoji: '⚡',
+        personalFrame: 'Azi energia este...',
+        cta: 'Vezi ce te așteaptă →',
+    },
+    'mesaj-zilnic': {
+        accent: '#10B981',           // Emerald mystical
+        gradientStart: '#051a14',
+        gradientEnd: '#020d0a',
+        glowColor: 'rgba(16, 185, 129, 0.5)',
+        label: 'MESAJUL UNIVERSULUI',
+        emoji: '🔮',
+        personalFrame: 'Azi Universul spune...',
+        cta: 'Citește mesajul complet →',
+    },
+    'numar-zilnic': {
+        accent: '#8B5CF6',           // Violet daily
+        gradientStart: '#150a29',
+        gradientEnd: '#0a0514',
+        glowColor: 'rgba(139, 92, 246, 0.5)',
+        label: 'NUMĂRUL ZILEI',
+        emoji: '🔢',
+        personalFrame: 'Numărul de azi este...',
+        cta: 'Descoperă semnificația →',
+    },
+} as const;
+
+export type OGContentType = keyof typeof OG_THEMES;
+
+/**
  * Mobile-optimized font sizes - AGGRESSIVE for mobile feeds
  * When image shrinks to ~500px, these should still be readable
  */
@@ -678,3 +747,211 @@ export type OGCacheType = keyof typeof OG_CACHE;
  * Default format for social sharing (Story format for Instagram/TikTok)
  */
 export const SHARE_IMAGE_FORMAT: ImageFormat = 'story';
+
+// ============================================================================
+// Enhanced Viral OG Components (Identity-First Design)
+// ============================================================================
+
+interface OGKeywordBadgeProps {
+    keywords: string[];
+    isVertical?: boolean;
+    accentColor?: string;
+}
+
+/**
+ * Keyword badges component - "Snackable" traits that trigger comparison
+ * Displays 3 pills with personality keywords
+ */
+export function OGKeywordBadges({ keywords, isVertical = false, accentColor = OG_COLORS.accent }: OGKeywordBadgeProps) {
+    const badgeFontSize = isVertical ? 28 : 20;
+    const padding = isVertical ? '12px 24px' : '8px 18px';
+    const gap = isVertical ? '16px' : '12px';
+
+    // Take first 3 keywords, truncate long ones
+    const displayKeywords = keywords.slice(0, 3).map(k =>
+        k.length > 12 ? k.slice(0, 11) + '…' : k
+    );
+
+    return (
+        <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap,
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+        }}>
+            {displayKeywords.map((keyword, i) => (
+                <div key={i} style={{
+                    display: 'flex',
+                    padding,
+                    borderRadius: '100px',
+                    background: `${accentColor}20`,
+                    border: `1px solid ${accentColor}40`,
+                    fontSize: badgeFontSize,
+                    fontWeight: 600,
+                    color: OG_COLORS.primary,
+                    letterSpacing: '0.02em',
+                }}>
+                    {keyword}
+                </div>
+            ))}
+        </div>
+    );
+}
+
+interface OGPersonalFrameProps {
+    text: string;
+    isVertical?: boolean;
+}
+
+/**
+ * Personal framing component - "My Life Path is..." creates ownership
+ */
+export function OGPersonalFrame({ text, isVertical = false }: OGPersonalFrameProps) {
+    return (
+        <span style={{
+            fontSize: isVertical ? 36 : 24,
+            color: OG_COLORS.muted,
+            fontWeight: 500,
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase',
+        }}>
+            {text}
+        </span>
+    );
+}
+
+interface OGArchetypeTitleProps {
+    title: string;
+    isVertical?: boolean;
+    accentColor?: string;
+}
+
+/**
+ * Archetype title component - The identity hook ("The Seeker")
+ */
+export function OGArchetypeTitle({ title, isVertical = false, accentColor = OG_COLORS.accent }: OGArchetypeTitleProps) {
+    return (
+        <span style={{
+            fontSize: isVertical ? 64 : 48,
+            fontWeight: 800,
+            color: accentColor,
+            letterSpacing: '0.02em',
+            textTransform: 'uppercase',
+            textShadow: `0 0 40px ${accentColor}60`,
+        }}>
+            "{title}"
+        </span>
+    );
+}
+
+/**
+ * Get themed styles for a specific content type
+ */
+export function getThemedStyles(contentType: OGContentType, isVertical: boolean) {
+    const theme = OG_THEMES[contentType];
+
+    return {
+        containerStyle: {
+            display: "flex" as const,
+            flexDirection: "column" as const,
+            width: "100%",
+            height: "100%",
+            background: `linear-gradient(${isVertical ? '180deg' : '135deg'}, ${theme.gradientStart} 0%, ${theme.gradientEnd} 100%)`,
+            color: OG_COLORS.primary,
+            fontFamily: "Inter, sans-serif",
+            padding: isVertical ? "40px" : "20px",
+            position: "relative" as const,
+        },
+        glowStyle: isVertical ? {
+            position: "absolute" as const,
+            top: "10%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "800px",
+            height: "800px",
+            background: `radial-gradient(circle, ${theme.glowColor} 0%, transparent 70%)`,
+            filter: "blur(80px)",
+            display: "flex" as const,
+        } : {
+            position: "absolute" as const,
+            top: "-20%",
+            right: "-10%",
+            width: "600px",
+            height: "600px",
+            background: `radial-gradient(circle, ${theme.glowColor} 0%, transparent 70%)`,
+            filter: "blur(80px)",
+            display: "flex" as const,
+        },
+        heroNumberStyle: {
+            fontSize: isVertical ? OG_FONTS_VERTICAL.heroNumber : OG_FONTS.heroNumber,
+            fontWeight: 800,
+            color: OG_COLORS.primary,
+            lineHeight: 1,
+            textShadow: `0 0 80px ${theme.glowColor}`,
+        },
+        brandPillStyle: {
+            display: "flex" as const,
+            alignItems: "center" as const,
+            gap: isVertical ? "10px" : "8px",
+            padding: isVertical ? "14px 28px" : "10px 20px",
+            borderRadius: isVertical ? "30px" : "24px",
+            background: `${theme.accent}15`,
+            border: `1px solid ${theme.accent}30`,
+            fontSize: isVertical ? OG_FONTS_VERTICAL.brandPill : OG_FONTS.brandPill,
+            color: OG_COLORS.muted,
+            textTransform: "uppercase" as const,
+            letterSpacing: "0.15em",
+            fontWeight: 600,
+        },
+        theme,
+    };
+}
+
+interface OGThemedFooterProps {
+    contentType: OGContentType;
+    isVertical?: boolean;
+}
+
+/**
+ * Themed footer with content-specific CTA
+ */
+export function OGThemedFooter({ contentType, isVertical = false }: OGThemedFooterProps) {
+    const theme = OG_THEMES[contentType];
+    const footerStyle: React.CSSProperties = {
+        position: "absolute",
+        bottom: isVertical ? "50px" : "20px",
+        left: "0",
+        right: "0",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "16px",
+        paddingTop: isVertical ? "24px" : "16px",
+        borderTop: `1px solid ${theme.accent}30`,
+        marginLeft: isVertical ? "50px" : "30px",
+        marginRight: isVertical ? "50px" : "30px",
+    };
+
+    const fontSize = isVertical ? OG_FONTS_VERTICAL.footer : OG_FONTS.footer;
+
+    return (
+        <div style={footerStyle}>
+            <span style={{ fontSize: isVertical ? 28 : 20 }}>{theme.emoji}</span>
+            <span style={{ fontSize, fontWeight: 700, color: OG_COLORS.primary }}>
+                SpiritHub.ro
+            </span>
+            <span style={{ color: OG_COLORS.muted, fontSize }}>·</span>
+            <span style={{
+                fontSize,
+                color: theme.accent,
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+            }}>
+                {theme.cta} →
+            </span>
+        </div>
+    );
+}
+

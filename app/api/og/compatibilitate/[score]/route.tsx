@@ -1,6 +1,8 @@
 /**
  * Dynamic OG Image for Compatibility (Compatibilitate)
  * 
+ * ENHANCED: Visual score display with themed colors
+ * 
  * Supports multiple formats: og, story, feed, square
  * Route: /api/og/compatibilitate/[score]?format=og|story|feed|square
  */
@@ -12,12 +14,13 @@ import {
     type ImageFormat,
     getFormatDimensions,
     OG_COLORS,
+    OG_FONTS,
     OG_FONTS_VERTICAL,
-    ogContainerStyle, ogCardStyle, ogGlowStyle, ogCenteredLayout,
-    ogBrandPillMobile, ogTitleStyle, ogQuoteStyle, OGBrandFooter,
-    ogVerticalContainerStyle, ogVerticalCardStyle, ogVerticalGlowStyle, ogVerticalLayout,
-    ogVerticalBrandPill, ogVerticalTitleStyle, ogVerticalQuoteStyle,
-    OGVerticalBrandFooter, getCompatibilityBucket, getScoreColor, truncateText,
+    getThemedStyles,
+    OGThemedFooter,
+    getCompatibilityBucket,
+    getScoreColor,
+    truncateText,
     OG_CACHE,
 } from "@/lib/og-helpers";
 
@@ -48,60 +51,100 @@ export async function GET(
         return new Response("Interpretation not found", { status: 404 });
     }
 
+    const { containerStyle, glowStyle, brandPillStyle, theme } =
+        getThemedStyles('compatibilitate', isVertical);
+
     const scoreColor = getScoreColor(score);
     const displayMantra = truncateText(interpretation.content.mantra, isVertical ? 70 : 45);
 
-    if (isVertical) {
-        return new ImageResponse(
-            (
-                <div style={ogVerticalContainerStyle}>
-                    <div style={ogVerticalGlowStyle} />
-                    <div style={ogVerticalCardStyle}>
-                        <div style={ogVerticalLayout}>
-                            <div style={ogVerticalBrandPill}>
-                                <span>💕 COMPATIBILITATE</span>
-                            </div>
-                            {/* Hero Score */}
-                            <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-                                <span style={{
-                                    fontSize: 280, fontWeight: 800, color: scoreColor,
-                                    lineHeight: 1, textShadow: `0 0 80px ${scoreColor}40`
-                                }}>
-                                    {score}
-                                </span>
-                                <span style={{ fontSize: 100, fontWeight: 800, color: scoreColor }}>%</span>
-                            </div>
-                            <span style={ogVerticalTitleStyle}>{interpretation.hero.title}</span>
-                            <span style={ogVerticalQuoteStyle}>&ldquo;{displayMantra}&rdquo;</span>
-                        </div>
-                        <OGVerticalBrandFooter emoji="💕" cta="Verifică compatibilitatea" />
-                    </div>
-                </div>
-            ),
-            { width, height, headers: { 'Cache-Control': OG_CACHE.STATIC } }
-        );
-    }
+    const cardStyle: React.CSSProperties = {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        height: "100%",
+        borderRadius: isVertical ? "32px" : "20px",
+        border: `1px solid ${theme.accent}30`,
+        background: "rgba(255, 255, 255, 0.03)",
+        boxShadow: `0 0 ${isVertical ? 100 : 80}px ${theme.glowColor}30`,
+        padding: isVertical ? "50px 40px" : "24px",
+        position: "relative",
+        overflow: "hidden",
+    };
+
+    const layoutStyle: React.CSSProperties = {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        textAlign: "center",
+        gap: isVertical ? "20px" : "12px",
+        paddingBottom: isVertical ? "100px" : "70px",
+    };
+
+    const heroScoreStyle: React.CSSProperties = {
+        fontSize: isVertical ? 320 : 220,
+        fontWeight: 800,
+        color: scoreColor,
+        lineHeight: 1,
+        textShadow: `0 0 80px ${scoreColor}60`,
+    };
+
+    const percentStyle: React.CSSProperties = {
+        fontSize: isVertical ? 120 : 80,
+        fontWeight: 800,
+        color: scoreColor,
+    };
+
+    const titleStyle: React.CSSProperties = {
+        fontSize: isVertical ? OG_FONTS_VERTICAL.title : OG_FONTS.title,
+        fontWeight: "bold",
+        color: OG_COLORS.primary,
+        lineHeight: 1.2,
+        maxWidth: "90%",
+    };
+
+    const quoteStyle: React.CSSProperties = {
+        fontSize: isVertical ? OG_FONTS_VERTICAL.quote : OG_FONTS.quote,
+        fontStyle: "italic",
+        color: OG_COLORS.muted,
+        lineHeight: 1.4,
+        maxWidth: "85%",
+    };
 
     return new ImageResponse(
         (
-            <div style={ogContainerStyle}>
-                <div style={ogGlowStyle} />
-                <div style={ogCardStyle}>
-                    <div style={ogCenteredLayout}>
-                        <div style={ogBrandPillMobile}><span>💕 COMPATIBILITATE</span></div>
-                        <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
-                            <span style={{
-                                fontSize: 200, fontWeight: 800, color: scoreColor,
-                                lineHeight: 1, textShadow: `0 0 60px ${scoreColor}40`
-                            }}>
-                                {score}
-                            </span>
-                            <span style={{ fontSize: 80, fontWeight: 800, color: scoreColor }}>%</span>
+            <div style={containerStyle}>
+                <div style={glowStyle} />
+                <div style={cardStyle}>
+                    <div style={layoutStyle}>
+                        <div style={brandPillStyle}>
+                            <span>{theme.emoji} {theme.label}</span>
                         </div>
-                        <span style={ogTitleStyle}>{interpretation.hero.title}</span>
-                        <span style={ogQuoteStyle}>&ldquo;{displayMantra}&rdquo;</span>
+
+                        {/* Personal frame */}
+                        <span style={{
+                            fontSize: isVertical ? 36 : 24,
+                            color: OG_COLORS.muted,
+                            fontWeight: 500,
+                            letterSpacing: '0.05em',
+                            textTransform: 'uppercase',
+                        }}>
+                            {theme.personalFrame}
+                        </span>
+
+                        {/* Hero Score with % */}
+                        <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+                            <span style={heroScoreStyle}>{score}</span>
+                            <span style={percentStyle}>%</span>
+                        </div>
+
+                        <span style={titleStyle}>{interpretation.hero.title}</span>
+                        <span style={quoteStyle}>&ldquo;{displayMantra}&rdquo;</span>
                     </div>
-                    <OGBrandFooter emoji="💕" cta="Verifică compatibilitatea" />
+
+                    <OGThemedFooter contentType="compatibilitate" isVertical={isVertical} />
                 </div>
             </div>
         ),

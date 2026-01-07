@@ -1,6 +1,8 @@
 /**
  * Dynamic OG Image for Daily Energy (Energia Zilei)
  * 
+ * ENHANCED: Gold/amber themed "Cosmic Forecast" design
+ * 
  * Supports multiple formats: og, story, feed, square
  * Route: /api/og/energia-zilei/[date]?format=og|story|feed|square
  */
@@ -11,12 +13,13 @@ import {
     IMAGE_FORMATS,
     type ImageFormat,
     getFormatDimensions,
-    OG_COLORS, OG_FONTS, OG_FONTS_VERTICAL,
-    ogContainerStyle, ogCardStyle, ogGlowStyle, ogCenteredLayout,
-    ogBrandPillMobile, ogQuoteStyle, OGBrandFooter,
-    ogVerticalContainerStyle, ogVerticalCardStyle, ogVerticalGlowStyle, ogVerticalLayout,
-    ogVerticalBrandPill, ogVerticalQuoteStyle,
-    OGVerticalBrandFooter, getScoreColor, truncateText,
+    OG_COLORS,
+    OG_FONTS,
+    OG_FONTS_VERTICAL,
+    getThemedStyles,
+    OGThemedFooter,
+    getScoreColor,
+    truncateText,
     OG_CACHE,
 } from "@/lib/og-helpers";
 
@@ -47,82 +50,114 @@ export async function GET(
     const energyColor = getScoreColor(energia.energyLevel);
     const displayMantra = truncateText(energia.mantra, isVertical ? 70 : 50);
 
-    if (isVertical) {
-        return new ImageResponse(
-            (
-                <div style={ogVerticalContainerStyle}>
-                    <div style={ogVerticalGlowStyle} />
-                    <div style={ogVerticalCardStyle}>
-                        <div style={ogVerticalLayout}>
-                            <div style={ogVerticalBrandPill}>
-                                <span>⚡ ENERGIA ZILEI</span>
-                            </div>
-                            {/* Hero Planetary Symbol */}
-                            <span style={{
-                                fontSize: 220,
-                                lineHeight: 1,
-                                textShadow: "0 0 60px rgba(159, 43, 255, 0.5)",
-                            }}>
-                                {energia.hero.icon}
-                            </span>
-                            <span style={{
-                                fontSize: OG_FONTS_VERTICAL.subtitle,
-                                color: OG_COLORS.muted,
-                                textTransform: "uppercase",
-                                letterSpacing: "0.1em",
-                                fontWeight: 600,
-                            }}>
-                                {energia.hero.subtitle} · {energia.hero.title}
-                            </span>
-                            <span style={ogVerticalQuoteStyle}>&ldquo;{displayMantra}&rdquo;</span>
-                            {/* Energy Level */}
-                            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginTop: "20px" }}>
-                                <span style={{ fontSize: 24, color: OG_COLORS.muted }}>Energie</span>
-                                <span style={{ fontSize: 36, fontWeight: "bold", color: energyColor }}>
-                                    {energia.energyLevel}%
-                                </span>
-                            </div>
-                        </div>
-                        <OGVerticalBrandFooter emoji="☀️" cta="Cum e energia TA azi?" />
-                    </div>
-                </div>
-            ),
-            { width, height, headers: { 'Cache-Control': OG_CACHE.DAILY } }
-        );
-    }
+    const { containerStyle, glowStyle, brandPillStyle, theme } =
+        getThemedStyles('energia-zilei', isVertical);
+
+    // Format date for display
+    const dateDisplay = targetDate.toLocaleDateString('ro-RO', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    });
+
+    const cardStyle: React.CSSProperties = {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        height: "100%",
+        borderRadius: isVertical ? "32px" : "20px",
+        border: `1px solid ${theme.accent}30`,
+        background: "rgba(255, 255, 255, 0.03)",
+        boxShadow: `0 0 ${isVertical ? 100 : 80}px ${theme.glowColor}30`,
+        padding: isVertical ? "50px 40px" : "24px",
+        position: "relative",
+        overflow: "hidden",
+    };
+
+    const layoutStyle: React.CSSProperties = {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        textAlign: "center",
+        gap: isVertical ? "16px" : "10px",
+        paddingBottom: isVertical ? "100px" : "70px",
+    };
+
+    const planetSymbolStyle: React.CSSProperties = {
+        fontSize: isVertical ? 200 : 140,
+        lineHeight: 1,
+        textShadow: `0 0 60px ${theme.glowColor}`,
+    };
+
+    const quoteStyle: React.CSSProperties = {
+        fontSize: isVertical ? OG_FONTS_VERTICAL.quote : OG_FONTS.quote,
+        fontStyle: "italic",
+        color: OG_COLORS.muted,
+        lineHeight: 1.4,
+        maxWidth: "85%",
+    };
 
     return new ImageResponse(
         (
-            <div style={ogContainerStyle}>
-                <div style={ogGlowStyle} />
-                <div style={ogCardStyle}>
-                    <div style={ogCenteredLayout}>
-                        <div style={ogBrandPillMobile}><span>⚡ ENERGIA ZILEI</span></div>
+            <div style={containerStyle}>
+                <div style={glowStyle} />
+                <div style={cardStyle}>
+                    <div style={layoutStyle}>
+                        <div style={brandPillStyle}>
+                            <span>{theme.emoji} {theme.label}</span>
+                        </div>
+
+                        {/* Date stamp - urgency trigger */}
                         <span style={{
-                            fontSize: 160,
-                            lineHeight: 1,
-                            textShadow: "0 0 40px rgba(159, 43, 255, 0.4)",
+                            fontSize: isVertical ? 28 : 20,
+                            color: theme.accent,
+                            fontWeight: 600,
+                            letterSpacing: '0.1em',
                         }}>
+                            {dateDisplay}
+                        </span>
+
+                        {/* Hero Planetary Symbol */}
+                        <span style={planetSymbolStyle}>
                             {energia.hero.icon}
                         </span>
+
+                        {/* Planet name and day */}
                         <span style={{
-                            fontSize: OG_FONTS.subtitle,
-                            color: OG_COLORS.muted,
+                            fontSize: isVertical ? OG_FONTS_VERTICAL.subtitle : OG_FONTS.subtitle,
+                            color: OG_COLORS.primary,
                             textTransform: "uppercase",
                             letterSpacing: "0.1em",
-                            fontWeight: 600,
+                            fontWeight: 700,
                         }}>
                             {energia.hero.subtitle} · {energia.hero.title}
                         </span>
-                        <span style={ogQuoteStyle}>&ldquo;{displayMantra}&rdquo;</span>
-                        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                            <span style={{ fontSize: 20, color: OG_COLORS.muted }}>Energie</span>
-                            <span style={{ fontSize: 28, fontWeight: "bold", color: energyColor }}>
+
+                        {/* Mantra */}
+                        <span style={quoteStyle}>&ldquo;{displayMantra}&rdquo;</span>
+
+                        {/* Energy Level */}
+                        <div style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "16px",
+                            marginTop: isVertical ? "16px" : "8px",
+                            padding: isVertical ? "16px 32px" : "10px 24px",
+                            borderRadius: "100px",
+                            background: `${energyColor}15`,
+                            border: `1px solid ${energyColor}30`,
+                        }}>
+                            <span style={{ fontSize: isVertical ? 24 : 18, color: OG_COLORS.muted }}>Energie</span>
+                            <span style={{ fontSize: isVertical ? 40 : 28, fontWeight: "bold", color: energyColor }}>
                                 {energia.energyLevel}%
                             </span>
                         </div>
                     </div>
-                    <OGBrandFooter emoji="☀️" cta="Cum e energia TA azi?" />
+
+                    <OGThemedFooter contentType="energia-zilei" isVertical={isVertical} />
                 </div>
             </div>
         ),

@@ -1,6 +1,8 @@
 /**
  * Dynamic OG Image for Life Path (Calea Vieții)
  * 
+ * ENHANCED: Identity-first design with archetype names and keyword badges
+ * 
  * Supports multiple formats:
  * - og (default): 1200x630 for link previews
  * - story: 1080x1920 for Instagram/TikTok Stories
@@ -16,26 +18,14 @@ import {
     IMAGE_FORMATS,
     type ImageFormat,
     getFormatDimensions,
-    // Horizontal (OG) styles
-    ogContainerStyle,
-    ogCardStyle,
-    ogGlowStyle,
-    ogCenteredLayout,
-    ogBrandPillMobile,
-    ogHeroNumberStyle,
-    ogTitleStyle,
-    ogQuoteStyle,
-    OGBrandFooter,
-    // Vertical (Story/Feed) styles
-    ogVerticalContainerStyle,
-    ogVerticalCardStyle,
-    ogVerticalGlowStyle,
-    ogVerticalLayout,
-    ogVerticalBrandPill,
-    ogVerticalHeroNumberStyle,
-    ogVerticalTitleStyle,
-    ogVerticalQuoteStyle,
-    OGVerticalBrandFooter,
+    OG_COLORS,
+    OG_FONTS,
+    OG_FONTS_VERTICAL,
+    getThemedStyles,
+    OGKeywordBadges,
+    OGArchetypeTitle,
+    OGPersonalFrame,
+    OGThemedFooter,
     truncateText,
     OG_CACHE,
 } from "@/lib/og-helpers";
@@ -70,82 +60,99 @@ export async function GET(
         return new Response("Interpretation not found", { status: 404 });
     }
 
-    // Truncate mantra - vertical has more space
-    const displayMantra = truncateText(interpretation.mantra, isVertical ? 80 : 50);
+    // Get themed styles for this content type
+    const { containerStyle, glowStyle, heroNumberStyle, brandPillStyle, theme } =
+        getThemedStyles('calea-vietii', isVertical);
 
-    // Render vertical layout for Story/Feed
-    if (isVertical) {
-        return new ImageResponse(
-            (
-                <div style={ogVerticalContainerStyle}>
-                    <div style={ogVerticalGlowStyle} />
-                    <div style={ogVerticalCardStyle}>
-                        <div style={ogVerticalLayout}>
-                            {/* Brand Pill */}
-                            <div style={ogVerticalBrandPill}>
-                                <span>✨ CALEA VIEȚII</span>
-                            </div>
+    // Extract archetype (hero.title) and keywords (tags) from interpretation
+    const archetype = interpretation.hero.title;
+    const keywords = interpretation.tags || [];
+    const displayMantra = truncateText(interpretation.mantra, isVertical ? 70 : 45);
 
-                            {/* Hero Number - MASSIVE */}
-                            <span style={ogVerticalHeroNumberStyle}>
-                                {number}
-                            </span>
+    // Card style
+    const cardStyle: React.CSSProperties = {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        height: "100%",
+        borderRadius: isVertical ? "32px" : "20px",
+        border: `1px solid ${theme.accent}30`,
+        background: "rgba(255, 255, 255, 0.03)",
+        boxShadow: `0 0 ${isVertical ? 100 : 80}px ${theme.glowColor}30`,
+        padding: isVertical ? "50px 40px" : "24px",
+        position: "relative",
+        overflow: "hidden",
+    };
 
-                            {/* Title */}
-                            <span style={ogVerticalTitleStyle}>
-                                {interpretation.hero.title}
-                            </span>
+    // Centered layout
+    const layoutStyle: React.CSSProperties = {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        textAlign: "center",
+        gap: isVertical ? "20px" : "12px",
+        paddingBottom: isVertical ? "100px" : "70px",
+    };
 
-                            {/* Mantra - The Hook */}
-                            <span style={ogVerticalQuoteStyle}>
-                                &ldquo;{displayMantra}&rdquo;
-                            </span>
-                        </div>
+    // Quote style
+    const quoteStyle: React.CSSProperties = {
+        fontSize: isVertical ? OG_FONTS_VERTICAL.quote : OG_FONTS.quote,
+        fontStyle: "italic",
+        color: OG_COLORS.muted,
+        lineHeight: 1.4,
+        maxWidth: "85%",
+        marginTop: isVertical ? "16px" : "8px",
+    };
 
-                        {/* Footer CTA */}
-                        <OGVerticalBrandFooter
-                            emoji="🌟"
-                            cta="Descoperă-l pe al TĂU"
-                        />
-                    </div>
-                </div>
-            ),
-            { width, height, headers: { 'Cache-Control': OG_CACHE.STATIC } }
-        );
-    }
-
-    // Render horizontal layout for OG/Square
     return new ImageResponse(
         (
-            <div style={ogContainerStyle}>
-                <div style={ogGlowStyle} />
-                <div style={ogCardStyle}>
-                    <div style={ogCenteredLayout}>
+            <div style={containerStyle}>
+                <div style={glowStyle} />
+                <div style={cardStyle}>
+                    <div style={layoutStyle}>
                         {/* Brand Pill */}
-                        <div style={ogBrandPillMobile}>
-                            <span>✨ CALEA VIEȚII</span>
+                        <div style={brandPillStyle}>
+                            <span>{theme.emoji} {theme.label}</span>
                         </div>
 
+                        {/* Personal Frame - "Calea mea este..." */}
+                        <OGPersonalFrame
+                            text={theme.personalFrame}
+                            isVertical={isVertical}
+                        />
+
                         {/* Hero Number - GIANT */}
-                        <span style={ogHeroNumberStyle}>
+                        <span style={heroNumberStyle}>
                             {number}
                         </span>
 
-                        {/* Title */}
-                        <span style={ogTitleStyle}>
-                            {interpretation.hero.title}
-                        </span>
+                        {/* Archetype Title - The Identity Hook */}
+                        <OGArchetypeTitle
+                            title={archetype}
+                            isVertical={isVertical}
+                            accentColor={theme.accent}
+                        />
 
-                        {/* Mantra - The Hook (truncated) */}
-                        <span style={ogQuoteStyle}>
+                        {/* Keyword Badges - Snackable Traits */}
+                        <OGKeywordBadges
+                            keywords={keywords}
+                            isVertical={isVertical}
+                            accentColor={theme.accent}
+                        />
+
+                        {/* Mantra - The Hook Quote */}
+                        <span style={quoteStyle}>
                             &ldquo;{displayMantra}&rdquo;
                         </span>
                     </div>
 
                     {/* Footer CTA */}
-                    <OGBrandFooter
-                        emoji="🌟"
-                        cta="Descoperă-l pe al TĂU"
+                    <OGThemedFooter
+                        contentType="calea-vietii"
+                        isVertical={isVertical}
                     />
                 </div>
             </div>
