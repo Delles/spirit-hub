@@ -20,7 +20,7 @@ export default function NumerologiePage() {
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40">
             <Sparkles className="h-8 w-8 text-[#9F2BFF]" />
           </div>
-          <h2 className="text-3xl font-bold mb-4 text-white">Calculatoare Numerologie</h2>
+          <h1 className="text-3xl font-bold mb-4 text-white">Calculatoare Numerologie</h1>
           <p className="text-[#E0E0E0]">
             Descoperă semnificația numerelor tale personale și cum influențează destinul tău
           </p>

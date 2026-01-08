@@ -1,10 +1,19 @@
-// Metadata import removed
+import { Metadata } from "next";
 import CaleaVietiiClient from "./client";
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 
 import { redirect } from "next/navigation";
 import { parseISO, isValid } from "date-fns";
+
+export const metadata: Metadata = {
+  title: "Calculator Calea Vieții - Numerologie | SpiritHub.ro",
+  description: "Calculează numărul Căii Vieții și descoperă scopul și direcția ta în viață. Interpretări detaliate pentru toate numerele de la 1 la 9, 11, 22 și 33.",
+  openGraph: {
+    title: "Calculator Calea Vieții - Numerologie | SpiritHub.ro",
+    description: "Calculează numărul Căii Vieții și descoperă scopul și direcția ta în viață.",
+  }
+};
 
 interface PageProps {
   searchParams: Promise<{ date?: string }>;
