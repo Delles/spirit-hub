@@ -48,6 +48,14 @@ export default function CriticalDaysView({
                 {/* Show form view when no results yet */}
                 {!showResults && (
                     <>
+                        {/* Page Introduction with H1 */}
+                        <div className="space-y-4 text-center">
+                            <h1 className="text-3xl font-bold text-white">Zile Critice Bioritm</h1>
+                            <p className="text-lg text-[#E0E0E0] leading-relaxed">
+                                Descoperă zilele de tranziție din ciclurile tale bioritmice pentru următoarele 30 de zile.
+                            </p>
+                        </div>
+
                         {/* Info Section */}
                         <Card className="p-6 space-y-3">
                             <h2 className="text-xl font-semibold text-white">Ce sunt zilele critice?</h2>

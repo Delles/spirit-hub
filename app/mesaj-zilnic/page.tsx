@@ -44,7 +44,7 @@ export default function OraclePage() {
 
                 {/* Page Introduction - Matching Energia Zilei */}
                 <div className="space-y-4 text-center">
-                    <h2 className="text-3xl font-bold text-white">Mesajul Universului</h2>
+                    <h1 className="text-3xl font-bold text-white">Mesajul Universului</h1>
                     <p className="text-lg text-[#E0E0E0] leading-relaxed">
                         Ghidare subtilă pentru ziua de {formattedDate}.
                     </p>

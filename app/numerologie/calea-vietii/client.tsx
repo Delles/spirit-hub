@@ -79,7 +79,7 @@ export default function CaleaVietiiClient() {
           <>
             {/* Page Introduction */}
             <div className="space-y-4 text-center">
-              <h2 className="text-3xl font-bold text-white">Calculator Calea Vieții</h2>
+              <h1 className="text-3xl font-bold text-white">Calculator Calea Vieții</h1>
               <p className="text-lg text-[#E0E0E0] leading-relaxed">
                 Descoperă cel mai important număr din numerologie. Calea Vieții îți dezvăluie
                 lecțiile majore, provocările și oportunitățile destinului tău, calculate din data
