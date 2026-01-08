@@ -63,3 +63,4 @@ export function FAQSection({ title = "Întrebări Frecvente", faqs, className }:
         </section>
     );
 }
+
