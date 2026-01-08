@@ -12,7 +12,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Calculator Calea Vieții - Numerologie | SpiritHub.ro",
     description: "Calculează numărul Căii Vieții și descoperă scopul și direcția ta în viață.",
-  }
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Calculator Calea Vieții - Numerologie | SpiritHub.ro",
+    description: "Calculează numărul Căii Vieții și descoperă scopul și direcția ta în viață.",
+  },
+  alternates: {
+    canonical: "https://spirithub.ro/numerologie/calea-vietii",
+  },
 };
 
 interface PageProps {
