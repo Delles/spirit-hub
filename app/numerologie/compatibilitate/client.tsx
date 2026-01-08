@@ -132,7 +132,7 @@ export default function CompatibilitateClient() {
           <>
             {/* Page Introduction */}
             <div className="space-y-4 text-center">
-              <h2 className="text-3xl font-bold text-white">Compatibilitate Numerologică</h2>
+              <h1 className="text-3xl font-bold text-white">Compatibilitate Numerologică</h1>
               <p className="text-lg text-[#E0E0E0] leading-relaxed">
                 Analizează armonia dintre două persoane comparând Calea Vieții și Numărul Destinului.
                 Descoperă punctele forte ale relației și oportunitățile de creștere împreună.

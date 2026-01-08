@@ -71,7 +71,7 @@ export function EnergiaZileiClient() {
 
         {/* Page Introduction */}
         <div className="space-y-4 text-center">
-          <h2 className="text-3xl font-bold text-white">Energia Zilei de Astăzi</h2>
+          <h1 className="text-3xl font-bold text-white">Energia Zilei de Astăzi</h1>
           <p className="text-lg text-[#E0E0E0] leading-relaxed">
             Descoperă influența cosmică a zilei de {romanianDate}. Folosește această energie pentru
             a-ți planifica activitățile în armonie cu ritmurile universale.

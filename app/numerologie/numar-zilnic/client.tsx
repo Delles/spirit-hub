@@ -59,7 +59,7 @@ export default function NumarZilnicClient() {
       <div className="mx-auto max-w-4xl space-y-8">
         {/* Page Introduction */}
         <div className="space-y-4 text-center">
-          <h2 className="text-3xl font-bold text-white">Numărul Zilei de Astăzi</h2>
+          <h1 className="text-3xl font-bold text-white">Numărul Zilei de Astăzi</h1>
           <p className="text-lg text-[#E0E0E0] leading-relaxed">
             Energia numerologică pentru {romanianDate}
           </p>

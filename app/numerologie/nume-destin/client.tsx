@@ -77,7 +77,7 @@ export default function NumeDestinClient() {
           <>
             {/* Page Introduction */}
             <div className="space-y-4 text-center">
-              <h2 className="text-3xl font-bold text-white">Calculator Număr Destin</h2>
+              <h1 className="text-3xl font-bold text-white">Calculator Număr Destin</h1>
               <p className="text-lg text-[#E0E0E0] leading-relaxed">
                 Calculat din numele tău complet, Numărul Destinului îți dezvăluie misiunea în viață,
                 talentele înnăscute și darurile pe care ai venit să le oferi lumii.
