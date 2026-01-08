@@ -33,9 +33,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "SpiritHub.ro" }],
   metadataBase: new URL("https://spirithub.ro"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "SpiritHub.ro - Numerologie și Bioritm",
     description:

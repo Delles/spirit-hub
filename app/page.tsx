@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { DailyWidgetsClient } from "@/components/landing/daily-widgets-client";
 import { MoonPhaseHeader } from "@/components/landing/moon-phase-header";
 import { DateHeader } from "@/components/landing/date-header";
+import { JsonLd } from "@/components/shared/json-ld";
 
 // Make homepage fully static - no ISR revalidation needed
 // Daily content is computed client-side (always fresh)
@@ -26,10 +27,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <div className="flex min-h-screen flex-col text-foreground overflow-x-hidden selection:bg-[#9F2BFF] selection:text-white">
 
         <main className="flex-1 w-full relative">
@@ -43,9 +41,9 @@ export default function DashboardPage() {
 
           {/* Page Hero / Header Section */}
           <div className="text-center pt-8 pb-4 space-y-2 animate-fade-in">
-            <h2 className="text-[#E0E0E0] uppercase tracking-[0.2em] text-sm font-medium">
+            <h1 className="text-[#E0E0E0] uppercase tracking-[0.2em] text-sm font-medium">
               Energia Zilei
-            </h2>
+            </h1>
             {/* Date - computed client-side to always show "today" */}
             <DateHeader />
             {/* Moon phase - computed client-side */}
