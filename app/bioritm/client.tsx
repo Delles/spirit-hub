@@ -134,10 +134,7 @@ export default function BioritmClient() {
         {/* Results View - only shown after successful calculation */}
         {showResults && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8">
-            {/* 1. Interpretation Card (The "Stream of Cards") */}
-            <BiorhythmCard interpretation={biorhythm.interpretation} />
-
-            {/* 2. Chart Visualization */}
+            {/* 1. Chart Visualization */}
             <Card className="p-6 lg:p-8 bg-black/40 backdrop-blur-xl border-white/10">
               <h3 className="text-xl font-semibold text-white mb-6">Grafic Bioritm</h3>
               <BiorhythmChart
@@ -148,6 +145,9 @@ export default function BioritmClient() {
                 targetDate={biorhythm.targetDate}
               />
             </Card>
+
+            {/* 2. Interpretation Card (The "Stream of Cards") */}
+            <BiorhythmCard interpretation={biorhythm.interpretation} />
 
             {/* Share Section */}
             <Card className="flex flex-col sm:flex-row gap-4 items-center justify-between p-6 bg-black/40 backdrop-blur-xl border-white/10">

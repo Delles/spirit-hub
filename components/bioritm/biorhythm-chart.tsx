@@ -45,7 +45,7 @@ export function BiorhythmChart({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const daysWindow = useMemo(() => (isMobile ? 11 : 15), [isMobile]);
+  const daysWindow = useMemo(() => (isMobile ? 7 : 15), [isMobile]);
   const daysBefore = useMemo(() => Math.floor(daysWindow / 2), [daysWindow]);
   const daysAfter = useMemo(() => Math.floor(daysWindow / 2), [daysWindow]);
 
