@@ -3,11 +3,10 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { FAQItem } from "@/lib/faq-schema";
 
-interface FAQItem {
-    question: string;
-    answer: string;
-}
+// Re-export for backwards compatibility (but server components should import from @/lib/faq-schema)
+export { generateFAQJsonLd, type FAQItem } from "@/lib/faq-schema";
 
 interface FAQSectionProps {
     title?: string;
@@ -65,22 +64,3 @@ export function FAQSection({ title = "Întrebări Frecvente", faqs, className }:
     );
 }
 
-/**
- * Generate FAQPage JSON-LD schema from FAQ items
- * @param faqs - Array of question/answer pairs
- * @returns FAQPage JSON-LD object ready for injection
- */
-export function generateFAQJsonLd(faqs: FAQItem[]) {
-    return {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqs.map((faq) => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-            },
-        })),
-    };
-}

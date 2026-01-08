@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Sparkles, ArrowLeft, Calculator, Heart, Calendar } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { FAQSection, generateFAQJsonLd } from "@/components/shared/faq-section";
+import { FAQSection } from "@/components/shared/faq-section";
+import { generateFAQJsonLd } from "@/lib/faq-schema";
 import { JsonLd } from "@/components/shared/json-ld";
 
 export const metadata: Metadata = {
