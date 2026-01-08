@@ -9,8 +9,21 @@ import { OracleCard } from "@/components/oracle/oracle-card";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: "Mesajul Universului | SpiritHub",
+    title: "Mesajul Universului | SpiritHub.ro",
     description: "Descoperă mesajul tău zilnic de la Univers. Ghidare, inspirație și claritate pentru ziua ta.",
+    openGraph: {
+        title: "Mesajul Universului | SpiritHub.ro",
+        description: "Descoperă mesajul tău zilnic de la Univers. Ghidare, inspirație și claritate pentru ziua ta.",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Mesajul Universului | SpiritHub.ro",
+        description: "Descoperă mesajul tău zilnic de la Univers. Ghidare, inspirație și claritate pentru ziua ta.",
+    },
+    alternates: {
+        canonical: "https://spirithub.ro/mesaj-zilnic",
+    },
 };
 
 export default function OraclePage() {

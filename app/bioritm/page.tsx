@@ -10,6 +10,16 @@ export const metadata: Metadata = {
   title: "Calculator Bioritm | SpiritHub.ro",
   description:
     "Calculează-ți bioritmul zilnic și descoperă ciclurile tale fizice, emoționale și intelectuale.",
+  openGraph: {
+    title: "Calculator Bioritm | SpiritHub.ro",
+    description: "Calculează-ți bioritmul zilnic și descoperă ciclurile tale fizice, emoționale și intelectuale.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Calculator Bioritm | SpiritHub.ro",
+    description: "Calculează-ți bioritmul zilnic și descoperă ciclurile tale fizice, emoționale și intelectuale.",
+  },
   alternates: {
     canonical: "https://spirithub.ro/bioritm",
   },
