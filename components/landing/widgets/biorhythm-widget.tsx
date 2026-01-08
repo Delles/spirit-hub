@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useId } from "react";
 import { type EnergiaZileiData } from "@/lib/energia-zilei";
 
@@ -75,7 +76,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
           </p>
 
           {/* Energy level */}
-          <div className="flex items-baseline gap-2">
+          <div className="flex items-baseline gap-2 mb-4">
             <span
               className="text-4xl md:text-5xl font-bold tracking-tight"
               style={{
@@ -88,6 +89,12 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
             <span className="text-xs md:text-sm text-[#E0E0E0] uppercase tracking-wider opacity-60">
               {dominantEnergy}
             </span>
+          </div>
+
+          {/* CTA */}
+          <div className="flex items-center text-sm font-medium text-white/50 group-hover:text-white transition-colors">
+            <span>Vezi graficul detaliat</span>
+            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
           </div>
         </div>
 

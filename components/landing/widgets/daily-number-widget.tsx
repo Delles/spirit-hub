@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { ArrowRight } from "lucide-react";
 
 interface DailyNumberData {
   number: number;
@@ -51,7 +52,7 @@ export function DailyNumberWidget({ data, className }: DailyNumberWidgetProps) {
       </div>
 
       {/* Main Content - Left Aligned */}
-      <div className="relative z-10 flex flex-col items-start justify-center py-6 space-y-2">
+      <div className="relative z-10 flex-1 flex flex-col items-start justify-center py-6 space-y-2">
         <Badge className="bg-[#9F2BFF]/20 text-[#E0E0E0] hover:bg-[#9F2BFF]/30 border-[#9F2BFF]/40 backdrop-blur-md">
           Cifra Zilei
         </Badge>
@@ -67,10 +68,16 @@ export function DailyNumberWidget({ data, className }: DailyNumberWidgetProps) {
       </div>
 
       {/* Footer - Description */}
-      <div className="relative z-10">
+      <div className="relative z-10 mb-6">
         <p className="text-[#E0E0E0] text-sm leading-relaxed text-left">
           {data.description}
         </p>
+      </div>
+
+      {/* CTA */}
+      <div className="relative z-10 flex items-center text-sm font-medium text-white/50 group-hover:text-white transition-colors">
+        <span>Vezi interpretarea completă</span>
+        <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
       </div>
     </Link>
   );
