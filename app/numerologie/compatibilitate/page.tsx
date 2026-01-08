@@ -4,6 +4,9 @@ import { redirect } from "next/navigation";
 import CompatibilitateClient from "./client";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { parseISO, isValid } from "date-fns";
+import { JsonLd } from "@/components/shared/json-ld";
+import { FAQSection } from "@/components/shared/faq-section";
+import { generateFAQJsonLd } from "@/lib/faq-schema";
 
 export const metadata: Metadata = {
   title: "Compatibilitate Numerologică | SpiritHub.ro",
@@ -19,6 +22,22 @@ export const metadata: Metadata = {
     canonical: "https://spirithub.ro/numerologie/compatibilitate",
   },
 };
+
+// FAQ Content for Compatibilitate
+const faqs = [
+  {
+    question: "Cum funcționează compatibilitatea numerologică?",
+    answer: "Compatibilitatea analizează armonia dintre numerele Căii Vieții și/sau ale Destinului a două persoane. Ea arată punctele forte ale relației, potențialele fricțiuni și lecțiile pe care cei doi le au de învățat împreună."
+  },
+  {
+    question: "Există numere \"incompatibile\"?",
+    answer: "În numerologie, nu există incompatibilitate totală. Anumite combinații necesită mai multă muncă, înțelegere și compromis (de exemplu 4 și 5), în timp ce altele curg mai natural (de exemplu 3 și 5). Orice relație poate funcționa cu conștientizare."
+  },
+  {
+    question: "Ce se întâmplă dacă avem același număr al Căii Vieții?",
+    answer: "A avea același număr indică o înțelegere profundă reciprocă, deoarece vedeți lumea similar. Totuși, poate duce și la lipsă de echilibru sau plictiseală dacă nu vă stimulați reciproc să creșteți."
+  }
+];
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -56,8 +75,21 @@ export default async function CompatibilitatePage({ searchParams }: PageProps) {
   }
 
   return (
-    <Suspense fallback={<LoadingSpinner text="Se încarcă..." />}>
-      <CompatibilitateClient />
-    </Suspense>
+    <>
+      <JsonLd data={generateFAQJsonLd(faqs)} />
+
+      <div className="flex flex-col min-h-screen">
+        <Suspense fallback={<LoadingSpinner text="Se încarcă..." />}>
+          <CompatibilitateClient />
+        </Suspense>
+
+        {/* FAQ Section */}
+        <div className="container mx-auto px-4 pb-12">
+          <div className="max-w-4xl mx-auto">
+            <FAQSection faqs={faqs} />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
