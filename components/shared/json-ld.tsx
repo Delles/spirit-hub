@@ -100,13 +100,18 @@ export const SPIRITHUB_ORGANIZATION: OrganizationJsonLd = {
 
 /**
  * Component to inject JSON-LD structured data into the page head
+ * Escapes '<' to prevent XSS if data contains untrusted strings
  * @param data - The structured data object conforming to schema.org specifications
  */
 export function JsonLd({ data }: { data: JsonLdData }) {
+  // Escape '<' to prevent XSS when injecting into script tag
+  // This prevents strings like "</script><script>..." from breaking out
+  const safeJson = JSON.stringify(data).replace(/</g, "\\u003c");
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: safeJson }}
     />
   );
 }
