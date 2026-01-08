@@ -53,8 +53,50 @@ export interface FAQJsonLd {
   }>;
 }
 
+export interface BreadcrumbJsonLd {
+  "@context": "https://schema.org";
+  "@type": "BreadcrumbList";
+  itemListElement: Array<{
+    "@type": "ListItem";
+    position: number;
+    name: string;
+    item?: string;
+  }>;
+}
+
 // Union type for all supported JSON-LD schemas
-export type JsonLdData = WebSiteJsonLd | OrganizationJsonLd | ArticleJsonLd | FAQJsonLd | Record<string, unknown>;
+export type JsonLdData = WebSiteJsonLd | OrganizationJsonLd | ArticleJsonLd | FAQJsonLd | BreadcrumbJsonLd | Record<string, unknown>;
+
+/**
+ * Helper to generate BreadcrumbList JSON-LD from an array of breadcrumb items
+ * @param items - Array of { name, url } objects representing the breadcrumb trail
+ */
+export function generateBreadcrumbJsonLd(
+  items: Array<{ name: string; url?: string }>
+): BreadcrumbJsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      ...(item.url && { item: item.url }),
+    })),
+  };
+}
+
+/**
+ * Pre-configured Organization schema for SpiritHub
+ */
+export const SPIRITHUB_ORGANIZATION: OrganizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "SpiritHub.ro",
+  url: "https://spirithub.ro",
+  logo: "https://spirithub.ro/icon-512.png",
+  description: "Platformă spirituală românească pentru numerologie și bioritm.",
+};
 
 /**
  * Component to inject JSON-LD structured data into the page head
