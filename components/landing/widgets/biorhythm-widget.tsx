@@ -93,7 +93,7 @@ export function BiorhythmWidget({ data, className }: BiorhythmWidgetProps) {
 
           {/* CTA */}
           <div className="flex items-center text-sm font-medium text-white/50 group-hover:text-white transition-colors">
-            <span>Vezi graficul detaliat</span>
+            <span>Vezi analiza detaliată</span>
             <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
           </div>
         </div>
