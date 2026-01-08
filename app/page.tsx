@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { DailyWidgetsClient } from "@/components/landing/daily-widgets-client";
 import { MoonPhaseHeader } from "@/components/landing/moon-phase-header";
 import { DateHeader } from "@/components/landing/date-header";
-import { JsonLd } from "@/components/shared/json-ld";
+import { JsonLd, SPIRITHUB_ORGANIZATION } from "@/components/shared/json-ld";
 
 // Make homepage fully static - no ISR revalidation needed
 // Daily content is computed client-side (always fresh)
@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 
 export default function DashboardPage() {
   // JSON-LD structured data for homepage
-  const jsonLd = {
+  const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "SpiritHub.ro",
@@ -27,7 +27,9 @@ export default function DashboardPage() {
 
   return (
     <>
-      <JsonLd data={jsonLd} />
+      {/* Multiple JSON-LD scripts for different schema types */}
+      <JsonLd data={websiteJsonLd} />
+      <JsonLd data={SPIRITHUB_ORGANIZATION} />
       <div className="flex min-h-screen flex-col text-foreground overflow-x-hidden selection:bg-[#9F2BFF] selection:text-white">
 
         <main className="flex-1 w-full relative">
