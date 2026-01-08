@@ -85,7 +85,7 @@ export function OracleWidget({ data, className }: OracleWidgetProps) {
 
                 {/* Footer / CTA */}
                 <div className="mt-auto flex items-center text-sm font-medium text-white/50 group-hover:text-white transition-colors">
-                    <span>Descoperă mai mult</span>
+                    <span>Vezi mesajul complet</span>
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
             </div>
