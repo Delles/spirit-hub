@@ -7,7 +7,7 @@ import { getTodayISOBucharest } from "@/lib/daily-content";
 import CriticalDaysView from "./view";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Zile Critice Bioritm | SpiritHub.ro",

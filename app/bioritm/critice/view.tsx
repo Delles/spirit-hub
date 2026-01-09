@@ -28,8 +28,9 @@ export default function CriticalDaysView({
     const hasSubmitted = !!birthDate;
     const showResults = hasSubmitted && criticalDays !== null;
 
-    const handleSubmit = (birth: string) => {
+    const handleSubmit = (birth: string, _target: string) => {
         // Update URL - server will compute on next render
+        // Note: _target is ignored - critical days only needs birth date
         const params = new URLSearchParams();
         params.set("date", birth);
         router.push(`${pathname}?${params.toString()}`);
@@ -70,7 +71,7 @@ export default function CriticalDaysView({
                         {/* Form Section */}
                         <Card className="p-6 lg:p-8">
                             <BiorhythmForm
-                                onSubmit={(birth) => handleSubmit(birth)}
+                                onSubmit={handleSubmit}
                                 isLoading={false}
                                 showTargetDate={false}
                             />

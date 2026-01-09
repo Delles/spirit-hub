@@ -139,21 +139,23 @@ export function ShareButton({
       url,
     };
 
-    try {
-      // Try native share first (mobile)
-      if (canShareLinks && navigator.share) {
+    // Try native share first (primarily mobile)
+    if (canShareLinks && navigator.share) {
+      try {
         await navigator.share(shareData);
         setIsOpen(false);
         return;
-      }
-    } catch (err) {
-      // User cancelled or share failed, fall through to clipboard
-      if ((err as Error).name === "AbortError") {
-        return;
+      } catch (err) {
+        // User cancelled - don't fall through to clipboard
+        if ((err as Error).name === "AbortError") {
+          return;
+        }
+        // Other errors (e.g., NotAllowedError on desktop) - fall through to clipboard
+        console.log("Native share not available, falling back to clipboard");
       }
     }
 
-    // Fallback: copy to clipboard
+    // Fallback: copy to clipboard (works on desktop and mobile)
     try {
       await navigator.clipboard.writeText(url);
       setLinkShared(true);
