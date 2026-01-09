@@ -40,8 +40,8 @@ export default function CriticalDaysView({
         router.push(pathname);
     };
 
-    // Build share URL from pathname and birthDate (SSR-safe)
-    const shareUrl = birthDate ? `https://spirithub.ro${pathname}?date=${birthDate}` : "";
+    // Build share URL - use current window location (works on localhost and production)
+    const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
     return (
         <div className="py-8">
