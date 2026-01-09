@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Share2, Check, Link, Image, Download, X, Loader2 } from "lucide-react";
+import { Share2, Check, Link, Image as ImageIcon, Download, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -264,7 +264,7 @@ export function ShareButton({
               {imageLoading && !imageBlob ? (
                 <Loader2 className="h-5 w-5 animate-spin" />
               ) : canShareFiles ? (
-                <Image className="h-5 w-5" />
+                <ImageIcon className="h-5 w-5" />
               ) : (
                 <Download className="h-5 w-5" />
               )}

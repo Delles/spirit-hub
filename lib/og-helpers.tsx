@@ -840,7 +840,7 @@ export function OGArchetypeTitle({ title, isVertical = false, accentColor = OG_C
             textTransform: 'uppercase',
             textShadow: `0 0 40px ${accentColor}60`,
         }}>
-            "{title}"
+            &quot;{title}&quot;
         </span>
     );
 }

@@ -28,7 +28,7 @@ export default function CriticalDaysView({
     const hasSubmitted = !!birthDate;
     const showResults = hasSubmitted && criticalDays !== null;
 
-    const handleSubmit = (birth: string, _target: string) => {
+    const handleSubmit = (birth: string) => {
         // Update URL - server will compute on next render
         // Note: _target is ignored - critical days only needs birth date
         const params = new URLSearchParams();
