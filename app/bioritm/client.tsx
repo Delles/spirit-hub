@@ -149,17 +149,19 @@ export default function BioritmClient() {
             {/* 2. Interpretation Card (The "Stream of Cards") */}
             <BiorhythmCard interpretation={biorhythm.interpretation} />
 
-            {/* Share Section */}
-            <Card className="flex flex-col sm:flex-row gap-4 items-center justify-between p-6 bg-black/40 backdrop-blur-xl border-white/10">
-              <div className="text-center sm:text-left">
+            {/* Share Section - matching daily-card layout */}
+            <Card className="p-6 bg-black/40 backdrop-blur-xl border-white/10">
+              <div className="text-center mb-4">
                 <h3 className="font-semibold mb-1 text-white">Distribuie rezultatul tău</h3>
                 <p className="text-sm text-[#E0E0E0]">Împărtășește bioritmul tău cu prietenii</p>
               </div>
-              <ShareButton
-                url={shareUrl}
-                title="Bioritmul meu - SpiritHub.ro"
-                text={`Bioritmul meu pentru ${format(parseISO(targetDate), "d MMMM yyyy", { locale: ro })}`}
-              />
+              <div className="flex justify-center">
+                <ShareButton
+                  url={shareUrl}
+                  title="Bioritmul meu - SpiritHub.ro"
+                  text={`Bioritmul meu pentru ${format(parseISO(targetDate), "d MMMM yyyy", { locale: ro })}`}
+                />
+              </div>
             </Card>
 
             {/* CTA Section - Explore More */}

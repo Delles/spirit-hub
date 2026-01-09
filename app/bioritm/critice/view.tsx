@@ -28,8 +28,9 @@ export default function CriticalDaysView({
     const hasSubmitted = !!birthDate;
     const showResults = hasSubmitted && criticalDays !== null;
 
-    const handleSubmit = (birth: string) => {
+    const handleSubmit = (birth: string, _target: string) => {
         // Update URL - server will compute on next render
+        // Note: _target is ignored - critical days only needs birth date
         const params = new URLSearchParams();
         params.set("date", birth);
         router.push(`${pathname}?${params.toString()}`);
@@ -39,8 +40,8 @@ export default function CriticalDaysView({
         router.push(pathname);
     };
 
-    // Build share URL from pathname and birthDate (SSR-safe)
-    const shareUrl = birthDate ? `https://spirithub.ro${pathname}?date=${birthDate}` : "";
+    // Build share URL - use current window location (works on localhost and production)
+    const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
     return (
         <div className="py-8">
@@ -70,7 +71,7 @@ export default function CriticalDaysView({
                         {/* Form Section */}
                         <Card className="p-6 lg:p-8">
                             <BiorhythmForm
-                                onSubmit={(birth) => handleSubmit(birth)}
+                                onSubmit={handleSubmit}
                                 isLoading={false}
                                 showTargetDate={false}
                             />
@@ -102,17 +103,19 @@ export default function CriticalDaysView({
                         {/* Critical Days List */}
                         <CriticalDaysList criticalDays={criticalDays} />
 
-                        {/* Share Section */}
-                        <Card className="flex flex-col sm:flex-row gap-4 items-center justify-between p-6">
-                            <div className="text-center sm:text-left">
+                        {/* Share Section - matching daily-card layout */}
+                        <Card className="p-6">
+                            <div className="text-center mb-4">
                                 <h3 className="font-semibold mb-1 text-white">Distribuie rezultatul tău</h3>
                                 <p className="text-sm text-[#E0E0E0]">Împărtășește zilele tale critice cu prietenii</p>
                             </div>
-                            <ShareButton
-                                url={shareUrl}
-                                title="Zilele mele critice - SpiritHub.ro"
-                                text="Descoperă zilele critice din bioritmul tău pe SpiritHub.ro"
-                            />
+                            <div className="flex justify-center">
+                                <ShareButton
+                                    url={shareUrl}
+                                    title="Zilele mele critice - SpiritHub.ro"
+                                    text="Descoperă zilele critice din bioritmul tău pe SpiritHub.ro"
+                                />
+                            </div>
                         </Card>
 
                         {/* CTA Section - Explore More */}
