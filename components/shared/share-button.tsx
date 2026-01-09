@@ -153,7 +153,6 @@ export function ShareButton({
           return;
         }
         // Other errors (e.g., NotAllowedError on desktop) - fall through to clipboard
-        console.log("Native share not available, falling back to clipboard");
       }
     }
 
