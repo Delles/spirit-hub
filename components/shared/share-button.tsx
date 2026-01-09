@@ -58,8 +58,10 @@ export function ShareButton({
   // Check browser capabilities
   useEffect(() => {
     if (typeof navigator !== "undefined") {
-      // Check link sharing
-      setCanShareLinks("share" in navigator);
+      // Only enable native share on touch devices (mobile/tablet)
+      // Desktop browsers may have Web Share API but it often fails silently
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      setCanShareLinks(isTouchDevice && "share" in navigator);
 
       // Check file sharing
       if ("canShare" in navigator) {
