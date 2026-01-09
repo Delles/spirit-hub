@@ -103,17 +103,19 @@ export default function CriticalDaysView({
                         {/* Critical Days List */}
                         <CriticalDaysList criticalDays={criticalDays} />
 
-                        {/* Share Section */}
-                        <Card className="flex flex-col sm:flex-row gap-4 items-center justify-between p-6">
-                            <div className="text-center sm:text-left">
+                        {/* Share Section - matching daily-card layout */}
+                        <Card className="p-6">
+                            <div className="text-center mb-4">
                                 <h3 className="font-semibold mb-1 text-white">Distribuie rezultatul tău</h3>
                                 <p className="text-sm text-[#E0E0E0]">Împărtășește zilele tale critice cu prietenii</p>
                             </div>
-                            <ShareButton
-                                url={shareUrl}
-                                title="Zilele mele critice - SpiritHub.ro"
-                                text="Descoperă zilele critice din bioritmul tău pe SpiritHub.ro"
-                            />
+                            <div className="flex justify-center">
+                                <ShareButton
+                                    url={shareUrl}
+                                    title="Zilele mele critice - SpiritHub.ro"
+                                    text="Descoperă zilele critice din bioritmul tău pe SpiritHub.ro"
+                                />
+                            </div>
                         </Card>
 
                         {/* CTA Section - Explore More */}
