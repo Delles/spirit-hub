@@ -17,6 +17,20 @@ export const metadata: Metadata = {
     description:
       "Descoperă numărul zilei de astăzi și primește îndrumări numerologice pentru ziua curentă.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Numărul Zilei - SpiritHub.ro",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Numărul Zilei - Numerologie Zilnică | SpiritHub.ro",
+    description: "Descoperă numărul zilei de astăzi și primește îndrumări numerologice.",
+    images: ["/og-image.jpg"],
   },
   alternates: {
     canonical: "https://www.spirithub.ro/numerologie/numar-zilnic",
