@@ -10,25 +10,25 @@ import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: "Mesajul Universului | SpiritHub.ro",
-    description: "Descoperă mesajul tău zilnic de la Univers. Ghidare, inspirație și claritate pentru ziua ta.",
+    title: "Mesaj Spiritual Zilnic - Ghidare de la Univers | SpiritHub.ro",
+    description: "Primește mesajul tău zilnic de la Univers. Ghidare spirituală, inspirație și claritate pentru fiecare zi. Descoperă ce îți transmite cosmosul astăzi.",
     openGraph: {
-        title: "Mesajul Universului | SpiritHub.ro",
-        description: "Descoperă mesajul tău zilnic de la Univers. Ghidare, inspirație și claritate pentru ziua ta.",
+        title: "Mesaj Spiritual Zilnic | SpiritHub.ro",
+        description: "Primește mesajul tău zilnic de la Univers. Ghidare spirituală și inspirație pentru ziua ta.",
         type: "website",
         images: [
             {
                 url: "/og-image.jpg",
                 width: 1200,
                 height: 630,
-                alt: "Mesajul Universului - SpiritHub.ro",
+                alt: "Mesaj Spiritual Zilnic - SpiritHub.ro",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Mesajul Universului | SpiritHub.ro",
-        description: "Descoperă mesajul tău zilnic de la Univers. Ghidare, inspirație și claritate pentru ziua ta.",
+        title: "Mesaj Spiritual Zilnic | SpiritHub.ro",
+        description: "Primește mesajul tău zilnic de la Univers. Ghidare spirituală și inspirație.",
         images: ["/og-image.jpg"],
     },
     alternates: {

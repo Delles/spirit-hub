@@ -19,24 +19,27 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "SpiritHub.ro - Numerologie și Bioritm",
+  title: "Calculator Numerologie și Bioritm Online Gratuit | SpiritHub.ro",
   description:
-    "Platformă spirituală românească pentru numerologie și bioritm. Descoperă-ți numărul destinului și urmărește ciclurile tale fizice, emoționale și intelectuale.",
+    "Calculator numerologie gratuit: descoperă cifra destinului, calea vieții și compatibilitatea numerologică. Bioritm azi - află ciclurile tale fizice, emoționale și intelectuale.",
   keywords: [
-    "numerologie",
-    "bioritm",
-    "spiritualitate",
-    "românia",
-    "număr destin",
+    "calculator numerologie",
+    "numerologie gratuit",
+    "bioritm calculator",
+    "cifra destinului",
     "calea vietii",
     "compatibilitate numerologica",
+    "bioritm azi",
+    "numar destin",
+    "numerologie online",
+    "bioritm gratuit",
   ],
   authors: [{ name: "SpiritHub.ro" }],
   metadataBase: new URL("https://www.spirithub.ro"),
   openGraph: {
-    title: "SpiritHub.ro - Numerologie și Bioritm",
+    title: "Calculator Numerologie și Bioritm Online Gratuit | SpiritHub.ro",
     description:
-      "Platformă spirituală românească pentru numerologie și bioritm. Descoperă-ți numărul destinului.",
+      "Calculator numerologie gratuit: descoperă cifra destinului, calea vieții și verifică-ți bioritmul zilnic.",
     locale: "ro_RO",
     type: "website",
     siteName: "SpiritHub.ro",
@@ -45,15 +48,15 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "SpiritHub.ro - Numerologie și Bioritm",
+        alt: "Calculator Numerologie și Bioritm - SpiritHub.ro",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SpiritHub.ro - Numerologie și Bioritm",
+    title: "Calculator Numerologie și Bioritm Gratuit | SpiritHub.ro",
     description:
-      "Platformă spirituală românească pentru numerologie și bioritm.",
+      "Descoperă cifra destinului și verifică-ți bioritmul zilnic gratuit.",
     images: ["/og-image.jpg"],
   },
   robots: {

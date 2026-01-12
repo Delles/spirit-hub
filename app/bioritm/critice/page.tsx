@@ -11,25 +11,25 @@ import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Zile Critice Bioritm | SpiritHub.ro",
-  description: "Descoperă zilele critice din bioritmul tău când ciclurile trec prin zero.",
+  title: "Calculator Zile Critice Bioritm | SpiritHub.ro",
+  description: "Află zilele critice din bioritmul tău când ciclurile fizice, emoționale și intelectuale trec prin zero. Planifică-ți activitățile și evită riscurile în perioadele instabile.",
   openGraph: {
-    title: "Zile Critice Bioritm | SpiritHub.ro",
-    description: "Descoperă zilele critice din bioritmul tău când ciclurile trec prin zero.",
+    title: "Calculator Zile Critice Bioritm | SpiritHub.ro",
+    description: "Află zilele critice din bioritmul tău și planifică-ți activitățile pentru performanță maximă.",
     type: "website",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Zile Critice Bioritm - SpiritHub.ro",
+        alt: "Calculator Zile Critice Bioritm - SpiritHub.ro",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zile Critice Bioritm | SpiritHub.ro",
-    description: "Descoperă zilele critice din bioritmul tău când ciclurile trec prin zero.",
+    title: "Calculator Zile Critice Bioritm | SpiritHub.ro",
+    description: "Află zilele critice din bioritmul tău și planifică-ți activitățile inteligent.",
     images: ["/og-image.jpg"],
   },
   alternates: {

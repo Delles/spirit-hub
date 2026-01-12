@@ -38,9 +38,10 @@ export default function DashboardPage() {
 
           {/* Page Hero / Header Section */}
           <div className="text-center pt-8 pb-4 space-y-2 animate-fade-in">
-            <h1 className="text-[#E0E0E0] uppercase tracking-[0.2em] text-sm font-medium">
+            <h1 className="sr-only">Numerologie și Bioritm Online - Calculator Gratuit</h1>
+            <h2 className="text-[#E0E0E0] uppercase tracking-[0.2em] text-sm font-medium">
               Energia Zilei
-            </h1>
+            </h2>
             {/* Date - computed client-side to always show "today" */}
             <DateHeader />
             {/* Moon phase - computed client-side */}
