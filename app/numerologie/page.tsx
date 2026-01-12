@@ -8,9 +8,9 @@ import { JsonLd } from "@/components/shared/json-ld";
 import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 export const metadata: Metadata = {
-  title: "Numerologie - SpiritHub.ro",
+  title: "Calculator Numerologie Online Gratuit | SpiritHub.ro",
   description:
-    "Calculează-ți numărul destinului, numărul căii vieții, compatibilitatea și numerele zilnice. Descoperă semnificația numerelor tale personale.",
+    "Calculatoare numerologie gratuite: cifra destinului, calea vieții, compatibilitate și numărul zilei. Descoperă semnificația numerelor tale personale.",
   alternates: {
     canonical: "https://www.spirithub.ro/numerologie",
   },
