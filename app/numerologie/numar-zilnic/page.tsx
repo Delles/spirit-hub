@@ -3,6 +3,7 @@ import NumarZilnicClient from "./client";
 import { JsonLd } from "@/components/shared/json-ld";
 import { FAQSection } from "@/components/shared/faq-section";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
+import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 // Static page - daily content computed client-side via DailyContentProvider
 export const dynamic = "force-static";
@@ -16,6 +17,20 @@ export const metadata: Metadata = {
     description:
       "Descoperă numărul zilei de astăzi și primește îndrumări numerologice pentru ziua curentă.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Numărul Zilei - SpiritHub.ro",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Numărul Zilei - Numerologie Zilnică | SpiritHub.ro",
+    description: "Descoperă numărul zilei de astăzi și primește îndrumări numerologice.",
+    images: ["/og-image.jpg"],
   },
   alternates: {
     canonical: "https://www.spirithub.ro/numerologie/numar-zilnic",
@@ -41,6 +56,11 @@ const faqs = [
 export default function NumarZilnicPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: "Acasă", url: "https://www.spirithub.ro" },
+        { name: "Numerologie", url: "https://www.spirithub.ro/numerologie" },
+        { name: "Numărul Zilei" }
+      ]} />
       <JsonLd data={generateFAQJsonLd(faqs)} />
 
       <div className="flex flex-col min-h-screen">

@@ -18,11 +18,6 @@ export default function DashboardPage() {
     description:
       "Platformă spirituală românească pentru numerologie și bioritm. Descoperă-ți numărul destinului și urmărește ciclurile tale fizice, emoționale și intelectuale.",
     inLanguage: "ro-RO",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://www.spirithub.ro/numerologie?q={search_term_string}",
-      "query-input": "required name=search_term_string",
-    },
   };
 
   return (

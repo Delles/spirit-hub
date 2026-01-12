@@ -6,6 +6,7 @@ import { getCriticalDays } from "@/lib/biorhythm";
 import { getTodayISOBucharest } from "@/lib/daily-content";
 import CriticalDaysView from "./view";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
+import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 export const dynamic = "force-dynamic";
 
@@ -68,11 +69,18 @@ export default async function CriticeDaysPage({ searchParams }: PageProps) {
   }
 
   return (
-    <Suspense fallback={<LoadingSpinner text="Se încarcă..." />}>
-      <CriticalDaysView
-        criticalDays={criticalDays}
-        birthDate={dateParam ?? null}
-      />
-    </Suspense>
+    <>
+      <BreadcrumbSchema items={[
+        { name: "Acasă", url: "https://www.spirithub.ro" },
+        { name: "Bioritm", url: "https://www.spirithub.ro/bioritm" },
+        { name: "Zile Critice" }
+      ]} />
+      <Suspense fallback={<LoadingSpinner text="Se încarcă..." />}>
+        <CriticalDaysView
+          criticalDays={criticalDays}
+          birthDate={dateParam ?? null}
+        />
+      </Suspense>
+    </>
   );
 }

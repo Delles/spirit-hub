@@ -5,6 +5,7 @@ import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { JsonLd } from "@/components/shared/json-ld";
 import { FAQSection } from "@/components/shared/faq-section";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
+import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 // Force static generation - client handles URL params
 export const dynamic = "force-static";
@@ -56,6 +57,10 @@ const faqs = [
 export default function BioritmPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: "Acasă", url: "https://www.spirithub.ro" },
+        { name: "Bioritm" }
+      ]} />
       <JsonLd data={generateFAQJsonLd(faqs)} />
 
       <div className="flex flex-col min-h-screen">
