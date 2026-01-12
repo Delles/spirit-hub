@@ -7,6 +7,7 @@ import { parseISO, isValid } from "date-fns";
 import { JsonLd } from "@/components/shared/json-ld";
 import { FAQSection } from "@/components/shared/faq-section";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
+import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 export const metadata: Metadata = {
   title: "Compatibilitate Numerologică | SpiritHub.ro",
@@ -17,6 +18,20 @@ export const metadata: Metadata = {
     description:
       "Verifică compatibilitatea numerologică între două persoane folosind numele și datele de naștere.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Compatibilitate Numerologică - SpiritHub.ro",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Compatibilitate Numerologică | SpiritHub.ro",
+    description: "Verifică compatibilitatea numerologică între două persoane.",
+    images: ["/og-image.jpg"],
   },
   alternates: {
     canonical: "https://www.spirithub.ro/numerologie/compatibilitate",
@@ -76,6 +91,11 @@ export default async function CompatibilitatePage({ searchParams }: PageProps) {
 
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: "Acasă", url: "https://www.spirithub.ro" },
+        { name: "Numerologie", url: "https://www.spirithub.ro/numerologie" },
+        { name: "Compatibilitate" }
+      ]} />
       <JsonLd data={generateFAQJsonLd(faqs)} />
 
       <div className="flex flex-col min-h-screen">

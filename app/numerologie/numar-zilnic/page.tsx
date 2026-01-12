@@ -3,6 +3,7 @@ import NumarZilnicClient from "./client";
 import { JsonLd } from "@/components/shared/json-ld";
 import { FAQSection } from "@/components/shared/faq-section";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
+import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 // Static page - daily content computed client-side via DailyContentProvider
 export const dynamic = "force-static";
@@ -41,6 +42,11 @@ const faqs = [
 export default function NumarZilnicPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: "Acasă", url: "https://www.spirithub.ro" },
+        { name: "Numerologie", url: "https://www.spirithub.ro/numerologie" },
+        { name: "Numărul Zilei" }
+      ]} />
       <JsonLd data={generateFAQJsonLd(faqs)} />
 
       <div className="flex flex-col min-h-screen">

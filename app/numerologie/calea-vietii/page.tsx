@@ -5,6 +5,7 @@ import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { JsonLd } from "@/components/shared/json-ld";
 import { FAQSection } from "@/components/shared/faq-section";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
+import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 import { redirect } from "next/navigation";
 import { parseISO, isValid } from "date-fns";
@@ -16,11 +17,20 @@ export const metadata: Metadata = {
     title: "Calculator Calea Vieții - Numerologie | SpiritHub.ro",
     description: "Calculează numărul Căii Vieții și descoperă scopul și direcția ta în viață.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Calculator Calea Vieții - SpiritHub.ro",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Calculator Calea Vieții - Numerologie | SpiritHub.ro",
     description: "Calculează numărul Căii Vieții și descoperă scopul și direcția ta în viață.",
+    images: ["/og-image.jpg"],
   },
   alternates: {
     canonical: "https://www.spirithub.ro/numerologie/calea-vietii",
@@ -70,6 +80,11 @@ export default async function CaleaVietiiPage({ searchParams }: PageProps) {
 
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: "Acasă", url: "https://www.spirithub.ro" },
+        { name: "Numerologie", url: "https://www.spirithub.ro/numerologie" },
+        { name: "Calea Vieții" }
+      ]} />
       <JsonLd data={generateFAQJsonLd(faqs)} />
 
       <div className="flex flex-col min-h-screen">

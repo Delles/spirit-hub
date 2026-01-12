@@ -5,6 +5,7 @@ import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { JsonLd } from "@/components/shared/json-ld";
 import { FAQSection } from "@/components/shared/faq-section";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
+import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 export const metadata: Metadata = {
   title: "Numărul Destinului - Calculator Numerologie | SpiritHub.ro",
@@ -15,6 +16,20 @@ export const metadata: Metadata = {
     description:
       "Calculează-ți numărul destinului din numele complet și descoperă-ți misiunea în viață prin numerologie.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Numărul Destinului - SpiritHub.ro",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Numărul Destinului - Calculator Numerologie | SpiritHub.ro",
+    description: "Calculează-ți numărul destinului din numele complet și descoperă-ți misiunea în viață.",
+    images: ["/og-image.jpg"],
   },
   alternates: {
     canonical: "https://www.spirithub.ro/numerologie/nume-destin",
@@ -40,6 +55,11 @@ const faqs = [
 export default function NumeDestinPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: "Acasă", url: "https://www.spirithub.ro" },
+        { name: "Numerologie", url: "https://www.spirithub.ro/numerologie" },
+        { name: "Numărul Destinului" }
+      ]} />
       <JsonLd data={generateFAQJsonLd(faqs)} />
 
       <div className="flex flex-col min-h-screen">

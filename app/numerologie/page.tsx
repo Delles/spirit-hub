@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { FAQSection } from "@/components/shared/faq-section";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
 import { JsonLd } from "@/components/shared/json-ld";
+import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 export const metadata: Metadata = {
   title: "Numerologie - SpiritHub.ro",
@@ -42,6 +43,11 @@ const numerologieFAQs = [
 export default function NumerologiePage() {
   return (
     <>
+      {/* Breadcrumb Schema */}
+      <BreadcrumbSchema items={[
+        { name: "Acasă", url: "https://www.spirithub.ro" },
+        { name: "Numerologie" }
+      ]} />
       {/* FAQ Schema for rich results */}
       <JsonLd data={generateFAQJsonLd(numerologieFAQs)} />
 
