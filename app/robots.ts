@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
                 allow: '/',
             },
         ],
-        sitemap: 'https://spirithub.ro/sitemap.xml',
+        sitemap: 'https://www.spirithub.ro/sitemap.xml',
     }
 }

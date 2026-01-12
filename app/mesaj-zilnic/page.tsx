@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         images: ["/og-image.jpg"],
     },
     alternates: {
-        canonical: "https://spirithub.ro/mesaj-zilnic",
+        canonical: "https://www.spirithub.ro/mesaj-zilnic",
     },
 };
 

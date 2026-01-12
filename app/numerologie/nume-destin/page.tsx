@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://spirithub.ro/numerologie/nume-destin",
+    canonical: "https://www.spirithub.ro/numerologie/nume-destin",
   },
 };
 

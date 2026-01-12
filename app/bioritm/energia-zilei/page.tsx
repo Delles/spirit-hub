@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://spirithub.ro/bioritm/energia-zilei",
+    canonical: "https://www.spirithub.ro/bioritm/energia-zilei",
   },
 };
 

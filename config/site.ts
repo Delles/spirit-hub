@@ -33,8 +33,8 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: "SpiritHub.ro",
   description: "Platformă spirituală românească pentru numerologie, interpretare vise și bioritm",
-  url: "https://spirithub.ro",
-  ogImage: "https://spirithub.ro/og-image.jpg",
+  url: "https://www.spirithub.ro",
+  ogImage: "https://www.spirithub.ro/og-image.jpg",
 
   links: {
     facebook: undefined,

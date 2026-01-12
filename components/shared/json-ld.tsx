@@ -93,8 +93,8 @@ export const SPIRITHUB_ORGANIZATION: OrganizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "SpiritHub.ro",
-  url: "https://spirithub.ro",
-  logo: "https://spirithub.ro/icon-512.png",
+  url: "https://www.spirithub.ro",
+  logo: "https://www.spirithub.ro/icon-512.png",
   description: "Platformă spirituală românească pentru numerologie și bioritm.",
 };
 

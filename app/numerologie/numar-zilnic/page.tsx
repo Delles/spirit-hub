@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://spirithub.ro/numerologie/numar-zilnic",
+    canonical: "https://www.spirithub.ro/numerologie/numar-zilnic",
   },
 };
 

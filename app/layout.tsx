@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "compatibilitate numerologica",
   ],
   authors: [{ name: "SpiritHub.ro" }],
-  metadataBase: new URL("https://spirithub.ro"),
+  metadataBase: new URL("https://www.spirithub.ro"),
   openGraph: {
     title: "SpiritHub.ro - Numerologie și Bioritm",
     description:

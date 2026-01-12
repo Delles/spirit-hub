@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://spirithub.ro'
+    const baseUrl = 'https://www.spirithub.ro'
 
     return [
         // Homepage - highest priority, updates daily

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Calculează numărul Căii Vieții și descoperă scopul și direcția ta în viață.",
   },
   alternates: {
-    canonical: "https://spirithub.ro/numerologie/calea-vietii",
+    canonical: "https://www.spirithub.ro/numerologie/calea-vietii",
   },
 };
 

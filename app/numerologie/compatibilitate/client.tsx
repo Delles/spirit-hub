@@ -181,7 +181,7 @@ export default function CompatibilitateClient() {
               interpretation={interpretation}
               person1={person1Data}
               person2={person2Data}
-              shareUrl={`https://spirithub.ro${pathname}?name1=${encodeURIComponent(person1Data.name)}&date1=${date1Param}&name2=${encodeURIComponent(person2Data.name)}&date2=${date2Param}`}
+              shareUrl={`https://www.spirithub.ro${pathname}?name1=${encodeURIComponent(person1Data.name)}&date1=${date1Param}&name2=${encodeURIComponent(person2Data.name)}&date2=${date2Param}`}
             />
 
             {/* CTA Section - Explore More */}

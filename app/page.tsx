@@ -14,13 +14,13 @@ export default function DashboardPage() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "SpiritHub.ro",
-    url: "https://spirithub.ro",
+    url: "https://www.spirithub.ro",
     description:
       "Platformă spirituală românească pentru numerologie și bioritm. Descoperă-ți numărul destinului și urmărește ciclurile tale fizice, emoționale și intelectuale.",
     inLanguage: "ro-RO",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://spirithub.ro/numerologie?q={search_term_string}",
+      target: "https://www.spirithub.ro/numerologie?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };

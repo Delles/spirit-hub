@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://spirithub.ro/bioritm",
+    canonical: "https://www.spirithub.ro/bioritm",
   },
 };
 
