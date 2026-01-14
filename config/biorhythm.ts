@@ -73,8 +73,8 @@ export const biorhythmConfig: BiorhythmConfig = {
    * Interpretation Ranges
    *
    * Maps cycle values (-1.0 to 1.0) to interpretation levels:
-   * - critic: Near zero crossing (±0.1) - transition/unstable period
-   * - scăzut: Low phase (0.1 to 0.4 or -1.0 to -0.1) - recovery/recharge period
+   * - critic: Near zero crossing (±0.15) - transition/unstable period
+   * - scăzut: Low phase (0.15 to 0.4 or -1.0 to -0.15) - recovery/recharge period
    * - mediu: Medium phase (0.4 to 0.7) - moderate activity period
    * - ridicat: High phase (0.7 to 1.0) - peak performance period
    *
@@ -82,13 +82,13 @@ export const biorhythmConfig: BiorhythmConfig = {
    */
   interpretationRanges: [
     {
-      min: -0.1,
-      max: 0.1,
+      min: -0.15,
+      max: 0.15,
       level: "critic",
       key: "critical",
     },
     {
-      min: 0.1,
+      min: 0.15,
       max: 0.4,
       level: "scăzut",
       key: "low",

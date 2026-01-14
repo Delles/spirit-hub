@@ -270,8 +270,8 @@ export function getCriticalDays(birthDate: Date, startDate: Date, days: number):
   validateDate(birthDate, "birthDate");
   validateDate(startDate, "startDate");
 
-  if (days < 0) {
-    throw new ValidationError("days must be a positive number");
+  if (!Number.isFinite(days) || !Number.isInteger(days) || days <= 0) {
+    throw new ValidationError("days must be a positive integer");
   }
 
   const criticalDays: CriticalDay[] = [];
@@ -330,14 +330,13 @@ export function getWeekOutlook(
   validateDate(birthDate, "birthDate");
   validateDate(startDate, "startDate");
 
-  if (!Number.isFinite(days) || days < 0) {
-    throw new ValidationError("days must be a positive finite number");
+  if (!Number.isFinite(days) || !Number.isInteger(days) || days <= 0) {
+    throw new ValidationError("days must be a positive integer");
   }
 
-  const numDays = Math.floor(days);
   const outlook: DayOutlook[] = [];
 
-  for (let i = 0; i < numDays; i++) {
+  for (let i = 0; i < days; i++) {
     // Correct way to add days handling DST
     const currentDate = new Date(startDate);
     currentDate.setDate(startDate.getDate() + i);
