@@ -81,6 +81,27 @@ export interface CriticalDay {
 }
 
 /**
+ * Represents one day's complete biorhythm outlook for week preview
+ */
+export interface DayOutlook {
+  date: Date;
+  physical: number;
+  emotional: number;
+  intellectual: number;
+  physicalLevel: IntensityLevel;
+  emotionalLevel: IntensityLevel;
+  intellectualLevel: IntensityLevel;
+  physicalTrajectory: Trajectory;
+  emotionalTrajectory: Trajectory;
+  intellectualTrajectory: Trajectory;
+  isCritical: boolean;
+  criticalCycles: ("physical" | "emotional" | "intellectual")[];
+  bestCycle: "physical" | "emotional" | "intellectual" | null;
+  worstCycle: "physical" | "emotional" | "intellectual" | null;
+  overallStatus: "positive" | "mixed" | "negative" | "critical";
+}
+
+/**
  * Represents a daily biorhythm hint based on day of the week
  */
 export interface BiorhythmHint {
@@ -281,6 +302,112 @@ export function getCriticalDays(birthDate: Date, startDate: Date, days: number):
   }
 
   return criticalDays;
+}
+
+// ============================================================================
+// Week Outlook (Rich Daily Data for Week Preview)
+// ============================================================================
+
+/**
+ * Returns an array of DayOutlook objects for a given date range
+ * Used by the week preview component to show rich daily data
+ *
+ * @param birthDate - The person's birth date
+ * @param startDate - The start date of the range
+ * @param days - Number of days to include (default 7)
+ * @returns Array of DayOutlook objects with full cycle data
+ */
+export function getWeekOutlook(
+  birthDate: Date,
+  startDate: Date,
+  days: number = 7
+): DayOutlook[] {
+  validateDate(birthDate, "birthDate");
+  validateDate(startDate, "startDate");
+
+  if (days < 0) {
+    throw new ValidationError("days must be a positive number");
+  }
+
+  const outlook: DayOutlook[] = [];
+  const millisecondsPerDay = 1000 * 60 * 60 * 24;
+
+  for (let i = 0; i < days; i++) {
+    const currentDate = new Date(startDate.getTime() + i * millisecondsPerDay);
+
+    // Calculate cycle values
+    const physical = getPhysicalCycle(birthDate, currentDate);
+    const emotional = getEmotionalCycle(birthDate, currentDate);
+    const intellectual = getIntellectualCycle(birthDate, currentDate);
+
+    // Get intensity levels (requires the function to be defined, will use after this section)
+    const physicalLevel = getCycleIntensityLevel(physical);
+    const emotionalLevel = getCycleIntensityLevel(emotional);
+    const intellectualLevel = getCycleIntensityLevel(intellectual);
+
+    // Get trajectories
+    const physicalTrajectory = getCycleTrajectory(birthDate, currentDate, PHYSICAL_CYCLE_DAYS);
+    const emotionalTrajectory = getCycleTrajectory(birthDate, currentDate, EMOTIONAL_CYCLE_DAYS);
+    const intellectualTrajectory = getCycleTrajectory(birthDate, currentDate, INTELLECTUAL_CYCLE_DAYS);
+
+    // Check for critical cycles
+    const criticalCycles: ("physical" | "emotional" | "intellectual")[] = [];
+    if (Math.abs(physical) <= CRITICAL_THRESHOLD) criticalCycles.push("physical");
+    if (Math.abs(emotional) <= CRITICAL_THRESHOLD) criticalCycles.push("emotional");
+    if (Math.abs(intellectual) <= CRITICAL_THRESHOLD) criticalCycles.push("intellectual");
+
+    const isCritical = criticalCycles.length > 0;
+
+    // Find best cycle (highest positive value)
+    const cycles = [
+      { name: "physical" as const, value: physical },
+      { name: "emotional" as const, value: emotional },
+      { name: "intellectual" as const, value: intellectual },
+    ];
+
+    const positiveCycles = cycles.filter(c => c.value > 0.15);
+    const negativeCycles = cycles.filter(c => c.value < -0.15);
+
+    const bestCycle = positiveCycles.length > 0
+      ? positiveCycles.reduce((a, b) => a.value > b.value ? a : b).name
+      : null;
+
+    const worstCycle = negativeCycles.length > 0
+      ? negativeCycles.reduce((a, b) => a.value < b.value ? a : b).name
+      : null;
+
+    // Determine overall status
+    let overallStatus: "positive" | "mixed" | "negative" | "critical";
+    if (isCritical) {
+      overallStatus = "critical";
+    } else if (physical > 0.15 && emotional > 0.15 && intellectual > 0.15) {
+      overallStatus = "positive";
+    } else if (physical < -0.15 && emotional < -0.15 && intellectual < -0.15) {
+      overallStatus = "negative";
+    } else {
+      overallStatus = "mixed";
+    }
+
+    outlook.push({
+      date: currentDate,
+      physical,
+      emotional,
+      intellectual,
+      physicalLevel,
+      emotionalLevel,
+      intellectualLevel,
+      physicalTrajectory,
+      emotionalTrajectory,
+      intellectualTrajectory,
+      isCritical,
+      criticalCycles,
+      bestCycle,
+      worstCycle,
+      overallStatus,
+    });
+  }
+
+  return outlook;
 }
 
 // ============================================================================
