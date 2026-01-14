@@ -33,7 +33,11 @@
                 "Nu îți asuma riscuri extreme."
             ]
         },
-        "mantra": "Corpul meu este puternic și capabil."
+        "mantra": "Corpul meu este puternic și capabil.",
+        "trajectory_hints": {
+            "ascending": "Energia ta fizică atinge noi culmi. Mergi până la capăt!",
+            "descending": "Vârful a trecut, dar forța rămâne. Gestionează-ți resursele cu cap."
+        }
     },
     "physical_low": {
         "theme": {
@@ -69,7 +73,11 @@
                 "Nu ignora durerile mici."
             ]
         },
-        "mantra": "Onorez nevoia corpului meu de odihnă."
+        "mantra": "Onorez nevoia corpului meu de odihnă.",
+        "trajectory_hints": {
+            "ascending": "Ce a fost mai greu a trecut. Simți cum forța revine treptat.",
+            "descending": "Încă ești în faza de descărcare. Nu forța nota sub nicio formă."
+        }
     },
     "physical_critical": {
         "theme": {
@@ -105,7 +113,11 @@
                 "Nu ignora semnalele de amețeală."
             ]
         },
-        "mantra": "Sunt prezent și atent la fiecare pas."
+        "mantra": "Sunt prezent și atent la fiecare pas.",
+        "trajectory_hints": {
+            "ascending": "Treci spre o fază activă. Atenția de azi e fundația succesului de mâine.",
+            "descending": "Te îndrepți spre odihnă. Acceptă încetinirea ritmului cu grație."
+        }
     },
     "physical_peak": {
         "theme": {
@@ -141,7 +153,11 @@
                 "Nu neglija încălzirea prealabilă."
             ]
         },
-        "mantra": "Sunt la apogeul puterii mele și mă ridic la înălțimea lui."
+        "mantra": "Sunt la apogeul puterii mele și mă ridic la înălțimea lui.",
+        "trajectory_hints": {
+            "ascending": "Ești chiar pe val! Acționează acum, e momentul tău de glorie.",
+            "descending": "Bucură-te de ultimele momente la vârf. Începe să consolidezi rezultatele."
+        }
     },
     "physical_rising": {
         "theme": {
@@ -177,7 +193,11 @@
                 "Nu fi nerăbdător."
             ]
         },
-        "mantra": "Puterea mea crește cu fiecare clipă."
+        "mantra": "Puterea mea crește cu fiecare clipă.",
+        "trajectory_hints": {
+            "ascending": "Viteza de croazieră crește. Pregătește-te pentru efort susținut.",
+            "descending": "O mică pauză în ascensiune. Nu te alarma, ritmul e natural."
+        }
     },
     "physical_falling": {
         "theme": {
@@ -213,7 +233,11 @@
                 "Nu neglija odihna."
             ]
         },
-        "mantra": "Accept ritmul natural al corpului meu."
+        "mantra": "Accept ritmul natural al corpului meu.",
+        "trajectory_hints": {
+            "ascending": "O revenire neașteptată de formă. Profită de micul plus de energie.",
+            "descending": "Panta devine mai lină. Coboară cu atenție și conservă-ți forțele."
+        }
     },
     "physical_valley": {
         "theme": {
@@ -249,7 +273,11 @@
                 "Nu programa activități solicitante."
             ]
         },
-        "mantra": "Ofer corpului meu odihna pe care o merită."
+        "mantra": "Ofer corpului meu odihna pe care o merită.",
+        "trajectory_hints": {
+            "ascending": "Resetarea e aproape gata. Începi să simți primii fiori ai noii energii.",
+            "descending": "Ești la punctul de minim. Odihna de acum este non-negociabilă."
+        }
     },
     "emotional_high": {
         "theme": {
@@ -285,7 +313,11 @@
                 "Nu îți ascunde adevărul."
             ]
         },
-        "mantra": "Mă deschid către iubire și înțelegere."
+        "mantra": "Mă deschid către iubire și înțelegere.",
+        "trajectory_hints": {
+            "ascending": "Inima ta se revarsă de bucurie. Împarte acest magnetism cu ceilalți.",
+            "descending": "Efervescența scade, făcând loc unei conexiuni mai profunde și calme."
+        }
     },
     "emotional_low": {
         "theme": {
@@ -321,7 +353,11 @@
                 "Nu te izola complet de suport."
             ]
         },
-        "mantra": "Îmi accept emoțiile și îmi găsesc pacea interioară."
+        "mantra": "Îmi accept emoțiile și îmi găsesc pacea interioară.",
+        "trajectory_hints": {
+            "ascending": "Ceața se risipește. Începi să vezi lumina la capătul tunelului emoțional.",
+            "descending": "Aprofundează-ți starea de liniște. Nu e momentul pentru efort social."
+        }
     },
     "emotional_critical": {
         "theme": {
@@ -357,7 +393,11 @@
                 "Nu pune presiune pe alții."
             ]
         },
-        "mantra": "Rămân centrat în mijlocul schimbării."
+        "mantra": "Rămân centrat în mijlocul schimbării.",
+        "trajectory_hints": {
+            "ascending": "Treci spre optimism. Lasă în urmă vechile griji, se ridică soarele.",
+            "descending": "Inima se pregătește de reculegere. Fii blând cu propriile tale trăiri."
+        }
     },
     "emotional_peak": {
         "theme": {
@@ -393,7 +433,11 @@
                 "Nu irosi această energie pe negativiști."
             ]
         },
-        "mantra": "Strălucesc și împărtășesc lumina mea cu lumea."
+        "mantra": "Strălucesc și împărtășesc lumina mea cu lumea.",
+        "trajectory_hints": {
+            "ascending": "Ești la intensitate maximă. Iradierea ta îi vindecă și pe cei din jur.",
+            "descending": "Bucură-te de acest apogeu. Începe să interiorizezi lecțiile primite."
+        }
     },
     "emotional_rising": {
         "theme": {
@@ -429,7 +473,11 @@
                 "Nu grăbi procesul natural."
             ]
         },
-        "mantra": "Mă deschid treptat spre bucurie și conexiune."
+        "mantra": "Mă deschid treptat spre bucurie și conexiune.",
+        "trajectory_hints": {
+            "ascending": "Entuziasmul crește vizibil. Ziua e perfectă pentru noi începuturi.",
+            "descending": "O mică pauză în deschidere. Recalibrează-te și mergi mai departe."
+        }
     },
     "emotional_falling": {
         "theme": {
@@ -465,7 +513,11 @@
                 "Nu-ți cere prea mult emoțional."
             ]
         },
-        "mantra": "Îmi protejez pacea și mă retrag cu înțelepciune."
+        "mantra": "Îmi protejez pacea și mă retrag cu înțelepciune.",
+        "trajectory_hints": {
+            "ascending": "Simți o mică revigorare sufletească. Ieși puțin la lumină.",
+            "descending": "Retragerea continuă lin. Siguranța ta interioară e prioritatea zero."
+        }
     },
     "emotional_valley": {
         "theme": {
@@ -501,7 +553,11 @@
                 "Nu te judeca pentru sensibilitate."
             ]
         },
-        "mantra": "Mă vindec în liniște și îmi respect nevoia de repaus."
+        "mantra": "Mă vindec în liniște și îmi respect nevoia de repaus.",
+        "trajectory_hints": {
+            "ascending": "Procesul de vindecare e aproape de final. Pregătește-te de o nouă primăvară.",
+            "descending": "Ești chiar în inima peșterii. Aici găsești cele mai prețioase răspunsuri."
+        }
     },
     "intellectual_high": {
         "theme": {
@@ -537,7 +593,11 @@
                 "Nu critica aspru."
             ]
         },
-        "mantra": "Găsesc soluții clare și inteligente."
+        "mantra": "Găsesc soluții clare și inteligente.",
+        "trajectory_hints": {
+            "ascending": "Claritatea ta mentală este în plină expansiune. Atacă cele mai grele probleme.",
+            "descending": "Logica rămâne solidă, dar viteza de procesare scade ușor. Prioritizează calitatea."
+        }
     },
     "intellectual_low": {
         "theme": {
@@ -573,7 +633,11 @@
                 "Nu te baza doar pe memorie."
             ]
         },
-        "mantra": "Îmi las mintea să se odihnească și să viseze."
+        "mantra": "Îmi las mintea să se odihnească și să viseze.",
+        "trajectory_hints": {
+            "ascending": "Ceața mentală începe să se ridice. Ideile noi încep să prindă contur logic.",
+            "descending": "Mintea cere detașare totală. Nu forța nicio decizie importantă acum."
+        }
     },
     "intellectual_critical": {
         "theme": {
@@ -609,7 +673,11 @@
                 "Nu te angaja la termene strânse."
             ]
         },
-        "mantra": "Verific și acționez cu înțelepciune."
+        "mantra": "Verific și acționez cu înțelepciune.",
+        "trajectory_hints": {
+            "ascending": "Treci spre o fază de mare precizie. Ordinea de azi e succesul de mâine.",
+            "descending": "Gândirea se îndreaptă spre relaxare. Acceptă că nu poți fi mereu focusat la maxim."
+        }
     },
     "intellectual_peak": {
         "theme": {
@@ -645,7 +713,11 @@
                 "Nu amâna deciziile pentru altă zi."
             ]
         },
-        "mantra": "Mintea mea e clară, puternică și pregătită pentru orice."
+        "mantra": "Mintea mea e clară, puternică și pregătită pentru orice.",
+        "trajectory_hints": {
+            "ascending": "Ești în vârful de formă mentală. Geniul tău este acum în acțiune.",
+            "descending": "Bazează-te pe această claritate extraordinară cât încă mai e la cote maxime."
+        }
     },
     "intellectual_rising": {
         "theme": {
@@ -681,7 +753,11 @@
                 "Nu te grăbi cu concluzii."
             ]
         },
-        "mantra": "Claritatea mea mentală crește cu fiecare oră."
+        "mantra": "Claritatea mea mentală crește cu fiecare oră.",
+        "trajectory_hints": {
+            "ascending": "Puterea de concentrare se adună. Pregătește proiectele care cer focus.",
+            "descending": "O mică pauză în ascensiune. Reorganizează-ți prioritățile mentale."
+        }
     },
     "intellectual_falling": {
         "theme": {
@@ -717,7 +793,11 @@
                 "Nu ignora nevoia de pauză."
             ]
         },
-        "mantra": "Îmi permit să gândesc mai simplu și mai relaxat."
+        "mantra": "Îmi permit să gândesc mai simplu și mai relaxat.",
+        "trajectory_hints": {
+            "ascending": "Simți un mic suflu de noutate mentală. Explorează idei simple.",
+            "descending": "Mintea coboară spre repaus. Simplifică tot ce poți în agenda ta."
+        }
     },
     "intellectual_valley": {
         "theme": {
@@ -753,7 +833,11 @@
                 "Nu-ți cere performanță."
             ]
         },
-        "mantra": "Permit minții mele să se reseteze complet."
+        "mantra": "Permit minții mele să se reseteze complet.",
+        "trajectory_hints": {
+            "ascending": "Resetarea mentală e aproape completă. Simți cum logica se reface.",
+            "descending": "Ești la punctul de minim cognitiv. Odihna minții e datoria ta de azi."
+        }
     },
     "all_high": {
         "theme": {
@@ -789,7 +873,11 @@
                 "Nu te mulțumi cu puțin."
             ]
         },
-        "mantra": "Sunt aliniat cu cea mai bună versiune a mea."
+        "mantra": "Sunt aliniat cu cea mai bună versiune a mea.",
+        "trajectory_hints": {
+            "ascending": "Toate motoarele sunt la maxim! E timpul pentru marea ta mișcare.",
+            "descending": "Sinergia persistă, dar vârful comun a trecut. Bucură-te de armonie."
+        }
     },
     "all_low": {
         "theme": {
@@ -825,6 +913,10 @@
                 "Nu te compara cu alții."
             ]
         },
-        "mantra": "Mă regenerez în liniște și pace."
+        "mantra": "Mă regenerez în liniște și pace.",
+        "trajectory_hints": {
+            "ascending": "Timpul de hibernare se încheie. Lumina începe să pătrundă pe toate planurile.",
+            "descending": "Ești în inima regenerării. Această tăcere este izvorul forței tale viitoare."
+        }
     }
 }

@@ -8,7 +8,12 @@ import {
   getPhysicalCycle,
   getEmotionalCycle,
   getIntellectualCycle,
-  getBiorhythmInterpretation
+  getBiorhythmInterpretation,
+  getPhysicalTrajectory,
+  getEmotionalTrajectory,
+  getIntellectualTrajectory,
+  getCycleIntensityLevel,
+  type Trajectory,
 } from "@/lib/biorhythm";
 import { getTodayISOBucharest } from "@/lib/daily-content";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
@@ -60,14 +65,41 @@ export default function BioritmClient() {
       const emotional = getEmotionalCycle(birth, target);
       const intellectual = getIntellectualCycle(birth, target);
 
+      const pTraj = getPhysicalTrajectory(birth, target);
+      const eTraj = getEmotionalTrajectory(birth, target);
+      const iTraj = getIntellectualTrajectory(birth, target);
+
       // Get the rich interpretation based on the cycles
       const interpretation = getBiorhythmInterpretation(physical, emotional, intellectual);
+
+      // Determine which trajectory to show (must match getBiorhythmInterpretation logic)
+      let trajectory: Trajectory = 'stable';
+      const pLevel = getCycleIntensityLevel(physical);
+      const eLevel = getCycleIntensityLevel(emotional);
+      const iLevel = getCycleIntensityLevel(intellectual);
+
+      if (pLevel === 'critical') trajectory = pTraj;
+      else if (eLevel === 'critical') trajectory = eTraj;
+      else if (iLevel === 'critical') trajectory = iTraj;
+      else if (physical > 0.35 && emotional > 0.35 && intellectual > 0.35) trajectory = pTraj; // Super Day
+      else if (physical < -0.35 && emotional < -0.35 && intellectual < -0.35) trajectory = pTraj; // Recharge Day
+      else {
+        const pAbs = Math.abs(physical);
+        const eAbs = Math.abs(emotional);
+        const iAbs = Math.abs(intellectual);
+        const maxAbs = Math.max(pAbs, eAbs, iAbs);
+
+        if (maxAbs === pAbs) trajectory = pTraj;
+        else if (maxAbs === eAbs) trajectory = eTraj;
+        else trajectory = iTraj;
+      }
 
       return {
         physical,
         emotional,
         intellectual,
         interpretation,
+        trajectory,
         birthDate,
         targetDate
       };
@@ -147,7 +179,10 @@ export default function BioritmClient() {
             </Card>
 
             {/* 2. Interpretation Card (The "Stream of Cards") */}
-            <BiorhythmCard interpretation={biorhythm.interpretation} />
+            <BiorhythmCard
+              interpretation={biorhythm.interpretation}
+              trajectory={biorhythm.trajectory}
+            />
 
             {/* Share Section - matching daily-card layout */}
             <Card className="p-6 bg-black/40 backdrop-blur-xl border-white/10">
