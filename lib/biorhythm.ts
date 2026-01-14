@@ -393,6 +393,7 @@ export function getBiorhythmInterpretation(
   const ARCHETYPE_HIGH_THRESHOLD = 0.35;
   const ARCHETYPE_LOW_THRESHOLD = -0.35;
   const ARCHETYPE_CRITICAL_THRESHOLD = 0.2;
+  const ARCHETYPE_DEEP_VALLEY_THRESHOLD = -0.5;
 
   // Helper to safely get interpretation with fallback
   const getInterpretation = (key: string): BiorhythmInterpretationData => {
@@ -454,9 +455,9 @@ export function getBiorhythmInterpretation(
 
   // Vulcanul Adormit: All falling below -0.5
   if (
-    physical < -0.5 &&
-    emotional < -0.5 &&
-    intellectual < -0.5
+    physical < ARCHETYPE_DEEP_VALLEY_THRESHOLD &&
+    emotional < ARCHETYPE_DEEP_VALLEY_THRESHOLD &&
+    intellectual < ARCHETYPE_DEEP_VALLEY_THRESHOLD
   ) {
     return getInterpretation("archetype_sleeping_volcano");
   }
