@@ -329,18 +329,20 @@ export function getWeekOutlook(
     throw new ValidationError("days must be a positive number");
   }
 
+  const numDays = Math.floor(days);
   const outlook: DayOutlook[] = [];
-  const millisecondsPerDay = 1000 * 60 * 60 * 24;
 
-  for (let i = 0; i < days; i++) {
-    const currentDate = new Date(startDate.getTime() + i * millisecondsPerDay);
+  for (let i = 0; i < numDays; i++) {
+    // Correct way to add days handling DST
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i);
 
     // Calculate cycle values
     const physical = getPhysicalCycle(birthDate, currentDate);
     const emotional = getEmotionalCycle(birthDate, currentDate);
     const intellectual = getIntellectualCycle(birthDate, currentDate);
 
-    // Get intensity levels (requires the function to be defined, will use after this section)
+    // Get intensity levels
     const physicalLevel = getCycleIntensityLevel(physical);
     const emotionalLevel = getCycleIntensityLevel(emotional);
     const intellectualLevel = getCycleIntensityLevel(intellectual);
@@ -350,11 +352,11 @@ export function getWeekOutlook(
     const emotionalTrajectory = getCycleTrajectory(birthDate, currentDate, EMOTIONAL_CYCLE_DAYS);
     const intellectualTrajectory = getCycleTrajectory(birthDate, currentDate, INTELLECTUAL_CYCLE_DAYS);
 
-    // Check for critical cycles
+    // Check for critical cycles directly from intensity levels (Single Source of Truth)
     const criticalCycles: ("physical" | "emotional" | "intellectual")[] = [];
-    if (Math.abs(physical) <= CRITICAL_THRESHOLD) criticalCycles.push("physical");
-    if (Math.abs(emotional) <= CRITICAL_THRESHOLD) criticalCycles.push("emotional");
-    if (Math.abs(intellectual) <= CRITICAL_THRESHOLD) criticalCycles.push("intellectual");
+    if (physicalLevel === "critical") criticalCycles.push("physical");
+    if (emotionalLevel === "critical") criticalCycles.push("emotional");
+    if (intellectualLevel === "critical") criticalCycles.push("intellectual");
 
     const isCritical = criticalCycles.length > 0;
 
@@ -378,6 +380,7 @@ export function getWeekOutlook(
 
     // Determine overall status
     let overallStatus: "positive" | "mixed" | "negative" | "critical";
+
     if (isCritical) {
       overallStatus = "critical";
     } else if (physical > 0.15 && emotional > 0.15 && intellectual > 0.15) {
