@@ -839,6 +839,326 @@
             "descending": "Ești la punctul de minim cognitiv. Odihna minții e datoria ta de azi."
         }
     },
+    "archetype_warrior_silent": {
+        "theme": {
+            "primary": "from-red-600 to-slate-600",
+            "accent": "text-red-700",
+            "bg_soft": "bg-red-50",
+            "hex": "#DC2626"
+        },
+        "hero": {
+            "icon": "Swords",
+            "title": "Războinicul Tăcut",
+            "subtitle": "Forță Reținută",
+            "headline": "Corpul e pregătit, dar inima s-a retras. Acționează, nu simți."
+        },
+        "tags": [
+            "Forță",
+            "Izolare",
+            "Acțiune",
+            "Detașare"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Războinicul Solitar**. Corpul tău este la maxim – energia fizică îți cere acțiune intensă – dar inima ta s-a retras în cochilie. Ești capabil de performanță fizică, dar fără bucuria sau conexiunea emoțională care de obicei o însoțește.\n\nEsti o forță de natură, dar una singuratică. Poți accompli mult fizic, dar fără a simți nevoie de validare sau de partajare cu alții. Riscul este să devii rece sau distant față de cei dragi.\n\nMisiunea ta este să **acționezi singur**. Fă antrenamentul solo, lucrează la proiectele fizice individuale, atacă sarcini grele care nu necesită interacțiune socială. Respectă nevoia de solitudine emoțională, dar nu te izola complet.",
+            "dos": [
+                "Antrenamente solo intense.",
+                "Proiecte practice care nu cer colaborare.",
+                "Muncă fizică intensă individuală.",
+                "Timp singur cu tine."
+            ],
+            "donts": [
+                "Nu îți ascunde complet emoțiile.",
+                "Nu devii distant cu cei dragi.",
+                "Nu forța conexiuni sociale.",
+                "Nu ignora nevoia ta de spațiu."
+            ]
+        },
+        "mantra": "Sunt puternic chiar și în tăcere.",
+        "trajectory_hints": {
+            "ascending": "Forța fizică crește, dar inima rămâne reținută. Respectă acest echilibru unic.",
+            "descending": "Corpul începe să se retragă și el. E timpul pentru odihnă totală curând."
+        }
+    },
+    "archetype_sage": {
+        "theme": {
+            "primary": "from-yellow-500 to-slate-500",
+            "accent": "text-yellow-700",
+            "bg_soft": "bg-yellow-50",
+            "hex": "#EAB308"
+        },
+        "hero": {
+            "icon": "BookOpen",
+            "title": "Înțeleptul",
+            "subtitle": "Gândire fără Acțiune",
+            "headline": "Mintea strălucește, dar corpul cere pauză. Gândește, nu acționa."
+        },
+        "tags": [
+            "Înțelepciune",
+            "Strategie",
+            "Repaus",
+            "Planificare"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Filosoful în Fotoliu**. Mintea ta este excepțional de clară și precisă, dar corpul tău este în faza de regenerare profundă. Ești perfect echipat pentru gândire strategică, dar energetic nepregătit pentru acțiune fizică.\n\nAcesta este momentul pentru planificare, nu pentru execuție. Pentru teoria detaliului, nu pentru muncă grea. Inteligenţa ta e armă principală azi – corpul e în pauză.\n\nMisiunea ta este să **gândești fără a acționa**. Fă planuri detaliate, strategii pe termen lung, analize profunde. Nu încerca să implementezi fizic – doar desenează harta. Execuția va veni când corpul va fi gata.",
+            "dos": [
+                "Planifică strategic.",
+                "Scrie și analizează.",
+                "Studiază și învață teoretic.",
+                "Rezolvă probleme complexe pe hârtie."
+            ],
+            "donts": [
+                "Nu forța efortul fizic.",
+                "Nu începi proiecte care cer muncă intensă.",
+                "Nu te frustrezi că nu poți executa.",
+                "Nu ignora nevoia de odihnă fizică."
+            ]
+        },
+        "mantra": "Mintea mea strălucește chiar când corpul se odihnește.",
+        "trajectory_hints": {
+            "ascending": "Claritatea mentală continuă să crească. Profită de această perspectivă unică.",
+            "descending": "Logica rămâne solidă, dar începe să se retragă și ea. Finalizează gândirea ta acum."
+        }
+    },
+    "archetype_artist": {
+        "theme": {
+            "primary": "from-sky-500 to-amber-400",
+            "accent": "text-sky-700",
+            "bg_soft": "bg-sky-50",
+            "hex": "#0EA5E9"
+        },
+        "hero": {
+            "icon": "Palette",
+            "title": "Artistul",
+            "subtitle": "Simțire fără Logică",
+            "headline": "Inima radiază, dar mintea doarme. Simte, nu analiza."
+        },
+        "tags": [
+            "Creativitate",
+            "Emoție",
+            "Artă",
+            "Intuiție"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Sufletul Creativ**. Ciclul emoțional este la culmi rare – inima ta este deschisă, receptivă și plină de sensibilitate. Dar mintea analitică este în pauză profundă, lăsând intuiția și simțirea să conducă.\n\nEsti perfect echipat pentru expresie artistică, pentru conexiuni autentice bazate pe simțire pură, nu pe analiză. Logica ar fi un obstacol astăzi – lasă-te purtat de val emoțional.\n\nMisiunea ta este să **simți profund**. Creează artă, muzică, scris emoțional. Conectează-te cu oamenii de la inimă la inimă, fără filtre raționale. Lasă emoțiile să curgă liber și fără judecată.",
+            "dos": [
+                "Creează artă în orice formă.",
+                "Exprimă-ți emoțiile autent.",
+                "Conectează-te sufletește cu alții.",
+                "Urmează intuiția, nu logica."
+            ],
+            "donts": [
+                "Nu încerca să analizezi tot.",
+                "Nu lua decizii logice majore.",
+                "Nu-ți reprima creativitatea.",
+                "Nu te judeca pentru sensibilitate."
+            ]
+        },
+        "mantra": "Simt profund și creez din inimă.",
+        "trajectory_hints": {
+            "ascending": "Fluxul emoțional este în plină expansiune. Lasă-te purtat de inspiraţie.",
+            "descending": "Bucură-te de această conexiune emoțională unică cât mai durează."
+        }
+    },
+    "archetype_pragmatic": {
+        "theme": {
+            "primary": "from-red-500 to-yellow-500",
+            "accent": "text-red-600",
+            "bg_soft": "bg-orange-50",
+            "hex": "#EF4444"
+        },
+        "hero": {
+            "icon": "Briefcase",
+            "title": "Pragmaticul",
+            "subtitle": "Execuție Rațională",
+            "headline": "Corp și minte unite. Inima stă deoparte. Logica peste emoție."
+        },
+        "tags": [
+            "Eficiență",
+            "Logică",
+            "Execuție",
+            "Rezultate"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Mașina de Rezultate**. Corpul și mintea lucrează în tandem perfect – ai energie fizică și claritate mentală, dar emoțiile sunt în retragere. Ești perfect echipat pentru execuție eficientă, fără a fi distras de sentimente.\n\nEști robotul perfect azi – capabil să executez sarcini complexe care cer atât forță fizică, cât și gândire strategică. Riscul este să pari rece sau lipsit de empatie față de cei din jur.\n\nMisiunea ta este **execuția perfectă**. Atacă proiectele care cer atât mușchi, cât și creier. Organizează, construiește, implementează. Lași emoțiile pentru altă zi – azi e ziua rezultatelor tangibile.",
+            "dos": [
+                "Proiecte care cer corp și minte.",
+                "Sarcini complexe de implementare.",
+                "Organizare și execuție eficientă.",
+                "Rezolvare de probleme practice."
+            ],
+            "donts": [
+                "Nu ignora complet emoțiile altora.",
+                "Nu devii rigid sau insensibil.",
+                "Nu uiți că empatia contează.",
+                "Nu amâni conversațiile emoționale nedefinit."
+            ]
+        },
+        "mantra": "Execut cu precizie și eficiență.",
+        "trajectory_hints": {
+            "ascending": "Sinergia corp-minte este în creștere. Atacă cele mai complexe provocări practice.",
+            "descending": "Eficiența rămâne solidă. Consolidează rezultatele obținute azi."
+        }
+    },
+    "archetype_dreamer": {
+        "theme": {
+            "primary": "from-sky-400 to-yellow-400",
+            "accent": "text-sky-600",
+            "bg_soft": "bg-sky-50",
+            "hex": "#38BDF8"
+        },
+        "hero": {
+            "icon": "CloudSun",
+            "title": "Visătorul",
+            "subtitle": "Idei fără Energie",
+            "headline": "Inimă și minte strălucesc. Corpul doarme. Visează, planifică, așteaptă."
+        },
+        "tags": [
+            "Viziune",
+            "Planificare",
+            "Inspirație",
+            "Răbdare"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Arhitectul Vizionar**. Emoțional ești deschis și optimist, intelectual ești clar și creativ – dar fizic ești în regenerare profundă. Ai viziunea perfectă, dar nu și energia să o execuți.\n\nEste ziua perfectă pentru a visa mare, a planifica în detaliu și a te inspira, dar nu pentru a construi fizic. Ești creatorul planurilor, nu încă realizatorul lor.\n\nMisiunea ta este să **visezi și planifici**. Desenează viziunea ta completă, scrie planurile detaliate, inspiră-te și inspiră-i pe alții. Când corpul va fi gata, vei avea harta perfectă pregătită.",
+            "dos": [
+                "Vizualizează obiective mari.",
+                "Creează planuri detaliate.",
+                "Discută idei cu alții.",
+                "Inspiră-te și inspiră."
+            ],
+            "donts": [
+                "Nu forța implementarea fizică.",
+                "Nu te frustrezi că nu poți executa.",
+                "Nu minimalizezi valoarea planificării.",
+                "Nu ignori nevoia de odihnă fizică."
+            ]
+        },
+        "mantra": "Visez clar și planific perfect pentru ziua execuției.",
+        "trajectory_hints": {
+            "ascending": "Viziunea se cristalizează tot mai clar. Documentează fiecare detaliu.",
+            "descending": "Bucură-te de această sinergie mentală-emoțională unică cât mai durează."
+        }
+    },
+    "archetype_crossroads": {
+        "theme": {
+            "primary": "from-amber-400 to-orange-500",
+            "accent": "text-amber-600",
+            "bg_soft": "bg-amber-50",
+            "hex": "#F59E0B"
+        },
+        "hero": {
+            "icon": "GitBranch",
+            "title": "Răscrucea",
+            "subtitle": "Flux Total",
+            "headline": "Totul e în tranziție. Observă fără a acționa."
+        },
+        "tags": [
+            "Tranziție",
+            "Observare",
+            "Neutralitate",
+            "Detașare"
+        ],
+        "content": {
+            "main_text": "Astăzi ești în **Punctul Zero**. Toate cele trei cicluri sunt aproape de pragul critic – fizic, emoțional și intelectual. Totul este în flux, în schimbare, în recalibrare. Ești între două lumi, între vechi și nou.\n\nAcesta nu este un moment de acțiune, ci de observare. Deciziile luate acum ar fi bazate pe fundații instabile. Este o zi rară de reset complet.\n\nMisiunea ta este **non-acțiunea conștientă**. Observă ce se întâmplă în tine și în jurul tău fără a interveni. Fii martorul schimbării, nu forța care o direcționează. Mâine totul va fi mai clar.",
+            "dos": [
+                "Observă fără a judeca.",
+                "Meditează și contemplă.",
+                "Amână deciziile mari.",
+                "Fii prezent în tranziție."
+            ],
+            "donts": [
+                "Nu forța nicio decizie.",
+                "Nu începi nimic nou.",
+                "Nu te alarmi de instabilitate.",
+                "Nu te judeci pentru confuzie."
+            ]
+        },
+        "mantra": "Observ liniștit marea schimbare din mine.",
+        "trajectory_hints": {
+            "ascending": "Ieși treptat din zona de flux. Claritatea se naște din haos.",
+            "descending": "Intri mai adânc în tranziție. Acceptă incertitudinea cu pace."
+        }
+    },
+    "archetype_partial_eclipse": {
+        "theme": {
+            "primary": "from-orange-500 to-slate-500",
+            "accent": "text-orange-600",
+            "bg_soft": "bg-orange-50",
+            "hex": "#F97316"
+        },
+        "hero": {
+            "icon": "CircleDashed",
+            "title": "Eclipsa Parțială",
+            "subtitle": "Sistem Mixt",
+            "headline": "Două motoare stau, unul merge. Navighează cu ce ai."
+        },
+        "tags": [
+            "Adaptare",
+            "Compensare",
+            "Flexibilitate",
+            "Prudență"
+        ],
+        "content": {
+            "main_text": "Astăzi ești **Nava cu Un Motor**. Două dintre cele trei cicluri ale tale sunt în zona critică – instabile sau în tranziție – în timp ce unul singur funcționează normal. Ești funcțional, dar nu la capacitate maximă.\n\nPoți încă naviga ziua, dar trebuie să te bazezi în proporție mare pe ciclul care funcționează. Compensezi slăbiciunile cu punctul tău forte al zilei.\n\nMisiunea ta este **adaptarea inteligentă**. Identifică care ciclu îți merge bine (fizic, emoțional sau intelectual) și bazează-ți ziua pe el. Evită să ceri prea mult de la ciclurile critice. Flexibilitate și prudență sunt cheile.",
+            "dos": [
+                "Identifică punctul tău forte al zilei.",
+                "Bazează-te pe ciclul stabil.",
+                "Compensează slăbiciunile conștient.",
+                "Fii flexibil în abordare."
+            ],
+            "donts": [
+                "Nu forța ciclurile critice.",
+                "Nu te aștepți la performanță maximă.",
+                "Nu ignori limitele momentului.",
+                "Nu te frustrezi de incomplet."
+            ]
+        },
+        "mantra": "Mă adaptez cu înțelepciune la ce am disponibil azi.",
+        "trajectory_hints": {
+            "ascending": "Unul dintre ciclurile critice iese din tranziție. Echilibrul se restabilește treptat.",
+            "descending": "Încă un ciclu intră în criză. Navighează cu și mai multă atenție."
+        }
+    },
+    "archetype_sleeping_volcano": {
+        "theme": {
+            "primary": "from-slate-500 to-gray-600",
+            "accent": "text-slate-600",
+            "bg_soft": "bg-slate-100",
+            "hex": "#64748B"
+        },
+        "hero": {
+            "icon": "Mountain",
+            "title": "Vulcanul Adormit",
+            "subtitle": "Regenerare Profundă",
+            "headline": "Toate ciclurile în vale. O pauză cosmică necesară."
+        },
+        "tags": [
+            "Hibernare",
+            "Reset",
+            "Profunzime",
+            "Necesitate"
+        ],
+        "content": {
+            "main_text": "Astăzi ești în **Modul Chrysalis**. Toate cele trei cicluri sunt simultan în zona de vale profundă – sub -0.5. Nu ești bolnav, ci într-un proces biologic rar și profund de regenerare totală pe toate planurile.\n\nCorpul, inima și mintea cer același lucru: oprire completă. Este o zi sacră de reset cosmic. A forța orice ar fi ca și cum ai încerca să oprești metamorfoza unui fluture.\n\nMisiunea ta este **capitularea totală în fața odihnei**. Astăzi nu vinzi, nu construiești, nu rezolvi. Dormi, stai în liniște, meditează, contemplă. Această zi de profundă regenerare este investiția supremă în tine însuți.",
+            "dos": [
+                "Dormi cât ai nevoie.",
+                "Stai în liniște absolută.",
+                "Meditează sau contemplă.",
+                "Fii blând și iertător cu tine."
+            ],
+            "donts": [
+                "Nu forța absolut nimic.",
+                "Nu te judeci pentru lipsă de energie.",
+                "Nu începi sau continui proiecte.",
+                "Nu te compari cu alții azi."
+            ]
+        },
+        "mantra": "Mă predau regenerării și renasc mai puternic.",
+        "trajectory_hints": {
+            "ascending": "Procesul de metamorfoză e aproape complet. Noul început își face simțită prezența.",
+            "descending": "Ești în inima transformării. Aici se naște viitoarea ta putere."
+        }
+    },
     "all_high": {
         "theme": {
             "primary": "from-fuchsia-500 to-purple-600",

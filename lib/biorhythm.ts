@@ -369,10 +369,11 @@ export function getCycleIntensityLevel(value: number): IntensityLevel {
  * Returns the most relevant biorhythm interpretation card based on cycle values
  *
  * Priority:
- * 1. Critical Days (most impacts safety/stability)
- * 2. All High (Super Day - all cycles > 0.35)
- * 3. All Low (Recharge Day - all cycles < -0.35)
- * 4. Dominant Cycle with Intensity Level
+ * 1. Multi-Cycle Archetypes (most specific combinations)
+ * 2. Critical Days (most impacts safety/stability)
+ * 3. All High (Super Day - all cycles > 0.35)
+ * 4. All Low (Recharge Day - all cycles < -0.35)
+ * 5. Dominant Cycle with Intensity Level
  *
  * @param physical - Physical cycle value (-1 to 1)
  * @param emotional - Emotional cycle value (-1 to 1)
@@ -387,6 +388,12 @@ export function getBiorhythmInterpretation(
   // Thresholds for composite states
   const ALL_HIGH_THRESHOLD = 0.35;
   const ALL_LOW_THRESHOLD = -0.35;
+  const ARCHETYPE_PEAK_THRESHOLD = 0.75;
+  const ARCHETYPE_VALLEY_THRESHOLD = -0.75;
+  const ARCHETYPE_HIGH_THRESHOLD = 0.35;
+  const ARCHETYPE_LOW_THRESHOLD = -0.35;
+  const ARCHETYPE_CRITICAL_THRESHOLD = 0.2;
+  const ARCHETYPE_DEEP_VALLEY_THRESHOLD = -0.5;
 
   // Helper to safely get interpretation with fallback
   const getInterpretation = (key: string): BiorhythmInterpretationData => {
@@ -404,22 +411,95 @@ export function getBiorhythmInterpretation(
   const emotionalLevel = getCycleIntensityLevel(emotional);
   const intellectualLevel = getCycleIntensityLevel(intellectual);
 
-  // 1. Critical Priority - check for zero-crossing states
+  // Count critical cycles
+  const criticalCount = [physicalLevel, emotionalLevel, intellectualLevel].filter(
+    level => level === 'critical'
+  ).length;
+
+  // ============================================================================
+  // 1. ARCHETYPE PRIORITY - Check for specific multi-cycle combinations
+  // ============================================================================
+
+  // Războinicul Tăcut: Physical Peak + Emotional Valley
+  if (physical > ARCHETYPE_PEAK_THRESHOLD && emotional < ARCHETYPE_VALLEY_THRESHOLD) {
+    return getInterpretation("archetype_warrior_silent");
+  }
+
+  // Înțeleptul: Intellectual Peak + Physical Valley
+  if (intellectual > ARCHETYPE_PEAK_THRESHOLD && physical < ARCHETYPE_VALLEY_THRESHOLD) {
+    return getInterpretation("archetype_sage");
+  }
+
+  // Artistul: Emotional Peak + Intellectual Valley
+  if (emotional > ARCHETYPE_PEAK_THRESHOLD && intellectual < ARCHETYPE_VALLEY_THRESHOLD) {
+    return getInterpretation("archetype_artist");
+  }
+
+  // Pragmaticul: Physical High + Intellectual High + Emotional Low
+  if (
+    physical > ARCHETYPE_HIGH_THRESHOLD &&
+    intellectual > ARCHETYPE_HIGH_THRESHOLD &&
+    emotional < ARCHETYPE_LOW_THRESHOLD
+  ) {
+    return getInterpretation("archetype_pragmatic");
+  }
+
+  // Visătorul: Emotional High + Intellectual High + Physical Low
+  if (
+    emotional > ARCHETYPE_HIGH_THRESHOLD &&
+    intellectual > ARCHETYPE_HIGH_THRESHOLD &&
+    physical < ARCHETYPE_LOW_THRESHOLD
+  ) {
+    return getInterpretation("archetype_dreamer");
+  }
+
+  // Vulcanul Adormit: All falling below -0.5
+  if (
+    physical < ARCHETYPE_DEEP_VALLEY_THRESHOLD &&
+    emotional < ARCHETYPE_DEEP_VALLEY_THRESHOLD &&
+    intellectual < ARCHETYPE_DEEP_VALLEY_THRESHOLD
+  ) {
+    return getInterpretation("archetype_sleeping_volcano");
+  }
+
+  // Răscrucea: All near-critical (±0.2)
+  if (
+    Math.abs(physical) < ARCHETYPE_CRITICAL_THRESHOLD &&
+    Math.abs(emotional) < ARCHETYPE_CRITICAL_THRESHOLD &&
+    Math.abs(intellectual) < ARCHETYPE_CRITICAL_THRESHOLD
+  ) {
+    return getInterpretation("archetype_crossroads");
+  }
+
+  // Eclipsa Parțială: Exactly 2 cycles critical
+  if (criticalCount === 2) {
+    return getInterpretation("archetype_partial_eclipse");
+  }
+
+  // ============================================================================
+  // 2. CRITICAL PRIORITY - check for zero-crossing states
+  // ============================================================================
   if (physicalLevel === 'critical') return getInterpretation("physical_critical");
   if (emotionalLevel === 'critical') return getInterpretation("emotional_critical");
   if (intellectualLevel === 'critical') return getInterpretation("intellectual_critical");
 
-  // 2. All High (Super Day)
+  // ============================================================================
+  // 3. ALL HIGH (Super Day)
+  // ============================================================================
   if (physical > ALL_HIGH_THRESHOLD && emotional > ALL_HIGH_THRESHOLD && intellectual > ALL_HIGH_THRESHOLD) {
     return getInterpretation("all_high");
   }
 
-  // 3. All Low (Recharge Day)
+  // ============================================================================
+  // 4. ALL LOW (Recharge Day)
+  // ============================================================================
   if (physical < ALL_LOW_THRESHOLD && emotional < ALL_LOW_THRESHOLD && intellectual < ALL_LOW_THRESHOLD) {
     return getInterpretation("all_low");
   }
 
-  // 4. Dominant Cycle with Intensity Level
+  // ============================================================================
+  // 5. DOMINANT CYCLE with Intensity Level
+  // ============================================================================
   const pAbs = Math.abs(physical);
   const eAbs = Math.abs(emotional);
   const iAbs = Math.abs(intellectual);
@@ -435,4 +515,5 @@ export function getBiorhythmInterpretation(
   // Default to intellectual
   return getInterpretation(`intellectual_${intellectualLevel}`);
 }
+
 
