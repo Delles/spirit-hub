@@ -151,6 +151,12 @@ export function getCycleTrajectory(
   const yesterday = new Date(targetDate);
   yesterday.setDate(yesterday.getDate() - 1);
 
+  // Handle edge case where targetDate is birthDate (yesterday would be before birth)
+  // At birth, cycles start at 0 and move up, so trajectory is ascending
+  if (yesterday < birthDate) {
+    return 'ascending';
+  }
+
   const yesterdayValue = calculateCycle(birthDate, yesterday, cycleDays);
 
   const diff = todayValue - yesterdayValue;
