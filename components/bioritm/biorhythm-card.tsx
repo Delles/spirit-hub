@@ -15,11 +15,14 @@ import {
   BrainCircuit,
   Star,
   BatteryCharging,
+  TrendingUp,
+  TrendingDown,
+  Minus,
   type LucideIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Markdown } from "@/components/shared/markdown";
-import type { BiorhythmInterpretationData } from "@/lib/biorhythm";
+import type { BiorhythmInterpretationData, Trajectory } from "@/lib/biorhythm";
 
 // Re-export for consumers who import from this file
 export type BiorhythmInterpretation = BiorhythmInterpretationData;
@@ -43,12 +46,13 @@ function getBiorhythmIcon(iconName: string): LucideIcon {
 
 interface BiorhythmCardProps {
   interpretation: BiorhythmInterpretation;
+  trajectory?: Trajectory;
   className?: string;
 }
 
 import { useMemo } from "react";
 
-export function BiorhythmCard({ interpretation, className }: BiorhythmCardProps) {
+export function BiorhythmCard({ interpretation, trajectory, className }: BiorhythmCardProps) {
   const IconComponent = useMemo(() => getBiorhythmIcon(interpretation.hero.icon), [interpretation.hero.icon]);
 
   return (
@@ -90,6 +94,19 @@ export function BiorhythmCard({ interpretation, className }: BiorhythmCardProps)
             <p className="text-lg text-white/90 font-serif italic max-w-md mx-auto leading-relaxed">
               &ldquo;{interpretation.hero.headline}&rdquo;
             </p>
+
+            {/* Trajectory Indicator */}
+            {trajectory && (
+              <div className="mt-4 flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                {trajectory === 'ascending' && <TrendingUp size={14} className="text-emerald-400" />}
+                {trajectory === 'descending' && <TrendingDown size={14} className="text-amber-400" />}
+                {trajectory === 'stable' && <Minus size={14} className="text-slate-400" />}
+                <span className="text-[10px] uppercase tracking-widest font-bold">
+                  {trajectory === 'ascending' ? 'În urcare' :
+                    trajectory === 'descending' ? 'În descreștere' : 'Constant'}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -170,6 +187,18 @@ export function BiorhythmCard({ interpretation, className }: BiorhythmCardProps)
               <p className="text-xs uppercase tracking-widest text-white/40">Mantra Zilei</p>
             </div>
           </div>
+
+          {/* 6. TRAJECTORY HINT */}
+          {trajectory && interpretation.trajectory_hints && (
+            <div className="mt-4 p-4 rounded-xl bg-white/5 border border-white/10 text-center animate-in fade-in zoom-in duration-700">
+              <p className="text-sm text-slate-300">
+                <span className="font-semibold text-white">Sfat pentru traiectorie:</span>{" "}
+                {trajectory === 'ascending' ? interpretation.trajectory_hints.ascending :
+                  trajectory === 'descending' ? interpretation.trajectory_hints.descending :
+                    interpretation.trajectory_hints.stable || "Echilibru și constanță pe tot parcursul zilei."}
+              </p>
+            </div>
+          )}
         </div>
       </Card>
     </div>

@@ -40,7 +40,17 @@ export interface BiorhythmInterpretationData {
     donts: string[];
   };
   mantra: string;
+  trajectory_hints?: {
+    ascending: string;
+    descending: string;
+    stable?: string;
+  };
 }
+
+/**
+ * Represents the direction of change for a biorhythm cycle
+ */
+export type Trajectory = 'ascending' | 'descending' | 'stable';
 
 /**
  * Represents the three biorhythm cycle values for a given date
@@ -49,6 +59,17 @@ export interface BiorhythmCycles {
   physical: number;
   emotional: number;
   intellectual: number;
+}
+
+/**
+ * Represents the complete biorhythm state for a date
+ */
+export interface BiorhythmResult extends BiorhythmCycles {
+  trajectories: {
+    physical: Trajectory;
+    emotional: Trajectory;
+    intellectual: Trajectory;
+  };
 }
 
 /**
@@ -110,6 +131,34 @@ export function calculateCycle(birthDate: Date, targetDate: Date, cycleDays: num
   return cycleValue;
 }
 
+/**
+ * Determines the trajectory (direction of change) of a biorhythm cycle
+ * Compares current value with yesterday's value
+ * 
+ * @param birthDate - The person's birth date
+ * @param targetDate - The date to calculate for
+ * @param cycleDays - The length of the cycle
+ * @returns 'ascending' | 'descending' | 'stable'
+ */
+export function getCycleTrajectory(
+  birthDate: Date,
+  targetDate: Date,
+  cycleDays: number
+): Trajectory {
+  const todayValue = calculateCycle(birthDate, targetDate, cycleDays);
+
+  // Get yesterday's date
+  const yesterday = new Date(targetDate);
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  const yesterdayValue = calculateCycle(birthDate, yesterday, cycleDays);
+
+  const diff = todayValue - yesterdayValue;
+
+  if (Math.abs(diff) < 0.001) return 'stable';
+  return diff > 0 ? 'ascending' : 'descending';
+}
+
 // ============================================================================
 // Cycle-Specific Functions
 // ============================================================================
@@ -148,6 +197,27 @@ export function getEmotionalCycle(birthDate: Date, targetDate: Date): number {
  */
 export function getIntellectualCycle(birthDate: Date, targetDate: Date): number {
   return calculateCycle(birthDate, targetDate, INTELLECTUAL_CYCLE_DAYS);
+}
+
+/**
+ * Gets trajectory for the physical cycle
+ */
+export function getPhysicalTrajectory(birthDate: Date, targetDate: Date): Trajectory {
+  return getCycleTrajectory(birthDate, targetDate, PHYSICAL_CYCLE_DAYS);
+}
+
+/**
+ * Gets trajectory for the emotional cycle
+ */
+export function getEmotionalTrajectory(birthDate: Date, targetDate: Date): Trajectory {
+  return getCycleTrajectory(birthDate, targetDate, EMOTIONAL_CYCLE_DAYS);
+}
+
+/**
+ * Gets trajectory for the intellectual cycle
+ */
+export function getIntellectualTrajectory(birthDate: Date, targetDate: Date): Trajectory {
+  return getCycleTrajectory(birthDate, targetDate, INTELLECTUAL_CYCLE_DAYS);
 }
 
 // ============================================================================
