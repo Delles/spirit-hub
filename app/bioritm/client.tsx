@@ -13,12 +13,15 @@ import {
   getEmotionalTrajectory,
   getIntellectualTrajectory,
   getCycleIntensityLevel,
+  getWeekOutlook,
   type Trajectory,
+  type DayOutlook,
 } from "@/lib/biorhythm";
 import { getTodayISOBucharest } from "@/lib/daily-content";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
 import { BiorhythmChart } from "@/components/bioritm/biorhythm-chart";
 import { BiorhythmCard } from "@/components/bioritm/biorhythm-card";
+import { BiorhythmWeekPreview } from "@/components/bioritm/biorhythm-week-preview";
 import { ShareButton } from "@/components/shared/share-button";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
@@ -94,6 +97,9 @@ export default function BioritmClient() {
         else trajectory = iTraj;
       }
 
+      // Calculate week outlook for week preview
+      const weekOutlook = getWeekOutlook(birth, target, 7);
+
       return {
         physical,
         emotional,
@@ -101,7 +107,8 @@ export default function BioritmClient() {
         interpretation,
         trajectory,
         birthDate,
-        targetDate
+        targetDate,
+        weekOutlook,
       };
     } catch (error) {
       console.error("Error calculating biorhythm:", error);
@@ -182,6 +189,12 @@ export default function BioritmClient() {
             <BiorhythmCard
               interpretation={biorhythm.interpretation}
               trajectory={biorhythm.trajectory}
+            />
+
+            {/* 3. Week Preview */}
+            <BiorhythmWeekPreview
+              weekOutlook={biorhythm.weekOutlook}
+              birthDateParam={biorhythm.birthDate}
             />
 
             {/* Share Section - matching daily-card layout */}

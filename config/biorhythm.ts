@@ -62,19 +62,19 @@ export const biorhythmConfig: BiorhythmConfig = {
   /**
    * Critical Threshold
    *
-   * When a cycle value is within ±0.1 of zero, it's considered a "critical day".
+   * When a cycle value is within ±0.15 of zero, it's considered a "critical day".
    * Critical days occur when a cycle crosses from positive to negative (or vice versa),
    * representing a transition period where the body/mind is adjusting.
    * These days may bring instability or unpredictability in the affected area.
    */
-  criticalThreshold: 0.1,
+  criticalThreshold: 0.15,
 
   /**
    * Interpretation Ranges
    *
    * Maps cycle values (-1.0 to 1.0) to interpretation levels:
-   * - critic: Near zero crossing (±0.1) - transition/unstable period
-   * - scăzut: Low phase (0.1 to 0.4 or -1.0 to -0.1) - recovery/recharge period
+   * - critic: Near zero crossing (±0.15) - transition/unstable period
+   * - scăzut: Low phase (0.15 to 0.4 or -1.0 to -0.15) - recovery/recharge period
    * - mediu: Medium phase (0.4 to 0.7) - moderate activity period
    * - ridicat: High phase (0.7 to 1.0) - peak performance period
    *
@@ -82,13 +82,13 @@ export const biorhythmConfig: BiorhythmConfig = {
    */
   interpretationRanges: [
     {
-      min: -0.1,
-      max: 0.1,
+      min: -0.15,
+      max: 0.15,
       level: "critic",
       key: "critical",
     },
     {
-      min: 0.1,
+      min: 0.15,
       max: 0.4,
       level: "scăzut",
       key: "low",
