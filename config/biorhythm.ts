@@ -62,12 +62,12 @@ export const biorhythmConfig: BiorhythmConfig = {
   /**
    * Critical Threshold
    *
-   * When a cycle value is within ±0.1 of zero, it's considered a "critical day".
+   * When a cycle value is within ±0.15 of zero, it's considered a "critical day".
    * Critical days occur when a cycle crosses from positive to negative (or vice versa),
    * representing a transition period where the body/mind is adjusting.
    * These days may bring instability or unpredictability in the affected area.
    */
-  criticalThreshold: 0.1,
+  criticalThreshold: 0.15,
 
   /**
    * Interpretation Ranges

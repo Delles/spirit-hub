@@ -61,8 +61,8 @@ function CycleBar({ value, color }: { value: number; color: string }) {
  * Formats a date
  */
 function formatDay(date: Date): { dayShort: string; dayFull: string; dayNum: number } {
-    const dayOfWeek = date.getUTCDay();
-    const dayNum = date.getUTCDate();
+    const dayOfWeek = date.getDay();
+    const dayNum = date.getDate();
     return {
         dayShort: ROMANIAN_DAYS_SHORT[dayOfWeek],
         dayFull: ROMANIAN_DAYS_FULL[dayOfWeek],
@@ -191,7 +191,7 @@ export function BiorhythmWeekPreview({
                         <div>
                             <div className="text-white font-medium">Momentul de vârf</div>
                             <div className="text-white/60 text-xs">
-                                {ROMANIAN_DAYS_FULL[bestDay.date.getUTCDay()]} e perfect pentru activități {CYCLE_CONFIG[bestDay.cycle as keyof typeof CYCLE_CONFIG].label.toLowerCase()}e.
+                                {ROMANIAN_DAYS_FULL[bestDay.date.getDay()]} e perfect pentru activități {CYCLE_CONFIG[bestDay.cycle as keyof typeof CYCLE_CONFIG].label.toLowerCase()}e.
                             </div>
                         </div>
                     </div>
@@ -204,7 +204,7 @@ export function BiorhythmWeekPreview({
                             <AlertTriangle className="w-4 h-4" />
                         </div>
                         <div>
-                            <div className="text-white font-medium">Atenție {ROMANIAN_DAYS_FULL[criticalDays[0].date.getUTCDay()]}</div>
+                            <div className="text-white font-medium">Atenție {ROMANIAN_DAYS_FULL[criticalDays[0].date.getDay()]}</div>
                             <div className="text-white/60 text-xs">
                                 Zi critică ({criticalDays[0].cycles.map(c => CYCLE_CONFIG[c as keyof typeof CYCLE_CONFIG].label).join(", ")}). Evită riscurile.
                             </div>

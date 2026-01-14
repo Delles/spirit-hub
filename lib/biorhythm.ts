@@ -53,6 +53,11 @@ export interface BiorhythmInterpretationData {
 export type Trajectory = 'ascending' | 'descending' | 'stable';
 
 /**
+ * Represents the three biorhythm cycle names
+ */
+export type CycleName = "physical" | "emotional" | "intellectual";
+
+/**
  * Represents the three biorhythm cycle values for a given date
  */
 export interface BiorhythmCycles {
@@ -95,9 +100,9 @@ export interface DayOutlook {
   emotionalTrajectory: Trajectory;
   intellectualTrajectory: Trajectory;
   isCritical: boolean;
-  criticalCycles: ("physical" | "emotional" | "intellectual")[];
-  bestCycle: "physical" | "emotional" | "intellectual" | null;
-  worstCycle: "physical" | "emotional" | "intellectual" | null;
+  criticalCycles: CycleName[];
+  bestCycle: CycleName | null;
+  worstCycle: CycleName | null;
   overallStatus: "positive" | "mixed" | "negative" | "critical";
 }
 
@@ -325,8 +330,8 @@ export function getWeekOutlook(
   validateDate(birthDate, "birthDate");
   validateDate(startDate, "startDate");
 
-  if (days < 0) {
-    throw new ValidationError("days must be a positive number");
+  if (!Number.isFinite(days) || days < 0) {
+    throw new ValidationError("days must be a positive finite number");
   }
 
   const numDays = Math.floor(days);
@@ -353,7 +358,7 @@ export function getWeekOutlook(
     const intellectualTrajectory = getCycleTrajectory(birthDate, currentDate, INTELLECTUAL_CYCLE_DAYS);
 
     // Check for critical cycles directly from intensity levels (Single Source of Truth)
-    const criticalCycles: ("physical" | "emotional" | "intellectual")[] = [];
+    const criticalCycles: CycleName[] = [];
     if (physicalLevel === "critical") criticalCycles.push("physical");
     if (emotionalLevel === "critical") criticalCycles.push("emotional");
     if (intellectualLevel === "critical") criticalCycles.push("intellectual");
@@ -367,8 +372,8 @@ export function getWeekOutlook(
       { name: "intellectual" as const, value: intellectual },
     ];
 
-    const positiveCycles = cycles.filter(c => c.value > 0.15);
-    const negativeCycles = cycles.filter(c => c.value < -0.15);
+    const positiveCycles = cycles.filter(c => c.value > CRITICAL_THRESHOLD);
+    const negativeCycles = cycles.filter(c => c.value < -CRITICAL_THRESHOLD);
 
     const bestCycle = positiveCycles.length > 0
       ? positiveCycles.reduce((a, b) => a.value > b.value ? a : b).name
@@ -383,9 +388,9 @@ export function getWeekOutlook(
 
     if (isCritical) {
       overallStatus = "critical";
-    } else if (physical > 0.15 && emotional > 0.15 && intellectual > 0.15) {
+    } else if (physical > CRITICAL_THRESHOLD && emotional > CRITICAL_THRESHOLD && intellectual > CRITICAL_THRESHOLD) {
       overallStatus = "positive";
-    } else if (physical < -0.15 && emotional < -0.15 && intellectual < -0.15) {
+    } else if (physical < -CRITICAL_THRESHOLD && emotional < -CRITICAL_THRESHOLD && intellectual < -CRITICAL_THRESHOLD) {
       overallStatus = "negative";
     } else {
       overallStatus = "mixed";
@@ -488,8 +493,8 @@ export function getBiorhythmHintForDay(date: Date = new Date()): BiorhythmHint {
 export function getCycleIntensityLevel(value: number): IntensityLevel {
   if (value > 0.75) return 'peak';
   if (value > 0.35) return 'high';
-  if (value > 0.15) return 'rising';
-  if (value >= -0.15) return 'critical';
+  if (value > CRITICAL_THRESHOLD) return 'rising';
+  if (value >= -CRITICAL_THRESHOLD) return 'critical';
   if (value >= -0.35) return 'falling';
   if (value >= -0.75) return 'low';
   return 'valley';
