@@ -68,6 +68,12 @@ export interface BiorhythmHint {
   dayOfWeek: string;
 }
 
+/**
+ * Represents the intensity level of a biorhythm cycle
+ * Used for determining which interpretation to display
+ */
+export type IntensityLevel = 'peak' | 'high' | 'rising' | 'critical' | 'falling' | 'low' | 'valley';
+
 // Type the imported JSON
 const typedBiorhythmData = biorhythmData as Record<string, BiorhythmInterpretationData>;
 
@@ -259,13 +265,38 @@ export function getBiorhythmHintForDay(date: Date = new Date()): BiorhythmHint {
 // ============================================================================
 
 /**
+ * Determines the intensity level of a biorhythm cycle value
+ * 
+ * Thresholds:
+ * - Peak: > 0.75 (exceptional maximum)
+ * - High: 0.35 to 0.75 (active positive)
+ * - Rising: 0.15 to 0.35 (building momentum)
+ * - Critical: -0.15 to 0.15 (zero-crossing)
+ * - Falling: -0.35 to -0.15 (declining)
+ * - Low: -0.75 to -0.35 (passive regeneration)
+ * - Valley: < -0.75 (deep rest minimum)
+ * 
+ * @param value - Cycle value from -1 to 1
+ * @returns IntensityLevel string
+ */
+export function getCycleIntensityLevel(value: number): IntensityLevel {
+  if (value > 0.75) return 'peak';
+  if (value > 0.35) return 'high';
+  if (value > 0.15) return 'rising';
+  if (value >= -0.15) return 'critical';
+  if (value >= -0.35) return 'falling';
+  if (value >= -0.75) return 'low';
+  return 'valley';
+}
+
+/**
  * Returns the most relevant biorhythm interpretation card based on cycle values
  *
  * Priority:
  * 1. Critical Days (most impacts safety/stability)
- * 2. All High (Super Day)
- * 3. All Low (Recharge Day)
- * 4. Dominant Cycle (Greatest absolute value deviation from 0)
+ * 2. All High (Super Day - all cycles > 0.35)
+ * 3. All Low (Recharge Day - all cycles < -0.35)
+ * 4. Dominant Cycle with Intensity Level
  *
  * @param physical - Physical cycle value (-1 to 1)
  * @param emotional - Emotional cycle value (-1 to 1)
@@ -277,8 +308,9 @@ export function getBiorhythmInterpretation(
   emotional: number,
   intellectual: number
 ): BiorhythmInterpretationData {
-  const HIGH_THRESHOLD = 0.3;
-  const LOW_THRESHOLD = -0.3;
+  // Thresholds for composite states
+  const ALL_HIGH_THRESHOLD = 0.35;
+  const ALL_LOW_THRESHOLD = -0.35;
 
   // Helper to safely get interpretation with fallback
   const getInterpretation = (key: string): BiorhythmInterpretationData => {
@@ -291,27 +323,27 @@ export function getBiorhythmInterpretation(
     return data;
   };
 
-  // Check for critical states (using CRITICAL_THRESHOLD from config, likely 0.2)
-  const isPhysicalCritical = Math.abs(physical) <= CRITICAL_THRESHOLD;
-  const isEmotionalCritical = Math.abs(emotional) <= CRITICAL_THRESHOLD;
-  const isIntellectualCritical = Math.abs(intellectual) <= CRITICAL_THRESHOLD;
+  // Get intensity levels for each cycle
+  const physicalLevel = getCycleIntensityLevel(physical);
+  const emotionalLevel = getCycleIntensityLevel(emotional);
+  const intellectualLevel = getCycleIntensityLevel(intellectual);
 
-  // 1. Critical Priority
-  if (isPhysicalCritical) return getInterpretation("physical_critical");
-  if (isEmotionalCritical) return getInterpretation("emotional_critical");
-  if (isIntellectualCritical) return getInterpretation("intellectual_critical");
+  // 1. Critical Priority - check for zero-crossing states
+  if (physicalLevel === 'critical') return getInterpretation("physical_critical");
+  if (emotionalLevel === 'critical') return getInterpretation("emotional_critical");
+  if (intellectualLevel === 'critical') return getInterpretation("intellectual_critical");
 
-  // 2. All High
-  if (physical > HIGH_THRESHOLD && emotional > HIGH_THRESHOLD && intellectual > HIGH_THRESHOLD) {
+  // 2. All High (Super Day)
+  if (physical > ALL_HIGH_THRESHOLD && emotional > ALL_HIGH_THRESHOLD && intellectual > ALL_HIGH_THRESHOLD) {
     return getInterpretation("all_high");
   }
 
-  // 3. All Low
-  if (physical < LOW_THRESHOLD && emotional < LOW_THRESHOLD && intellectual < LOW_THRESHOLD) {
+  // 3. All Low (Recharge Day)
+  if (physical < ALL_LOW_THRESHOLD && emotional < ALL_LOW_THRESHOLD && intellectual < ALL_LOW_THRESHOLD) {
     return getInterpretation("all_low");
   }
 
-  // 4. Dominant Cycle
+  // 4. Dominant Cycle with Intensity Level
   const pAbs = Math.abs(physical);
   const eAbs = Math.abs(emotional);
   const iAbs = Math.abs(intellectual);
@@ -319,11 +351,12 @@ export function getBiorhythmInterpretation(
   const maxAbs = Math.max(pAbs, eAbs, iAbs);
 
   if (maxAbs === pAbs) {
-    return physical > 0 ? getInterpretation("physical_high") : getInterpretation("physical_low");
+    return getInterpretation(`physical_${physicalLevel}`);
   }
   if (maxAbs === eAbs) {
-    return emotional > 0 ? getInterpretation("emotional_high") : getInterpretation("emotional_low");
+    return getInterpretation(`emotional_${emotionalLevel}`);
   }
   // Default to intellectual
-  return intellectual > 0 ? getInterpretation("intellectual_high") : getInterpretation("intellectual_low");
+  return getInterpretation(`intellectual_${intellectualLevel}`);
 }
+
