@@ -82,7 +82,7 @@ export interface BiorhythmResult extends BiorhythmCycles {
  */
 export interface CriticalDay {
   date: Date;
-  cycles: ("physical" | "emotional" | "intellectual")[];
+  cycles: CycleName[];
 }
 
 /**
@@ -123,6 +123,19 @@ export type IntensityLevel = 'peak' | 'high' | 'rising' | 'critical' | 'falling'
 
 // Type the imported JSON
 const typedBiorhythmData = biorhythmData as Record<string, BiorhythmInterpretationData>;
+
+// ============================================================================
+// Internal Helpers
+// ============================================================================
+
+/**
+ * Safely adds days to a date handling DST boundaries correctly
+ */
+function addDays(date: Date, days: number): Date {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
 
 // ============================================================================
 // Core Calculation Functions
@@ -275,12 +288,11 @@ export function getCriticalDays(birthDate: Date, startDate: Date, days: number):
   }
 
   const criticalDays: CriticalDay[] = [];
-  const millisecondsPerDay = 1000 * 60 * 60 * 24;
 
   // Iterate through each day in the range
   for (let i = 0; i < days; i++) {
-    const currentDate = new Date(startDate.getTime() + i * millisecondsPerDay);
-    const affectedCycles: ("physical" | "emotional" | "intellectual")[] = [];
+    const currentDate = addDays(startDate, i);
+    const affectedCycles: CycleName[] = [];
 
     // Check each cycle for zero-crossing
     const physical = getPhysicalCycle(birthDate, currentDate);
@@ -338,8 +350,7 @@ export function getWeekOutlook(
 
   for (let i = 0; i < days; i++) {
     // Correct way to add days handling DST
-    const currentDate = new Date(startDate);
-    currentDate.setDate(startDate.getDate() + i);
+    const currentDate = addDays(startDate, i);
 
     // Calculate cycle values
     const physical = getPhysicalCycle(birthDate, currentDate);
@@ -534,7 +545,6 @@ export function getBiorhythmInterpretation(
     const data = typedBiorhythmData[key];
     if (!data) {
       // Fallback to a safe default if key is missing (defensive programming)
-      console.error(`[Biorhythm] Missing interpretation key: ${key}`);
       return typedBiorhythmData["physical_high"]; // Safe fallback
     }
     return data;
