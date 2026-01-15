@@ -2,6 +2,7 @@
 
 import { useMemo, useEffect } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Calendar, Hash, Moon, ArrowLeft, AlertTriangle } from "lucide-react";
 import {
@@ -19,7 +20,6 @@ import {
 } from "@/lib/biorhythm";
 import { getTodayISOBucharest } from "@/lib/daily-content";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
-import { BiorhythmChart } from "@/components/bioritm/biorhythm-chart";
 import { BiorhythmCard } from "@/components/bioritm/biorhythm-card";
 import { BiorhythmWeekPreview } from "@/components/bioritm/biorhythm-week-preview";
 import { ShareButton } from "@/components/shared/share-button";
@@ -29,6 +29,20 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { format, parseISO, isValid } from "date-fns";
 import { ro } from "date-fns/locale";
+
+// Dynamic import for BiorhythmChart - only loads after form submission
+// This reduces initial bundle size since the chart is not needed on first render
+const BiorhythmChart = dynamic(
+  () => import("@/components/bioritm/biorhythm-chart").then(mod => mod.BiorhythmChart),
+  {
+    loading: () => (
+      <div className="h-64 animate-pulse bg-black/20 rounded-lg flex items-center justify-center">
+        <span className="text-white/50 text-sm">Se încarcă graficul...</span>
+      </div>
+    ),
+    ssr: false,
+  }
+);
 
 export default function BioritmClient() {
   const searchParams = useSearchParams();
