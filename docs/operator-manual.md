@@ -31,7 +31,8 @@ user receives value.
 ## Current Business State
 
 - Production site exists at `https://www.spirithub.ro`.
-- Vercel is linked to the GitHub repository. A push to the linked branch triggers a build.
+- Vercel is linked to the GitHub repository. A push to the linked branch triggers a build unless the
+  repo-level Vercel `ignoreCommand` skips a documentation-only change.
 - Vercel Analytics and Speed Insights are installed.
 - AdSense integration exists but stays disabled until environment variables are configured.
 - Legal/trust pages exist.

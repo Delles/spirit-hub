@@ -13,7 +13,8 @@ Wait for fresh Search Console evidence before assigning the next SEO/content tas
 
 - The site is live at `https://www.spirithub.ro`.
 - GitHub `main` is the source of truth.
-- Vercel builds on push.
+- Vercel builds on app-affecting pushes; documentation-only commits are skipped by the repo-level
+  Vercel `ignoreCommand`.
 - Current business priority: indexing, SEO trust, and traffic growth before paid features.
 - Current external blocker: follow-up Search Console export after Google has time to recrawl, plus
   the AdSense review result.

@@ -127,3 +127,17 @@ Rules:
 
 Do not move the Codex App workspace into WSL unless the App itself can open WSL paths cleanly. The
 two-clone model is safer as long as both lanes sync through GitHub.
+
+## 6. Vercel Build Skip Policy
+
+The repo uses `vercel.json` with `ignoreCommand` so documentation-only commits do not spend a
+production build. The command runs `node scripts/vercel-ignore-build.mjs`.
+
+Rules:
+
+- Changes under `docs/`, any `README.md`, or root `AGENTS.md` skip the Vercel build.
+- Changes to app code, data, config, package files, scripts, public assets, or Vercel config still
+  build.
+- The script compares against `VERCEL_GIT_PREVIOUS_SHA` when Vercel provides it, then falls back to
+  `HEAD^`.
+- Vercel expects exit code `0` to ignore the build and exit code `1` to continue the build.
