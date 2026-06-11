@@ -38,6 +38,11 @@ Default responsibilities:
 - Commit and push when the change is coherent and the brief allows it.
 - Update `docs/dev-brief.md` with outcome, blockers, and follow-up notes.
 
+WSL-only Codex config can live in the WSL clone under `.codex/`. The repository ignores this folder
+so local agent profiles, project config, logs, and experiments do not pollute GitHub or the Codex App
+workspace. Durable instructions that should travel with the repository should use `AGENTS.md`
+instead.
+
 Default starting prompt:
 
 ```text
@@ -118,6 +123,7 @@ Rules:
 - After a CLI dev session, commit and push from WSL.
 - Before an App owner session that edits docs or code, pull latest changes in the Windows workspace.
 - Avoid editing the same files in both workspaces during the same task.
+- Keep WSL-only Codex configuration under `.codex/` in the WSL clone or under `~/.codex/`.
 
 Do not move the Codex App workspace into WSL unless the App itself can open WSL paths cleanly. The
 two-clone model is safer as long as both lanes sync through GitHub.
