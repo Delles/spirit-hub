@@ -53,11 +53,10 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Confirm account status
 
-- Status: in progress
+- Status: waiting on Google review
 - Owner: Codex owner, with user account-screen confirmation when needed
 - What Codex needs:
-  - Whether Google accepts the site ownership verification after deployment.
-  - Whether the site review request is submitted successfully.
+  - AdSense review result for `spirithub.ro`.
   - Slot ID for result-page inline ad
   - Slot ID for content-footer ad
 
@@ -67,12 +66,20 @@ Known publisher/client ID:
 
 ### Verify AdSense site ownership
 
-- Status: ready after deployment
+- Status: complete
 - Owner: Codex owner, with user account-screen confirmation when needed
 - Method: AdSense code snippet.
 - Implementation: the app now ships the AdSense script with `ca-pub-8681888147711861` inside the root layout `<head>`.
-- Success signal: AdSense verification succeeds, then `Request review` becomes available or is submitted.
-- Evidence needed: screenshot of the success screen or any Google error message.
+- Success signal: AdSense verification succeeded and site review was requested.
+- Evidence received: screenshot showing `Verify site ownership` complete and `Review requested` at 11 Jun 2026 15:57.
+
+### Wait for AdSense site review result
+
+- Status: waiting
+- Owner: Google review, monitored by Codex owner through user account-screen confirmation.
+- Expected timing: usually a few days, sometimes 2-4 weeks.
+- Success signal: AdSense approves `spirithub.ro`.
+- Evidence needed: screenshot of the approval, rejection, or policy issue message.
 
 ### Configure Vercel environment variables
 
@@ -87,10 +94,10 @@ Known publisher/client ID:
 
 ### GDPR consent decision
 
-- Status: needed before personalized ads
+- Status: complete in AdSense setup
 - Owner: user with Codex guidance
-- Recommendation: start with non-personalized ads if possible, then add a consent management
-  platform only when revenue justifies the complexity.
+- Decision: use Google's certified CMP with 3 choices: consent, do not consent, and manage options.
+- Scope: `spirithub.ro` and future sites.
 
 ---
 

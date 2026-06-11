@@ -5,14 +5,15 @@ This note treats the AdSense setup as a Codex owner action, not a meeting.
 ## Call Summary
 
 - Site: `spirithub.ro`
-- AdSense status shown by Google: site requires review.
+- AdSense status shown by Google: review requested.
 - Verification method chosen: AdSense code snippet.
 - Publisher/client id added to the app: `ca-pub-8681888147711861`
 - Implementation: the shared `AdsenseScript` component is mounted inside the root layout `<head>`, so every page includes the Google snippet between `<head></head>`.
+- Review request time shown in AdSense: 11 Jun 2026 15:57.
 
 ## Owner Action
 
-After this change is deployed to production:
+Completed in AdSense:
 
 1. Open the AdSense site review screen for `spirithub.ro`.
 2. Keep `AdSense code snippet` selected.
@@ -22,10 +23,12 @@ After this change is deployed to production:
 
 ## Evidence Needed Next
 
-Keep one screenshot after the AdSense account action:
+Keep one screenshot when Google returns the site review decision:
 
-- Success screenshot if AdSense accepts the verification and review request.
-- Error screenshot if Google still cannot detect the code.
+- Approval screenshot if Google approves `spirithub.ro`.
+- Rejection or issue screenshot if Google asks for fixes.
+
+Google says the review usually takes a few days, but in some cases can take 2-4 weeks.
 
 ## Follow-Up After Approval
 
