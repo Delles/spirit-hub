@@ -23,3 +23,15 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Expected result: Better click-through rate and more qualified organic traffic to the biorhythm tool.
 - Review date: After Search Console has 7 to 14 days of post-sitemap data.
 - Outcome: Pending.
+
+## 2026-06-11 - Queue compatibility page CTR improvement
+
+- Evidence: Search Console review showed `/numerologie/compatibilitate` with 40 impressions, average
+  position 8.12, and 0 clicks. Sitemap evidence now shows `Success` with 10 discovered pages.
+- Decision: Send the next dev task to the engineering lane for `/numerologie/compatibilitate` SEO
+  and page-clarity improvements before running a broad subjective site audit.
+- Change made: `docs/dev-brief.md` remains focused on the compatibility page handoff.
+- Expected result: Better query match for `compatibilitate numerologica calculator` and improved
+  click-through once Google recrawls.
+- Review date: After 7 to 14 days of fresh Search Console data.
+- Outcome: Pending.

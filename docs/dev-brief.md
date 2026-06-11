@@ -32,8 +32,8 @@ Checks:
 - GitHub `main` is the source of truth.
 - Vercel builds on push.
 - Current business priority: indexing, SEO trust, and traffic growth before paid features.
-- Current external blocker: Search Console sitemap submission/confirmation, then a follow-up Search
-  Console export after Google has time to recrawl.
+- Current external blocker: follow-up Search Console export after Google has time to recrawl, plus
+  the AdSense review result.
 - AdSense owner-call status on 2026-06-11: site ownership is verified and the site review has been requested.
 - Publisher/client id: `ca-pub-8681888147711861`.
 - Code changed so the root layout AdSense script can render in production without requiring `NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT`.
@@ -46,7 +46,8 @@ Checks:
 - Vercel runtime log query returned no production warnings/errors for the last 24 hours.
 - No unresolved Vercel Toolbar threads were found.
 - The next dev task is CTR/page-quality work on `/numerologie/compatibilitate`.
-- The next user task is to submit or confirm `https://www.spirithub.ro/sitemap.xml` in Search Console.
+- Sitemap follow-up: user provided Search Console evidence that `https://www.spirithub.ro/sitemap.xml`
+  has status `Success`, was last read on 2026-06-10, and has 10 discovered pages.
 
 ## Default Dev Checks
 

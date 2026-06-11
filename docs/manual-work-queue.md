@@ -35,12 +35,12 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Submit sitemap
 
-- Status: needed / confirmation requested
+- Status: complete
 - Owner: user or Codex if connector/browser access is available
 - URL: `https://www.spirithub.ro/sitemap.xml`
 - Success signal: Search Console accepts the sitemap and discovers the guide URLs.
-- Current user task: in Google Search Console, submit `https://www.spirithub.ro/sitemap.xml` from
-  the Sitemaps screen, or provide a screenshot showing it is already submitted and accepted.
+- Evidence received: Search Console screenshot provided on 2026-06-11 shows the sitemap submitted on
+  2026-01-12, last read on 2026-06-10, status `Success`, with 10 discovered pages.
 
 ### Request indexing for core pages
 
