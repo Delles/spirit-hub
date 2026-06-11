@@ -109,6 +109,22 @@ Update this file whenever a task is completed or a new blocker appears.
 These are now important. They would make Codex more autonomous and reduce repeated manual
 round-trips.
 
+### WSL2 + Codex CLI Engineering Lane
+
+- Status: recommended
+- Owner: user
+- Reason: the Codex App should remain the owner console, but a WSL2 CLI lane would be better for
+  subagents, browser QA, scripted audits, and long-running engineering work.
+- Current machine state: WSL is not installed as of 2026-06-11.
+- Requested setup:
+  1. Install WSL2 with Ubuntu.
+  2. Clone `https://github.com/Delles/spirit-hub.git` under `~/code/spirit-hub`.
+  3. Install Codex in WSL with the official installer.
+  4. Log in to Codex CLI.
+  5. Verify `codex --version` and `codex mcp --help`.
+- Success signal: a future session can run Codex CLI from the WSL clone and use subagents or
+  `codex exec` without Windows sandbox browser/Temp failures.
+
 ### Vercel Plugin
 
 - Status: installed

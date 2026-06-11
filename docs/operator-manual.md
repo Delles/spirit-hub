@@ -6,7 +6,8 @@
 
 This document is the operating memory for future sessions. If a new Codex session starts, read this
 file, `docs/business-roadmap.md`, `docs/manual-work-queue.md`, and the latest
-`docs/search-console-review-*.md` file before deciding what to do.
+`docs/search-console-review-*.md` file before deciding what to do. For tooling decisions, also read
+the latest `docs/harness-recommendation-*.md` file.
 
 ---
 
