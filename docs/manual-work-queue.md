@@ -122,13 +122,16 @@ Known publisher/client ID:
 
 ### Share Search Console query snapshot
 
-- Status: completed for the first baseline export; needed again 7-14 days after sitemap submission
+- Status: completed for the first baseline export; needed again after Google recrawls the
+  compatibility SEO update
 - Owner: user
 - What Codex needs:
   - top queries by impressions,
   - pages with impressions but low CTR,
   - indexing errors.
 - Latest baseline: `docs/search-console-review-2026-06-11.md`.
+- Next requested window: export fresh Search Console performance data between 2026-06-18 and
+  2026-06-25, including Queries and Pages at minimum.
 
 ---
 
