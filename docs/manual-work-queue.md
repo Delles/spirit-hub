@@ -53,22 +53,35 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Confirm account status
 
-- Status: needed
-- Owner: user
+- Status: in progress
+- Owner: Codex owner, with user account-screen confirmation when needed
 - What Codex needs:
-  - Is `spirithub.ro` approved in Google AdSense?
-  - Publisher/client ID, formatted like `ca-pub-xxxxxxxxxxxxxxxx`
+  - Whether Google accepts the site ownership verification after deployment.
+  - Whether the site review request is submitted successfully.
   - Slot ID for result-page inline ad
   - Slot ID for content-footer ad
 
+Known publisher/client ID:
+
+- `ca-pub-8681888147711861`
+
+### Verify AdSense site ownership
+
+- Status: ready after deployment
+- Owner: Codex owner, with user account-screen confirmation when needed
+- Method: AdSense code snippet.
+- Implementation: the app now ships the AdSense script with `ca-pub-8681888147711861` inside the root layout `<head>`.
+- Success signal: AdSense verification succeeds, then `Request review` becomes available or is submitted.
+- Evidence needed: screenshot of the success screen or any Google error message.
+
 ### Configure Vercel environment variables
 
-- Status: blocked until AdSense values exist
+- Status: partially unblocked
 - Owner: user or Codex if Vercel access is available
 - Variables:
-  - `NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT`
-  - `NEXT_PUBLIC_ADSENSE_SLOT_RESULT_INLINE`
-  - `NEXT_PUBLIC_ADSENSE_SLOT_CONTENT_FOOTER`
+- `NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT` is optional now because the production publisher id is in code.
+- `NEXT_PUBLIC_ADSENSE_SLOT_RESULT_INLINE` is still needed after approval.
+- `NEXT_PUBLIC_ADSENSE_SLOT_CONTENT_FOOTER` is still needed after approval.
 - Success signal: production HTML includes AdSense script and result pages reserve ad slots without
   layout shift.
 

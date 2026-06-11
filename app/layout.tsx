@@ -74,8 +74,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ro" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased`}>
+      <head>
         <AdsenseScript />
+      </head>
+      <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased`}>
         <DailyContentProvider>
           {children}
         </DailyContentProvider>
