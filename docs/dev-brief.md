@@ -70,6 +70,23 @@ When a dev task is completed, update this section with:
 
 ## Latest Handoff - 2026-06-11
 
+- Updated `/numerologie/compatibilitate` metadata to target `compatibilitate numerologica calculator`
+  with a calculator-focused title, meta description, OpenGraph metadata, Twitter metadata, and
+  canonical URL.
+- Updated visible Romanian copy so the H1, intro, and supporting section clearly describe the
+  compatibility calculator, required inputs, score, and interpretation.
+- Adjusted the compatibility FAQ and FAQ schema to match visible answers about how the calculator
+  works, why names and birth dates are needed, and how to read the result.
+- Kept the calculator flow prominent; no paid products, accounts, newsletter, or broad redesign
+  were added.
+- Checks passed: `bun run typecheck`, `bun run lint`, `bun run build`.
+- Note: the first sandboxed `bun run build` failed because `next/font` could not fetch Google Fonts;
+  rerunning the same build with network access passed.
+- Commit hash: pending push.
+- Follow-up: monitor Search Console after Google recrawls `/numerologie/compatibilitate`.
+
+## Previous Handoff - 2026-06-11
+
 - Changed `config/monetization.ts` to default to `ca-pub-8681888147711861`.
 - Changed `components/monetization/adsense-script.tsx` and `app/layout.tsx` so the AdSense snippet is emitted inside the root layout `<head>`, matching Google's ownership verification instruction.
 - Ad slot ids remain disabled until Google approves the site and slot ids are available.

@@ -10,27 +10,29 @@ import { generateFAQJsonLd } from "@/lib/faq-schema";
 import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 export const metadata: Metadata = {
-  title: "Compatibilitate Numerologică | SpiritHub.ro",
+  title: "Calculator Compatibilitate Numerologică | SpiritHub.ro",
   description:
-    "Verifică compatibilitatea numerologică între două persoane folosind numele și datele de naștere. Descoperă cât de bine vă potriviți din punct de vedere numerologic.",
+    "Calculează compatibilitatea numerologică pentru două persoane folosind numele complete și datele de naștere. Primești scor și interpretare rapidă online.",
   openGraph: {
-    title: "Compatibilitate Numerologică | SpiritHub.ro",
+    title: "Calculator Compatibilitate Numerologică | SpiritHub.ro",
     description:
-      "Verifică compatibilitatea numerologică între două persoane folosind numele și datele de naștere.",
+      "Calculează compatibilitatea numerologică pentru două persoane folosind numele complete și datele de naștere.",
     type: "website",
+    url: "https://www.spirithub.ro/numerologie/compatibilitate",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Compatibilitate Numerologică - SpiritHub.ro",
+        alt: "Calculator compatibilitate numerologică - SpiritHub.ro",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Compatibilitate Numerologică | SpiritHub.ro",
-    description: "Verifică compatibilitatea numerologică între două persoane.",
+    title: "Calculator Compatibilitate Numerologică | SpiritHub.ro",
+    description:
+      "Calculează compatibilitatea numerologică folosind numele și datele de naștere.",
     images: ["/og-image.jpg"],
   },
   alternates: {
@@ -41,17 +43,20 @@ export const metadata: Metadata = {
 // FAQ Content for Compatibilitate
 const faqs = [
   {
-    question: "Cum funcționează compatibilitatea numerologică?",
-    answer: "Compatibilitatea analizează armonia dintre numerele Căii Vieții și/sau ale Destinului a două persoane. Ea arată punctele forte ale relației, potențialele fricțiuni și lecțiile pe care cei doi le au de învățat împreună."
+    question: "Cum funcționează calculatorul de compatibilitate numerologică?",
+    answer:
+      "Calculatorul compară pentru două persoane numărul Căii Vieții, calculat din data nașterii, și Numărul Destinului, calculat din numele complet. Rezultatul combină aceste două potriviri într-un scor general și o interpretare a dinamicii relației.",
   },
   {
-    question: "Există numere \"incompatibile\"?",
-    answer: "În numerologie, nu există incompatibilitate totală. Anumite combinații necesită mai multă muncă, înțelegere și compromis (de exemplu 4 și 5), în timp ce altele curg mai natural (de exemplu 3 și 5). Orice relație poate funcționa cu conștientizare."
+    question: "De ce sunt necesare numele și datele de naștere?",
+    answer:
+      "Data nașterii este folosită pentru Calea Vieții, iar numele complet este folosit pentru Numărul Destinului. Împreună, aceste valori oferă o imagine mai echilibrată decât un calcul bazat pe o singură cifră.",
   },
   {
-    question: "Ce se întâmplă dacă avem același număr al Căii Vieții?",
-    answer: "A avea același număr indică o înțelegere profundă reciprocă, deoarece vedeți lumea similar. Totuși, poate duce și la lipsă de echilibru sau plictiseală dacă nu vă stimulați reciproc să creșteți."
-  }
+    question: "Rezultatul arată dacă o relație va funcționa?",
+    answer:
+      "Nu. Compatibilitatea numerologică este o interpretare simbolică, nu o predicție sau o garanție. Scorul poate evidenția puncte de armonie, diferențe și teme de comunicare, dar relația depinde de alegeri, maturitate și contextul real al celor doi.",
+  },
 ];
 
 interface PageProps {

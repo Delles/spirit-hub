@@ -134,10 +134,13 @@ export default function CompatibilitateClient() {
           <>
             {/* Page Introduction */}
             <div className="space-y-4 text-center">
-              <h1 className="text-3xl font-bold text-white">Compatibilitate Numerologică</h1>
+              <h1 className="text-3xl font-bold text-white">
+                Calculator Compatibilitate Numerologică
+              </h1>
               <p className="text-lg text-[#E0E0E0] leading-relaxed">
-                Analizează armonia dintre două persoane comparând Calea Vieții și Numărul Destinului.
-                Descoperă punctele forte ale relației și oportunitățile de creștere împreună.
+                Introdu numele complete și datele de naștere pentru două persoane. Calculatorul
+                compară Calea Vieții și Numărul Destinului, apoi îți arată un scor rapid de
+                compatibilitate numerologică și o interpretare a dinamicii dintre voi.
               </p>
             </div>
 
@@ -149,6 +152,51 @@ export default function CompatibilitateClient() {
                 isLoading={interpretation === undefined && hasSubmitted}
               />
             </div>
+
+            <section
+              aria-labelledby="compatibility-calculator-details"
+              className="space-y-4 text-[#E0E0E0]"
+            >
+              <div className="space-y-2 text-center">
+                <h2
+                  id="compatibility-calculator-details"
+                  className="text-2xl font-semibold text-white"
+                >
+                  Ce verifică acest calculator
+                </h2>
+                <p className="leading-relaxed">
+                  Compatibilitatea numerologică este calculată din două perechi de valori: data
+                  nașterii pentru Calea Vieții și numele complet pentru Numărul Destinului. Rezultatul
+                  nu decide viitorul relației, dar poate evidenția ritmul comun, diferențele și
+                  zonele unde comunicarea contează mai mult.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                  <h3 className="font-semibold text-white">Calea Vieții</h3>
+                  <p className="mt-2 text-sm leading-relaxed">
+                    Arată energia de bază a fiecărei persoane, calculată din data nașterii.
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                  <h3 className="font-semibold text-white">Numărul Destinului</h3>
+                  <p className="mt-2 text-sm leading-relaxed">
+                    Completează analiza cu vibrația numelui complet și felul în care fiecare se
+                    exprimă în relație.
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                  <h3 className="font-semibold text-white">Scor și interpretare</h3>
+                  <p className="mt-2 text-sm leading-relaxed">
+                    Primești o potrivire generală, plus observații despre armonie, diferențe și
+                    potențialul de creștere.
+                  </p>
+                </div>
+              </div>
+            </section>
 
             {/* Loading State */}
             {interpretation === undefined && hasSubmitted && (
