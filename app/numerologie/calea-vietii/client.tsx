@@ -10,6 +10,8 @@ import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { AdSlot } from "@/components/monetization/ad-slot";
+import { adSlots } from "@/config/monetization";
 import Link from "next/link";
 import { parseISO, isValid } from "date-fns";
 import { Calendar, Sparkles, Heart, ArrowLeft } from "lucide-react";
@@ -126,6 +128,8 @@ export default function CaleaVietiiClient() {
               number={lifePathNumber}
               interpretation={interpretation}
             />
+
+            <AdSlot slotId={adSlots.resultInline} />
 
             {/* CTA Section - Explore More */}
             <Card className="p-6 space-y-6">

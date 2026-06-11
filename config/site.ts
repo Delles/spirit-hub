@@ -32,7 +32,7 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "SpiritHub.ro",
-  description: "Platformă spirituală românească pentru numerologie, interpretare vise și bioritm",
+  description: "Platformă spirituală românească pentru numerologie, bioritm și ghidaj zilnic",
   url: "https://www.spirithub.ro",
   ogImage: "https://www.spirithub.ro/og-image.jpg",
 
@@ -52,6 +52,11 @@ export const siteConfig: SiteConfig = {
       title: "Bioritm",
       href: "/bioritm",
       description: "Calculează ciclurile tale fizice, emoționale și intelectuale",
+    },
+    {
+      title: "Ghiduri",
+      href: "/ghiduri",
+      description: "Explicații practice despre numerologie, bioritm și energia zilei",
     },
   ],
 

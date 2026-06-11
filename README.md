@@ -1,23 +1,24 @@
 # SpiritHub.ro
 
-Romanian-language spiritual calculation platform combining numerology, dream interpretation, and biorhythm tools.
+Romanian-language spiritual calculation platform combining numerology, biorhythm tools, and daily guidance.
 
-> 📖 **For detailed product specifications, see [product.md](./product.md)**
+> 📖 **For detailed product specifications, see [product.md](./docs/product.md)**
 
 ## Overview
 
-SpiritHub.ro is a modern, mobile-first spiritual platform offering three interconnected tools:
+SpiritHub.ro is a modern, mobile-first spiritual platform offering interconnected tools:
 
 1. **Numerologie** - Life Path, Destiny Number, Compatibility, and Daily Numbers calculators
-2. **Interpretare Vise** - Dream interpretation dictionary with 500+ Romanian symbols
-3. **Bioritm** - Physical, Emotional, and Intellectual cycle tracking with daily guidance
+2. **Bioritm** - Physical, Emotional, and Intellectual cycle tracking with daily guidance
+3. **Mesaj Zilnic** - Deterministic oracle-style daily guidance and homepage widgets
 
 ## Key Features
 
 - **Mobile-First Design** - Optimized for 70% mobile traffic with <2s load times
 - **Romanian Language** - All UI and content in Romanian (ro-RO) with full diacritic support
 - **SEO Optimized** - Romanian keywords, structured data, semantic HTML
-- **Daily Content** - Deterministic daily rotations (numbers, dreams, biorhythm insights)
+- **Daily Content** - Deterministic daily rotations (numbers, oracle messages, biorhythm insights)
+- **Monetization Ready** - Optional AdSense integration plus trust/legal pages
 - **Shareable Results** - One-click social media image generation
 - **Autonomous Operation** - 99%+ autonomy via static content and deterministic calculations
 
@@ -32,7 +33,7 @@ SpiritHub.ro is a modern, mobile-first spiritual platform offering three interco
 - **Runtime / Package Manager**: Bun
 - **Deployment**: Vercel (ISR/SSG)
 
-> 🔧 **For detailed technology stack and development guidelines, see [Tech.md](./Tech.md)**
+> 🔧 **For detailed technology stack and development guidelines, see [Tech.md](./docs/Tech.md)**
 
 ## Project Structure
 
@@ -43,11 +44,11 @@ app/
 ├── page.tsx               # Homepage
 ├── layout.tsx             # Root layout with SEO metadata
 ├── numerologie/           # Numerology calculators (life path, destiny, compatibility, daily number)
-├── vise/                  # Dream interpretation (dictionary, combinations, visul zilei)
+├── mesaj-zilnic/          # Daily oracle message
 └── bioritm/               # Biorhythm calculator (daily + critical days)
 ```
 
-> 📁 **For detailed architecture and folder structure, see [Structure.md](./Structure.md)**
+> 📁 **For detailed architecture and folder structure, see [Structure.md](./docs/Structure.md)**
 
 ### Path Aliases
 
@@ -111,7 +112,17 @@ bun run build
 bun start
 ```
 
-**Note**: For production deployment, ensure `NEXT_PUBLIC_CONVEX_URL` is set in your deployment environment (e.g., Vercel).
+### Monetization Environment
+
+AdSense support is present but disabled until publisher values are configured:
+
+```bash
+NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT=ca-pub-xxxxxxxxxxxxxxxx
+NEXT_PUBLIC_ADSENSE_SLOT_RESULT_INLINE=1234567890
+NEXT_PUBLIC_ADSENSE_SLOT_CONTENT_FOOTER=1234567890
+```
+
+Result-page ad slots render only when both the client id and slot id are available.
 
 ## Troubleshooting
 
@@ -133,10 +144,12 @@ bun start
 
 ## Documentation
 
-- **[agents.md](./agents.md)** - AI agent behavior guidelines and workflows (required reading for AI assistants)
-- **[product.md](./product.md)** - Complete product specifications, user journeys, and requirements
-- **[Structure.md](./Structure.md)** - Project architecture, folder structure, and development patterns
-- **[Tech.md](./Tech.md)** - Technology stack, code conventions, and development guidelines
+- **[product.md](./docs/product.md)** - Complete product specifications, user journeys, and requirements
+- **[Structure.md](./docs/Structure.md)** - Project architecture, folder structure, and development patterns
+- **[Tech.md](./docs/Tech.md)** - Technology stack, code conventions, and development guidelines
+- **[business-roadmap.md](./docs/business-roadmap.md)** - Monetization and business execution plan
+- **[operator-manual.md](./docs/operator-manual.md)** - Codex operating model and session playbook
+- **[manual-work-queue.md](./docs/manual-work-queue.md)** - External account/config tasks for the user
 - **[Next.js Documentation](https://nextjs.org/docs)** - Framework documentation
 
 ## License

@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bun next dev",
-    "build": "bun next build",
-    "start": "bun next start",
+    "dev": "bun node_modules/next/dist/bin/next dev",
+    "build": "bun node_modules/next/dist/bin/next build",
+    "start": "bun node_modules/next/dist/bin/next start",
     "lint": "bun eslint .",
-    "typecheck": "bun tsc --noEmit",
-    "analyze": "powershell -Command \"$env:ANALYZE='true'; npx next build --webpack\""
+    "typecheck": "bun node_modules/typescript/bin/tsc --noEmit",
+    "analyze": "powershell -Command \"$env:ANALYZE='true'; bun node_modules/next/dist/bin/next build --webpack\""
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",

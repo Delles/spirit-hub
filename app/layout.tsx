@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { DailyContentProvider } from "@/components/providers/daily-content-provider";
+import { LegalFooter } from "@/components/layout/legal-footer";
+import { AdsenseScript } from "@/components/monetization/adsense-script";
 
 
 const inter = Inter({
@@ -73,9 +75,11 @@ export default function RootLayout({
   return (
     <html lang="ro" className="dark" suppressHydrationWarning>
       <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased`}>
+        <AdsenseScript />
         <DailyContentProvider>
           {children}
         </DailyContentProvider>
+        <LegalFooter />
         <Analytics />
         <SpeedInsights />
       </body>

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { guides } from '@/data/guides'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://www.spirithub.ro'
@@ -67,6 +68,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 0.7,
+        },
+        {
+            url: `${baseUrl}/ghiduri`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.7,
+        },
+        ...guides.map((guide) => ({
+            url: `${baseUrl}/ghiduri/${guide.slug}`,
+            lastModified: new Date(guide.updatedAt),
+            changeFrequency: 'monthly' as const,
+            priority: 0.65,
+        })),
+        // Trust/legal pages
+        {
+            url: `${baseUrl}/despre`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.5,
+        },
+        {
+            url: `${baseUrl}/confidentialitate`,
+            lastModified: new Date(),
+            changeFrequency: 'yearly',
+            priority: 0.4,
+        },
+        {
+            url: `${baseUrl}/termeni`,
+            lastModified: new Date(),
+            changeFrequency: 'yearly',
+            priority: 0.4,
         },
     ]
 }

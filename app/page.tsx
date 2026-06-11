@@ -1,8 +1,11 @@
 import { Suspense } from "react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { DailyWidgetsClient } from "@/components/landing/daily-widgets-client";
 import { MoonPhaseHeader } from "@/components/landing/moon-phase-header";
 import { DateHeader } from "@/components/landing/date-header";
 import { JsonLd, SPIRITHUB_ORGANIZATION } from "@/components/shared/json-ld";
+import { guides } from "@/data/guides";
 
 // Make homepage fully static - no ISR revalidation needed
 // Daily content is computed client-side (always fresh)
@@ -56,6 +59,38 @@ export default function DashboardPage() {
             }>
               <DailyWidgetsClient />
             </Suspense>
+
+            <section className="w-full mt-8">
+              <div className="mb-4 flex items-center justify-between gap-4">
+                <h2 className="text-xl font-semibold text-white">Ghiduri populare</h2>
+                <Link href="/ghiduri" className="text-sm font-medium text-[#A5B4FC] hover:text-white">
+                  Toate ghidurile
+                </Link>
+              </div>
+              <div className="grid gap-4 md:grid-cols-3">
+                {guides.slice(0, 3).map((guide) => (
+                  <Link
+                    key={guide.slug}
+                    href={`/ghiduri/${guide.slug}`}
+                    className="group rounded-lg border border-white/10 bg-black/20 p-4 transition-colors hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5"
+                  >
+                    <p className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-[#A5B4FC]">
+                      {guide.category}
+                    </p>
+                    <h3 className="mb-2 text-base font-semibold leading-snug text-white">
+                      {guide.title}
+                    </h3>
+                    <div className="flex items-center text-sm font-medium text-[#9F2BFF]">
+                      Citește
+                      <ArrowLeft
+                        className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
 
             {/* SEO / About Section */}
             <section className="w-full mt-8 pt-6 border-t border-white/5 text-center">

@@ -14,6 +14,8 @@ import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { AdSlot } from "@/components/monetization/ad-slot";
+import { adSlots } from "@/config/monetization";
 import Link from "next/link";
 import { parseISO, isValid } from "date-fns";
 import { Heart, Compass, Sparkles, Calendar, ArrowLeft } from "lucide-react";
@@ -183,6 +185,8 @@ export default function CompatibilitateClient() {
               person2={person2Data}
               shareUrl={`https://www.spirithub.ro${pathname}?name1=${encodeURIComponent(person1Data.name)}&date1=${date1Param}&name2=${encodeURIComponent(person2Data.name)}&date2=${date2Param}`}
             />
+
+            <AdSlot slotId={adSlots.resultInline} />
 
             {/* CTA Section - Explore More */}
             <Card className="p-6 space-y-6">

@@ -16,7 +16,6 @@ import {
   getCycleIntensityLevel,
   getWeekOutlook,
   type Trajectory,
-  type DayOutlook,
 } from "@/lib/biorhythm";
 import { getTodayISOBucharest } from "@/lib/daily-content";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
@@ -27,6 +26,8 @@ import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { ErrorMessage } from "@/components/shared/error-message";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { AdSlot } from "@/components/monetization/ad-slot";
+import { adSlots } from "@/config/monetization";
 import { format, parseISO, isValid } from "date-fns";
 import { ro } from "date-fns/locale";
 
@@ -204,6 +205,8 @@ export default function BioritmClient() {
               interpretation={biorhythm.interpretation}
               trajectory={biorhythm.trajectory}
             />
+
+            <AdSlot slotId={adSlots.resultInline} />
 
             {/* 3. Week Preview */}
             <BiorhythmWeekPreview
