@@ -82,7 +82,7 @@ When a dev task is completed, update this section with:
 - Checks passed: `bun run typecheck`, `bun run lint`, `bun run build`.
 - Note: the first sandboxed `bun run build` failed because `next/font` could not fetch Google Fonts;
   rerunning the same build with network access passed.
-- Commit hash: pending push.
+- Implementation commit: `d2df048c8d2e3ded9560e4e9205bc327bd3c9234`.
 - Follow-up: monitor Search Console after Google recrawls `/numerologie/compatibilitate`.
 
 ## Previous Handoff - 2026-06-11
