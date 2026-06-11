@@ -106,7 +106,25 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ## Priority 4: Optional Access Improvements
 
-These are not required, but they would make Codex more autonomous.
+These are now important. They would make Codex more autonomous and reduce repeated manual
+round-trips.
+
+### Vercel Plugin
+
+- Status: needed
+- Owner: user
+- Action: in Codex App plugin marketplace, add the Vercel plugin shown in the screenshot.
+- Why it matters: Codex needs direct visibility into deployments, build failures, and possibly
+  environment variables.
+- Success signal: a future session can discover Vercel tools through `tool_search` and inspect
+  SpiritHub deployments without asking the user to open Vercel manually.
+
+### Vercel Deploy Skill
+
+- Status: optional but useful
+- Owner: user
+- Action: add the "Vercel Deploy" skill if it is separate from the plugin.
+- Why it matters: it gives deployment-specific instructions and workflows inside Codex sessions.
 
 ### GitHub
 
@@ -127,6 +145,14 @@ These are not required, but they would make Codex more autonomous.
 - Workaround: use local HTTP checks and ask the user for visual QA when needed.
 - Future fix: user may need to approve or restart the Codex App/browser integration if visual testing
   is required.
+
+### Codex App Automations
+
+- Status: created
+- Owner: Codex
+- Recommended cadence: weekly, after enough Search Console data can change meaningfully.
+- Purpose: remind the project to review Search Console exports, production health, and next SEO task.
+- Current automation id: `spirithub-weekly-owner-review`
 
 ---
 

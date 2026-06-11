@@ -160,10 +160,10 @@ export default function BioritmClient() {
           <>
             {/* Page Introduction */}
             <div className="space-y-4 text-center">
-              <h1 className="text-3xl font-bold text-white">Calculator Bioritm</h1>
+              <h1 className="text-3xl font-bold text-white">Calculator Bioritm Online Gratuit</h1>
               <p className="text-lg text-[#E0E0E0] leading-relaxed">
-                Explorează cele 3 cicluri naturale (Fizic, Emoțional, Intelectual) care îți
-                influențează energia zilnică și descoperă zilele tale critice.
+                Calculează bioritmul personal pentru data nașterii și vezi energia fizică,
+                emoțională și intelectuală pentru azi sau pentru orice zi aleasă.
               </p>
             </div>
 
@@ -182,6 +182,49 @@ export default function BioritmClient() {
                 message="Nu am putut calcula bioritmul. Te rugăm să verifici datele introduse și să încerci din nou."
               />
             )}
+
+            <section className="grid gap-4 md:grid-cols-3">
+              <Card className="p-5 bg-black/30 border-white/10">
+                <h2 className="mb-2 text-lg font-semibold text-white">Bioritm fizic</h2>
+                <p className="text-sm leading-relaxed text-[#E0E0E0]/80">
+                  Ciclul fizic durează 23 de zile și este asociat cu vitalitatea, energia
+                  corpului și rezistența la efort.
+                </p>
+              </Card>
+              <Card className="p-5 bg-black/30 border-white/10">
+                <h2 className="mb-2 text-lg font-semibold text-white">Bioritm emoțional</h2>
+                <p className="text-sm leading-relaxed text-[#E0E0E0]/80">
+                  Ciclul emoțional durează 28 de zile și descrie dispoziția, sensibilitatea
+                  și felul în care reacționezi la stres.
+                </p>
+              </Card>
+              <Card className="p-5 bg-black/30 border-white/10">
+                <h2 className="mb-2 text-lg font-semibold text-white">Bioritm intelectual</h2>
+                <p className="text-sm leading-relaxed text-[#E0E0E0]/80">
+                  Ciclul intelectual durează 33 de zile și este legat de concentrare,
+                  claritate mentală și decizii.
+                </p>
+              </Card>
+            </section>
+
+            <Card className="p-5 bg-black/30 border-white/10">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h2 className="text-lg font-semibold text-white">Vrei context înainte de calcul?</h2>
+                  <p className="text-sm leading-relaxed text-[#E0E0E0]/80">
+                    Ghidul explică pe scurt ce este bioritmul, cum se citește graficul și ce
+                    înseamnă zilele critice.
+                  </p>
+                </div>
+                <Link
+                  href="/ghiduri/ce-este-bioritmul"
+                  className="inline-flex shrink-0 items-center justify-center rounded-md border border-[#9F2BFF]/50 px-4 py-2 text-sm font-medium text-[#A5B4FC] transition-colors hover:bg-[#9F2BFF]/10 hover:text-white"
+                >
+                  Citește ghidul
+                  <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" />
+                </Link>
+              </div>
+            </Card>
           </>
         )}
 

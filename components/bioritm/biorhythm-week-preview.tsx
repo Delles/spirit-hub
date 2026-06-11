@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, AlertTriangle, Star, Calendar, Activity, Heart, Brain, TrendingUp, TrendingDown } from "lucide-react";
+import { ArrowRight, AlertTriangle, Star, Calendar, Activity, Heart, Brain } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";

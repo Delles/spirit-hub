@@ -11,12 +11,23 @@ import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Calculator Bioritm | SpiritHub.ro",
+  title: "Calculator Bioritm Online Gratuit - Calcul Bioritm Personal | SpiritHub.ro",
   description:
-    "Calculează-ți bioritmul zilnic și descoperă ciclurile tale fizice, emoționale și intelectuale.",
+    "Calculator bioritm online gratuit pentru data nașterii. Află bioritmul personal de azi: ciclul fizic, emoțional, intelectual și zilele critice.",
+  keywords: [
+    "bioritm calcul",
+    "calculator bioritm",
+    "bioritm online",
+    "calcul bioritm",
+    "bioritm personal",
+    "calcul bioritm zilnic",
+    "calculator bioritm online",
+    "zile critice bioritm",
+  ],
   openGraph: {
-    title: "Calculator Bioritm | SpiritHub.ro",
-    description: "Calculează-ți bioritmul zilnic și descoperă ciclurile tale fizice, emoționale și intelectuale.",
+    title: "Calculator Bioritm Online Gratuit | SpiritHub.ro",
+    description:
+      "Calculează bioritmul personal de azi din data nașterii: fizic, emoțional, intelectual și zile critice.",
     type: "website",
     images: [
       {
@@ -29,8 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Calculator Bioritm | SpiritHub.ro",
-    description: "Calculează-ți bioritmul zilnic și descoperă ciclurile tale fizice, emoționale și intelectuale.",
+    title: "Calculator Bioritm Online Gratuit | SpiritHub.ro",
+    description:
+      "Află bioritmul personal de azi: ciclul fizic, emoțional, intelectual și zile critice.",
     images: ["/og-image.jpg"],
   },
   alternates: {
@@ -41,16 +53,19 @@ export const metadata: Metadata = {
 // FAQ Content for Bioritm
 const faqs = [
   {
-    question: "Ce este Bioritmul?",
-    answer: "Teoria bioritmurilor susține că viața noastră este guvernată de cicluri biologice ritmice care încep la naștere: ciclul Fizic (23 zile), cel Emoțional (28 zile) și cel Intelectual (33 zile)."
+    question: "Cum fac un calcul de bioritm personal?",
+    answer:
+      "Introdu data nașterii și data pentru care vrei calculul. Calculatorul folosește ciclul fizic de 23 de zile, ciclul emoțional de 28 de zile și ciclul intelectual de 33 de zile pentru a estima energia zilei."
   },
   {
-    question: "Cum interpretez graficul bioritmului?",
-    answer: "Valorile deasupra liniei mediane (pozitive) indică energie ridicată, optimism și claritate mentală. Valorile sub linie (negative) sugerează perioade de refacere, pasivitate sau instabilitate emoțională."
+    question: "Ce înseamnă bioritm fizic, emoțional și intelectual?",
+    answer:
+      "Bioritmul fizic este asociat cu vitalitatea și efortul, cel emoțional cu dispoziția și sensibilitatea, iar cel intelectual cu atenția și claritatea mentală."
   },
   {
-    question: "Ce este o \"zi critică\" în bioritm?",
-    answer: "Zilele critice sunt cele în care curbele intersectează linia mediană (trec de la pozitiv la negativ sau invers). În aceste zile, fluxul energetic este instabil, iar riscul de erori, accidente sau confuzie este ușor mai ridicat."
+    question: "Ce este o zi critică în bioritm?",
+    answer:
+      "O zi critică apare când unul dintre cicluri trece prin linia de echilibru. Interpretarea sugerează o zi de tranziție, în care merită să fii mai atent la decizii, efort și reacții."
   }
 ];
 

@@ -5,7 +5,8 @@
 **Hard constraint:** keep the production domain `https://www.spirithub.ro`
 
 This document is the operating memory for future sessions. If a new Codex session starts, read this
-file, `docs/business-roadmap.md`, and `docs/manual-work-queue.md` before deciding what to do.
+file, `docs/business-roadmap.md`, `docs/manual-work-queue.md`, and the latest
+`docs/search-console-review-*.md` file before deciding what to do.
 
 ---
 
@@ -171,3 +172,47 @@ Near-term sequence:
 3. Configure AdSense when approved.
 4. Add tests and CI so revenue work is safer.
 5. Expand guide pages based on real query data.
+
+---
+
+## Codex App Capability Plan
+
+The project should use the Codex App as an operating environment, not just a code editor.
+
+### Plugins To Request Or Install
+
+- Vercel plugin: needed for deployment/build visibility and environment variable management.
+- Vercel Deploy skill: useful for deployment-oriented sessions if available.
+- GitHub plugin: already available in this environment; use it for PR/issues/checks when local git is
+  not enough.
+- Browser plugin: use for visual QA when it works; if the Windows sandbox blocks it, fall back to
+  HTTP checks and ask the user for visual confirmation.
+
+When a plugin is missing but visible in the Codex App marketplace, ask the user to add it. Do not
+pretend local shell access is the same as account access.
+
+### Automations
+
+Use Codex App automations for recurring owner work:
+
+- weekly Search Console / SEO review,
+- weekly production health check,
+- post-deploy smoke checks,
+- monthly business roadmap review.
+
+Automation prompts should be self-contained and should report findings plus recommended next action.
+They should not require memory from the current chat.
+
+### Search Console Exports
+
+When direct Search Console access is unavailable, ask the user to export these CSVs:
+
+- Queries
+- Pages
+- Chart
+- Devices
+- Countries
+- Search appearance
+
+Save a dated review in `docs/search-console-review-YYYY-MM-DD.md` and update priorities from the
+data.
