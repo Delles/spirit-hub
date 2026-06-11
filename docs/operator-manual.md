@@ -181,7 +181,7 @@ The project should use the Codex App as an operating environment, not just a cod
 
 ### Plugins To Request Or Install
 
-- Vercel plugin: needed for deployment/build visibility and environment variable management.
+- Vercel plugin: installed and usable for project/deployment/runtime-log visibility.
 - Vercel Deploy skill: useful for deployment-oriented sessions if available.
 - GitHub plugin: already available in this environment; use it for PR/issues/checks when local git is
   not enough.
@@ -190,6 +190,38 @@ The project should use the Codex App as an operating environment, not just a cod
 
 When a plugin is missing but visible in the Codex App marketplace, ask the user to add it. Do not
 pretend local shell access is the same as account access.
+
+### Vercel Project Access
+
+Known Vercel identifiers:
+
+- team name: `Claudiu Marinescu's projects`
+- team id: `team_N8z7T0gEvxQT4wpkn8BHvxJa`
+- project name: `spirit-hub`
+- project id: `prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn`
+- framework: Next.js
+- production domains:
+  - `www.spirithub.ro`
+  - `spirithub.ro`
+  - `spirit-hub.vercel.app`
+
+Use Vercel tools for:
+
+- listing deployments,
+- checking latest deployment readiness,
+- fetching deployment metadata,
+- checking runtime logs for production errors/warnings,
+- checking unresolved Vercel Toolbar feedback,
+- fetching protected deployment URLs when needed.
+
+Current limitation:
+
+- The Vercel plugin did not expose first-class Web Analytics data during the 2026-06-11 session.
+- Fetching `https://vercel.com/claudiu-marinescus-projects/spirit-hub/analytics` through the Vercel
+  fetch tool failed because it could not create a shareable URL for the dashboard page.
+- Browser plugin access also failed with a Windows sandbox `CreateProcessAsUserW failed: 5` error.
+- Until this changes, ask the user for Vercel Analytics screenshots/export when traffic data is
+  needed.
 
 ### Automations
 

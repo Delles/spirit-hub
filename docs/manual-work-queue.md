@@ -111,13 +111,18 @@ round-trips.
 
 ### Vercel Plugin
 
-- Status: needed
-- Owner: user
-- Action: in Codex App plugin marketplace, add the Vercel plugin shown in the screenshot.
+- Status: installed
+- Owner: user and Codex
+- Action: complete.
 - Why it matters: Codex needs direct visibility into deployments, build failures, and possibly
   environment variables.
-- Success signal: a future session can discover Vercel tools through `tool_search` and inspect
-  SpiritHub deployments without asking the user to open Vercel manually.
+- Success signal: Codex can inspect SpiritHub deployments and production runtime logs through Vercel
+  tools.
+
+Known Vercel IDs:
+
+- team id: `team_N8z7T0gEvxQT4wpkn8BHvxJa`
+- project id: `prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn`
 
 ### Vercel Deploy Skill
 
@@ -125,6 +130,21 @@ round-trips.
 - Owner: user
 - Action: add the "Vercel Deploy" skill if it is separate from the plugin.
 - Why it matters: it gives deployment-specific instructions and workflows inside Codex sessions.
+
+### Vercel Analytics
+
+- Status: manual export or screenshot still needed
+- Owner: user
+- Reason: the Vercel plugin can inspect deployments/runtime logs, but it did not expose Web Analytics
+  data directly in the 2026-06-11 session.
+- Analytics URL: `https://vercel.com/claudiu-marinescus-projects/spirit-hub/analytics`
+- What Codex needs when available:
+  - top pages,
+  - referrers,
+  - countries,
+  - devices,
+  - time range,
+  - pageviews/visitors trend.
 
 ### GitHub
 
