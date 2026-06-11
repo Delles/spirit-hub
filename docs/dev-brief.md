@@ -4,7 +4,27 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 ## Active Dev Task
 
-No active dev task yet.
+Improve `/numerologie/compatibilitate` for the next Search Console-backed SEO opportunity.
+
+Scope:
+
+- Target the intent `compatibilitate numerologica calculator` and close variants in the page title,
+  meta description, H1/intro copy, and useful visible content.
+- Keep the page Romanian-native, calm, mobile-first, and tool-focused.
+- Make sure the page quickly routes visitors into the compatibility calculator/result flow.
+- Add or adjust FAQ schema only if the visible page copy genuinely answers the questions.
+- Do not add a paid product, account flow, newsletter, or broad redesign.
+
+Evidence:
+
+- `docs/search-console-review-2026-06-11.md` shows `/numerologie/compatibilitate` has 40
+  impressions, average position 8.12, and 0 clicks.
+- The same review recommends improving this page's title/meta after the biorhythm work.
+
+Checks:
+
+- Run `bun run typecheck`, `bun run lint`, and `bun run build` when practical.
+- If checks pass and the change is coherent, commit and push to `main`.
 
 ## Current Context
 
@@ -12,10 +32,21 @@ No active dev task yet.
 - GitHub `main` is the source of truth.
 - Vercel builds on push.
 - Current business priority: indexing, SEO trust, and traffic growth before paid features.
-- Current external blocker: Google Search Console verification and sitemap submission.
+- Current external blocker: Search Console sitemap submission/confirmation, then a follow-up Search
+  Console export after Google has time to recrawl.
 - AdSense owner-call status on 2026-06-11: site ownership is verified and the site review has been requested.
 - Publisher/client id: `ca-pub-8681888147711861`.
 - Code changed so the root layout AdSense script can render in production without requiring `NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT`.
+
+## Latest Owner Decision - 2026-06-11
+
+- Production is healthy: `/`, `/ghiduri`, `/ghiduri/ce-este-calea-vietii-in-numerologie`, and
+  `/sitemap.xml` returned `200`.
+- Vercel latest production deployment is `READY` on `main`, commit `55369c8499ad68d24551af374f7684890e66260a`.
+- Vercel runtime log query returned no production warnings/errors for the last 24 hours.
+- No unresolved Vercel Toolbar threads were found.
+- The next dev task is CTR/page-quality work on `/numerologie/compatibilitate`.
+- The next user task is to submit or confirm `https://www.spirithub.ro/sitemap.xml` in Search Console.
 
 ## Default Dev Checks
 

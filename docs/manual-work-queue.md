@@ -11,10 +11,13 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Push current repo changes
 
-- Status: in progress
+- Status: complete
 - Owner: Codex
 - Why it matters: Vercel is linked to GitHub, so the push should trigger production deployment.
 - Success signal: Vercel build succeeds and `https://www.spirithub.ro/ghiduri` returns `200`.
+- Evidence: on 2026-06-11, local `main` was clean and up to date with `origin/main`; latest Vercel
+  production deployment was `READY`; production checks for `/`, `/ghiduri`, the life-path guide,
+  and `/sitemap.xml` returned `200`.
 
 ---
 
@@ -22,18 +25,22 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Verify `spirithub.ro`
 
-- Status: needed
+- Status: appears complete based on available Search Console exports
 - Owner: user with Codex guidance
 - Why it matters: Search Console is required to see queries, indexing issues, and growth direction.
 - Best verification method: DNS TXT record if the domain registrar is accessible.
 - Success signal: Search Console property for `https://www.spirithub.ro` or domain property is verified.
+- Evidence: `docs/search-console-review-2026-06-11.md` was produced from user-exported Search
+  Console CSV files for `spirithub.ro`.
 
 ### Submit sitemap
 
-- Status: needed after verification
+- Status: needed / confirmation requested
 - Owner: user or Codex if connector/browser access is available
 - URL: `https://www.spirithub.ro/sitemap.xml`
 - Success signal: Search Console accepts the sitemap and discovers the guide URLs.
+- Current user task: in Google Search Console, submit `https://www.spirithub.ro/sitemap.xml` from
+  the Sitemaps screen, or provide a screenshot showing it is already submitted and accepted.
 
 ### Request indexing for core pages
 
@@ -115,12 +122,13 @@ Known publisher/client ID:
 
 ### Share Search Console query snapshot
 
-- Status: needed 7-14 days after sitemap submission
+- Status: completed for the first baseline export; needed again 7-14 days after sitemap submission
 - Owner: user
 - What Codex needs:
   - top queries by impressions,
   - pages with impressions but low CTR,
   - indexing errors.
+- Latest baseline: `docs/search-console-review-2026-06-11.md`.
 
 ---
 
