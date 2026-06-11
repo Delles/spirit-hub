@@ -111,19 +111,31 @@ round-trips.
 
 ### WSL2 + Codex CLI Engineering Lane
 
-- Status: recommended
+- Status: configured
 - Owner: user
 - Reason: the Codex App should remain the owner console, but a WSL2 CLI lane would be better for
   subagents, browser QA, scripted audits, and long-running engineering work.
-- Current machine state: WSL is not installed as of 2026-06-11.
-- Requested setup:
-  1. Install WSL2 with Ubuntu.
-  2. Clone `https://github.com/Delles/spirit-hub.git` under `~/code/spirit-hub`.
-  3. Install Codex in WSL with the official installer.
-  4. Log in to Codex CLI.
-  5. Verify `codex --version` and `codex mcp --help`.
-- Success signal: a future session can run Codex CLI from the WSL clone and use subagents or
-  `codex exec` without Windows sandbox browser/Temp failures.
+- Current machine state: Ubuntu WSL is installed, the repo exists under `~/code/spirit-hub`, Codex CLI
+  is installed, Node/npm/npx are installed, Bun is installed, and Next telemetry is disabled.
+- MCP status: `chrome-devtools` and `openaiDeveloperDocs` are enabled in `codex mcp list`.
+- Success signal: a future session can run Codex CLI from the WSL clone and use it as the dev lane.
+
+Recommended CLI startup:
+
+```bash
+cd ~/code/spirit-hub
+git pull --ff-only
+git status --short
+codex
+```
+
+Use prompt:
+
+```text
+You are the SpiritHub dev team. Read docs/dev-brief.md and complete the active task. Use the existing
+project conventions. Run typecheck, lint, and build when practical. Commit and push if checks pass
+and the brief says shipping is allowed.
+```
 
 ### Vercel Plugin
 

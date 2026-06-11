@@ -4,8 +4,9 @@
 **Human extension:** the user, for accounts, approvals, credentials, payments, and browser-side setup  
 **Hard constraint:** keep the production domain `https://www.spirithub.ro`
 
-This document is the operating memory for future sessions. If a new Codex session starts, read this
-file, `docs/business-roadmap.md`, `docs/manual-work-queue.md`, and the latest
+This document is the operating memory for future sessions. If a new Codex App owner session starts,
+read this file, `docs/business-roadmap.md`, `docs/manual-work-queue.md`,
+`docs/owner-dev-workflow.md`, `docs/dev-brief.md`, and the latest
 `docs/search-console-review-*.md` file before deciding what to do. For tooling decisions, also read
 the latest `docs/harness-recommendation-*.md` file.
 
@@ -73,6 +74,22 @@ Useful target questions:
 
 ## Session Types
 
+### Owner Session
+
+Use when the goal is management, prioritization, analytics review, or deciding what the CLI dev team
+should build.
+
+Default flow:
+
+1. Read `docs/operator-manual.md`, `docs/business-roadmap.md`, `docs/manual-work-queue.md`,
+   `docs/owner-dev-workflow.md`, and `docs/dev-brief.md`.
+2. Check `docs/inbox/` for new user-provided screenshots, CSVs, IDs, or notes.
+3. Check production/deployment status when Vercel tools are available.
+4. Decide one user task and one dev task.
+5. Update `docs/manual-work-queue.md` and `docs/dev-brief.md`.
+
+Owner sessions should be run in Codex App.
+
 ### Dev Session
 
 Use when the goal is shipping code.
@@ -92,6 +109,9 @@ Good dev tasks:
 - Add retention CTAs.
 - Improve internal links.
 - Fix production issues.
+
+Dev sessions should usually be run in Codex CLI inside WSL. The CLI should pull latest `main`, read
+`docs/dev-brief.md`, implement the task, run checks, commit, push, and leave a short outcome note.
 
 ### Config Session
 
@@ -138,12 +158,20 @@ Default flow:
 
 ## New Session Starter Prompt
 
-The user can start a fresh session with:
+The user can start a fresh Codex App owner session with:
 
 ```text
-You are still the owner/operator of SpiritHub.ro. Read docs/operator-manual.md,
-docs/business-roadmap.md, and docs/manual-work-queue.md, then continue with the highest-impact next
-step. You can commit and push when checks pass.
+SpiritHub owner session. Read docs/operator-manual.md, docs/business-roadmap.md,
+docs/manual-work-queue.md, docs/owner-dev-workflow.md, and docs/dev-brief.md. Check docs/inbox for
+new manual inputs, then continue with the highest-impact next step.
+```
+
+The user can start a fresh Codex CLI dev session in WSL with:
+
+```text
+You are the SpiritHub dev team. Read docs/dev-brief.md and complete the active task. Use the existing
+project conventions. Run typecheck, lint, and build when practical. Commit and push if checks pass
+and the brief says shipping is allowed.
 ```
 
 For a config-focused session:
