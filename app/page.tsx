@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { DailyWidgetsClient } from "@/components/landing/daily-widgets-client";
@@ -11,6 +12,44 @@ import { guides } from "@/data/guides";
 // Daily content is computed client-side (always fresh)
 export const dynamic = "force-static";
 
+export const metadata: Metadata = {
+  title: "SpiritHub.ro - Numerologie și Ghidaj Zilnic",
+  description:
+    "Descoperă energia zilei, calculează-ți numărul destinului și explorează compatibilitatea numerologică. Instrumente gratuite, rapide și fără cont.",
+  keywords: [
+    "numerologie online",
+    "ghidaj zilnic",
+    "energia zilei",
+    "mesaj zilnic",
+    "calea vieții",
+    "compatibilitate numerologică",
+  ],
+  alternates: {
+    canonical: "https://www.spirithub.ro/",
+  },
+  openGraph: {
+    title: "SpiritHub.ro - Numerologie și Ghidaj Zilnic",
+    description:
+      "Instrumente gratuite de numerologie, energia zilei și ghidaj zilnic, disponibile rapid și fără cont.",
+    url: "https://www.spirithub.ro/",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SpiritHub.ro - Numerologie și Ghidaj Zilnic",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SpiritHub.ro - Numerologie și Ghidaj Zilnic",
+    description: "Instrumente gratuite de numerologie, energia zilei și ghidaj zilnic.",
+    images: ["/og-image.jpg"],
+  },
+};
+
 export default function DashboardPage() {
   // JSON-LD structured data for homepage
   const websiteJsonLd = {
@@ -19,7 +58,7 @@ export default function DashboardPage() {
     name: "SpiritHub.ro",
     url: "https://www.spirithub.ro",
     description:
-      "Platformă spirituală românească pentru numerologie și bioritm. Descoperă-ți numărul destinului și urmărește ciclurile tale fizice, emoționale și intelectuale.",
+      "Platformă românească pentru numerologie și ghidaj zilnic. Descoperă energia zilei, numărul destinului și compatibilitatea numerologică.",
     inLanguage: "ro-RO",
   };
 
@@ -41,10 +80,9 @@ export default function DashboardPage() {
 
           {/* Page Hero / Header Section */}
           <div className="text-center pt-8 pb-4 space-y-2 animate-fade-in">
-            <h1 className="sr-only">Numerologie și Bioritm Online - Calculator Gratuit</h1>
-            <h2 className="text-[#E0E0E0] uppercase tracking-[0.2em] text-sm font-medium">
+            <h1 className="text-[#E0E0E0] uppercase tracking-[0.2em] text-sm font-medium">
               Energia Zilei
-            </h2>
+            </h1>
             {/* Date - computed client-side to always show "today" */}
             <DateHeader />
             {/* Moon phase - computed client-side */}
@@ -95,7 +133,12 @@ export default function DashboardPage() {
             {/* SEO / About Section */}
             <section className="w-full mt-8 pt-6 border-t border-white/5 text-center">
               <p className="text-white/40 text-sm max-w-2xl mx-auto leading-relaxed">
-                SpiritHub.ro - Călătoria ta spre autocunoaștere prin numerologie și bioritm.
+                SpiritHub.ro te ajută să explorezi numerologia și energia zilei. Pentru ciclurile
+                fizice, emoționale și intelectuale, folosește{" "}
+                <Link href="/bioritm" className="text-[#A5B4FC] underline-offset-4 hover:underline">
+                  calculatorul de bioritm online
+                </Link>
+                .
               </p>
             </section>
 
