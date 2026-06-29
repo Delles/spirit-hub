@@ -24,16 +24,29 @@ Wait for fresh Search Console evidence before assigning the next SEO/content tas
 
 ## Latest Owner Decision - 2026-06-11
 
-- Production is healthy: `/numerologie/compatibilitate` and `/sitemap.xml` returned `200` after
-  the compatibility SEO deployment.
-- Vercel latest production deployment is `READY` on `main`, commit `5d152d358875df79fd9c78f39887f3c915173c71`.
-- Vercel runtime log query returned no production warnings/errors for the last 30 minutes.
+- `docs/inbox` contains the Vercel Analytics CSV exports already summarized in
+  `docs/vercel-analytics-review-2026-06-11.md`; no newer unreviewed manual input was found.
+- Production remains healthy: direct production HTML checks confirmed the public
+  `/numerologie/compatibilitate` page has the updated calculator-focused copy, FAQ schema, metadata,
+  and AdSense ownership script.
+- Latest Vercel production deployment is `READY` on `main`, commit
+  `7f7a11fb4a241d8ed00c42d40385df04052f869a` (`Skip Vercel builds for docs-only changes`).
+- Vercel runtime log query returned no production warnings/errors/fatal logs for the last hour.
 - No unresolved Vercel Toolbar threads were found.
+- Browser-based visual QA is still blocked in the Windows Codex App by the known
+  `CreateProcessAsUserW failed: 5` issue, so the user's manual content/UI audit remains useful.
 - The compatibility CTR/page-quality task is complete.
 - Sitemap follow-up: user provided Search Console evidence that `https://www.spirithub.ro/sitemap.xml`
   has status `Success`, was last read on 2026-06-10, and has 10 discovered pages.
-- Next decision point: review Search Console again between 2026-06-18 and 2026-06-25, after Google
-  has time to recrawl the updated compatibility page.
+- Vercel Analytics baseline was added in `docs/vercel-analytics-review-2026-06-11.md`: the stronger
+  30-day export shows 85 visitors, 345 total page views/events, homepage and `/bioritm` leading,
+  daily/numerology tools active, Romania dominant, and Google already meaningful as a referrer.
+- Next owner action: wait for the Google AdSense review result and capture a screenshot of approval,
+  rejection, or policy issues in `docs/inbox` as a dated `adsense-status` file.
+- Manual QA action: user should double check the live UI/content on the homepage, `/bioritm`,
+  `/numerologie/compatibilitate`, `/ghiduri`, and one guide page, especially on mobile.
+- Next SEO decision point: review Search Console again between 2026-06-18 and 2026-06-25, after
+  Google has time to recrawl the updated compatibility page.
 
 ## Default Dev Checks
 

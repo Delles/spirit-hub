@@ -18,6 +18,9 @@ Update this file whenever a task is completed or a new blocker appears.
 - Evidence: on 2026-06-11, local `main` was clean and up to date with `origin/main`; latest Vercel
   production deployment was `READY`; production checks for `/`, `/ghiduri`, the life-path guide,
   and `/sitemap.xml` returned `200`.
+- Evidence update: later on 2026-06-11, the latest Vercel production deployment was still `READY` on
+  `main` at commit `7f7a11fb4a241d8ed00c42d40385df04052f869a`; production runtime logs had no
+  warnings/errors for the last hour and there were no unresolved Vercel Toolbar threads.
 
 ---
 
@@ -87,6 +90,8 @@ Known publisher/client ID:
 - Expected timing: usually a few days, sometimes 2-4 weeks.
 - Success signal: AdSense approves `spirithub.ro`.
 - Evidence needed: screenshot of the approval, rejection, or policy issue message.
+- Owner-session decision on 2026-06-11: no additional site/config action is needed until Google
+  returns the review result.
 
 ### Configure Vercel environment variables
 
@@ -112,8 +117,11 @@ Known publisher/client ID:
 
 ### Share Vercel Analytics snapshot
 
-- Status: needed after deployment has had time to collect traffic
+- Status: completed for the first baseline export; repeat when traffic has had time to change
 - Owner: user
+- Latest inbox update: Vercel Analytics CSV exports were added on 2026-06-11.
+- Latest baseline: `docs/vercel-analytics-review-2026-06-11.md`, based primarily on 30-day Vercel
+  CSV exports for 2026-05-12 17:00 to 2026-06-11 17:59.
 - What Codex needs:
   - top pages,
   - referrers,
@@ -192,11 +200,19 @@ Known Vercel IDs:
 
 ### Vercel Analytics
 
-- Status: manual export or screenshot still needed
-- Owner: user
-- Reason: the Vercel plugin can inspect deployments/runtime logs, but it did not expose Web Analytics
-  data directly in the 2026-06-11 session.
+- Status: try plugin permission refresh first; manual CSV export remains the fallback
+- Owner: user for Vercel authorization/export, Codex for analysis
+- Reason: the Vercel plugin can inspect deployments/runtime logs, and Vercel docs now mark Web
+  Analytics as a plugin permission, but the currently exposed Codex App Vercel tools still do not
+  include a first-class Web Analytics query/export tool.
 - Analytics URL: `https://vercel.com/claudiu-marinescus-projects/spirit-hub/analytics`
+- Automation attempt:
+  - install or refresh the Vercel plugin with `npx plugins add vercel/vercel-plugin`,
+  - approve the Vercel `Web Analytics` permission if prompted,
+  - restart or refresh the Codex session and search available Vercel tools for analytics access.
+- Fallback input:
+  - export CSVs from Vercel Analytics panels where available instead of screenshots,
+  - save them in `docs/inbox/` using dated filenames.
 - What Codex needs when available:
   - top pages,
   - referrers,
@@ -204,6 +220,9 @@ Known Vercel IDs:
   - devices,
   - time range,
   - pageviews/visitors trend.
+- Longer-term option: Vercel Drains can forward Web Analytics events as JSON/NDJSON to an HTTP
+  destination for future reporting, but this needs a receiving endpoint/storage setup and does not
+  replace historical dashboard exports.
 
 ### GitHub
 
@@ -237,11 +256,15 @@ Known Vercel IDs:
 
 ## Manual QA Checklist After Deployment
 
+Status: useful now because browser-based visual QA is blocked in the Windows Codex App.
+
 Open these production URLs:
 
 - `https://www.spirithub.ro/`
 - `https://www.spirithub.ro/ghiduri`
 - `https://www.spirithub.ro/ghiduri/ce-este-calea-vietii-in-numerologie`
+- `https://www.spirithub.ro/bioritm`
+- `https://www.spirithub.ro/numerologie/compatibilitate`
 - `https://www.spirithub.ro/sitemap.xml`
 
 Check:
@@ -250,4 +273,6 @@ Check:
 - Footer has "Ghiduri".
 - Homepage has "Ghiduri populare".
 - Guide article CTA opens the matching calculator.
+- `/bioritm` presents the calculator before long explanatory content.
+- `/numerologie/compatibilitate` clearly asks for two names and birth dates and explains the result as symbolic, not deterministic.
 - No obvious layout overlap.

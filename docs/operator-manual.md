@@ -59,10 +59,15 @@ user receives value.
 Run this once per week when Search Console and analytics are available:
 
 1. Review Search Console queries, pages, CTR, and indexing issues.
-2. Review Vercel Analytics top pages, referrers, and retention hints.
-3. Improve one existing page or publish one new guide.
-4. Check production health, sitemap, robots, and build status.
-5. Choose one experiment for the next session.
+2. Review only new decision-relevant analytics, revenue, and SERP evidence.
+3. Identify the current traffic or revenue bottleneck.
+4. Implement one scoped improvement or publish one useful indexed page.
+5. Check Vercel deployment and production health only after shipping or when a failure signal exists.
+6. Give the user at most one concrete account-side or real-world task when Codex cannot complete it.
+
+The weekly output is a shipped business improvement, not a dashboard audit. A measurement window may
+pause further changes to the same page, but it must not pause non-overlapping growth work elsewhere.
+If fresh evidence is unavailable, choose a compounding task from the roadmap instead of waiting.
 
 Useful target questions:
 

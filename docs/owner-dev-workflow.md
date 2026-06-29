@@ -88,24 +88,34 @@ Examples:
 
 ## 4. Weekly Management Meeting
 
-The Codex App automation should behave like a short weekly management meeting.
+The Codex App automation should behave like a token-efficient owner/operator session. Its primary
+goal is sustainable traffic and revenue growth, with the user acting as the human extension for
+account screens, approvals, credentials, payments, and other real-world actions.
 
 Agenda:
 
 1. Read the operator manual, roadmap, manual queue, workflow, dev brief, and new inbox files.
 2. Check whether the user's manual tasks were completed.
-3. Check production health and latest deployment status when tools allow it.
-4. Review available Search Console and analytics evidence.
-5. Decide one owner action and one dev action.
-6. Update `docs/dev-brief.md` for Codex CLI.
-7. Update `docs/manual-work-queue.md` for the user.
+3. Review only new Search Console, analytics, AdSense, and SERP evidence that can change a decision.
+4. Identify the single largest current traffic or revenue bottleneck.
+5. Execute one scoped, high-value action when safe; otherwise write the exact dev brief needed to execute it.
+6. Ask the user for at most one external action that Codex cannot perform.
+7. Update durable project memory and the relevant work queue or dev brief.
+
+Do not perform routine Vercel dashboard, toolbar-thread, or multi-day log reviews. Use Vercel only
+when the run deploys a change, a deployment is reported failed, or production behavior indicates an
+incident. After a deployment, use the minimum checks needed to confirm the changed path is healthy.
+
+If a page is inside an SEO measurement window, avoid overlapping edits to that page but continue
+work on another query, guide, internal-link cluster, retention loop, or monetization blocker. Waiting
+is not the default owner action.
 
 Output format:
 
-- CEO brief: what changed, what matters, current risk.
-- User task: exactly what the user should do next.
-- Dev task: exact task for Codex CLI.
-- Evidence needed next: screenshots, CSVs, credentials, or confirmations.
+- Business result: what was shipped or decided and why it should improve traffic or revenue.
+- Scoreboard: only the few metrics that changed the decision.
+- User task: zero or one exact external action.
+- Next bet: the next non-overlapping action if the current change needs time to measure.
 
 ## 5. Repository Location Policy
 
