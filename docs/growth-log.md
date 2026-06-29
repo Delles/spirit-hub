@@ -54,4 +54,6 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
   queries without changing ranking-page behavior.
 - Review date: 2026-07-13, using a fresh seven-day Search Console query/page export and owner SERP
   screenshots for the same biorhythm queries.
-- Outcome: Pending deployment and Google recrawl.
+- Outcome: Deployed from commit `051319e3124c1d1ea0294186aef2a0a65395d9d0`; Vercel deployment
+  `dpl_CPxyCegGdww38xgT4C2Kx8vmT1co` reached `READY`, and production `/bioritm` returned `200` with
+  the expected title and description. Google recrawl and CTR measurement are pending.
