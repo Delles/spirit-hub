@@ -73,4 +73,6 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
   plus clearer trust signals for users who want to understand the percentage before or after use.
 - Review date: 2026-07-13, using Search Console page/query data for compatibility terms and guide
   impressions.
-- Outcome: Pending deployment and Google recrawl.
+- Outcome: Deployed from commit `79917dd4cb3470660351d9d26b8965585a1a299a`; Vercel deployment
+  `dpl_GB7KFPSC8K9h9Z6vWmUYJWn45feb` reached `READY`. The calculator and guide both returned `200`;
+  production preserves the calculator title and exposes the new guide link and scoring method.
