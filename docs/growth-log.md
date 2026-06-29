@@ -39,3 +39,19 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Outcome: Deployed to production. Vercel deployment for `5d152d358875df79fd9c78f39887f3c915173c71`
   was `READY`; `/numerologie/compatibilitate` returned `200`; no production warnings/errors appeared
   in the runtime log query.
+
+## 2026-06-29 - Tighten biorhythm calculator search snippet
+
+- Evidence: The 2026-06-21 to 2026-06-27 Search Console export showed `/bioritm` at 166 impressions,
+  4 clicks, 2.41% CTR, and average position 7.95. `bioritm calcul` had 125 impressions and no clicks;
+  `calculator bioritm` had 37 impressions and no clicks. Owner SERP screenshots also showed
+  SpiritHub below several calculator competitors.
+- Decision: Test a shorter exact-intent title and an action-led description on `/bioritm` only.
+  Keep the existing H1, introductory calculator copy, and calculator behavior unchanged.
+- Change made: Shortened the title to `Calculator Bioritm Online Gratuit | SpiritHub.ro` and rewrote
+  the description around entering a birth date and receiving the three cycles plus critical days.
+- Expected result: A clearer, less truncation-prone snippet and higher CTR for biorhythm calculator
+  queries without changing ranking-page behavior.
+- Review date: 2026-07-13, using a fresh seven-day Search Console query/page export and owner SERP
+  screenshots for the same biorhythm queries.
+- Outcome: Pending deployment and Google recrawl.

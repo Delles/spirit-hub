@@ -11,9 +11,9 @@ import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Calculator Bioritm Online Gratuit - Calcul Bioritm Personal | SpiritHub.ro",
+  title: "Calculator Bioritm Online Gratuit | SpiritHub.ro",
   description:
-    "Calculator bioritm online gratuit pentru data nașterii. Află bioritmul personal de azi: ciclul fizic, emoțional, intelectual și zilele critice.",
+    "Introdu data nașterii și calculează gratuit bioritmul de azi. Vezi instant ciclurile fizic, emoțional și intelectual, plus zilele critice.",
   keywords: [
     "bioritm calcul",
     "calculator bioritm",
