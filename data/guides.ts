@@ -14,6 +14,12 @@ export interface GuideSection {
   body: string[];
 }
 
+export interface GuideRelatedLink {
+  title: string;
+  description: string;
+  href: string;
+}
+
 export interface Guide {
   slug: string;
   title: string;
@@ -24,6 +30,7 @@ export interface Guide {
   icon: LucideIcon;
   intro: string;
   sections: GuideSection[];
+  relatedLinks?: GuideRelatedLink[];
   faqs: FAQItem[];
   cta: {
     label: string;
@@ -65,6 +72,19 @@ export const guides: Guide[] = [
           "Începe cu sensul de bază al numărului, apoi caută exemple concrete în viața ta. Un număr 1 poate vorbi despre inițiativă, iar un număr 6 despre responsabilitate și armonie.",
           "Interpretarea devine mai valoroasă când o legi de comportamente reale: ce alegi ușor, ce eviți, unde repeți același tipar și ce te ajută să te echilibrezi.",
         ],
+      },
+    ],
+    relatedLinks: [
+      {
+        title: "Compatibilitate numerologică",
+        description:
+          "Vezi cum se combină două căi ale vieții cu numerele destinului într-un scor explicat.",
+        href: "/ghiduri/compatibilitate-numerologica-interpretare-scor",
+      },
+      {
+        title: "Calculator de compatibilitate",
+        description: "Compară gratuit numele și datele de naștere pentru două persoane.",
+        href: "/numerologie/compatibilitate",
       },
     ],
     faqs: [
@@ -124,6 +144,19 @@ export const guides: Guide[] = [
         ],
       },
     ],
+    relatedLinks: [
+      {
+        title: "Compatibilitate numerologică",
+        description:
+          "Înțelege rolul numărului destinului în scorul de compatibilitate dintre două persoane.",
+        href: "/ghiduri/compatibilitate-numerologica-interpretare-scor",
+      },
+      {
+        title: "Calculator de compatibilitate",
+        description: "Compară gratuit numele și datele de naștere pentru două persoane.",
+        href: "/numerologie/compatibilitate",
+      },
+    ],
     faqs: [
       {
         question: "Folosesc numele actual sau numele de la naștere?",
@@ -151,19 +184,26 @@ export const guides: Guide[] = [
     slug: "compatibilitate-numerologica-interpretare-scor",
     title: "Compatibilitate numerologică: cum se interpretează scorul?",
     description:
-      "Ghid pentru interpretarea unui scor de compatibilitate numerologică fără promisiuni exagerate sau concluzii rigide.",
-    updatedAt: "2026-06-11",
+      "Află cum se calculează compatibilitatea numerologică din nume și date de naștere și cum interpretezi scorul fără concluzii rigide.",
+    updatedAt: "2026-06-29",
     category: "Numerologie",
-    readMinutes: 6,
+    readMinutes: 8,
     icon: Heart,
     intro:
-      "Compatibilitatea numerologică este utilă când o privești ca pe o hartă de conversație, nu ca pe o sentință despre relație.",
+      "Compatibilitatea numerologică pune alături calea vieții și numărul destinului pentru două persoane. Rezultatul este mai util ca hartă de conversație decât ca sentință despre relație.",
     sections: [
       {
-        heading: "Ce măsoară scorul",
+        heading: "Ce date intră în calcul",
         body: [
-          "Un scor de compatibilitate compară mai multe repere numerologice, precum calea vieții, numărul destinului și vibrațiile numelor. Rezultatul indică zone de armonie și zone unde pot apărea diferențe de ritm.",
-          "Scorul nu poate măsura maturitatea, comunicarea, contextul sau alegerile zilnice ale celor doi oameni. De aceea, interpretarea trebuie citită cu discernământ.",
+          "Calculatorul folosește numele complet și data nașterii pentru fiecare persoană. Din data nașterii rezultă calea vieții, iar din literele numelui complet rezultă numărul destinului.",
+          "Folosirea ambelor repere evită o comparație bazată pe o singură cifră. Calea vieții descrie direcția și ritmul personal, iar numărul destinului adaugă felul în care fiecare persoană își exprimă energia și talentele.",
+        ],
+      },
+      {
+        heading: "Cum se calculează scorul de compatibilitate",
+        body: [
+          "SpiritHub compară mai întâi cele două căi ale vieții și obține un scor pentru această pereche. Apoi compară cele două numere ale destinului și obține al doilea scor.",
+          "Scorul general afișat este media rotunjită a celor două rezultate. Procentul descrie apropierea simbolică dintre reperele numerologice; nu este probabilitatea ca relația să reușească și nu poate măsura comunicarea, maturitatea sau contextul real.",
         ],
       },
       {
@@ -180,8 +220,32 @@ export const guides: Guide[] = [
           "Folosește interpretarea ca punct de pornire: ce ne vine ușor, ce ne activează, unde avem nevoie de mai multă răbdare?",
         ],
       },
+      {
+        heading: "Cum folosești rezultatul în relație",
+        body: [
+          "Citește separat potrivirea căilor vieții și potrivirea numerelor destinului. Dacă una este mai ridicată decât cealaltă, diferența poate arăta unde există naturalețe și unde sunt necesare explicații mai clare între voi.",
+          "Transformă rezultatul în întrebări concrete: cum luăm decizii, cum cerem spațiu, cum gestionăm conflictele și ce așteptări avem de la relație? Un scor devine util doar când conduce la observații și conversații reale.",
+        ],
+      },
+    ],
+    relatedLinks: [
+      {
+        title: "Ce este calea vieții?",
+        description: "Înțelege numărul calculat din data nașterii și rolul lui în compatibilitate.",
+        href: "/ghiduri/ce-este-calea-vietii-in-numerologie",
+      },
+      {
+        title: "Cum se calculează numărul destinului?",
+        description: "Vezi cum este transformat numele complet în al doilea reper al scorului.",
+        href: "/ghiduri/cum-se-calculeaza-numarul-destinului",
+      },
     ],
     faqs: [
+      {
+        question: "Cum se calculează procentul de compatibilitate?",
+        answer:
+          "Calculatorul compară mai întâi căile vieții, apoi numerele destinului. Procentul general este media rotunjită a celor două scoruri de compatibilitate.",
+      },
       {
         question: "Un scor mic înseamnă incompatibilitate totală?",
         answer:

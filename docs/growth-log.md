@@ -57,3 +57,20 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Outcome: Deployed from commit `051319e3124c1d1ea0294186aef2a0a65395d9d0`; Vercel deployment
   `dpl_CPxyCegGdww38xgT4C2Kx8vmT1co` reached `READY`, and production `/bioritm` returned `200` with
   the expected title and description. Google recrawl and CTR measurement are pending.
+
+## 2026-06-29 - Build compatibility topic authority
+
+- Evidence: `/numerologie/compatibilitate` earned 5 clicks from 83 impressions at 6.02% CTR in the
+  latest seven-day Search Console export, so its snippet already matches intent. Owner SERP evidence
+  showed the result ranking near the bottom of the visible results, making authority and supporting
+  content the larger constraint.
+- Decision: Preserve the calculator metadata and strengthen the surrounding compatibility topic
+  cluster with transparent methodology and reciprocal internal links.
+- Change made: Expanded the compatibility guide to explain its required inputs and the exact scoring
+  method, added practical interpretation guidance, linked the guide with the calea vieții and numărul
+  destinului guides, and added a contextual guide link below the compatibility calculator.
+- Expected result: Stronger topical relevance and crawl paths for the compatibility calculator,
+  plus clearer trust signals for users who want to understand the percentage before or after use.
+- Review date: 2026-07-13, using Search Console page/query data for compatibility terms and guide
+  impressions.
+- Outcome: Pending deployment and Google recrawl.

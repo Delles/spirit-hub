@@ -154,6 +154,32 @@ export default async function GuidePage({ params }: GuidePageProps) {
           ))}
         </div>
 
+        {guide.relatedLinks && guide.relatedLinks.length > 0 && (
+          <section className="mt-10" aria-labelledby="related-guides-heading">
+            <h2 id="related-guides-heading" className="mb-4 text-2xl font-semibold text-white">
+              Continuă explorarea
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {guide.relatedLinks.map((relatedLink) => (
+                <Link key={relatedLink.href} href={relatedLink.href} className="group">
+                  <Card className="h-full p-5 transition-colors hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5">
+                    <h3 className="mb-2 font-semibold text-white group-hover:text-[#A5B4FC]">
+                      {relatedLink.title}
+                    </h3>
+                    <p className="mb-3 text-sm leading-relaxed text-[#E0E0E0]/80">
+                      {relatedLink.description}
+                    </p>
+                    <span className="inline-flex items-center text-sm font-medium text-[#9F2BFF]">
+                      Află mai mult
+                      <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" />
+                    </span>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
         <div className="mt-10">
           <FAQSection faqs={guide.faqs} />
         </div>
