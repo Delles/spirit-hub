@@ -47,7 +47,7 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Request indexing for core pages
 
-- Status: optional after sitemap submission
+- Status: latest manual requests submitted on 2026-07-06
 - Owner: user with Codex guidance
 - URLs:
   - `https://www.spirithub.ro/`
@@ -56,6 +56,17 @@ Update this file whenever a task is completed or a new blocker appears.
   - `https://www.spirithub.ro/numerologie/compatibilitate`
   - `https://www.spirithub.ro/bioritm`
   - `https://www.spirithub.ro/ghiduri`
+
+Evidence update on 2026-07-06:
+
+- User requested re-indexing for `https://www.spirithub.ro/numerologie` after the calculator-hub
+  deployment.
+- User also manually requested indexing for every URL shown under Search Console's
+  `Discovered - currently not indexed` examples: the About, Privacy, Terms, and six guide pages.
+- Screenshot: `docs/inbox/2026-07-06-search-console-discovered-not-indexed.png`.
+- The screenshot showed `Last crawled: N/A`, so these are pending crawl requests, not indexing
+  failures. Do not repeat the requests before 2026-07-20; check coverage or URL Inspection after
+  Google has had time to crawl them.
 
 ---
 
