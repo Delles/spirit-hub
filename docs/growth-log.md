@@ -93,4 +93,6 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Expected result: Better generic numerology CTR, stronger crawl paths between the hub, calculators,
   and guides, and clearer trust signals before visitors choose a tool.
 - Review date: 2026-07-20, using page/query data for `/numerologie` and generic numerology terms.
-- Outcome: Pending deployment.
+- Outcome: Deployed from commit `490604335bb1370538e72471c966306ce1c22d85`; Vercel deployment
+  `dpl_3j1UD646nDArXHBSVcUzPBkUCJx5` reached `READY`. Production `/numerologie` returned `200` with
+  the expected title, description, trust copy, and methodology-guide links.

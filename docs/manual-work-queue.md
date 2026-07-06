@@ -130,16 +130,17 @@ Known publisher/client ID:
 
 ### Share Search Console query snapshot
 
-- Status: completed for the first baseline export; needed again after Google recrawls the
-  compatibility SEO update
+- Status: current through the 2026-06-28 to 2026-07-04 export
 - Owner: user
 - What Codex needs:
   - top queries by impressions,
   - pages with impressions but low CTR,
   - indexing errors.
-- Latest baseline: `docs/search-console-review-2026-06-11.md`.
-- Next requested window: export fresh Search Console performance data between 2026-06-18 and
-  2026-06-25, including Queries and Pages at minimum.
+- Latest evidence: `docs/inbox/2026-07-06-search-console-performance.xlsx`, summarized in
+  `docs/growth-log.md`.
+- Next requested window: after 2026-07-13, export Last 7 days with Queries and Pages so the
+  `/bioritm` snippet and compatibility authority experiments can be evaluated without overlapping
+  edits.
 
 ---
 
