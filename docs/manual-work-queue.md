@@ -103,6 +103,20 @@ Known publisher/client ID:
 - Evidence needed: screenshot of the approval, rejection, or policy issue message.
 - Owner-session decision on 2026-06-11: no additional site/config action is needed until Google
   returns the review result.
+- Evidence update on 2026-07-06: `docs/inbox/2026-07-06-adsense-status.png` still shows approval
+  status `Getting ready`, no status detail, and `Ads.txt status: Not found`. The dashboard itself was
+  last updated on 2026-06-22 at 11:58 EEST, so this is not a fresh Google rescan.
+
+### Wait for AdSense ads.txt recognition
+
+- Status: pending Google rescan; live file is correct
+- Owner: Google crawler, with one user-triggered refresh when available
+- Live verification on 2026-07-06: `https://www.spirithub.ro/ads.txt` returns `200`,
+  `Content-Type: text/plain; charset=utf-8`, and the exact publisher line
+  `google.com, pub-8681888147711861, DIRECT, f08c47fec0942fa0`.
+- User action: open the `spirithub.ro` site detail in AdSense and click `Check for updates` once if
+  the control is available. Do not change the repository or resubmit the site. If the refreshed
+  status remains `Not found`, wait until 2026-07-22 before treating it as a crawler problem.
 
 ### Configure Vercel environment variables
 
