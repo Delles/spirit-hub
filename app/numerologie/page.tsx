@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Sparkles, ArrowLeft, Calculator, Heart, Calendar } from "lucide-react";
+import { Sparkles, ArrowLeft, Calculator, Heart, Calendar, BookOpen } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { FAQSection } from "@/components/shared/faq-section";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
@@ -8,11 +8,25 @@ import { JsonLd } from "@/components/shared/json-ld";
 import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 export const metadata: Metadata = {
-  title: "Calculator Numerologie Online Gratuit | SpiritHub.ro",
+  title: "Calculatoare de Numerologie Online | SpiritHub.ro",
   description:
-    "Calculatoare numerologie gratuite: cifra destinului, calea vieții, compatibilitate și numărul zilei. Descoperă semnificația numerelor tale personale.",
+    "Alege dintre 4 calculatoare de numerologie gratuite: calea vieții, numărul destinului, compatibilitate și numărul zilei. Rezultate instant, fără cont.",
   alternates: {
     canonical: "https://www.spirithub.ro/numerologie",
+  },
+  openGraph: {
+    title: "Calculatoare de Numerologie Online | SpiritHub.ro",
+    description:
+      "Calculează gratuit calea vieții, numărul destinului, compatibilitatea sau numărul zilei.",
+    url: "https://www.spirithub.ro/numerologie",
+    type: "website",
+    locale: "ro_RO",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Calculatoare de Numerologie Online | SpiritHub.ro",
+    description:
+      "Calculează gratuit calea vieții, numărul destinului, compatibilitatea sau numărul zilei.",
   },
 };
 
@@ -21,7 +35,7 @@ const numerologieFAQs = [
   {
     question: "Ce este numerologia?",
     answer:
-      "Numerologia este studiul semnificațiilor mistice ale numerelor și al influenței lor asupra vieții umane. Această practică străveche consideră că fiecare număr poartă o vibrație unică ce influențează personalitatea, destinul și evenimentele din viața noastră.",
+      "Numerologia este un sistem simbolic care atribuie semnificații numerelor obținute din data nașterii sau din nume. Poate fi folosită ca exercițiu de reflecție personală, dar nu este o metodă științifică și nu prezice evenimente.",
   },
   {
     question: "Cum se calculează Numărul Căii Vieții?",
@@ -31,12 +45,12 @@ const numerologieFAQs = [
   {
     question: "Care este diferența dintre Calea Vieții și Numărul Destinului?",
     answer:
-      "Calea Vieții reflectă traseul tău de viață și lecțiile pe care ai venit să le înveți, fiind calculată din data nașterii. Numărul Destinului reprezintă misiunea ta și talentele cu care te-ai născut, fiind calculat din numele complet.",
+      "Calea Vieții se calculează din data nașterii și este interpretată ca o temă generală de dezvoltare. Numărul Destinului se calculează din numele complet și este folosit pentru a explora simbolic aptitudini, moduri de exprimare și direcții personale.",
   },
   {
     question: "Ce sunt numerele master (11, 22, 33)?",
     answer:
-      "Numerele master sunt numere speciale în numerologie care nu se reduc la un singur digit. Ele poartă vibrații mai puternice și indică un potențial spiritual sau misiune de viață mai intensă. 11 este maestrul intuiției, 22 este maestrul constructor, iar 33 este maestrul învățător.",
+      "În unele școli de numerologie, 11, 22 și 33 sunt păstrate fără reducere la o singură cifră. Interpretările tradiționale le asociază cu intuiția, construcția și responsabilitatea, însă aceste sensuri rămân simbolice.",
   },
 ];
 
@@ -57,9 +71,12 @@ export default function NumerologiePage() {
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40">
               <Sparkles className="h-8 w-8 text-[#9F2BFF]" />
             </div>
-            <h1 className="text-3xl font-bold mb-4 text-white">Calculatoare Numerologie</h1>
+            <h1 className="text-3xl font-bold mb-4 text-white">
+              Calculatoare de numerologie online
+            </h1>
             <p className="text-[#E0E0E0]">
-              Descoperă semnificația numerelor tale personale și cum influențează destinul tău
+              Alege instrumentul potrivit datelor pe care le ai și primești imediat o interpretare
+              clară, în limba română. Nu ai nevoie de cont.
             </p>
           </div>
 
@@ -69,7 +86,7 @@ export default function NumerologiePage() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 transition-colors group-hover:bg-[#9F2BFF]/20">
                   <Calculator className="h-6 w-6 text-[#9F2BFF]" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">Calea Vieții</h3>
+                <h2 className="text-xl font-semibold mb-2 text-white">Calea Vieții</h2>
                 <p className="text-sm text-[#E0E0E0] mb-4">
                   Descoperă-ți numărul Căii Vieții din data nașterii și înțelege-ți scopul și direcția
                   în viață
@@ -89,7 +106,7 @@ export default function NumerologiePage() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 transition-colors group-hover:bg-[#9F2BFF]/20">
                   <Sparkles className="h-6 w-6 text-[#9F2BFF]" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">Numărul Destinului</h3>
+                <h2 className="text-xl font-semibold mb-2 text-white">Numărul Destinului</h2>
                 <p className="text-sm text-[#E0E0E0] mb-4">
                   Calculează-ți numărul destinului din numele complet și descoperă-ți misiunea în
                   viață
@@ -109,7 +126,7 @@ export default function NumerologiePage() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 transition-colors group-hover:bg-[#9F2BFF]/20">
                   <Heart className="h-6 w-6 text-[#9F2BFF]" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">Compatibilitate</h3>
+                <h2 className="text-xl font-semibold mb-2 text-white">Compatibilitate</h2>
                 <p className="text-sm text-[#E0E0E0] mb-4">
                   Verifică compatibilitatea numerologică între două persoane folosind numele și datele
                   de naștere
@@ -129,7 +146,7 @@ export default function NumerologiePage() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 transition-colors group-hover:bg-[#9F2BFF]/20">
                   <Calendar className="h-6 w-6 text-[#9F2BFF]" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">Numărul Zilei</h3>
+                <h2 className="text-xl font-semibold mb-2 text-white">Numărul Zilei</h2>
                 <p className="text-sm text-[#E0E0E0] mb-4">
                   Descoperă numărul zilei de astăzi și primește îndrumări numerologice pentru ziua
                   curentă
@@ -144,6 +161,56 @@ export default function NumerologiePage() {
               </Card>
             </Link>
           </div>
+
+          <section className="mt-12" aria-labelledby="alege-calculatorul">
+            <h2 id="alege-calculatorul" className="mb-4 text-2xl font-semibold text-white">
+              Cum alegi calculatorul potrivit
+            </h2>
+            <div className="space-y-3 text-[#E0E0E0]">
+              <p>
+                Dacă ai doar data nașterii, începe cu Calea Vieții. Pentru Numărul Destinului ai
+                nevoie de numele complet, iar calculatorul de compatibilitate folosește numele și
+                datele de naștere ale ambelor persoane. Numărul Zilei este instrumentul scurt pentru
+                orientarea de astăzi.
+              </p>
+              <p>
+                Rezultatele sunt simbolice și utile pentru reflecție personală. Ele nu înlocuiesc
+                decizii medicale, financiare, juridice sau de relație.
+              </p>
+            </div>
+          </section>
+
+          <section className="mt-12" aria-labelledby="ghiduri-numerologie">
+            <div className="mb-5 flex items-center gap-3">
+              <BookOpen className="h-6 w-6 text-[#9F2BFF]" aria-hidden="true" />
+              <h2 id="ghiduri-numerologie" className="text-2xl font-semibold text-white">
+                Înțelege cum se calculează rezultatele
+              </h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3">
+              <Link
+                href="/ghiduri/ce-este-calea-vietii-in-numerologie"
+                className="rounded-lg border border-[#9F2BFF]/30 bg-white/5 p-4 text-sm text-[#E0E0E0] transition-colors hover:border-[#9F2BFF]/60 hover:bg-white/10"
+              >
+                <span className="font-semibold text-white">Calea Vieții</span>
+                <span className="mt-2 block">Formula din data nașterii și sensul rezultatului.</span>
+              </Link>
+              <Link
+                href="/ghiduri/cum-se-calculeaza-numarul-destinului"
+                className="rounded-lg border border-[#9F2BFF]/30 bg-white/5 p-4 text-sm text-[#E0E0E0] transition-colors hover:border-[#9F2BFF]/60 hover:bg-white/10"
+              >
+                <span className="font-semibold text-white">Numărul Destinului</span>
+                <span className="mt-2 block">Conversia literelor și reducerea numărului final.</span>
+              </Link>
+              <Link
+                href="/ghiduri/compatibilitate-numerologica-interpretare-scor"
+                className="rounded-lg border border-[#9F2BFF]/30 bg-white/5 p-4 text-sm text-[#E0E0E0] transition-colors hover:border-[#9F2BFF]/60 hover:bg-white/10"
+              >
+                <span className="font-semibold text-white">Compatibilitate</span>
+                <span className="mt-2 block">Ce intră în scor și cum îl interpretezi realist.</span>
+              </Link>
+            </div>
+          </section>
 
           {/* FAQ Section for SEO */}
           <div className="mt-12">

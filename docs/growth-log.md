@@ -76,3 +76,21 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Outcome: Deployed from commit `79917dd4cb3470660351d9d26b8965585a1a299a`; Vercel deployment
   `dpl_GB7KFPSC8K9h9Z6vWmUYJWn45feb` reached `READY`. The calculator and guide both returned `200`;
   production preserves the calculator title and exposes the new guide link and scoring method.
+
+## 2026-07-06 - Strengthen the numerology calculator hub
+
+- Evidence: The 2026-06-28 to 2026-07-04 Search Console export showed 18 clicks from 712
+  impressions, up from 12 clicks and 637 impressions in the prior seven days. `/numerologie`
+  appeared 19 times at average position 9.63 but earned no clicks. Generic queries including
+  `numerologie calculator online` and `numerologie gratis` also appeared on page one without a
+  click. The larger `/bioritm` and compatibility experiments remain inside their measurement window
+  through 2026-07-13.
+- Decision: Improve only the generic `/numerologie` hub so the active landing-page experiments stay
+  isolated.
+- Change made: Aligned the title, description, H1, Open Graph, and Twitter metadata with the page's
+  four free calculators; added input-based tool-selection guidance, an explicit interpretation
+  boundary, and direct links to the three matching methodology guides.
+- Expected result: Better generic numerology CTR, stronger crawl paths between the hub, calculators,
+  and guides, and clearer trust signals before visitors choose a tool.
+- Review date: 2026-07-20, using page/query data for `/numerologie` and generic numerology terms.
+- Outcome: Pending deployment.
