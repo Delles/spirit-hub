@@ -106,6 +106,9 @@ Known publisher/client ID:
 - Evidence update on 2026-07-06: `docs/inbox/2026-07-06-adsense-status.png` still shows approval
   status `Getting ready`, no status detail, and `Ads.txt status: Not found`. The dashboard itself was
   last updated on 2026-06-22 at 11:58 EEST, so this is not a fresh Google rescan.
+- Site-detail evidence: `docs/inbox/2026-07-06-adsense-site-details.png` confirms site ownership is
+  verified, the review is active, and the current review request time is 2026-06-22 11:58. AdSense
+  states that review can take 2-4 weeks, so the normal window runs through 2026-07-20.
 
 ### Wait for AdSense ads.txt recognition
 
@@ -114,9 +117,10 @@ Known publisher/client ID:
 - Live verification on 2026-07-06: `https://www.spirithub.ro/ads.txt` returns `200`,
   `Content-Type: text/plain; charset=utf-8`, and the exact publisher line
   `google.com, pub-8681888147711861, DIRECT, f08c47fec0942fa0`.
-- User action: open the `spirithub.ro` site detail in AdSense and click `Check for updates` once if
-  the control is available. Do not change the repository or resubmit the site. If the refreshed
-  status remains `Not found`, wait until 2026-07-22 before treating it as a crawler problem.
+- Current UI state: the `Check for updates` control is not exposed while the site is `Getting ready`.
+  No user action is required. Keep the already successful `AdSense code snippet` ownership method;
+  do not switch verification methods, delete the site, or resubmit it. Recheck after 2026-07-20 and
+  treat ads.txt as a separate crawler problem only if it remains unresolved after 2026-07-22.
 
 ### Configure Vercel environment variables
 
