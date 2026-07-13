@@ -11,9 +11,9 @@ import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Calculator Bioritm Online Gratuit | SpiritHub.ro",
+  title: "Calcul Bioritm Personal – Grafic 7 Zile | SpiritHub.ro",
   description:
-    "Introdu data nașterii și calculează gratuit bioritmul de azi. Vezi instant ciclurile fizic, emoțional și intelectual, plus zilele critice.",
+    "Introdu data nașterii și vezi graficul ciclurilor fizic, emoțional și intelectual pentru azi și următoarele 7 zile. Gratuit, fără cont.",
   keywords: [
     "bioritm calcul",
     "calculator bioritm",
@@ -25,24 +25,24 @@ export const metadata: Metadata = {
     "zile critice bioritm",
   ],
   openGraph: {
-    title: "Calculator Bioritm Online Gratuit | SpiritHub.ro",
+    title: "Calcul Bioritm Personal – Grafic 7 Zile | SpiritHub.ro",
     description:
-      "Calculează bioritmul personal de azi din data nașterii: fizic, emoțional, intelectual și zile critice.",
+      "Introdu data nașterii și vezi graficul ciclurilor fizic, emoțional și intelectual pentru azi și următoarele 7 zile.",
     type: "website",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Calculator Bioritm - SpiritHub.ro",
+        alt: "Calcul Bioritm Personal - Grafic 7 Zile | SpiritHub.ro",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Calculator Bioritm Online Gratuit | SpiritHub.ro",
+    title: "Calcul Bioritm Personal – Grafic 7 Zile | SpiritHub.ro",
     description:
-      "Află bioritmul personal de azi: ciclul fizic, emoțional, intelectual și zile critice.",
+      "Vezi graficul bioritmului fizic, emoțional și intelectual pentru azi și următoarele 7 zile.",
     images: ["/og-image.jpg"],
   },
   alternates: {

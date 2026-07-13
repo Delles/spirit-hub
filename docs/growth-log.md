@@ -120,3 +120,24 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Outcome: Shipped in commit `5e2bc9be0e44f7f43bd2d81006796e06469ba073`. Typecheck, lint,
   and production build passed; Vercel deployment `dpl_HFfCCewh8JJuwDm3Tpq6Bo3hgftA` reached `READY`.
   The production methodology guide returned `200` with the new formula, trust boundary, and links.
+
+## 2026-07-13 - Make `/bioritm` own calculator intent
+
+- Evidence: Fresh owner SERP screenshots showed the homepage ranking for `calcul bioritm` with its
+  generic `SpiritHub.ro - Numerologie și Ghidaj Zilnic` result, while the correct `/bioritm` URL
+  appeared for `bioritm calcul`. Search Console showed 166 impressions and 0.60% CTR for
+  `calcul bioritm`, plus 145 impressions and 0.69% CTR for `bioritm calcul`; `/bioritm` had 327
+  impressions at 0.92% CTR overall. This makes page ownership and result differentiation the
+  immediate bottleneck, not lack of demand.
+- Decision: Keep the SpiritHub brand and make `/bioritm` the single exact-intent calculator owner.
+  The owner explicitly approved an immediate test, overriding the earlier no-edit window.
+- Change made: Removed biorhythm calculator targeting from the root fallback metadata and the
+  homepage's dedicated exact-match SEO paragraph. Repositioned `/bioritm` around a personal
+  biorhythm calculation with a physical, emotional, and intellectual graph for today and the next
+  seven days, aligned across title, description, social metadata, H1, and introduction.
+- Expected result: Google should consolidate the two core calculator queries on `/bioritm`, while
+  its more specific result earns more clicks at the current page-one positions.
+- Review date: 2026-07-27. In a query-filtered Pages export, `/bioritm` should receive the majority
+  of impressions for both `calcul bioritm` and `bioritm calcul`. Avoid overlapping edits to the
+  homepage and `/bioritm` until then.
+- Outcome: Local verification, deployment, and production checks pending.

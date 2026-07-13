@@ -130,18 +130,6 @@ export default function DashboardPage() {
               </div>
             </section>
 
-            {/* SEO / About Section */}
-            <section className="w-full mt-8 pt-6 border-t border-white/5 text-center">
-              <p className="text-white/40 text-sm max-w-2xl mx-auto leading-relaxed">
-                SpiritHub.ro te ajută să explorezi numerologia și energia zilei. Pentru ciclurile
-                fizice, emoționale și intelectuale, folosește{" "}
-                <Link href="/bioritm" className="text-[#A5B4FC] underline-offset-4 hover:underline">
-                  calculatorul de bioritm online
-                </Link>
-                .
-              </p>
-            </section>
-
           </div>
         </main>
 

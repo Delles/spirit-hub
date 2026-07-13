@@ -6,10 +6,12 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 No active dev task.
 
-The 2026-07-13 Search Console-backed biorhythm topic-authority task is complete in the owner lane.
-Do not edit the biorhythm guides or `/bioritm` SEO copy before 2026-07-27 unless a production defect
-appears. The next non-overlapping candidate is `/numerologie/nume-destin` or a local-only repeat-use
-improvement, selected after the `/numerologie` review point on 2026-07-20.
+The owner explicitly overrode the prior `/bioritm` no-edit window after supplying fresh manual SERP
+screenshots. The biorhythm page-ownership experiment is being completed in the owner lane: the
+homepage no longer targets biorhythm calculator intent, while `/bioritm` owns the exact search phrase
+and the seven-day graph benefit. Do not make another overlapping homepage or `/bioritm` SEO-copy edit
+before 2026-07-27 unless a production defect appears. The next non-overlapping candidate remains
+`/numerologie/nume-destin` or a local-only repeat-use improvement.
 
 ## Current Context
 

@@ -21,27 +21,25 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "Calculator Numerologie și Bioritm Online Gratuit | SpiritHub.ro",
+  title: "Numerologie și Ghidaj Zilnic | SpiritHub.ro",
   description:
-    "Calculator numerologie gratuit: descoperă cifra destinului, calea vieții și compatibilitatea numerologică. Bioritm azi - află ciclurile tale fizice, emoționale și intelectuale.",
+    "Instrumente gratuite de numerologie pentru calea vieții, numărul destinului, compatibilitate și energia zilei. Interpretări în limba română, fără cont.",
   keywords: [
     "calculator numerologie",
     "numerologie gratuit",
-    "bioritm calculator",
     "cifra destinului",
     "calea vietii",
     "compatibilitate numerologica",
-    "bioritm azi",
+    "energia zilei",
     "numar destin",
     "numerologie online",
-    "bioritm gratuit",
   ],
   authors: [{ name: "SpiritHub.ro" }],
   metadataBase: new URL("https://www.spirithub.ro"),
   openGraph: {
-    title: "Calculator Numerologie și Bioritm Online Gratuit | SpiritHub.ro",
+    title: "Numerologie și Ghidaj Zilnic | SpiritHub.ro",
     description:
-      "Calculator numerologie gratuit: descoperă cifra destinului, calea vieții și verifică-ți bioritmul zilnic.",
+      "Instrumente gratuite de numerologie, compatibilitate și ghidaj zilnic în limba română.",
     locale: "ro_RO",
     type: "website",
     siteName: "SpiritHub.ro",
@@ -50,15 +48,15 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Calculator Numerologie și Bioritm - SpiritHub.ro",
+        alt: "Numerologie și Ghidaj Zilnic - SpiritHub.ro",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Calculator Numerologie și Bioritm Gratuit | SpiritHub.ro",
+    title: "Numerologie și Ghidaj Zilnic | SpiritHub.ro",
     description:
-      "Descoperă cifra destinului și verifică-ți bioritmul zilnic gratuit.",
+      "Instrumente gratuite de numerologie, compatibilitate și ghidaj zilnic în limba română.",
     images: ["/og-image.jpg"],
   },
   robots: {

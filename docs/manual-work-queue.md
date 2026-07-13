@@ -47,7 +47,7 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Request indexing for core pages
 
-- Status: latest manual requests submitted on 2026-07-06
+- Status: one targeted refresh needed after the 2026-07-13 biorhythm page-ownership deployment
 - Owner: user with Codex guidance
 - URLs:
   - `https://www.spirithub.ro/`
@@ -67,6 +67,12 @@ Evidence update on 2026-07-06:
 - The screenshot showed `Last crawled: N/A`, so these are pending crawl requests, not indexing
   failures. Do not repeat the requests before 2026-07-20; check coverage or URL Inspection after
   Google has had time to crawl them.
+
+Targeted update on 2026-07-13:
+
+- After the new deployment is live, inspect and request indexing once for only
+  `https://www.spirithub.ro/` and `https://www.spirithub.ro/bioritm` because their search-intent
+  signals changed. This supersedes the general no-repeat instruction for these two URLs only.
 
 ---
 
@@ -168,8 +174,9 @@ Known publisher/client ID:
 - Latest evidence: `docs/inbox/2026-07-13-search-console-performance.xlsx`, summarized in
   `docs/growth-log.md`. The workbook was supplemented by the owner-provided Queries and Pages tables
   because the spreadsheet artifact runtime was unavailable in the automation session.
-- Next requested window: after 2026-07-27, export Last 7 days with Queries and Pages so the
-  biorhythm topic-authority change can be measured without overlapping edits.
+- Next requested window: after 2026-07-27, export Last 7 days with Queries and Pages. Also filter
+  `calcul bioritm` and `bioritm calcul` separately and export each query's Pages tab so we can verify
+  that `/bioritm` receives the majority of impressions instead of the homepage.
 
 ---
 

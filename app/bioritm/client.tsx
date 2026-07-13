@@ -160,10 +160,12 @@ export default function BioritmClient() {
           <>
             {/* Page Introduction */}
             <div className="space-y-4 text-center">
-              <h1 className="text-3xl font-bold text-white">Calculator Bioritm Online Gratuit</h1>
+              <h1 className="text-3xl font-bold text-white">
+                Calcul Bioritm Personal: Grafic pentru Azi și 7 Zile
+              </h1>
               <p className="text-lg text-[#E0E0E0] leading-relaxed">
-                Calculează bioritmul personal pentru data nașterii și vezi energia fizică,
-                emoțională și intelectuală pentru azi sau pentru orice zi aleasă.
+                Introdu data nașterii și vezi ciclurile fizic, emoțional și intelectual pentru
+                azi, plus perspectiva următoarelor șapte zile. Gratuit, fără cont.
               </p>
             </div>
 
