@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import { parseISO, isValid } from "date-fns";
 import { redirect } from "next/navigation";
-import { getCriticalDays } from "@/lib/biorhythm";
-import { getTodayISOBucharest } from "@/lib/daily-content";
+import { createCriticalDaysReport } from "@/lib/biorhythm-report";
+import { getBucharestCalendarDate } from "@/lib/bucharest-calendar";
 import CriticalDaysView from "./view";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
@@ -58,8 +58,9 @@ export default async function CriticeDaysPage({ searchParams }: PageProps) {
   if (dateParam) {
     try {
       const birth = parseISO(dateParam);
-      const start = parseISO(getTodayISOBucharest());
-      criticalDays = getCriticalDays(birth, start, 30).map((day) => ({
+      const start = parseISO(getBucharestCalendarDate());
+      const report = createCriticalDaysReport({ birthDate: birth, startDate: start, days: 30 });
+      criticalDays = report.days.map((day) => ({
         ...day,
         date: day.date.toISOString(),
       }));

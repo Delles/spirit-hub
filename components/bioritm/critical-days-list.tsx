@@ -20,12 +20,15 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { getRomanianISODateParts } from "@/lib/bucharest-calendar";
+import { biorhythmConfig, BIORHYTHM_CYCLE_KEYS } from "@/config/biorhythm";
+import type { CycleName } from "@/lib/biorhythm";
 import BIORHYTHM_DATA from "@/data/interpretations/biorhythm.json";
 
 export interface CriticalDaysListProps {
   criticalDays: Array<{
     date: string; // ISO 8601 format
-    cycles: ("physical" | "emotional" | "intellectual")[];
+    cycles: CycleName[];
   }>;
 }
 
@@ -42,53 +45,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   BatteryCharging,
 };
 
-interface CycleInfo {
-  type: "physical" | "emotional" | "intellectual";
-  label: string;
-  color: string;
-  bgColor: string;
-  glowColor: string;
-  jsonKey: "physical_critical" | "emotional_critical" | "intellectual_critical";
-}
-
-const CYCLE_INFO: Record<string, CycleInfo> = {
-  physical: {
-    type: "physical",
-    label: "Fizic",
-    color: "#EF4444",
-    bgColor: "rgba(239, 68, 68, 0.15)",
-    glowColor: "rgba(239, 68, 68, 0.3)",
-    jsonKey: "physical_critical",
-  },
-  emotional: {
-    type: "emotional",
-    label: "Emoțional",
-    color: "#0EA5E9",
-    bgColor: "rgba(14, 165, 233, 0.15)",
-    glowColor: "rgba(14, 165, 233, 0.3)",
-    jsonKey: "emotional_critical",
-  },
-  intellectual: {
-    type: "intellectual",
-    label: "Intelectual",
-    color: "#EAB308",
-    bgColor: "rgba(234, 179, 8, 0.15)",
-    glowColor: "rgba(234, 179, 8, 0.3)",
-    jsonKey: "intellectual_critical",
-  },
-};
-
-const ROMANIAN_DAYS = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
-
-const ROMANIAN_MONTHS = [
-  "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie",
-  "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie",
-];
-
-const ROMANIAN_MONTHS_SHORT = [
-  "ian", "feb", "mar", "apr", "mai", "iun",
-  "iul", "aug", "sep", "oct", "nov", "dec",
-];
+const CYCLE_INFO = biorhythmConfig.cycles;
 
 // ✅ Memoized markdown components - defined outside component to avoid re-creation
 const MARKDOWN_COMPONENTS: Components = {
@@ -109,23 +66,7 @@ function formatRomanianDate(isoString: string): {
   short: string;
   dayNum: number;
 } {
-  const date = new Date(isoString);
-  // Use UTC methods to ensure server/client consistency
-  const day = date.getUTCDate();
-  const monthIndex = date.getUTCMonth();
-  const year = date.getUTCFullYear();
-  const dayOfWeekIndex = date.getUTCDay();
-
-  const month = ROMANIAN_MONTHS[monthIndex] ?? "???";
-  const monthShort = ROMANIAN_MONTHS_SHORT[monthIndex] ?? "???";
-  const dayOfWeek = ROMANIAN_DAYS[dayOfWeekIndex] ?? "???";
-
-  return {
-    formatted: `${day} ${month} ${year}`,
-    dayOfWeek,
-    short: `${day} ${monthShort}`,
-    dayNum: day,
-  };
+  return getRomanianISODateParts(isoString);
 }
 
 // ✅ Defensive data access with validation
@@ -257,7 +198,8 @@ export function CriticalDaysList({ criticalDays }: CriticalDaysListProps) {
             <div className="h-12 w-px bg-white/10" />
 
             <div className="flex flex-col gap-2">
-              {Object.entries(cycleCounts).map(([cycle, count]) => {
+              {BIORHYTHM_CYCLE_KEYS.map((cycle) => {
+                const count = cycleCounts[cycle];
                 if (count === 0) return null;
                 const info = CYCLE_INFO[cycle];
                 return (
@@ -266,7 +208,7 @@ export function CriticalDaysList({ criticalDays }: CriticalDaysListProps) {
                       className="w-2 h-2 rounded-full"
                       style={{ backgroundColor: info.color }}
                     />
-                    <span className="text-sm text-white/80">{info.label}:</span>
+                    <span className="text-sm text-white/80">{info.name}:</span>
                     <span className="text-sm font-bold text-white">{count}</span>
                   </div>
                 );

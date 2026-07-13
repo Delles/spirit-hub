@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calculator, ArrowRight, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { formatRomanianLongCalendarDate } from "@/lib/bucharest-calendar";
 
 /**
  * Loading skeleton
@@ -25,22 +26,6 @@ function LoadingSkeleton() {
   );
 }
 
-/**
- * Format date in Romanian
- */
-function formatRomanianDate(dateStr: string): string {
-  const [y, m, d] = dateStr.split("-").map(Number);
-  const date = new Date(y, m - 1, d);
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const formatted = date.toLocaleDateString("ro-RO", options);
-  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
-}
-
 export function EnergiaZileiClient() {
   const data = useDailyContent();
 
@@ -49,7 +34,7 @@ export function EnergiaZileiClient() {
     return <LoadingSkeleton />;
   }
 
-  const romanianDate = formatRomanianDate(data.date);
+  const romanianDate = formatRomanianLongCalendarDate(data.date);
 
   // Data now matches the expected structure directly
   const energia = data.energiaZilei;

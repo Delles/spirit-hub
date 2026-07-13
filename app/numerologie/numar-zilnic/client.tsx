@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Calculator, Sparkles, Heart, ArrowLeft } from "lucide-react";
 import { DailyCard } from "@/components/numerologie/daily-card";
 import { getInterpretation, type DailyInterpretation } from "@/lib/interpretations";
+import { formatRomanianLongCalendarDate } from "@/lib/bucharest-calendar";
 
 /**
  * Loading skeleton
@@ -26,22 +27,6 @@ function LoadingSkeleton() {
   );
 }
 
-/**
- * Format date in Romanian
- */
-function formatRomanianDate(dateStr: string): string {
-  const [y, m, d] = dateStr.split("-").map(Number);
-  const date = new Date(y, m - 1, d);
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const formatted = date.toLocaleDateString("ro-RO", options);
-  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
-}
-
 export default function NumarZilnicClient() {
   const data = useDailyContent();
 
@@ -52,7 +37,7 @@ export default function NumarZilnicClient() {
 
   // Get interpretation from static data
   const interpretation = getInterpretation<DailyInterpretation>("daily", data.dailyNumber.number);
-  const romanianDate = formatRomanianDate(data.date);
+  const romanianDate = formatRomanianLongCalendarDate(data.date);
 
   return (
     <div className="py-8">

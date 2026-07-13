@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { DatePicker } from "@/components/ui/date-picker";
 import { AlertCircle } from "lucide-react";
+import { getBucharestCalendarDate } from "@/lib/bucharest-calendar";
 
 export interface BiorhythmFormProps {
   onSubmit: (birthDate: string, targetDate: string) => void;
@@ -22,7 +23,7 @@ export function BiorhythmForm({
   isLoading = false,
   showTargetDate = true,
 }: BiorhythmFormProps) {
-  const today = new Date().toISOString().split("T")[0];
+  const today = getBucharestCalendarDate();
   const [birthDate, setBirthDate] = useState("");
   const [targetDate, setTargetDate] = useState(today);
   const [errors, setErrors] = useState<FormErrors>({});

@@ -5,21 +5,20 @@ import { ArrowRight, AlertTriangle, Star, Calendar, Activity, Heart, Brain } fro
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { DayOutlook } from "@/lib/biorhythm";
+import type { CycleName, DayOutlook } from "@/lib/biorhythm";
+import { BIORHYTHM_CYCLE_KEYS, biorhythmConfig } from "@/config/biorhythm";
+import { getRomanianDayName, getRomanianShortDayName } from "@/lib/bucharest-calendar";
 
 interface BiorhythmWeekPreviewProps {
     weekOutlook: DayOutlook[];
     birthDateParam: string;
 }
 
-const ROMANIAN_DAYS_SHORT = ["Dum", "Lun", "Mar", "Mie", "Joi", "Vin", "Sâm"];
-const ROMANIAN_DAYS_FULL = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
-
 const CYCLE_CONFIG = {
-    physical: { label: "Fizic", color: "#EF4444", icon: Activity },
-    emotional: { label: "Emoțional", color: "#3B82F6", icon: Heart },
-    intellectual: { label: "Intelectual", color: "#10B981", icon: Brain },
-};
+    physical: { label: biorhythmConfig.cycles.physical.name, color: biorhythmConfig.cycles.physical.color, icon: Activity },
+    emotional: { label: biorhythmConfig.cycles.emotional.name, color: biorhythmConfig.cycles.emotional.color, icon: Heart },
+    intellectual: { label: biorhythmConfig.cycles.intellectual.name, color: biorhythmConfig.cycles.intellectual.color, icon: Brain },
+} satisfies Record<CycleName, { label: string; color: string; icon: typeof Activity }>;
 
 /**
  * Visualizer Bar Component
@@ -61,11 +60,10 @@ function CycleBar({ value, color }: { value: number; color: string }) {
  * Formats a date
  */
 function formatDay(date: Date): { dayShort: string; dayFull: string; dayNum: number } {
-    const dayOfWeek = date.getDay();
     const dayNum = date.getDate();
     return {
-        dayShort: ROMANIAN_DAYS_SHORT[dayOfWeek],
-        dayFull: ROMANIAN_DAYS_FULL[dayOfWeek],
+        dayShort: getRomanianShortDayName(date),
+        dayFull: getRomanianDayName(date),
         dayNum,
     };
 }
@@ -74,7 +72,7 @@ function formatDay(date: Date): { dayShort: string; dayFull: string; dayNum: num
  * Get key callouts
  */
 function getKeyCallouts(weekOutlook: DayOutlook[]) {
-    let bestDay: { date: Date; cycle: string; value: number } | null = null;
+    let bestDay: { date: Date; cycle: CycleName; value: number } | null = null;
 
     for (const day of weekOutlook) {
         if (day.bestCycle) {
@@ -113,18 +111,15 @@ export function BiorhythmWeekPreview({
 
                 {/* Compact Legend */}
                 <div className="flex gap-3 text-[10px] text-white/50">
-                    <div className="flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                        <span>Fizic</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                        <span>Emoțional</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                        <span>Intelectual</span>
-                    </div>
+                    {BIORHYTHM_CYCLE_KEYS.map((cycle) => (
+                        <div key={cycle} className="flex items-center gap-1">
+                            <span
+                                className="w-1.5 h-1.5 rounded-full"
+                                style={{ backgroundColor: CYCLE_CONFIG[cycle].color }}
+                            />
+                            <span>{CYCLE_CONFIG[cycle].label}</span>
+                        </div>
+                    ))}
                 </div>
             </div>
 
@@ -191,7 +186,7 @@ export function BiorhythmWeekPreview({
                         <div>
                             <div className="text-white font-medium">Momentul de vârf</div>
                             <div className="text-white/60 text-xs">
-                                {ROMANIAN_DAYS_FULL[bestDay.date.getDay()]} e perfect pentru activități {CYCLE_CONFIG[bestDay.cycle as keyof typeof CYCLE_CONFIG].label.toLowerCase()}e.
+                                {getRomanianDayName(bestDay.date)} e perfect pentru activități {CYCLE_CONFIG[bestDay.cycle].label.toLowerCase()}e.
                             </div>
                         </div>
                     </div>
@@ -204,9 +199,9 @@ export function BiorhythmWeekPreview({
                             <AlertTriangle className="w-4 h-4" />
                         </div>
                         <div>
-                            <div className="text-white font-medium">Atenție {ROMANIAN_DAYS_FULL[criticalDays[0].date.getDay()]}</div>
+                            <div className="text-white font-medium">Atenție {getRomanianDayName(criticalDays[0].date)}</div>
                             <div className="text-white/60 text-xs">
-                                Zi critică ({criticalDays[0].cycles.map(c => CYCLE_CONFIG[c as keyof typeof CYCLE_CONFIG].label).join(", ")}). Evită riscurile.
+                                Zi critică ({criticalDays[0].cycles.map(c => CYCLE_CONFIG[c].label).join(", ")}). Evită riscurile.
                             </div>
                         </div>
                     </div>

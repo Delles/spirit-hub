@@ -1,14 +1,17 @@
 "use client";
 
 import * as React from "react";
-import { format } from "date-fns";
-import { ro } from "date-fns/locale";
 import { ChevronDownIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { roRO } from "@/lib/date-locale";
+import {
+  dateToCalendarDate,
+  formatRomanianPickerDate,
+  parseCalendarDate,
+} from "@/lib/bucharest-calendar";
 
 interface DatePickerProps {
   value?: string | Date;
@@ -29,19 +32,7 @@ interface DatePickerProps {
  */
 function formatRomanianDate(date: Date | undefined): string {
   if (!date) return "";
-  return format(date, "dd MMMM yyyy", { locale: ro });
-}
-
-/**
- * Converts Date to ISO string (YYYY-MM-DD format)
- * Uses local timezone to avoid date shifting issues
- */
-function dateToISOString(date: Date | undefined): string | undefined {
-  if (!date) return undefined;
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+  return formatRomanianPickerDate(date);
 }
 
 export function DatePicker({
@@ -65,8 +56,11 @@ export function DatePicker({
     if (value instanceof Date) return value;
     // Try parsing ISO format (YYYY-MM-DD)
     if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
-      const date = new Date(value);
-      return isNaN(date.getTime()) ? undefined : date;
+      try {
+        return parseCalendarDate(value);
+      } catch {
+        return undefined;
+      }
     }
     return undefined;
   }, [value]);
@@ -89,7 +83,7 @@ export function DatePicker({
       if (minDate && date < minDate) isValid = false;
 
       if (isValid) {
-        const isoString = dateToISOString(date);
+        const isoString = dateToCalendarDate(date);
         onChange?.(isoString);
         setOpen(false);
       }

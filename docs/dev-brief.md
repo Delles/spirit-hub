@@ -6,6 +6,18 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 No active dev task.
 
+## Latest Handoff - 2026-07-13
+
+- Implemented the approved architecture deepening review across biorhythm, daily content/date
+  handling, numerology results, and OG image generation.
+- Added deep domain seams in `lib/biorhythm-report.ts`, `lib/bucharest-calendar.ts`,
+  `lib/daily-content.ts`, `lib/numerology-results.ts`, and `lib/og-composition.ts` plus the
+  `components/og` frame and content adapters.
+- Migrated biorhythm routes and presentation modules, daily pages/providers, numerology calculator
+  clients, and all six OG routes to those seams without changing SEO copy or route ownership.
+- Added public-interface tests in `tests/architecture-seams.test.ts`.
+- Verification passed: `bun test`, `bun run typecheck`, `bun run lint`, and `bun run build`.
+
 The owner explicitly overrode the prior `/bioritm` no-edit window after supplying fresh manual SERP
 screenshots. The biorhythm page-ownership experiment is complete in the owner lane: the
 homepage no longer targets biorhythm calculator intent, while `/bioritm` owns the exact search phrase

@@ -5,19 +5,8 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Calendar, Hash, Moon, ArrowLeft, AlertTriangle } from "lucide-react";
-import {
-  getPhysicalCycle,
-  getEmotionalCycle,
-  getIntellectualCycle,
-  getBiorhythmInterpretation,
-  getPhysicalTrajectory,
-  getEmotionalTrajectory,
-  getIntellectualTrajectory,
-  getCycleIntensityLevel,
-  getWeekOutlook,
-  type Trajectory,
-} from "@/lib/biorhythm";
-import { getTodayISOBucharest } from "@/lib/daily-content";
+import { createBiorhythmReport, type BiorhythmReport } from "@/lib/biorhythm-report";
+import { getBucharestCalendarDate } from "@/lib/bucharest-calendar";
 import { BiorhythmForm } from "@/components/bioritm/biorhythm-form";
 import { BiorhythmCard } from "@/components/bioritm/biorhythm-card";
 import { BiorhythmWeekPreview } from "@/components/bioritm/biorhythm-week-preview";
@@ -55,7 +44,7 @@ export default function BioritmClient() {
 
   // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
   const birthDate = dateParam || "";
-  const targetDate = targetParam || getTodayISOBucharest();
+  const targetDate = targetParam || getBucharestCalendarDate();
   const hasSubmitted = !!dateParam;
 
   const birthDateValid = birthDate ? isValid(parseISO(birthDate)) : false;
@@ -72,59 +61,21 @@ export default function BioritmClient() {
     }
   }, [dateParam, targetParam, birthDateValid, targetDateValid, router, pathname]);
 
-  const biorhythm = useMemo(() => {
+  const biorhythm = useMemo((): (BiorhythmReport & { birthDate: string; targetDate: string }) | null | undefined => {
     if (!shouldQueryBiorhythm) return undefined;
 
     try {
       const birth = parseISO(birthDate);
       const target = parseISO(targetDate);
+      const report = createBiorhythmReport({
+        birthDate: birth,
+        targetDate: target,
+        forecastDays: 7,
+        chartDaysBefore: 7,
+        chartDaysAfter: 7,
+      });
 
-      const physical = getPhysicalCycle(birth, target);
-      const emotional = getEmotionalCycle(birth, target);
-      const intellectual = getIntellectualCycle(birth, target);
-
-      const pTraj = getPhysicalTrajectory(birth, target);
-      const eTraj = getEmotionalTrajectory(birth, target);
-      const iTraj = getIntellectualTrajectory(birth, target);
-
-      // Get the rich interpretation based on the cycles
-      const interpretation = getBiorhythmInterpretation(physical, emotional, intellectual);
-
-      // Determine which trajectory to show (must match getBiorhythmInterpretation logic)
-      let trajectory: Trajectory = 'stable';
-      const pLevel = getCycleIntensityLevel(physical);
-      const eLevel = getCycleIntensityLevel(emotional);
-      const iLevel = getCycleIntensityLevel(intellectual);
-
-      if (pLevel === 'critical') trajectory = pTraj;
-      else if (eLevel === 'critical') trajectory = eTraj;
-      else if (iLevel === 'critical') trajectory = iTraj;
-      else if (physical > 0.35 && emotional > 0.35 && intellectual > 0.35) trajectory = pTraj; // Super Day
-      else if (physical < -0.35 && emotional < -0.35 && intellectual < -0.35) trajectory = pTraj; // Recharge Day
-      else {
-        const pAbs = Math.abs(physical);
-        const eAbs = Math.abs(emotional);
-        const iAbs = Math.abs(intellectual);
-        const maxAbs = Math.max(pAbs, eAbs, iAbs);
-
-        if (maxAbs === pAbs) trajectory = pTraj;
-        else if (maxAbs === eAbs) trajectory = eTraj;
-        else trajectory = iTraj;
-      }
-
-      // Calculate week outlook for week preview
-      const weekOutlook = getWeekOutlook(birth, target, 7);
-
-      return {
-        physical,
-        emotional,
-        intellectual,
-        interpretation,
-        trajectory,
-        birthDate,
-        targetDate,
-        weekOutlook,
-      };
+      return { ...report, birthDate, targetDate };
     } catch (error) {
       console.error("Error calculating biorhythm:", error);
       return null;
@@ -237,18 +188,16 @@ export default function BioritmClient() {
             <Card className="p-6 lg:p-8 bg-black/40 backdrop-blur-xl border-white/10">
               <h3 className="text-xl font-semibold text-white mb-6">Grafic Bioritm</h3>
               <BiorhythmChart
-                physical={biorhythm.physical}
-                emotional={biorhythm.emotional}
-                intellectual={biorhythm.intellectual}
-                birthDate={biorhythm.birthDate}
-                targetDate={biorhythm.targetDate}
+                chartSeries={biorhythm.chartSeries}
+                chartTargetIndex={biorhythm.chartTargetIndex}
+                cycles={biorhythm.cycles}
               />
             </Card>
 
             {/* 2. Interpretation Card (The "Stream of Cards") */}
             <BiorhythmCard
-              interpretation={biorhythm.interpretation}
-              trajectory={biorhythm.trajectory}
+              interpretation={biorhythm.current.interpretation}
+              trajectory={biorhythm.current.trajectory}
             />
 
             <AdSlot slotId={adSlots.resultInline} />

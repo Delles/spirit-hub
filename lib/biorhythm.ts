@@ -10,6 +10,7 @@ import {
   INTELLECTUAL_CYCLE_DAYS,
   CRITICAL_THRESHOLD,
 } from "@/config/biorhythm";
+import type { BiorhythmCycleKey } from "@/config/biorhythm";
 import { ValidationError, validateDate } from "@/lib/utils";
 import biorhythmData from "@/data/interpretations/biorhythm.json";
 
@@ -55,7 +56,7 @@ export type Trajectory = 'ascending' | 'descending' | 'stable';
 /**
  * Represents the three biorhythm cycle names
  */
-export type CycleName = "physical" | "emotional" | "intellectual";
+export type CycleName = BiorhythmCycleKey;
 
 /**
  * Represents the three biorhythm cycle values for a given date

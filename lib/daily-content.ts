@@ -1,10 +1,25 @@
-/**
- * Get today's date in Bucharest time (ISO format YYYY-MM-DD)
- * reliable regardless of server location/timezone
- */
-export function getTodayISOBucharest(): string {
-    // en-CA format is YYYY-MM-DD
-    return new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Bucharest' });
+import {
+    getBucharestCalendarDate,
+    parseCalendarDate,
+    type CalendarDate,
+} from "@/lib/bucharest-calendar";
+import { getEnergiaZilei, type EnergiaZileiData } from "@/lib/energia-zilei";
+import { getMoonGuide, type MoonGuideData } from "@/lib/moon-guide";
+import { getDailyOracle, type OracleMessage } from "@/lib/oracle";
+
+export interface DailyContent {
+    /** Current date in YYYY-MM-DD format (Bucharest timezone) */
+    date: CalendarDate;
+    /** Daily numerology number (1-9 or master numbers) */
+    dailyNumber: {
+        number: number;
+    };
+    /** Planetary day energy data */
+    energiaZilei: EnergiaZileiData;
+    /** Moon phase with spiritual guidance */
+    moonGuide: MoonGuideData;
+    /** Daily oracle message */
+    dailyOracle: OracleMessage;
 }
 
 /**
@@ -12,13 +27,10 @@ export function getTodayISOBucharest(): string {
  * (Day + Month + Universal Year) reduced to 1-9 or Master Number 11, 22, 33
  */
 export function calculateDailyNumber(dateStr: string): number {
-    // Parse YYYY-MM-DD manually to avoid timezone shifts
-    // new Date("YYYY-MM-DD") is parsed as UTC, but getDate()/getMonth() return local time
-    // which can shift the day on servers outside the expected timezone
-    const [yearStr, monthStr, dayStr] = dateStr.split("-");
-    const day = parseInt(dayStr, 10);
-    const month = parseInt(monthStr, 10);
-    const year = parseInt(yearStr, 10);
+    const date = parseCalendarDate(dateStr);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
 
     // Helper to reduce number
     const reduce = (n: number): number => {
@@ -34,4 +46,22 @@ export function calculateDailyNumber(dateStr: string): number {
     const sum = day + month + universalYear;
 
     return reduce(sum);
+}
+
+/** Compose every deterministic daily edition from one explicit calendar date. */
+export function getDailyContentForDate(date: CalendarDate): DailyContent {
+    const calendarDate = parseCalendarDate(date);
+
+    return {
+        date,
+        dailyNumber: { number: calculateDailyNumber(date) },
+        energiaZilei: getEnergiaZilei(calendarDate),
+        moonGuide: getMoonGuide(calendarDate),
+        dailyOracle: getDailyOracle(calendarDate),
+    };
+}
+
+/** Compose the daily edition for the current Bucharest date. */
+export function getDailyContent(now: Date = new Date()): DailyContent {
+    return getDailyContentForDate(getBucharestCalendarDate(now));
 }

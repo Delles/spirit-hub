@@ -10,7 +10,11 @@ export interface CycleConfig {
   days: number;
   color: string;
   description: string;
+  jsonKey: "physical_critical" | "emotional_critical" | "intellectual_critical";
 }
+
+export const BIORHYTHM_CYCLE_KEYS = ["physical", "emotional", "intellectual"] as const;
+export type BiorhythmCycleKey = (typeof BIORHYTHM_CYCLE_KEYS)[number];
 
 export interface InterpretationRange {
   min: number;
@@ -38,6 +42,7 @@ export const biorhythmConfig: BiorhythmConfig = {
       days: 23,
       color: "#ef4444", // red
       description: "Ciclul fizic influențează energia, rezistența și coordonarea fizică",
+      jsonKey: "physical_critical",
     },
 
     // Emotional cycle: 28-day cycle affecting mood, creativity, and sensitivity
@@ -47,6 +52,7 @@ export const biorhythmConfig: BiorhythmConfig = {
       color: "#3b82f6", // blue
       description:
         "Ciclul emoțional influențează starea de spirit, creativitatea și sensibilitatea",
+      jsonKey: "emotional_critical",
     },
 
     // Intellectual cycle: 33-day cycle affecting mental clarity, memory, and analytical thinking
@@ -56,6 +62,7 @@ export const biorhythmConfig: BiorhythmConfig = {
       color: "#10b981", // green
       description:
         "Ciclul intelectual influențează claritatea mentală, memoria și gândirea analitică",
+      jsonKey: "intellectual_critical",
     },
   },
 

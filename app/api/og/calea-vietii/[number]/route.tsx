@@ -12,23 +12,11 @@
  * Route: /api/og/calea-vietii/[number]?format=og|story|feed|square
  */
 
-import { ImageResponse } from "next/og";
+import { LifePathOGContent } from "@/components/og/og-content-adapters";
+import { createOGImageResponse } from "@/components/og/og-image-frame";
+import { getOGFormatContext } from "@/lib/og-composition";
 import { getInterpretation, type LifePathInterpretation } from "@/lib/interpretations";
-import {
-    IMAGE_FORMATS,
-    type ImageFormat,
-    getFormatDimensions,
-    OG_COLORS,
-    OG_FONTS,
-    OG_FONTS_VERTICAL,
-    getThemedStyles,
-    OGKeywordBadges,
-    OGArchetypeTitle,
-    OGPersonalFrame,
-    OGThemedFooter,
-    truncateText,
-    OG_CACHE,
-} from "@/lib/og-helpers";
+import { OG_CACHE } from "@/lib/og-helpers";
 
 export const runtime = "edge";
 
@@ -40,10 +28,7 @@ export async function GET(
     const number = parseInt(numberStr, 10);
 
     // Get format from query string
-    const { searchParams } = new URL(request.url);
-    const formatParam = searchParams.get('format') || 'og';
-    const format = (formatParam in IMAGE_FORMATS ? formatParam : 'og') as ImageFormat;
-    const { width, height, isVertical } = getFormatDimensions(format);
+    const { format, isVertical } = getOGFormatContext(request);
 
     // Validate number
     if (isNaN(number) || number < 1 || (number > 9 && ![11, 22, 33].includes(number))) {
@@ -60,103 +45,10 @@ export async function GET(
         return new Response("Interpretation not found", { status: 404 });
     }
 
-    // Get themed styles for this content type
-    const { containerStyle, glowStyle, heroNumberStyle, brandPillStyle, theme } =
-        getThemedStyles('calea-vietii', isVertical);
-
-    // Extract archetype (hero.title) and keywords (tags) from interpretation
-    const archetype = interpretation.hero.title;
-    const keywords = interpretation.tags || [];
-    const displayMantra = truncateText(interpretation.mantra, isVertical ? 70 : 45);
-
-    // Card style
-    const cardStyle: React.CSSProperties = {
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        height: "100%",
-        borderRadius: isVertical ? "32px" : "20px",
-        border: `1px solid ${theme.accent}30`,
-        background: "rgba(255, 255, 255, 0.03)",
-        boxShadow: `0 0 ${isVertical ? 100 : 80}px ${theme.glowColor}30`,
-        padding: isVertical ? "50px 40px" : "24px",
-        position: "relative",
-        overflow: "hidden",
-    };
-
-    // Centered layout
-    const layoutStyle: React.CSSProperties = {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-        height: "100%",
-        textAlign: "center",
-        gap: isVertical ? "20px" : "12px",
-        paddingBottom: isVertical ? "100px" : "70px",
-    };
-
-    // Quote style
-    const quoteStyle: React.CSSProperties = {
-        fontSize: isVertical ? OG_FONTS_VERTICAL.quote : OG_FONTS.quote,
-        fontStyle: "italic",
-        color: OG_COLORS.muted,
-        lineHeight: 1.4,
-        maxWidth: "85%",
-        marginTop: isVertical ? "16px" : "8px",
-    };
-
-    return new ImageResponse(
-        (
-            <div style={containerStyle}>
-                <div style={glowStyle} />
-                <div style={cardStyle}>
-                    <div style={layoutStyle}>
-                        {/* Brand Pill */}
-                        <div style={brandPillStyle}>
-                            <span>{theme.emoji} {theme.label}</span>
-                        </div>
-
-                        {/* Personal Frame - "Calea mea este..." */}
-                        <OGPersonalFrame
-                            text={theme.personalFrame}
-                            isVertical={isVertical}
-                        />
-
-                        {/* Hero Number - GIANT */}
-                        <span style={heroNumberStyle}>
-                            {number}
-                        </span>
-
-                        {/* Archetype Title - The Identity Hook */}
-                        <OGArchetypeTitle
-                            title={archetype}
-                            isVertical={isVertical}
-                            accentColor={theme.accent}
-                        />
-
-                        {/* Keyword Badges - Snackable Traits */}
-                        <OGKeywordBadges
-                            keywords={keywords}
-                            isVertical={isVertical}
-                            accentColor={theme.accent}
-                        />
-
-                        {/* Mantra - The Hook Quote */}
-                        <span style={quoteStyle}>
-                            &ldquo;{displayMantra}&rdquo;
-                        </span>
-                    </div>
-
-                    {/* Footer CTA */}
-                    <OGThemedFooter
-                        contentType="calea-vietii"
-                        isVertical={isVertical}
-                    />
-                </div>
-            </div>
-        ),
-        { width, height, headers: { 'Cache-Control': OG_CACHE.STATIC } }
-    );
+    return createOGImageResponse({
+        contentType: "calea-vietii",
+        format,
+        cacheControl: OG_CACHE.STATIC,
+        children: <LifePathOGContent number={number} interpretation={interpretation} isVertical={isVertical} />,
+    });
 }

@@ -1,9 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { getInterpretation, type LifePathInterpretation } from "@/lib/interpretations";
-import { calculateLifePath } from "@/lib/numerology";
+import { getLifePathResult } from "@/lib/numerology-results";
 import { NumerologyForm, type NumerologyFormData } from "@/components/numerologie/numerology-form";
 import { LifePathCard } from "@/components/numerologie/life-path-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
@@ -13,21 +11,9 @@ import { Button } from "@/components/ui/button";
 import { AdSlot } from "@/components/monetization/ad-slot";
 import { adSlots } from "@/config/monetization";
 import Link from "next/link";
-import { parseISO, isValid } from "date-fns";
 import { Calendar, Sparkles, Heart, ArrowLeft } from "lucide-react";
 
 
-
-// Safe calculation that returns null on invalid input
-function safeCalculateLifePath(dateStr: string): number | null {
-  try {
-    const date = parseISO(dateStr);
-    if (!isValid(date)) return null;
-    return calculateLifePath(date);
-  } catch {
-    return null;
-  }
-}
 
 export default function CaleaVietiiClient() {
   const searchParams = useSearchParams();
@@ -38,20 +24,15 @@ export default function CaleaVietiiClient() {
 
   // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
   const birthDate = dateParam || "";
-  const lifePathNumber = birthDate ? safeCalculateLifePath(birthDate) : null;
+  const result = birthDate ? getLifePathResult(birthDate) : null;
+  const lifePathNumber = result?.number ?? null;
   const hasSubmitted = !!dateParam;
-  const shouldQueryInterpretation = hasSubmitted && lifePathNumber !== null;
+  const shouldQueryInterpretation = hasSubmitted && result !== null;
 
   // Note: URL cleanup for invalid dates is now handled on the server (page.tsx)
   // via redirect to ensure a clean state before client hydration.
 
-  // Query interpretation from static library
-  const interpretation = useMemo(() => {
-    if (!shouldQueryInterpretation || lifePathNumber === null) return undefined;
-    const result = getInterpretation<LifePathInterpretation>('life-path', lifePathNumber);
-    // If not found, return null to show error state, mirroring a missing backend record
-    return result || null;
-  }, [shouldQueryInterpretation, lifePathNumber]);
+  const interpretation = hasSubmitted ? result?.interpretation ?? null : undefined;
 
   const isLoading = shouldQueryInterpretation && interpretation === undefined;
 

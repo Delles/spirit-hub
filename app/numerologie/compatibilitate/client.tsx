@@ -1,13 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { getInterpretation, type CompatibilityInterpretation } from "@/lib/interpretations";
-import {
-  calculateLifePath,
-  calculateDestinyNumber,
-  calculateCompatibility,
-} from "@/lib/numerology";
+import { getCompatibilityResult } from "@/lib/numerology-results";
 import { NumerologyForm, type NumerologyFormData } from "@/components/numerologie/numerology-form";
 import { CompatibilityCard } from "@/components/numerologie/compatibility-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
@@ -17,53 +11,7 @@ import { Button } from "@/components/ui/button";
 import { AdSlot } from "@/components/monetization/ad-slot";
 import { adSlots } from "@/config/monetization";
 import Link from "next/link";
-import { parseISO, isValid } from "date-fns";
 import { Heart, Compass, Sparkles, Calendar, ArrowLeft } from "lucide-react";
-
-interface PersonData {
-  name: string;
-  lifePath: number;
-  destiny: number;
-}
-
-interface CompatibilityScores {
-  average: number;
-  lifePath: number;
-  destiny: number;
-}
-
-// Safe calculation that returns null on invalid input
-function safeCalculateFromParams(
-  name1: string,
-  date1: string,
-  name2: string,
-  date2: string
-): { person1: PersonData; person2: PersonData; scores: CompatibilityScores } | null {
-  try {
-    const parsedDate1 = parseISO(date1);
-    const parsedDate2 = parseISO(date2);
-
-    if (!isValid(parsedDate1) || !isValid(parsedDate2)) return null;
-    if (!name1.trim() || !name2.trim()) return null;
-
-    const lifePath1 = calculateLifePath(parsedDate1);
-    const lifePath2 = calculateLifePath(parsedDate2);
-    const destiny1 = calculateDestinyNumber(name1);
-    const destiny2 = calculateDestinyNumber(name2);
-
-    const lifePathCompat = calculateCompatibility(lifePath1, lifePath2);
-    const destinyCompat = calculateCompatibility(destiny1, destiny2);
-    const avgScore = Math.round((lifePathCompat + destinyCompat) / 2);
-
-    return {
-      person1: { name: name1, lifePath: lifePath1, destiny: destiny1 },
-      person2: { name: name2, lifePath: lifePath2, destiny: destiny2 },
-      scores: { average: avgScore, lifePath: lifePathCompat, destiny: destinyCompat },
-    };
-  } catch {
-    return null;
-  }
-}
 
 export default function CompatibilitateClient() {
   const searchParams = useSearchParams();
@@ -76,34 +24,24 @@ export default function CompatibilitateClient() {
   const name2Param = searchParams.get("name2");
   const date2Param = searchParams.get("date2");
 
-  // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
-  // Use useMemo to avoid recalculating on every render
-  const calculatedData = useMemo(() => {
-    if (name1Param && date1Param && name2Param && date2Param) {
-      return safeCalculateFromParams(name1Param, date1Param, name2Param, date2Param);
-    }
-    return null;
-  }, [name1Param, date1Param, name2Param, date2Param]);
+  const hasAllParams = !!(name1Param && date1Param && name2Param && date2Param);
+  const calculatedData = hasAllParams
+    ? getCompatibilityResult({
+        person1: { name: name1Param, birthDate: date1Param },
+        person2: { name: name2Param, birthDate: date2Param },
+      })
+    : null;
 
   const scores = calculatedData?.scores ?? null;
   const person1Data = calculatedData?.person1 ?? null;
   const person2Data = calculatedData?.person2 ?? null;
-  const hasSubmitted = calculatedData !== null;
+  const hasSubmitted = hasAllParams && calculatedData !== null;
 
   // Check if we have any params but they're invalid or incomplete
   // NOTE: Server-side validation in page.tsx handles redirects for invalid params,
   // so this is just for state derivation
 
-  // Query interpretation from static library
-  const interpretation = useMemo(() => {
-    if (scores === null) return undefined;
-    // Map raw score to interpretation bucket (mirrors former backend thresholds)
-    const level =
-      scores.average >= 76 ? "100" : scores.average >= 51 ? "75" : scores.average >= 26 ? "50" : "25";
-
-    const result = getInterpretation<CompatibilityInterpretation>("compatibility", level);
-    return result || null;
-  }, [scores]);
+  const interpretation = hasAllParams ? calculatedData?.interpretation ?? null : undefined;
 
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "compatibility") {

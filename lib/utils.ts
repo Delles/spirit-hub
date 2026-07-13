@@ -1,5 +1,11 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import {
+  getBucharestCalendarDate,
+  parseCalendarDate,
+  formatRomanianDate as formatCalendarDate,
+  ROMANIAN_MONTHS as CALENDAR_ROMANIAN_MONTHS,
+} from "@/lib/bucharest-calendar";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -20,20 +26,7 @@ export class ValidationError extends Error {
 }
 
 // Romanian month names for date formatting
-export const ROMANIAN_MONTHS = [
-  "ianuarie",
-  "februarie",
-  "martie",
-  "aprilie",
-  "mai",
-  "iunie",
-  "iulie",
-  "august",
-  "septembrie",
-  "octombrie",
-  "noiembrie",
-  "decembrie",
-];
+export const ROMANIAN_MONTHS = [...CALENDAR_ROMANIAN_MONTHS];
 
 // Romanian diacritics mapping for text normalization
 export const DIACRITIC_MAP: Record<string, string> = {
@@ -64,19 +57,7 @@ export const DIACRITIC_MAP: Record<string, string> = {
  * @returns Date object representing the current date in Bucharest timezone
  */
 export function getBucharestDate(): Date {
-  const now = new Date();
-  const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Europe/Bucharest",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(now);
-
-  const year = parseInt(parts.find((p) => p.type === "year")?.value ?? "0", 10);
-  const month = parseInt(parts.find((p) => p.type === "month")?.value ?? "0", 10) - 1;
-  const day = parseInt(parts.find((p) => p.type === "day")?.value ?? "0", 10);
-
-  return new Date(year, month, day);
+  return parseCalendarDate(getBucharestCalendarDate());
 }
 
 /**
@@ -85,11 +66,7 @@ export function getBucharestDate(): Date {
  * @returns Formatted date string (e.g., "14 noiembrie 2025")
  */
 export function formatRomanianDate(date: Date): string {
-  const day = date.getDate();
-  const month = ROMANIAN_MONTHS[date.getMonth()];
-  const year = date.getFullYear();
-
-  return `${day} ${month} ${year}`;
+  return formatCalendarDate(date);
 }
 
 // ============================================================================

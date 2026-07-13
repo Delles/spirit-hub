@@ -1,9 +1,8 @@
 "use client";
 
-import { useMemo, useEffect } from "react";
+import { useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { getInterpretation, type LifePathInterpretation } from "@/lib/interpretations";
-import { calculateDestinyNumber } from "@/lib/numerology";
+import { getDestinyResult } from "@/lib/numerology-results";
 import { NumerologyForm, type NumerologyFormData } from "@/components/numerologie/numerology-form";
 import { DestinyCard } from "@/components/numerologie/destiny-card";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
@@ -15,16 +14,6 @@ import { adSlots } from "@/config/monetization";
 import Link from "next/link";
 import { User, Calendar, Compass, Heart, ArrowLeft } from "lucide-react";
 
-// Safe wrapper for calculateDestinyNumber that returns null on invalid input
-function safeCalculateDestinyNumber(name: string): number | null {
-  try {
-    return calculateDestinyNumber(name);
-  } catch {
-    // Invalid name (empty, no letters, etc.) - return null
-    return null;
-  }
-}
-
 export default function NumeDestinClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -34,9 +23,9 @@ export default function NumeDestinClient() {
 
   // Derive values from URL params - reactive to URL changes (back/forward navigation, shared links)
   const name = nameParam || "";
-  const destinyNumber = nameParam ? safeCalculateDestinyNumber(nameParam) : null;
-  // Only mark as submitted if calculation succeeded (destinyNumber is not null)
-  const hasSubmitted = destinyNumber !== null;
+  const result = nameParam ? getDestinyResult(nameParam) : null;
+  const destinyNumber = result?.number ?? null;
+  const hasSubmitted = result !== null;
 
   // Clean up invalid URL params (e.g., names with no letters, only numbers)
   useEffect(() => {
@@ -46,12 +35,7 @@ export default function NumeDestinClient() {
     }
   }, [nameParam, destinyNumber, router, pathname]);
 
-  // Query interpretation from static library
-  const interpretation = useMemo(() => {
-    if (destinyNumber === null) return undefined;
-    const result = getInterpretation<LifePathInterpretation>("destiny", destinyNumber);
-    return result || null;
-  }, [destinyNumber]);
+  const interpretation = nameParam ? result?.interpretation ?? null : undefined;
 
   const handleSubmit = (data: NumerologyFormData) => {
     if (data.type === "destiny") {

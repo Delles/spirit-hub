@@ -9,30 +9,17 @@ import {
     useMemo,
     type ReactNode,
 } from "react";
-import { getTodayISOBucharest, calculateDailyNumber } from "@/lib/daily-content";
-import { getEnergiaZilei, type EnergiaZileiData } from "@/lib/energia-zilei";
-import { getMoonGuide, type MoonGuideData } from "@/lib/moon-guide";
-import { getDailyOracle, type OracleMessage } from "@/lib/oracle";
-import { getBucharestDate } from "@/lib/utils";
+import {
+    getDailyContent,
+    type DailyContent,
+} from "@/lib/daily-content";
+import { getBucharestCalendarDate } from "@/lib/bucharest-calendar";
 
 // ============================================================================
 // Types
 // ============================================================================
 
-export interface DailyContent {
-    /** Current date in YYYY-MM-DD format (Bucharest timezone) */
-    date: string;
-    /** Daily numerology number (1-9 or master numbers) */
-    dailyNumber: {
-        number: number;
-    };
-    /** Planetary day energy data */
-    energiaZilei: EnergiaZileiData;
-    /** Moon phase with spiritual guidance (includes phaseKey, emoji, labelRo) */
-    moonGuide: MoonGuideData;
-    /** Daily oracle message */
-    dailyOracle: OracleMessage;
-}
+export type { DailyContent } from "@/lib/daily-content";
 
 interface DailyContentContextValue {
     data: DailyContent | null;
@@ -46,31 +33,6 @@ interface DailyContentContextValue {
 // ============================================================================
 
 const DailyContentContext = createContext<DailyContentContextValue | null>(null);
-
-// ============================================================================
-// Computation
-// ============================================================================
-
-/**
- * Compute all daily content from lib/ functions
- * This is pure computation - no network calls
- */
-function computeDailyContent(): DailyContent {
-    const dateISO = getTodayISOBucharest();
-    const bucharestDate = getBucharestDate();
-    const dailyNumber = calculateDailyNumber(dateISO);
-    const energiaZilei = getEnergiaZilei(bucharestDate);
-    const moonGuide = getMoonGuide(bucharestDate);
-    const dailyOracle = getDailyOracle(bucharestDate);
-
-    return {
-        date: dateISO,
-        dailyNumber: { number: dailyNumber },
-        energiaZilei,
-        moonGuide,
-        dailyOracle,
-    };
-}
 
 // ============================================================================
 // Provider
@@ -105,10 +67,10 @@ export function DailyContentProvider({ children }: DailyContentProviderProps) {
      * Check if date has changed and refresh if needed
      */
     const maybeRefresh = useCallback(() => {
-        const nowDate = getTodayISOBucharest();
+        const nowDate = getBucharestCalendarDate();
         if (nowDate !== currentDate) {
             setCurrentDate(nowDate);
-            setContent(computeDailyContent());
+            setContent(getDailyContent());
         }
     }, [currentDate]);
 
@@ -116,16 +78,16 @@ export function DailyContentProvider({ children }: DailyContentProviderProps) {
      * Force refresh (useful for testing or manual trigger)
      */
     const forceRefresh = useCallback(() => {
-        setCurrentDate(getTodayISOBucharest());
-        setContent(computeDailyContent());
+        setCurrentDate(getBucharestCalendarDate());
+        setContent(getDailyContent());
     }, []);
 
     // Initial client-side computation
     useEffect(() => {
         // Compute content on first mount (client-side only)
         if (content === null) {
-            setCurrentDate(getTodayISOBucharest());
-            setContent(computeDailyContent());
+            setCurrentDate(getBucharestCalendarDate());
+            setContent(getDailyContent());
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

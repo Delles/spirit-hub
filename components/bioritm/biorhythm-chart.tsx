@@ -1,150 +1,104 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { format, parseISO } from "date-fns";
+import { useEffect, useMemo, useState } from "react";
+import { format } from "date-fns";
 import { ro } from "date-fns/locale";
+import type { BiorhythmReport } from "@/lib/biorhythm-report";
+import type { CycleName } from "@/lib/biorhythm";
 
 export interface BiorhythmChartProps {
-  physical: number;
-  emotional: number;
-  intellectual: number;
-  birthDate: string;
-  targetDate: string;
+  chartSeries: BiorhythmReport["chartSeries"];
+  chartTargetIndex: number;
+  cycles: BiorhythmReport["cycles"];
 }
 
-interface CycleData {
-  name: string;
-  color: string;
-  value: number;
-  cycleDays: number;
-}
+const CYCLE_NAMES: CycleName[] = ["physical", "emotional", "intellectual"];
 
 export function BiorhythmChart({
-  physical,
-  emotional,
-  intellectual,
-  birthDate,
-  targetDate,
+  chartSeries,
+  chartTargetIndex,
+  cycles,
 }: BiorhythmChartProps) {
-  // Chart dimensions
   const width = 800;
   const height = 400;
   const padding = { top: 40, right: 40, bottom: 40, left: 60 };
   const chartWidth = width - padding.left - padding.right;
   const chartHeight = height - padding.top - padding.bottom;
-
-  // Determine window size based on viewport (desktop: 15 days, mobile: 11 days)
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const daysWindow = useMemo(() => (isMobile ? 7 : 15), [isMobile]);
-  const daysBefore = useMemo(() => Math.floor(daysWindow / 2), [daysWindow]);
-  const daysAfter = useMemo(() => Math.floor(daysWindow / 2), [daysWindow]);
+  const visibleRange = useMemo(() => {
+    if (!isMobile) return { start: 0, end: chartSeries.length };
 
-  // Cycle definitions - memoized to prevent unnecessary recalculations
-  // Aligned with biorhythm.json themes:
-  // Physical: Red (#EF4444)
-  // Emotional: Blue (#3B82F6)
-  // Intellectual: Yellow (#EAB308)
-  const cycles: CycleData[] = useMemo(
-    () => [
-      { name: "Fizic", color: "#EF4444", value: physical, cycleDays: 23 },
-      { name: "Emoțional", color: "#3B82F6", value: emotional, cycleDays: 28 },
-      { name: "Intelectual", color: "#EAB308", value: intellectual, cycleDays: 33 },
-    ],
-    [physical, emotional, intellectual],
+    const start = Math.max(0, chartTargetIndex - 3);
+    const end = Math.min(chartSeries.length, chartTargetIndex + 4);
+    return { start, end };
+  }, [chartSeries.length, chartTargetIndex, isMobile]);
+
+  const visibleSeries = chartSeries.slice(visibleRange.start, visibleRange.end);
+  const visibleTargetIndex = chartTargetIndex - visibleRange.start;
+  const targetPoint = visibleSeries[visibleTargetIndex] ?? visibleSeries[0];
+
+  const chartCycles = useMemo(
+    () =>
+      CYCLE_NAMES.map((name) => ({
+        name,
+        label: cycles[name].name,
+        color: cycles[name].color,
+        values: visibleSeries.map((point) => point[name]),
+      })),
+    [cycles, visibleSeries],
   );
 
-  // Calculate sine wave paths
   const paths = useMemo(() => {
-    const birth = new Date(birthDate);
-    const target = new Date(targetDate);
-    const millisecondsPerDay = 1000 * 60 * 60 * 24;
+    const denominator = Math.max(visibleSeries.length - 1, 1);
 
-    return cycles.map((cycle) => {
-      const points: string[] = [];
+    return chartCycles.map((cycle) => {
+      const points = cycle.values.map((value, index) => {
+        const x = padding.left + (index / denominator) * chartWidth;
+        const y = padding.top + chartHeight / 2 - (value * chartHeight) / 2;
+        return `${x},${y}`;
+      });
 
-      for (let i = -daysBefore; i <= daysAfter; i++) {
-        const currentDate = new Date(target.getTime() + i * millisecondsPerDay);
-        const daysLived = Math.floor(
-          (currentDate.getTime() - birth.getTime()) / millisecondsPerDay,
-        );
-
-        // Calculate cycle value using sine wave
-        const cycleValue = Math.sin((2 * Math.PI * daysLived) / cycle.cycleDays);
-
-        // Map to chart coordinates
-        const x = padding.left + ((i + daysBefore) / daysWindow) * chartWidth;
-        const y = padding.top + chartHeight / 2 - (cycleValue * chartHeight) / 2;
-
-        points.push(`${x},${y}`);
-      }
-
-      return {
-        ...cycle,
-        path: `M ${points.join(" L ")}`,
-      };
+      return { ...cycle, path: `M ${points.join(" L ")}` };
     });
-  }, [
-    birthDate,
-    targetDate,
-    daysBefore,
-    daysAfter,
-    daysWindow,
-    chartWidth,
-    chartHeight,
-    cycles,
-    padding.left,
-    padding.top,
-  ]);
+  }, [chartCycles, chartHeight, chartWidth, padding.left, padding.top, visibleSeries.length]);
 
-  // Calculate current day position
-  const currentDayX = useMemo(
-    () => padding.left + (daysBefore / daysWindow) * chartWidth,
-    [daysBefore, daysWindow, padding.left, chartWidth],
-  );
+  const currentDayX =
+    padding.left +
+    (visibleTargetIndex / Math.max(visibleSeries.length - 1, 1)) *
+      chartWidth;
 
-  // Check if target date is today
   const isToday = useMemo(() => {
-    const target = new Date(targetDate);
+    if (!targetPoint) return false;
     const today = new Date();
     return (
-      target.getDate() === today.getDate() &&
-      target.getMonth() === today.getMonth() &&
-      target.getFullYear() === today.getFullYear()
+      targetPoint.date.getDate() === today.getDate() &&
+      targetPoint.date.getMonth() === today.getMonth() &&
+      targetPoint.date.getFullYear() === today.getFullYear()
     );
-  }, [targetDate]);
+  }, [targetPoint]);
 
-  // Format date label: "Astăzi" if today, otherwise Romanian date format
-  const dateLabel = useMemo(() => {
-    if (isToday) {
-      return "Astăzi";
-    }
-    const target = new Date(targetDate);
-    return format(target, "dd MMMM yyyy", { locale: ro });
-  }, [isToday, targetDate]);
+  const dateLabel = targetPoint
+    ? isToday
+      ? "Astăzi"
+      : format(targetPoint.date, "dd MMMM yyyy", { locale: ro })
+    : "";
 
-  // Grid lines at -100%, -50%, 0%, +50%, +100% - memoized
-  const gridLines = useMemo(
-    () =>
-      [-1, -0.5, 0, 0.5, 1].map((value) => {
-        const y = padding.top + chartHeight / 2 - (value * chartHeight) / 2;
-        return { y, value, isZero: value === 0 };
-      }),
-    [padding.top, chartHeight],
-  );
+  const gridLines = [-1, -0.5, 0, 0.5, 1].map((value) => ({
+    y: padding.top + chartHeight / 2 - (value * chartHeight) / 2,
+    value,
+    isZero: value === 0,
+  }));
 
   return (
     <div className="w-full space-y-4">
-      {/* SVG Chart */}
       <div className="w-full overflow-x-auto" role="region" aria-label="Grafic bioritm">
         <svg
           viewBox={`0 0 ${width} ${height}`}
@@ -155,16 +109,15 @@ export function BiorhythmChart({
         >
           <title id="biorhythm-chart-title">Grafic Bioritm</title>
           <desc id="biorhythm-chart-desc">
-            Grafic bioritm arătând ciclul fizic la {Math.round(physical * 100)}%, ciclul emoțional
-            la {Math.round(emotional * 100)}%, și ciclul intelectual la{" "}
-            {Math.round(intellectual * 100)}% pentru data de{" "}
-            {format(parseISO(targetDate), "d MMMM yyyy", { locale: ro })}
+            Grafic bioritm arătând ciclul fizic la {Math.round((targetPoint?.physical ?? 0) * 100)}%,
+            ciclul emoțional la {Math.round((targetPoint?.emotional ?? 0) * 100)}%, și ciclul intelectual
+            la {Math.round((targetPoint?.intellectual ?? 0) * 100)}% pentru data de {dateLabel}.
           </desc>
-          {/* Background Grid */}
+
           <g aria-hidden="true">
-            {gridLines.map((line, index) => (
+            {gridLines.map((line) => (
               <line
-                key={index}
+                key={line.value}
                 x1={padding.left}
                 y1={line.y}
                 x2={width - padding.right}
@@ -177,11 +130,10 @@ export function BiorhythmChart({
             ))}
           </g>
 
-          {/* Y-axis labels */}
           <g aria-hidden="true">
-            {gridLines.map((line, index) => (
+            {gridLines.map((line) => (
               <text
-                key={index}
+                key={line.value}
                 x={padding.left - 10}
                 y={line.y}
                 textAnchor="end"
@@ -190,15 +142,13 @@ export function BiorhythmChart({
                 opacity="0.6"
                 fontSize="12"
               >
-                {line.value > 0 ? "+" : ""}
-                {Math.round(line.value * 100)}%
+                {line.value > 0 ? "+" : ""}{Math.round(line.value * 100)}%
               </text>
             ))}
           </g>
 
-          {/* Cycle Curves */}
-          {paths.map((cycle, index) => (
-            <g key={index} aria-label={`Ciclu ${cycle.name}`}>
+          {paths.map((cycle) => (
+            <g key={cycle.name} aria-label={`Ciclu ${cycle.label}`}>
               <path
                 d={cycle.path}
                 fill="none"
@@ -206,12 +156,11 @@ export function BiorhythmChart({
                 strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                aria-label={`${cycle.name}: ${Math.round(cycle.value * 100)}%`}
+                aria-label={`${cycle.label}: ${Math.round((targetPoint?.[cycle.name] ?? 0) * 100)}%`}
               />
             </g>
           ))}
 
-          {/* Current Day Indicator */}
           <line
             x1={currentDayX}
             y1={padding.top}
@@ -233,14 +182,11 @@ export function BiorhythmChart({
             {dateLabel}
           </text>
 
-          {/* Value Markers at Current Day */}
-          {paths.map((cycle, index) => {
-            const y = padding.top + chartHeight / 2 - (cycle.value * chartHeight) / 2;
+          {paths.map((cycle) => {
+            const value = targetPoint?.[cycle.name] ?? 0;
+            const y = padding.top + chartHeight / 2 - (value * chartHeight) / 2;
             return (
-              <g
-                key={index}
-                aria-label={`${cycle.name} astăzi: ${Math.round(cycle.value * 100)}%`}
-              >
+              <g key={cycle.name} aria-label={`${cycle.label} astăzi: ${Math.round(value * 100)}%`}>
                 <circle
                   cx={currentDayX}
                   cy={y}
@@ -256,22 +202,13 @@ export function BiorhythmChart({
         </svg>
       </div>
 
-      {/* Legend */}
-      <div
-        className="flex flex-wrap gap-4 justify-center md:justify-start"
-        role="list"
-        aria-label="Legendă cicluri bioritm"
-      >
-        {cycles.map((cycle, index) => (
-          <div key={index} className="flex items-center gap-2" role="listitem">
-            <div
-              className="w-4 h-4 rounded-full"
-              style={{ backgroundColor: cycle.color }}
-              aria-hidden="true"
-            />
-            <span className="text-sm text-white">{cycle.name}</span>
+      <div className="flex flex-wrap gap-4 justify-center md:justify-start" role="list" aria-label="Legendă cicluri bioritm">
+        {chartCycles.map((cycle) => (
+          <div key={cycle.name} className="flex items-center gap-2" role="listitem">
+            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: cycle.color }} aria-hidden="true" />
+            <span className="text-sm text-white">{cycle.label}</span>
             <span className="text-sm text-muted-foreground">
-              ({Math.round(cycle.value * 100)}%)
+              ({Math.round((targetPoint?.[cycle.name] ?? 0) * 100)}%)
             </span>
           </div>
         ))}

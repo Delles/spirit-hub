@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { getDailyOracle } from "@/lib/oracle";
-import { getBucharestDate } from "@/lib/utils";
+import { getDailyContent } from "@/lib/daily-content";
+import { formatRomanianLongCalendarDate } from "@/lib/bucharest-calendar";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -37,17 +37,9 @@ export const metadata: Metadata = {
 };
 
 export default function OraclePage() {
-    const date = getBucharestDate();
-    const oracle = getDailyOracle(date);
-
-    // Parse date for display
-    const dateStr = date.toLocaleDateString("ro-RO", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
-    const formattedDate = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+    const content = getDailyContent();
+    const oracle = content.dailyOracle;
+    const formattedDate = formatRomanianLongCalendarDate(content.date);
 
     return (
         <>

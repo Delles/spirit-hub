@@ -1,23 +1,11 @@
 "use client";
 
 import { useDailyContent } from "@/components/providers/daily-content-provider";
+import { formatRomanianLongCalendarDate } from "@/lib/bucharest-calendar";
 
 /**
  * Format date string (YYYY-MM-DD) in Romanian
  */
-function formatRomanianDate(dateStr: string): string {
-    const [y, m, d] = dateStr.split("-").map(Number);
-    const date = new Date(y, m - 1, d);
-    const options: Intl.DateTimeFormatOptions = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    };
-    const formatted = date.toLocaleDateString("ro-RO", options);
-    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
-}
-
 /**
  * Date Header Component
  * 
@@ -36,7 +24,7 @@ export function DateHeader() {
         );
     }
 
-    const formattedDate = formatRomanianDate(data.date);
+    const formattedDate = formatRomanianLongCalendarDate(data.date);
 
     return (
         <time
