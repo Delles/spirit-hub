@@ -117,4 +117,6 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
   improved average position and more clicks from the existing high-impression calculator queries.
 - Review date: 2026-07-27. Do not change the biorhythm guides or `/bioritm` SEO copy before then
   unless a production defect appears.
-- Outcome: Pending verification and deployment.
+- Outcome: Shipped in commit `5e2bc9be0e44f7f43bd2d81006796e06469ba073`. Typecheck, lint,
+  and production build passed; Vercel deployment `dpl_HFfCCewh8JJuwDm3Tpq6Bo3hgftA` reached `READY`.
+  The production methodology guide returned `200` with the new formula, trust boundary, and links.

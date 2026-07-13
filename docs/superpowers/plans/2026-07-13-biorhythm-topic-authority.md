@@ -55,7 +55,7 @@ Run `bun run typecheck`, `bun run lint`, and `bun run build`. Confirm generated 
 new formula explanation and links to `/bioritm`, `/ghiduri/ce-este-bioritmul`, and
 `/ghiduri/zile-critice-in-bioritm`.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Stage only the guide data, growth log, current evidence files, and this run's design/plan documents.
 Commit with `Strengthen biorhythm topic authority` and push `main` after checks pass.
