@@ -60,7 +60,7 @@ Run `bun run typecheck`, `bun run lint`, and `bun run build`. Inspect generated 
 homepage contains no exact biorhythm calculator metadata, `/bioritm` contains the new proposition,
 both canonicals are correct, and each page has exactly one H1.
 
-- [ ] **Step 5: Commit and deploy**
+- [x] **Step 5: Commit and deploy**
 
 Stage only the scoped source and operating documents, commit with
 `Make biorhythm page own calculator intent`, push `main`, verify the production deployment and both

@@ -7,7 +7,7 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 No active dev task.
 
 The owner explicitly overrode the prior `/bioritm` no-edit window after supplying fresh manual SERP
-screenshots. The biorhythm page-ownership experiment is being completed in the owner lane: the
+screenshots. The biorhythm page-ownership experiment is complete in the owner lane: the
 homepage no longer targets biorhythm calculator intent, while `/bioritm` owns the exact search phrase
 and the seven-day graph benefit. Do not make another overlapping homepage or `/bioritm` SEO-copy edit
 before 2026-07-27 unless a production defect appears. The next non-overlapping candidate remains

@@ -140,4 +140,6 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Review date: 2026-07-27. In a query-filtered Pages export, `/bioritm` should receive the majority
   of impressions for both `calcul bioritm` and `bioritm calcul`. Avoid overlapping edits to the
   homepage and `/bioritm` until then.
-- Outcome: Local verification, deployment, and production checks pending.
+- Outcome: Shipped in commit `36f541a662affe125c9eeb764c5a6ddc7636ed99`. Typecheck, lint,
+  and production build passed. Vercel deployment `dpl_AbCcjkZAdcBvjysr1qnLDgFSCFBN` reached
+  `READY`; production `/` and `/bioritm` returned `200` with the expected distinct metadata.
