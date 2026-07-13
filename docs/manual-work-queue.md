@@ -159,17 +159,17 @@ Known publisher/client ID:
 
 ### Share Search Console query snapshot
 
-- Status: current through the 2026-06-28 to 2026-07-04 export
+- Status: current through the export received on 2026-07-13
 - Owner: user
 - What Codex needs:
   - top queries by impressions,
   - pages with impressions but low CTR,
   - indexing errors.
-- Latest evidence: `docs/inbox/2026-07-06-search-console-performance.xlsx`, summarized in
-  `docs/growth-log.md`.
-- Next requested window: after 2026-07-13, export Last 7 days with Queries and Pages so the
-  `/bioritm` snippet and compatibility authority experiments can be evaluated without overlapping
-  edits.
+- Latest evidence: `docs/inbox/2026-07-13-search-console-performance.xlsx`, summarized in
+  `docs/growth-log.md`. The workbook was supplemented by the owner-provided Queries and Pages tables
+  because the spreadsheet artifact runtime was unavailable in the automation session.
+- Next requested window: after 2026-07-27, export Last 7 days with Queries and Pages so the
+  biorhythm topic-authority change can be measured without overlapping edits.
 
 ---
 

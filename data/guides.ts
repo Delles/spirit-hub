@@ -273,9 +273,9 @@ export const guides: Guide[] = [
     title: "Ce este bioritmul?",
     description:
       "Explicație pe înțelesul tuturor despre bioritm, cele trei cicluri principale și felul în care poate fi folosit pentru planificare personală.",
-    updatedAt: "2026-06-11",
+    updatedAt: "2026-07-13",
     category: "Bioritm",
-    readMinutes: 5,
+    readMinutes: 7,
     icon: Activity,
     intro:
       "Bioritmul descrie fluctuații ciclice ale energiei fizice, emoționale și intelectuale, calculate pornind de la data nașterii.",
@@ -288,10 +288,24 @@ export const guides: Guide[] = [
         ],
       },
       {
+        heading: "Cum se calculează bioritmul",
+        body: [
+          "Calculatorul numără zilele dintre data nașterii și data analizată. Pentru fiecare ciclu aplică formula sinusoidală sin(2 × π × zile trăite / durata ciclului), folosind pe rând 23, 28 și 33 de zile.",
+          "Rezultatul fiecărui ciclu este cuprins între -1 și +1 și este afișat ca procent între -100% și +100%. Valoarea arată poziția pe curbă pentru ziua aleasă; nu este o măsurătoare medicală și nici o predicție sigură.",
+        ],
+      },
+      {
         heading: "Cum se citește graficul",
         body: [
           "Când o curbă este deasupra liniei centrale, interpretarea sugerează un plus de energie în acel domeniu. Când este sub linie, poate fi o perioadă mai bună pentru prudență, odihnă sau activități mai blânde.",
           "Trecerea prin linia centrală este numită adesea zi critică, pentru că energia se schimbă de la o fază la alta.",
+        ],
+      },
+      {
+        heading: "Cum folosești calculatorul pas cu pas",
+        body: [
+          "Introdu data nașterii, alege ziua pe care vrei să o verifici și pornește calculul. Vei primi valorile fizică, emoțională și intelectuală, direcția fiecărui ciclu și o privire asupra următoarelor șapte zile.",
+          "Începe cu ciclul aflat cel mai aproape de zero, apoi compară graficul cu programul și starea ta reală. Pentru tranzițiile următoare poți deschide calculatorul de zile critice, fără să transformi rezultatele în reguli rigide.",
         ],
       },
       {
@@ -300,6 +314,18 @@ export const guides: Guide[] = [
           "Bioritmul poate fi un jurnal simbolic bun: te ajută să observi cum îți simți energia și să planifici cu mai multă atenție. Nu este un instrument medical și nu trebuie folosit pentru decizii de sănătate.",
           "Cea mai sănătoasă utilizare este compararea graficului cu propria stare reală, fără panică și fără concluzii absolute.",
         ],
+      },
+    ],
+    relatedLinks: [
+      {
+        title: "Zile critice în bioritm",
+        description: "Înțelege ce înseamnă trecerea unui ciclu prin zero și cum o citești calm.",
+        href: "/ghiduri/zile-critice-in-bioritm",
+      },
+      {
+        title: "Energia zilei",
+        description: "Combină ritmul personal cu o scurtă practică zilnică de reflecție.",
+        href: "/ghiduri/energia-zilei-cum-sa-o-folosesti",
       },
     ],
     faqs: [
@@ -359,6 +385,18 @@ export const guides: Guide[] = [
         ],
       },
     ],
+    relatedLinks: [
+      {
+        title: "Ce este bioritmul?",
+        description: "Vezi formula celor trei cicluri și cum sunt transformate în procente.",
+        href: "/ghiduri/ce-este-bioritmul",
+      },
+      {
+        title: "Calculator bioritm personal",
+        description: "Calculează gratuit graficul și următoarele tranziții pentru data ta.",
+        href: "/bioritm",
+      },
+    ],
     faqs: [
       {
         question: "Trebuie să evit orice decizie într-o zi critică?",
@@ -414,6 +452,18 @@ export const guides: Guide[] = [
           "Nu încerca să potrivești orice eveniment cu textul zilei. Caută mai degrabă întrebarea utilă: ce pot ajusta azi ca să fiu mai prezent?",
           "Cele mai bune interpretări sunt cele care te ajută să acționezi mai calm, nu cele care îți iau libertatea de decizie.",
         ],
+      },
+    ],
+    relatedLinks: [
+      {
+        title: "Ce este bioritmul?",
+        description: "Înțelege ciclurile fizic, emoțional și intelectual înainte de interpretare.",
+        href: "/ghiduri/ce-este-bioritmul",
+      },
+      {
+        title: "Calculator bioritm personal",
+        description: "Vezi ritmul tău pentru azi și perspectiva următoarelor șapte zile.",
+        href: "/bioritm",
       },
     ],
     faqs: [

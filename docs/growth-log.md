@@ -96,3 +96,25 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Outcome: Deployed from commit `490604335bb1370538e72471c966306ce1c22d85`; Vercel deployment
   `dpl_3j1UD646nDArXHBSVcUzPBkUCJx5` reached `READY`. Production `/numerologie` returned `200` with
   the expected title, description, trust copy, and methodology-guide links.
+
+## 2026-07-13 - Strengthen biorhythm topic authority
+
+- Evidence: The latest seven-day Search Console export fell to 14 clicks from 740 impressions
+  (1.89% CTR), compared with 18 clicks from 712 impressions (2.53% CTR) in the prior period.
+  `/bioritm` fell from 7 to 3 clicks, from 1.85% to 0.92% CTR, and from average position 7.60 to
+  8.55. Core queries still rank within click range: `calcul bioritm` had 166 impressions at position
+  8.78, `bioritm calcul` 145 at 8.08, and `bioritm online` 86 at 6.10. In contrast,
+  `/numerologie/compatibilitate` improved from 2 to 4 clicks and from 2.04% to 4.88% CTR after its
+  topic-authority iteration. Fresh Vercel Analytics also shows `/bioritm` leading usage with 17
+  visitors and 19 views.
+- Decision: Preserve the exact-intent `/bioritm` metadata and calculator behavior. Reuse the
+  compatibility pattern by strengthening biorhythm methodology content and reciprocal internal
+  links instead of guessing at another snippet without a fresh owner SERP screenshot.
+- Change made: Expanded `Ce este bioritmul?` with the implemented sine-cycle formula, percentage
+  meaning, calculator workflow, and interpretation boundary. Added contextual links among the main
+  biorhythm guide, critical-days guide, daily-energy guide, and calculator.
+- Expected result: Better topical relevance and crawl paths for the biorhythm cluster, followed by
+  improved average position and more clicks from the existing high-impression calculator queries.
+- Review date: 2026-07-27. Do not change the biorhythm guides or `/bioritm` SEO copy before then
+  unless a production defect appears.
+- Outcome: Pending verification and deployment.

@@ -6,8 +6,10 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 No active dev task.
 
-The latest Search Console-backed task for `/numerologie/compatibilitate` is complete and deployed.
-Wait for fresh Search Console evidence before assigning the next SEO/content task.
+The 2026-07-13 Search Console-backed biorhythm topic-authority task is complete in the owner lane.
+Do not edit the biorhythm guides or `/bioritm` SEO copy before 2026-07-27 unless a production defect
+appears. The next non-overlapping candidate is `/numerologie/nume-destin` or a local-only repeat-use
+improvement, selected after the `/numerologie` review point on 2026-07-20.
 
 ## Current Context
 
