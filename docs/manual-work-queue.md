@@ -167,17 +167,15 @@ Known publisher/client ID:
 
 ### Share Search Console query snapshot
 
-- Status: workbook current through the export received on 2026-07-20; decision metrics still need a
-  readable Queries/Pages extraction
+- Status: current through the analyzed export received on 2026-07-20
 - Owner: user
 - What Codex needs:
   - top queries by impressions,
   - pages with impressions but low CTR,
   - indexing errors.
-- Latest evidence: `docs/inbox/2026-07-20-search-console-performance.xlsx`. The spreadsheet artifact
-  runtime was unavailable in the 2026-07-20 automation session, so the workbook was preserved but
-  no metrics were guessed. Fresh owner SERP screenshots for the two active biorhythm queries are also
-  stored in `docs/inbox/` and summarized in `docs/growth-log.md`.
+- Latest evidence: `docs/inbox/2026-07-20-search-console-performance.xlsx`, read through local Excel
+  in a follow-up audit and summarized in `docs/growth-log.md`. Fresh owner SERP screenshots for the
+  two active biorhythm queries are also stored in `docs/inbox/`.
 - Next requested window: after 2026-07-27, export Last 7 days with Queries and Pages. Also filter
   `calcul bioritm` and `bioritm calcul` separately and export each query's Pages tab so we can verify
   that `/bioritm` receives the majority of impressions instead of the homepage.

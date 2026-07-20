@@ -149,12 +149,18 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Evidence: Fresh owner SERP screenshots now show `/bioritm`, rather than the homepage, for both
   `calcul bioritm` and `bioritm calcul`, at roughly the fifth and sixth organic results. This is the
   first direct evidence that the 2026-07-13 page-ownership change is working, but the page remains
-  inside its no-overlap window through 2026-07-27. Fresh Vercel Analytics shows `/bioritm` at 15
-  visitors / 26 views versus 17 / 19 in the prior week: reach is slightly lower, while repeat page
-  consumption is higher. `/numerologie/nume-destin` moved from 1 visitor / 1 view to 2 / 3, and its
-  methodology guide recorded 1 / 2. The fresh Search Console workbook is preserved in
-  `docs/inbox/2026-07-20-search-console-performance.xlsx`, but the required workbook runtime was not
-  available in this automation session, so no Search Console figures were inferred.
+  inside its no-overlap window through 2026-07-27. A read-only Excel audit of the fresh Search
+  Console workbook shows the Chart total improving from 13 clicks / 734 impressions / 1.77% CTR to
+  19 / 706 / 2.69%. `/bioritm` improved from 3 / 327 / 0.92% / position 8.55 to 5 / 450 / 1.11% /
+  6.57. `calcul bioritm` improved from 1 / 166 / 0.60% / 8.78 to 2 / 187 / 1.07% / 6.25, while
+  `bioritm calcul` improved in position from 8.08 to 6.35 but remained weak at 1 click / 181
+  impressions / 0.55% CTR. `/numerologie/nume-destin` held 18 impressions, improved slightly from
+  position 16.56 to 15.39, but fell from 1 click to 0. This confirms it as the clearest isolated
+  zero-click calculator surface outside the active biorhythm experiment. Fresh Vercel Analytics
+  also shows `/bioritm` at 15 visitors / 26 views versus 17 / 19, while the destiny calculator moved
+  from 1 / 1 to 2 / 3 and its guide recorded 1 / 2. Search Console's Chart and Pages sheets do not
+  reconcile exactly (the current Pages rows sum to 20 clicks / 721 impressions), so site totals use
+  Chart and individual URL decisions use the corresponding Pages rows.
 - Decision: Preserve the homepage and `/bioritm` experiment until 2026-07-27. Use the small but real
   destiny-number calculator/guide activity to strengthen that non-overlapping topic cluster without
   rewriting calculator metadata or behavior.
