@@ -17,8 +17,10 @@ No active dev task.
 - Added `tests/destiny-guide.test.ts` to protect the methodology and internal-link contract.
 - Verification passed: `bun test` (13 tests), `bun run typecheck`, `bun run lint`, and
   `bun run build`. Generated HTML contains the guide methodology and calculator-to-guide link while
-  preserving the calculator title, description, canonical, and result behavior. Deployment details
-  will be recorded after the push completes.
+  preserving the calculator title, description, canonical, and result behavior.
+- Product/evidence commit `68e8c5b5f05fbdddecb4120695d4f56f7e9e2117` was pushed to `main`.
+  Vercel deployment `dpl_7UoBEYmYjrJ8ppXgHUtNvYxQBsin` reached `READY`; both changed production
+  paths returned `200` with the expected link, example, and interpretation boundary.
 
 ## Latest Handoff - 2026-07-13
 

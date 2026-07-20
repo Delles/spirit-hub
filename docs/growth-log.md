@@ -166,6 +166,8 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
   crawl paths between calculator and guide, and more qualified transitions from explanation to tool.
 - Review date: 2026-08-03. Do not make another overlapping destiny-number guide or calculator-copy
   edit before then unless a production defect appears.
-- Outcome: `bun test` (13 tests), `bun run typecheck`, `bun run lint`, and `bun run build` passed.
-  Generated HTML contains the exact methodology, FAQ schema, trust boundary, and reciprocal links;
-  deployment is pending.
+- Outcome: Shipped in commit `68e8c5b5f05fbdddecb4120695d4f56f7e9e2117`. `bun test` (13
+  tests), `bun run typecheck`, `bun run lint`, and `bun run build` passed. Vercel deployment
+  `dpl_7UoBEYmYjrJ8ppXgHUtNvYxQBsin` reached `READY`; both changed production paths returned `200`,
+  the calculator exposed the guide link, and the guide exposed the worked example and interpretation
+  boundary.
