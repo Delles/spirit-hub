@@ -143,3 +143,29 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Outcome: Shipped in commit `36f541a662affe125c9eeb764c5a6ddc7636ed99`. Typecheck, lint,
   and production build passed. Vercel deployment `dpl_AbCcjkZAdcBvjysr1qnLDgFSCFBN` reached
   `READY`; production `/` and `/bioritm` returned `200` with the expected distinct metadata.
+
+## 2026-07-20 - Deepen numărul destinului topic authority
+
+- Evidence: Fresh owner SERP screenshots now show `/bioritm`, rather than the homepage, for both
+  `calcul bioritm` and `bioritm calcul`, at roughly the fifth and sixth organic results. This is the
+  first direct evidence that the 2026-07-13 page-ownership change is working, but the page remains
+  inside its no-overlap window through 2026-07-27. Fresh Vercel Analytics shows `/bioritm` at 15
+  visitors / 26 views versus 17 / 19 in the prior week: reach is slightly lower, while repeat page
+  consumption is higher. `/numerologie/nume-destin` moved from 1 visitor / 1 view to 2 / 3, and its
+  methodology guide recorded 1 / 2. The fresh Search Console workbook is preserved in
+  `docs/inbox/2026-07-20-search-console-performance.xlsx`, but the required workbook runtime was not
+  available in this automation session, so no Search Console figures were inferred.
+- Decision: Preserve the homepage and `/bioritm` experiment until 2026-07-27. Use the small but real
+  destiny-number calculator/guide activity to strengthen that non-overlapping topic cluster without
+  rewriting calculator metadata or behavior.
+- Change made: Expanded the destiny-number guide with the exact 1–9 letter mapping used in code,
+  Romanian-diacritic handling, an `Ion Popescu` worked example, master-number reduction, and a clear
+  symbolic/non-scientific boundary. Added a contextual link from the calculator to the methodology
+  guide and a reciprocal guide link to the life-path explanation.
+- Expected result: Stronger topical relevance and trust for the destiny-number cluster, clearer
+  crawl paths between calculator and guide, and more qualified transitions from explanation to tool.
+- Review date: 2026-08-03. Do not make another overlapping destiny-number guide or calculator-copy
+  edit before then unless a production defect appears.
+- Outcome: `bun test` (13 tests), `bun run typecheck`, `bun run lint`, and `bun run build` passed.
+  Generated HTML contains the exact methodology, FAQ schema, trust boundary, and reciprocal links;
+  deployment is pending.

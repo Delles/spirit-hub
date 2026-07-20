@@ -6,6 +6,20 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 No active dev task.
 
+## Latest Handoff - 2026-07-20
+
+- Strengthened the existing `Cum se calculează numărul destinului?` guide without changing the
+  calculator's metadata, inputs, URL behavior, or result logic.
+- Documented the exact letter mapping implemented in `config/numerology.ts`, Romanian diacritics, a
+  complete `Ion Popescu` example, master-number reduction, and the symbolic/non-scientific boundary.
+- Added a contextual calculator-to-guide card and reciprocal internal linking to the life-path and
+  compatibility explanations.
+- Added `tests/destiny-guide.test.ts` to protect the methodology and internal-link contract.
+- Verification passed: `bun test` (13 tests), `bun run typecheck`, `bun run lint`, and
+  `bun run build`. Generated HTML contains the guide methodology and calculator-to-guide link while
+  preserving the calculator title, description, canonical, and result behavior. Deployment details
+  will be recorded after the push completes.
+
 ## Latest Handoff - 2026-07-13
 
 - Implemented the approved architecture deepening review across biorhythm, daily content/date

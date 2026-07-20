@@ -152,9 +152,9 @@ Known publisher/client ID:
 
 ### Share Vercel Analytics snapshot
 
-- Status: completed for the first baseline export; repeat when traffic has had time to change
+- Status: current through the export received on 2026-07-20
 - Owner: user
-- Latest inbox update: Vercel Analytics CSV exports were added on 2026-06-11.
+- Latest inbox update: a Vercel Analytics top-pages CSV was added on 2026-07-20.
 - Latest baseline: `docs/vercel-analytics-review-2026-06-11.md`, based primarily on 30-day Vercel
   CSV exports for 2026-05-12 17:00 to 2026-06-11 17:59.
 - What Codex needs:
@@ -162,18 +162,22 @@ Known publisher/client ID:
   - referrers,
   - country/device split,
   - traffic over the last 7 and 30 days.
+- Latest evidence: `docs/inbox/2026-07-20-vercel-analytics-top-pages.csv` covers 2026-07-13 through
+  2026-07-20 and is summarized in `docs/growth-log.md`.
 
 ### Share Search Console query snapshot
 
-- Status: current through the export received on 2026-07-13
+- Status: workbook current through the export received on 2026-07-20; decision metrics still need a
+  readable Queries/Pages extraction
 - Owner: user
 - What Codex needs:
   - top queries by impressions,
   - pages with impressions but low CTR,
   - indexing errors.
-- Latest evidence: `docs/inbox/2026-07-13-search-console-performance.xlsx`, summarized in
-  `docs/growth-log.md`. The workbook was supplemented by the owner-provided Queries and Pages tables
-  because the spreadsheet artifact runtime was unavailable in the automation session.
+- Latest evidence: `docs/inbox/2026-07-20-search-console-performance.xlsx`. The spreadsheet artifact
+  runtime was unavailable in the 2026-07-20 automation session, so the workbook was preserved but
+  no metrics were guessed. Fresh owner SERP screenshots for the two active biorhythm queries are also
+  stored in `docs/inbox/` and summarized in `docs/growth-log.md`.
 - Next requested window: after 2026-07-27, export Last 7 days with Queries and Pages. Also filter
   `calcul bioritm` and `bioritm calcul` separately and export each query's Pages tab so we can verify
   that `/bioritm` receives the majority of impressions instead of the homepage.

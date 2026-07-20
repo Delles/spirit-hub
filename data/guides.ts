@@ -114,19 +114,40 @@ export const guides: Guide[] = [
     slug: "cum-se-calculeaza-numarul-destinului",
     title: "Cum se calculează numărul destinului?",
     description:
-      "Află cum se transformă numele complet în numărul destinului și ce diferență există față de calea vieții.",
-    updatedAt: "2026-06-11",
+      "Vezi tabelul pitagoreic, un calcul complet din nume și cum interpretezi numărul destinului fără concluzii rigide.",
+    updatedAt: "2026-07-20",
     category: "Numerologie",
-    readMinutes: 5,
+    readMinutes: 8,
     icon: Hash,
     intro:
-      "Numărul destinului, numit uneori numărul expresiei, se calculează din numele complet și descrie felul în care îți exprimi potențialul.",
+      "Numărul destinului, numit și numărul expresiei, se calculează din literele numelui complet. Ghidul de mai jos arată exact tabelul și reducerea folosite de calculatorul SpiritHub.",
     sections: [
       {
-        heading: "Ce informație folosește calculul",
+        heading: "Ce nume folosești în calcul",
         body: [
-          "Calculul pornește de la numele complet, de obicei numele primit la naștere. Fiecare literă este asociată cu o valoare numerică, apoi valorile sunt adunate și reduse.",
-          "Pentru numele cu diacritice, cea mai practică abordare este normalizarea literelor la forma de bază, astfel încât calculul să rămână consecvent.",
+          "Pentru interpretarea de bază se folosește numele complet de la naștere, cu toate prenumele și numele de familie. Dacă folosești astăzi alt nume, îl poți calcula separat pentru a compara expresia actuală cu reperul de la naștere.",
+          "Calculatorul adună numai literele. Spațiile, cratimele, apostrofurile și cifrele nu primesc valoare și nu schimbă suma.",
+        ],
+      },
+      {
+        heading: "Tabelul pitagoreic folosit de calculator",
+        body: [
+          "Literele se repetă în grupe de la 1 la 9: 1 = A, J și S; 2 = B, K și T; 3 = C, L și U; 4 = D, M și V; 5 = E, N și W; 6 = F, O și X; 7 = G, P și Y; 8 = H, Q și Z; 9 = I și R.",
+          "Diacriticele românești păstrează valoarea literei de bază: Ă și Â au valoarea lui A, Î pe cea a lui I, Ș pe cea a lui S, iar Ț pe cea a lui T. Literele mari și mici sunt tratate la fel.",
+        ],
+      },
+      {
+        heading: "Exemplu complet: Ion Popescu",
+        body: [
+          "Pentru Ion Popescu, valorile sunt I=9, O=6, N=5, P=7, O=6, P=7, E=5, S=1, C=3 și U=3. Suma este 52.",
+          "Apoi reducem 52 la 5 + 2 = 7. Rezultatul calculatorului este Numărul Destinului 7; interpretarea descrie simbolic o expresie orientată spre analiză, profunzime și înțelegere.",
+        ],
+      },
+      {
+        heading: "Cum se reduce suma și ce se întâmplă cu numerele maestre",
+        body: [
+          "Dacă suma are mai multe cifre, cifrele se adună din nou până rămâne un număr de la 1 la 9. Calculatorul păstrează numerele maestre 11, 22 și 33 atunci când apar în procesul de reducere.",
+          "De exemplu, 52 devine 7, iar 29 devine 11 și se oprește acolo. Numerele maestre pot fi citite și prin cifra lor redusă: 11 are nuanțe de 2, 22 de 4, iar 33 de 6.",
         ],
       },
       {
@@ -137,14 +158,20 @@ export const guides: Guide[] = [
         ],
       },
       {
-        heading: "Cum îl folosești practic",
+        heading: "Cum îl folosești practic și unde se oprește interpretarea",
         body: [
           "Nu te opri la eticheta numărului. Întreabă-te unde se vede acea energie în viața ta: în muncă, relații, decizii, felul în care conduci sau susții pe alții.",
-          "O interpretare bună nu îți spune ce trebuie să faci, ci îți oferă limbaj pentru alegeri mai conștiente.",
+          "Numerologia este un sistem simbolic și nu este o metodă științifică, un diagnostic sau o predicție. O interpretare utilă nu îți spune ce trebuie să faci, ci îți oferă întrebări și limbaj pentru reflecție personală.",
         ],
       },
     ],
     relatedLinks: [
+      {
+        title: "Ce este calea vieții?",
+        description:
+          "Compară numărul calculat din data nașterii cu expresia obținută din numele complet.",
+        href: "/ghiduri/ce-este-calea-vietii-in-numerologie",
+      },
       {
         title: "Compatibilitate numerologică",
         description:
@@ -167,6 +194,11 @@ export const guides: Guide[] = [
         question: "Contează diacriticele în calcul?",
         answer:
           "Pentru consecvență, diacriticele sunt tratate ca literele lor de bază. De exemplu, ă se citește ca a, ș ca s, ț ca t.",
+      },
+      {
+        question: "Spațiile și cratimele schimbă rezultatul?",
+        answer:
+          "Nu. Calculatorul atribuie valori numai literelor. Spațiile, cratimele, apostrofurile și cifrele sunt ignorate la adunare.",
       },
       {
         question: "Numărul destinului este o predicție?",
