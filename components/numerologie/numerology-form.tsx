@@ -277,7 +277,10 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
       </Label>
       <Input
         id="name"
+        name="name"
         type="text"
+        inputMode="text"
+        autoComplete="name"
         value={name}
         onChange={(e) => handleNameChange(e.target.value)}
         placeholder="Ex: Ion Popescu"
@@ -308,7 +311,10 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
           </Label>
           <Input
             id="name1"
+            name="name1"
             type="text"
+            inputMode="text"
+            autoComplete="given-name"
             value={name1}
             onChange={(e) => handleName1Change(e.target.value)}
             placeholder="Ex: Maria Ionescu"
@@ -364,7 +370,10 @@ export function NumerologyForm({ type, onSubmit, isLoading = false }: Numerology
           </Label>
           <Input
             id="name2"
+            name="name2"
             type="text"
+            inputMode="text"
+            autoComplete="off"
             value={name2}
             onChange={(e) => handleName2Change(e.target.value)}
             placeholder="Ex: Ion Popescu"

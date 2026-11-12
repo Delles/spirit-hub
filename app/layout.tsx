@@ -74,6 +74,26 @@ export default function RootLayout({
     <html lang="ro" className="dark" suppressHydrationWarning>
       <head>
         <AdsenseScript />
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prefetch: [
+                {
+                  source: "document",
+                  where: {
+                    and: [
+                      { href_matches: "/*" },
+                      { not: { href_matches: "/api/*" } },
+                      { not: { selector_matches: "[rel~=nofollow]" } }
+                    ]
+                  },
+                  eagerness: "moderate"
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body className={`${inter.variable} ${cinzel.variable} font-sans antialiased`}>
         <DailyContentProvider>

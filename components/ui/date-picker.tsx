@@ -106,8 +106,8 @@ export function DatePicker({
             className
           )}
           disabled={disabled}
-          aria-invalid={ariaInvalid}
-          aria-describedby={ariaDescribedBy}
+          aria-invalid={Boolean(ariaInvalid || error)}
+          aria-describedby={(ariaInvalid || error) && ariaDescribedBy ? ariaDescribedBy : undefined}
         >
           <span>{dateValue ? formatRomanianDate(dateValue) : placeholder}</span>
           <ChevronDownIcon className="h-4 w-4" />

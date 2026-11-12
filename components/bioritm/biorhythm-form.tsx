@@ -93,8 +93,8 @@ export function BiorhythmForm({
           aria-describedby={errors.birthDate ? "birthDate-error" : undefined}
         />
         {errors.birthDate && (
-          <div id="birthDate-error" className="flex items-center gap-2 text-sm text-destructive">
-            <AlertCircle className="h-4 w-4" />
+          <div id="birthDate-error" className="flex items-center gap-2 text-sm text-destructive" role="alert">
+            <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span>{errors.birthDate}</span>
           </div>
         )}
@@ -126,8 +126,9 @@ export function BiorhythmForm({
             <div
               id="targetDate-error"
               className="flex items-center gap-2 text-sm text-destructive"
+              role="alert"
             >
-              <AlertCircle className="h-4 w-4" />
+              <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
               <span>{errors.targetDate}</span>
             </div>
           )}

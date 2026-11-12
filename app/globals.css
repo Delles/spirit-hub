@@ -114,9 +114,30 @@
   --sidebar-ring: oklch(0.6 0.28 300 / 0.5);
 }
 
+/* Cross-document view transitions for smooth page navigation */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+
+  p, blockquote, li {
+    text-wrap: pretty;
+  }
+
+  input:user-invalid,
+  select:user-invalid,
+  textarea:user-invalid {
+    border-color: var(--destructive);
   }
 
   body {
