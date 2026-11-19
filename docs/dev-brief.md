@@ -4,12 +4,20 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 ## Active Dev Task
 
-Sprint 2 Part 2 (Cloud Run provisioning & container deployment) is complete. Next (Sprint 2 Part 3 — Domain Mapping & Cutover):
+Sprint 2 Part 3 (Domain Mapping & Cutover) is partially complete (`2026-11-19` — DNS & redirect rule switched, awaiting Google Cloud Run managed TLS certificate issuance before turning on Cloudflare proxy):
 
-1. Map custom domains `www.spirithub.ro` and `spirithub.ro` to Cloud Run service `spirithub-web` (`europe-west1`, project `gen-lang-client-0488321484`).
-2. Switch Cloudflare DNS records (`www` CNAME + apex records, Free CDN proxy + `strict` SSL) from Vercel Hobby to Cloud Run and verify live `https://www.spirithub.ro` serves from Cloud Run/Cloudflare.
-3. Around `2026-11-26`, re-check Search Console indexing for `/bioritm/compatibilitate` and the 3 biorhythm guides (`ce-este-bioritmul`, `zile-critice-in-bioritm`, `energia-zilei-cum-sa-o-folosesti`) submitted manually on `2026-11-19`.
-4. Once AdSense flips to `Ready` on Cloud Run, create the 2 Responsive Display units (`spirithub-result-inline`, `spirithub-content-footer`), pass `NEXT_PUBLIC_ADSENSE_SLOT_*` build args in Cloud Run builds, and integrate 2Performant (`Persoană Fizică`) Romanian affiliate placements on relevant guides/results.
+1. Re-verify direct HTTPS (`HTTP 200` without `-k`) on `www.spirithub.ro` (`ghs.googlehosted.com`) and `spirithub.ro` (`216.239.32.21`) once Google finishes provisioning the managed TLS certs (`~15–25 min` window).
+2. Flip `proxied: true` (`ttl: 1`) on `CNAME www.spirithub.ro` (`a6daf07ce70665d8b121128a1551cd02`) and all 8 `spirithub.ro` `A`/`AAAA` records under Cloudflare `strict` SSL, then verify all 7 production routes through Cloudflare (`server: cloudflare`, `301` apex redirect, no `x-vercel-id`).
+3. Detach `spirithub.ro` and `www.spirithub.ro` from Vercel (`prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn`).
+4. Around `2026-11-26`, re-check Search Console indexing for `/bioritm/compatibilitate` and the 3 biorhythm guides (`ce-este-bioritmul`, `zile-critice-in-bioritm`, `energia-zilei-cum-sa-o-folosesti`) submitted manually on `2026-11-19`.
+5. Once AdSense flips to `Ready` on Cloud Run, create the 2 Responsive Display units (`spirithub-result-inline`, `spirithub-content-footer`), pass `NEXT_PUBLIC_ADSENSE_SLOT_*` build args in Cloud Run builds, and integrate 2Performant (`Persoană Fizică`) Romanian affiliate placements on relevant guides/results.
+
+## Latest Handoff - 2026-11-19 (Sprint 2 Part 3 In Progress: DNS Switched, Waiting on Cloud Run TLS)
+
+- Created `$0` Cloud Run custom domain mappings for `www.spirithub.ro` and `spirithub.ro` -> `spirithub-web` (`europe-west1`) via Google Cloud Console.
+- Updated Cloudflare DNS (`zone b13d899fa0d5a42855fcdfee97998d6c`, `proxied: false`, `ttl: 300`, rollback values `A 216.198.79.1` and `CNAME 07cdae1f44a2a3e7.vercel-dns-017.com`): `www.spirithub.ro -> ghs.googlehosted.com`, `spirithub.ro -> 216.239.{32,34,36,38}.21` (`A`) and `2001:4860:4802:{32,34,36,38}::15` (`AAAA`), keeping Google verification TXT and `_vercel` TXTs intact. Confirmed visibility on `1.1.1.1` and `8.8.8.8`.
+- Created Cloudflare `http_request_dynamic_redirect` ruleset `f2946c6556c8477abe9f67cdde4d7fac` (rule `3d599cc05966454c8a36c9b7d0beb814`) to `301` redirect `spirithub.ro` -> `https://www.spirithub.ro` preserving path and query string once proxy is enabled.
+- Verified Cloud Run Domain Mappings UI shows both domains in `Certificate provisioning` (`11 minutes ago`, zero DNS mismatch errors); kept `proxied: false` intentionally to avoid Cloudflare `526` under `strict` SSL until certs validate.
 
 ## Latest Handoff - 2026-11-19 (Sprint 2 Part 2: Cloud Run Live on `.run.app`)
 
