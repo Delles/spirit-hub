@@ -198,3 +198,18 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
 - Expected result: Capture the `281`-impression biorhythm compatibility cluster, get all 3 biorhythm guides indexed on next Google crawl, and improve AdSense review trust/quality.
 - Review date: 2026-12-03 (after Cloud Run migration and Search Console re-indexing).
 - Outcome: Verified locally (`bun test`, `bun run typecheck`, `bun run lint`, `bun run build`) and pushed to `main` on 2026-11-19.
+
+## 2026-11-19 - Deploy SpiritHub backend to Google Cloud Run (europe-west1)
+
+- Evidence:
+  - Creating `spirithub-ro` hit the 9-project quota limit (`0` projects in `DELETE_REQUESTED`), and deleted projects still count toward quota for 30 days.
+  - Cloud Billing Credits audit (`01637F-04BA52-076921`) confirmed `$370.00 USD` (`100%` remaining across `$300.00` GCP Free Credit expiring `2027-01-08` and `7 × $10.00` monthly Google Developer Program AI Pro credits expiring `2027-01-27` to `2027-10-27`); no unclaimed November credit is present yet on `developers.google.com/program/my-benefits` (next expected ~`2026-11-27`).
+- Decision:
+  - Repurpose unused project `gen-lang-client-0488321484` as `SpiritHub` so Cloud Run launches immediately with `$0` out-of-pocket cost, clean up the 7 unused old projects (keeping `perceptive-plexus-w6m9v` untouched), and verify `.run.app` thoroughly before modifying production Cloudflare DNS.
+- Change made:
+  - Renamed `gen-lang-client-0488321484` to `SpiritHub`, linked `01637F-04BA52-076921`, enabled Cloud Run / Cloud Build / Artifact Registry / Billing Budgets APIs, and created `$5` monthly gross-spend budget alert `0b3b87d6-f564-44c6-a090-e87c466ed992`.
+  - Deleted 7 old projects (`gen-lang-client-0260820914`, `newsletter-476708`, `vorbe-vechi`, `multiversxpert`, `ai-chronicle`, `gen-lang-client-0213823510`, `acm-romania`).
+  - Added `.gcloudignore`, deployed `spirithub-web` (`revision spirithub-web-00001-ng9`) in `europe-west1` (`cpu=1`, `memory=512Mi`, `min=0`, `max=2`), and enabled live Artifact Registry cleanup (`keepCount=2`, `olderThan=1d`, dry-run disabled).
+- Expected result: Run SpiritHub on commercial-friendly serverless infrastructure inside Cloud Run Always Free + GCP/Developer Program credits, ready for AdSense activation after domain mapping.
+- Review date: 2026-11-26 (after custom domain mapping + Cloudflare cutover and Search Console recrawl).
+- Outcome: Live service verified HTTP `200` on `https://spirithub-web-ag2sqjyu4q-ew.a.run.app` across `/`, `/bioritm/compatibilitate`, `/ads.txt`, `/api/health`, and `/api/og/calea-vietii/3` (`177207` PNG bytes) with Vercel analytics disabled. Production DNS remains on Vercel until domain mapping cutover.

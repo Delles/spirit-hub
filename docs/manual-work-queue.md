@@ -39,9 +39,8 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Request indexing for core and unindexed pages
 
-- Status: blocked on Google bot-verification / CAPTCHA gate (`2026-11-19`); requires quick manual click by user in Search Console
-- Evidence (`2026-11-19`): Automated URL Inspection confirmed `https://www.spirithub.ro/bioritm/compatibilitate` is `URL is not on Google` (`N/A` last crawl). Clicking **Request indexing** triggered a Google human-verification challenge, so the agent stopped cleanly without bypassing it.
-- URLs to inspect and click **Request indexing** manually in Search Console:
+- Status: requested manually on `2026-11-19` (awaiting Google recrawl; recheck Search Console around `2026-11-26`)
+- Evidence (`2026-11-19`): Automated URL Inspection confirmed `https://www.spirithub.ro/bioritm/compatibilitate` was `URL is not on Google` (`N/A` last crawl) before hitting a Google human-verification gate. Owner then manually requested indexing for all 4 URLs in Search Console:
   - `https://www.spirithub.ro/bioritm/compatibilitate` (new route targeting 281+ impressions)
   - `https://www.spirithub.ro/ghiduri/ce-este-bioritmul`
   - `https://www.spirithub.ro/ghiduri/zile-critice-in-bioritm`
@@ -69,7 +68,13 @@ Update this file whenever a task is completed or a new blocker appears.
   - Create **2 manual Responsive Display ad units** once `spirithub.ro` flips to `Ready`:
     1. `spirithub-result-inline` -> `NEXT_PUBLIC_ADSENSE_SLOT_RESULT_INLINE` (below calculator results)
     2. `spirithub-content-footer` -> `NEXT_PUBLIC_ADSENSE_SLOT_CONTENT_FOOTER` (bottom of `/ghiduri/[slug]`)
-- **Critical constraint:** Do NOT set live slot IDs while hosted on **Vercel Hobby** (Vercel ToS prohibits commercial/ad monetization on Hobby). Complete **Sprint 2 migration to Google Cloud Run (`europe-west1`) + Cloudflare Free CDN** first, leveraging the verified `$370.00` GCP credits on `My Billing Account` (`01637F-04BA52-076921`, `$300` Free Credit expiring `2027-01-08` + `$70` monthly Developer Program grants).
+- **Critical constraint:** Do NOT set live slot IDs while hosted on **Vercel Hobby** (Vercel ToS prohibits commercial/ad monetization on Hobby).
+- **Cloud Run backend live (`2026-11-19`):**
+  - GCP project `gen-lang-client-0488321484` renamed to `SpiritHub` and linked to `My Billing Account` (`01637F-04BA52-076921`).
+  - Credits verified untouched (`$370.00 USD`: `$300.00` Free Credit expiring `2027-01-08` + `7 × $10.00` Google Developer Program monthly grants auto-bound; no unclaimed November credit yet on `2026-11-19`, next expected ~`2026-11-27`).
+  - Monthly `$5` gross-spend budget alert created (`0b3b87d6-f564-44c6-a090-e87c466ed992`).
+  - Service `spirithub-web` (`europe-west1`, `cpu=1`, `memory=512Mi`, `min=0`, `max=2`) deployed and serving HTTP `200` at `https://spirithub-web-ag2sqjyu4q-ew.a.run.app` (`https://spirithub-web-965560703047.europe-west1.run.app`), with Artifact Registry cleanup (`keepCount=2`, `olderThan=1d`, dry-run disabled).
+  - **Remaining migration step:** Map custom domains `www.spirithub.ro` and `spirithub.ro` to `spirithub-web` and switch Cloudflare DNS + Free CDN proxy from Vercel to Cloud Run.
 
 ---
 

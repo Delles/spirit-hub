@@ -1,0 +1,12 @@
+.gcloudignore
+.git
+.gitignore
+.next
+node_modules
+docs
+tests
+.agents
+.vscode
+.codex
+*.tsbuildinfo
+.env*

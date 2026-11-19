@@ -4,12 +4,21 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 ## Active Dev Task
 
-Sprint 2 Part 1 (Cloud Run standalone container readiness) is complete. Next (Sprint 2 Part 2):
+Sprint 2 Part 2 (Cloud Run provisioning & container deployment) is complete. Next (Sprint 2 Part 3 — Domain Mapping & Cutover):
 
-1. Create GCP project `spirithub-ro` linked to `My Billing Account` (`01637F-04BA52-076921`) with a `$5/mo` budget alert and Cloud Run `max-instances=2` cap.
-2. Deploy `Delles/spirit-hub` (`main`) via `Dockerfile` to Google Cloud Run (`europe-west1`) and proxy `spirithub.ro` / `www.spirithub.ro` through Cloudflare Free CDN (replacing Vercel Hobby before enabling commercial ads).
-3. Complete the 4 manual Search Console Request Indexing submissions (automated request hit a Google bot-check / CAPTCHA gate on URL #1).
-4. Once AdSense flips to `Ready` on Cloud Run, create the 2 Responsive Display units (`result-inline`, `content-footer`), set slot env vars, and integrate 2Performant (`Persoană Fizică`) Romanian affiliate placements on relevant guides/results.
+1. Map custom domains `www.spirithub.ro` and `spirithub.ro` to Cloud Run service `spirithub-web` (`europe-west1`, project `gen-lang-client-0488321484`).
+2. Switch Cloudflare DNS records (`www` CNAME + apex records, Free CDN proxy + `strict` SSL) from Vercel Hobby to Cloud Run and verify live `https://www.spirithub.ro` serves from Cloud Run/Cloudflare.
+3. Around `2026-11-26`, re-check Search Console indexing for `/bioritm/compatibilitate` and the 3 biorhythm guides (`ce-este-bioritmul`, `zile-critice-in-bioritm`, `energia-zilei-cum-sa-o-folosesti`) submitted manually on `2026-11-19`.
+4. Once AdSense flips to `Ready` on Cloud Run, create the 2 Responsive Display units (`spirithub-result-inline`, `spirithub-content-footer`), pass `NEXT_PUBLIC_ADSENSE_SLOT_*` build args in Cloud Run builds, and integrate 2Performant (`Persoană Fizică`) Romanian affiliate placements on relevant guides/results.
+
+## Latest Handoff - 2026-11-19 (Sprint 2 Part 2: Cloud Run Live on `.run.app`)
+
+- Repurposed existing project `gen-lang-client-0488321484` as `SpiritHub` (fresh project creation hit the 9-project account quota, and GCP retains deleted projects against quota for 30 days) and deleted 7 unused old projects (`gen-lang-client-0260820914`, `newsletter-476708`, `vorbe-vechi`, `multiversxpert`, `ai-chronicle`, `gen-lang-client-0213823510`, `acm-romania`) while leaving `perceptive-plexus-w6m9v` untouched.
+- Linked `My Billing Account` (`01637F-04BA52-076921`), enabled `run`, `cloudbuild`, `artifactregistry`, and `billingbudgets` APIs, and created `$5` monthly gross-spend budget alert `0b3b87d6-f564-44c6-a090-e87c466ed992` (`50%` / `100%`, `exclude-all-credits`).
+- Checked `developers.google.com/program/my-benefits` and Cloud Billing Credits on `2026-11-19`: `$370.00 USD` (`100%` available across `$300.00` GCP Free Credit + `7 × $10.00` Google Developer Program monthly grants); no unclaimed November credit is present yet (next `$10` expected around `2026-11-27`).
+- Added `.gcloudignore` and deployed `spirithub-web` (`revision spirithub-web-00001-ng9`) to Cloud Run `europe-west1` (`port 8080`, `cpu=1`, `memory=512Mi`, `min=0`, `max=2`, `--allow-unauthenticated`).
+- Activated Artifact Registry cleanup policy on `cloud-run-source-deploy` (`keepCount=2`, delete `olderThan=1d`, `--no-dry-run`).
+- Verified live HTTP `200` on `https://spirithub-web-ag2sqjyu4q-ew.a.run.app` across `/` (`34424` bytes, `hasVercel=False`), `/bioritm/compatibilitate` (`59281` bytes), `/ads.txt` (`pub-8681888147711861`), `/api/health`, and `/api/og/calea-vietii/3` (`image/png`, `177207` bytes). Production DNS still points to Vercel until Domain Mapping + Cloudflare cutover.
 
 ## Latest Handoff - 2026-11-19 (Sprint 2 Part 1: Cloud Run Readiness)
 
