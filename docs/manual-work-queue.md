@@ -39,12 +39,15 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Request indexing for core and unindexed pages
 
-- Status: requested manually on `2026-11-19` (awaiting Google recrawl; recheck Search Console around `2026-11-26`)
+- Status: initial 4 biorhythm URLs requested manually on `2026-11-19`; around `2026-11-26`, recheck those 4 plus the 2 new Sprint 3 Personal Year URLs (and request indexing for the 2 new URLs if not yet picked up via `sitemap.xml`).
 - Evidence (`2026-11-19`): Automated URL Inspection confirmed `https://www.spirithub.ro/bioritm/compatibilitate` was `URL is not on Google` (`N/A` last crawl) before hitting a Google human-verification gate. Owner then manually requested indexing for all 4 URLs in Search Console:
   - `https://www.spirithub.ro/bioritm/compatibilitate` (new route targeting 281+ impressions)
   - `https://www.spirithub.ro/ghiduri/ce-este-bioritmul`
   - `https://www.spirithub.ro/ghiduri/zile-critice-in-bioritm`
   - `https://www.spirithub.ro/ghiduri/energia-zilei-cum-sa-o-folosesti`
+- Added in Sprint 3 (`2026-11-19`, included in `sitemap.xml` and internal links):
+  - `https://www.spirithub.ro/numerologie/an-personal`
+  - `https://www.spirithub.ro/ghiduri/ce-este-anul-personal-in-numerologie`
 
 ---
 
@@ -58,9 +61,11 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Site approval and ads.txt recognition
 
-- Status: `Getting ready` (site ownership verified, `Ads.txt: Authorized`, Review requested since `Jun 22, 2026 11:58 EEST`; confirmed via AdSense detail screenshot on `2026-11-19` after completing Individual payments profile; live `https://www.spirithub.ro/ads.txt` returns `200` and `Mediapartners-Google` receives `200 OK`).
+- Status: `Getting ready` (site ownership verified, `Ads.txt: Authorized`, Review requested since `Jun 22, 2026 11:58 EEST`; confirmed via AdSense detail screenshot on `2026-11-19` after completing Individual payments profile; owner confirmed Google Pay / Google Wallet status is clear; live `https://www.spirithub.ro/ads.txt` returns `200` and `Mediapartners-Google` receives `200 OK`).
 - Publisher ID: `ca-pub-8681888147711861`.
-- Next optional setup while waiting: publish Google's built-in `European regulations` GDPR consent message in AdSense `Privacy & messaging` pointing to `https://www.spirithub.ro/confidentialitate`, and check `https://pay.google.com` alerts for any identity/tax hold.
+- Code readiness (`2026-11-19`): `/confidentialitate` updated for Google Cloud Run + Cloudflare Web Analytics + AdSense GDPR consent, `<AdSlot slotId={adSlots.contentFooter} />` wired on `/ghiduri/[slug]`, and `Dockerfile` updated to accept `NEXT_PUBLIC_ADSENSE_SLOT_*` build args.
+- Optional setup while waiting: publish Google's built-in `European regulations` GDPR consent message in AdSense `Privacy & messaging` pointing to `https://www.spirithub.ro/confidentialitate`.
+- Note (`2026-11-19`): 2Performant affiliate integration is postponed per owner preference; focus monetization on AdSense manual slots once `spirithub.ro` flips to `Ready`.
 
 ### Ad unit policy & hosting migration dependency
 
@@ -74,7 +79,8 @@ Update this file whenever a task is completed or a new blocker appears.
   - GCP project `gen-lang-client-0488321484` renamed to `SpiritHub` and linked to `My Billing Account` (`01637F-04BA52-076921`).
   - Credits verified untouched (`$370.00 USD`: `$300.00` Free Credit expiring `2027-01-08` + `7 × $10.00` Google Developer Program monthly grants auto-bound; no unclaimed November credit yet on `2026-11-19`, next expected ~`2026-11-27`).
   - Monthly `$5` gross-spend budget alert created (`0b3b87d6-f564-44c6-a090-e87c466ed992`).
-  - Service `spirithub-web` (`europe-west1`, `cpu=1`, `memory=512Mi`, `min=0`, `max=2`) deployed and serving HTTP `200` at `https://spirithub-web-ag2sqjyu4q-ew.a.run.app` (`https://spirithub-web-965560703047.europe-west1.run.app`), with Artifact Registry cleanup (`keepCount=2`, `olderThan=1d`, dry-run disabled).
+  - Service `spirithub-web` (`europe-west1`, `cpu=1`, `memory=512Mi`, `min=0`, `max=2`) running revision `spirithub-web-00002-p5p` (`100%` traffic, `https://spirithub-web-965560703047.europe-west1.run.app`), with Artifact Registry cleanup (`keepCount=2`, `olderThan=1d`, dry-run disabled).
+  - Cloudflare Web Analytics (`site_tag: e6bf2f31ee304ca794bb38487b86b46d`, `token: 7ee095a5f5fa4ea3b476d68fbecc7529`, `auto_install: true`) verified active at `$0` on live HTML responses.
   - **Cloudflare + Cloud Run cutover COMPLETE (`2026-11-19`):**
     - Cloud Run Domain Mappings created (`$0`) for `www.spirithub.ro` and `spirithub.ro` on `spirithub-web` (`europe-west1`).
     - Cloudflare DNS switched from Vercel (`216.198.79.1` / `07cdae1f44a2a3e7.vercel-dns-017.com`) to Cloud Run (`CNAME ghs.googlehosted.com` + 4 `A` + 4 `AAAA`, TXT records preserved), waited for Google Trust Services managed TLS certs across POPs, then enabled Cloudflare proxy (`proxied: true`, `ttl: 1`) under `Full (strict)` SSL.

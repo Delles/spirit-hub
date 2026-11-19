@@ -4,11 +4,21 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 ## Active Dev Task
 
-Sprint 2 (Cloud Run + Cloudflare CDN cutover) is **COMPLETE** (`2026-11-19`). Production `https://www.spirithub.ro` now runs on Google Cloud Run (`europe-west1`) behind Cloudflare Free CDN (`proxied: true`, `strict` SSL). Next milestones:
+Sprint 3 (`/numerologie/an-personal`, companion guide, AdSense privacy/slot readiness, and Cloud Run revision `spirithub-web-00002-p5p`) is **COMPLETE** (`2026-11-19`). Production `https://www.spirithub.ro` runs on Google Cloud Run (`europe-west1`) behind Cloudflare Free CDN (`proxied: true`, `strict` SSL, Cloudflare Web Analytics active at `$0`). Next milestones:
 
-1. Complete Vercel cleanup: detach `spirithub.ro` and `www.spirithub.ro` at Vercel project Domains settings (`prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn`) and disable automatic Vercel builds after team access approval.
-2. Around `2026-11-26`, re-check Search Console indexing for `/bioritm/compatibilitate` and the 3 biorhythm guides (`ce-este-bioritmul`, `zile-critice-in-bioritm`, `energia-zilei-cum-sa-o-folosesti`) submitted manually on `2026-11-19`.
-3. Once AdSense flips to `Ready`, create the 2 Responsive Display units (`spirithub-result-inline`, `spirithub-content-footer`), pass `NEXT_PUBLIC_ADSENSE_SLOT_*` build args in Cloud Run builds, and integrate 2Performant (`Persoană Fizică`) Romanian affiliate placements on relevant guides/results.
+1. Around `2026-11-26`, re-check Search Console indexing for `/bioritm/compatibilitate`, the 3 biorhythm guides (`ce-este-bioritmul`, `zile-critice-in-bioritm`, `energia-zilei-cum-sa-o-folosesti`), and the new `/numerologie/an-personal` + `/ghiduri/ce-este-anul-personal-in-numerologie` pages (submit the 2 new URLs in Search Console once verified/crawled).
+2. Check Gmail / AdSense `Sites` (`spirithub.ro`) for `Getting ready -> Ready`; keep `Auto ads: Off`. Once `Ready`, create `spirithub-result-inline` and `spirithub-content-footer` Responsive Display units, pass `NEXT_PUBLIC_ADSENSE_SLOT_RESULT_INLINE` and `NEXT_PUBLIC_ADSENSE_SLOT_CONTENT_FOOTER` into Cloud Run build args, and redeploy `spirithub-web`.
+3. Around `2026-11-27`, confirm the November `$10` Google Developer Program credit attaches to `01637F-04BA52-076921`; after a full clean sprint on Cloud Run, disable automatic Vercel Git builds on `prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn`. (2Performant affiliate work postponed per human decision.)
+
+## Latest Handoff - 2026-11-19 (Sprint 3 COMPLETE: /numerologie/an-personal, Guide, Privacy & Slot Readiness)
+
+- Shipped commit `d37a0f3`:
+  - Domain & content: `lib/personal-year.ts`, `data/interpretations/personal-year.json` (`1..9` grounded Romanian interpretations), and `'personal-year'` wiring in `lib/interpretations.ts`.
+  - Calculator & guide: `/numerologie/an-personal` (`app/numerologie/an-personal/page.tsx` + `client.tsx`) with accessible radio-group year picker (`2026`, `2027`, `2028`, `Alt an`), step-by-step calculation breakdown, interactive 9-year timeline, `?date=` prefill cross-links, plus guide `ce-este-anul-personal-in-numerologie` in `data/guides.ts`, updated `app/numerologie/page.tsx`, `app/numerologie/calea-vietii/client.tsx`, `app/despre/page.tsx`, and `app/sitemap.ts`.
+  - AdSense & Cloud Run readiness: updated `app/confidentialitate/page.tsx` (`19 noiembrie 2026`, Google Cloud Run, Cloudflare CDN, cookieless Cloudflare Web Analytics, Google AdSense EEA/GDPR consent), mounted `<AdSlot slotId={adSlots.contentFooter} />` on `app/ghiduri/[slug]/page.tsx`, and added `NEXT_PUBLIC_ADSENSE_SLOT_*` build args to `Dockerfile`.
+  - Tests: added `tests/personal-year.test.ts` and updated `tests/content-quality.test.ts` and `tests/biorhythm-guides-indexing.test.ts` (`42 pass, 0 fail`).
+- Verification: `bun test` (`42 pass`), `bun run typecheck`, `bun run lint`, `bun run build`, and `CLOUD_RUN_BUILD=true bun run build` (`30` static routes) all exited `0`.
+- Deployed Cloud Run revision `spirithub-web-00002-p5p` (`europe-west1`, `100%` traffic) and verified live HTTP `200` (`server: cloudflare`, `Cache-Control: s-maxage=31536000`) on `/`, `/numerologie/an-personal`, `/numerologie/an-personal?date=1990-07-14&year=2027`, `/ghiduri/ce-este-anul-personal-in-numerologie`, `/confidentialitate` (`Cloudflare Web Analytics` present, `Vercel Analytics` absent), `/numerologie`, `/sitemap.xml`, `/api/health`, `/ads.txt`, and Cloudflare Web Analytics beacon injection on browser HTML requests (`token: 7ee095a5f5fa4ea3b476d68fbecc7529`).
 
 ## Latest Handoff - 2026-11-19 (Sprint 2 Part 3 COMPLETE: Cloud Run + Cloudflare Proxy Live)
 
