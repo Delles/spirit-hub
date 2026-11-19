@@ -74,12 +74,12 @@ Update this file whenever a task is completed or a new blocker appears.
   - Credits verified untouched (`$370.00 USD`: `$300.00` Free Credit expiring `2027-01-08` + `7 × $10.00` Google Developer Program monthly grants auto-bound; no unclaimed November credit yet on `2026-11-19`, next expected ~`2026-11-27`).
   - Monthly `$5` gross-spend budget alert created (`0b3b87d6-f564-44c6-a090-e87c466ed992`).
   - Service `spirithub-web` (`europe-west1`, `cpu=1`, `memory=512Mi`, `min=0`, `max=2`) deployed and serving HTTP `200` at `https://spirithub-web-ag2sqjyu4q-ew.a.run.app` (`https://spirithub-web-965560703047.europe-west1.run.app`), with Artifact Registry cleanup (`keepCount=2`, `olderThan=1d`, dry-run disabled).
-  - **Cutover in progress (`2026-11-19`):**
+  - **Cloudflare + Cloud Run cutover COMPLETE (`2026-11-19`):**
     - Cloud Run Domain Mappings created (`$0`) for `www.spirithub.ro` and `spirithub.ro` on `spirithub-web` (`europe-west1`).
-    - Cloudflare DNS switched from Vercel (`216.198.79.1` / `07cdae1f44a2a3e7.vercel-dns-017.com`) to Cloud Run (`CNAME ghs.googlehosted.com` + 4 `A` + 4 `AAAA`, `proxied: false`, `ttl: 300`, TXT records preserved). Verified propagating on `1.1.1.1` and `8.8.8.8`.
-    - Cloudflare `http_request_dynamic_redirect` ruleset `f2946c6556c8477abe9f67cdde4d7fac` (rule `3d599cc05966454c8a36c9b7d0beb814`) created (`301` `spirithub.ro` -> `https://www.spirithub.ro`, preserving path & query string).
-    - **Waiting now:** Google managed TLS certificates are provisioning on both mappings before flipping Cloudflare `proxied: true` under `Full (strict)` SSL and running live verification.
-    - **Pending cleanup:** Detach `spirithub.ro` and `www.spirithub.ro` from Vercel project `prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn` once Cloudflare proxy cutover is verified green.
+    - Cloudflare DNS switched from Vercel (`216.198.79.1` / `07cdae1f44a2a3e7.vercel-dns-017.com`) to Cloud Run (`CNAME ghs.googlehosted.com` + 4 `A` + 4 `AAAA`, TXT records preserved), waited for Google Trust Services managed TLS certs across POPs, then enabled Cloudflare proxy (`proxied: true`, `ttl: 1`) under `Full (strict)` SSL.
+    - Cloudflare `http_request_dynamic_redirect` ruleset `f2946c6556c8477abe9f67cdde4d7fac` (rule `3d599cc05966454c8a36c9b7d0beb814`) live (`301` `spirithub.ro` -> `https://www.spirithub.ro`, preserving path & query string).
+    - Verified live through Cloudflare (`server: cloudflare`, no `x-vercel-id`, no `_vercel/insights`): `https://www.spirithub.ro/` (`200`, `34296` bytes), `/bioritm/compatibilitate` (`200`), `/ads.txt` (`200`), `/api/health` (`200`), `/api/og/calea-vietii/3` (`200`, `image/png`, `177830` bytes), `https://spirithub.ro/` (`301`), and `https://spirithub.ro/bioritm?test=1` (`301`).
+    - **Remaining Vercel cleanup:** Authorize Vercel team `team_N8z7T0gEvxQT4wpkn8BHvxJa` (to disable auto builds) and detach `spirithub.ro` / `www.spirithub.ro` in Vercel project `prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn` Domains settings (Vercel MCP has no domain-removal endpoint).
 
 ---
 

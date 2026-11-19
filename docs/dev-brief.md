@@ -4,20 +4,19 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 ## Active Dev Task
 
-Sprint 2 Part 3 (Domain Mapping & Cutover) is partially complete (`2026-11-19` — DNS & redirect rule switched, awaiting Google Cloud Run managed TLS certificate issuance before turning on Cloudflare proxy):
+Sprint 2 (Cloud Run + Cloudflare CDN cutover) is **COMPLETE** (`2026-11-19`). Production `https://www.spirithub.ro` now runs on Google Cloud Run (`europe-west1`) behind Cloudflare Free CDN (`proxied: true`, `strict` SSL). Next milestones:
 
-1. Re-verify direct HTTPS (`HTTP 200` without `-k`) on `www.spirithub.ro` (`ghs.googlehosted.com`) and `spirithub.ro` (`216.239.32.21`) once Google finishes provisioning the managed TLS certs (`~15–25 min` window).
-2. Flip `proxied: true` (`ttl: 1`) on `CNAME www.spirithub.ro` (`a6daf07ce70665d8b121128a1551cd02`) and all 8 `spirithub.ro` `A`/`AAAA` records under Cloudflare `strict` SSL, then verify all 7 production routes through Cloudflare (`server: cloudflare`, `301` apex redirect, no `x-vercel-id`).
-3. Detach `spirithub.ro` and `www.spirithub.ro` from Vercel (`prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn`).
-4. Around `2026-11-26`, re-check Search Console indexing for `/bioritm/compatibilitate` and the 3 biorhythm guides (`ce-este-bioritmul`, `zile-critice-in-bioritm`, `energia-zilei-cum-sa-o-folosesti`) submitted manually on `2026-11-19`.
-5. Once AdSense flips to `Ready` on Cloud Run, create the 2 Responsive Display units (`spirithub-result-inline`, `spirithub-content-footer`), pass `NEXT_PUBLIC_ADSENSE_SLOT_*` build args in Cloud Run builds, and integrate 2Performant (`Persoană Fizică`) Romanian affiliate placements on relevant guides/results.
+1. Complete Vercel cleanup: detach `spirithub.ro` and `www.spirithub.ro` at Vercel project Domains settings (`prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn`) and disable automatic Vercel builds after team access approval.
+2. Around `2026-11-26`, re-check Search Console indexing for `/bioritm/compatibilitate` and the 3 biorhythm guides (`ce-este-bioritmul`, `zile-critice-in-bioritm`, `energia-zilei-cum-sa-o-folosesti`) submitted manually on `2026-11-19`.
+3. Once AdSense flips to `Ready`, create the 2 Responsive Display units (`spirithub-result-inline`, `spirithub-content-footer`), pass `NEXT_PUBLIC_ADSENSE_SLOT_*` build args in Cloud Run builds, and integrate 2Performant (`Persoană Fizică`) Romanian affiliate placements on relevant guides/results.
 
-## Latest Handoff - 2026-11-19 (Sprint 2 Part 3 In Progress: DNS Switched, Waiting on Cloud Run TLS)
+## Latest Handoff - 2026-11-19 (Sprint 2 Part 3 COMPLETE: Cloud Run + Cloudflare Proxy Live)
 
-- Created `$0` Cloud Run custom domain mappings for `www.spirithub.ro` and `spirithub.ro` -> `spirithub-web` (`europe-west1`) via Google Cloud Console.
-- Updated Cloudflare DNS (`zone b13d899fa0d5a42855fcdfee97998d6c`, `proxied: false`, `ttl: 300`, rollback values `A 216.198.79.1` and `CNAME 07cdae1f44a2a3e7.vercel-dns-017.com`): `www.spirithub.ro -> ghs.googlehosted.com`, `spirithub.ro -> 216.239.{32,34,36,38}.21` (`A`) and `2001:4860:4802:{32,34,36,38}::15` (`AAAA`), keeping Google verification TXT and `_vercel` TXTs intact. Confirmed visibility on `1.1.1.1` and `8.8.8.8`.
-- Created Cloudflare `http_request_dynamic_redirect` ruleset `f2946c6556c8477abe9f67cdde4d7fac` (rule `3d599cc05966454c8a36c9b7d0beb814`) to `301` redirect `spirithub.ro` -> `https://www.spirithub.ro` preserving path and query string once proxy is enabled.
-- Verified Cloud Run Domain Mappings UI shows both domains in `Certificate provisioning` (`11 minutes ago`, zero DNS mismatch errors); kept `proxied: false` intentionally to avoid Cloudflare `526` under `strict` SSL until certs validate.
+- Created `$0` Cloud Run custom domain mappings for `www.spirithub.ro` and `spirithub.ro` -> `spirithub-web` (`europe-west1`).
+- Updated Cloudflare DNS (`zone b13d899fa0d5a42855fcdfee97998d6c`, rollback values `A 216.198.79.1` and `CNAME 07cdae1f44a2a3e7.vercel-dns-017.com`): `www.spirithub.ro -> ghs.googlehosted.com`, `spirithub.ro -> 216.239.{32,34,36,38}.21` (`A`) and `2001:4860:4802:{32,34,36,38}::15` (`AAAA`), keeping Google verification TXT and `_vercel` TXTs intact.
+- Created Cloudflare `http_request_dynamic_redirect` ruleset `f2946c6556c8477abe9f67cdde4d7fac` (rule `3d599cc05966454c8a36c9b7d0beb814`) to `301` redirect `spirithub.ro` -> `https://www.spirithub.ro` preserving path and query string.
+- Verified Cloud Run TLS certs live across Google edge POPs, then enabled Cloudflare proxy (`proxied: true`, `ttl: 1`) under `strict` SSL.
+- Verified all 7 production checks cleanly (`server: cloudflare`, no `x-vercel-id`, no `_vercel/insights`): `/` (`200`, `34296` bytes), `/bioritm/compatibilitate` (`200`), `/ads.txt` (`200`, `pub-8681888147711861`), `/api/health` (`200`), `/api/og/calea-vietii/3` (`200`, `image/png`, `177830` bytes), apex `https://spirithub.ro/` (`301` -> `https://www.spirithub.ro/`), and `https://spirithub.ro/bioritm?test=1` (`301` -> `https://www.spirithub.ro/bioritm?test=1`).
 
 ## Latest Handoff - 2026-11-19 (Sprint 2 Part 2: Cloud Run Live on `.run.app`)
 
