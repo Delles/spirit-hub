@@ -39,9 +39,9 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Request indexing for core and unindexed pages
 
-- Status: pending Sprint 1 deploy recrawl (`2026-11-19`)
-- Root cause resolved in code: `app/page.tsx` previously sliced `guides.slice(0, 3)`, leaving all three biorhythm guides unlinked on `/` and weakly linked outside `<Suspense>`.
-- URLs to inspect / request indexing once Sprint 1 is live:
+- Status: blocked on Google bot-verification / CAPTCHA gate (`2026-11-19`); requires quick manual click by user in Search Console
+- Evidence (`2026-11-19`): Automated URL Inspection confirmed `https://www.spirithub.ro/bioritm/compatibilitate` is `URL is not on Google` (`N/A` last crawl). Clicking **Request indexing** triggered a Google human-verification challenge, so the agent stopped cleanly without bypassing it.
+- URLs to inspect and click **Request indexing** manually in Search Console:
   - `https://www.spirithub.ro/bioritm/compatibilitate` (new route targeting 281+ impressions)
   - `https://www.spirithub.ro/ghiduri/ce-este-bioritmul`
   - `https://www.spirithub.ro/ghiduri/zile-critice-in-bioritm`

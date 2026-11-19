@@ -4,12 +4,22 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 ## Active Dev Task
 
-Sprint 2 (Next after Sprint 1 push):
+Sprint 2 Part 1 (Cloud Run standalone container readiness) is complete. Next (Sprint 2 Part 2):
 
 1. Create GCP project `spirithub-ro` linked to `My Billing Account` (`01637F-04BA52-076921`) with a `$5/mo` budget alert and Cloud Run `max-instances=2` cap.
-2. Deploy Next.js standalone build to Google Cloud Run (`europe-west1`) and route `spirithub.ro` / `www.spirithub.ro` through Cloudflare Free CDN (replacing Vercel Hobby before enabling commercial ads).
-3. Request Search Console indexing for `/bioritm/compatibilitate` and the 3 updated biorhythm guides.
+2. Deploy `Delles/spirit-hub` (`main`) via `Dockerfile` to Google Cloud Run (`europe-west1`) and proxy `spirithub.ro` / `www.spirithub.ro` through Cloudflare Free CDN (replacing Vercel Hobby before enabling commercial ads).
+3. Complete the 4 manual Search Console Request Indexing submissions (automated request hit a Google bot-check / CAPTCHA gate on URL #1).
 4. Once AdSense flips to `Ready` on Cloud Run, create the 2 Responsive Display units (`result-inline`, `content-footer`), set slot env vars, and integrate 2Performant (`Persoană Fizică`) Romanian affiliate placements on relevant guides/results.
+
+## Latest Handoff - 2026-11-19 (Sprint 2 Part 1: Cloud Run Readiness)
+
+- Prepared Cloud Run standalone deployment without changing Vercel's default build path:
+  - `next.config.ts`: gated `output: "standalone"` behind `CLOUD_RUN_BUILD === "true"` and prioritized `K_REVISION` for `NEXT_PUBLIC_ASSET_VERSION`.
+  - `app/layout.tsx`: gated Vercel `<Analytics />` and `<SpeedInsights />` behind `Boolean(process.env.VERCEL)` so Cloud Run skips `/_vercel/*` requests.
+  - Removed `export const runtime = "edge";` from all 6 OG image routes under `app/api/og/*` so they run natively on Node.js.
+  - Added multi-stage `Dockerfile` (`oven/bun:1-slim` builder + `node:22-slim` non-root runner on port `8080`), `.dockerignore`, and `tests/cloud-run-readiness.test.ts`.
+- Verified `bun test` (`34 pass, 0 fail`), `bun run typecheck`, `bun run lint`, both standalone (`CLOUD_RUN_BUILD=true`) and default `bun run build`, and local HTTP `200` responses from `.next/standalone/server.js` across `/`, `/bioritm/compatibilitate`, `/ads.txt`, `/api/health`, and `/api/og/calea-vietii/3`.
+- Search Console live check: `/bioritm/compatibilitate` is not yet indexed (`URL is not on Google`, `N/A`); clicking Request Indexing triggered a Google bot-verification challenge so automated submission stopped cleanly for human completion.
 
 ## Latest Handoff - 2026-11-19
 

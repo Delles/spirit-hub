@@ -70,6 +70,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isVercelRuntime = Boolean(process.env.VERCEL);
+
   return (
     <html lang="ro" className="dark" suppressHydrationWarning>
       <head>
@@ -100,8 +102,12 @@ export default function RootLayout({
           {children}
         </DailyContentProvider>
         <LegalFooter />
-        <Analytics />
-        <SpeedInsights />
+        {isVercelRuntime && (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        )}
       </body>
     </html>
   );

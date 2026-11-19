@@ -1,0 +1,10 @@
+.git
+.next
+node_modules
+docs
+.agents
+.vscode
+.codex
+tests
+*.tsbuildinfo
+.env*

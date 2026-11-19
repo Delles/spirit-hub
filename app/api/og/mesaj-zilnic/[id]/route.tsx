@@ -12,8 +12,6 @@ import { createOGImageResponse } from "@/components/og/og-image-frame";
 import { getOGFormatContext } from "@/lib/og-composition";
 import { getOracleById, OG_CACHE } from "@/lib/og-helpers";
 
-export const runtime = "edge";
-
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }

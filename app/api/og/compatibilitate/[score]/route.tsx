@@ -13,8 +13,6 @@ import { getOGFormatContext } from "@/lib/og-composition";
 import { getInterpretation, type CompatibilityInterpretation } from "@/lib/interpretations";
 import { getCompatibilityBucket, OG_CACHE } from "@/lib/og-helpers";
 
-export const runtime = "edge";
-
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ score: string }> }

@@ -7,6 +7,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig: NextConfig = {
   /* config options here */
+  output: process.env.CLOUD_RUN_BUILD === "true" ? "standalone" : undefined,
   compress: true,
   // Security headers
   async headers() {
@@ -36,6 +37,7 @@ const nextConfig: NextConfig = {
   // Vercel provides VERCEL_* but NOT NEXT_PUBLIC_* versions by default
   env: {
     NEXT_PUBLIC_ASSET_VERSION:
+      process.env.K_REVISION ??
       process.env.VERCEL_GIT_COMMIT_SHA ??
       process.env.VERCEL_DEPLOYMENT_ID ??
       "dev",

@@ -18,8 +18,6 @@ import {
 import { getEnergiaZilei } from "@/lib/energia-zilei";
 import { OG_CACHE } from "@/lib/og-helpers";
 
-export const runtime = "edge";
-
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ date: string }> }
