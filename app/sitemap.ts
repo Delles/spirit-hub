@@ -13,15 +13,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/numerologie`,
-            lastModified: new Date('2026-07-20'),
+            lastModified: new Date('2026-11-19'),
             changeFrequency: 'weekly',
             priority: 0.9,
         },
         {
             url: `${baseUrl}/numerologie/calea-vietii`,
-            lastModified: new Date('2026-07-20'),
+            lastModified: new Date('2026-11-19'),
             changeFrequency: 'monthly',
             priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/numerologie/an-personal`,
+            lastModified: new Date('2026-11-19'),
+            changeFrequency: 'monthly',
+            priority: 0.85,
         },
         {
             url: `${baseUrl}/numerologie/numar-zilnic`,
@@ -85,13 +91,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         })),
         {
             url: `${baseUrl}/despre`,
-            lastModified: new Date('2026-06-11'),
+            lastModified: new Date('2026-11-19'),
             changeFrequency: 'monthly',
             priority: 0.5,
         },
         {
             url: `${baseUrl}/confidentialitate`,
-            lastModified: new Date('2026-06-11'),
+            lastModified: new Date('2026-11-19'),
             changeFrequency: 'yearly',
             priority: 0.4,
         },

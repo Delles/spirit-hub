@@ -3,9 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { AdSlot } from "@/components/monetization/ad-slot";
 import { FAQSection } from "@/components/shared/faq-section";
 import { JsonLd } from "@/components/shared/json-ld";
 import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
+import { adSlots } from "@/config/monetization";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
 import { getGuideBySlug, guides } from "@/data/guides";
 
@@ -179,6 +181,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
             </div>
           </section>
         )}
+
+        <AdSlot slotId={adSlots.contentFooter} className="mt-10" />
 
         <div className="mt-10">
           <FAQSection faqs={guide.faqs} />

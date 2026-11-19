@@ -1,0 +1,335 @@
+{
+  "1": {
+    "theme": {
+      "primary": "from-orange-500 to-red-600",
+      "accent": "#F97316",
+      "bg_soft": "rgba(249, 115, 22, 0.14)"
+    },
+    "hero": {
+      "icon": "Flame",
+      "title": "Anul Începuturilor",
+      "subtitle": "Anul Personal 1",
+      "headline": "Deschizi un ciclu nou de nouă ani prin inițiativă, autonomie și decizii asumate."
+    },
+    "tags": [
+      "Inițiativă",
+      "Direcție nouă",
+      "Autonomie",
+      "Curaj practic"
+    ],
+    "content": {
+      "main_text": "Anul Personal 1 marchează **începutul unui nou ciclu de nouă ani** și aduce accent pe inițiativă, claritate și decizii luate în nume propriu. Este o etapă simbolică potrivită pentru a porni proiecte noi, a schimba direcții care nu te mai reprezintă și a defini obiective clare.\n\nProgresul în acest an depinde mai puțin de rezultate imediate și mai mult de calitatea semințelor pe care le plantezi acum. Împarte planurile mari în pași concreți și păstrează ritmul constant, fără să aștepți condiții perfecte pentru a începe.",
+      "dos": [
+        "Stabilește două sau trei priorități clare pentru următoarele luni și fă primul pas concret.",
+        "Asumă-ți decizii independente acolo unde ai amânat prea mult o alegere.",
+        "Testează idei noi în variantă simplă înainte să investești resurse mari."
+      ],
+      "donts": [
+        "Nu abandona un proiect nou doar pentru că rezultatele nu apar din prima lună.",
+        "Nu confunda autonomia cu refuzul de a cere sfatul sau ajutorul celorlalți.",
+        "Nu porni zece direcții simultan fără un plan realist de timp și energie."
+      ],
+      "reflection_questions": [
+        "Ce capitol nou merită să încep anul acesta, chiar dacă încă nu am toate răspunsurile?",
+        "Unde am așteptat aprobarea altora în loc să iau o decizie clară pentru mine?"
+      ]
+    },
+    "mantra": "Încep cu pași clari și îmi asum direcția pe care o construiesc."
+  },
+  "2": {
+    "theme": {
+      "primary": "from-teal-400 to-blue-500",
+      "accent": "#2DD4BF",
+      "bg_soft": "rgba(45, 212, 191, 0.14)"
+    },
+    "hero": {
+      "icon": "HeartHandshake",
+      "title": "Anul Răbdării și Alianțelor",
+      "subtitle": "Anul Personal 2",
+      "headline": "Consolidezi parteneriatele, asculți atent și lași proiectele să prindă rădăcini."
+    },
+    "tags": [
+      "Cooperare",
+      "Răbdare",
+      "Diplomație",
+      "Echilibru"
+    ],
+    "content": {
+      "main_text": "După impulsul de pornire din anul anterior, Anul Personal 2 pune accent pe **răbdare, cooperare și detalii**. Lucrurile cresc adesea în tăcere în această etapă, prin alianțe sănătoase, discuții calme și ajustări fine.\n\nPoți simți uneori că ritmul este mai lent decât ai vrea, însă forțarea situațiilor duce mai degrabă la blocaje. Folosește acest an pentru a asculta mai atent, a clarifica așteptările în relații și a construi încredere reciprocă.",
+      "dos": [
+        "Cultivă parteneriate de lucru și relații bazate pe comunicare deschisă și respect.",
+        "Acordă atenție detaliilor și pașilor intermediari pe care îi treci de obicei cu vederea.",
+        "Păstrează calmul și tactul atunci când apar divergențe de ritm sau opinie."
+      ],
+      "donts": [
+        "Nu lua tăcerea sau ritmul mai lent ca pe un eșec al planurilor tale.",
+        "Nu accepta compromisuri care îți încalcă limitele doar pentru a evita o discuție.",
+        "Nu lua decizii impulsive când ești obosit sau tensionat."
+      ],
+      "reflection_questions": [
+        "Ce relații sau colaborări merită mai multă răbdare și prezență din partea mea?",
+        "Unde am nevoie să spun clar ce simt și ce aștept, fără să ocolesc subiectul?"
+      ]
+    },
+    "mantra": "Construiesc cu răbdare și colaborez fără să îmi pierd limitele."
+  },
+  "3": {
+    "theme": {
+      "primary": "from-amber-400 to-orange-500",
+      "accent": "#FBBF24",
+      "bg_soft": "rgba(251, 191, 36, 0.14)"
+    },
+    "hero": {
+      "icon": "Sparkles",
+      "title": "Anul Expresiei și Creativității",
+      "subtitle": "Anul Personal 3",
+      "headline": "Aduci ideile la lumină prin comunicare, dialog și proiecte creative."
+    },
+    "tags": [
+      "Expresie",
+      "Comunicare",
+      "Creativitate",
+      "Dialog"
+    ],
+    "content": {
+      "main_text": "Anul Personal 3 favorizează **exprimarea liberă, socializarea și creativitatea aplicată**. Este o perioadă simbolică potrivită pentru a scrie, a vorbi mai deschis despre munca ta, a învăța abilități de comunicare și a relua pasiuni lăsate deoparte.\n\nEntuziasmul poate veni însă cu tentația de a te împrăștia în prea multe activități odată. Alege câteva canale concrete prin care să îți exprimi ideile și du proiectele începute până la capăt.",
+      "dos": [
+        "Rezervă timp săptămânal pentru un proiect creativ, scris, vorbit sau expresie practică.",
+        "Conectează-te cu oameni noi și participă la conversații care îți lărgesc perspectiva.",
+        "Păstrează un jurnal simplu al ideilor și transformă una dintre ele într-un rezultat concret."
+      ],
+      "donts": [
+        "Nu îți risipi energia între zeci de activități sociale fără timp de refacere.",
+        "Nu amâna discuțiile serioase ascunzându-te în spatele umorului.",
+        "Nu lăsa teama de critică să te oprească din a publica sau prezenta ce lucrezi."
+      ],
+      "reflection_questions": [
+        "Ce idee am tot amânat să exprim sau să arăt celorlalți de teamă că nu este perfectă?",
+        "Cum pot păstra bucuria creației fără să las proiectele neterminate?"
+      ]
+    },
+    "mantra": "Îmi exprim ideile clar și duc lucrurile începute până la capăt."
+  },
+  "4": {
+    "theme": {
+      "primary": "from-emerald-500 to-green-700",
+      "accent": "#10B981",
+      "bg_soft": "rgba(16, 185, 129, 0.14)"
+    },
+    "hero": {
+      "icon": "ShieldCheck",
+      "title": "Anul Construcției",
+      "subtitle": "Anul Personal 4",
+      "headline": "Pui ordine în obiceiuri, finanțe și proiecte prin muncă consecventă."
+    },
+    "tags": [
+      "Structură",
+      "Disciplină",
+      "Stabilitate",
+      "Organizare"
+    ],
+    "content": {
+      "main_text": "Anul Personal 4 mută accentul pe **organizare, metodă și fundații solide**. Este etapa în care ideile din anii anteriori cer structură zilnică, bugete clare, rutine sănătoase și răbdare cu sarcinile repetitive.\n\nVolumul de muncă poate părea mai mare decât de obicei, așa că planificarea realistă face diferența. Când împarți munca pe etape și respecți timpul de odihnă, construiești rezultate pe care te poți baza mulți ani.",
+      "dos": [
+        "Revizuiește bugetul, programul zilnic și prioritățile pentru a elimina risipa de timp.",
+        "Construiește sisteme simple pentru sănătate, somn și sarcini administrative.",
+        "Finalizează restanțele vechi înainte să adaugi responsabilități noi."
+      ],
+      "donts": [
+        "Nu căuta scurtături acolo unde lucrul temeinic este singura cale sigură.",
+        "Nu transforma disciplina în rigiditate sau supraîncărcare până la epuizare.",
+        "Nu ignora semnele de oboseală în numele productivității."
+      ],
+      "reflection_questions": [
+        "Ce rutină zilnică îmi aduce cea mai mare stabilitate dacă o păstrez constant?",
+        "Unde am nevoie de mai multă ordine în acte, finanțe sau promisiuni?"
+      ]
+    },
+    "mantra": "Construiesc temeinic, pas cu pas, cu grijă față de ritmul meu."
+  },
+  "5": {
+    "theme": {
+      "primary": "from-sky-500 to-cyan-500",
+      "accent": "#38BDF8",
+      "bg_soft": "rgba(56, 189, 248, 0.14)"
+    },
+    "hero": {
+      "icon": "Wind",
+      "title": "Anul Schimbării",
+      "subtitle": "Anul Personal 5",
+      "headline": "Ieși din rutină, testezi direcții noi și îți exersezi adaptabilitatea."
+    },
+    "tags": [
+      "Schimbare",
+      "Flexibilitate",
+      "Explorare",
+      "Libertate"
+    ],
+    "content": {
+      "main_text": "La mijlocul ciclului de nouă ani, Anul Personal 5 aduce **mișcare, schimbări de ritm și experiențe noi**. După structura anului 4, această etapă simbolică te încurajează să aerisești rutinele învechite, să călătorești sau să ajustezi felul în care lucrezi.\n\nSchimbarea este utilă când are discernământ. Evită să iei decizii radicale doar din plictiseală sau impuls și păstrează câteva repere stabile care să te ancoreze în perioadele mai agitate.",
+      "dos": [
+        "Fă loc pentru experiențe noi, cursuri, călătorii sau metode diferite de lucru.",
+        "Renunță conștient la un obicei rigid care îți consumă inutil energia.",
+        "Rămâi flexibil când planurile inițiale se modifică pe parcurs."
+      ],
+      "donts": [
+        "Nu schimba totul deodată doar pentru a fugi de responsabilități reale.",
+        "Nu lua decizii financiare sau personale majore fără o noapte de reflecție.",
+        "Nu lăsa lipsa de structură să destrame obiceiurile bune construite anterior."
+      ],
+      "reflection_questions": [
+        "Ce zonă din viața mea cere o schimbare sinceră și curajoasă anul acesta?",
+        "Cum pot explora lucruri noi păstrând totuși reperele care îmi dau stabilitate?"
+      ]
+    },
+    "mantra": "Întâmpin schimbarea cu mintea deschisă și discernământ."
+  },
+  "6": {
+    "theme": {
+      "primary": "from-pink-500 to-rose-600",
+      "accent": "#F43F5E",
+      "bg_soft": "rgba(244, 63, 94, 0.14)"
+    },
+    "hero": {
+      "icon": "Heart",
+      "title": "Anul Echilibrului și Familiei",
+      "subtitle": "Anul Personal 6",
+      "headline": "Îngrijești casa, relațiile apropiate și responsabilitățile față de cei dragi."
+    },
+    "tags": [
+      "Familie",
+      "Armonie",
+      "Responsabilitate",
+      "Grijă"
+    ],
+    "content": {
+      "main_text": "Anul Personal 6 aduce în prim-plan **casa, familia, relațiile apropiate și grija față de comunitate**. Este un an potrivit pentru a repara legături importante, a îmbunătăți spațiul în care locuiești și a lua angajamente mature.\n\nResponsabilitatea față de ceilalți poate deveni însă obositoare dacă încerci să rezolvi problemele tuturor. Echilibrul real apare atunci când oferi sprijin cu limite clare și îți rezervi timp pentru propria refacere.",
+      "dos": [
+        "Investește timp real în familie, prieteni apropiați și confortul locuinței.",
+        "Clarifică responsabilitățile comune prin dialog calm și echitabil.",
+        "Păstrează zilnic un interval dedicat propriei odihne și sănătăți."
+      ],
+      "donts": [
+        "Nu îți asuma rolul de salvator în situații care aparțin altor adulți.",
+        "Nu critica excesiv când lucrurile nu ies după standardul tău perfect.",
+        "Nu amâna propria grijă de sine până când apare epuizarea."
+      ],
+      "reflection_questions": [
+        "Ce relație apropiată are nevoie de prezența mea calmă și sinceră în acest an?",
+        "Unde preiau mai mult decât este sănătos în locul celorlalți?"
+      ]
+    },
+    "mantra": "Ofer sprijin celor dragi păstrând echilibrul și liniștea mea."
+  },
+  "7": {
+    "theme": {
+      "primary": "from-violet-600 to-indigo-600",
+      "accent": "#8B5CF6",
+      "bg_soft": "rgba(139, 92, 246, 0.14)"
+    },
+    "hero": {
+      "icon": "Search",
+      "title": "Anul Reflecției",
+      "subtitle": "Anul Personal 7",
+      "headline": "Încetinești ritmul exterior pentru studiu, analiză și claritate interioară."
+    },
+    "tags": [
+      "Introspecție",
+      "Studiu",
+      "Claritate",
+      "Liniște"
+    ],
+    "content": {
+      "main_text": "Anul Personal 7 este o etapă de **analiză, învățare și retragere constructivă**. După anii orientați spre acțiune și relații, simți nevoia să pui întrebări de fond, să aprofundezi un domeniu și să verifici ce are cu adevărat sens pentru tine.\n\nRitmul mai liniștit nu înseamnă stagnare, ci pregătire interioară. Ai grijă doar ca nevoia de spațiu personal să nu se transforme în izolare față de oamenii care țin la tine.",
+      "dos": [
+        "Alocă timp regulat pentru lectură, studiu aprofundat și reflecție în liniște.",
+        "Evaluează-ți obiectivele pe termen lung înainte de a începe angajamente noi.",
+        "Explică apropiaților când ai nevoie de spațiu, ca să nu pară distanță rece."
+      ],
+      "donts": [
+        "Nu forța extinderea rapidă când simți că este momentul să analizezi atent.",
+        "Nu te închide complet în singurătate sau îndoială excesivă.",
+        "Nu rămâne blocat în analiză fără a nota concluziile practice."
+      ],
+      "reflection_questions": [
+        "Ce subiect sau abilitate merită să studiez în profunzime anul acesta?",
+        "Ce convingere veche nu mai corespunde cu cine sunt astăzi?"
+      ]
+    },
+    "mantra": "Îmi ofer liniștea necesară pentru a vedea lucrurile cu claritate."
+  },
+  "8": {
+    "theme": {
+      "primary": "from-amber-500 to-yellow-700",
+      "accent": "#F59E0B",
+      "bg_soft": "rgba(245, 158, 11, 0.14)"
+    },
+    "hero": {
+      "icon": "Gem",
+      "title": "Anul Rezultatelor și Responsabilității",
+      "subtitle": "Anul Personal 8",
+      "headline": "Culegi roadele muncii anterioare și gestionezi resursele cu maturitate."
+    },
+    "tags": [
+      "Rezultate",
+      "Resurse",
+      "Autoritate",
+      "Decizii"
+    ],
+    "content": {
+      "main_text": "Anul Personal 8 aduce accent pe **rezultate concrete, carieră, finanțe și asumare**. Eforturile susținute din anii precedenți tind să devină mai vizibile acum, iar deciziile legate de bani, contracte și roluri de conducere cer luciditate.\n\nAcest an răsplătește corectitudinea, disciplina și gândirea pe termen lung. Păstrează măsura între ambiția profesională și respectul față de oameni, inclusiv față de propriul timp de refacere.",
+      "dos": [
+        "Negociază corect valoarea muncii tale și pune ordine în planul financiar.",
+        "Asumă-ți roluri de coordonare sau decizie acolo unde ai acumulat experiență.",
+        "Evaluează proiectele după rezultate măsurabile, nu doar după intenții."
+      ],
+      "donts": [
+        "Nu măsura întreaga ta valoare personală exclusiv prin venituri sau statut.",
+        "Nu accepta înțelegeri neclare din grabă sau dorință de câștig rapid.",
+        "Nu sacrifica relațiile și odihna pentru programul de lucru."
+      ],
+      "reflection_questions": [
+        "Unde pot folosi mai bine experiența acumulată în ultimii șapte ani?",
+        "Ce decizie financiară sau profesională îmi cere maturitate și fermitate acum?"
+      ]
+    },
+    "mantra": "Gestionez resursele și responsabilitatea cu echilibru și corectitudine."
+  },
+  "9": {
+    "theme": {
+      "primary": "from-fuchsia-600 to-pink-700",
+      "accent": "#E879F9",
+      "bg_soft": "rgba(232, 121, 249, 0.14)"
+    },
+    "hero": {
+      "icon": "Globe",
+      "title": "Anul Încheierilor",
+      "subtitle": "Anul Personal 9",
+      "headline": "Închizi capitolele încheiate, cureți spațiul și te pregătești pentru noul ciclu."
+    },
+    "tags": [
+      "Încheiere",
+      "Curățare",
+      "Compasiune",
+      "Tranziție"
+    ],
+    "content": {
+      "main_text": "Anul Personal 9 încheie **ciclul de nouă ani** și este dedicat finalizărilor, bilanțului și desprinderii de lucrurile care și-au îndeplinit rolul. Este un moment potrivit să duci la bun sfârșit proiecte vechi, să eliberezi spațiul fizic și să ierți acolo unde porți tensiuni inutile.\n\nNu este cel mai bun an pentru a forța începuturi complet noi din nimic, ci pentru a face loc curat înaintea Anului Personal 1. Ce lași să plece cu recunoștință îți redă energia pentru etapa următoare.",
+      "dos": [
+        "Finalizează proiectele și angajamentele deschise înainte de a trece la noul ciclu.",
+        "Eliberează obiectele, obiceiurile și colaborările care nu mai au sens acum.",
+        "Privește ultimii nouă ani cu luciditate și recunoștință pentru ce ai învățat."
+      ],
+      "donts": [
+        "Nu te agăța din obișnuință de situații sau roluri care s-au epuizat firesc.",
+        "Nu începe proiecte uriașe pe termen lung fără să închizi întâi restanțele vechi.",
+        "Nu interpreta o despărțire sau o încheiere ca pe un blocaj permanent."
+      ],
+      "reflection_questions": [
+        "Ce proiect, obicei sau atașament este gata să fie încheiat cu respect anul acesta?",
+        "Ce lecție esențială iau cu mine din ciclul ultimilor nouă ani?"
+      ]
+    },
+    "mantra": "Închid trecutul cu luciditate și fac loc curat pentru ce urmează."
+  }
+}

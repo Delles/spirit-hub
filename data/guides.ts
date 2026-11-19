@@ -76,6 +76,12 @@ export const guides: Guide[] = [
     ],
     relatedLinks: [
       {
+        title: "Calculator An Personal",
+        description:
+          "Vezi în ce etapă din ciclul de 9 ani te afli în 2026, 2027 sau în orice alt an.",
+        href: "/numerologie/an-personal",
+      },
+      {
         title: "Compatibilitate numerologică",
         description:
           "Vezi cum se combină două căi ale vieții cu numerele destinului într-un scor explicat.",
@@ -552,6 +558,95 @@ export const guides: Guide[] = [
       label: "Vezi energia zilei",
       href: "/bioritm/energia-zilei",
       text: "Primește o citire rapidă pentru ritmul zilei și folosește-o ca punct de orientare.",
+    },
+  },
+  {
+    slug: "ce-este-anul-personal-in-numerologie",
+    title: "Ce este anul personal în numerologie și cum se calculează?",
+    description:
+      "Află formula Anului Personal (zi + lună + an țintă), ce înseamnă Anul Universal 2027 și cum citești cele 9 etape ale ciclului numerologic.",
+    updatedAt: "2026-11-19",
+    category: "Numerologie",
+    readMinutes: 6,
+    icon: CalendarDays,
+    intro:
+      "Anul Personal descrie simbolic tema principală a unui an calendaristic pentru tine. Spre deosebire de Calea Vieții, acest număr se schimbă de la un an la altul și te ajută să observi ritmul unui ciclu de nouă ani.",
+    sections: [
+      {
+        heading: "Formula Anului Personal și de ce lipsește anul nașterii",
+        body: [
+          "Formula adună cifrele din ziua nașterii, luna nașterii și anul țintă pe care vrei să îl analizezi. Suma rezultată se reduce strict până la o singură cifră cuprinsă între 1 și 9, fără a păstra numerele maestre 11, 22 sau 33.",
+          "Anul nașterii este omis intenționat din acest calcul. El definește Calea Vieții, care rămâne neschimbată pe parcursul vieții, în timp ce Anul Personal înlocuiește anul nașterii cu anul calendaristic analizat pentru a urmări tema fiecărei etape din ciclul de 9 ani.",
+        ],
+      },
+      {
+        heading: "Anul Universal 2027 și exemplu concret pentru 14 iulie",
+        body: [
+          "Pentru a înțelege fundalul unui an calendaristic, numerologia calculează mai întâi Anul Universal adunând cifrele anului: pentru 2027 calculul este 2 + 0 + 2 + 7 = 11, apoi 1 + 1 = 2. Anul Universal 2027 este 2, asociat simbolic cu răbdarea, colaborarea și construcția treptată.",
+          "Pentru o persoană născută pe 14 iulie, calculul în 2027 folosește ziua (1 + 4 = 5), luna (7) și anul țintă 2027 (2 + 0 + 2 + 7 = 11). Adunăm componentele: 5 + 7 + 11 = 23, apoi 2 + 3 = 5. Rezultatul este Anul Personal 5, o etapă simbolică a schimbării și adaptabilității.",
+        ],
+      },
+      {
+        heading: "Privire de ansamblu asupra etapelor 1 la 9",
+        body: [
+          "Anii personali se succed în ordine de la 1 la 9 și formează o poveste coerentă: Anul 1 marchează începuturile și inițiativa, Anul 2 aduce răbdare și alianțe, Anul 3 încurajează expresia și creativitatea, iar Anul 4 cere structură și construcție consecventă.",
+          "Anul 5 aduce schimbare și mobilitate, Anul 6 mută atenția spre echilibru, casă și familie, Anul 7 invită la reflecție și studiu, Anul 8 pune accent pe rezultate și responsabilitate practică, iar Anul 9 încheie ciclul pentru a face loc unui nou început.",
+        ],
+      },
+      {
+        heading: "Cum folosești rezultatul și unde se oprește metoda",
+        body: [
+          "Folosește Anul Personal ca reper de planificare și jurnal: îți poți întreba prioritățile dacă se potrivesc cu o etapă de pornire, de consolidare sau de încheiere. O întrebare sinceră despre alegerile tale valorează mai mult decât o etichetă generală.",
+          "Numerologia este un sistem simbolic de reflecție personală; nu este o metodă științifică și nu oferă predicții sigure despre carieră, bani, sănătate sau relații.",
+        ],
+      },
+    ],
+    relatedLinks: [
+      {
+        title: "Calculator An Personal",
+        description:
+          "Calculează gratuit Anul Personal pentru 2026, 2027 și vezi ciclul tău complet de 9 ani.",
+        href: "/numerologie/an-personal",
+      },
+      {
+        title: "Calculator Calea Vieții",
+        description:
+          "Compară tema anului curent cu direcția ta generală calculată din data completă a nașterii.",
+        href: "/numerologie/calea-vietii",
+      },
+      {
+        title: "Ce este calea vieții?",
+        description:
+          "Înțelege diferența dintre indicatorul permanent al nașterii și ciclul anual.",
+        href: "/ghiduri/ce-este-calea-vietii-in-numerologie",
+      },
+    ],
+    faqs: [
+      {
+        question: "De ce anul nașterii nu intră în calculul Anului Personal?",
+        answer:
+          "Anul nașterii definește Calea Vieții, care nu se schimbă. Pentru a vedea tema unui an calendaristic concret, formula înlocuiește anul nașterii cu anul țintă analizat.",
+      },
+      {
+        question: "Se păstrează numerele 11, 22 sau 33 la Anul Personal?",
+        answer:
+          "Nu. Ciclul Anului Personal folosește strict cifrele de la 1 la 9, astfel încât 11 se reduce la 2, 22 la 4 și 33 la 6.",
+      },
+      {
+        question: "Cum se calculează Anul Universal 2027?",
+        answer:
+          "Se adună cifrele anului 2027: 2 + 0 + 2 + 7 = 11, apoi 1 + 1 = 2. Anul Universal pentru 2027 este 2.",
+      },
+      {
+        question: "Anul Personal poate prezice ce mi se va întâmpla în 2027?",
+        answer:
+          "Nu. Este un reper simbolic pentru reflecție și organizare a obiectivelor, nu o metodă științifică și nu o predicție certă.",
+      },
+    ],
+    cta: {
+      label: "Calculează Anul Personal",
+      href: "/numerologie/an-personal",
+      text: "Introdu data nașterii și află cifra anului tău personal pentru 2026, 2027 sau orice alt an.",
     },
   },
 ];

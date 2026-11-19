@@ -2,8 +2,9 @@ import lifePathData from '@/data/interpretations/life-path.json';
 import destinyData from '@/data/interpretations/destiny.json';
 import compatibilityData from '@/data/interpretations/compatibility.json';
 import dailyData from '@/data/interpretations/daily.json';
+import personalYearData from '@/data/interpretations/personal-year.json';
 
-export type InterpretationType = 'life-path' | 'destiny' | 'compatibility' | 'daily';
+export type InterpretationType = 'life-path' | 'destiny' | 'compatibility' | 'daily' | 'personal-year';
 
 export interface BaseInterpretation {
     title: string;
@@ -58,14 +59,21 @@ export interface CompatibilityInterpretation {
     };
 }
 
+export interface PersonalYearInterpretation extends LifePathInterpretation {
+    content: LifePathInterpretation['content'] & {
+        reflection_questions: string[];
+    };
+}
+
 // Union type for all interpretations
-export type Interpretation = BaseInterpretation | LifePathInterpretation | DailyInterpretation | CompatibilityInterpretation;
+export type Interpretation = BaseInterpretation | LifePathInterpretation | DailyInterpretation | CompatibilityInterpretation | PersonalYearInterpretation;
 
 const dataMap: Record<InterpretationType, Record<string, Interpretation>> = {
     'life-path': lifePathData as unknown as Record<string, LifePathInterpretation>,
     'destiny': destinyData as unknown as Record<string, LifePathInterpretation>,
     'compatibility': compatibilityData as unknown as Record<string, CompatibilityInterpretation>,
     'daily': dailyData as unknown as Record<string, DailyInterpretation>,
+    'personal-year': personalYearData as unknown as Record<string, PersonalYearInterpretation>,
 };
 
 /**

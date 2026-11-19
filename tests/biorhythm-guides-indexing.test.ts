@@ -65,12 +65,12 @@ describe("biorhythm guides authority and indexing", () => {
     expect(relatedHrefs).toContain("/bioritm/compatibilitate");
   });
 
-  test("sitemap includes /bioritm/compatibilitate and all 6 guide URLs", () => {
+  test("sitemap includes /bioritm/compatibilitate and all guide URLs", () => {
     const entries = sitemap();
     const urls = entries.map((entry) => entry.url);
 
     expect(urls).toContain("https://www.spirithub.ro/bioritm/compatibilitate");
-    expect(guides).toHaveLength(6);
+    expect(guides.length).toBeGreaterThanOrEqual(7);
 
     for (const guide of guides) {
       expect(urls).toContain(`https://www.spirithub.ro/ghiduri/${guide.slug}`);

@@ -10,6 +10,7 @@ const INTERPRETATION_FILES = [
   "data/interpretations/life-path.json",
   "data/interpretations/destiny.json",
   "data/interpretations/biorhythm.json",
+  "data/interpretations/personal-year.json",
 ] as const;
 
 const CLEANED_UI_FILES = [
@@ -20,6 +21,9 @@ const CLEANED_UI_FILES = [
   "app/numerologie/calea-vietii/client.tsx",
   "app/numerologie/numar-zilnic/client.tsx",
   "app/numerologie/nume-destin/client.tsx",
+  "app/numerologie/an-personal/client.tsx",
+  "app/numerologie/an-personal/page.tsx",
+  "app/confidentialitate/page.tsx",
   "components/numerologie/daily-card.tsx",
   "components/numerologie/destiny-card.tsx",
   "components/numerologie/life-path-card.tsx",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Sparkles, ArrowLeft, Calculator, Heart, Calendar, BookOpen } from "lucide-react";
+import { Sparkles, ArrowLeft, Calculator, Heart, Calendar, CalendarDays, BookOpen } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { FAQSection } from "@/components/shared/faq-section";
 import { generateFAQJsonLd } from "@/lib/faq-schema";
@@ -10,14 +10,14 @@ import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 export const metadata: Metadata = {
   title: "Calculatoare de Numerologie Online | SpiritHub.ro",
   description:
-    "Alege dintre 4 calculatoare de numerologie gratuite: calea vieții, numărul destinului, compatibilitate și numărul zilei. Rezultate instant, fără cont.",
+    "Alege dintre 5 calculatoare de numerologie gratuite: calea vieții, anul personal, numărul destinului, compatibilitate și numărul zilei. Rezultate instant, fără cont.",
   alternates: {
     canonical: "https://www.spirithub.ro/numerologie",
   },
   openGraph: {
     title: "Calculatoare de Numerologie Online | SpiritHub.ro",
     description:
-      "Calculează gratuit calea vieții, numărul destinului, compatibilitatea sau numărul zilei.",
+      "Calculează gratuit calea vieții, anul personal, numărul destinului, compatibilitatea sau numărul zilei.",
     url: "https://www.spirithub.ro/numerologie",
     type: "website",
     locale: "ro_RO",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Calculatoare de Numerologie Online | SpiritHub.ro",
     description:
-      "Calculează gratuit calea vieții, numărul destinului, compatibilitatea sau numărul zilei.",
+      "Calculează gratuit calea vieții, anul personal, numărul destinului, compatibilitatea sau numărul zilei.",
   },
 };
 
@@ -160,6 +160,26 @@ export default function NumerologiePage() {
                 </div>
               </Card>
             </Link>
+
+            <Link href="/numerologie/an-personal" className="group sm:col-span-2">
+              <Card className="p-6 h-full">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 transition-colors group-hover:bg-[#9F2BFF]/20">
+                  <CalendarDays className="h-6 w-6 text-[#9F2BFF]" aria-hidden="true" />
+                </div>
+                <h2 className="text-xl font-semibold mb-2 text-white">Anul Personal</h2>
+                <p className="text-sm text-[#E0E0E0] mb-4">
+                  Calculează cifra anului personal pentru 2026, 2027 sau orice alt an și explorează
+                  ciclul tău complet de 9 ani pas cu pas
+                </p>
+                <div className="flex items-center text-sm font-medium text-[#9F2BFF]">
+                  Calculează Anul Personal
+                  <ArrowLeft
+                    className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </div>
+              </Card>
+            </Link>
           </div>
 
           <section className="mt-12" aria-labelledby="alege-calculatorul">
@@ -168,10 +188,11 @@ export default function NumerologiePage() {
             </h2>
             <div className="space-y-3 text-[#E0E0E0]">
               <p>
-                Dacă ai doar data nașterii, începe cu Calea Vieții. Pentru Numărul Destinului ai
-                nevoie de numele complet, iar calculatorul de compatibilitate folosește numele și
-                datele de naștere ale ambelor persoane. Numărul Zilei este instrumentul scurt pentru
-                orientarea de astăzi.
+                Dacă ai doar data nașterii, începe cu Calea Vieții sau cu Anul Personal pentru a
+                vedea tema generală a anului 2026 ori 2027. Pentru Numărul Destinului ai nevoie de
+                numele complet, iar calculatorul de compatibilitate folosește numele și datele de
+                naștere ale ambelor persoane. Numărul Zilei este instrumentul scurt pentru orientarea
+                de astăzi.
               </p>
               <p>
                 Rezultatele sunt simbolice și utile pentru reflecție personală. Ele nu înlocuiesc
@@ -187,13 +208,20 @@ export default function NumerologiePage() {
                 Înțelege cum se calculează rezultatele
               </h2>
             </div>
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2">
               <Link
                 href="/ghiduri/ce-este-calea-vietii-in-numerologie"
                 className="rounded-lg border border-[#9F2BFF]/30 bg-white/5 p-4 text-sm text-[#E0E0E0] transition-colors hover:border-[#9F2BFF]/60 hover:bg-white/10"
               >
                 <span className="font-semibold text-white">Calea Vieții</span>
                 <span className="mt-2 block">Formula din data nașterii și sensul rezultatului.</span>
+              </Link>
+              <Link
+                href="/ghiduri/ce-este-anul-personal-in-numerologie"
+                className="rounded-lg border border-[#9F2BFF]/30 bg-white/5 p-4 text-sm text-[#E0E0E0] transition-colors hover:border-[#9F2BFF]/60 hover:bg-white/10"
+              >
+                <span className="font-semibold text-white">Anul Personal</span>
+                <span className="mt-2 block">Formula fără anul nașterii și ciclul de 9 ani.</span>
               </Link>
               <Link
                 href="/ghiduri/cum-se-calculeaza-numarul-destinului"

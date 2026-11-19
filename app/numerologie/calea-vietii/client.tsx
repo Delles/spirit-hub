@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { AdSlot } from "@/components/monetization/ad-slot";
 import { adSlots } from "@/config/monetization";
 import Link from "next/link";
-import { Calendar, Sparkles, Heart, ArrowLeft } from "lucide-react";
+import { Calendar, CalendarDays, Sparkles, Heart, ArrowLeft } from "lucide-react";
 
 
 
@@ -142,7 +142,30 @@ export default function CaleaVietiiClient() {
                   </p>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-3">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Link
+                    href={`/numerologie/an-personal?date=${encodeURIComponent(birthDate)}`}
+                    className="group"
+                  >
+                    <Card className="p-4 h-full transition-all duration-300 hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5">
+                      <div className="flex flex-col items-center text-center space-y-3">
+                        <div className="w-12 h-12 rounded-full bg-[#9F2BFF]/10 border border-[#9F2BFF]/40 flex items-center justify-center group-hover:bg-[#9F2BFF]/20 transition-colors">
+                          <CalendarDays className="w-5 h-5 text-[#9F2BFF]" />
+                        </div>
+                        <div className="space-y-1">
+                          <h4 className="font-semibold text-white text-sm">Anul Personal</h4>
+                          <p className="text-xs text-[#E0E0E0]/70">
+                            Tema ciclului anual pentru aceeași dată de naștere
+                          </p>
+                        </div>
+                        <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                          Calculează
+                          <ArrowLeft className="w-3 h-3 rotate-180" />
+                        </span>
+                      </div>
+                    </Card>
+                  </Link>
+
                   <Link href="/numerologie/numar-zilnic" className="group">
                     <Card className="p-4 h-full transition-all duration-300 hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5">
                       <div className="flex flex-col items-center text-center space-y-3">

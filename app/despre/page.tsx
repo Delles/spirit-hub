@@ -27,9 +27,9 @@ export default function DesprePage() {
           <h2 className="text-xl font-semibold text-white">Ce calculează SpiritHub</h2>
           <p>
             Calculatoarele transformă data nașterii și numele complet în indicatori numerologici:
-            Calea Vieții, Numărul Destinului, Numărul Zilei și compatibilitatea numerică. Modulul
-            de bioritm calculează curbele pentru ciclurile fizic de 23 de zile, emoțional de 28 de
-            zile și intelectual de 33 de zile, împreună cu zilele de tranziție.
+            Calea Vieții, Anul Personal, Numărul Destinului, Numărul Zilei și compatibilitatea
+            numerică. Modulul de bioritm calculează curbele pentru ciclurile fizic de 23 de zile,
+            emoțional de 28 de zile și intelectual de 33 de zile, împreună cu zilele de tranziție.
           </p>
           <p>
             Secțiunile zilnice afișează faza lunii, tema simbolică a zilei și un mesaj scurt pentru
