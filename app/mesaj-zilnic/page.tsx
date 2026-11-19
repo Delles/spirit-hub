@@ -10,11 +10,11 @@ import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: "Mesaj Spiritual Zilnic - Ghidare de la Univers | SpiritHub.ro",
-    description: "Primește mesajul tău zilnic de la Univers. Ghidare spirituală, inspirație și claritate pentru fiecare zi. Descoperă ce îți transmite cosmosul astăzi.",
+    title: "Mesaj Spiritual Zilnic - Reflecție și Claritate | SpiritHub.ro",
+    description: "Citește mesajul zilnic de reflecție simbolică pe SpiritHub.ro. Un gând scurt pentru claritate și echilibru, actualizat zilnic fără cont.",
     openGraph: {
         title: "Mesaj Spiritual Zilnic | SpiritHub.ro",
-        description: "Primește mesajul tău zilnic de la Univers. Ghidare spirituală și inspirație pentru ziua ta.",
+        description: "Un mesaj scurt de reflecție simbolică și inspirație pentru ziua de astăzi.",
         type: "website",
         images: [
             {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Mesaj Spiritual Zilnic | SpiritHub.ro",
-        description: "Primește mesajul tău zilnic de la Univers. Ghidare spirituală și inspirație.",
+        description: "Un mesaj scurt de reflecție simbolică și inspirație pentru ziua de astăzi.",
         images: ["/og-image.jpg"],
     },
     alternates: {
@@ -66,7 +66,7 @@ export default function OraclePage() {
                     <div className="space-y-4 text-center">
                         <h1 className="text-3xl font-bold text-white">Mesajul Universului</h1>
                         <p className="text-lg text-[#E0E0E0] leading-relaxed">
-                            Ghidare subtilă pentru ziua de {formattedDate}.
+                            Reflecție simbolică pentru ziua de {formattedDate}.
                         </p>
                     </div>
 
@@ -76,7 +76,7 @@ export default function OraclePage() {
                     {/* Return Tomorrow - Matching Energia Zilei */}
                     <div className="text-center py-4">
                         <p className="text-sm text-[#E0E0E0]/60">
-                            ✨ Revino mâine pentru un nou mesaj ✨
+                            Revino mâine pentru un nou mesaj.
                         </p>
                     </div>
 

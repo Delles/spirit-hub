@@ -4,7 +4,7 @@ import { MainLayout } from "@/components/layout/main-layout";
 export const metadata: Metadata = {
   title: "Despre SpiritHub.ro",
   description:
-    "Află ce este SpiritHub.ro: o platformă românească de numerologie, bioritm și ghidaj zilnic pentru reflecție personală.",
+    "Ce calculează SpiritHub.ro: instrumente gratuite de numerologie, bioritm și texte simbolice zilnice în limba română.",
   alternates: {
     canonical: "https://www.spirithub.ro/despre",
   },
@@ -18,35 +18,40 @@ export default function DesprePage() {
           <p className="text-sm uppercase tracking-[0.2em] text-[#9F2BFF]">SpiritHub.ro</p>
           <h1 className="text-3xl font-bold text-white">Despre</h1>
           <p className="text-lg leading-relaxed">
-            SpiritHub.ro este o platformă românească pentru autocunoaștere, numerologie,
-            bioritm și inspirație zilnică.
+            SpiritHub.ro oferă calculatoare gratuite de numerologie și bioritm, alături de ghiduri
+            și texte de reflecție în limba română.
           </p>
         </header>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">Misiune</h2>
+          <h2 className="text-xl font-semibold text-white">Ce calculează SpiritHub</h2>
           <p>
-            Construim instrumente simple, rapide și prietenoase care transformă conceptele
-            spirituale în momente de reflecție personală. Calculele și interpretările sunt
-            oferite pentru inspirație, divertisment și explorare interioară.
+            Calculatoarele transformă data nașterii și numele complet în indicatori numerologici:
+            Calea Vieții, Numărul Destinului, Numărul Zilei și compatibilitatea numerică. Modulul
+            de bioritm calculează curbele pentru ciclurile fizic de 23 de zile, emoțional de 28 de
+            zile și intelectual de 33 de zile, împreună cu zilele de tranziție.
+          </p>
+          <p>
+            Secțiunile zilnice afișează faza lunii, tema simbolică a zilei și un mesaj scurt pentru
+            reflecție personală.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">Cum funcționează</h2>
           <p>
-            Instrumentele SpiritHub folosesc formule numerologice, cicluri de bioritm și texte
-            de interpretare scrise în limba română. Datele introduse în calculatoare sunt folosite
-            local pentru generarea rezultatului și nu necesită cont de utilizator.
+            Calculele folosesc formule matematice deterministe și texte statice redactate în
+            română. Datele introduse nu necesită cont de utilizator și nu sunt folosite pentru a
+            construi profiluri personale.
           </p>
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">Notă importantă</h2>
+          <h2 className="text-xl font-semibold text-white">Scop simbolic și limitări</h2>
           <p>
-            Conținutul de pe SpiritHub.ro nu reprezintă sfat medical, psihologic, financiar sau
-            juridic. Folosește-l ca punct de pornire pentru reflecție, nu ca înlocuitor pentru
-            decizii importante sau consultanță specializată.
+            Numerologia, bioritmul și textele zilnice au caracter simbolic și recreativ. Aceste
+            metode nu au bază științifică și nu înlocuiesc sfatul medical, psihologic, financiar sau
+            juridic.
           </p>
         </section>
       </article>

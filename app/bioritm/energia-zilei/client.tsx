@@ -58,8 +58,8 @@ export function EnergiaZileiClient() {
         <div className="space-y-4 text-center">
           <h1 className="text-3xl font-bold text-white">Energia Zilei de Astăzi</h1>
           <p className="text-lg text-[#E0E0E0] leading-relaxed">
-            Descoperă influența cosmică a zilei de {romanianDate}. Folosește această energie pentru
-            a-ți planifica activitățile în armonie cu ritmurile universale.
+            Tema simbolică a zilei de {romanianDate}, bazată pe tradiția zilelor planetare și faza
+            lunii. Un reper simplu pentru ritm și reflecție personală.
           </p>
         </div>
 
@@ -81,8 +81,8 @@ export function EnergiaZileiClient() {
                 Vrei o analiză personalizată?
               </h3>
               <p className="text-[#E0E0E0] max-w-md mx-auto">
-                Energia zilei este universală, dar bioritmul tău personal oferă îndrumări specifice
-                bazate pe ciclurile tale fizice, emoționale și intelectuale calculate din data nașterii.
+                Energia zilei are caracter general, în timp ce bioritmul calculează ciclurile tale
+                fizic, emoțional și intelectual pornind de la data nașterii.
               </p>
             </div>
 
@@ -98,7 +98,7 @@ export function EnergiaZileiClient() {
         {/* Return Tomorrow */}
         <div className="text-center py-4">
           <p className="text-sm text-[#E0E0E0]/60">
-            ✨ Revino mâine pentru a descoperi energia unei noi zile ✨
+            Revino mâine pentru tema simbolică a zilei următoare.
           </p>
         </div>
       </div>

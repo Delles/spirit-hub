@@ -4,7 +4,21 @@ This file is the handoff from the Codex App owner lane to the Codex CLI dev lane
 
 ## Active Dev Task
 
-No active dev task.
+Sprint 2 (Next after Sprint 1 push):
+
+1. Create GCP project `spirithub-ro` linked to `My Billing Account` (`01637F-04BA52-076921`) with a `$5/mo` budget alert and Cloud Run `max-instances=2` cap.
+2. Deploy Next.js standalone build to Google Cloud Run (`europe-west1`) and route `spirithub.ro` / `www.spirithub.ro` through Cloudflare Free CDN (replacing Vercel Hobby before enabling commercial ads).
+3. Request Search Console indexing for `/bioritm/compatibilitate` and the 3 updated biorhythm guides.
+4. Once AdSense flips to `Ready` on Cloud Run, create the 2 Responsive Display units (`result-inline`, `content-footer`), set slot env vars, and integrate 2Performant (`Persoană Fizică`) Romanian affiliate placements on relevant guides/results.
+
+## Latest Handoff - 2026-11-19
+
+- Completed full owner audit across Gmail, Cloudflare (`spirithub.ro` DNS-only on Free plan), ROTLD (`2028-01-07` 2-year registration), Google Cloud Billing (`$370.00` credits on `01637F-04BA52-076921`, `$300` expiring `2027-01-08`), Search Console (`242` clicks / `6,575` impressions in 3 months), and AdSense (`Individual` Payments setup completed, deactivation warning cleared, `Auto ads` `Off`).
+- Built `/bioritm/compatibilitate` (`lib/biorhythm-compatibility.ts`, `app/bioritm/compatibilitate/page.tsx` + `client.tsx`, `.compat-progress` CSS in `app/globals.css`) targeting the `281`-impression biorhythm compatibility query cluster.
+- Fixed internal linking root cause on `app/page.tsx` (`guides` instead of `guides.slice(0, 3)`) and added server-rendered links outside `<Suspense>` on `/bioritm`, `/bioritm/critice`, `/bioritm/energia-zilei`, and `/numerologie/compatibilitate`; deepened `zile-critice-in-bioritm` and `energia-zilei-cum-sa-o-folosesti` in `data/guides.ts` and updated `app/sitemap.ts`.
+- Executed strict Romanian `/unslop` pass across `biorhythm.json`, `life-path.json` (fixed `"Cifra Destinului"` subtitle bug), `compatibility.json`, `energy.json`, `destiny.json`, `app/despre/page.tsx`, and 10 calculator/card UI files; removed the `"statistic mai mare"` medical claim in `biorhythm.json`.
+- Added `tests/biorhythm-compatibility.test.ts`, `tests/biorhythm-guides-indexing.test.ts`, and `tests/content-quality.test.ts`.
+- Verified with `bun test`, `bun run typecheck`, `bun run lint`, and `bun run build`, committed on `main`, and pushed to `origin/main`.
 
 ## Latest Handoff - 2026-07-20
 

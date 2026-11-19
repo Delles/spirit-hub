@@ -5,23 +5,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://www.spirithub.ro'
 
     return [
-        // Homepage - highest priority, updates daily
         {
             url: baseUrl,
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 1,
         },
-        // Numerologie section
         {
             url: `${baseUrl}/numerologie`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-07-20'),
             changeFrequency: 'weekly',
             priority: 0.9,
         },
         {
             url: `${baseUrl}/numerologie/calea-vietii`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-07-20'),
             changeFrequency: 'monthly',
             priority: 0.8,
         },
@@ -33,21 +31,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/numerologie/nume-destin`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-07-20'),
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
             url: `${baseUrl}/numerologie/compatibilitate`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-11-19'),
             changeFrequency: 'monthly',
             priority: 0.8,
         },
-        // Bioritm section
         {
             url: `${baseUrl}/bioritm`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-11-19'),
             changeFrequency: 'weekly',
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/bioritm/compatibilitate`,
+            lastModified: new Date('2026-11-19'),
+            changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
@@ -58,11 +61,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/bioritm/critice`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-11-19'),
             changeFrequency: 'weekly',
             priority: 0.7,
         },
-        // Daily message
         {
             url: `${baseUrl}/mesaj-zilnic`,
             lastModified: new Date(),
@@ -71,7 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/ghiduri`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-11-19'),
             changeFrequency: 'weekly',
             priority: 0.7,
         },
@@ -81,22 +83,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'monthly' as const,
             priority: 0.65,
         })),
-        // Trust/legal pages
         {
             url: `${baseUrl}/despre`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-06-11'),
             changeFrequency: 'monthly',
             priority: 0.5,
         },
         {
             url: `${baseUrl}/confidentialitate`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-06-11'),
             changeFrequency: 'yearly',
             priority: 0.4,
         },
         {
             url: `${baseUrl}/termeni`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-06-11'),
             changeFrequency: 'yearly',
             priority: 0.4,
         },

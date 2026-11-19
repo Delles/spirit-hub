@@ -8,29 +8,29 @@
         "hero": {
             "icon": "Flame",
             "title": "Inițiatorul",
-            "subtitle": "Destin 1",
-            "headline": "Ești scânteia care pune totul în mișcare."
+            "subtitle": "Numărul Destinului 1",
+            "headline": "Îți exprimi potențialul prin inițiativă, curaj și autonomie."
         },
         "tags": [
-            "Leadership",
+            "Inițiativă",
             "Independență",
             "Curaj",
             "Inovație"
         ],
         "content": {
-            "main_text": "Tu ești **Deschizătorul de Drumuri**. Destinul tău este să conduci, să inovezi și să stai pe propriile picioare. Ești aici pentru a sparge bariere și a arăta altora că se poate, având o forță interioară care nu acceptă 'nu' ca răspuns. Adesea însă, te poți simți singur în vârful piramidei sau epuizat de presiunea de a fi mereu cel ‘tare’. Misiunea ta supremă este să înțelegi că adevăratul lider nu este cel care domină, ci cel care inspiră prin autenticitate și curajul de a fi diferit.",
+            "main_text": "Numărul Destinului 1 indică o expresie orientată spre **inițiativă și autonomie**. Te afirmi cel mai bine atunci când conduci un demers pe cont propriu, propui direcții noi și îți asumi deciziile fără teamă.\n\nUneori poți simți presiunea de a părea mereu puternic sau de a face totul singur. Adevărata autoritate nu vine din control, ci din consecvență, claritate și respect față de cei cu care lucrezi.",
             "dos": [
-                "Ai curaj să fii primul în tot ce faci.",
-                "Dezvoltă-ți independența financiară și emoțională.",
-                "Crede în viziunea ta, chiar dacă ești singurul."
+                "Ia inițiativa când ai o idee solidă.",
+                "Construiește-ți autonomia profesională și personală.",
+                "Susține-ți punctul de vedere cu argumente calme."
             ],
             "donts": [
-                "Nu aștepta validarea celorlalți.",
-                "Evită agresivitatea și impulsivitatea.",
-                "Nu te teme să mergi singur uneori."
+                "Nu aștepta mereu aprobarea celorlalți înainte să începi.",
+                "Evită tonul impulsiv sau autoritar.",
+                "Nu confunda independența cu izolarea."
             ]
         },
-        "mantra": "Sunt liderul propriei mele vieți."
+        "mantra": "Îmi urmez direcția cu asumare și curaj."
     },
     "2": {
         "theme": {
@@ -41,8 +41,8 @@
         "hero": {
             "icon": "HeartHandshake",
             "title": "Diplomatul",
-            "subtitle": "Destin 2",
-            "headline": "Ești armonia care unește lumea."
+            "subtitle": "Numărul Destinului 2",
+            "headline": "Îți folosești empatia și tactul pentru a apropia oamenii."
         },
         "tags": [
             "Colaborare",
@@ -51,19 +51,19 @@
             "Răbdare"
         ],
         "content": {
-            "main_text": "Tu ești **Puntea de Legătură**. Destinul tău este să aduci pace, să mediezi conflicte și să creezi parteneriate durabile. Ai un radar emoțional fin care simte nevoile celorlalți înainte ca ei să le exprime. Provocarea ta este tendința de a te lăsa pe ultimul loc sau de a evita confruntările necesare doar pentru a păstra liniștea. Misiunea ta este să demonstrezi că blândețea și cooperarea sunt forțe imense, capabile să rezolve ceea ce forța brută nu poate.",
+            "main_text": "Numărul Destinului 2 pune accent pe **colaborare, tact și ascultare**. Observi ușor nuanțele din relații și poți media situații tensionate astfel încât părțile să găsească un teren comun.\n\nProvocarea ta este tendința de a evita conflictele cu orice preț, lăsând propriile nevoi pe ultimul loc. Diplomația matură înseamnă să fii blând în formă, dar ferm în limite.",
             "dos": [
-                "Ascultă-ți intuiția în relații.",
-                "Caută soluții win-win în orice conflict.",
+                "Folosește-ți intuiția în dialog și parteneriate.",
+                "Caută soluții echitabile pentru ambele părți.",
                 "Cultivă răbdarea și atenția la detalii."
             ],
             "donts": [
-                "Nu fi preșul nimănui.",
-                "Evită să fii indecis la nesfârșit.",
-                "Nu îți sacrifica propriile nevoi pentru pace."
+                "Nu accepta situații care îți încalcă limitele.",
+                "Nu amâna deciziile la nesfârșit de teama reacțiilor.",
+                "Nu îți sacrifica liniștea doar pentru o pace aparentă."
             ]
         },
-        "mantra": "Aduc armonie și înțelegere oriunde merg."
+        "mantra": "Aduc înțelegere fără să renunț la limitele mele."
     },
     "3": {
         "theme": {
@@ -74,29 +74,29 @@
         "hero": {
             "icon": "Sparkles",
             "title": "Expresivul",
-            "subtitle": "Destin 3",
-            "headline": "Ești vocea care aduce bucurie."
+            "subtitle": "Numărul Destinului 3",
+            "headline": "Comunici ușor și aduci claritate creativă în jurul tău."
         },
         "tags": [
             "Creativitate",
             "Comunicare",
             "Optimism",
-            "Socializare"
+            "Expresie"
         ],
         "content": {
-            "main_text": "Tu ești **Artistul Sufletului**. Destinul tău este să te exprimi, să comunici și să ridici vibrația celor din jur prin creativitate și optimism. Cuvintele sunt superputerea ta. Totuși, riscul tău este superficialitatea sau risipirea energiei în mii de direcții fără a finaliza nimic. Misiunea ta este să îți găsești vocea autentică și să o folosești pentru a inspira, a motiva și a aduce lumină într-o lume uneori prea serioasă.",
+            "main_text": "Numărul Destinului 3 este asociat cu **exprimarea liberă și comunicarea**. Găsești ușor forma potrivită pentru a transmite o idee, prin cuvânt, scris, umor sau creație.\n\nRiscul principal este împrăștierea energiei în prea multe direcții începute și neterminate. Când adaugi disciplină peste talent, creativitatea ta devine un sprijin real pentru tine și pentru ceilalți.",
             "dos": [
-                "Exprimă-ți emoțiile prin artă sau vorbire.",
-                "Fii sufletul petrecerii, conectează oamenii.",
-                "Păstrează-ți simțul umorului viu."
+                "Exprimă-ți ideile prin scris, vorbit sau artă.",
+                "Folosește dialogul pentru a apropia oamenii.",
+                "Păstrează-ți simțul umorului și optimismul realist."
             ],
             "donts": [
-                "Nu bârfi și nu vorbi fără rost.",
-                "Evită să lași proiectele neterminate.",
-                "Nu îți ascunde tristețea sub o mască de zâmbet."
+                "Nu risipi timpul în bârfe sau discuții sterile.",
+                "Evită să lași proiectele importante neterminate.",
+                "Nu ascunde oboseala sau tristețea sub o mască permanentă."
             ]
         },
-        "mantra": "Cuvintele mele creează realitatea mea."
+        "mantra": "Îmi exprim ideile sincer și le duc la bun sfârșit."
     },
     "4": {
         "theme": {
@@ -107,8 +107,8 @@
         "hero": {
             "icon": "ShieldCheck",
             "title": "Constructorul",
-            "subtitle": "Destin 4",
-            "headline": "Ești fundația solidă a succesului."
+            "subtitle": "Numărul Destinului 4",
+            "headline": "Construiești temeinic, prin disciplină și consecvență."
         },
         "tags": [
             "Stabilitate",
@@ -117,19 +117,19 @@
             "Realism"
         ],
         "content": {
-            "main_text": "Tu ești **Pilonul de Rezistență**. Destinul tău este să construiești ceva durabil, fie că e o carieră, o familie sau o afacere. Ești pragmatic, muncitor și extrem de loial. Adesea însă, poți deveni prea rigid, refuzând schimbarea sau muncind până la epuizare totală. Misiunea ta este să creezi ordine din haos și să oferi lumii o structură sigură pe care se poate baza, învățând totodată că flexibilitatea este necesară pentru a nu te frânge.",
+            "main_text": "Numărul Destinului 4 descrie o vocație practică, orientată spre **ordine și rezultate durabile**. Ești omul pe care ceilalți se pot baza pentru organizare, seriozitate și pași concreți.\n\nProvocarea apare când nevoia de siguranță se transformă în rigiditate sau muncă fără pauză. Structura bună oferă sprijin, dar lasă și loc pentru adaptare.",
             "dos": [
-                "Planifică pașii cu atenție.",
-                "Fii disciplinat și consecvent.",
-                "Construiește baze solide pentru viitor."
+                "Planifică etapele de lucru cu realism.",
+                "Păstrează consecvența în proiectele pe termen lung.",
+                "Construiește baze financiare și profesionale clare."
             ],
             "donts": [
-                "Nu fi rigid cu tine sau cu alții.",
-                "Evită să te plângi de munca grea.",
-                "Nu uita să te relaxezi."
+                "Nu deveni excesiv de rigid cu tine sau cu ceilalți.",
+                "Nu transforma fiecare problemă într-o povară continuă.",
+                "Nu uita să îți iei pauze reale de odihnă."
             ]
         },
-        "mantra": "Construiesc pas cu pas un viitor sigur."
+        "mantra": "Construiesc pas cu pas lucruri solide și durabile."
     },
     "5": {
         "theme": {
@@ -140,8 +140,8 @@
         "hero": {
             "icon": "Wind",
             "title": "Aventurierul",
-            "subtitle": "Destin 5",
-            "headline": "Ești libertatea în mișcare."
+            "subtitle": "Numărul Destinului 5",
+            "headline": "Îți exprimi potențialul prin adaptare, mișcare și curiozitate."
         },
         "tags": [
             "Libertate",
@@ -150,19 +150,19 @@
             "Curiozitate"
         ],
         "content": {
-            "main_text": "Tu ești **Spiritul Liber**. Destinul tău este să explorezi, să experimentezi noul și să îmbrățișezi schimbarea. Rutina te sufocă; ai nevoie de varietate ca de aer. Provocarea ta este neliniștea constantă și tendința de a fugi de angajamente de profunzime. Misiunea ta este să arăți lumii cum să se adapteze rapid și cum să trăiască viața la maxim, găsind totuși o ancoră interioară care să îți ofere stabilitate în haos.",
+            "main_text": "Numărul Destinului 5 pune accent pe **versatilitate și explorare**. Te adaptezi rapid la contexte noi, înveți din mers și ai nevoie de varietate ca să îți păstrezi energia vie.\n\nProvocarea este neliniștea care te împinge să renunți la angajamente tocmai când cer răbdare. Libertatea devine constructivă atunci când ai câteva repere stabile pe care nu le negociezi.",
             "dos": [
-                "Îmbrățișează oportunitățile noi.",
-                "Călătorește și lărgește-ți orizonturile.",
-                "Fii flexibil și deschis la minte."
+                "Valorifică oportunitățile care îți lărgesc experiența.",
+                "Călătorește și învață din medii diverse.",
+                "Folosește-ți flexibilitatea în situații schimbătoare."
             ],
             "donts": [
-                "Nu fugi de responsabilități.",
-                "Evită excesele de orice fel.",
-                "Nu lăsa plictiseala să dicteze decizii proaste."
+                "Nu fugi de responsabilitățile asumate.",
+                "Evită excesele și graba în decizii.",
+                "Nu schimba direcția doar din plictiseală."
             ]
         },
-        "mantra": "Sunt liber să aleg orice direcție."
+        "mantra": "Îmi folosesc libertatea cu măsură și discernământ."
     },
     "6": {
         "theme": {
@@ -173,29 +173,29 @@
         "hero": {
             "icon": "Heart",
             "title": "Protectorul",
-            "subtitle": "Destin 6",
-            "headline": "Ești inima familiei și a comunității."
+            "subtitle": "Numărul Destinului 6",
+            "headline": "Îți manifești grija prin responsabilitate, echilibru și sprijin."
         },
         "tags": [
             "Responsabilitate",
-            "Iubire",
-            "Vindecare",
+            "Grijă",
+            "Sprijin",
             "Armonie"
         ],
         "content": {
-            "main_text": "Tu ești **Părintele Universal**. Destinul tău este să iubești, să protejezi și să îți asumi responsabilități față de familie și comunitate. Ești cel la care toată lumea vine pentru sfat și alinare. Însă, umbra ta este tendința de a controla viețile altora 'pentru binele lor' sau de a te sacrifica până la martiriu. Misiunea ta este să aduci frumusețe și echilibru, învățând să oferi ajutor doar atunci când este cerut și să ai grijă întâi de tine.",
+            "main_text": "Numărul Destinului 6 este legat de **grijă, familie și responsabilitate**. Oamenii apelează des la tine pentru sfat, sprijin practic și echilibru, deoarece transmiți stabilitate.\n\nUmbra acestui profil este tendința de a controla alegerile altora din dorința de a-i proteja sau de a te epuiza rezolvând problemele tuturor. Ajutorul sănătos respectă autonomia celuilalt.",
             "dos": [
-                "Creează un cămin cald și primitor.",
-                "Oferă sprijin celor dragi.",
-                "Cultivă frumusețea și arta."
+                "Creează un mediu cald și previzibil acasă și la muncă.",
+                "Oferă sprijin atunci când este cerut cu adevărat.",
+                "Cultivă ordinea, estetica și dialogul calm."
             ],
             "donts": [
-                "Nu încerca să îi controlezi pe ceilalți.",
-                "Evită perfecționismul critic.",
-                "Nu îți ignora propriile nevoi."
+                "Nu încerca să controlezi deciziile celorlalți.",
+                "Evită critica perfecționistă față de cei apropiați.",
+                "Nu îți ignora propriile nevoi de odihnă."
             ]
         },
-        "mantra": "Iubesc și protejez în echilibru perfect."
+        "mantra": "Ofer sprijin și grijă păstrând respectul față de mine."
     },
     "7": {
         "theme": {
@@ -206,29 +206,29 @@
         "hero": {
             "icon": "Search",
             "title": "Înțeleptul",
-            "subtitle": "Destin 7",
-            "headline": "Ești căutătorul adevărului absolut."
+            "subtitle": "Numărul Destinului 7",
+            "headline": "Cauți înțelegerea profundă prin analiză și reflecție."
         },
         "tags": [
             "Analiză",
             "Introspecție",
-            "Spiritualitate",
-            "Mister"
+            "Cunoaștere",
+            "Discernământ"
         ],
         "content": {
-            "main_text": "Tu ești **Gânditorul Profund**. Destinul tău este să cauți răspunsuri la marile întrebări, să analizezi și să descoperi adevăruri ascunse. Ești un detectiv al vieții, fie în știință, fie în spiritualitate. Provocarea ta este izolarea și scepticismul; poți deveni cinic dacă nu găsești răspunsurile rapid. Misiunea ta este să dezvolți o înțelepciune unică și să împărtășești cunoașterea ta, conectând intelectul brici cu intuiția spirituală.",
+            "main_text": "Numărul Destinului 7 reflectă o minte orientată spre **cercetare, analiză și sens**. Nu te mulțumești cu explicații superficiale; vrei să înțelegi cum funcționează lucrurile în profunzime.\n\nProvocarea ta este retragerea excesivă sau scepticismul rigid atunci când răspunsurile întârzie. Cunoașterea devine valoroasă când o împărtășești cu răbdare și deschidere.",
             "dos": [
-                "Petrece timp în solitudine pentru a gândi.",
-                "Studiază subiecte care te fascinează.",
-                "Ai încredere în intuiția ta analitică."
+                "Rezervă-ți timp regulat în liniște pentru a gândi clar.",
+                "Studiază în profunzime domeniile care te atrag.",
+                "Combină analiza logică cu discernământul personal."
             ],
             "donts": [
-                "Nu te izola emoțional de oameni.",
-                "Evită să fii prea critic sau suspicios.",
-                "Nu trăi doar în mintea ta."
+                "Nu te izola emoțional de oamenii apropiați.",
+                "Evită atitudinea cinică sau suspicioasă fără temei.",
+                "Nu rămâne doar în teorie când e nevoie de acțiune."
             ]
         },
-        "mantra": "Cunoașterea este lumina mea interioară."
+        "mantra": "Caut înțelegerea limpede și o împărtășesc cu măsură."
     },
     "8": {
         "theme": {
@@ -239,29 +239,29 @@
         "hero": {
             "icon": "Gem",
             "title": "Vizionarul",
-            "subtitle": "Destin 8",
-            "headline": "Ești maestrul manifestării materiale."
+            "subtitle": "Numărul Destinului 8",
+            "headline": "Organizezi resurse și construiești rezultate concrete."
         },
         "tags": [
-            "Putere",
-            "Abundență",
+            "Organizare",
+            "Resurse",
             "Succes",
-            "Autoritate"
+            "Responsabilitate"
         ],
         "content": {
-            "main_text": "Tu ești **CEO-ul Cosmic**. Destinul tău este să obții succes, să gestionezi resurse mari și să manifești abundență în lumea materială. Ai fler pentru afaceri și organizare la scară largă. Lupta ta este cu ego-ul și cu echilibrul între material și spiritual; riscul este să devii obsedat de putere sau bani. Misiunea ta reală este să folosești influența și resursele acumulate pentru a imputernici pe alții și a face bine în lume.",
+            "main_text": "Numărul Destinului 8 este asociat cu **gestiunea resurselor, organizarea și realizările practice**. Ai simț pentru proiecte ample, strategie financiară și asumarea responsabilității.\n\nTensiunea principală apare între ambiție și echilibrul personal, mai ales dacă ajungi să măsori totul doar în rezultate materiale. Autoritatea autentică folosește influența cu etică și corectitudine.",
             "dos": [
-                "Asumă-ți roluri de conducere.",
-                "Fii ambițios și etic în afaceri.",
-                "Gestionează banii cu responsabilitate."
+                "Asumă-ți roluri de organizare și decizie.",
+                "Păstrează ambiția dublată de etică în afaceri.",
+                "Administrează banii și timpul cu responsabilitate."
             ],
             "donts": [
-                "Nu abuza de puterea ta.",
-                "Evită lăcomia și materialismul pur.",
-                "Nu neglija familia pentru carieră."
+                "Nu abuza de poziția sau influența ta.",
+                "Evită obsesia pentru control și acumulare.",
+                "Nu neglija familia și sănătatea pentru muncă."
             ]
         },
-        "mantra": "Succesul meu aduce beneficii tuturor."
+        "mantra": "Construiesc rezultate solide cu integritate și echilibru."
     },
     "9": {
         "theme": {
@@ -272,29 +272,29 @@
         "hero": {
             "icon": "Globe",
             "title": "Idealistul",
-            "subtitle": "Destin 9",
-            "headline": "Ești un suflet bătrân venit să vindece lumea."
+            "subtitle": "Numărul Destinului 9",
+            "headline": "Aduci empatie largă și dorință de a contribui în comunitate."
         },
         "tags": [
             "Compasiune",
-            "Umanitarism",
             "Generozitate",
+            "Perspectivă",
             "Încheiere"
         ],
         "content": {
-            "main_text": "Tu ești **Filantropul**. Destinul tău este să servești umanitatea, să inspiri și să închei cicluri karmice. Ai o viziune largă și o inimă mare, dorind să faci lumea un loc mai bun. Adesea suferi când realitatea nu se ridică la înălțimea idealurilor tale, și ai dificultăți în a lăsa trecutul în urmă. Misiunea ta este să înveți să dăruiești necondiționat, să ierți și să inspiri prin exemplul propriu de compasiune universală.",
+            "main_text": "Numărul Destinului 9 pune în lumină **empatia, toleranța și viziunea de ansamblu**. Îți pasă de binele comunității și ai capacitatea de a înțelege oameni foarte diferiți de tine.\n\nDezamăgirea poate apărea atunci când realitatea se mișcă mai încet decât idealurile tale sau când ții prea mult de trecut. Maturitatea vine din acceptare și din ajutor concret, oferit fără așteptări ascunse.",
             "dos": [
-                "Implică-te în cauze sociale.",
-                "Practică iertarea și detașarea.",
-                "Fii un exemplu de toleranță."
+                "Implică-te în proiecte utile comunității.",
+                "Exersează iertarea și încheierea capitolelor vechi.",
+                "Arată toleranță în discuțiile dificile."
             ],
             "donts": [
-                "Nu te agăța de trecut.",
-                "Evită să fii dezamăgit de imperfecțiuni.",
-                "Nu te sacrifica inutil."
+                "Nu rămâne blocat în regrete din trecut.",
+                "Nu te lăsa descurajat de imperfecțiunile oamenilor.",
+                "Nu te sacrifica fără rost acolo unde nu ești ascultat."
             ]
         },
-        "mantra": "Lumea este familia mea."
+        "mantra": "Contribui cu empatie, luciditate și respect."
     },
     "11": {
         "theme": {
@@ -305,30 +305,30 @@
         "hero": {
             "icon": "Zap",
             "title": "Iluminatorul",
-            "subtitle": "Destin Maestru 11",
-            "headline": "Ești canalul de inspirație divină."
+            "subtitle": "Numărul Destinului 11, Număr Maestru",
+            "headline": "Îmbină intuiția fină cu dorința de a inspira prin idei."
         },
         "tags": [
             "Intuiție",
             "Inspirație",
             "Viziune",
-            "Spiritualitate"
+            "Număr Maestru"
         ],
         "content": {
-            "main_text": "Tu ești **Mesagerul**. Destinul tău este unul special, de Maestru: să aduci lumină și revelații spirituale celorlalți. Ai o intuiție electrizantă și idei vizionare. Însă, vibrația înaltă te poate face anxios, nervos sau neînțeles. Provocarea ta este să îți stăpânești energia nervoasă și să nu te pierzi în visare. Misiunea ta este să fii un far de inspirație, trăind adevărul spiritual în viața de zi cu zi.",
+            "main_text": "Numărul Destinului 11 reprezintă o sensibilitate accentuată față de **idei noi, intuiție și comunicare profundă**. Poți inspira ușor pe alții atunci când vorbești din experiență autentică.\n\nAceeași intensitate poate genera însă neliniște, nervozitate sau blocaj în visare. Provocarea ta este să transformi inspirația în pași concreți, de zi cu zi.",
             "dos": [
-                "Ai încredere totală în instinctele tale.",
-                "Inspiră-i pe alții prin idei noi.",
-                "Găsește echilibrul emoțional."
+                "Ai încredere în observațiile tale intuitive, apoi verifică-le practic.",
+                "Împărtășește idei care aduc claritate celorlalți.",
+                "Construiește obiceiuri care îți mențin calmul."
             ],
             "donts": [
-                "Nu te lăsa copleșit de emoții.",
-                "Evită critica excesivă.",
-                "Nu eșua în a acționa practic."
+                "Nu te lăsa copleșit de emoții intense.",
+                "Evită critica excesivă față de tine.",
+                "Nu amâna acțiunile practice necesare."
             ],
-            "master_note": "11 este un 2 amplificat. Când tensiunea e prea mare, practică diplomația lui 2."
+            "master_note": "11 păstrează baza lui 2. Când tensiunea crește, practică răbdarea, ascultarea și diplomația lui 2."
         },
-        "mantra": "Sunt un canal de lumină și inspirație."
+        "mantra": "Transform intuiția în claritate și pași concreți."
     },
     "22": {
         "theme": {
@@ -339,30 +339,30 @@
         "hero": {
             "icon": "Pyramid",
             "title": "Marele Constructor",
-            "subtitle": "Destin Maestru 22",
-            "headline": "Transformi visurile imposibile în realitate."
+            "subtitle": "Numărul Destinului 22, Număr Maestru",
+            "headline": "Conectează viziunea pe termen lung cu execuția organizată."
         },
         "tags": [
-            "Manifestare",
-            "Putere",
+            "Construcție",
             "Viziune",
-            "Pragmatism"
+            "Pragmatism",
+            "Număr Maestru"
         ],
         "content": {
-            "main_text": "Tu ești **Arhitectul Viitorului**. Destinul tău este să construiești la scară mare, pentru binele colectiv. Combini idealismul lui 11 cu pragmatismul lui 4. Poți realiza aproape orice îți pui în minte. Greutatea destinului tău este responsabilitatea imensă și riscul de a te prăbuși sub propria ambiție sau frică de eșec. Misiunea ta este să lași o moștenire tangibilă care să servească umanității.",
+            "main_text": "Numărul Destinului 22 unește **viziunea largă a lui 11 cu pragmatismul lui 4**. Ești orientat spre proiecte utile pe termen lung, sisteme organizate și rezultate cu impact real.\n\nPresiunea cea mai mare vine din propriile standarde ridicate și din teama de eșec. O construcție durabilă se face în ritm sustenabil, fără epuizare.",
             "dos": [
-                "Gândește proiecte globale.",
-                "Planifică strategic fiecare pas.",
-                "Folosește puterea pentru bine."
+                "Gândește proiecte cu utilitate durabilă.",
+                "Planifică metodic fiecare etapă.",
+                "Folosește-ți capacitatea de organizare în folosul comun."
             ],
             "donts": [
-                "Nu te lăsa paralizat de frica de eșec.",
-                "Evită munca fără odihnă.",
-                "Nu uita de latura umană."
+                "Nu te bloca din teama că rezultatul nu e perfect.",
+                "Evită munca continuă fără timp de refacere.",
+                "Nu uita latura umană din spatele obiectivelor."
             ],
-            "master_note": "22 este un 4 amplificat. Ai grijă la rigiditate și odihnește-te."
+            "master_note": "22 amplifică structura lui 4. Ai grijă la rigiditate și odihnește-te constant."
         },
-        "mantra": "Visele mele devin realitate prin muncă."
+        "mantra": "Planurile mele prind contur prin muncă așezată și consecvență."
     },
     "33": {
         "theme": {
@@ -373,29 +373,29 @@
         "hero": {
             "icon": "Sun",
             "title": "Ghidul Compasiunii",
-            "subtitle": "Destin Maestru 33",
-            "headline": "Ești iubirea necondiționată în acțiune."
+            "subtitle": "Numărul Destinului 33, Număr Maestru",
+            "headline": "Oferă sprijin calm și încurajare matură celor din jur."
         },
         "tags": [
-            "Vindecare",
-            "Sacrificiu",
-            "Iubire",
-            "Serviciu"
+            "Compasiune",
+            "Sprijin",
+            "Echilibru",
+            "Număr Maestru"
         ],
         "content": {
-            "main_text": "Tu ești **Avatarul Iubirii**. Destinul tău este rar și înalt: să vindeci suflete prin puterea iubirii necondiționate și a sacrificiului de sine. Ești protectorul tuturor. Provocarea imensă este să nu te distrugi pe tine încercând să salvezi lumea (Sindromul Martirului). Misiunea ta este să fii un exemplu viu de bunătate și compasiune, arătând că iubirea este cea mai mare putere vindecătoare.",
+            "main_text": "Numărul Destinului 33 este asociat cu **grija matură, ascultarea și responsabilitatea față de ceilalți**. Ai o capacitate naturală de a liniști și de a susține oamenii în momente dificile.\n\nProvocarea principală este să nu te epuizezi încercând să rezolvi problemele tuturor. Compasiunea rămâne sănătoasă atunci când îți respecți propriile limite și nevoi.",
             "dos": [
-                "Oferă ajutor fără a aștepta nimic.",
-                "Fii blând cu tine și cu alții.",
-                "Vindecă prin prezența ta."
+                "Oferă sprijin sincer fără să aștepți recunoaștere imediată.",
+                "Păstrează un ton blând cu tine și cu ceilalți.",
+                "Încurajează prin calm și prezență reală."
             ],
             "donts": [
-                "Nu te sacrifica inutil.",
-                "Evită să preiei durerea altora.",
-                "Nu uita că și tu meriți iubire."
+                "Nu te sacrifica inutil pentru probleme care nu îți aparțin.",
+                "Evită să preiei toată suferința celor din jur.",
+                "Nu uita că și tu ai nevoie de grijă și odihnă."
             ],
-            "master_note": "33 este un 6 la octavă superioară. Păstrează echilibrul emoțional."
+            "master_note": "33 amplifică grija lui 6. Păstrează echilibrul emoțional și limitele personale."
         },
-        "mantra": "Iubirea mea vindecă tot ce atinge."
+        "mantra": "Sprijin cu blândețe, păstrându-mi propriul echilibru."
     }
 }

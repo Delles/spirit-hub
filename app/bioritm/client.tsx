@@ -228,10 +228,10 @@ export default function BioritmClient() {
               {/* Calculate for Different Date */}
               <div className="text-center border-b border-white/10 pb-6">
                 <p className="text-lg font-medium text-[#9F2BFF]">
-                  ✨ Vrei să calculezi pentru altă zi? ✨
+                  Vrei să calculezi pentru altă zi?
                 </p>
                 <p className="text-sm text-[#E0E0E0] mt-2 mb-4">
-                  Explorează bioritmul tău pentru orice dată dorești sau pentru altcineva.
+                  Poți calcula graficul pentru orice altă dată sau pentru o altă persoană.
                 </p>
                 <Button variant="secondary" onClick={handleReset} className="gap-2">
                   <Calendar className="w-4 h-4" />
@@ -244,7 +244,7 @@ export default function BioritmClient() {
                 <div className="text-center">
                   <h3 className="text-xl font-semibold text-white">Explorează Mai Mult</h3>
                   <p className="text-sm text-[#E0E0E0] mt-1">
-                    Descoperă alte instrumente spirituale pe SpiritHub
+                    Alte calculatoare și ghiduri de reflecție pe SpiritHub
                   </p>
                 </div>
 
@@ -258,7 +258,7 @@ export default function BioritmClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Zile Critice</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Descoperă zilele de tranziție
+                            Zilele de tranziție din următoarele 30 de zile
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -278,7 +278,7 @@ export default function BioritmClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Numerologie</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Descoperă destinul tău numeric
+                            Calculează Calea Vieții și Numărul Destinului
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -298,7 +298,7 @@ export default function BioritmClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Energia Zilei</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Descoperă energia planetară
+                            Tema simbolică și faza lunii de azi
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

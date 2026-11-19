@@ -305,7 +305,7 @@ export const guides: Guide[] = [
     title: "Ce este bioritmul?",
     description:
       "Explicație pe înțelesul tuturor despre bioritm, cele trei cicluri principale și felul în care poate fi folosit pentru planificare personală.",
-    updatedAt: "2026-07-13",
+    updatedAt: "2026-11-19",
     category: "Bioritm",
     readMinutes: 7,
     icon: Activity,
@@ -343,7 +343,7 @@ export const guides: Guide[] = [
       {
         heading: "Ce poate și ce nu poate face",
         body: [
-          "Bioritmul poate fi un jurnal simbolic bun: te ajută să observi cum îți simți energia și să planifici cu mai multă atenție. Nu este un instrument medical și nu trebuie folosit pentru decizii de sănătate.",
+          "Bioritmul poate fi un jurnal simbolic bun: te ajută să observi cum îți simți energia și să planifici cu mai multă atenție. Nu este un instrument medical, nu reprezintă o metodă științifică validată și nu trebuie folosit pentru decizii de sănătate.",
           "Cea mai sănătoasă utilizare este compararea graficului cu propria stare reală, fără panică și fără concluzii absolute.",
         ],
       },
@@ -359,12 +359,18 @@ export const guides: Guide[] = [
         description: "Combină ritmul personal cu o scurtă practică zilnică de reflecție.",
         href: "/ghiduri/energia-zilei-cum-sa-o-folosesti",
       },
+      {
+        title: "Compatibilitate bioritm",
+        description:
+          "Compară sincronizarea ciclurilor fizic, emoțional și intelectual între două date de naștere.",
+        href: "/bioritm/compatibilitate",
+      },
     ],
     faqs: [
       {
         question: "Bioritmul este științific dovedit?",
         answer:
-          "Bioritmul este folosit mai ales ca instrument de reflecție și planificare personală. Nu ar trebui tratat ca diagnostic medical sau ca predicție sigură.",
+          "Bioritmul este folosit mai ales ca instrument simbolic de reflecție și planificare personală. Nu este o metodă științifică și nu ar trebui tratat ca diagnostic medical sau ca predicție sigură.",
       },
       {
         question: "De ce se calculează din data nașterii?",
@@ -387,33 +393,40 @@ export const guides: Guide[] = [
     slug: "zile-critice-in-bioritm",
     title: "Zile critice în bioritm: ce înseamnă?",
     description:
-      "Ce sunt zilele critice în bioritm, cum apar pe grafic și cum le poți folosi ca semnal de atenție.",
-    updatedAt: "2026-06-11",
+      "Ce sunt zilele critice în bioritm, cum se calculează pragul de ±0,15 (±15%) și cum le poți folosi calm ca semnal de atenție.",
+    updatedAt: "2026-11-19",
     category: "Bioritm",
-    readMinutes: 5,
+    readMinutes: 7,
     icon: TrendingUp,
     intro:
-      "O zi critică apare când unul dintre ciclurile bioritmului trece prin linia de echilibru, adică schimbă faza energetică.",
+      "O zi critică apare când unul dintre ciclurile bioritmului trece prin linia de echilibru zero, adică schimbă faza dintre polul pozitiv și cel negativ.",
     sections: [
       {
-        heading: "De ce sunt numite critice",
+        heading: "Cum detectează calculatorul o zi critică (pragul ±0,15)",
         body: [
-          "Termenul poate suna dramatic, dar în practică înseamnă tranziție. Energia nu este neapărat rea, ci mai instabilă sau mai greu de citit.",
-          "O zi critică fizică poate sugera prudență la efort. O zi critică emoțională poate cere mai multă răbdare. O zi critică intelectuală poate indica nevoia de verificări suplimentare.",
+          "Pentru fiecare zi din intervalul verificat, calculatorul SpiritHub aplică formula sinusoidală sin(2 × π × zile trăite / durata ciclului) pe cele trei durate clasice: 23, 28 și 33 de zile. Valoarea obținută variază între -1,00 și +1,00.",
+          "O zi este marcată drept critică atunci când modulul valorii se află în intervalul de trecere prin zero de ±0,15 (adică între -15% și +15%). Acest prag prinde exact momentele în care curba traversează linia centrală de la plus spre minus sau de la minus spre plus.",
         ],
       },
       {
-        heading: "Cum le folosești fără anxietate",
+        heading: "Exemplu concret pe ciclul fizic de 23 de zile",
         body: [
-          "Cel mai bun mod este preventiv și calm: lasă-ți mai mult timp, verifică detaliile, evită suprasolicitarea și observă cum reacționezi.",
-          "Nu anula viața pentru că apare o zi critică. Folosește informația ca pe o atenționare blândă, nu ca pe o regulă rigidă.",
+          "Pentru ciclul fizic de 23 de zile, jumătatea ciclului cade între ziua 11 și ziua 12 de la debut, iar închiderea ciclului cade în ziua 23. Aplicând formula sin(2 × π × zile / 23), în ziua 11 valoarea este aproximativ +0,14 (+14%), iar în ziua 12 coboară la aproximativ -0,14 (-14%).",
+          "Ambele zile intră în intervalul ±0,15, așa că sunt semnalate ca zile de tranziție fizică. La fel se întâmplă și în ziua 23, când valoarea devine exact 0,00 (0%), moment în care ciclul revine în faza ascendentă.",
         ],
       },
       {
-        heading: "Când mai multe cicluri se intersectează",
+        heading: "De ce sunt numite critice și cum le citești",
         body: [
-          "Când două sau trei cicluri sunt critice în aceeași zi, interpretarea sugerează o perioadă cu mai multe schimbări simultane. Poate fi o zi bună pentru ritm lent, decizii revizuite și mai puține riscuri inutile.",
-          "Dacă ai evenimente importante, pregătirea contează mai mult decât frica: verifică agenda, dormi suficient și lasă spațiu pentru ajustări.",
+          "Termenul poate suna dramatic, dar în practică înseamnă tranziție. Ritmul nu este neapărat negativ, ci mai puțin stabil sau mai greu de anticipat.",
+          "O zi critică fizică poate sugera prudență la efort intens. O zi critică emoțională poate cere mai multă răbdare în conversații. O zi critică intelectuală poate indica nevoia de verificări suplimentare înainte de decizii complexe.",
+        ],
+      },
+      {
+        heading: "Cum le folosești fără anxietate când mai multe cicluri coincid",
+        body: [
+          "Când două sau trei cicluri intră simultan în pragul ±0,15, interpretarea indică o zi cu mai multe schimbări de fază. Cel mai util răspuns este preventiv și calm: lasă-ți timp în agendă, verifică detaliile, dormi suficient și evită graba.",
+          "Nu amâna viața pentru că apare o zi critică. Zilele critice fac parte dintr-un model simbolic de reflecție personală; nu reprezintă o metodă științifică, un diagnostic medical sau o predicție sigură despre riscuri reale.",
         ],
       },
     ],
@@ -428,8 +441,18 @@ export const guides: Guide[] = [
         description: "Calculează gratuit graficul și următoarele tranziții pentru data ta.",
         href: "/bioritm",
       },
+      {
+        title: "Compatibilitate bioritm",
+        description: "Vezi cum se aliniază ciclurile a două persoane pe 23, 28 și 33 de zile.",
+        href: "/bioritm/compatibilitate",
+      },
     ],
     faqs: [
+      {
+        question: "Ce prag folosește SpiritHub pentru o zi critică?",
+        answer:
+          "Calculatorul marchează un ciclu ca fiind critic atunci când valoarea sinusoidală se află între -0,15 și +0,15 (±15% în jurul liniei zero).",
+      },
       {
         question: "Trebuie să evit orice decizie într-o zi critică?",
         answer:
@@ -438,12 +461,12 @@ export const guides: Guide[] = [
       {
         question: "Toate zilele critice se simt la fel?",
         answer:
-          "Nu. Unele pot trece aproape neobservate, iar altele pot coincide cu oboseală sau instabilitate. Contează și contextul real al zilei.",
+          "Nu. Unele pot trece aproape neobservate, iar altele pot coincide cu oboseală sau atenție scăzută. Contează în primul rând somnul, contextul și starea ta reală.",
       },
       {
-        question: "Câte zile critice pot apărea într-o lună?",
+        question: "Zilele critice prezic accidente sau probleme medicale?",
         answer:
-          "Numărul variază în funcție de cele trei cicluri. Calculatorul poate lista zilele relevante pentru perioada aleasă.",
+          "Nu. Bioritmul este un sistem simbolic de autoobservare, nu o metodă științifică și nu un instrument medical sau de predicție.",
       },
     ],
     cta: {
@@ -456,33 +479,33 @@ export const guides: Guide[] = [
     slug: "energia-zilei-cum-sa-o-folosesti",
     title: "Energia zilei: cum să o folosești?",
     description:
-      "Cum citești energia zilei în numerologie și bioritm și cum o transformi într-un ritual simplu de orientare.",
-    updatedAt: "2026-06-11",
+      "Cum combină SpiritHub tema planetară a zilei, vibrația numerologică zilnică și bioritmul personal într-un ritual simplu de orientare.",
+    updatedAt: "2026-11-19",
     category: "Numerologie",
-    readMinutes: 4,
+    readMinutes: 6,
     icon: CalendarDays,
     intro:
-      "Energia zilei funcționează ca o pauză scurtă de orientare: verifici tema simbolică a zilei și alegi un ritm mai potrivit.",
+      "Energia zilei funcționează ca o pauză scurtă de orientare: pui alături tema simbolică a datei curente și ritmul tău personal, ca să îți dozezi efortul mai realist.",
     sections: [
       {
-        heading: "Ce înseamnă energia zilei",
+        heading: "Cum combină SpiritHub cele trei repere ale zilei",
         body: [
-          "În numerologie, energia zilei este legată de vibrația datei curente și poate sugera teme precum început, cooperare, organizare, schimbare sau introspecție.",
-          "În bioritm, energia zilei privește starea ciclurilor tale personale. Împreună, cele două oferă o imagine mai bogată: tema colectivă a zilei și ritmul tău individual.",
+          "Pe SpiritHub, citirea zilnică unește trei straturi complementare. Primul este tema planetară a zilei din săptămână, care oferă un cadru general pentru atenție, acțiune sau odihnă. Al doilea este numărul zilnic din numerologie, obținut prin reducerea sumei dintre zi, lună și anul universal.",
+          "Al treilea strat este bioritmul tău personal, calculat din data nașterii pe ciclurile de 23, 28 și 33 de zile. Împreună, tema universală a datei și curbele tale individuale oferă o hartă mai nuanțată decât un mesaj generic.",
         ],
       },
       {
-        heading: "Un ritual de două minute",
+        heading: "Exemplu concret pentru dimineață și seară",
         body: [
-          "Dimineața, citește energia zilei și alege o intenție realistă. Nu trebuie să fie complicat: claritate, răbdare, curaj, ordine sau odihnă.",
-          "Seara, verifică dacă tema a apărut în ziua ta. Această buclă simplă poate transforma conținutul spiritual într-un obicei de autocunoaștere.",
+          "Dimineața, poți verifica energia zilei în două minute. De exemplu, dacă tema zilei vorbește despre organizare și claritate, iar numărul zilnic este 4 (structură), dar în bioritmul personal ciclul fizic coboară sub zero, îți poți programa sarcini de birou sau ordine în acte în locul unui antrenament intens.",
+          "Seara, revii cu o întrebare scurtă: ce a mers ușor astăzi și unde am forțat ritmul? Dacă observi că deciziile grăbite au apărut exact într-o zi de tranziție, obiceiurile tale devin mai clare de la o săptămână la alta.",
         ],
       },
       {
-        heading: "Cum eviți interpretările forțate",
+        heading: "Cum eviți interpretările forțate și limitele metodei",
         body: [
-          "Nu încerca să potrivești orice eveniment cu textul zilei. Caută mai degrabă întrebarea utilă: ce pot ajusta azi ca să fiu mai prezent?",
-          "Cele mai bune interpretări sunt cele care te ajută să acționezi mai calm, nu cele care îți iau libertatea de decizie.",
+          "Nu încerca să potrivești fiecare întâmplare cu textul zilei. Caută mai degrabă întrebarea practică: ce pot ajusta azi ca să lucrez mai calm și mai atent cu energia pe care o am?",
+          "Această abordare are rol simbolic și de reflecție personală. Nu este o metodă științifică și nu oferă predicții despre evenimentele zilei; deciziile și contextul tău concret rămân întotdeauna pe primul loc.",
         ],
       },
     ],
@@ -497,17 +520,27 @@ export const guides: Guide[] = [
         description: "Vezi ritmul tău pentru azi și perspectiva următoarelor șapte zile.",
         href: "/bioritm",
       },
+      {
+        title: "Compatibilitate bioritm",
+        description: "Compară ritmurile a două persoane pentru a coordona mai ușor activitățile.",
+        href: "/bioritm/compatibilitate",
+      },
     ],
     faqs: [
       {
         question: "Energia zilei este aceeași pentru toată lumea?",
         answer:
-          "Tema numerologică a datei poate fi comună, dar bioritmul este personal și depinde de data nașterii.",
+          "Tema planetară a zilei și numărul zilnic sunt comune pentru întreaga dată calendaristică, însă bioritmul este personal și depinde de data nașterii fiecăruia.",
       },
       {
         question: "Când ar trebui să verific energia zilei?",
         answer:
-          "Dimineața este cel mai util, pentru că poți alege o intenție. Poți reveni și seara pentru reflecție.",
+          "Dimineața este cel mai util, pentru că poți alege o intenție realistă și o ordine a priorităților. Seara o poți folosi ca reper scurt de reflecție.",
+      },
+      {
+        question: "Energia zilei poate prezice ce mi se va întâmpla?",
+        answer:
+          "Nu. Este o interpretare simbolică destinată autoobservării și orientării zilnice, nu o metodă științifică sau o predicție.",
       },
       {
         question: "Pot distribui mesajul zilei?",

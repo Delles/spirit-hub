@@ -64,9 +64,8 @@ export default function CaleaVietiiClient() {
             <div className="space-y-4 text-center">
               <h1 className="text-3xl font-bold text-white">Calculator Calea Vieții</h1>
               <p className="text-lg text-[#E0E0E0] leading-relaxed">
-                Descoperă cel mai important număr din numerologie. Calea Vieții îți dezvăluie
-                lecțiile majore, provocările și oportunitățile destinului tău, calculate din data
-                nașterii.
+                Calculat din data nașterii, numărul Căii Vieții descrie simbolic temele principale,
+                punctele forte și provocările tale de parcurs.
               </p>
             </div>
 
@@ -117,10 +116,10 @@ export default function CaleaVietiiClient() {
               {/* Calculate for Different Date */}
               <div className="text-center border-b border-white/10 pb-6">
                 <p className="text-lg font-medium text-[#9F2BFF]">
-                  ✨ Vrei să calculezi pentru altă dată? ✨
+                  Vrei să calculezi pentru altă dată?
                 </p>
                 <p className="text-sm text-[#E0E0E0] mt-2 mb-4">
-                  Poți afla Calea Vieții pentru oricine, folosind data lui de naștere.
+                  Poți calcula Calea Vieții pentru oricine, folosind data nașterii.
                 </p>
                 <Button
                   variant="secondary"
@@ -139,7 +138,7 @@ export default function CaleaVietiiClient() {
                     Explorează Numerologia
                   </h3>
                   <p className="text-sm text-[#E0E0E0] mt-1">
-                    Descoperă alte aspecte ale destinului tău numerologic
+                    Alte calculatoare numerologice disponibile pe SpiritHub
                   </p>
                 </div>
 
@@ -153,7 +152,7 @@ export default function CaleaVietiiClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Numărul Zilei</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Descoperă energia zilei de astăzi
+                            Interpretarea simbolică pentru data de azi
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -173,7 +172,7 @@ export default function CaleaVietiiClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Numărul Destinului</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Află-ți misiunea din numele tău
+                            Calculat din literele numelui complet
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -193,7 +192,7 @@ export default function CaleaVietiiClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Compatibilitate</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Verifică potrivirea cu partenerul
+                            Compară două profiluri numerologice
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

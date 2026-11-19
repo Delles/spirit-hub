@@ -284,3 +284,27 @@
     animation: none !important;
   }
 }
+
+.compat-progress {
+  appearance: none;
+  border: 0 solid;
+  overflow: clip;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.compat-progress::-webkit-progress-bar {
+  background: transparent;
+}
+
+.compat-progress::-webkit-progress-value {
+  background: var(--progress-bar-fill, #9F2BFF);
+  border-radius: 9999px;
+  transition: inline-size 0.3s;
+}
+
+.compat-progress::-moz-progress-bar {
+  background: var(--progress-bar-fill, #9F2BFF);
+  border-radius: 9999px;
+  transition: inline-size 0.3s;
+}

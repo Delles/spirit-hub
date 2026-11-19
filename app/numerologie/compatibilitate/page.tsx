@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { ArrowLeft, BookOpen } from "lucide-react";
+import { ArrowLeft, BookOpen, Activity } from "lucide-react";
 import CompatibilitateClient from "./client";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { Card } from "@/components/ui/card";
@@ -132,6 +132,40 @@ export default async function CompatibilitatePage({ searchParams }: PageProps) {
                 className="inline-flex shrink-0 items-center justify-center rounded-md border border-[#9F2BFF]/50 px-4 py-2 text-sm font-medium text-[#A5B4FC] transition-colors hover:bg-[#9F2BFF]/10 hover:text-white"
               >
                 Citește ghidul
+                <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" />
+              </Link>
+            </div>
+          </Card>
+        </aside>
+
+        <aside
+          className="container mx-auto px-4 pb-8"
+          aria-labelledby="biorhythm-compatibility-link-title"
+        >
+          <Card className="mx-auto max-w-4xl p-5 sm:p-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#4D5FFF]/40 bg-[#4D5FFF]/10">
+                  <Activity className="h-5 w-5 text-[#4D5FFF]" aria-hidden="true" />
+                </div>
+                <div>
+                  <h2
+                    id="biorhythm-compatibility-link-title"
+                    className="mb-1 text-lg font-semibold text-white"
+                  >
+                    Vrei să verifici și compatibilitatea bioritmului?
+                  </h2>
+                  <p className="text-sm leading-relaxed text-[#E0E0E0]/80">
+                    Compară cele două date de naștere pe ciclurile fizic, emoțional și intelectual
+                    pentru o perspectivă complementară asupra ritmului zilnic.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/bioritm/compatibilitate"
+                className="inline-flex shrink-0 items-center justify-center rounded-md border border-[#9F2BFF]/50 px-4 py-2 text-sm font-medium text-[#A5B4FC] transition-colors hover:bg-[#9F2BFF]/10 hover:text-white"
+              >
+                Calculează compatibilitatea bioritmului
                 <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" />
               </Link>
             </div>

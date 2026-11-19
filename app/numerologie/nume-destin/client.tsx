@@ -65,8 +65,8 @@ export default function NumeDestinClient() {
             <div className="space-y-4 text-center">
               <h1 className="text-3xl font-bold text-white">Calculator Număr Destin</h1>
               <p className="text-lg text-[#E0E0E0] leading-relaxed">
-                Calculat din numele tău complet, Numărul Destinului îți dezvăluie misiunea în viață,
-                talentele înnăscute și darurile pe care ai venit să le oferi lumii.
+                Calculat din numele complet, Numărul Destinului oferă o perspectivă simbolică asupra
+                aptitudinilor, modului de exprimare și direcțiilor tale personale.
               </p>
             </div>
 
@@ -120,10 +120,10 @@ export default function NumeDestinClient() {
               {/* Calculate for Different Name */}
               <div className="text-center border-b border-white/10 pb-6">
                 <p className="text-lg font-medium text-[#9F2BFF]">
-                  ✨ Vrei să calculezi pentru alt nume? ✨
+                  Vrei să calculezi pentru alt nume?
                 </p>
                 <p className="text-sm text-[#E0E0E0] mt-2 mb-4">
-                  Poți afla Numărul Destinului pentru oricine, folosind numele complet.
+                  Poți calcula Numărul Destinului pentru oricine, introducând numele complet.
                 </p>
                 <Button
                   variant="secondary"
@@ -142,7 +142,7 @@ export default function NumeDestinClient() {
                     Explorează Numerologia
                   </h3>
                   <p className="text-sm text-[#E0E0E0] mt-1">
-                    Descoperă alte aspecte ale destinului tău numerologic
+                    Alte calculatoare numerologice disponibile pe SpiritHub
                   </p>
                 </div>
 
@@ -156,7 +156,7 @@ export default function NumeDestinClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Calea Vieții</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Descoperă lecțiile tale din data nașterii
+                            Calculat din data completă a nașterii
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -176,7 +176,7 @@ export default function NumeDestinClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Numărul Zilei</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Descoperă energia zilei de astăzi
+                            Interpretarea simbolică pentru data de azi
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -196,7 +196,7 @@ export default function NumeDestinClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Compatibilitate</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Verifică potrivirea cu partenerul
+                            Compară două profiluri numerologice
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

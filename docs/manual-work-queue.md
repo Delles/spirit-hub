@@ -28,123 +28,48 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Verify `spirithub.ro`
 
-- Status: appears complete based on available Search Console exports
-- Owner: user with Codex guidance
-- Why it matters: Search Console is required to see queries, indexing issues, and growth direction.
-- Best verification method: DNS TXT record if the domain registrar is accessible.
-- Success signal: Search Console property for `https://www.spirithub.ro` or domain property is verified.
-- Evidence: `docs/search-console-review-2026-06-11.md` was produced from user-exported Search
-  Console CSV files for `spirithub.ro`.
+- Status: complete (`sc-domain:spirithub.ro` domain property verified)
+- Owner: autonomous / verified 2026-11-19
 
 ### Submit sitemap
 
 - Status: complete
-- Owner: user or Codex if connector/browser access is available
 - URL: `https://www.spirithub.ro/sitemap.xml`
-- Success signal: Search Console accepts the sitemap and discovers the guide URLs.
-- Evidence received: Search Console screenshot provided on 2026-06-11 shows the sitemap submitted on
-  2026-01-12, last read on 2026-06-10, status `Success`, with 10 discovered pages.
+- Evidence update (`2026-11-19`): Sitemap status `Success`, last read `2026-11-16`, `20` discovered pages (will update to `21` after `/bioritm/compatibilitate` recrawl).
 
-### Request indexing for core pages
+### Request indexing for core and unindexed pages
 
-- Status: one targeted refresh needed after the 2026-07-13 biorhythm page-ownership deployment
-- Owner: user with Codex guidance
-- URLs:
-  - `https://www.spirithub.ro/`
-  - `https://www.spirithub.ro/numerologie/calea-vietii`
-  - `https://www.spirithub.ro/numerologie/nume-destin`
-  - `https://www.spirithub.ro/numerologie/compatibilitate`
-  - `https://www.spirithub.ro/bioritm`
-  - `https://www.spirithub.ro/ghiduri`
-
-Evidence update on 2026-07-06:
-
-- User requested re-indexing for `https://www.spirithub.ro/numerologie` after the calculator-hub
-  deployment.
-- User also manually requested indexing for every URL shown under Search Console's
-  `Discovered - currently not indexed` examples: the About, Privacy, Terms, and six guide pages.
-- Screenshot: `docs/inbox/2026-07-06-search-console-discovered-not-indexed.png`.
-- The screenshot showed `Last crawled: N/A`, so these are pending crawl requests, not indexing
-  failures. Do not repeat the requests before 2026-07-20; check coverage or URL Inspection after
-  Google has had time to crawl them.
-
-Targeted update on 2026-07-13:
-
-- After the new deployment is live, inspect and request indexing once for only
-  `https://www.spirithub.ro/` and `https://www.spirithub.ro/bioritm` because their search-intent
-  signals changed. This supersedes the general no-repeat instruction for these two URLs only.
+- Status: pending Sprint 1 deploy recrawl (`2026-11-19`)
+- Root cause resolved in code: `app/page.tsx` previously sliced `guides.slice(0, 3)`, leaving all three biorhythm guides unlinked on `/` and weakly linked outside `<Suspense>`.
+- URLs to inspect / request indexing once Sprint 1 is live:
+  - `https://www.spirithub.ro/bioritm/compatibilitate` (new route targeting 281+ impressions)
+  - `https://www.spirithub.ro/ghiduri/ce-este-bioritmul`
+  - `https://www.spirithub.ro/ghiduri/zile-critice-in-bioritm`
+  - `https://www.spirithub.ro/ghiduri/energia-zilei-cum-sa-o-folosesti`
 
 ---
 
 ## Priority 2: AdSense
 
-### Confirm account status
+### Confirm payments profile and prevent deactivation
 
-- Status: waiting on Google review
-- Owner: Codex owner, with user account-screen confirmation when needed
-- What Codex needs:
-  - AdSense review result for `spirithub.ro`.
-  - Slot ID for result-page inline ad
-  - Slot ID for content-footer ad
+- Status: complete (`2026-11-19`)
+- Background: Gmail showed `2026-06-12` notice (`Set up your AdSense payments profile`) that paused site review, followed by a `2026-11-08` 30-day deactivation warning (`2026-12-08`).
+- Evidence (`2026-11-19`): Owner completed Payments profile (`Individual`); Home checklist now shows `"We've got your info"`, `"Nice work, you've completed all the steps"`, and the deactivation warning is gone.
 
-Known publisher/client ID:
+### Site approval and ads.txt recognition
 
-- `ca-pub-8681888147711861`
+- Status: `Getting ready` (waiting on Google fresh crawl now that Payments is complete; `Last updated: Jun 22, 2026` in AdSense UI, `Ads.txt: Not found` stale snapshot; live `https://www.spirithub.ro/ads.txt` returns `200`).
+- Publisher ID: `ca-pub-8681888147711861`.
 
-### Verify AdSense site ownership
+### Ad unit policy & hosting migration dependency
 
-- Status: complete
-- Owner: Codex owner, with user account-screen confirmation when needed
-- Method: AdSense code snippet.
-- Implementation: the app now ships the AdSense script with `ca-pub-8681888147711861` inside the root layout `<head>`.
-- Success signal: AdSense verification succeeded and site review was requested.
-- Evidence received: screenshot showing `Verify site ownership` complete and `Review requested` at 11 Jun 2026 15:57.
-
-### Wait for AdSense site review result
-
-- Status: waiting
-- Owner: Google review, monitored by Codex owner through user account-screen confirmation.
-- Expected timing: usually a few days, sometimes 2-4 weeks.
-- Success signal: AdSense approves `spirithub.ro`.
-- Evidence needed: screenshot of the approval, rejection, or policy issue message.
-- Owner-session decision on 2026-06-11: no additional site/config action is needed until Google
-  returns the review result.
-- Evidence update on 2026-07-06: `docs/inbox/2026-07-06-adsense-status.png` still shows approval
-  status `Getting ready`, no status detail, and `Ads.txt status: Not found`. The dashboard itself was
-  last updated on 2026-06-22 at 11:58 EEST, so this is not a fresh Google rescan.
-- Site-detail evidence: `docs/inbox/2026-07-06-adsense-site-details.png` confirms site ownership is
-  verified, the review is active, and the current review request time is 2026-06-22 11:58. AdSense
-  states that review can take 2-4 weeks, so the normal window runs through 2026-07-20.
-
-### Wait for AdSense ads.txt recognition
-
-- Status: pending Google rescan; live file is correct
-- Owner: Google crawler, with one user-triggered refresh when available
-- Live verification on 2026-07-06: `https://www.spirithub.ro/ads.txt` returns `200`,
-  `Content-Type: text/plain; charset=utf-8`, and the exact publisher line
-  `google.com, pub-8681888147711861, DIRECT, f08c47fec0942fa0`.
-- Current UI state: the `Check for updates` control is not exposed while the site is `Getting ready`.
-  No user action is required. Keep the already successful `AdSense code snippet` ownership method;
-  do not switch verification methods, delete the site, or resubmit it. Recheck after 2026-07-20 and
-  treat ads.txt as a separate crawler problem only if it remains unresolved after 2026-07-22.
-
-### Configure Vercel environment variables
-
-- Status: partially unblocked
-- Owner: user or Codex if Vercel access is available
-- Variables:
-- `NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT` is optional now because the production publisher id is in code.
-- `NEXT_PUBLIC_ADSENSE_SLOT_RESULT_INLINE` is still needed after approval.
-- `NEXT_PUBLIC_ADSENSE_SLOT_CONTENT_FOOTER` is still needed after approval.
-- Success signal: production HTML includes AdSense script and result pages reserve ad slots without
-  layout shift.
-
-### GDPR consent decision
-
-- Status: complete in AdSense setup
-- Owner: user with Codex guidance
-- Decision: use Google's certified CMP with 3 choices: consent, do not consent, and manage options.
-- Scope: `spirithub.ro` and future sites.
+- Policy defined (`2026-11-19`):
+  - Keep **Auto ads: Off** (prevents interstitials/vignettes/layout shifts over calculators).
+  - Create **2 manual Responsive Display ad units** once `spirithub.ro` flips to `Ready`:
+    1. `spirithub-result-inline` -> `NEXT_PUBLIC_ADSENSE_SLOT_RESULT_INLINE` (below calculator results)
+    2. `spirithub-content-footer` -> `NEXT_PUBLIC_ADSENSE_SLOT_CONTENT_FOOTER` (bottom of `/ghiduri/[slug]`)
+- **Critical constraint:** Do NOT set live slot IDs while hosted on **Vercel Hobby** (Vercel ToS prohibits commercial/ad monetization on Hobby). Complete **Sprint 2 migration to Google Cloud Run (`europe-west1`) + Cloudflare Free CDN** first, leveraging the verified `$370.00` GCP credits on `My Billing Account` (`01637F-04BA52-076921`, `$300` Free Credit expiring `2027-01-08` + `$70` monthly Developer Program grants).
 
 ---
 

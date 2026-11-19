@@ -152,7 +152,7 @@ export function LifePathCard({ number, interpretation }: LifePathCardProps) {
             {interpretation.content.master_note && (
               <div className="rounded-xl bg-indigo-500/5 border border-indigo-500/10 p-5 backdrop-blur-sm">
                 <p className="text-sm text-indigo-300 leading-relaxed italic">
-                  <span className="font-bold not-italic mr-1">🌌 Notă Maestru:</span>
+                  <span className="font-bold not-italic mr-1 text-indigo-200">Notă Maestru:</span>
                   {interpretation.content.master_note}
                 </p>
               </div>
@@ -180,7 +180,7 @@ export function LifePathCard({ number, interpretation }: LifePathCardProps) {
               prefetchedImage={imageBlob}
               url={typeof window !== "undefined" ? window.location.href : ""}
               title={`Calea Vieții mele este ${number} - ${interpretation.hero.title}`}
-              text={`Am descoperit că Calea Vieții mele este ${number}: ${interpretation.hero.title}. "${interpretation.hero.headline}" Descoperă și tu pe SpiritHub.ro`}
+              text={`Calea Vieții mele este ${number}: ${interpretation.hero.title}. "${interpretation.hero.headline}" Calculează și tu pe SpiritHub.ro`}
             />
           </div>
         </div>

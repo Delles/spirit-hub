@@ -8,29 +8,29 @@
         "hero": {
             "icon": "Flame",
             "title": "Pionierul",
-            "subtitle": "Cifra Destinului 1",
-            "headline": "Ești scânteia care aprinde lumea."
+            "subtitle": "Calea Vieții 1",
+            "headline": "Deschizi drumuri noi și acționezi din proprie inițiativă."
         },
         "tags": [
-            "Leadership",
+            "Inițiativă",
             "Inovație",
-            "Curaj Pur",
+            "Curaj",
             "Independență"
         ],
         "content": {
-            "main_text": "Tu ești **Începutul**. Energia ta este un motor V12 care nu așteaptă permisiunea nimănui; te-ai născut să conduci, nu să urmezi. Totuși, această independență vine adesea cu o luptă interioară: sentimentul că ești singur împotriva tuturor sau teama că, dacă te oprești, totul se va prăbuși. Misiunea ta reală nu este doar să ajungi primul, ci să ai curajul de a sparge tiparele vechi și de a deschide drumuri pe care alții nici nu îndrăznesc să le imagineze.",
+            "main_text": "Calea Vieții 1 pune accent pe **inițiativă și autonomie**. Te simți cel mai bine când ai spațiu să decizi singur și să pornești proiecte de la zero, fără să aștepți aprobarea celorlalți.\n\nProvocarea acestei căi este sentimentul că trebuie să duci totul pe umeri sau teama că lucrurile se opresc dacă iei o pauză. Scopul tău este să construiești lucruri noi cu responsabilitate și să transformi curajul în direcție clară.",
             "dos": [
-                "Ai încredere în ideile tale 'out of the box'.",
-                "Fii primul care face pasul.",
-                "Asumă-ți riscuri calculate."
+                "Ai încredere în ideile tale originale.",
+                "Fă primul pas când alții ezită.",
+                "Asumă-ți riscuri gândite dinainte."
             ],
             "donts": [
-                "Nu lăsa nerăbdarea să te consume.",
-                "Evită să devii autoritar cu cei mai lenți.",
-                "Nu aștepta validarea celorlalți."
+                "Nu lăsa nerăbdarea să strice munca începută.",
+                "Evită tonul autoritar cu cei care au alt ritm.",
+                "Nu aștepta mereu validare din exterior."
             ]
         },
-        "mantra": "Sunt arhitectul propriului meu drum."
+        "mantra": "Îmi asum drumul propriu cu curaj și claritate."
     },
     "2": {
         "theme": {
@@ -41,8 +41,8 @@
         "hero": {
             "icon": "HeartHandshake",
             "title": "Diplomatul",
-            "subtitle": "Cifra Destinului 2",
-            "headline": "Ești puntea care unește lumi."
+            "subtitle": "Calea Vieții 2",
+            "headline": "Construiești punți de înțelegere între oameni."
         },
         "tags": [
             "Empatie",
@@ -51,19 +51,19 @@
             "Cooperare"
         ],
         "content": {
-            "main_text": "Tu ești **Pacea** în mijlocul furtunii. Ai superputerea rară de a simți emoțiile celorlalți înainte ca ei să le rostească, fiind liantul care ține lucrurile unite. Însă, provocarea ta majoră este să nu te pierzi pe tine însuți încercând să mulțumești pe toată lumea sau să eviți conflictele necesare. Misiunea ta este să demonstrezi că adevărata putere nu stă în dominație, ci în cooperare, empatie și capacitatea de a aduce armonie în cele mai dificile situații.",
+            "main_text": "Calea Vieții 2 pune în prim-plan **diplomația și cooperarea**. Observi ușor stările și nuanțele din jur, ceea ce te ajută să apropii oamenii și să calmezi tensiunile înainte să crească.\n\nProvocarea principală este tendința de a te pune pe ultimul loc pentru a păstra liniștea. Adevărata cooperare înseamnă echilibru, nu renunțarea la propriile limite.",
             "dos": [
-                "Ascultă-ți intuiția, e GPS-ul tău.",
-                "Mediază conflictele cu grație.",
-                "Creează parteneriate strategice."
+                "Ascultă-ți intuiția în relațiile cu ceilalți.",
+                "Mediază neînțelegerile cu tact și calm.",
+                "Caută parteneriate bazate pe încredere."
             ],
             "donts": [
-                "Nu te pierde în nevoile altora.",
-                "Evită să eviți confruntarea necesară.",
-                "Nu te subestima din modestie."
+                "Nu te pierde în nevoile celorlalți.",
+                "Nu amâna discuțiile dificile când sunt necesare.",
+                "Nu îți minimiza contribuția din modestie excesivă."
             ]
         },
-        "mantra": "În liniște și armonie găsesc adevărata putere."
+        "mantra": "În calm și cooperare îmi păstrez echilibrul."
     },
     "3": {
         "theme": {
@@ -74,29 +74,29 @@
         "hero": {
             "icon": "Sparkles",
             "title": "Artistul",
-            "subtitle": "Cifra Destinului 3",
-            "headline": "Ești culoarea într-o lume alb-negru."
+            "subtitle": "Calea Vieții 3",
+            "headline": "Aduci culoare, dialog și expresie în jurul tău."
         },
         "tags": [
             "Expresie",
-            "Charismă",
+            "Comunicare",
             "Optimism",
             "Creativitate"
         ],
         "content": {
-            "main_text": "Tu ești **Vocea** universului. Prezența ta este magnetică; ai darul de a transforma cuvintele și ideile în magie pură, ridicând instant vibrația celor din jur. Dar în spatele zâmbetului, te poți lupta cu îndoiala de sine sau cu tendința de a dispersa energia în prea multe direcții, lăsând proiecte neterminate. Scopul tău suprem este să îți folosești creativitatea nu doar pentru a distra, ci pentru a inspira și a vindeca sufletele prin bucurie autentică.",
+            "main_text": "Calea Vieții 3 este legată de **creativitate și exprimare**. Găsești ușor cuvintele potrivite, ai umor și poți transforma ideile abstracte în povești pe înțelesul tuturor.\n\nÎn spatele energiei deschise pot apărea însă îndoiala de sine sau împrăștierea în prea multe proiecte neterminate. Direcționează-ți talentul spre consecvență, ca ideile bune să ajungă la capăt.",
             "dos": [
-                "Exprimă-te liber (scris, vorbit, artă).",
-                "Socializează și conectează-te.",
-                "Păstrează-ți simțul umorului."
+                "Exprimă-te constant prin scris, vorbit sau artă.",
+                "Cultivă relații calde și conversații sincere.",
+                "Păstrează-ți simțul umorului în zilele grele."
             ],
             "donts": [
-                "Nu îți risipi energia în 'drama'.",
-                "Evită bârfa și superficialitatea.",
-                "Nu lăsa critica să îți stingă lumina."
+                "Nu îți consuma energia în conflicte mărunte.",
+                "Evită bârfele și promisiunile făcute în grabă.",
+                "Nu lăsa o critică izolată să îți oprească munca."
             ]
         },
-        "mantra": "Bucuria mea este un dar pentru lume."
+        "mantra": "Îmi exprim ideile cu bucurie și consecvență."
     },
     "4": {
         "theme": {
@@ -107,8 +107,8 @@
         "hero": {
             "icon": "ShieldCheck",
             "title": "Constructorul",
-            "subtitle": "Cifra Destinului 4",
-            "headline": "Ești stânca pe care se poate construi orice."
+            "subtitle": "Calea Vieții 4",
+            "headline": "Construiești temeinic lucruri pe care te poți baza."
         },
         "tags": [
             "Stabilitate",
@@ -117,19 +117,19 @@
             "Structură"
         ],
         "content": {
-            "main_text": "Tu ești **Structura**. Într-o lume haotică, tu aduci ordine, claritate și o stabilitate pe care toți se pot baza. Adesea însă, poți simți că viața este o serie nesfârșită de responsabilități, sau te poți bloca în propria rigiditate de teama schimbării. Misiunea ta este să construiești fundații solide pentru viitor, demonstrând că disciplina și răbdarea sunt singurele unelte care pot transforma visurile mari în realitate tangibilă.",
+            "main_text": "Calea Vieții 4 aduce **ordine și perseverență**. Ai răbdare să pui cărămidă peste cărămidă și oferi stabilitate atunci când situațiile devin neclare.\n\nUneori poți simți greutatea responsabilităților sau poți deveni rigid față de schimbările neașteptate. Disciplina și organizarea îți transformă obiectivele mari în rezultate concrete, pas cu pas.",
             "dos": [
-                "Planifică pe termen lung.",
-                "Organizează-ți mediul pentru eficiență.",
-                "Fii mândru de disciplina ta."
+                "Planifică realist pe termen mediu și lung.",
+                "Organizează-ți mediul de lucru pentru claritate.",
+                "Recunoaște valoarea muncii tale constante."
             ],
             "donts": [
-                "Nu deveni rigid în gândire.",
-                "Evită să muncești până la epuizare.",
-                "Nu uita să te mai și distrezi."
+                "Nu deveni inflexibil când planul se schimbă.",
+                "Nu munci până la epuizare.",
+                "Nu uita să îți rezervi timp pentru odihnă."
             ]
         },
-        "mantra": "Cu răbdare și efort, construiesc un viitor solid."
+        "mantra": "Prin răbdare și ordine, construiesc durabil."
     },
     "5": {
         "theme": {
@@ -140,29 +140,29 @@
         "hero": {
             "icon": "Wind",
             "title": "Exploratorul",
-            "subtitle": "Cifra Destinului 5",
-            "headline": "Ești vântul schimbării și al libertății."
+            "subtitle": "Calea Vieții 5",
+            "headline": "Cauți mișcarea, experiența directă și libertatea."
         },
         "tags": [
             "Libertate",
-            "Aventură",
+            "Explorare",
             "Adaptabilitate",
-            "Senzorial"
+            "Curiozitate"
         ],
         "content": {
-            "main_text": "Tu ești **Libertatea** întruchipată. Curiozitatea este combustibilul tău, iar rutina este singurul inamic de care te temi cu adevărat. Provocarea ta este neliniștea constantă și tendința de a fugi de angajamente atunci când lucrurile devin prea previzibile sau dificile. Ești aici să experimentezi tot ce are viața de oferit și să le arăți celorlalți că schimbarea nu este ceva de temut, ci singura cale reală spre evoluție.",
+            "main_text": "Calea Vieții 5 pune accent pe **curiozitate și adaptare**. Înveți cel mai bine din experiențe noi, călătorii și schimbări de perspectivă, iar rutina rigidă te obosește repede.\n\nProvocarea apare atunci când neliniștea te face să renunți prea devreme la angajamente valoroase. Libertatea adevărată se împletește cu asumarea alegerilor făcute.",
             "dos": [
-                "Îmbrățișează schimbarea și noul.",
-                "Călătorește și explorează culturi.",
-                "Fii flexibil și adaptabil."
+                "Îmbrățișează schimbările care te ajută să crești.",
+                "Explorează locuri, idei și oameni noi.",
+                "Folosește-ți flexibilitatea în situații neprevăzute."
             ],
             "donts": [
-                "Nu fugi de responsabilități.",
-                "Evită excesele distructive.",
-                "Nu lăsa plictiseala să dicteze haosul."
+                "Nu fugi de responsabilitățile importante.",
+                "Evită excesele și deciziile luate din impuls.",
+                "Nu crea agitație doar din plictiseală."
             ]
         },
-        "mantra": "Sunt liber să experimentez viața în toate formele ei."
+        "mantra": "Explorez viața cu mintea deschisă și discernământ."
     },
     "6": {
         "theme": {
@@ -173,29 +173,29 @@
         "hero": {
             "icon": "Heart",
             "title": "Vindecătorul",
-            "subtitle": "Cifra Destinului 6",
-            "headline": "Ești inima care ține comunitatea unită."
+            "subtitle": "Calea Vieții 6",
+            "headline": "Aduci grijă, echilibru și sprijin în comunitate."
         },
         "tags": [
-            "Iubire",
+            "Grijă",
             "Familie",
             "Responsabilitate",
             "Armonie"
         ],
         "content": {
-            "main_text": "Tu ești **Protectorul**. Pentru tine, acasă nu este un loc, ci un sentiment pe care îl creezi oriunde te duci, având o capacitate infinită de a iubi. Totuși, această grijă devine o umbră când încerci să 'salvezi' oameni care nu vor să fie salvați sau când uiți complet de propriile nevoi. Misiunea ta este să aduci frumusețe și echilibru în lume, învățând lecția esențială că nu poți turna nimic dintr-o cupă goală.",
+            "main_text": "Calea Vieții 6 este asociată cu **grija față de oameni și armonie**. Îți pasă sincer de binele celor apropiați și ai darul de a crea un mediu primitor oriunde ajungi.\n\nUmbra acestei griji apare când încerci să rezolvi problemele tuturor sau uiți de propriile limite. Sprijinul sănătos începe atunci când ai grijă și de echilibrul tău.",
             "dos": [
-                "Creează un mediu armonios.",
-                "Ai grijă de ceilalți, dar și de tine.",
-                "Susține dreptatea și frumosul."
+                "Construiește un mediu calm și primitor.",
+                "Sprijină-i pe ceilalți fără să te neglijezi.",
+                "Susține corectitudinea și dialogul."
             ],
             "donts": [
-                "Nu deveni 'salvatorul' tuturor.",
-                "Evită perfecționismul critic.",
-                "Nu îți sacrifica propria fericire."
+                "Nu îți asuma rolul de salvator al tuturor.",
+                "Evită perfecționismul critic față de cei dragi.",
+                "Nu îți sacrifica sănătatea sau liniștea."
             ]
         },
-        "mantra": "Iubirea mea aduce vindecare și echilibru."
+        "mantra": "Ofer sprijin celorlalți păstrând echilibrul meu."
     },
     "7": {
         "theme": {
@@ -206,29 +206,29 @@
         "hero": {
             "icon": "Search",
             "title": "Filozoful",
-            "subtitle": "Cifra Destinului 7",
-            "headline": "Ești căutătorul adevărului suprem."
+            "subtitle": "Calea Vieții 7",
+            "headline": "Cauți sensul profund și răspunsurile din spatele aparențelor."
         },
         "tags": [
             "Analiză",
-            "Spiritualitate",
-            "Mister",
+            "Introspecție",
+            "Cunoaștere",
             "Înțelepciune"
         ],
         "content": {
-            "main_text": "Tu ești **Misticul**. Privirea ta trece dincolo de aparențe, căutând mereu răspunsuri la marile întrebări ale existenței. Adesea te poți simți neînțeles sau izolat, preferând lumea profundă a ideilor tale în locul conexiunilor umane superficiale. Scopul tău este să unești intelectul cu intuiția și să decodezi misterele universului, aducând înțelepciune spirituală într-o lume care are disperată nevoie de profunzime.",
+            "main_text": "Calea Vieții 7 pune accent pe **analiză și reflecție**. Privești dincolo de suprafață, îți pui întrebări de fond și ai nevoie de timp în liniște pentru a înțelege lucrurile în profunzime.\n\nUneori te poți simți neînțeles sau tentat să te retragi prea mult din dialogul cu ceilalți. Echilibrul apare când unești gândirea critică cu deschiderea față de oameni.",
             "dos": [
-                "Petrece timp în solitudine și meditație.",
-                "Studiază, cercetează, învață.",
-                "Ascultă-ți vocea interioară."
+                "Rezervă-ți timp pentru studiu și reflecție.",
+                "Cercetează subiectele până le înțelegi pe deplin.",
+                "Ascultă-ți discernământul interior."
             ],
             "donts": [
-                "Nu te izola complet de lume.",
-                "Evită cinismul și suspiciunea.",
-                "Nu 'gândi prea mult' (overthinking)."
+                "Nu te izola complet de familie și prieteni.",
+                "Evită cinismul și suspiciunea permanentă.",
+                "Nu rămâne blocat în analize fără sfârșit."
             ]
         },
-        "mantra": "Caut adevărul și găsesc liniștea în interior."
+        "mantra": "Caut claritatea și găsesc liniștea în reflecție."
     },
     "8": {
         "theme": {
@@ -239,29 +239,29 @@
         "hero": {
             "icon": "Gem",
             "title": "Liderul",
-            "subtitle": "Cifra Destinului 8",
-            "headline": "Ești manifestarea puterii și a abundenței."
+            "subtitle": "Calea Vieții 8",
+            "headline": "Transformi viziunea practică în rezultate și stabilitate."
         },
         "tags": [
-            "Putere",
+            "Responsabilitate",
             "Succes",
-            "Bani",
+            "Resurse",
             "Ambiție"
         ],
         "content": {
-            "main_text": "Tu ești **Manifestarea**. Înțelegi lumea materială, puterea și resursele mai bine decât oricine, având un potențial imens de realizare. Lupta ta interioară este adesea între dorința de succes și teama de a nu fi suficient, sau riscul de a defini valoarea ta doar prin ceea ce ai. Misiunea ta nu este doar să acumulezi, ci să folosești puterea și abundența pentru a crea oportunitați și valoare reală pentru ceilalți.",
+            "main_text": "Calea Vieții 8 este legată de **organizare, resurse și construcție practică**. Înțelegi mecanismele financiare, ai ambiție și poți coordona proiecte ample atunci când îți asumi direcția.\n\nProvocarea interioară ține de măsura în care îți legi valoarea personală doar de rezultate materiale. Puterea sănătoasă se vede atunci când creezi stabilitate și oportunități corecte pentru tine și pentru ceilalți.",
             "dos": [
-                "Asumă-ți roluri de conducere.",
-                "Gestionează banii cu înțelepciune.",
-                "Fii corect și integru în afaceri."
+                "Asumă-ți responsabilități de coordonare.",
+                "Gestionează bugetul și resursele cu disciplină.",
+                "Păstrează corectitudinea în acorduri și afaceri."
             ],
             "donts": [
-                "Nu deveni obsedat de material.",
-                "Evită să calci pe cadavre.",
-                "Nu neglija latura spirituală."
+                "Nu lăsa succesul material să devină singurul criteriu.",
+                "Nu trece peste oameni pentru un câștig rapid.",
+                "Nu neglija viața personală și liniștea interioară."
             ]
         },
-        "mantra": "Sunt un canal de abundență și putere pozitivă."
+        "mantra": "Folosesc resursele și ambiția cu responsabilitate."
     },
     "9": {
         "theme": {
@@ -272,29 +272,29 @@
         "hero": {
             "icon": "Globe",
             "title": "Umanitarul",
-            "subtitle": "Cifra Destinului 9",
-            "headline": "Ești sufletul lumii, plin de compasiune."
+            "subtitle": "Calea Vieții 9",
+            "headline": "Privești lumea cu compasiune și perspectivă largă."
         },
         "tags": [
             "Generozitate",
-            "Idealism",
             "Compasiune",
-            "Finalizare"
+            "Idealism",
+            "Încheiere"
         ],
         "content": {
-            "main_text": "Tu ești **Vizionarul**. Vezi lumea nu așa cum este, ci așa cum *ar putea fi*, iubind umanitatea în ansamblul ei. Provocarea ta este dezamăgirea profundă pe care o simți atunci când oamenii nu se ridică la înălțimea idealurilor tale, sau dificultatea de a da drumul trecutului. Ești aici pentru a ne învăța despre iubirea necondiționată și pentru a inspira transformarea globală prin propriul exemplu de compasiune și iertare.",
+            "main_text": "Calea Vieții 9 aduce **empatie largă și dorință de a contribui**. Îți pasă de comunitate, vezi imaginea de ansamblu și cauți sens în acțiunile care îi ajută pe ceilalți.\n\nProvocarea ta poate fi dezamăgirea când realitatea nu se ridică la nivelul idealurilor sau dificultatea de a încheia capitole vechi. Maturizarea vine din acceptare, iertare și generozitate realistă.",
             "dos": [
-                "Implică-te în cauze nobile.",
-                "Practică iertarea și detașarea.",
-                "Fii un exemplu de generozitate."
+                "Implică-te în inițiative cu impact real.",
+                "Exersează iertarea și detașarea de trecut.",
+                "Oferă ajutor acolo unde contează concret."
             ],
             "donts": [
-                "Nu te sacrifica până la epuizare.",
-                "Evită dezamăgirea când realitatea e dură.",
-                "Nu uita să trăiești și pentru tine."
+                "Nu te epuiza încercând să rezolvi totul.",
+                "Nu lăsa dezamăgirile să te închidă față de oameni.",
+                "Nu uita să ai grijă și de propriile planuri."
             ]
         },
-        "mantra": "Lumina mea vindecă și inspiră lumea."
+        "mantra": "Contribuția mea începe cu empatie și luciditate."
     },
     "11": {
         "theme": {
@@ -305,30 +305,30 @@
         "hero": {
             "icon": "Zap",
             "title": "Iluminatul",
-            "subtitle": "Număr Maestru 11",
-            "headline": "Ești canalul prin care curge inspirația divină."
+            "subtitle": "Calea Vieții 11, Număr Maestru",
+            "headline": "Sensibilitate intensă și intuiție orientată spre idei noi."
         },
         "tags": [
             "Viziune",
             "Inspirație",
-            "Intuiție Supremă",
-            "Maestru"
+            "Intuiție",
+            "Număr Maestru"
         ],
         "content": {
-            "main_text": "Tu ești **Antena Divină**. Vibrația ta este electrică și intensă, având acces la idei care par venite direct din viitor. Această energie poate fi însă copleșitoare, manifestându-se prin nervozitate sau sentimentul că nu îți găsești locul în această lume pragmatică. Misiunea ta este să fii un canal de inspirație, aducând adevăruri spirituale înalte într-o formă care să ilumineze și să ghideze viața celorlalți.",
+            "main_text": "Calea Vieții 11 este asociată simbolic cu **intuiția fină și inspirația**. Ai adesea perspective originale și observi rapid sensuri pe care alții le trec cu vederea.\n\nAceastă sensibilitate crescută poate aduce însă tensiune nervoasă sau sentimentul că ideile tale sunt greu de pus în practică. Ești provocat să ancorezi viziunea în pași concreți, fără să te pierzi în îngrijorări.",
             "dos": [
-                "Ai încredere totală în 'flash-urile' tale.",
-                "Inspiră-i pe alții prin ideile tale.",
-                "Găsește un canal creativ pentru energie."
+                "Notează și testează ideile tale intuitive.",
+                "Împărtășește perspective constructive cu ceilalți.",
+                "Găsește o formă practică sau creativă pentru energie."
             ],
             "donts": [
-                "Nu te lăsa copleșit de nervozitate.",
-                "Evită să trăiești doar în capul tău.",
-                "Nu ignora detaliile practice."
+                "Nu lăsa agitația interioară să te copleșească.",
+                "Nu rămâne doar la nivel de teorie.",
+                "Nu neglija detaliile practice ale zilei."
             ],
-            "master_note": "11 este un 2 suprataxat. Când tensiunea e prea mare, întoarce-te la diplomația lui 2."
+            "master_note": "11 păstrează și baza lui 2. Când simți prea multă presiune, întoarce-te la calm, ascultare și pași simpli."
         },
-        "mantra": "Sunt un mesager al luminii și adevărului."
+        "mantra": "Îmi ancorez intuiția în fapte clare și calme."
     },
     "22": {
         "theme": {
@@ -339,30 +339,30 @@
         "hero": {
             "icon": "Pyramid",
             "title": "Maestrul Constructor",
-            "subtitle": "Număr Maestru 22",
-            "headline": "Transformi visurile imposibile în realitate."
+            "subtitle": "Calea Vieții 22, Număr Maestru",
+            "headline": "Îmbină viziunea amplă cu organizarea practică."
         },
         "tags": [
-            "Manifestare",
-            "Putere",
-            "Scală Mare",
-            "Maestru"
+            "Construcție",
+            "Viziune",
+            "Disciplină",
+            "Număr Maestru"
         ],
         "content": {
-            "main_text": "Tu ești **Arhitectul Viitorului**. Ai viziunea idealistă a lui 11 combinată cu pragmatismul absolut al lui 4, o forță rară de manifestare. Greutatea pe care o simți vine din imensa responsabilitate pe care o porți; teama de a nu irosi acest potențial uriaș te poate paraliza uneori. Nu ești aici pentru proiecte mici, ci pentru a construi sisteme și structuri care vor dăinui generații întregi și vor schimba lumea.",
+            "main_text": "Calea Vieții 22 unește **viziunea lui 11 cu disciplina practică a lui 4**. Ai capacitatea de a gândi proiecte ample și de a le organiza în etape clare, până devin funcționale.\n\nGreutatea principală vine din presiunea pe care o pui singur pe umeri și din teama de a nu greși. Construcțiile durabile se fac prin consecvență și colaborare, nu prin control excesiv.",
             "dos": [
-                "Gândește la scară mare, globală.",
-                "Fii disciplinat și organizat.",
-                "Transformă idealismul în planuri de acțiune."
+                "Gândește proiecte cu utilitate pe termen lung.",
+                "Păstrează disciplina și structura în execuție.",
+                "Transformă ideile mari în planuri pe etape."
             ],
             "donts": [
-                "Nu te lăsa strivit de responsabilitate.",
-                "Evită obsesia pentru control.",
-                "Nu uita de latura umană a proiectelor."
+                "Nu te bloca sub greutatea propriilor așteptări.",
+                "Evită nevoia de a controla fiecare detaliu.",
+                "Nu uita de oamenii din spatele proiectelor."
             ],
-            "master_note": "22 este un 4 amplificat. Ai grija la rigiditate și odihnește-te."
+            "master_note": "22 amplifică structura lui 4. Ai grijă la rigiditate și păstrează timp real pentru odihnă."
         },
-        "mantra": "Am puterea de a manifesta orice viziune în planul fizic."
+        "mantra": "Construiesc proiecte durabile cu răbdare și măsură."
     },
     "33": {
         "theme": {
@@ -373,29 +373,29 @@
         "hero": {
             "icon": "Sun",
             "title": "Ghidul Spiritual",
-            "subtitle": "Număr Maestru 33",
-            "headline": "Ești expresia pură a iubirii necondiționate."
+            "subtitle": "Calea Vieții 33, Număr Maestru",
+            "headline": "Compasiune matură pusă în slujba celor din jur."
         },
         "tags": [
             "Compasiune",
-            "Vindecare",
-            "Sacrificiu",
-            "Maestru"
+            "Sprijin",
+            "Echilibru",
+            "Număr Maestru"
         ],
         "content": {
-            "main_text": "Tu ești **Avatarul Iubirii**. Aceasta este vibrația compasiunii pure, un nivel de conștiință care caută să vindece tot ce atinge. Provocarea ta imensă este să nu absorbi toată suferința lumii în inima ta și să eviți capcana martiriului personal. Misiunea ta este simplă, dar profundă: să fii un far de lumină și bunătate, demonstrând că iubirea este cea mai puternică forță transformatoare din univers.",
+            "main_text": "Calea Vieții 33 este asociată simbolic cu **compasiunea activă și sprijinul lucid**. Ai o disponibilitate rară de a asculta, de a încuraja și de a aduce liniște în preajma ta.\n\nProvocarea cea mai mare este să nu preiei suferința tuturor și să nu cazi în rolul de sacrificiu permanent. Poți fi un sprijin real pentru ceilalți doar atunci când ai grijă de propriul echilibru.",
             "dos": [
-                "Iubește necondiționat.",
-                "Fii un mentor și un ghid blând.",
-                "Protejează-ți energia empatică."
+                "Oferă sprijin cu blândețe și limite sănătoase.",
+                "Încurajează prin exemplul propriu de calm.",
+                "Protejează-ți energia emoțională."
             ],
             "donts": [
-                "Nu te sacrifica inutil (Sindromul Martirului).",
-                "Evită să preiei suferința lumii.",
+                "Nu te sacrifica în detrimentul sănătății tale.",
+                "Nu prelua problemele pe care alții trebuie să le rezolve.",
                 "Nu uita că și tu ai nevoie de grijă."
             ],
-            "master_note": "33 este un 6 la octavă superioară. Păstrează echilibrul emoțional."
+            "master_note": "33 amplifică grija lui 6. Păstrează echilibrul între ce oferi celorlalți și ce păstrezi pentru tine."
         },
-        "mantra": "Iubirea mea este o forță care transformă universul."
+        "mantra": "Ofer compasiune cu luciditate și echilibru."
     }
 }

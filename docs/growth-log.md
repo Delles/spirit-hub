@@ -177,3 +177,24 @@ Use this file for dated decisions that affect traffic, SEO, retention, or revenu
   `dpl_7UoBEYmYjrJ8ppXgHUtNvYxQBsin` reached `READY`; both changed production paths returned `200`,
   the calculator exposed the guide link, and the guide exposed the worked example and interpretation
   boundary.
+
+## 2026-11-19 - Owner audit, /bioritm/compatibilitate launch, indexing fix, and Romanian /unslop
+
+- Evidence:
+  - Live Search Console (`sc-domain:spirithub.ro`, 3 months): `242` clicks, `6,575` impressions, `3.7%` CTR, `9.1` avg position; sitemap `Success` (`20` URLs, last read `2026-11-16`); `120` clicks in last 28 days (`2026-11-18` milestone email).
+  - Unserved query cluster: `compatibilitate bioritm` (`145` imp, pos `15.3`), `bioritm compatibilitate` (`93` imp, pos `9.4`), `calcul bioritm compatibilitate` (`43` imp, pos `8.9`) = `281` impressions, `7` clicks with no dedicated route.
+  - Indexing (`2026-11-16`): `17` Indexed, `6` Not indexed (`2` healthy apex redirects + `4` `Crawled - currently not indexed`: favicon query URL and all three biorhythm guides `ce-este-bioritmul`, `zile-critice-in-bioritm`, `energia-zilei-cum-sa-o-folosesti`, unrecrawled since `2026-07-06`). Root cause: `app/page.tsx` rendered `guides.slice(0, 3)` (only numerology guides) and biorhythm pages lacked server-rendered links outside `<Suspense>`.
+  - AdSense (`pub-8681888147711861`): Gmail revealed the site waited unreviewed since `2026-06-12` due to missing payments info (`2026-11-08` 30-day deactivation notice). Owner completed Payments on `2026-11-19`; deactivation banner cleared, status `Getting ready`, `Auto ads` `Off`, manual ad units unlocked (`0` created).
+  - Infrastructure & legal: Cloudflare manages DNS-only (`strict` SSL, `0` Workers/Pages); Vercel Hobby serves production (`fra1`), which prohibits commercial ads/checkouts under ToS. Owner has no PFA/SRL (`persoană fizică`), and `My Billing Account` (`01637F-04BA52-076921`) holds `$370.00` untouched GCP credits (`$300` Free Credit expiring `2027-01-08` + `$70` monthly Google Developer Program grants).
+- Decision:
+  - Keep `spirithub.ro` Romanian utility focus and preserve proven metadata/H1s on `/`, `/bioritm`, and `/numerologie/compatibilitate`.
+  - Keep `Auto ads` OFF in AdSense; plan 2 manual Responsive Display units (`result-inline` and `content-footer`) activated ONLY after Google approval AND Sprint 2 migration off Vercel Hobby to Cloud Run (`europe-west1`) + Cloudflare CDN.
+  - Defer direct recurring digital-report sales until traffic supports a PFA/SRL; prioritize traffic growth, AdSense (`Individual`), and 2Performant (`Persoană Fizică`) Romanian affiliate placements.
+  - Ship `/bioritm/compatibilitate`, expose all 6 guides on `/`, add server-rendered guide links across biorhythm routes, deepen the unindexed biorhythm guides, fix sitemap `lastModified` honesty, and clean broken grammar/medical claims/AI filler across all interpretation datasets and UI copy.
+- Change made:
+  - Added deterministic domain module `lib/biorhythm-compatibility.ts` and static route `/bioritm/compatibilitate` (`app/bioritm/compatibilitate/page.tsx` + `client.tsx`) plus `.compat-progress` CSS in `app/globals.css`.
+  - Updated `app/page.tsx` (`guides` instead of `guides.slice(0, 3)`), `app/bioritm/page.tsx`, `app/bioritm/critice/page.tsx`, `app/bioritm/energia-zilei/page.tsx`, `app/numerologie/compatibilitate/page.tsx`, `data/guides.ts`, and `app/sitemap.ts`.
+  - Cleaned Romanian prose, fixed `life-path.json` `"Cifra Destinului"` subtitle mismatch, removed the `"statistic mai mare"` medical claim in `biorhythm.json`, and stripped `✨`/`🌌` slop across 5 JSON files and 11 TSX files, backed by 3 new test suites (`tests/biorhythm-compatibility.test.ts`, `tests/biorhythm-guides-indexing.test.ts`, `tests/content-quality.test.ts`).
+- Expected result: Capture the `281`-impression biorhythm compatibility cluster, get all 3 biorhythm guides indexed on next Google crawl, and improve AdSense review trust/quality.
+- Review date: 2026-12-03 (after Cloud Run migration and Search Console re-indexing).
+- Outcome: Verified locally (`bun test`, `bun run typecheck`, `bun run lint`, `bun run build`) and pushed to `main` on 2026-11-19.

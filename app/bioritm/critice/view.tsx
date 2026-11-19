@@ -53,7 +53,7 @@ export default function CriticalDaysView({
                         <div className="space-y-4 text-center">
                             <h1 className="text-3xl font-bold text-white">Zile Critice Bioritm</h1>
                             <p className="text-lg text-[#E0E0E0] leading-relaxed">
-                                Descoperă zilele de tranziție din ciclurile tale bioritmice pentru următoarele 30 de zile.
+                                Vezi zilele de tranziție din ciclurile tale bioritmice pentru următoarele 30 de zile.
                             </p>
                         </div>
 
@@ -61,10 +61,10 @@ export default function CriticalDaysView({
                         <Card className="p-6 space-y-3">
                             <h2 className="text-xl font-semibold text-white">Ce sunt zilele critice?</h2>
                             <p className="text-sm text-[#E0E0E0] leading-relaxed">
-                                Zilele critice apar când unul sau mai multe cicluri bioritmice trec prin punctul zero,
-                                trecând de la o fază pozitivă la una negativă sau invers. În aceste zile, este recomandat
-                                să fii mai atent și să eviți deciziile importante sau activitățile riscante în domeniile
-                                afectate.
+                                Zilele critice apar atunci când unul sau mai multe cicluri bioritmice traversează
+                                punctul zero, între o fază pozitivă și una negativă. În tradiția bioritmurilor,
+                                aceste momente de tranziție sunt tratate ca zile potrivite pentru mai multă atenție
+                                și un ritm temperat.
                             </p>
                         </Card>
 
@@ -123,10 +123,10 @@ export default function CriticalDaysView({
                             {/* Calculate for Different Person */}
                             <div className="text-center border-b border-white/10 pb-6">
                                 <p className="text-lg font-medium text-[#9F2BFF]">
-                                    ✨ Vrei să calculezi pentru altă persoană? ✨
+                                    Vrei să calculezi pentru altă persoană?
                                 </p>
                                 <p className="text-sm text-[#E0E0E0] mt-2 mb-4">
-                                    Descoperă zilele critice pentru oricine, folosind data nașterii.
+                                    Poți verifica zilele de tranziție pentru oricine, folosind data nașterii.
                                 </p>
                                 <Button variant="secondary" onClick={handleReset} className="gap-2">
                                     <User className="w-4 h-4" />
@@ -139,7 +139,7 @@ export default function CriticalDaysView({
                                 <div className="text-center">
                                     <h3 className="text-xl font-semibold text-white">Explorează Mai Mult</h3>
                                     <p className="text-sm text-[#E0E0E0] mt-1">
-                                        Descoperă alte instrumente spirituale pe SpiritHub
+                                        Alte calculatoare și ghiduri de reflecție pe SpiritHub
                                     </p>
                                 </div>
 
@@ -173,7 +173,7 @@ export default function CriticalDaysView({
                                                 <div className="space-y-1">
                                                     <h4 className="font-semibold text-white text-sm">Numerologie</h4>
                                                     <p className="text-xs text-[#E0E0E0]/70">
-                                                        Descoperă destinul tău numeric
+                                                        Calculează Calea Vieții și Numărul Destinului
                                                     </p>
                                                 </div>
                                                 <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -193,7 +193,7 @@ export default function CriticalDaysView({
                                                 <div className="space-y-1">
                                                     <h4 className="font-semibold text-white text-sm">Energia Zilei</h4>
                                                     <p className="text-xs text-[#E0E0E0]/70">
-                                                        Descoperă energia planetară
+                                                        Tema simbolică și faza lunii de azi
                                                     </p>
                                                 </div>
                                                 <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

@@ -1,11 +1,14 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
+import { ArrowLeft } from "lucide-react";
 import { parseISO, isValid } from "date-fns";
 import { redirect } from "next/navigation";
 import { createCriticalDaysReport } from "@/lib/biorhythm-report";
 import { getBucharestCalendarDate } from "@/lib/bucharest-calendar";
 import CriticalDaysView from "./view";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
+import { Card } from "@/components/ui/card";
 import { BreadcrumbSchema } from "@/components/shared/breadcrumb-schema";
 
 export const dynamic = "force-dynamic";
@@ -82,6 +85,69 @@ export default async function CriticeDaysPage({ searchParams }: PageProps) {
           birthDate={dateParam ?? null}
         />
       </Suspense>
+
+      <aside className="mx-auto w-full max-w-4xl pb-12" aria-labelledby="critice-guides-heading">
+        <Card className="space-y-4 p-6">
+          <div className="space-y-1">
+            <h2 id="critice-guides-heading" className="text-xl font-semibold text-white">
+              Ghiduri și instrumente utile
+            </h2>
+            <p className="text-sm text-[#E0E0E0]/80">
+              Află cum funcționează intervalul de tranziție și explorează celelalte calculatoare
+              de bioritm.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <Link
+              href="/ghiduri/zile-critice-in-bioritm"
+              className="group rounded-xl border border-white/10 bg-black/20 p-4 transition-colors hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5"
+            >
+              <h3 className="text-sm font-semibold text-white group-hover:text-[#A5B4FC]">
+                Zile critice în bioritm
+              </h3>
+              <p className="mt-1 text-xs leading-relaxed text-[#E0E0E0]/75">
+                Metoda de calcul cu pragul ±0,15 și exemple concrete pe ciclul de 23 de zile.
+              </p>
+              <span className="mt-3 inline-flex items-center text-xs font-medium text-[#9F2BFF]">
+                Citește ghidul
+                <ArrowLeft className="ml-1.5 h-3.5 w-3.5 rotate-180" aria-hidden="true" />
+              </span>
+            </Link>
+
+            <Link
+              href="/ghiduri/ce-este-bioritmul"
+              className="group rounded-xl border border-white/10 bg-black/20 p-4 transition-colors hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5"
+            >
+              <h3 className="text-sm font-semibold text-white group-hover:text-[#A5B4FC]">
+                Ce este bioritmul?
+              </h3>
+              <p className="mt-1 text-xs leading-relaxed text-[#E0E0E0]/75">
+                Înțelege cele trei cicluri și limitele interpretării simbolice.
+              </p>
+              <span className="mt-3 inline-flex items-center text-xs font-medium text-[#9F2BFF]">
+                Citește ghidul
+                <ArrowLeft className="ml-1.5 h-3.5 w-3.5 rotate-180" aria-hidden="true" />
+              </span>
+            </Link>
+
+            <Link
+              href="/bioritm/compatibilitate"
+              className="group rounded-xl border border-white/10 bg-black/20 p-4 transition-colors hover:border-[#9F2BFF]/50 hover:bg-[#9F2BFF]/5"
+            >
+              <h3 className="text-sm font-semibold text-white group-hover:text-[#A5B4FC]">
+                Compatibilitate bioritm
+              </h3>
+              <p className="mt-1 text-xs leading-relaxed text-[#E0E0E0]/75">
+                Compară sincronizarea ciclurilor între două date de naștere.
+              </p>
+              <span className="mt-3 inline-flex items-center text-xs font-medium text-[#9F2BFF]">
+                Deschide calculatorul
+                <ArrowLeft className="ml-1.5 h-3.5 w-3.5 rotate-180" aria-hidden="true" />
+              </span>
+            </Link>
+          </div>
+        </Card>
+      </aside>
     </>
   );
 }

@@ -106,7 +106,7 @@ export default function DashboardPage() {
                 </Link>
               </div>
               <div className="grid gap-4 md:grid-cols-3">
-                {guides.slice(0, 3).map((guide) => (
+                {guides.map((guide) => (
                   <Link
                     key={guide.slug}
                     href={`/ghiduri/${guide.slug}`}

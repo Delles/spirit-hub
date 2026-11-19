@@ -165,7 +165,7 @@ export function DailyCard({ number, interpretation, date }: DailyCardProps) {
                         {interpretation.content.master_note && (
                             <div className="rounded-xl bg-indigo-500/5 border border-indigo-500/10 p-5 backdrop-blur-sm">
                                 <p className="text-sm text-indigo-300 leading-relaxed italic">
-                                    <span className="font-bold not-italic mr-1">🌌 Notă Maestru:</span>
+                                    <span className="font-bold not-italic mr-1 text-indigo-200">Notă Maestru:</span>
                                     {interpretation.content.master_note}
                                 </p>
                             </div>

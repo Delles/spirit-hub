@@ -81,10 +81,10 @@ export default function NumarZilnicClient() {
               {/* Return Tomorrow Message */}
               <div className="text-center border-b border-white/10 pb-6">
                 <p className="text-lg font-medium text-[#9F2BFF]">
-                  ✨ Revino mâine pentru un nou număr! ✨
+                  Revino mâine pentru un nou număr al zilei.
                 </p>
                 <p className="text-sm text-[#E0E0E0] mt-2">
-                  Fiecare zi aduce o energie nouă și îndrumări fresh pentru călătoria ta.
+                  Fiecare zi calendaristică are un număr calculat distinct și o nouă temă de reflecție.
                 </p>
               </div>
 
@@ -95,7 +95,7 @@ export default function NumarZilnicClient() {
                     Descoperă-ți Numerele Personale
                   </h3>
                   <p className="text-sm text-[#E0E0E0] mt-1">
-                    Explorează alte aspecte ale destinului tău numerologic
+                    Alte calculatoare numerologice disponibile pe SpiritHub
                   </p>
                 </div>
 
@@ -109,7 +109,7 @@ export default function NumarZilnicClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Calea Vieții</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Descoperă-ți scopul și direcția în viață
+                            Calculat din data completă a nașterii
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -129,7 +129,7 @@ export default function NumarZilnicClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Numărul Destinului</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Află-ți misiunea din numele tău
+                            Calculat din literele numelui complet
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -149,7 +149,7 @@ export default function NumarZilnicClient() {
                         <div className="space-y-1">
                           <h4 className="font-semibold text-white text-sm">Compatibilitate</h4>
                           <p className="text-xs text-[#E0E0E0]/70">
-                            Verifică potrivirea cu partenerul
+                            Compară două profiluri numerologice
                           </p>
                         </div>
                         <span className="text-xs font-medium text-[#9F2BFF] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
