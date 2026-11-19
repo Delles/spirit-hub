@@ -39,15 +39,14 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Request indexing for core and unindexed pages
 
-- Status: initial 4 biorhythm URLs requested manually on `2026-11-19`; around `2026-11-26`, recheck those 4 plus the 2 new Sprint 3 Personal Year URLs (and request indexing for the 2 new URLs if not yet picked up via `sitemap.xml`).
-- Evidence (`2026-11-19`): Automated URL Inspection confirmed `https://www.spirithub.ro/bioritm/compatibilitate` was `URL is not on Google` (`N/A` last crawl) before hitting a Google human-verification gate. Owner then manually requested indexing for all 4 URLs in Search Console:
+- Status: all 6 priority URLs (4 biorhythm + 2 Sprint 3 Personal Year) requested manually on `2026-11-19`; around `2026-11-26`, recheck indexing status for all 6 in Search Console.
+- Evidence (`2026-11-19`): Automated URL Inspection confirmed `https://www.spirithub.ro/bioritm/compatibilitate` was `URL is not on Google` (`N/A` last crawl) before hitting a Google human-verification gate. Owner then manually requested indexing in Search Console for:
   - `https://www.spirithub.ro/bioritm/compatibilitate` (new route targeting 281+ impressions)
   - `https://www.spirithub.ro/ghiduri/ce-este-bioritmul`
   - `https://www.spirithub.ro/ghiduri/zile-critice-in-bioritm`
   - `https://www.spirithub.ro/ghiduri/energia-zilei-cum-sa-o-folosesti`
-- Added in Sprint 3 (`2026-11-19`, included in `sitemap.xml` and internal links):
-  - `https://www.spirithub.ro/numerologie/an-personal`
-  - `https://www.spirithub.ro/ghiduri/ce-este-anul-personal-in-numerologie`
+  - `https://www.spirithub.ro/numerologie/an-personal` (Sprint 3, requested `2026-11-19`)
+  - `https://www.spirithub.ro/ghiduri/ce-este-anul-personal-in-numerologie` (Sprint 3, requested `2026-11-19`)
 
 ---
 
