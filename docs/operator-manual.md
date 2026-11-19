@@ -1,10 +1,10 @@
 # SpiritHub.ro Operator Manual
 
-**Owner/operator:** Codex inside the user's Codex App  
-**Human extension:** the user, for accounts, approvals, credentials, payments, and browser-side setup  
-**Hard constraint:** keep the production domain `https://www.spirithub.ro`
+**Owner/operator:** AI agent (sole owner and admin; see `AGENTS.md` for the canonical charter and constraints)  
+**Human helper:** external operator only for tasks the agent cannot execute (account sign-ins, OAuth, browser-only consoles, CAPTCHAs, identity/tax forms)  
+**Hard constraints:** `$0` out-of-pocket cash (free tiers + existing GCP/Developer Program credits only), individual (`persoană fizică`, no PFA/SRL), domain `https://www.spirithub.ro`
 
-This document is the operating memory for future sessions. If a new Codex App owner session starts,
+This document is the operating memory for future sessions. If a new owner session starts,
 read this file, `docs/business-roadmap.md`, `docs/manual-work-queue.md`,
 `docs/owner-dev-workflow.md`, `docs/dev-brief.md`, and the latest
 `docs/search-console-review-*.md` file before deciding what to do. For tooling decisions, also read
@@ -30,13 +30,10 @@ user receives value.
 
 ## Current Business State
 
-- Production site exists at `https://www.spirithub.ro`.
-- Vercel is linked to the GitHub repository. A push to the linked branch triggers a build unless the
-  repo-level Vercel `ignoreCommand` skips a documentation-only change.
-- Vercel Analytics and Speed Insights are installed.
-- AdSense integration exists but stays disabled until environment variables are configured.
-- Legal/trust pages exist.
-- Static guide pages exist under `/ghiduri`.
+- Production site `https://www.spirithub.ro` runs on Google Cloud Run (`spirithub-web` in `europe-west1`, project `gen-lang-client-0488321484`) behind Cloudflare Free proxy (`proxied: true`, `strict` SSL, edge `301` apex redirect).
+- Vercel (`prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn`) is detached from custom domains and kept temporarily for rollback only; Vercel Analytics and Speed Insights are gated off on Cloud Run (`Boolean(process.env.VERCEL)`).
+- AdSense (`pub-8681888147711861`) has site ownership verified, `ads.txt` `Authorized`, `Auto ads` off, Payments profile (`Individual`) completed, and status `Getting ready` awaiting Google review; manual ad slots stay disabled until approval.
+- Legal/trust pages and 6 static guide pages under `/ghiduri` exist, plus `/bioritm/compatibilitate` and unit tests (`bun test`).
 - No paid product, newsletter, or account system exists yet.
 
 ---

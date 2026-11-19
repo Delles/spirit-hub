@@ -58,8 +58,9 @@ Update this file whenever a task is completed or a new blocker appears.
 
 ### Site approval and ads.txt recognition
 
-- Status: `Getting ready` (waiting on Google fresh crawl now that Payments is complete; `Last updated: Jun 22, 2026` in AdSense UI, `Ads.txt: Not found` stale snapshot; live `https://www.spirithub.ro/ads.txt` returns `200`).
+- Status: `Getting ready` (site ownership verified, `Ads.txt: Authorized`, Review requested since `Jun 22, 2026 11:58 EEST`; confirmed via AdSense detail screenshot on `2026-11-19` after completing Individual payments profile; live `https://www.spirithub.ro/ads.txt` returns `200` and `Mediapartners-Google` receives `200 OK`).
 - Publisher ID: `ca-pub-8681888147711861`.
+- Next optional setup while waiting: publish Google's built-in `European regulations` GDPR consent message in AdSense `Privacy & messaging` pointing to `https://www.spirithub.ro/confidentialitate`, and check `https://pay.google.com` alerts for any identity/tax hold.
 
 ### Ad unit policy & hosting migration dependency
 
@@ -79,7 +80,7 @@ Update this file whenever a task is completed or a new blocker appears.
     - Cloudflare DNS switched from Vercel (`216.198.79.1` / `07cdae1f44a2a3e7.vercel-dns-017.com`) to Cloud Run (`CNAME ghs.googlehosted.com` + 4 `A` + 4 `AAAA`, TXT records preserved), waited for Google Trust Services managed TLS certs across POPs, then enabled Cloudflare proxy (`proxied: true`, `ttl: 1`) under `Full (strict)` SSL.
     - Cloudflare `http_request_dynamic_redirect` ruleset `f2946c6556c8477abe9f67cdde4d7fac` (rule `3d599cc05966454c8a36c9b7d0beb814`) live (`301` `spirithub.ro` -> `https://www.spirithub.ro`, preserving path & query string).
     - Verified live through Cloudflare (`server: cloudflare`, no `x-vercel-id`, no `_vercel/insights`): `https://www.spirithub.ro/` (`200`, `34296` bytes), `/bioritm/compatibilitate` (`200`), `/ads.txt` (`200`), `/api/health` (`200`), `/api/og/calea-vietii/3` (`200`, `image/png`, `177830` bytes), `https://spirithub.ro/` (`301`), and `https://spirithub.ro/bioritm?test=1` (`301`).
-    - **Remaining Vercel cleanup:** Authorize Vercel team `team_N8z7T0gEvxQT4wpkn8BHvxJa` (to disable auto builds) and detach `spirithub.ro` / `www.spirithub.ro` in Vercel project `prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn` Domains settings (Vercel MCP has no domain-removal endpoint).
+    - **Remaining Vercel cleanup:** Custom domains `spirithub.ro` and `www.spirithub.ro` are already detached (`2026-11-19`). Once Cloud Run has run cleanly for a full sprint, disable automatic Vercel Git builds on `prj_uU5Tf74okiaOW8UYIpwDsfKvr5Wn`.
 
 ---
 
